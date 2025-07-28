@@ -279,6 +279,11 @@
       "Manage Rules - Clofix ID Fingerprint Detection and Block"
     ];
 
+    const corePaidFeatures = [
+      "Advance Fingerprinting Blocking",
+      "CloFix CDN"
+    ];
+
     const featureListDiv = document.getElementById("featureList");
     for (const [feature, price] of Object.entries(features)) {
       if (!alwaysIncludedFreeFeatures.includes(feature)) {
@@ -286,6 +291,11 @@
         checkbox.type = "checkbox";
         checkbox.value = feature;
         checkbox.id = feature;
+
+        if (corePaidFeatures.includes(feature)) {
+          checkbox.checked = true;
+          checkbox.disabled = true;
+        }
 
         const label = document.createElement("label");
         label.htmlFor = feature;
@@ -336,14 +346,12 @@
       if (bandwidth > 0) {
         let cost = 0;
         if (bandwidth > 10) {
-          const tier1 = Math.min(bandwidth - 10, 15); // 11–25
-          const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25); // 26–50
-          const tier3 = Math.max(bandwidth - 50, 0); // 51+
-
+          const tier1 = Math.min(bandwidth - 10, 15);
+          const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25);
+          const tier3 = Math.max(bandwidth - 50, 0);
           cost += tier1 * 0.75;
           cost += tier2 * 1.5;
           cost += tier3 * 1.0;
-
           total += cost;
           rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
         } else {
@@ -359,20 +367,22 @@
       }
 
       for (const [feature, price] of Object.entries(features)) {
-        if (!alwaysIncludedFreeFeatures.includes(feature)) {
+        if (!alwaysIncludedFreeFeatures.includes(feature) && !corePaidFeatures.includes(feature)) {
           if (document.getElementById(feature).checked) {
-            if (price === 0) {
-              rows.push([feature, "Free"]);
-            } else {
-              total += price;
-              rows.push([feature, `$${price.toFixed(2)}`]);
-            }
+            total += price;
+            rows.push([feature, `$${price.toFixed(2)}`]);
           }
         }
       }
 
       alwaysIncludedFreeFeatures.forEach((feature) => {
         rows.push([feature, "Free"]);
+      });
+
+      corePaidFeatures.forEach((feature) => {
+        const price = features[feature];
+        total += price;
+        rows.push([feature, `$${price.toFixed(2)}`]);
       });
 
       const tbody = document.getElementById("pricingTable");
@@ -466,6 +476,7 @@
       doc.save("CloFix_Pricing_Summary.pdf");
     });
   </script>
+
 </body>
 
 </html>
