@@ -14,6 +14,53 @@
 </head>
 
 <body>
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <!-- <a class="c-link" href="#"> -->
+        <div class="c-logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+          </a>
+
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        </a>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="#section-features" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item">
+                <a href="about.html" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="features.html" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item">
+                <a href="contact.html" class="c-link c-link--list">Contact</a>
+              </li>
+            </ul>
+            <a href="ticket.html" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">
+                Create Ticket
+              </button>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
   <main class="container">
     <section class="section pricing-section">
       <h2 class="heading heading--3 price-heading">CloFix WAF - Pricing Calculator</h2>
@@ -92,6 +139,75 @@
       </div>
     </section>
   </main>
+  <footer class="footer">
+
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="#" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text">
+          <strong>Secure. Automate. Scale</strong>
+        </p>
+        <ul class="social">
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="about.html">About CloFix</a></li>
+          <li><a href="contact.html">Contact CloFix</a></li>
+          <li>Documentation</li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="partner.html">Become A Partner</a></li>
+          <li>Events</li>
+          <li>Release</li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="terms.html">Terms and Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+    </div>
+  </footer>
   <script>
     const features = {
       "AI & Agentic Detection, Behavioral Analysis": 3,
@@ -338,8 +454,30 @@
         format: "a4"
       });
 
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(20);
+      doc.setTextColor("#2563eb");
+      doc.text("CloFix WAF Pricing Summary", 40, 50);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.setTextColor("#6b7280");
+      doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.setTextColor("#374151");
+      doc.text(
+        "CloFix is a next-generation cloud security and DevOps solutions provider specializing in enterprise-grade Web Application Firewall (WAF), intelligent cloud automation, expert DevOps support, and on-demand engineering assistance.\n\n",
+        40,
+        90,
+        { maxWidth: 520 }
+      );
+
+      const startY = 120;
       const table = document.querySelector(".pricing-table");
       let rows = [["Component", "Cost (USD)"]];
+
       for (const tr of table.querySelectorAll("tbody tr")) {
         const tds = tr.querySelectorAll("td");
         const row = [tds[0].innerText, tds[1].innerText];
@@ -349,17 +487,8 @@
       const total = document.getElementById("totalCost").innerText;
       rows.push(["Total", total]);
 
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(20);
-      doc.setTextColor("#2563eb");
-      doc.text("CloFix WAF Pricing Summary", 40, 50);
-
-      doc.setFontSize(12);
-      doc.setTextColor("#6b7280");
-      doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
-
       doc.autoTable({
-        startY: 90,
+        startY: startY,
         head: [rows[0]],
         body: rows.slice(1),
         theme: "striped",
@@ -378,8 +507,66 @@
         alternateRowStyles: {
           fillColor: [240, 249, 255]
         },
-        margin: { top: 90, left: 40, right: 40 }
+        margin: { top: startY, left: 40, right: 40 }
       });
+
+      doc.addPage();
+      const marginLeft = 40;
+      let currentY = 50;
+      const lineHeight = 16;
+
+      const lines = [
+        { text: "Cost Breakdown Summary", bold: true },
+        { gap: true },
+
+        { text: '• WordPress: Includes "WordPress Protection" to guard popular plugins and themes from attacks.' },
+        { text: '• API Gateway: Uses "Payload Signature Checking" to validate incoming traffic structure.' },
+        { text: '• SaaS Web App: Adds "Brute Force and DDoS Protection" for user accounts and login endpoints.' },
+        { text: '• Banking/Finance: Applies "Client Behavior Analysis" to detect abnormal transaction patterns.' },
+        { text: '• E-commerce: Enables "Bot & Headless Browser Blocking" to prevent scraping and automated threats.' },
+
+        { gap: true },
+        { text: "Core Features (Always Included and Billed):", bold: true },
+        { gap: true },
+
+        { text: '• Advance Fingerprinting Blocking: Ensures advanced browser and bot fingerprint tracking prevention.' },
+        { text: '  - This is a critical layer of defense against modern bot attacks and browser emulation, and is included by default in all plans due to its essential role in baseline security.' },
+
+        { gap: true },
+
+        { text: '• CloFix CDN: Accelerates web content delivery through our secure, global CDN edge nodes.' },
+        { text: '  - This improves performance and protection by serving content closer to users while shielding origin servers. It is always active and therefore billed.' },
+
+        { gap: true },
+        { text: "Auto-Selected Features Based on Website Type:", bold: true },
+        { gap: true },
+
+        { text: "When you select a specific website type, certain add-on features are automatically included to match the common threat models and protection needs of that type. For example:" },
+        { text: '- WordPress sites face plugin vulnerabilities, so "WordPress Protection" is added.' },
+        { text: '- API Gateway traffic must be validated structurally, so "Payload Signature Checking" is included.' },
+        { text: '- Banking/Finance requires fraud behavior detection, so "Client Behavior Analysis" is activated.' },
+
+        { gap: true },
+        { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
+
+        { gap: true },
+        { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
+      ];
+
+      for (const line of lines) {
+        if (line.gap) {
+          currentY += lineHeight / 2;
+          continue;
+        }
+
+        doc.setFont("helvetica", line.bold ? "bold" : "normal");
+        doc.setFontSize(10);
+        doc.setTextColor("#374151");
+
+        const splitLines = doc.splitTextToSize(line.text, 520);
+        doc.text(splitLines, marginLeft, currentY);
+        currentY += splitLines.length * lineHeight;
+      }
 
       doc.save("CloFix_Pricing_Summary.pdf");
     });
