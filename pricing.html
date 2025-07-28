@@ -335,20 +335,19 @@
 
       if (bandwidth > 0) {
         let cost = 0;
-
         if (bandwidth > 10) {
-          const tier1 = Math.min(bandwidth - 10, 15);
-          const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25);
-          const tier3 = Math.max(bandwidth - 50, 0);
+          const tier1 = Math.min(bandwidth - 10, 15); // 11–25
+          const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25); // 26–50
+          const tier3 = Math.max(bandwidth - 50, 0); // 51+
 
           cost += tier1 * 0.75;
           cost += tier2 * 1.5;
           cost += tier3 * 1.0;
-        }
 
-        if (cost > 0) {
           total += cost;
           rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
+        } else {
+          rows.push(["Bandwidth", "Free"]);
         }
       }
 
@@ -379,7 +378,6 @@
       const tbody = document.getElementById("pricingTable");
       tbody.innerHTML = "";
 
-      // Apply license plan logic (monthly vs yearly)
       if (license === "yearly") {
         const yearlyTotal = total * 12;
         const discounted = yearlyTotal * 0.9;
@@ -468,7 +466,6 @@
       doc.save("CloFix_Pricing_Summary.pdf");
     });
   </script>
-
 </body>
 
 </html>
