@@ -4,111 +4,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloFix</title>
-  <link rel="icon" href="img/clofix.png" />
+  <title>CloFix WAF Calculator</title>
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-
 </head>
 
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="header__wrapper">
-        <!-- <a class="c-link" href="#"> -->
-        <div class="c-logo">
-          <a href="index.html">
-            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
-          </a>
-
-          <span class="c-logo__text c-logo__text--white"></span>
-        </div>
-        </a>
-        <nav class="c-nav">
-          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
-            <span class="c-nav__bar"></span>
-            <span class="c-nav__bar"></span>
-            <span class="c-nav__bar"></span>
-          </button>
-
-          <div class="c-nav__content">
-            <ul class="c-list c-list--flex">
-              <li class="c-list__item">
-                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
-              </li>
-              <li class="c-list__item">
-                <a href="#section-features" class="c-link c-link--list">Services</a>
-              </li>
-              <li class="c-list__item">
-                <a href="about.html" class="c-link c-link--list">About</a>
-              </li>
-              <li class="c-list__item">
-                <a href="features.html" class="c-link c-link--list">Features</a>
-              </li>
-              <li class="c-list__item">
-                <a href="contact.html" class="c-link c-link--list">Contact</a>
-              </li>
-            </ul>
-            <a href="ticket.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">
-                Create Ticket
-              </button>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <section id="section-pricing" class="section pricing">
-    <div class="container">
-      <div class="section__title-wrapper">
-        <h2 class="heading heading--2 clofix-pricing">CloFix WAF Pricing</h2>
-
-        <h4 class="heading heading--4">
-          CloFix Web Application Firewall (WAF) is built for modern cloud-native and on-premise infrastructures,
-          offering scalable, high-performance security for web applications, APIs, and microservices. Whether you're a
-          startup or an enterprise, our pricing is transparent, flexible, and commitment-free.
-        </h4>
-      </div>
-  </section>
-
   <main class="container">
     <section class="section pricing-section">
+      <h2 class="heading heading--3 price-heading">CloFix WAF - Pricing Calculator</h2>
 
-      <div class="section">
-        <h2 class="heading heading--3 price-heading">Calculate Your Own Price</h2>
-        <label class="basic-input">Number of Domains:
-          <input type="number" id="domains" min="1" value="0" required />
-        </label>
-        <label class="basic-input">Number of Subdomains:
-          <input type="number" id="subdomains" min="0" value="0" />
-        </label>
-        <label class="basic-input">Monthly Requests (in millions):
-          <input type="number" id="requests" min="0" value="0" />
-        </label>
-        <label class="basic-input">Bandwidth (in GB):
-          <input type="number" id="bandwidth" min="1" value="0" required />
-        </label>
+      <label class="basic-input">Number of Domains:
+        <input type="number" id="domains" min="1" value="0" required />
+      </label>
+      <label class="basic-input">Number of Subdomains:
+        <input type="number" id="subdomains" min="0" value="0" />
+      </label>
+      <label class="basic-input">Monthly Requests (in millions):
+        <input type="number" id="requests" min="0" value="0" />
+      </label>
+      <label class="basic-input">Bandwidth (in GB):
+        <input type="number" id="bandwidth" min="1" value="0" required />
+      </label>
 
-        <label class="support-type">Support Type:
-          <select id="support" required>
-            <option value="email">Email (Free)</option>
-            <option value="whatsapp">WhatsApp ($1.50)</option>
-          </select>
-        </label>
+      <label class="support-type">Website Type:
+        <select id="siteType">
+          <option value="">Select Type</option>
+          <option value="wordpress">WordPress</option>
+          <option value="api">API Gateway</option>
+          <option value="saas">SaaS Web App</option>
+          <option value="bank">Banking / Finance</option>
+          <option value="ecommerce">E-commerce</option>
+        </select>
+      </label>
 
-        <label class="license-validation">License Validation:
-          <select id="license" required>
-            <option value="monthly">Monthly</option>
-            <option value="yearly">Yearly</option>
-          </select>
-        </label>
-      </div>
+      <label class="support-type">Support Type:
+        <select id="support" required>
+          <option value="email">Email (Free)</option>
+          <option value="whatsapp">WhatsApp ($1.50)</option>
+        </select>
+      </label>
+
+      <label class="license-validation">License Validation:
+        <select id="license" required>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </label>
 
       <h2 class="optional-features">Add-Ons</h2>
       <div class="optional-feature-wrap">
@@ -116,7 +62,7 @@
       </div>
 
       <div id="errorMessage" style="display:none; color:#f87171; margin-top: 1rem; font-weight: bold;">
-        ⚠️ Please fill in all required fields: Domains, Requests must be greater than 0.
+        ⚠️ Please fill in all required fields: Domains, Bandwidth must be greater than 0.
       </div>
 
       <button class="c-button c-button--primary calculate" onclick="calculatePricing()">Calculate Pricing</button>
@@ -146,76 +92,6 @@
       </div>
     </section>
   </main>
-  <footer class="footer">
-
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
-
-    <div class="container c-footer">
-      <div class="c-footer__column c-footer__logo-column">
-        <a href="#" class="c-footer__brand">
-          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
-        </a>
-        <p class="c-footer__text">
-          <strong>Secure. Automate. Scale</strong>
-        </p>
-        <ul class="social">
-          <li class="social-li">
-            <a href="#" target="_blank">
-              <img src="img/facebook_clofix.png" alt="Facebook" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="#" target="_blank">
-              <img src="img/X_clofix.png" alt="X" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
-              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://wa.me/8801850603126" target="_blank">
-              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
-            </a>
-          </li>
-        </ul>
-
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Company</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="about.html">About CloFix</a></li>
-          <li><a href="contact.html">Contact CloFix</a></li>
-          <li>Documentation</li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Explore</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="#">Become A Partner</a></li>
-          <li>Events</li>
-          <li>Release</li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Legal</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="terms.html">Terms and Conditions</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="container">
-      <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
-    </div>
-  </footer>
-
   <script>
     const features = {
       "AI & Agentic Detection, Behavioral Analysis": 3,
@@ -284,6 +160,14 @@
       "CloFix CDN"
     ];
 
+    const typeFeatureMap = {
+      wordpress: ["WordPress Protection"],
+      api: ["Payload Signature Checking"],
+      saas: ["Brute Force and DDos Protection"],
+      bank: ["Client Behavior Analysis"],
+      ecommerce: ["Bot & Headless Browser Blocking"]
+    };
+
     const featureListDiv = document.getElementById("featureList");
     for (const [feature, price] of Object.entries(features)) {
       if (!alwaysIncludedFreeFeatures.includes(feature)) {
@@ -305,6 +189,26 @@
         featureListDiv.appendChild(label);
       }
     }
+
+    document.getElementById("siteType").addEventListener("change", (e) => {
+      const selectedType = e.target.value;
+      const selectedFeatures = typeFeatureMap[selectedType] || [];
+
+      for (const [feature, price] of Object.entries(features)) {
+        if (
+          !alwaysIncludedFreeFeatures.includes(feature) &&
+          !corePaidFeatures.includes(feature)
+        ) {
+          const checkbox = document.getElementById(feature);
+          if (checkbox) checkbox.checked = false;
+        }
+      }
+
+      selectedFeatures.forEach((feature) => {
+        const checkbox = document.getElementById(feature);
+        if (checkbox) checkbox.checked = true;
+      });
+    });
 
     function calculatePricing() {
       const domainCount = parseInt(document.getElementById("domains").value);
@@ -367,8 +271,12 @@
       }
 
       for (const [feature, price] of Object.entries(features)) {
-        if (!alwaysIncludedFreeFeatures.includes(feature) && !corePaidFeatures.includes(feature)) {
-          if (document.getElementById(feature).checked) {
+        if (
+          !alwaysIncludedFreeFeatures.includes(feature) &&
+          !corePaidFeatures.includes(feature)
+        ) {
+          const checkbox = document.getElementById(feature);
+          if (checkbox && checkbox.checked) {
             total += price;
             rows.push([feature, `$${price.toFixed(2)}`]);
           }
