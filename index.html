@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/clofix.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./style.css" rel="stylesheet" />
+
+    <title>Clofix WAF</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <!-- <a class="c-link" href="#"> -->
+            <div class="c-logo">
+              <a href="index.html">
+                  <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+              </a>
+
+              <span class="c-logo__text c-logo__text--white"></span>
+            </div>
+          </a>
+          <nav class="c-nav">
+            <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+            </button>
+
+            <div class="c-nav__content">
+              <ul class="c-list c-list--flex">
+                <li class="c-list__item">
+                  <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="#section-features" class="c-link c-link--list">Services</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="about.html" class="c-link c-link--list">About</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="features.html" class="c-link c-link--list">Features</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="contact.html" class="c-link c-link--list">Contact</a>
+                </li>
+              </ul>
+              <a href="ticket.html" class="ticket-button">
+                  <button class="c-button c-button--small c-button--secondary">
+                    Create Ticket
+                  </button>
+              </a>
+
+             <!--  <button class="c-button c-button--small c-button--secondary">
+                Create Ticket
+              </button> -->
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="c-hero">
+          <div class="container">
+            <div class="c-hero__content">
+              <h1 class="heading heading--1 heading--light">
+                Built to Automate, Designed to Defend
+              </h1>
+              <h4 class="heading heading--4 heading--blue">
+                Fuel your infrastructure with intelligent automation and uncompromising protection; streamline every deployment, eliminate operational friction, and scale confidently without compromise.
+              </h4>
+              <div class="c-hero__button-group">
+                <a class="request-button" href="ticket.html">
+                  <button class="c-button c-button--primary">
+                  Request early access
+                </button>
+                </a>
+                <a class="learn-button" href="about.html">
+                  <button class="c-button c-button--secondary">Learn more</button>
+                </a>
+              </div>
+            </div>
+
+            <div class="slider">
+              <div class="slides" id="slides">
+                <img src="img/dashboard.png" alt="Dashboard" />
+                <img src="img/world.png" alt="Stats" />
+                <img src="img/attackh.png" alt="Security" />
+              </div>
+
+              <div class="slider-nav">
+                <button onclick="prevSlide()">❮</button>
+                <button onclick="nextSlide()">❯</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section__title-wrapper">
+            <h2 class="heading heading--2 clofix-pricing">Our Services</h2>
+            <div class="c-card__img-holder">
+                <p class="c-paragraph c-card__text">
+                  CloFix delivers powerful security, automation, and infrastructure solutions tailored for cloud-native and enterprise-grade applications.
+                  We specialize in Web Application Firewall (WAF), DevSecOps, and intelligent cloud automation enabling businesses to operate securely, efficiently, and at scale.
+                  With real-time threat detection, dynamic policy enforcement, and full-stack observability, CloFix empowers organizations to stay resilient against evolving cyber threats.
+                  Whether you're running SaaS platforms, e-commerce portals, or mission-critical APIs, CloFix ensures performance, protection, and peace of mind 24/7.
+                </p>
+              </div>
+        </div>    
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="box box--flex">
+            <article class="c-card">
+              <div class="c-card__content">
+                <h3 class="c-card__title heading heading--3">
+                  CloFix - WAF
+                </h3>
+                <p class="c-paragraph c-card__text">
+                  CloFix WAF is a fully managed Web Application Firewall designed to protect modern web applications, APIs, and digital services against advanced threats, bot attacks, CDN Service, Wordpress Protection and OWASP Top 10 vulnerabilities all with minimal latency and maximum scalability..
+                </p>
+              </div>
+              <div class="c-card__img-holder">
+                <img class="c-card__img" src="img/waf-1.png" alt="" />
+              </div>
+            </article>
+
+            <article class="c-card">
+              <div class="c-card__content">
+                <h3 class="c-card__title heading heading--3">
+                  CloFix - SRE Support
+                </h3>
+                <p class="c-paragraph c-card__text">
+                 CloFix SRE Support ensures fast, secure, and scalable application delivery by embracing modern Site Reliability Engineering principles. Our team automates deployment pipelines, optimizes infrastructure, and implements real-time observability to maintain high availability, performance, and reliability for cloud-native applications.
+                </p>
+              </div>
+
+              <div class="c-card__img-holder">
+                <img class="c-card__img" src="img/devops_support.png" alt="" />
+              </div>
+            </article>
+
+            <article class="c-card">
+              <div class="c-card__content">
+                <h3 class="c-card__title heading heading--3">
+                  CloFix - Automation & Management
+                </h3>
+                <p class="c-paragraph c-card__text">
+                  CloFix provides reliable, secure, and cost-effective cloud automation and infrastructure management services. We help businesses streamline operations, reduce manual effort, and achieve continuous availability.
+                </p>
+              </div>
+
+              <div class="c-card__img-holder">
+                <img class="c-card__img" src="img/automation.png" alt="" />
+              </div>
+            </article>
+
+            <article class="c-card">
+              <div class="c-card__content">
+                <h3 class="c-card__title heading heading--3">
+                  CloFix - On-Demand Engineering Support
+                </h3>
+                <p class="c-paragraph c-card__text">
+                  CloFix On-Demand Engineering Support delivers fast, expert-level technical assistance exactly when you need it. Our seasoned engineers help you troubleshoot, optimize, and secure your infrastructure, deployments, and DevOps pipelines ensuring resilience, efficiency, and reliability at every step.
+                </p>
+              </div>
+
+              <div class="c-card__img-holder">
+                <img class="c-card__img" src="img/support_clofix.png" alt="" />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="section features" id="section-features">
+        <div class="container">
+          <div class="box box--grid">
+            <article class="c-feature">
+              <div class="c-feature__img-holder">
+                <img class="c-feature__img" src="img/feature-1.png" alt="" />
+              </div>
+              <div class="c-feature__content">
+                <h3 class="c-feature__title heading heading--3">
+                  Web Application Security - WAF
+                </h3>
+                <p class="c-paragraph c-feature__text">
+                  Managed WAF (Web Application Firewall),
+                  Threat Detection & Response,
+                  Custom Rule Sets,
+                  API Security & Rate Limiting.
+                </p>
+              </div>
+            </article>
+
+            <article class="c-feature">
+              <div class="c-feature__img-holder">
+                <img class="c-feature__img" src="img/feature-2.png" alt="" />
+              </div>
+              <div class="c-feature__content">
+                <h3 class="c-feature__title heading heading--3">
+                  DevOps Support
+                </h3>
+                <p class="c-paragraph c-feature__text">
+                  CI/CD Pipeline Implementation, Infrastructure as Code (IaC), Monitoring & Logging, Performance Optimization.
+                </p>
+              </div>
+            </article>
+
+            <article class="c-feature">
+              <div class="c-feature__img-holder">
+                <img class="c-feature__img" src="img/feature-3.png" alt="" />
+              </div>
+              <div class="c-feature__content">
+                <h3 class="c-feature__title heading heading--3">
+                  Cloud Automation & Management
+                </h3>
+                <p class="c-paragraph c-feature__text">
+                  Multi-Cloud Infrastructure Setup, Serverless & Container Orchestration, Backup & Disaster Recovery, Auto-Scaling & Load Balancing 
+                </p>
+              </div>
+            </article>
+            <article class="c-feature">
+              <div class="c-feature__img-holder">
+                <img class="c-feature__img" src="img/feature-3.png" alt="" />
+              </div>
+              <div class="c-feature__content">
+                <h3 class="c-feature__title heading heading--3">
+                  On-Demand Engineering Support
+                </h3>
+                <p class="c-paragraph c-feature__text">
+                  Deployment Troubleshooting, DevSecOps Best Practices Implementation, 24/7 Technical Support.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="box box--flex box--mt2">
+            <button class="c-button c-button--primary">
+              Request early access
+            </button>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- <section id="section-pricing" class="section pricing">
+        <div class="container">
+          <div class="section__title-wrapper">
+            <h2 class="heading heading--2">CloFix WAF Pricing</h2>
+
+            <h4 class="heading heading--4">
+              CloFix Web Application Firewall (WAF) is designed to provide scalable, high-performance, protection for cloud-based and On-prem applications. You pay only for what you need, No hidden costs, No lock-ins.
+            </h4>
+          </div>
+
+          <div class="box box--grid box--gap2">
+            <article class="c-price">
+              <div class="c-price__header">
+                <div class="c-price__amount">
+                  <h3 class="c-price__amount--title heading heading--3">
+                    <span class="c-price__amount--secondary">BDT</span>
+                    <span class="c-price__amount--primary">1,500</span>
+                    <span class="c-price__amount--secondary">/m</span>
+                  </h3>
+                </div>
+                <p class="c-paragraph c-price__text">
+                  This Pricing For 1 Domain License.
+                </p>
+                <h5 class="heading heading--4 c-price__title">
+                  What's included
+                </h5>
+              </div>
+              <ul class="c-list">
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">
+                    Features - All - <a href="your-details-page.html">Details</a>
+                  </div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Support Type - WhatsApp Only</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Bandwidth Limit - 30 GB</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Dashboard - Per Domain</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Landing Page - FIX</div>
+                </li>
+              </ul>
+              <button
+                class="c-button c-button--secondary c-button--block c-price__button"
+              >
+                Request now
+              </button>
+            </article>
+
+            <article class="c-price c-price--highlight">
+              <div class="c-price__header">
+                <div class="c-price__amount">
+                  <h3 class="c-price__amount--title heading heading--3">
+                    <span class="c-price__amount--secondary">BDT</span>
+                    <span class="c-price__amount--primary">4,000</span>
+                    <span class="c-price__amount--secondary">/m</span>
+                  </h3>
+                </div>
+                <p class="c-paragraph c-price__text">
+                  This Pricing For 3 Domain License.
+                </p>
+                <h5 class="heading heading--4 c-price__title">
+                  What's included
+                </h5>
+              </div>
+              <ul class="c-list">
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">
+                    Features - All - <a href="your-details-page.html">Details</a>
+                  </div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Support Type - WhatsApp Only</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Bandwidth Limit - 100 GB</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Dashboard - Per Domain</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Landing Page - FIX</div>
+                </li>
+              </ul>
+              <button
+                class="c-button c-button--secondary c-button--block c-price__button"
+              >
+                Request now
+              </button>
+            </article>
+
+            <article class="c-price">
+              <div class="c-price__header">
+                <div class="c-price__amount">
+                  <h3 class="c-price__amount--title heading heading--3">
+                    <span class="c-price__amount--secondary">BDT</span>
+                    <span class="c-price__amount--primary">7,500</span>
+                    <span class="c-price__amount--secondary">/m</span>
+                  </h3>
+                </div>
+                <p class="c-paragraph c-price__text">
+                  This Pricing For 6 Domain License.
+                </p>
+                <h5 class="heading heading--4 c-price__title">
+                  What's included
+                </h5>
+              </div>
+              <ul class="c-list">
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">
+                    Features - All - <a href="your-details-page.html">Details</a>
+                  </div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Support Type - WhatsApp Only</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Bandwidth Limit - 300 GB</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Dashboard - Per Domain</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Landing Page - FIX</div>
+                </li>
+              </ul>
+              <button
+                class="c-button c-button--secondary c-button--block c-price__button"
+              >
+                Request now
+              </button>
+            </article>
+
+            <article class="c-price c-price--highlight">
+              <div class="c-price__header">
+                <div class="c-price__amount">
+                  <h3 class="c-price__amount--title heading heading--3">
+                    <span class="c-price__amount--secondary">BDT</span>
+                    <span class="c-price__amount--primary">50,000</span>
+                    <span class="c-price__amount--secondary">/m</span>
+                  </h3>
+                </div>
+                <p class="c-paragraph c-price__text">
+                  This Pricing For 15 Domain License.
+                </p>
+                <h5 class="heading heading--4 c-price__title">
+                  What's included
+                </h5>
+              </div>
+              <ul class="c-list">
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">
+                    Features - All - <a href="your-details-page.html">Details</a>
+                  </div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Support Type - WhatsApp Only</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Bandwidth Limit - 750 GB</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Dashboard - Per Domain</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Landing Page - FIX</div>
+                </li>
+              </ul>
+              <button
+                class="c-button c-button--secondary c-button--block c-price__button"
+              >
+                Request now
+              </button>
+            </article>
+
+            <article class="c-price c-price--highlight">
+              <div class="c-price__header">
+                <div class="c-price__amount">
+                  <h3 class="c-price__amount--title heading heading--3">
+                    <span class="c-price__amount--secondary">BDT</span>
+                    <span class="c-price__amount--primary">20,500</span>
+                    <span class="c-price__amount--secondary">/m</span>
+                  </h3>
+                </div>
+                <p class="c-paragraph c-price__text">
+                  This Pricing For 15 Domain License.
+                </p>
+                <h5 class="heading heading--4 c-price__title">
+                  What's included
+                </h5>
+              </div>
+              <ul class="c-list">
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">
+                    Features - All - <a href="your-details-page.html">Details</a>
+                  </div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Support Type - WhatsApp Only</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Bandwidth Limit - 750 GB</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Dashboard - Per Domain</div>
+                </li>
+                <li class="c-list__item c-price__list-item">
+                  <div class="c-list__icon c-list__icon--check"></div>
+                  <div class="c-list__text">Landing Page - FIX</div>
+                </li>
+              </ul>
+              <button
+                class="c-button c-button--secondary c-button--block c-price__button"
+              >
+                Request now
+              </button>
+            </article>
+          </div>
+        </div>
+      </section> -->
+    </main>
+
+<footer class="footer">
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="#" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+      </a>
+      <p class="c-footer__text">
+        <strong>Secure. Automate. Scale</strong>
+      </p>
+      <ul class="social">
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="about.html">About CloFix</a></li>
+        <li><a href="contact.html">Contact CloFix</a></li>
+        <li>Documentation</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Explore</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="partner.html">Become A Partner</a></li>
+        <li>Events</li>
+        <li>Release</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+  </div>
+</footer>
+  </body>
+  <script>
+     let currentIndex = 0;
+
+      function showSlide(index) {
+        const slides = document.getElementById("slides");
+        const totalSlides = slides.children.length;
+
+        if (index >= totalSlides) {
+          currentIndex = 0;
+        } else if (index < 0) {
+          currentIndex = totalSlides - 1;
+        } else {
+          currentIndex = index;
+        }
+
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        showSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        showSlide(currentIndex - 1);
+      }
+
+      // Auto slide every 5 seconds (optional)
+      setInterval(nextSlide, 5000);
+
+      const navToggle = document.getElementById('navToggle');
+      const navContent = document.querySelector('.c-nav__content');
+
+      navToggle.addEventListener('click', () => {
+        navContent.classList.toggle('active');
+      });
+  </script>
+</html>

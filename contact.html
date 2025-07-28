@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./style.css" rel="stylesheet" />
+
+    <title>Clofix WAF</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <!-- <a class="c-link" href="#"> -->
+            <div class="c-logo">
+              <!-- <img src="img/logo.png" alt="Logo" class="c-logo__img" /> -->
+              <a href="index.html">
+                  <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+              </a>
+              <span class="c-logo__text c-logo__text--white"></span>
+            </div>
+          </a>
+          <nav class="c-nav">
+            <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+            </button>
+
+            <div class="c-nav__content">
+              <ul class="c-list c-list--flex">
+                <li class="c-list__item">
+                  <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="index.html#section-features" class="c-link c-link--list">Services</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="about.html" class="c-link c-link--list">About</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="features.html" class="c-link c-link--list">Features</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="contact.html" class="c-link c-link--list">Contact</a>
+                </li>
+              </ul>
+              <a href="ticket.html" class="ticket-button">
+                  <button class="c-button c-button--small c-button--secondary">
+                    Create Ticket
+                  </button>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+<main class="container section">
+  <div class="contact">
+    <h2 class="contact__title heading heading--2">Get in Touch with CloFix</h2>
+    
+    <div class="contact__grid">
+      <!-- Left: Contact Info -->
+      <div class="contact__info">
+        <p><strong>📞 Phone:</strong> <a href="tel:01850603126">01850603126</a></p>
+        <p><strong>📍 Address:</strong> <span class="contact__address">Agargaon, Dhaka - 1207</span></p>
+        <p><strong>✉️ Email:</strong> 
+            <a href="mailto:clofix19@gmail.com">info@clofix.com</a> | 
+            <a href="mailto:support@clofix.com">support@clofix.com</a>
+        </p>
+
+        <p><strong>🕒 Hours:</strong> <span class="contact__hours">Sun - Thu | 9AM - 6PM</span> </p>
+      </div>
+
+      <!-- Right: Form -->
+      <!-- <form class="contact__form">
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="c-button c-button--primary">Send Message</button>
+      </form> -->
+
+      <!-- Right: Contact Button -->
+        <div class="contact__cta">
+            <a href="ticket.html" class="animated-contact-button">Send Us a Email</a>
+        </div>
+
+    </div>
+
+    <!-- Map -->
+    <div class="contact__map-wrapper">
+      <iframe
+        class="contact__map"
+        src="https://www.google.com/maps?q=Agargaon,%20Dhaka%20-%201207&output=embed"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</main>
+
+
+
+<footer class="footer">
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="#" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+      </a>
+      <p class="c-footer__text">
+        <strong>Secure. Automate. Scale</strong>
+      </p>
+      <ul class="social">
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="about.html">About CloFix</a></li>
+        <li><a href="contact.html">Contact CloFix</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Explore</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li>Documentation</li>
+        <li>Events</li>
+        <li>Release</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+  </div>
+</footer>
+  </body>
+  <script>
+     let currentIndex = 0;
+
+      function showSlide(index) {
+        const slides = document.getElementById("slides");
+        const totalSlides = slides.children.length;
+
+        if (index >= totalSlides) {
+          currentIndex = 0;
+        } else if (index < 0) {
+          currentIndex = totalSlides - 1;
+        } else {
+          currentIndex = index;
+        }
+
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        showSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        showSlide(currentIndex - 1);
+      }
+
+      // Auto slide every 5 seconds (optional)
+      setInterval(nextSlide, 5000);
+
+      const navToggle = document.getElementById('navToggle');
+      const navContent = document.querySelector('.c-nav__content');
+
+      navToggle.addEventListener('click', () => {
+        navContent.classList.toggle('active');
+      });
+  </script>
+</html>

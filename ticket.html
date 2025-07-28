@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloFix WAF - Support Ticket</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("JKp31eI_CgmuJEAJH"); // Replace with your EmailJS User ID
+      })();
+    </script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <a class="c-link" href="index.html">
+            <div class="c-logo">
+              <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+            </div>
+          </a>
+          <nav class="c-nav">
+            <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+              <span class="c-nav__bar"></span>
+              <span class="c-nav__bar"></span>
+              <span class="c-nav__bar"></span>
+            </button>
+            <div class="c-nav__content">
+              <ul class="c-list c-list--flex">
+                <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                <li class="c-list__item"><a href="index.html#section-features" class="c-link c-link--list">Services</a></li>
+                <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+                <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+              </ul>
+              <a href="ticket.html" class="ticket-button">
+                  <button class="c-button c-button--small c-button--secondary">
+                    Create Ticket
+                  </button>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Support Ticket Form -->
+    <section class="ticket-section container">
+      <h1 class="heading--2">Create a Support Ticket</h1>
+      <form id="ticket-form" class="ticket-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="issue">Issue Type</label>
+          <select id="issue" required>
+            <option value="">Select an issue</option>
+            <option value="General Purpose">General Purpose</option>
+            <option value="Bug Report">Bug Report</option>
+            <option value="Feature Request">Feature Request</option>
+            <option value="Billing">Billing</option>
+            <option value="Account Support">Account Support</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="c-button c-button--primary" id="submit-btn">Submit Ticket</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="#" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+      </a>
+      <p class="c-footer__text">
+        <strong>Secure. Automate. Scale</strong>
+      </p>
+      <ul class="social">
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="about.html">About CloFix</a></li>
+        <li><a href="contact.html">Contact CloFix</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Explore</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li>Documentation</li>
+        <li>Events</li>
+        <li>Release</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+  </div>
+</footer>
+
+    <!-- JavaScript to handle form -->
+    <script>
+      document.getElementById("ticket-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const submitBtn = document.getElementById("submit-btn");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        // Generate ticket ID
+        const ticketId = "CLFX-" + Math.floor(100000 + Math.random() * 900000);
+
+        // Get form data
+        const formData = {
+          name: document.getElementById("name").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          issue: document.getElementById("issue").value,
+          subject: document.getElementById("subject").value.trim(),
+          message: document.getElementById("message").value.trim(),
+          ticket_id: ticketId,
+        };
+
+        // Email 1: Send ticket to CloFix support
+        emailjs
+          .send("service_lqnqwpz", "template_3mlvp36", {
+            name: formData.name,
+            email: formData.email,
+            issue: formData.issue,
+            subject: formData.subject,
+            message: formData.message,
+            to_email: "clofix19@gmail.com",
+            ticket_id: formData.ticket_id,
+          })
+          .then(function () {
+            // Email 2: Auto-reply to client
+            return emailjs.send("service_lqnqwpz", "template_2jkg92n", {
+              to_email: formData.email,
+              customer_name: formData.name,
+              issue_type: formData.issue,
+              ticket_subject: formData.subject,
+              ticket_id: formData.ticket_id,
+              reply_to: "clofix19@gmail.com",
+            });
+          })
+          .then(function () {
+            alert("✅ Ticket submitted successfully! Check your email for confirmation.");
+            document.getElementById("ticket-form").reset();
+          })
+          .catch(function (error) {
+            console.error("Error:", error);
+            alert("❌ Error: " + (error.text || "Please try again later."));
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit Ticket";
+          });
+      });
+    </script>
+
+    <script>
+      const navToggle = document.getElementById('navToggle');
+      const navContent = document.querySelector('.c-nav__content');
+
+      navToggle.addEventListener('click', () => {
+        navContent.classList.toggle('active');
+      });
+  </script>
+  </body>
+</html>

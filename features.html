@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./style.css" rel="stylesheet" />
+
+    <title>Clofix WAF</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <!-- <a class="c-link" href="#"> -->
+            <div class="c-logo">
+              <!-- <img src="img/logo.png" alt="Logo" class="c-logo__img" /> -->
+              <a href="index.html">
+                  <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+              </a>
+
+              <span class="c-logo__text c-logo__text--white"></span>
+            </div>
+          </a>
+          <nav class="c-nav">
+            <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+            </button>
+
+            <div class="c-nav__content">
+              <ul class="c-list c-list--flex">
+                <li class="c-list__item">
+                  <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="#" class="c-link c-link--list">Services</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="about.html" class="c-link c-link--list">About</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="features.html" class="c-link c-link--list">Features</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="contact.html" class="c-link c-link--list">Contact</a>
+                </li>
+              </ul>
+              <button class="c-button c-button--small c-button--secondary">
+                Sign Up
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+<main class="container section">
+  <section class="section">
+    <div class="secure-hero-container">
+            <div class="section__title-wrapper">
+              <h2 class="heading heading--3">
+                Secure Your Applications. Scale with Confidence
+              </h2>
+
+              <p>
+                <span class="highlight">CloFix WAF</span> is a next-generation, <span class="highlight">AI-enhanced Web Application Firewall</span> designed specifically for cloud-based applications. It offers <span class="highlight">enterprise-grade protection</span>, <span class="highlight">real-time monitoring</span>, and <span class="highlight">affordable scalability</span> — perfect for startups, SMEs, and DevOps-driven teams.
+              </p>
+
+            </div>
+            <div class="secure-hero">
+              <img class="secure-hero-image" src="img/clofix-steps-updated.png" alt="CloFix WAF"/>
+              <div class="secure-hero-wrapper">
+              </div>
+            </div>
+            <div class="c-card__content">
+                  <p>Easy Way to Point with CloFix WAF</p>
+            </div>
+          </div>
+    <h1 class="features-title">CloFix WAF Security – Key Features</h1>
+
+    <div class="features-flex">
+      <div class="feature-card">
+        <h3>🔒 SQL Injection Protection</h3>
+        <p>Detects and blocks malicious SQL queries</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛡️ Cross-Site Scripting (XSS) Protection</h3>
+        <p>Prevents client-side script injection attacks</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔑 CSRF Protection </h3>
+        <p>Validates tokens to prevent cross-origin request forgery</p>
+      </div>
+      <div class="feature-card">
+        <h3>🚫 SSRF Protection </h3>
+        <p>Blocks requests to internal/external services initiated by attackers</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛡️ Path Traversal Protection</h3>
+        <p>Prevents access to unauthorized directories</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚙️ Command Injection Protection</h3>
+        <p>Detects attempts to execute shell commands via input</p>
+      </div>
+      <div class="feature-card">
+        <h3>📄 XML External Entity (XXE) Blocking</h3>
+        <p>Stops XXE payloads in XML parsers</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔐 Insecure Deserialization Blocking</h3>
+        <p>Protects against tampering of serialized objects</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛑 Extension Protection</h3>
+        <p>Restricts access to sensitive or executable file types</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔍 Payload Signature Checking </h3>
+        <p>Blocks threats via custom rule signatures</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧠 Client Behavior Analysis</h3>
+        <p>Detects bots and anomalies through behavior patterns</p>
+      </div>
+      <div class="feature-card">
+        <h3>🕵️‍♂️ Tor Exit Node Blocking</h3>
+        <p>Blocks traffic from anonymous networks</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌐 DNS Rebinding Protection</h3>
+        <p>Detects domain hijack via rebinding techniques</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧹 Injection & Code Execution Protection</h3>
+        <p>Blocks SQLi, LFI, RFI, XXE, and similar payloads</p>
+      </div>
+      <div class="feature-card">
+        <h3>🤖 Bot & Headless Browser Blocking</h3>
+        <p>Prevents scraping and automation by detecting headless tools</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧬 AI & Behavioral Analysis</h3>
+        <p>Uses ML models for payload scoring and anomaly detection</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔄 Response Body Rewriting</h3>
+        <p>Cleanses HTML, JSON from leaks or scripts dynamically</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧠 AI & Agentic Detection</h3>
+        <p>Detects spoofed fingerprints, CLoFix, automation tools, etc</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌊 Flooding Attack Protection</h3>
+        <p>Identifies and blocks burst/loop request attacks</p>
+      </div>
+      <div class="feature-card">
+        <h3>🐌 Slowloris Protection</h3>
+        <p>Blocks slow HTTP DoS attacks.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔨 Brute Force Protection</h3>
+        <p>Detects repeated login/credential attempts and blocks them</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛡️ Rate Limiting</h3>
+        <p>Controls request volume per IP or session</p>
+      </div>
+      <div class="feature-card">
+        <h3>⏱️ Time-Based Verification</h3>
+        <p>Ensures delay enforcement to block automated tools</p>
+      </div>
+      <div class="feature-card">
+        <h3>📏 Header Length Limits</h3>
+        <p>Rejects headers that exceed defined byte limits</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚠️ Malformed Header Protection</h3>
+        <p>Filters out invalid or corrupted headers</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔍 Header Scan Protection</h3>
+        <p>Detects and blocks crafted or probe headers</p>
+      </div>
+      <div class="feature-card">
+        <h3>📊 Request Validation & Enforcement</h3>
+        <p>Validates method, size, encoding, spoof checks</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔒 Session Cookie Validation</h3>
+        <p>Ensures session state and integrity</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔎 Cookie Tampering Protection</h3>
+        <p>Detects unauthorized modifications to cookies</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧩 Session & Cookie Management</h3>
+        <p>Protects against hijacking and replay attacks</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔎 Cookie Tampering Protection </h3>
+        <p>Detects unauthorized modifications to cookies</p>
+      </div>
+      <div class="feature-card">
+        <h3>🍪 Secure Cookie Flags</h3>
+        <p>Enforces HttpOnly, Secure, and SameSite cookie attributes</p>
+      </div>
+      <div class="feature-card">
+        <h3>🚷 IP Reputation Check</h3>
+        <p>Blocks blacklisted/suspicious IPs (e.g., blocklist.de)</p>
+      </div>
+      <div class="feature-card">
+        <h3>🗺️ GeoIP Blocking</h3>
+        <p>Country- or ASN-level access control</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌐 IP, Geo & Network Filtering</h3>
+        <p>Combines IP, geo, ASN, Tor, DNSRebind into one layer</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚙️ Configuration Misuse Detection</h3>
+        <p>Detects exposed admin panels, unsafe settings</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛡️ OWASP Top 10 Protections</h3>
+        <p>Covers all major web attack categories</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔒 TLS/SSL Hardening</h3>
+        <p>Forces strong ciphers, disables weak TLS, and enforces HTTPS</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧠 CloFix Fingerprint Detection</h3>
+        <p>Identifies spoofed or abnormal clients detection</p>
+      </div>
+      <div class="feature-card">
+        <h3>📈 ClickHouse Logging</h3>
+        <p>Real-time logs with high-performance analytics storage</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧭 Geo Analytics & Visualization</h3>
+        <p>Shows traffic on heatmaps by country or ASN</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛑 Information Leak Detection</h3>
+        <p>Scans response for secrets, tokens, CC numbers</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧾 PDF/HTML Reports</h3>
+        <p>Generate detailed logs, incidents, and threat reports</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔔 Real-Time Alerts</h3>
+        <p>webhook alerts for suspicious or blocked requests</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧬 Lua Scripting Support</h3>
+        <p>Inject custom logic using embedded Lua scripts</p>
+      </div>
+      <div class="feature-card">
+        <h3>🤖 AI Plugin Integration</h3>
+        <p>Connect with Python-based AI scoring APIs </p>
+      </div>
+      <div class="feature-card">
+        <h3>🔄 Reverse Proxy & Performance</h3>
+        <p>Gzip, HTTP/2, path-routing, failover handling</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚙️ Proxy Optimization & Caching</h3>
+        <p>CloFix CDN passthrough, static cache tuning, faster</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛡️ Common WP Attack Blockers</h3>
+        <p>Blocks xmlrpc abuse, wp-login brute force, plugin scans</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔍 Sensitive Path Guarding</h3>
+        <p>Hides /wp-admin, /wp-content, etc</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧱 Theme/Plugin Exploit Detection</h3>
+        <p>Stops known WP vuln signatures</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔑 License Management </h3>
+        <p>Trial, Basic, Business, Enterprise with domain/bandwidth/date expiry controls</p>
+      </div>
+      <div class="feature-card">
+        <h3>📦 Per-Domain Feature Settings</h3>
+        <p>Enable/disable protection per hosted domain</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧠 AI: Fingerprint Scoring</h3>
+        <p>Evaluates client fingerprints to detect anomalies or spoofing.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Payload Detector</h3>
+        <p>Classifies HTTP payloads using AI models for potential attacks.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Traffic Anomaly Detection</h3>
+        <p>Detects irregular request patterns or usage spikes.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Client Reputation Scoring</h3>
+        <p>Scores IP reputation using AI threat intelligence.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: JS Behavior Scoring</h3>
+        <p>Analyzes JavaScript behavior to detect bots and automation.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Cookie Validation Score</h3>
+        <p>Validates browser cookies using AI-based scoring.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Device Identity Score</h3>
+        <p>Analyzes device fingerprint consistency and trust.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Automation Tool Detection</h3>
+        <p>Detects use of tools like Selenium, Puppeteer, or Playwright.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Cloud Service Fingerprint</h3>
+        <p>Detects traffic originating from cloud data centers.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: DNS Rebinding Score</h3>
+        <p>Identifies DNS rebinding attacks via behavior analysis.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: User Behavior Learning</h3>
+        <p>Detects deviations from learned user interaction patterns.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Crawler Detection Score</h3>
+        <p>Identifies known and unknown web crawlers.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: API Abuse Detection</h3>
+        <p>Detects abnormal API access or misuse using ML.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Header Injection Score</h3>
+        <p>Analyzes and scores header anomalies or manipulations.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: TLS Fingerprint Score</h3>
+        <p>Detects TLS/JA3 mismatches and fingerprinting anomalies.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: SSL MITM Detection</h3>
+        <p>Detects signs of SSL stripping or man-in-the-middle attacks.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Open Redirect Detection</h3>
+        <p>Identifies open redirect attempts in URLs.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Fake Bot Detection</h3>
+        <p>Flags bots masquerading as legitimate clients.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🧠 AI: Rate Limit AI Score</h3>
+        <p>Scores request frequency using adaptive AI rate control.</p>
+      </div>
+
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="#" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+      </a>
+      <p class="c-footer__text">
+        <strong>Secure. Automate. Scale</strong>
+      </p>
+      <ul class="social">
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="about.html">About CloFix</a></li>
+        <li><a href="contact.html">Contact CloFix</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Explore</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li>Documentation</li>
+        <li>Events</li>
+        <li>Release</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+  </div>
+</footer>
+  </body>
+  <script>
+     let currentIndex = 0;
+
+      function showSlide(index) {
+        const slides = document.getElementById("slides");
+        const totalSlides = slides.children.length;
+
+        if (index >= totalSlides) {
+          currentIndex = 0;
+        } else if (index < 0) {
+          currentIndex = totalSlides - 1;
+        } else {
+          currentIndex = index;
+        }
+
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        showSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        showSlide(currentIndex - 1);
+      }
+
+      // Auto slide every 5 seconds (optional)
+      setInterval(nextSlide, 5000);
+
+      const navToggle = document.getElementById('navToggle');
+      const navContent = document.querySelector('.c-nav__content');
+
+      navToggle.addEventListener('click', () => {
+        navContent.classList.toggle('active');
+      });
+  </script>
+</html>

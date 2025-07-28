@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloFix</title>
+  <link rel="icon" href="img/clofix.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+</head>
+
+<body>
+  <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <!-- <a class="c-link" href="#"> -->
+            <div class="c-logo">
+              <a href="index.html">
+                  <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+              </a>
+
+              <span class="c-logo__text c-logo__text--white"></span>
+            </div>
+          </a>
+          <nav class="c-nav">
+            <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+            </button>
+
+            <div class="c-nav__content">
+              <ul class="c-list c-list--flex">
+                <li class="c-list__item">
+                  <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="#section-features" class="c-link c-link--list">Services</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="about.html" class="c-link c-link--list">About</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="features.html" class="c-link c-link--list">Features</a>
+                </li>
+                <li class="c-list__item">
+                  <a href="contact.html" class="c-link c-link--list">Contact</a>
+                </li>
+              </ul>
+              <a href="ticket.html" class="ticket-button">
+                  <button class="c-button c-button--small c-button--secondary">
+                    Create Ticket
+                  </button>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section id="section-pricing" class="section pricing">
+      <div class="container">
+          <div class="section__title-wrapper">
+            <h2 class="heading heading--2 clofix-pricing">CloFix WAF Pricing</h2>
+
+            <h4 class="heading heading--4">
+              CloFix Web Application Firewall (WAF) is built for modern cloud-native and on-premise infrastructures, offering scalable, high-performance security for web applications, APIs, and microservices. Whether you're a startup or an enterprise, our pricing is transparent, flexible, and commitment-free.
+            </h4>
+          </div>
+    </section>
+
+  <main class="container">
+    <section class="section pricing-section">
+
+      <div class="section">
+        <h2 class="heading heading--3 price-heading">Calculate Your Own Price</h2>
+        <label class="basic-input">Number of Domains:
+          <input type="number" id="domains" min="1" value="0" required />
+        </label>
+        <label class="basic-input">Number of Subdomains:
+          <input type="number" id="subdomains" min="0" value="0" />
+        </label>
+        <label class="basic-input">Monthly Requests (in millions):
+          <input type="number" id="requests" min="0" value="0" />
+        </label>
+        <label class="basic-input">Bandwidth (in GB):
+          <input type="number" id="bandwidth" min="1" value="0" required />
+        </label>
+
+        <label class="support-type">Support Type:
+          <select id="support" required>
+            <option value="email">Email (Free)</option>
+            <option value="whatsapp">WhatsApp ($1.50)</option>
+          </select>
+        </label>
+
+        <label class="license-validation">License Validation:
+          <select id="license" required>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </label>
+      </div>
+
+      <h2 class="optional-features">Add-Ons</h2>
+      <div class="optional-feature-wrap">
+        <div class="optional-features-list" id="featureList"></div>
+      </div>
+
+      <div id="errorMessage" style="display:none; color:#f87171; margin-top: 1rem; font-weight: bold;">
+        ⚠️ Please fill in all required fields: Domains, Requests must be greater than 0.
+      </div>
+
+      <button class="c-button c-button--primary calculate" onclick="calculatePricing()">Calculate Pricing</button>
+
+      <div class="section" id="result" style="display:none;">
+        <h2 class="heading heading--3">Pricing Summary</h2>
+        <table class="pricing-table" border="1" cellpadding="8" cellspacing="0"
+          style="border-collapse: collapse; width: 100%;">
+          <thead class="pricing-table-thead">
+            <tr>
+              <th>Component</th>
+              <th>Cost (USD)</th>
+            </tr>
+          </thead>
+          <tbody id="pricingTable"></tbody>
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <th id="totalCost">$0.00</th>
+            </tr>
+          </tfoot>
+        </table>
+        <button class="c-button c-button--secondary" id="exportExcelBtn" style="display:none; margin-top: 1rem;">Export
+          as Excel</button>
+        <button class="c-button c-button--secondary" id="exportPDFBtn" style="display:none; margin-top: 1rem;">Export as
+          PDF</button>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="#" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+      </a>
+      <p class="c-footer__text">
+        <strong>Secure. Automate. Scale</strong>
+      </p>
+      <ul class="social">
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="#" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="about.html">About CloFix</a></li>
+        <li><a href="contact.html">Contact CloFix</a></li>
+        <li>Documentation</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Explore</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="#">Become A Partner</a></li>
+        <li>Events</li>
+        <li>Release</li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+  </div>
+</footer>
+
+  <script>
+    const features = {
+      "AI & Agentic Detection, Behavioral Analysis": 3,
+      "SQL Injection Protection": 2,
+      "Cross-Site Scripting (XSS)": 2,
+      "CSRF Protection": 2,
+      "SSRF Protection": 2,
+      "Path Traversal Protection": 2,
+      "XML External Entity Blocking": 2,
+      "Command Injection Protection": 2,
+      "Insecure Deserialization Blocking": 2,
+      "Slowloris Protection": 2,
+      "Flooding Attacks Protection": 2,
+      "Brute Force and DDos Protection": 2,
+      "Tor Exit Node Blocking": 1,
+      "DNS Rebinding Protection": 2,
+      "Time-Based Verification": 1,
+      "Logging & Monitoring": 1,
+      "Header Length Limits": 1,
+      "Malformed Header Protection": 1,
+      "Header Scan Protection": 1,
+      "Session Cookie Validation": 1,
+      "Cookie Tampering Protection": 1,
+      "Client Behavior Analysis": 2,
+      "Information Leak Detection": 2,
+      "Payload Signature Checking": 2,
+      "Advance IP Reputation Check": 2,
+      "Bot & Headless Browser Blocking": 2,
+      "Configuration Misuse Detection": 2,
+      "Sensitive Data Encryption": 2,
+      "Lua Scripting Support": 3,
+      "Response Body Rewriting": 2,
+      "Session & Cookie Management": 1,
+      "WordPress Protection": 2,
+      "Bot & Automation Defense": 2,
+      "Payload & Header Inspection": 2,
+      "Advanced Scripting & Rules": 3,
+      "Advance Fingerprinting Blocking": 2,
+      "Advance Bad IP, ASN Blocking": 2,
+      "LFI, RFI Protection": 2,
+      "Alert Service - Slack, Google": 1,
+      "CloFix CDN": 2,
+      "Manage Rules - Path Blocking": 0,
+      "Manage Rules - Query Blocking": 0,
+      "Manage Rules - GeoIP Blocking": 0,
+      "Manage Rules - Bot Fingerprinting": 0,
+      "Manage Rules - IP Blocking": 0,
+      "Manage Rules - ASN Number Blocking": 0,
+      "Manage Rules - Geo Blocking": 0,
+      "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
+    };
+
+    const alwaysIncludedFreeFeatures = [
+      "Manage Rules - Path Blocking",
+      "Manage Rules - Query Blocking",
+      "Manage Rules - GeoIP Blocking",
+      "Manage Rules - Bot Fingerprinting",
+      "Manage Rules - IP Blocking",
+      "Manage Rules - ASN Number Blocking",
+      "Manage Rules - Geo Blocking",
+      "Manage Rules - Clofix ID Fingerprint Detection and Block"
+    ];
+
+    const featureListDiv = document.getElementById("featureList");
+    for (const [feature, price] of Object.entries(features)) {
+      if (!alwaysIncludedFreeFeatures.includes(feature)) {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = feature;
+        checkbox.id = feature;
+
+        const label = document.createElement("label");
+        label.htmlFor = feature;
+        label.innerText = feature;
+        label.prepend(checkbox);
+
+        featureListDiv.appendChild(label);
+      }
+    }
+
+
+    function calculatePricing() {
+      const domainCount = parseInt(document.getElementById("domains").value);
+      const subdomainCount = parseInt(document.getElementById("subdomains").value);
+      const requests = parseInt(document.getElementById("requests").value);
+      const bandwidth = parseFloat(document.getElementById("bandwidth").value);
+      const support = document.getElementById("support").value;
+
+
+      if (domainCount <= 0 || bandwidth <= 0) {
+        document.getElementById("errorMessage").style.display = "block";
+        document.getElementById("result").style.display = "none";
+        return;
+      } else {
+        document.getElementById("errorMessage").style.display = "none";
+      }
+
+      let total = 0;
+      const rows = [];
+
+      if (domainCount > 0) {
+        const cost = domainCount * 4;
+        total += cost;
+        rows.push(["Domains", `$${cost.toFixed(2)}`]);
+      }
+
+      if (subdomainCount > 0) {
+        const cost = subdomainCount * 2;
+        total += cost;
+        rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
+      }
+
+      if (requests > 0) {
+        const cost = requests * 1;
+        total += cost;
+        rows.push(["Requests", `$${cost.toFixed(2)}`]);
+      }
+
+      if (bandwidth > 0) {
+        let cost = 0;
+
+        if (bandwidth > 10) {
+          const tier1 = Math.min(bandwidth - 10, 15);        // 11–25 GB
+          const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25); // 26–50 GB
+          const tier3 = Math.max(bandwidth - 50, 0);          // 51+ GB
+
+          cost += tier1 * 0.75;
+          cost += tier2 * 1.5;
+          cost += tier3 * 1.0;
+        }
+
+        if (cost > 0) {
+          total += cost;
+          rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
+        }
+      }
+
+      if (support === "whatsapp") {
+        total += 1.5;
+        rows.push(["Support (WhatsApp)", "$1.50"]);
+      } else {
+        rows.push(["Support (Email)", "Free"]);
+      }
+
+      for (const [feature, price] of Object.entries(features)) {
+        if (!alwaysIncludedFreeFeatures.includes(feature)) {
+          if (document.getElementById(feature).checked) {
+            if (price === 0) {
+              rows.push([feature, "Free"]);
+            } else {
+              total += price;
+              rows.push([feature, `$${price.toFixed(2)}`]);
+            }
+          }
+        }
+      }
+
+      alwaysIncludedFreeFeatures.forEach((feature) => {
+        rows.push([feature, "Free"]);
+      });
+
+      const tbody = document.getElementById("pricingTable");
+      tbody.innerHTML = "";
+      rows.forEach(([name, price]) => {
+        const row = `<tr><td>${name}</td><td>${price}</td></tr>`;
+        tbody.innerHTML += row;
+      });
+
+      document.getElementById("totalCost").innerText = `$${total.toFixed(2)}`;
+      document.getElementById("result").style.display = "block";
+      document.getElementById("exportExcelBtn").style.display = "inline-block";
+      document.getElementById("exportPDFBtn").style.display = "inline-block";
+    }
+
+    document.getElementById("exportExcelBtn").addEventListener("click", () => {
+      const table = document.querySelector(".pricing-table");
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.table_to_sheet(table);
+      XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
+      XLSX.writeFile(wb, "CloFix_Pricing_Summary.xlsx");
+    });
+
+    document.getElementById("exportPDFBtn").addEventListener("click", async () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "pt",
+        format: "a4"
+      });
+
+      const table = document.querySelector(".pricing-table");
+      let rows = [["Component", "Cost (USD)"]];
+      for (const tr of table.querySelectorAll("tbody tr")) {
+        const tds = tr.querySelectorAll("td");
+        const row = [tds[0].innerText, tds[1].innerText];
+        rows.push(row);
+      }
+
+      const total = document.getElementById("totalCost").innerText;
+      const logo = new Image();
+      logo.src = 
+      rows.push(["Total", total]);
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(20);
+      doc.setTextColor("#2563eb"); 
+      doc.text("CloFix WAF Pricing Summary", 40, 50);
+
+      doc.setFontSize(12);
+      doc.setTextColor("#6b7280");
+      doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
+
+      doc.autoTable({
+        startY: 90,
+        head: [rows[0]],
+        body: rows.slice(1),
+        theme: "striped",
+        headStyles: {
+          fillColor: [30, 41, 59],
+          textColor: [255, 255, 255],
+          fontStyle: "bold",
+          halign: "left"
+        },
+        styles: {
+          cellPadding: 8,
+          fontSize: 10,
+          textColor: [55, 65, 81],
+          halign: "left"
+        },
+        alternateRowStyles: {
+          fillColor: [240, 249, 255]
+        },
+        margin: { top: 90, left: 40, right: 40 }
+      });
+
+      doc.save("CloFix_Pricing_Summary.pdf");
+    });
+
+  </script>
+</body>
+
+</html>
