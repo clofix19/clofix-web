@@ -990,8 +990,6 @@ p {
   }
 }
 
-/* === Features === */
-
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #0f172a;
@@ -1029,6 +1027,7 @@ body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
 }
 
 .feature-card:hover {
@@ -1545,4 +1544,53 @@ body {
 .clofix-pricing {
     color: #38bdf8;
     text-shadow: 0 2px 6px rgba(56, 189, 248, 0.4);
+}
+
+/* === MODAL POPUP === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background-color: #1e293b;
+  margin: 10% auto;
+  padding: 2rem;
+  border: 1px solid #38bdf8;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  color: #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0, 114, 255, 0.3);
+  animation: fadeInUp 0.3s ease;
+}
+
+.modal-content h3 {
+  color: #f59e0b;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  color: #f8fafc;
+}
+
+.close-button {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #f59e0b;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #ff6347;
 }
