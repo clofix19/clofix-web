@@ -89,10 +89,19 @@
       <h1 class="features-title">CloFix WAF Security – Key Features</h1>
 
       <div class="features-flex">
-        <div class="feature-card">
+        <div class="feature-card" data-id="sql-injection">
           <h3>🔒 SQL Injection Protection</h3>
           <p>Detects and blocks malicious SQL queries</p>
         </div>
+        <template id="sql-injection">
+          <p>This feature blocks SQL injection attempts by inspecting query patterns in real time. It detects tampered
+            inputs and stops database compromise.</p>
+          <ul>
+            <li>Detects patterns like ' OR 1=1</li>
+            <li>Protects against stacked queries</li>
+            <li>Blocks UNION-based extraction</li>
+          </ul>
+        </template>
         <div class="feature-card">
           <h3>🛡️ Cross-Site Scripting (XSS) Protection</h3>
           <p>Prevents client-side script injection attacks</p>
@@ -474,7 +483,7 @@
     <div class="modal-content">
       <span class="close-button">&times;</span>
       <h3 id="modalTitle"></h3>
-      <p id="modalDescription"></p>
+      <div id="modalDescription"></div>
     </div>
   </div>
 
@@ -496,10 +505,11 @@
   featureCards.forEach(card => {
     card.addEventListener('click', () => {
       const title = card.querySelector('h3').innerText;
-      const description = card.querySelector('p').innerText;
+      const id = card.getAttribute('data-id');
+      const template = document.getElementById(id);
 
       modalTitle.innerText = title;
-      modalDescription.innerText = description;
+      modalDescription.innerHTML = template.innerHTML;
       modal.style.display = 'block';
     });
   });
@@ -511,6 +521,12 @@
   window.addEventListener('click', e => {
     if (e.target === modal) {
       modal.style.display = 'none';
+    }
+  });
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      modal.style.display = "none";
     }
   });
 </script>
