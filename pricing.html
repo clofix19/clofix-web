@@ -90,10 +90,12 @@
 
       <label class="support-type">Support Type:
         <select id="support" required>
-          <option value="email">Email (Free)</option>
-          <option value="whatsapp">WhatsApp ($1.50)</option>
+          <option value="email">Free Tier</option>
+          <option value="standard">Standard Support (5,000 BDT/month)</option>
+          <option value="enterprise">Enterprise Support (50,000 BDT/month)</option>
         </select>
       </label>
+
 
       <label class="license-validation">License Validation:
         <select id="license" required>
@@ -127,7 +129,7 @@
           <tfoot>
             <tr>
               <th>Total</th>
-              <th id="totalCost">$0.00</th>
+              <th id="totalCost">BDT 0.00</th>
             </tr>
           </tfoot>
         </table>
@@ -310,21 +312,28 @@
       const selectedType = e.target.value;
       const selectedFeatures = typeFeatureMap[selectedType] || [];
 
-      for (const [feature, price] of Object.entries(features)) {
+      for (const feature of Object.keys(features)) {
         if (
           !alwaysIncludedFreeFeatures.includes(feature) &&
           !corePaidFeatures.includes(feature)
         ) {
           const checkbox = document.getElementById(feature);
-          if (checkbox) checkbox.checked = false;
+          if (checkbox) {
+            checkbox.checked = false;
+            checkbox.disabled = false;
+          }
         }
       }
 
       selectedFeatures.forEach((feature) => {
         const checkbox = document.getElementById(feature);
-        if (checkbox) checkbox.checked = true;
+        if (checkbox) {
+          checkbox.checked = true;
+          checkbox.disabled = true;
+        }
       });
     });
+
 
     function calculatePricing() {
       const domainCount = parseInt(document.getElementById("domains").value);
@@ -348,19 +357,19 @@
       if (domainCount > 0) {
         const cost = domainCount * 4;
         total += cost;
-        rows.push(["Domains", `$${cost.toFixed(2)}`]);
+        rows.push(["Domains", `BDT ${cost.toFixed(2)}`]);
       }
 
       if (subdomainCount > 0) {
         const cost = subdomainCount * 2;
         total += cost;
-        rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
+        rows.push(["Subdomains", `BDT ${cost.toFixed(2)}`]);
       }
 
       if (requests > 0) {
         const cost = requests * 1;
         total += cost;
-        rows.push(["Requests", `$${cost.toFixed(2)}`]);
+        rows.push(["Requests", `BDT ${cost.toFixed(2)}`]);
       }
 
       if (bandwidth > 0) {
@@ -373,17 +382,24 @@
           cost += tier2 * 1.5;
           cost += tier3 * 1.0;
           total += cost;
-          rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
+          rows.push(["Bandwidth", `BDT ${cost.toFixed(2)}`]);
         } else {
           rows.push(["Bandwidth", "Free"]);
         }
       }
 
-      if (support === "whatsapp") {
-        total += 1.5;
-        rows.push(["Support (WhatsApp)", "$1.50"]);
-      } else {
-        rows.push(["Support (Email)", "Free"]);
+      let supportCostMonthly = 0;
+      let supportLabel = "Support (Email)";
+      let supportPriceText = "Free";
+
+      if (support === "standard") {
+        supportCostMonthly = 5000;
+        supportLabel = "Standard Support";
+        supportPriceText = `BDT 5,000.00 / month`;
+      } else if (support === "enterprise") {
+        supportCostMonthly = 50000;
+        supportLabel = "Enterprise Support";
+        supportPriceText = `BDT 50,000.00 / month`;
       }
 
       for (const [feature, price] of Object.entries(features)) {
@@ -394,7 +410,7 @@
           const checkbox = document.getElementById(feature);
           if (checkbox && checkbox.checked) {
             total += price;
-            rows.push([feature, `$${price.toFixed(2)}`]);
+            rows.push([feature, `BDT ${price.toFixed(2)}`]);
           }
         }
       }
@@ -406,25 +422,31 @@
       corePaidFeatures.forEach((feature) => {
         const price = features[feature];
         total += price;
-        rows.push([feature, `$${price.toFixed(2)}`]);
+        rows.push([feature, `BDT ${price.toFixed(2)}`]);
       });
 
       const tbody = document.getElementById("pricingTable");
       tbody.innerHTML = "";
 
       if (license === "yearly") {
-        const yearlyTotal = total * 12;
+        const monthlyTotal = total + supportCostMonthly;
+        const yearlyTotal = monthlyTotal * 12;
         const discounted = yearlyTotal * 0.9;
         const monthlyAfterDiscount = discounted / 12;
 
+        rows.push([supportLabel, `BDT ${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
         rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
-        rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
-        rows.push(["Monthly Cost After Discount", `$${monthlyAfterDiscount.toFixed(2)}`]);
-        document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)}`;
+        rows.push(["Yearly Total", `BDT ${discounted.toFixed(2)}`]);
+        rows.push(["Monthly Cost After Discount", `BDT ${monthlyAfterDiscount.toFixed(2)}`]);
+
+        document.getElementById("totalCost").innerText = `BDT ${discounted.toFixed(2)}`;
         document.querySelector("#result tfoot th:first-child").innerText = "Total (Yearly)";
       } else {
+        total += supportCostMonthly;
+        rows.push([supportLabel, supportPriceText]);
         rows.push(["Billing Plan", "Monthly"]);
-        document.getElementById("totalCost").innerText = `$${total.toFixed(2)}`;
+
+        document.getElementById("totalCost").innerText = `BDT ${total.toFixed(2)}`;
         document.querySelector("#result tfoot th:first-child").innerText = "Total (Monthly)";
       }
 
@@ -436,142 +458,114 @@
       document.getElementById("result").style.display = "block";
       document.getElementById("exportExcelBtn").style.display = "inline-block";
       document.getElementById("exportPDFBtn").style.display = "inline-block";
-    }
 
-    document.getElementById("exportExcelBtn").addEventListener("click", () => {
-      const table = document.querySelector(".pricing-table");
-      const wb = XLSX.utils.book_new();
-      const ws = XLSX.utils.table_to_sheet(table);
-      XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
-      XLSX.writeFile(wb, "CloFix_Pricing_Summary.xlsx");
-    });
+      document.getElementById("exportExcelBtn").onclick = () => {
+        const table = document.querySelector(".pricing-table");
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.table_to_sheet(table);
+        XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
+        XLSX.writeFile(wb, "CloFix_Pricing_Summary.xlsx");
+      };
 
-    document.getElementById("exportPDFBtn").addEventListener("click", async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: "a4"
-      });
+      document.getElementById("exportPDFBtn").onclick = () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+          orientation: "portrait",
+          unit: "pt",
+          format: "a4"
+        });
 
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(20);
-      doc.setTextColor("#2563eb");
-      doc.text("CloFix WAF Pricing Summary", 40, 50);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(20);
+        doc.setTextColor("#2563eb");
+        doc.text("CloFix WAF Pricing Summary", 40, 50);
 
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.setTextColor("#6b7280");
-      doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.setTextColor("#6b7280");
+        doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
 
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(10);
-      doc.setTextColor("#374151");
-      doc.text(
-        "CloFix is a next-generation cloud security and DevOps solutions provider specializing in enterprise-grade Web Application Firewall (WAF), intelligent cloud automation, expert DevOps support, and on-demand engineering assistance.\n\n",
-        40,
-        90,
-        { maxWidth: 520 }
-      );
+        const table = document.querySelector(".pricing-table");
+        const rows = [["Component", "Cost (USD)"]];
+        for (const tr of table.querySelectorAll("tbody tr")) {
+          const tds = tr.querySelectorAll("td");
+          rows.push([tds[0].innerText, tds[1].innerText]);
+        }
+        rows.push(["Total", document.getElementById("totalCost").innerText]);
 
-      const startY = 120;
-      const table = document.querySelector(".pricing-table");
-      let rows = [["Component", "Cost (USD)"]];
+        doc.autoTable({
+          startY: 100,
+          head: [rows[0]],
+          body: rows.slice(1),
+          theme: "striped",
+          headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255] },
+          styles: { cellPadding: 8, fontSize: 10, textColor: [55, 65, 81] },
+          alternateRowStyles: { fillColor: [240, 249, 255] },
+          margin: { top: 100, left: 40, right: 40 }
+        });
 
-      for (const tr of table.querySelectorAll("tbody tr")) {
-        const tds = tr.querySelectorAll("td");
-        const row = [tds[0].innerText, tds[1].innerText];
-        rows.push(row);
-      }
+        doc.addPage();
+        const marginLeft = 40;
+        let currentY = 50;
+        const lineHeight = 16;
 
-      const total = document.getElementById("totalCost").innerText;
-      rows.push(["Total", total]);
+        const lines = [
+          { text: "Cost Breakdown Summary", bold: true },
+          { gap: true },
 
-      doc.autoTable({
-        startY: startY,
-        head: [rows[0]],
-        body: rows.slice(1),
-        theme: "striped",
-        headStyles: {
-          fillColor: [30, 41, 59],
-          textColor: [255, 255, 255],
-          fontStyle: "bold",
-          halign: "left"
-        },
-        styles: {
-          cellPadding: 8,
-          fontSize: 10,
-          textColor: [55, 65, 81],
-          halign: "left"
-        },
-        alternateRowStyles: {
-          fillColor: [240, 249, 255]
-        },
-        margin: { top: startY, left: 40, right: 40 }
-      });
+          { text: '• WordPress: Includes "WordPress Protection" to guard popular plugins and themes from attacks.' },
+          { text: '• API Gateway: Uses "Payload Signature Checking" to validate incoming traffic structure.' },
+          { text: '• SaaS Web App: Adds "Brute Force and DDoS Protection" for user accounts and login endpoints.' },
+          { text: '• Banking/Finance: Applies "Client Behavior Analysis" to detect abnormal transaction patterns.' },
+          { text: '• E-commerce: Enables "Bot & Headless Browser Blocking" to prevent scraping and automated threats.' },
 
-      doc.addPage();
-      const marginLeft = 40;
-      let currentY = 50;
-      const lineHeight = 16;
+          { gap: true },
+          { text: "Core Features (Always Included and Billed):", bold: true },
+          { gap: true },
 
-      const lines = [
-        { text: "Cost Breakdown Summary", bold: true },
-        { gap: true },
+          { text: '• Advance Fingerprinting Blocking: Ensures advanced browser and bot fingerprint tracking prevention.' },
+          { text: '  - This is a critical layer of defense against modern bot attacks and browser emulation, and is included by default in all plans due to its essential role in baseline security.' },
 
-        { text: '• WordPress: Includes "WordPress Protection" to guard popular plugins and themes from attacks.' },
-        { text: '• API Gateway: Uses "Payload Signature Checking" to validate incoming traffic structure.' },
-        { text: '• SaaS Web App: Adds "Brute Force and DDoS Protection" for user accounts and login endpoints.' },
-        { text: '• Banking/Finance: Applies "Client Behavior Analysis" to detect abnormal transaction patterns.' },
-        { text: '• E-commerce: Enables "Bot & Headless Browser Blocking" to prevent scraping and automated threats.' },
+          { gap: true },
 
-        { gap: true },
-        { text: "Core Features (Always Included and Billed):", bold: true },
-        { gap: true },
+          { text: '• CloFix CDN: Accelerates web content delivery through our secure, global CDN edge nodes.' },
+          { text: '  - This improves performance and protection by serving content closer to users while shielding origin servers. It is always active and therefore billed.' },
 
-        { text: '• Advance Fingerprinting Blocking: Ensures advanced browser and bot fingerprint tracking prevention.' },
-        { text: '  - This is a critical layer of defense against modern bot attacks and browser emulation, and is included by default in all plans due to its essential role in baseline security.' },
+          { gap: true },
+          { text: "Auto-Selected Features Based on Website Type:", bold: true },
+          { gap: true },
 
-        { gap: true },
+          { text: "When you select a specific website type, certain add-on features are automatically included to match the common threat models and protection needs of that type. For example:" },
+          { text: '- WordPress sites face plugin vulnerabilities, so "WordPress Protection" is added.' },
+          { text: '- API Gateway traffic must be validated structurally, so "Payload Signature Checking" is included.' },
+          { text: '- Banking/Finance requires fraud behavior detection, so "Client Behavior Analysis" is activated.' },
 
-        { text: '• CloFix CDN: Accelerates web content delivery through our secure, global CDN edge nodes.' },
-        { text: '  - This improves performance and protection by serving content closer to users while shielding origin servers. It is always active and therefore billed.' },
+          { gap: true },
+          { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
 
-        { gap: true },
-        { text: "Auto-Selected Features Based on Website Type:", bold: true },
-        { gap: true },
+          { gap: true },
+          { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
+        ];
 
-        { text: "When you select a specific website type, certain add-on features are automatically included to match the common threat models and protection needs of that type. For example:" },
-        { text: '- WordPress sites face plugin vulnerabilities, so "WordPress Protection" is added.' },
-        { text: '- API Gateway traffic must be validated structurally, so "Payload Signature Checking" is included.' },
-        { text: '- Banking/Finance requires fraud behavior detection, so "Client Behavior Analysis" is activated.' },
+        for (const line of lines) {
+          if (line.gap) {
+            currentY += lineHeight / 2;
+            continue;
+          }
 
-        { gap: true },
-        { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
+          doc.setFont("helvetica", line.bold ? "bold" : "normal");
+          doc.setFontSize(10);
+          doc.setTextColor("#374151");
 
-        { gap: true },
-        { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
-      ];
-
-      for (const line of lines) {
-        if (line.gap) {
-          currentY += lineHeight / 2;
-          continue;
+          const splitLines = doc.splitTextToSize(line.text, 520);
+          doc.text(splitLines, marginLeft, currentY);
+          currentY += splitLines.length * lineHeight;
         }
 
-        doc.setFont("helvetica", line.bold ? "bold" : "normal");
-        doc.setFontSize(10);
-        doc.setTextColor("#374151");
-
-        const splitLines = doc.splitTextToSize(line.text, 520);
-        doc.text(splitLines, marginLeft, currentY);
-        currentY += splitLines.length * lineHeight;
-      }
-
-      doc.save("CloFix_Pricing_Summary.pdf");
-    });
+        doc.save("CloFix_Pricing_Summary.pdf");
+      };
+    }
   </script>
-
 </body>
 
 </html>
