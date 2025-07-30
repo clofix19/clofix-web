@@ -91,8 +91,8 @@
       <label class="support-type">Support Type:
         <select id="support" required>
           <option value="email">Free Tier</option>
-          <option value="standard">Standard Support (5,000 BDT/month)</option>
-          <option value="enterprise">Enterprise Support (50,000 BDT/month)</option>
+          <option value="standard">Standard Support (55 $/month)</option>
+          <option value="enterprise">Enterprise Support (500 $/month)</option>
         </select>
       </label>
 
@@ -129,7 +129,7 @@
           <tfoot>
             <tr>
               <th>Total</th>
-              <th id="totalCost">BDT 0.00</th>
+              <th id="totalCost">$0.00</th>
             </tr>
           </tfoot>
         </table>
@@ -357,19 +357,19 @@
       if (domainCount > 0) {
         const cost = domainCount * 4;
         total += cost;
-        rows.push(["Domains", `BDT ${cost.toFixed(2)}`]);
+        rows.push(["Domains", `$${cost.toFixed(2)}`]);
       }
 
       if (subdomainCount > 0) {
         const cost = subdomainCount * 2;
         total += cost;
-        rows.push(["Subdomains", `BDT ${cost.toFixed(2)}`]);
+        rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
       }
 
       if (requests > 0) {
         const cost = requests * 1;
         total += cost;
-        rows.push(["Requests", `BDT ${cost.toFixed(2)}`]);
+        rows.push(["Requests", `$${cost.toFixed(2)}`]);
       }
 
       if (bandwidth > 0) {
@@ -382,7 +382,7 @@
           cost += tier2 * 1.5;
           cost += tier3 * 1.0;
           total += cost;
-          rows.push(["Bandwidth", `BDT ${cost.toFixed(2)}`]);
+          rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
         } else {
           rows.push(["Bandwidth", "Free"]);
         }
@@ -393,13 +393,13 @@
       let supportPriceText = "Free";
 
       if (support === "standard") {
-        supportCostMonthly = 5000;
+        supportCostMonthly = 55;
         supportLabel = "Standard Support";
-        supportPriceText = `BDT 5,000.00 / month`;
+        supportPriceText = `$55 / month`;
       } else if (support === "enterprise") {
-        supportCostMonthly = 50000;
+        supportCostMonthly = 500;
         supportLabel = "Enterprise Support";
-        supportPriceText = `BDT 50,000.00 / month`;
+        supportPriceText = `$500 / month`;
       }
 
       for (const [feature, price] of Object.entries(features)) {
@@ -410,7 +410,7 @@
           const checkbox = document.getElementById(feature);
           if (checkbox && checkbox.checked) {
             total += price;
-            rows.push([feature, `BDT ${price.toFixed(2)}`]);
+            rows.push([feature, `$${price.toFixed(2)}`]);
           }
         }
       }
@@ -422,7 +422,7 @@
       corePaidFeatures.forEach((feature) => {
         const price = features[feature];
         total += price;
-        rows.push([feature, `BDT ${price.toFixed(2)}`]);
+        rows.push([feature, `$${price.toFixed(2)}`]);
       });
 
       const tbody = document.getElementById("pricingTable");
@@ -434,19 +434,19 @@
         const discounted = yearlyTotal * 0.9;
         const monthlyAfterDiscount = discounted / 12;
 
-        rows.push([supportLabel, `BDT ${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
+        rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
         rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
-        rows.push(["Yearly Total", `BDT ${discounted.toFixed(2)}`]);
-        rows.push(["Monthly Cost After Discount", `BDT ${monthlyAfterDiscount.toFixed(2)}`]);
+        rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
+        rows.push(["Monthly Cost After Discount", `$${monthlyAfterDiscount.toFixed(2)}`]);
 
-        document.getElementById("totalCost").innerText = `BDT ${discounted.toFixed(2)}`;
+        document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)}`;
         document.querySelector("#result tfoot th:first-child").innerText = "Total (Yearly)";
       } else {
         total += supportCostMonthly;
         rows.push([supportLabel, supportPriceText]);
         rows.push(["Billing Plan", "Monthly"]);
 
-        document.getElementById("totalCost").innerText = `BDT ${total.toFixed(2)}`;
+        document.getElementById("totalCost").innerText = `$${total.toFixed(2)}`;
         document.querySelector("#result tfoot th:first-child").innerText = "Total (Monthly)";
       }
 
