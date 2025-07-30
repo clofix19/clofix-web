@@ -378,9 +378,9 @@
           const tier1 = Math.min(bandwidth - 10, 15);
           const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25);
           const tier3 = Math.max(bandwidth - 50, 0);
-          cost += tier1 * 0.75;
-          cost += tier2 * 1.5;
-          cost += tier3 * 1.0;
+          cost += tier1 * 0.11;
+          cost += tier2 * 0.15;
+          cost += tier3 * 0.09;
           total += cost;
           rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
         } else {
