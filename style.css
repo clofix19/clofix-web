@@ -1629,3 +1629,169 @@ body {
   color: #38bdf8;
   text-shadow: 0 2px 6px rgba(56, 189, 248, 0.4);
 }
+
+/* === CloFix Support Table - Toggleable Headers for Mobile === */
+
+.support-table-section {
+  padding-top: 4rem;
+  animation: fadeInUp 1.3s ease forwards;
+  text-align: center;
+}
+
+.support-table-section h2 {
+  font-size: 2.5rem;
+  color: #38bdf8;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.toggle-headers-button {
+  display: none;
+  background-color: #1e40af;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-headers-button:hover {
+  background-color: #2563eb;
+}
+
+@media (max-width: 700px) {
+  .toggle-headers-button {
+    display: inline-block;
+  }
+}
+
+.support-table-container {
+  overflow-x: auto;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+}
+
+.support-table-modern {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  font-family: 'Open Sans', sans-serif;
+  backdrop-filter: blur(2px);
+}
+
+.support-table-modern thead th {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: #fff;
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: sticky;
+  top: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.support-table-modern thead th:first-child {
+  background: #1e293b;
+  text-align: left;
+}
+
+.support-table-modern thead th:last-child {
+  border-right: none;
+}
+
+.support-table-modern tbody tr {
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.support-table-modern tbody tr:hover {
+  background: rgba(56, 189, 248, 0.07);
+  transform: scale(1.01);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
+}
+
+.support-table-modern tbody td {
+  padding: 1.3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  background-color: rgba(30, 41, 59, 0.6);
+  position: relative;
+}
+
+.support-table-modern tbody td:first-child {
+  background-color: #0f172a;
+  color: #f59e0b;
+  font-weight: 600;
+  text-align: left;
+  border-right: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.support-table-modern tbody td:last-child {
+  border-right: none;
+}
+
+/* === Mobile Smart Toggle Header === */
+@media (max-width: 700px) {
+  .support-table-modern thead {
+    display: none;
+  }
+
+  .support-table-modern,
+  .support-table-modern tbody,
+  .support-table-modern tr,
+  .support-table-modern td {
+    display: block;
+    width: 100%;
+  }
+
+  .support-table-modern tr {
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.25);
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    overflow: hidden;
+    padding: 1rem;
+    position: relative;
+  }
+
+  .support-table-modern td {
+    padding: 1rem;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
+  }
+
+  .support-table-modern td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #38bdf8;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+
+  .support-table-modern.show-headers td::before {
+    display: block;
+  }
+
+  .support-table-modern.hide-headers td::before {
+    display: none;
+  }
+
+  .support-table-modern td:last-child {
+    border-bottom: none;
+  }
+}
+
