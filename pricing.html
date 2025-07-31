@@ -88,7 +88,12 @@
         </select>
       </label>
 
-      <label class="support-type">Support Type:
+      <label class="support-type">
+        <span class="support-label">
+          Support Type:
+          <a href="plans.html" class="support-link">View Support Plans</a>
+        </span>
+
         <select id="support" required>
           <option value="email">Free Tier</option>
           <option value="standard">Standard Support (55 $/month)</option>
@@ -565,6 +570,12 @@
         doc.save("CloFix_Pricing_Summary.pdf");
       };
     }
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+
+    navToggle.addEventListener('click', () => {
+      navContent.classList.toggle('active');
+    });
   </script>
 </body>
 
