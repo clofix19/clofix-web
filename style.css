@@ -643,6 +643,7 @@ p {
 .secure-hero {
   display: flex;
   justify-content: center;
+  margin-top: 1.5rem;
   /*flex-wrap: wrap;*/
   /*align-items: center;
   gap: 1rem;*/
