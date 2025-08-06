@@ -221,6 +221,7 @@
         </div>
     </footer>
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
 
     const navToggle = document.getElementById('navToggle');
@@ -236,12 +237,11 @@
         table.classList.toggle('hide-headers');
     }
 
-    // Optional: Hide headers by default on load for mobile
-    //window.addEventListener('DOMContentLoaded', () => {
-    // if (window.innerWidth <= 700) {
-    //     document.querySelector('.support-table-modern').classList.add('hide-headers');
-    // }
-    // });
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WP02RFXGSE');
 </script>
 
 </html>

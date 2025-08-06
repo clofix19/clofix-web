@@ -193,14 +193,21 @@
             <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
         </div>
     </footer>
-    <script>
-        const navToggle = document.getElementById('navToggle');
-        const navContent = document.querySelector('.c-nav__content');
-
-        navToggle.addEventListener('click', () => {
-            navContent.classList.toggle('active');
-        });
-    </script>
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+<script>
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+
+    navToggle.addEventListener('click', () => {
+        navContent.classList.toggle('active');
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WP02RFXGSE');
+</script>
 
 </html>

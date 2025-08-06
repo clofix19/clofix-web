@@ -203,6 +203,7 @@
         </div>
     </footer>
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
 
     const navToggle = document.getElementById('navToggle');
@@ -211,6 +212,12 @@
     navToggle.addEventListener('click', () => {
         navContent.classList.toggle('active');
     });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WP02RFXGSE');
 </script>
 
 </html>

@@ -218,364 +218,371 @@
       <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
     </div>
   </footer>
-  <script>
-    const features = {
-      "AI & Agentic Detection, Behavioral Analysis": 3,
-      "OWASP Protection": 1,
-      "XML External Entity Blocking": 2,
-      "Command Injection Protection": 2,
-      "Insecure Deserialization Blocking": 2,
-      "Slowloris Protection": 2,
-      "Flooding Attacks Protection": 2,
-      "Brute Force and DDos Protection": 2,
-      "Tor Exit Node Blocking": 1,
-      "DNS Rebinding Protection": 2,
-      "Time-Based Verification": 1,
-      "Logging & Monitoring": 1,
-      "Header Length Limits": 1,
-      "Malformed Header Protection": 1,
-      "Header Scan Protection": 1,
-      "Session Cookie Validation": 1,
-      "Cookie Tampering Protection": 1,
-      "Client Behavior Analysis": 2,
-      "Information Leak Detection": 2,
-      "Payload Signature Checking": 2,
-      "Advance IP Reputation Check": 2,
-      "Bot & Headless Browser Blocking": 2,
-      "Configuration Misuse Detection": 2,
-      "Sensitive Data Encryption": 2,
-      "Lua Scripting Support": 3,
-      "Response Body Rewriting": 2,
-      "Session & Cookie Management": 1,
-      "WordPress Protection": 2,
-      "Bot & Automation Defense": 2,
-      "Payload & Header Inspection": 2,
-      "Advanced Scripting & Rules": 3,
-      "Advance Fingerprinting Blocking": 2,
-      "Advance Bad IP, ASN Blocking": 2,
-      "Alert Service - Slack, Google": 1,
-      "CloFix CDN": 2,
-      "Manage Rules - Path Blocking": 0,
-      "Manage Rules - Query Blocking": 0,
-      "Manage Rules - GeoIP Blocking": 0,
-      "Manage Rules - Bot Fingerprinting": 0,
-      "Manage Rules - IP Blocking": 0,
-      "Manage Rules - ASN Number Blocking": 0,
-      "Manage Rules - Geo Blocking": 0,
-      "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
-    };
+</body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+<script>
+  const features = {
+    "AI & Agentic Detection, Behavioral Analysis": 3,
+    "OWASP Protection": 1,
+    "XML External Entity Blocking": 2,
+    "Command Injection Protection": 2,
+    "Insecure Deserialization Blocking": 2,
+    "Slowloris Protection": 2,
+    "Flooding Attacks Protection": 2,
+    "Brute Force and DDos Protection": 2,
+    "Tor Exit Node Blocking": 1,
+    "DNS Rebinding Protection": 2,
+    "Time-Based Verification": 1,
+    "Logging & Monitoring": 1,
+    "Header Length Limits": 1,
+    "Malformed Header Protection": 1,
+    "Header Scan Protection": 1,
+    "Session Cookie Validation": 1,
+    "Cookie Tampering Protection": 1,
+    "Client Behavior Analysis": 2,
+    "Information Leak Detection": 2,
+    "Payload Signature Checking": 2,
+    "Advance IP Reputation Check": 2,
+    "Bot & Headless Browser Blocking": 2,
+    "Configuration Misuse Detection": 2,
+    "Sensitive Data Encryption": 2,
+    "Lua Scripting Support": 3,
+    "Response Body Rewriting": 2,
+    "Session & Cookie Management": 1,
+    "WordPress Protection": 2,
+    "Bot & Automation Defense": 2,
+    "Payload & Header Inspection": 2,
+    "Advanced Scripting & Rules": 3,
+    "Advance Fingerprinting Blocking": 2,
+    "Advance Bad IP, ASN Blocking": 2,
+    "Alert Service - Slack, Google": 1,
+    "CloFix CDN": 2,
+    "Manage Rules - Path Blocking": 0,
+    "Manage Rules - Query Blocking": 0,
+    "Manage Rules - GeoIP Blocking": 0,
+    "Manage Rules - Bot Fingerprinting": 0,
+    "Manage Rules - IP Blocking": 0,
+    "Manage Rules - ASN Number Blocking": 0,
+    "Manage Rules - Geo Blocking": 0,
+    "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
+  };
 
-    const alwaysIncludedFreeFeatures = [
-      "Manage Rules - Path Blocking",
-      "Manage Rules - Query Blocking",
-      "Manage Rules - GeoIP Blocking",
-      "Manage Rules - Bot Fingerprinting",
-      "Manage Rules - IP Blocking",
-      "Manage Rules - ASN Number Blocking",
-      "Manage Rules - Geo Blocking",
-      "Manage Rules - Clofix ID Fingerprint Detection and Block"
-    ];
+  const alwaysIncludedFreeFeatures = [
+    "Manage Rules - Path Blocking",
+    "Manage Rules - Query Blocking",
+    "Manage Rules - GeoIP Blocking",
+    "Manage Rules - Bot Fingerprinting",
+    "Manage Rules - IP Blocking",
+    "Manage Rules - ASN Number Blocking",
+    "Manage Rules - Geo Blocking",
+    "Manage Rules - Clofix ID Fingerprint Detection and Block"
+  ];
 
-    const corePaidFeatures = [
-      "Advance Fingerprinting Blocking",
-      "CloFix CDN",
-      "OWASP Protection"
-    ];
+  const corePaidFeatures = [
+    "Advance Fingerprinting Blocking",
+    "CloFix CDN",
+    "OWASP Protection"
+  ];
 
-    const typeFeatureMap = {
-      wordpress: ["WordPress Protection"],
-      api: ["Payload Signature Checking"],
-      saas: ["Brute Force and DDos Protection"],
-      bank: ["Client Behavior Analysis"],
-      ecommerce: ["Bot & Headless Browser Blocking"]
-    };
+  const typeFeatureMap = {
+    wordpress: ["WordPress Protection"],
+    api: ["Payload Signature Checking"],
+    saas: ["Brute Force and DDos Protection"],
+    bank: ["Client Behavior Analysis"],
+    ecommerce: ["Bot & Headless Browser Blocking"]
+  };
 
-    const featureListDiv = document.getElementById("featureList");
-    for (const [feature, price] of Object.entries(features)) {
-      if (!alwaysIncludedFreeFeatures.includes(feature)) {
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = feature;
-        checkbox.id = feature;
+  const featureListDiv = document.getElementById("featureList");
+  for (const [feature, price] of Object.entries(features)) {
+    if (!alwaysIncludedFreeFeatures.includes(feature)) {
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = feature;
+      checkbox.id = feature;
 
-        if (corePaidFeatures.includes(feature)) {
-          checkbox.checked = true;
-          checkbox.disabled = true;
-        }
-
-        const label = document.createElement("label");
-        label.htmlFor = feature;
-        label.innerText = feature;
-        label.prepend(checkbox);
-
-        featureListDiv.appendChild(label);
+      if (corePaidFeatures.includes(feature)) {
+        checkbox.checked = true;
+        checkbox.disabled = true;
       }
+
+      const label = document.createElement("label");
+      label.htmlFor = feature;
+      label.innerText = feature;
+      label.prepend(checkbox);
+
+      featureListDiv.appendChild(label);
     }
+  }
 
-    document.getElementById("siteType").addEventListener("change", (e) => {
-      const selectedType = e.target.value;
-      const selectedFeatures = typeFeatureMap[selectedType] || [];
+  document.getElementById("siteType").addEventListener("change", (e) => {
+    const selectedType = e.target.value;
+    const selectedFeatures = typeFeatureMap[selectedType] || [];
 
-      for (const feature of Object.keys(features)) {
-        if (
-          !alwaysIncludedFreeFeatures.includes(feature) &&
-          !corePaidFeatures.includes(feature)
-        ) {
-          const checkbox = document.getElementById(feature);
-          if (checkbox) {
-            checkbox.checked = false;
-            checkbox.disabled = false;
-          }
-        }
-      }
-
-      selectedFeatures.forEach((feature) => {
+    for (const feature of Object.keys(features)) {
+      if (
+        !alwaysIncludedFreeFeatures.includes(feature) &&
+        !corePaidFeatures.includes(feature)
+      ) {
         const checkbox = document.getElementById(feature);
         if (checkbox) {
-          checkbox.checked = true;
-          checkbox.disabled = true;
-        }
-      });
-    });
-
-
-    function calculatePricing() {
-      const domainCount = parseInt(document.getElementById("domains").value);
-      const subdomainCount = parseInt(document.getElementById("subdomains").value);
-      const requests = parseInt(document.getElementById("requests").value);
-      const bandwidth = parseFloat(document.getElementById("bandwidth").value);
-      const support = document.getElementById("support").value;
-      const license = document.getElementById("license").value;
-
-      if (domainCount <= 0 || bandwidth <= 0) {
-        document.getElementById("errorMessage").style.display = "block";
-        document.getElementById("result").style.display = "none";
-        return;
-      } else {
-        document.getElementById("errorMessage").style.display = "none";
-      }
-
-      let total = 0;
-      const rows = [];
-
-      if (domainCount > 0) {
-        const cost = domainCount * 4;
-        total += cost;
-        rows.push(["Domains", `$${cost.toFixed(2)}`]);
-      }
-
-      if (subdomainCount > 0) {
-        const cost = subdomainCount * 2;
-        total += cost;
-        rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
-      }
-
-      if (requests > 0) {
-        const cost = requests * 1;
-        total += cost;
-        rows.push(["Requests", `$${cost.toFixed(2)}`]);
-      }
-
-      if (bandwidth > 0) {
-        let cost = 0;
-        if (bandwidth > 10) {
-          const tier1 = Math.min(bandwidth - 10, 15);
-          const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25);
-          const tier3 = Math.max(bandwidth - 50, 0);
-          cost += tier1 * 0.11;
-          cost += tier2 * 0.15;
-          cost += tier3 * 0.09;
-          total += cost;
-          rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
-        } else {
-          rows.push(["Bandwidth", "Free"]);
+          checkbox.checked = false;
+          checkbox.disabled = false;
         }
       }
-
-      let supportCostMonthly = 0;
-      let supportLabel = "Support (Email)";
-      let supportPriceText = "Free";
-
-      if (support === "standard") {
-        supportCostMonthly = 55;
-        supportLabel = "Standard Support";
-        supportPriceText = `$55 / month`;
-      } else if (support === "enterprise") {
-        supportCostMonthly = 500;
-        supportLabel = "Enterprise Support";
-        supportPriceText = `$500 / month`;
-      }
-
-      for (const [feature, price] of Object.entries(features)) {
-        if (
-          !alwaysIncludedFreeFeatures.includes(feature) &&
-          !corePaidFeatures.includes(feature)
-        ) {
-          const checkbox = document.getElementById(feature);
-          if (checkbox && checkbox.checked) {
-            total += price;
-            rows.push([feature, `$${price.toFixed(2)}`]);
-          }
-        }
-      }
-
-      alwaysIncludedFreeFeatures.forEach((feature) => {
-        rows.push([feature, "Free"]);
-      });
-
-      corePaidFeatures.forEach((feature) => {
-        const price = features[feature];
-        total += price;
-        rows.push([feature, `$${price.toFixed(2)}`]);
-      });
-
-      const tbody = document.getElementById("pricingTable");
-      tbody.innerHTML = "";
-
-      if (license === "yearly") {
-        const monthlyTotal = total + supportCostMonthly;
-        const yearlyTotal = monthlyTotal * 12;
-        const discounted = yearlyTotal * 0.9;
-        const monthlyAfterDiscount = discounted / 12;
-
-        rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
-        rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
-        rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
-        rows.push(["Monthly Cost After Discount", `$${monthlyAfterDiscount.toFixed(2)}`]);
-
-        document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)}`;
-        document.querySelector("#result tfoot th:first-child").innerText = "Total (Yearly)";
-      } else {
-        total += supportCostMonthly;
-        rows.push([supportLabel, supportPriceText]);
-        rows.push(["Billing Plan", "Monthly"]);
-
-        document.getElementById("totalCost").innerText = `$${total.toFixed(2)}`;
-        document.querySelector("#result tfoot th:first-child").innerText = "Total (Monthly)";
-      }
-
-      rows.forEach(([name, price]) => {
-        const row = `<tr><td>${name}</td><td>${price}</td></tr>`;
-        tbody.innerHTML += row;
-      });
-
-      document.getElementById("result").style.display = "block";
-      document.getElementById("exportExcelBtn").style.display = "inline-block";
-      document.getElementById("exportPDFBtn").style.display = "inline-block";
-
-      document.getElementById("exportExcelBtn").onclick = () => {
-        const table = document.querySelector(".pricing-table");
-        const wb = XLSX.utils.book_new();
-        const ws = XLSX.utils.table_to_sheet(table);
-        XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
-        XLSX.writeFile(wb, "CloFix_Pricing_Summary.xlsx");
-      };
-
-      document.getElementById("exportPDFBtn").onclick = () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-          orientation: "portrait",
-          unit: "pt",
-          format: "a4"
-        });
-
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(20);
-        doc.setTextColor("#2563eb");
-        doc.text("CloFix WAF Pricing Summary", 40, 50);
-
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.setTextColor("#6b7280");
-        doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
-
-        const table = document.querySelector(".pricing-table");
-        const rows = [["Component", "Cost (USD)"]];
-        for (const tr of table.querySelectorAll("tbody tr")) {
-          const tds = tr.querySelectorAll("td");
-          rows.push([tds[0].innerText, tds[1].innerText]);
-        }
-        rows.push(["Total", document.getElementById("totalCost").innerText]);
-
-        doc.autoTable({
-          startY: 100,
-          head: [rows[0]],
-          body: rows.slice(1),
-          theme: "striped",
-          headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255] },
-          styles: { cellPadding: 8, fontSize: 10, textColor: [55, 65, 81] },
-          alternateRowStyles: { fillColor: [240, 249, 255] },
-          margin: { top: 100, left: 40, right: 40 }
-        });
-
-        doc.addPage();
-        const marginLeft = 40;
-        let currentY = 50;
-        const lineHeight = 16;
-
-        const lines = [
-          { text: "Cost Breakdown Summary", bold: true },
-          { gap: true },
-
-          { text: '• WordPress: Includes "WordPress Protection" to guard popular plugins and themes from attacks.' },
-          { text: '• API Gateway: Uses "Payload Signature Checking" to validate incoming traffic structure.' },
-          { text: '• SaaS Web App: Adds "Brute Force and DDoS Protection" for user accounts and login endpoints.' },
-          { text: '• Banking/Finance: Applies "Client Behavior Analysis" to detect abnormal transaction patterns.' },
-          { text: '• E-commerce: Enables "Bot & Headless Browser Blocking" to prevent scraping and automated threats.' },
-
-          { gap: true },
-          { text: "Core Features (Always Included and Billed):", bold: true },
-          { gap: true },
-
-          { text: '• Advance Fingerprinting Blocking: Ensures advanced browser and bot fingerprint tracking prevention.' },
-          { text: '  - This is a critical layer of defense against modern bot attacks and browser emulation, and is included by default in all plans due to its essential role in baseline security.' },
-
-          { gap: true },
-
-          { text: '• CloFix CDN: Accelerates web content delivery through our secure, global CDN edge nodes.' },
-          { text: '  - This improves performance and protection by serving content closer to users while shielding origin servers. It is always active and therefore billed.' },
-
-          { gap: true },
-          { text: "Auto-Selected Features Based on Website Type:", bold: true },
-          { gap: true },
-
-          { text: "When you select a specific website type, certain add-on features are automatically included to match the common threat models and protection needs of that type. For example:" },
-          { text: '- WordPress sites face plugin vulnerabilities, so "WordPress Protection" is added.' },
-          { text: '- API Gateway traffic must be validated structurally, so "Payload Signature Checking" is included.' },
-          { text: '- Banking/Finance requires fraud behavior detection, so "Client Behavior Analysis" is activated.' },
-
-          { gap: true },
-          { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
-
-          { gap: true },
-          { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
-        ];
-
-        for (const line of lines) {
-          if (line.gap) {
-            currentY += lineHeight / 2;
-            continue;
-          }
-
-          doc.setFont("helvetica", line.bold ? "bold" : "normal");
-          doc.setFontSize(10);
-          doc.setTextColor("#374151");
-
-          const splitLines = doc.splitTextToSize(line.text, 520);
-          doc.text(splitLines, marginLeft, currentY);
-          currentY += splitLines.length * lineHeight;
-        }
-
-        doc.save("CloFix_Pricing_Summary.pdf");
-      };
     }
-    const navToggle = document.getElementById('navToggle');
-    const navContent = document.querySelector('.c-nav__content');
 
-    navToggle.addEventListener('click', () => {
-      navContent.classList.toggle('active');
+    selectedFeatures.forEach((feature) => {
+      const checkbox = document.getElementById(feature);
+      if (checkbox) {
+        checkbox.checked = true;
+        checkbox.disabled = true;
+      }
     });
-  </script>
-</body>
+  });
+
+
+  function calculatePricing() {
+    const domainCount = parseInt(document.getElementById("domains").value);
+    const subdomainCount = parseInt(document.getElementById("subdomains").value);
+    const requests = parseInt(document.getElementById("requests").value);
+    const bandwidth = parseFloat(document.getElementById("bandwidth").value);
+    const support = document.getElementById("support").value;
+    const license = document.getElementById("license").value;
+
+    if (domainCount <= 0 || bandwidth <= 0) {
+      document.getElementById("errorMessage").style.display = "block";
+      document.getElementById("result").style.display = "none";
+      return;
+    } else {
+      document.getElementById("errorMessage").style.display = "none";
+    }
+
+    let total = 0;
+    const rows = [];
+
+    if (domainCount > 0) {
+      const cost = domainCount * 4;
+      total += cost;
+      rows.push(["Domains", `$${cost.toFixed(2)}`]);
+    }
+
+    if (subdomainCount > 0) {
+      const cost = subdomainCount * 2;
+      total += cost;
+      rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
+    }
+
+    if (requests > 0) {
+      const cost = requests * 1;
+      total += cost;
+      rows.push(["Requests", `$${cost.toFixed(2)}`]);
+    }
+
+    if (bandwidth > 0) {
+      let cost = 0;
+      if (bandwidth > 10) {
+        const tier1 = Math.min(bandwidth - 10, 15);
+        const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25);
+        const tier3 = Math.max(bandwidth - 50, 0);
+        cost += tier1 * 0.11;
+        cost += tier2 * 0.15;
+        cost += tier3 * 0.09;
+        total += cost;
+        rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
+      } else {
+        rows.push(["Bandwidth", "Free"]);
+      }
+    }
+
+    let supportCostMonthly = 0;
+    let supportLabel = "Support (Email)";
+    let supportPriceText = "Free";
+
+    if (support === "standard") {
+      supportCostMonthly = 55;
+      supportLabel = "Standard Support";
+      supportPriceText = `$55 / month`;
+    } else if (support === "enterprise") {
+      supportCostMonthly = 500;
+      supportLabel = "Enterprise Support";
+      supportPriceText = `$500 / month`;
+    }
+
+    for (const [feature, price] of Object.entries(features)) {
+      if (
+        !alwaysIncludedFreeFeatures.includes(feature) &&
+        !corePaidFeatures.includes(feature)
+      ) {
+        const checkbox = document.getElementById(feature);
+        if (checkbox && checkbox.checked) {
+          total += price;
+          rows.push([feature, `$${price.toFixed(2)}`]);
+        }
+      }
+    }
+
+    alwaysIncludedFreeFeatures.forEach((feature) => {
+      rows.push([feature, "Free"]);
+    });
+
+    corePaidFeatures.forEach((feature) => {
+      const price = features[feature];
+      total += price;
+      rows.push([feature, `$${price.toFixed(2)}`]);
+    });
+
+    const tbody = document.getElementById("pricingTable");
+    tbody.innerHTML = "";
+
+    if (license === "yearly") {
+      const monthlyTotal = total + supportCostMonthly;
+      const yearlyTotal = monthlyTotal * 12;
+      const discounted = yearlyTotal * 0.9;
+      const monthlyAfterDiscount = discounted / 12;
+
+      rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
+      rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
+      rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
+      rows.push(["Monthly Cost After Discount", `$${monthlyAfterDiscount.toFixed(2)}`]);
+
+      document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)}`;
+      document.querySelector("#result tfoot th:first-child").innerText = "Total (Yearly)";
+    } else {
+      total += supportCostMonthly;
+      rows.push([supportLabel, supportPriceText]);
+      rows.push(["Billing Plan", "Monthly"]);
+
+      document.getElementById("totalCost").innerText = `$${total.toFixed(2)}`;
+      document.querySelector("#result tfoot th:first-child").innerText = "Total (Monthly)";
+    }
+
+    rows.forEach(([name, price]) => {
+      const row = `<tr><td>${name}</td><td>${price}</td></tr>`;
+      tbody.innerHTML += row;
+    });
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("exportExcelBtn").style.display = "inline-block";
+    document.getElementById("exportPDFBtn").style.display = "inline-block";
+
+    document.getElementById("exportExcelBtn").onclick = () => {
+      const table = document.querySelector(".pricing-table");
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.table_to_sheet(table);
+      XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
+      XLSX.writeFile(wb, "CloFix_Pricing_Summary.xlsx");
+    };
+
+    document.getElementById("exportPDFBtn").onclick = () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "pt",
+        format: "a4"
+      });
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(20);
+      doc.setTextColor("#2563eb");
+      doc.text("CloFix WAF Pricing Summary", 40, 50);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.setTextColor("#6b7280");
+      doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
+
+      const table = document.querySelector(".pricing-table");
+      const rows = [["Component", "Cost (USD)"]];
+      for (const tr of table.querySelectorAll("tbody tr")) {
+        const tds = tr.querySelectorAll("td");
+        rows.push([tds[0].innerText, tds[1].innerText]);
+      }
+      rows.push(["Total", document.getElementById("totalCost").innerText]);
+
+      doc.autoTable({
+        startY: 100,
+        head: [rows[0]],
+        body: rows.slice(1),
+        theme: "striped",
+        headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255] },
+        styles: { cellPadding: 8, fontSize: 10, textColor: [55, 65, 81] },
+        alternateRowStyles: { fillColor: [240, 249, 255] },
+        margin: { top: 100, left: 40, right: 40 }
+      });
+
+      doc.addPage();
+      const marginLeft = 40;
+      let currentY = 50;
+      const lineHeight = 16;
+
+      const lines = [
+        { text: "Cost Breakdown Summary", bold: true },
+        { gap: true },
+
+        { text: '• WordPress: Includes "WordPress Protection" to guard popular plugins and themes from attacks.' },
+        { text: '• API Gateway: Uses "Payload Signature Checking" to validate incoming traffic structure.' },
+        { text: '• SaaS Web App: Adds "Brute Force and DDoS Protection" for user accounts and login endpoints.' },
+        { text: '• Banking/Finance: Applies "Client Behavior Analysis" to detect abnormal transaction patterns.' },
+        { text: '• E-commerce: Enables "Bot & Headless Browser Blocking" to prevent scraping and automated threats.' },
+
+        { gap: true },
+        { text: "Core Features (Always Included and Billed):", bold: true },
+        { gap: true },
+
+        { text: '• Advance Fingerprinting Blocking: Ensures advanced browser and bot fingerprint tracking prevention.' },
+        { text: '  - This is a critical layer of defense against modern bot attacks and browser emulation, and is included by default in all plans due to its essential role in baseline security.' },
+
+        { gap: true },
+
+        { text: '• CloFix CDN: Accelerates web content delivery through our secure, global CDN edge nodes.' },
+        { text: '  - This improves performance and protection by serving content closer to users while shielding origin servers. It is always active and therefore billed.' },
+
+        { gap: true },
+        { text: "Auto-Selected Features Based on Website Type:", bold: true },
+        { gap: true },
+
+        { text: "When you select a specific website type, certain add-on features are automatically included to match the common threat models and protection needs of that type. For example:" },
+        { text: '- WordPress sites face plugin vulnerabilities, so "WordPress Protection" is added.' },
+        { text: '- API Gateway traffic must be validated structurally, so "Payload Signature Checking" is included.' },
+        { text: '- Banking/Finance requires fraud behavior detection, so "Client Behavior Analysis" is activated.' },
+
+        { gap: true },
+        { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
+
+        { gap: true },
+        { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
+      ];
+
+      for (const line of lines) {
+        if (line.gap) {
+          currentY += lineHeight / 2;
+          continue;
+        }
+
+        doc.setFont("helvetica", line.bold ? "bold" : "normal");
+        doc.setFontSize(10);
+        doc.setTextColor("#374151");
+
+        const splitLines = doc.splitTextToSize(line.text, 520);
+        doc.text(splitLines, marginLeft, currentY);
+        currentY += splitLines.length * lineHeight;
+      }
+
+      doc.save("CloFix_Pricing_Summary.pdf");
+    };
+  }
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+
+  navToggle.addEventListener('click', () => {
+    navContent.classList.toggle('active');
+  });
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-WP02RFXGSE');
+</script>
 
 </html>

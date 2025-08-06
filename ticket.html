@@ -169,69 +169,74 @@
       <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
     </div>
   </footer>
-
-  <script>
-    document.getElementById("ticket-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const submitBtn = document.getElementById("submit-btn");
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending...";
-
-      const ticketId = "CLFX-" + Math.floor(100000 + Math.random() * 900000);
-
-      const formData = {
-        name: document.getElementById("name").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        issue: document.getElementById("issue").value,
-        subject: document.getElementById("subject").value.trim(),
-        message: document.getElementById("message").value.trim(),
-        ticket_id: ticketId,
-      };
-
-      emailjs
-        .send("service_lqnqwpz", "template_3mlvp36", {
-          name: formData.name,
-          email: formData.email,
-          issue: formData.issue,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: "clofix19@gmail.com",
-          ticket_id: formData.ticket_id,
-        })
-        .then(function () {
-          return emailjs.send("service_lqnqwpz", "template_2jkg92n", {
-            to_email: formData.email,
-            customer_name: formData.name,
-            issue_type: formData.issue,
-            ticket_subject: formData.subject,
-            ticket_id: formData.ticket_id,
-            reply_to: "clofix19@gmail.com",
-          });
-        })
-        .then(function () {
-          alert("✅ Ticket submitted successfully! Check your email for confirmation.");
-          document.getElementById("ticket-form").reset();
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-          alert("❌ Error: " + (error.text || "Please try again later."));
-        })
-        .finally(function () {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Submit Ticket";
-        });
-    });
-  </script>
-
-  <script>
-    const navToggle = document.getElementById('navToggle');
-    const navContent = document.querySelector('.c-nav__content');
-
-    navToggle.addEventListener('click', () => {
-      navContent.classList.toggle('active');
-    });
-  </script>
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+<script>
+  document.getElementById("ticket-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const ticketId = "CLFX-" + Math.floor(100000 + Math.random() * 900000);
+
+    const formData = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      issue: document.getElementById("issue").value,
+      subject: document.getElementById("subject").value.trim(),
+      message: document.getElementById("message").value.trim(),
+      ticket_id: ticketId,
+    };
+
+    emailjs
+      .send("service_lqnqwpz", "template_3mlvp36", {
+        name: formData.name,
+        email: formData.email,
+        issue: formData.issue,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: "clofix19@gmail.com",
+        ticket_id: formData.ticket_id,
+      })
+      .then(function () {
+        return emailjs.send("service_lqnqwpz", "template_2jkg92n", {
+          to_email: formData.email,
+          customer_name: formData.name,
+          issue_type: formData.issue,
+          ticket_subject: formData.subject,
+          ticket_id: formData.ticket_id,
+          reply_to: "clofix19@gmail.com",
+        });
+      })
+      .then(function () {
+        alert("✅ Ticket submitted successfully! Check your email for confirmation.");
+        document.getElementById("ticket-form").reset();
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+        alert("❌ Error: " + (error.text || "Please try again later."));
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Ticket";
+      });
+  });
+</script>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+
+  navToggle.addEventListener('click', () => {
+    navContent.classList.toggle('active');
+  });
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-WP02RFXGSE');
+</script>
 
 </html>
