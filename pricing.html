@@ -387,10 +387,22 @@
     }
 
     if (requests > 0) {
-      const cost = requests * 1;
-      total += cost;
-      rows.push(["Requests", `$${cost.toFixed(2)}`]);
+      let cost = 0;
+
+      if (requests > 1 && requests <= 100) {
+        cost = 1.25;
+      } else if (requests > 100) {
+        cost = 1.00;
+      }
+
+      if (cost > 0) {
+        total += cost;
+        rows.push(["Requests", `$${cost.toFixed(2)}`]);
+      } else {
+        rows.push(["Requests", "Free (up to 1M)"]);
+      }
     }
+
 
     const unit = document.getElementById("bandwidthUnit").value;
     let actualBandwidthGB = bandwidth;
@@ -405,9 +417,9 @@
         const tier1 = Math.min(actualBandwidthGB - 10, 15);
         const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
         const tier3 = Math.max(actualBandwidthGB - 50, 0);
-        cost += tier1 * 0.11;
-        cost += tier2 * 0.15;
-        cost += tier3 * 0.09;
+        cost += tier1 * 0.03;
+        cost += tier2 * 0.04;
+        cost += tier3 * 0.02;
         total += cost;
         rows.push([`Bandwidth (${unit})`, `$${cost.toFixed(2)}`]);
       } else {
