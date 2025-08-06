@@ -76,9 +76,23 @@
       <label class="basic-input">Monthly Requests (in millions):
         <input type="number" id="requests" min="0" value="0" />
       </label>
-      <label class="basic-input">Bandwidth (in GB):
+      <div class="bandwidth-row">
+        <label class="basic-input">Bandwidth
+          <input type="number" id="bandwidth" min="1" value="0" required />
+        </label>
+
+        <label class="basic-input">Bandwidth Unit
+          <select id="bandwidthUnit">
+            <option value="GB">GB per month</option>
+            <option value="TB">TB per month</option>
+          </select>
+        </label>
+      </div>
+
+
+      <!-- <label class="basic-input">Bandwidth (in GB):
         <input type="number" id="bandwidth" min="1" value="0" required />
-      </label>
+      </label> -->
 
       <label class="support-type">Website Type:
         <select id="siteType">
@@ -378,21 +392,29 @@
       rows.push(["Requests", `$${cost.toFixed(2)}`]);
     }
 
-    if (bandwidth > 0) {
+    const unit = document.getElementById("bandwidthUnit").value;
+    let actualBandwidthGB = bandwidth;
+
+    if (unit === "TB") {
+      actualBandwidthGB = bandwidth * 1024;
+    }
+
+    if (actualBandwidthGB > 0) {
       let cost = 0;
-      if (bandwidth > 10) {
-        const tier1 = Math.min(bandwidth - 10, 15);
-        const tier2 = Math.min(Math.max(bandwidth - 25, 0), 25);
-        const tier3 = Math.max(bandwidth - 50, 0);
+      if (actualBandwidthGB > 10) {
+        const tier1 = Math.min(actualBandwidthGB - 10, 15);
+        const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
+        const tier3 = Math.max(actualBandwidthGB - 50, 0);
         cost += tier1 * 0.11;
         cost += tier2 * 0.15;
         cost += tier3 * 0.09;
         total += cost;
-        rows.push(["Bandwidth", `$${cost.toFixed(2)}`]);
+        rows.push([`Bandwidth (${unit})`, `$${cost.toFixed(2)}`]);
       } else {
-        rows.push(["Bandwidth", "Free"]);
+        rows.push([`Bandwidth (${unit})`, "Free"]);
       }
     }
+
 
     let supportCostMonthly = 0;
     let supportLabel = "Support (Email)";

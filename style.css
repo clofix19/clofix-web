@@ -1336,7 +1336,8 @@ body {
 
 .basic-input input,
 .support-type select,
-.license-validation select {
+.license-validation select,
+#bandwidthUnit {
   margin-top: 0.5rem;
   padding: 0.75rem;
   border-radius: 8px;
@@ -2220,4 +2221,26 @@ body {
   font-family: "Forum", serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.bandwidth-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 767px) {
+  .bandwidth-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.bandwidth-row .basic-input {
+  flex: 1;
+}
+
+.bandwidth-row .basic-input:first-child {
+  flex: 2;
 }
