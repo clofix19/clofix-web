@@ -955,7 +955,7 @@ p {
 }
 
 .about-image {
-  max-width: 100%;
+  max-width: 72%;
   height: auto;
   border-radius: 12px;
   animation: fadeInUp 1s ease forwards;
