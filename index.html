@@ -94,15 +94,21 @@
 
           <div class="slider">
             <div class="slides" id="slides">
-              <img src="img/dashboard.png" alt="Dashboard" />
+              <!-- <img src="img/dashboard.png" alt="Dashboard" />
               <img src="img/world.png" alt="Stats" />
-              <img src="img/attackh.png" alt="Security" />
+              <img src="img/attackh.png" alt="Security" /> -->
+              <img src="img/fingerprints.png" alt="Dashboard" />
+              <img src="img/heatmaps.png" alt="Dashboard" />
+              <img src="img/logs.png" alt="Dashboard" />
+              <img src="img/requests.png" alt="Dashboard" />
+              <img src="img/traffic.png" alt="Dashboard" />
             </div>
 
             <div class="slider-nav">
-              <button onclick="prevSlide()">❮</button>
-              <button onclick="nextSlide()">❯</button>
+              <button onclick="prevSlide()">⟨</button>
+              <button onclick="nextSlide()">⟩</button>
             </div>
+            <div class="slider-dots" id="sliderDots"></div>
           </div>
         </div>
       </div>
@@ -198,324 +204,6 @@
         </div>
       </div>
     </section>
-
-    <!-- <section class="section features" id="section-features">
-        <div class="container">
-          <div class="box box--grid">
-            <article class="c-feature">
-              <div class="c-feature__img-holder">
-                <img class="c-feature__img" src="img/feature-1.png" alt="" />
-              </div>
-              <div class="c-feature__content">
-                <h3 class="c-feature__title heading heading--3">
-                  Web Application Security - WAF
-                </h3>
-                <p class="c-paragraph c-feature__text">
-                  Managed WAF (Web Application Firewall),
-                  Threat Detection & Response,
-                  Custom Rule Sets,
-                  API Security & Rate Limiting.
-                </p>
-              </div>
-            </article>
-
-            <article class="c-feature">
-              <div class="c-feature__img-holder">
-                <img class="c-feature__img" src="img/feature-2.png" alt="" />
-              </div>
-              <div class="c-feature__content">
-                <h3 class="c-feature__title heading heading--3">
-                  DevOps Support
-                </h3>
-                <p class="c-paragraph c-feature__text">
-                  CI/CD Pipeline Implementation, Infrastructure as Code (IaC), Monitoring & Logging, Performance Optimization.
-                </p>
-              </div>
-            </article>
-
-            <article class="c-feature">
-              <div class="c-feature__img-holder">
-                <img class="c-feature__img" src="img/feature-3.png" alt="" />
-              </div>
-              <div class="c-feature__content">
-                <h3 class="c-feature__title heading heading--3">
-                  Cloud Automation & Management
-                </h3>
-                <p class="c-paragraph c-feature__text">
-                  Multi-Cloud Infrastructure Setup, Serverless & Container Orchestration, Backup & Disaster Recovery, Auto-Scaling & Load Balancing 
-                </p>
-              </div>
-            </article>
-            <article class="c-feature">
-              <div class="c-feature__img-holder">
-                <img class="c-feature__img" src="img/feature-3.png" alt="" />
-              </div>
-              <div class="c-feature__content">
-                <h3 class="c-feature__title heading heading--3">
-                  On-Demand Engineering Support
-                </h3>
-                <p class="c-paragraph c-feature__text">
-                  Deployment Troubleshooting, DevSecOps Best Practices Implementation, 24/7 Technical Support.
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="box box--flex box--mt2">
-            <button class="c-button c-button--primary">
-              Request early access
-            </button>
-          </div>
-        </div>
-      </section> -->
-
-    <!-- <section id="section-pricing" class="section pricing">
-        <div class="container">
-          <div class="section__title-wrapper">
-            <h2 class="heading heading--2">CloFix WAF Pricing</h2>
-
-            <h4 class="heading heading--4">
-              CloFix Web Application Firewall (WAF) is designed to provide scalable, high-performance, protection for cloud-based and On-prem applications. You pay only for what you need, No hidden costs, No lock-ins.
-            </h4>
-          </div>
-
-          <div class="box box--grid box--gap2">
-            <article class="c-price">
-              <div class="c-price__header">
-                <div class="c-price__amount">
-                  <h3 class="c-price__amount--title heading heading--3">
-                    <span class="c-price__amount--secondary">BDT</span>
-                    <span class="c-price__amount--primary">1,500</span>
-                    <span class="c-price__amount--secondary">/m</span>
-                  </h3>
-                </div>
-                <p class="c-paragraph c-price__text">
-                  This Pricing For 1 Domain License.
-                </p>
-                <h5 class="heading heading--4 c-price__title">
-                  What's included
-                </h5>
-              </div>
-              <ul class="c-list">
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">
-                    Features - All - <a href="your-details-page.html">Details</a>
-                  </div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Support Type - WhatsApp Only</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Bandwidth Limit - 30 GB</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Dashboard - Per Domain</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Landing Page - FIX</div>
-                </li>
-              </ul>
-              <button
-                class="c-button c-button--secondary c-button--block c-price__button"
-              >
-                Request now
-              </button>
-            </article>
-
-            <article class="c-price c-price--highlight">
-              <div class="c-price__header">
-                <div class="c-price__amount">
-                  <h3 class="c-price__amount--title heading heading--3">
-                    <span class="c-price__amount--secondary">BDT</span>
-                    <span class="c-price__amount--primary">4,000</span>
-                    <span class="c-price__amount--secondary">/m</span>
-                  </h3>
-                </div>
-                <p class="c-paragraph c-price__text">
-                  This Pricing For 3 Domain License.
-                </p>
-                <h5 class="heading heading--4 c-price__title">
-                  What's included
-                </h5>
-              </div>
-              <ul class="c-list">
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">
-                    Features - All - <a href="your-details-page.html">Details</a>
-                  </div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Support Type - WhatsApp Only</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Bandwidth Limit - 100 GB</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Dashboard - Per Domain</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Landing Page - FIX</div>
-                </li>
-              </ul>
-              <button
-                class="c-button c-button--secondary c-button--block c-price__button"
-              >
-                Request now
-              </button>
-            </article>
-
-            <article class="c-price">
-              <div class="c-price__header">
-                <div class="c-price__amount">
-                  <h3 class="c-price__amount--title heading heading--3">
-                    <span class="c-price__amount--secondary">BDT</span>
-                    <span class="c-price__amount--primary">7,500</span>
-                    <span class="c-price__amount--secondary">/m</span>
-                  </h3>
-                </div>
-                <p class="c-paragraph c-price__text">
-                  This Pricing For 6 Domain License.
-                </p>
-                <h5 class="heading heading--4 c-price__title">
-                  What's included
-                </h5>
-              </div>
-              <ul class="c-list">
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">
-                    Features - All - <a href="your-details-page.html">Details</a>
-                  </div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Support Type - WhatsApp Only</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Bandwidth Limit - 300 GB</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Dashboard - Per Domain</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Landing Page - FIX</div>
-                </li>
-              </ul>
-              <button
-                class="c-button c-button--secondary c-button--block c-price__button"
-              >
-                Request now
-              </button>
-            </article>
-
-            <article class="c-price c-price--highlight">
-              <div class="c-price__header">
-                <div class="c-price__amount">
-                  <h3 class="c-price__amount--title heading heading--3">
-                    <span class="c-price__amount--secondary">BDT</span>
-                    <span class="c-price__amount--primary">50,000</span>
-                    <span class="c-price__amount--secondary">/m</span>
-                  </h3>
-                </div>
-                <p class="c-paragraph c-price__text">
-                  This Pricing For 15 Domain License.
-                </p>
-                <h5 class="heading heading--4 c-price__title">
-                  What's included
-                </h5>
-              </div>
-              <ul class="c-list">
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">
-                    Features - All - <a href="your-details-page.html">Details</a>
-                  </div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Support Type - WhatsApp Only</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Bandwidth Limit - 750 GB</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Dashboard - Per Domain</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Landing Page - FIX</div>
-                </li>
-              </ul>
-              <button
-                class="c-button c-button--secondary c-button--block c-price__button"
-              >
-                Request now
-              </button>
-            </article>
-
-            <article class="c-price c-price--highlight">
-              <div class="c-price__header">
-                <div class="c-price__amount">
-                  <h3 class="c-price__amount--title heading heading--3">
-                    <span class="c-price__amount--secondary">BDT</span>
-                    <span class="c-price__amount--primary">20,500</span>
-                    <span class="c-price__amount--secondary">/m</span>
-                  </h3>
-                </div>
-                <p class="c-paragraph c-price__text">
-                  This Pricing For 15 Domain License.
-                </p>
-                <h5 class="heading heading--4 c-price__title">
-                  What's included
-                </h5>
-              </div>
-              <ul class="c-list">
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">
-                    Features - All - <a href="your-details-page.html">Details</a>
-                  </div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Support Type - WhatsApp Only</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Bandwidth Limit - 750 GB</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Dashboard - Per Domain</div>
-                </li>
-                <li class="c-list__item c-price__list-item">
-                  <div class="c-list__icon c-list__icon--check"></div>
-                  <div class="c-list__text">Landing Page - FIX</div>
-                </li>
-              </ul>
-              <button
-                class="c-button c-button--secondary c-button--block c-price__button"
-              >
-                Request now
-              </button>
-            </article>
-          </div>
-        </div>
-      </section> -->
   </main>
 
   <footer class="footer">
@@ -592,20 +280,38 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
   let currentIndex = 0;
+  const slides = document.getElementById("slides");
+  const totalSlides = slides.children.length;
+
+  const dotsContainer = document.getElementById("sliderDots");
+
+  function createDots() {
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement("button");
+      dot.setAttribute("data-index", i);
+      dot.addEventListener("click", () => {
+        showSlide(i);
+      });
+      dotsContainer.appendChild(dot);
+    }
+    updateDots();
+  }
+
+  function updateDots() {
+    const dots = dotsContainer.querySelectorAll("button");
+    dots.forEach(dot => dot.classList.remove("active"));
+    if (dots[currentIndex]) {
+      dots[currentIndex].classList.add("active");
+    }
+  }
 
   function showSlide(index) {
-    const slides = document.getElementById("slides");
-    const totalSlides = slides.children.length;
-
-    if (index >= totalSlides) {
-      currentIndex = 0;
-    } else if (index < 0) {
-      currentIndex = totalSlides - 1;
-    } else {
-      currentIndex = index;
-    }
+    if (index >= totalSlides) currentIndex = 0;
+    else if (index < 0) currentIndex = totalSlides - 1;
+    else currentIndex = index;
 
     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateDots();
   }
 
   function nextSlide() {
@@ -616,8 +322,22 @@
     showSlide(currentIndex - 1);
   }
 
-  // Auto slide every 5 seconds (optional)
-  setInterval(nextSlide, 5000);
+  setInterval(nextSlide, 6000); // auto-slide every 6s
+
+  // Touch support (swipe)
+  let startX = 0;
+  slides.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  slides.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const delta = startX - endX;
+    if (delta > 50) nextSlide();
+    else if (delta < -50) prevSlide();
+  });
+
+  createDots();
 
   const navToggle = document.getElementById('navToggle');
   const navContent = document.querySelector('.c-nav__content');
