@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CloFix WAF Calculator</title>
+    <link rel="icon" type="image/png" href="img/clofix.png" />
+
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <link href="./style.css" rel="stylesheet" />
+
+    <title>Clofix WAF</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                                 <a href="pricing.html" class="c-link c-link--list">Pricing</a>
                             </li>
                             <li class="c-list__item">
-                                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
+                                <a href="#section-services" class="c-link c-link--list">Services</a>
                             </li>
                             <li class="c-list__item">
                                 <a href="about.html" class="c-link c-link--list">About</a>
@@ -58,71 +58,85 @@
                                 Create Ticket
                             </button>
                         </a>
+
+                        <!--  <button class="c-button c-button--small c-button--secondary">
+                Create Ticket
+              </button> -->
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    <main class="container">
-        <section class="support-plan-section">
-            <h2 class="heading--2">CloFix WAF Support Plans</h2>
-            <div class="support-plan-grid">
 
-                <div class="support-plan-card">
-                    <h3 class="support-plan-title">Free Tier</h3>
-                    <p class="support-plan-price"><strong>Free</strong></p>
-                    <p><strong>Channels:</strong> Email</p>
-                    <p><strong>Response Time:</strong> No SLA (best-effort support)</p>
-                    <p><strong>Perfect for:</strong> Startups, developers, or small projects who want basic protection
-                        without a cost</p>
-                    <ul class="support-plan-benefits">
-                        <li> Basic email-based support</li>
-                        <li> Ideal for low-risk environments</li>
-                        <li> Assistance with setup and integration</li>
-                        <li> Access to core documentation and community help</li>
-                    </ul>
+    <main>
+        <section class="release-section section" id="release-notes">
+            <div class="container">
+                <h2 class="release-title">Release Notes</h2>
+                <div class="release-search-wrapper">
+                    <input type="text" id="releaseSearch" placeholder="Search release notes (version, text, date)..."
+                        class="release-search-input" onkeyup="filterReleaseNotes()" />
                 </div>
 
-                <div class="support-plan-card">
-                    <h3 class="support-plan-title">Standard Plan</h3>
-                    <p class="support-plan-price"><strong>55 USD/month</strong></p>
-                    <p><strong>Channels:</strong> Email, WhatsApp</p>
-                    <p><strong>Response Time:</strong> Within 6 hours</p>
-                    <p><strong>Perfect for:</strong> Businesses that need reliable support with fast response and
-                        personal guidance</p>
-                    <ul class="support-plan-benefits">
-                        <li> Priority email and WhatsApp support</li>
-                        <li> Assistance with setup and integration</li>
-                        <li> Faster response time for critical issues</li>
-                        <li> Access to updated best practices</li>
-                        <li>Access to expert consultancy sessions to help optimize WAF usage</li>
-                        <li> Monthly support usage report (on request)</li>
-                    </ul>
-                </div>
+                <div class="release-notes-wrapper">
 
-                <div class="support-plan-card premium">
-                    <h3 class="support-plan-title">Enterprise Plan</h3>
-                    <p class="support-plan-price"><strong>500 USD/month</strong></p>
-                    <p><strong>Channels:</strong> Email, WhatsApp, Slack, Zoom, Teams, etc.</p>
-                    <p><strong>Response Time:</strong> Within 1 hour</p>
-                    <p><strong>Perfect for:</strong> Mission-critical environments where uptime and rapid resolution are
-                        essential</p>
-                    <ul class="support-plan-benefits">
-                        <li> Dedicated Account Manager</li>
-                        <li> Custom Feature Development</li>
-                        <li> Priority Bug Fixing</li>
-                        <li> Proactive Monitoring & Advisory</li>
-                        <li> Integration Support</li>
-                        <li> Early Access to New Features</li>
-                        <li>Access to expert consultancy sessions to help optimize WAF usage</li>
-                        <li> Quarterly Strategy Review</li>
-                    </ul>
-                </div>
+                    <div class="release-card">
+                        <h3>v2.1.0 <span class="release-date">Aug 05, 2025</span></h3>
+                        <ul>
+                            <li>AI-powered behavioral rate limiting using Isolation Forest.</li>
+                            <li>Real-time scoring: UA/JA3 diversity, request intervals, geo-risk.</li>
+                            <li>New dashboard cards: Requests, Bandwidth, Attacks, Blocked.</li>
+                            <li>Sticky table headers for WAF logs.</li>
+                            <li>Improved filters for stats view.</li>
+                        </ul>
+                    </div>
 
+                    <div class="release-card">
+                        <h3>v2.0.5 <span class="release-date">Jul 30, 2025</span></h3>
+                        <ul>
+                            <li>JA3 TLS fingerprinting upgrade with ASN classification.</li>
+                            <li>JavaScript behavior fingerprinting for bots & automation.</li>
+                            <li>Regex-based endpoint detection for SQLi, XSS, CMDi.</li>
+                            <li>Real-time AI scoring with block reason logging.</li>
+                            <li>25+ attack simulation cases in test suite.</li>
+                        </ul>
+                    </div>
+
+                    <div class="release-card">
+                        <h3>v2.0.0 <span class="release-date">Jun 12, 2025</span></h3>
+                        <ul>
+                            <li>Full UI redesign with dark sidebar and responsive layout.</li>
+                            <li>Go-based CloFix WAF agent for high-speed inspection.</li>
+                            <li>Central admin dashboard: real-time traffic + attack maps.</li>
+                            <li>Optimized log filtering & page performance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="release-card">
+                        <h3>v1.9.3 <span class="release-date">Apr 05, 2025</span></h3>
+                        <ul>
+                            <li>Fix: License check fails under high traffic.</li>
+                            <li>Domain/IP auth checks added for license security.</li>
+                            <li>Offline fallback using SQLite logic enhanced.</li>
+                            <li>Fail2ban added for license abuse defense.</li>
+                        </ul>
+                    </div>
+
+                    <div class="release-card">
+                        <h3>v1.8.0 <span class="release-date">Feb 22, 2025</span></h3>
+                        <ul>
+                            <li>AI-driven attack classification & request scoring engine.</li>
+                            <li>IP/ASN-based blocklists with auto-expiry.</li>
+                            <li>Initial JA3 TLS fingerprinting added.</li>
+                            <li>High-risk geos + threat intel integration launched.</li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </section>
 
     </main>
+
     <footer class="footer">
 
         <div class="stars"></div>
@@ -196,12 +210,28 @@
 </body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
+
     const navToggle = document.getElementById('navToggle');
     const navContent = document.querySelector('.c-nav__content');
 
     navToggle.addEventListener('click', () => {
         navContent.classList.toggle('active');
     });
+
+    function filterReleaseNotes() {
+        const input = document.getElementById("releaseSearch").value.toLowerCase();
+        const cards = document.querySelectorAll(".release-card");
+
+        cards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            if (text.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
 
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
