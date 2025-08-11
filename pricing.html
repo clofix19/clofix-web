@@ -94,6 +94,18 @@
         <input type="number" id="bandwidth" min="1" value="0" required />
       </label> -->
 
+      <!-- <label class="support-type">Website Type:
+        <select id="siteType">
+          <option value="">Select Type</option>
+          <option value="wordpress">WordPress</option>
+          <option value="api">API Gateway</option>
+          <option value="saas">SaaS Web App</option>
+          <option value="bank">Banking / Finance</option>
+          <option value="ecommerce">E-commerce</option>
+          <option value="streaming">Streaming Service</option>
+        </select>
+      </label> -->
+
       <label class="support-type">Website Type:
         <select id="siteType">
           <option value="">Select Type</option>
@@ -105,6 +117,10 @@
           <option value="streaming">Streaming Service</option>
         </select>
       </label>
+
+      <!-- Chips container -->
+      <div id="selectedTypes" class="type-chips"></div>
+
 
       <label class="support-type">
         <span class="support-label">
@@ -327,10 +343,49 @@
     }
   }
 
-  document.getElementById("siteType").addEventListener("change", (e) => {
-    const selectedType = e.target.value;
-    const selectedFeatures = typeFeatureMap[selectedType] || [];
+  const siteTypeSelect = document.getElementById("siteType");
+  const selectedTypesContainer = document.getElementById("selectedTypes");
+  const selectedSiteTypes = new Set();
 
+  const typeLabel = {
+    wordpress: "WordPress",
+    api: "API Gateway",
+    saas: "SaaS Web App",
+    bank: "Banking / Finance",
+    ecommerce: "E-commerce",
+    streaming: "Streaming Service",
+  };
+
+  siteTypeSelect.addEventListener("change", (e) => {
+    const chosen = e.target.value;
+    if (!chosen || selectedSiteTypes.has(chosen)) return;
+
+    selectedSiteTypes.add(chosen);
+    renderSelectedTypeChips();
+    updateAutoSelectedFeatures();
+
+    siteTypeSelect.value = "";
+  });
+
+  function renderSelectedTypeChips() {
+    selectedTypesContainer.innerHTML = "";
+    selectedSiteTypes.forEach((type) => {
+      const chip = document.createElement("span");
+      chip.className = "type-chip";
+      chip.innerHTML = `
+      ${typeLabel[type] || type}
+      <button class="chip-close" aria-label="Remove ${type}">&times;</button>
+    `;
+      chip.querySelector(".chip-close").addEventListener("click", () => {
+        selectedSiteTypes.delete(type);
+        renderSelectedTypeChips();
+        updateAutoSelectedFeatures();
+      });
+      selectedTypesContainer.appendChild(chip);
+    });
+  }
+
+  function updateAutoSelectedFeatures() {
     for (const feature of Object.keys(features)) {
       if (
         !alwaysIncludedFreeFeatures.includes(feature) &&
@@ -344,15 +399,21 @@
       }
     }
 
-    selectedFeatures.forEach((feature) => {
+    const union = new Set();
+    selectedSiteTypes.forEach((t) => {
+      (typeFeatureMap[t] || []).forEach((f) => union.add(f));
+    });
+
+    union.forEach((feature) => {
       const checkbox = document.getElementById(feature);
       if (checkbox) {
         checkbox.checked = true;
         checkbox.disabled = true;
       }
     });
-  });
+  }
 
+  renderSelectedTypeChips();
 
   function calculatePricing() {
     const domainCount = parseInt(document.getElementById("domains").value);
@@ -516,12 +577,12 @@
 
       doc.setFont("helvetica", "bold");
       doc.setFontSize(20);
-      doc.setTextColor("#2563eb");
+      doc.setTextColor(37, 99, 235); // #2563eb
       doc.text("CloFix WAF Pricing Summary", 40, 50);
 
       doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
-      doc.setTextColor("#6b7280");
+      doc.setTextColor(107, 114, 128); // #6b7280
       doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
 
       const table = document.querySelector(".pricing-table");
@@ -544,9 +605,20 @@
       });
 
       doc.addPage();
+
       const marginLeft = 40;
+      const maxWidth = 520;
       let currentY = 50;
       const lineHeight = 16;
+      const defaultColor = "#374151";
+
+      const hexToRgb = (hex) => {
+        const clean = hex.replace("#", "");
+        const bigint = parseInt(clean.length === 3
+          ? clean.split("").map(c => c + c).join("")
+          : clean, 16);
+        return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
+      };
 
       const lines = [
         { text: "Cost Breakdown Summary", bold: true },
@@ -583,6 +655,16 @@
         { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
 
         { gap: true },
+        {
+          text: "N.B: Please note that your selected add-ons may need adjustments to improve protection; some may be added and others removed. The CloFix team can review your configuration and recommend the most effective, cost-efficient setup tailored to your needs. For a free consultation, contact us or visit: "
+        },
+        {
+          text: "https://clofix.com/",
+          link: "https://clofix.com/",
+          color: "#0000EE"
+        },
+
+        { gap: true },
         { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
       ];
 
@@ -594,15 +676,28 @@
 
         doc.setFont("helvetica", line.bold ? "bold" : "normal");
         doc.setFontSize(10);
-        doc.setTextColor("#374151");
 
-        const splitLines = doc.splitTextToSize(line.text, 520);
-        doc.text(splitLines, marginLeft, currentY);
-        currentY += splitLines.length * lineHeight;
+        const useHex = line.color || defaultColor;
+        const [r, g, b] = hexToRgb(useHex);
+        doc.setTextColor(r, g, b);
+
+        if (line.link) {
+          doc.textWithLink(line.text, marginLeft, currentY, { url: line.link });
+          const linkWidth = doc.getTextWidth(line.text);
+          doc.setDrawColor(r, g, b);
+          doc.setLineWidth(0.5);
+          doc.line(marginLeft, currentY + 2, marginLeft + linkWidth, currentY + 2);
+          currentY += lineHeight;
+        } else {
+          const split = doc.splitTextToSize(line.text, maxWidth);
+          doc.text(split, marginLeft, currentY);
+          currentY += split.length * lineHeight;
+        }
       }
 
       doc.save("CloFix_Pricing_Summary.pdf");
     };
+
   }
   const navToggle = document.getElementById('navToggle');
   const navContent = document.querySelector('.c-nav__content');
