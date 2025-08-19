@@ -2474,3 +2474,9 @@ body {
     padding: 0.35rem 0.6rem;
   }
 }
+
+.c-button-bangla {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed
+}
