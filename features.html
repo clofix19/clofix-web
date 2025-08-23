@@ -127,926 +127,308 @@
             <li>Blocks UNION-based extraction</li>
           </ul>
         </template>
-        <!-- 1. XSS Protection -->
-        <div class="feature-card" data-id="xss-protection">
+        <div class="feature-card">
           <h3>🛡️ Cross-Site Scripting (XSS) Protection</h3>
           <p>Prevents client-side script injection attacks</p>
         </div>
-        <template id="xss-protection">
-          <ul>
-            <li>Prevents stored, reflected, and DOM-based XSS</li>
-            <li>Sanitizes HTML, JSON, and JS responses</li>
-            <li>Logs suspicious attempts for auditing</li>
-          </ul>
-        </template>
-
-        <!-- 2. CSRF Protection -->
-        <div class="feature-card" data-id="csrf-protection">
-          <h3>🔑 CSRF Protection</h3>
+        <div class="feature-card">
+          <h3>🔑 CSRF Protection </h3>
           <p>Validates tokens to prevent cross-origin request forgery</p>
         </div>
-        <template id="csrf-protection">
-          <ul>
-            <li>Validates anti-forgery tokens in forms and AJAX</li>
-            <li>Prevents unauthorized state-changing requests</li>
-            <li>Supports double-submit and SameSite token strategies</li>
-          </ul>
-        </template>
-
-        <!-- 3. SSRF Protection -->
-        <div class="feature-card" data-id="ssrf-protection">
-          <h3>🚫 SSRF Protection</h3>
+        <div class="feature-card">
+          <h3>🚫 SSRF Protection </h3>
           <p>Blocks requests to internal/external services initiated by attackers</p>
         </div>
-        <template id="ssrf-protection">
-          <ul>
-            <li>Blocks internal network access (localhost, 127.0.0.1)</li>
-            <li>Validates outbound URLs</li>
-            <li>Logs blocked SSRF attempts</li>
-          </ul>
-        </template>
-
-        <!-- 4. Path Traversal Protection -->
-        <div class="feature-card" data-id="path-traversal">
+        <div class="feature-card">
           <h3>🛡️ Path Traversal Protection</h3>
           <p>Prevents access to unauthorized directories</p>
         </div>
-        <template id="path-traversal">
-          <ul>
-            <li>Blocks attempts like ../../ to access system files</li>
-            <li>Restricts access to allowed directories</li>
-            <li>Logs traversal attempts</li>
-          </ul>
-        </template>
-
-        <!-- 5. Command Injection Protection -->
-        <div class="feature-card" data-id="command-injection">
+        <div class="feature-card">
           <h3>⚙️ Command Injection Protection</h3>
           <p>Detects attempts to execute shell commands via input</p>
         </div>
-        <template id="command-injection">
-          <ul>
-            <li>Blocks shell metacharacters</li>
-            <li>Validates all command inputs</li>
-            <li>Logs command injection attempts</li>
-          </ul>
-        </template>
-
-        <!-- 6. XXE Blocking -->
-        <div class="feature-card" data-id="xxe-blocking">
+        <div class="feature-card">
           <h3>📄 XML External Entity (XXE) Blocking</h3>
           <p>Stops XXE payloads in XML parsers</p>
         </div>
-        <template id="xxe-blocking">
-          <ul>
-            <li>Prevents external entity attacks in XML</li>
-            <li>Stops sensitive data leakage</li>
-            <li>Logs blocked XXE attempts</li>
-          </ul>
-        </template>
-
-        <!-- 7. Insecure Deserialization Blocking -->
-        <div class="feature-card" data-id="insecure-deserialization">
+        <div class="feature-card">
           <h3>🔐 Insecure Deserialization Blocking</h3>
           <p>Protects against tampering of serialized objects</p>
         </div>
-        <template id="insecure-deserialization">
-          <ul>
-            <li>Validates object formats</li>
-            <li>Blocks unsafe object types</li>
-            <li>Logs deserialization attacks</li>
-          </ul>
-        </template>
-
-        <!-- 8. Extension Protection -->
-        <div class="feature-card" data-id="extension-protection">
+        <div class="feature-card">
           <h3>🛑 Extension Protection</h3>
           <p>Restricts access to sensitive or executable file types</p>
         </div>
-        <template id="extension-protection">
-          <ul>
-            <li>Blocks access to dangerous extensions (.php, .exe, .config, .env)</li>
-            <li>Restricts uploads of executable files</li>
-            <li>Logs blocked file requests</li>
-          </ul>
-        </template>
-
-        <!-- 9. Payload Signature Checking -->
-        <div class="feature-card" data-id="payload-signature">
-          <h3>🔍 Payload Signature Checking</h3>
+        <div class="feature-card">
+          <h3>🔍 Payload Signature Checking </h3>
           <p>Blocks threats via custom rule signatures</p>
         </div>
-        <template id="payload-signature">
-          <ul>
-            <li>Supports custom and community rules</li>
-            <li>Blocks SQLi, XSS, RCE, and more</li>
-            <li>Logs signature matches</li>
-          </ul>
-        </template>
-
-        <!-- 10. Client Behavior Analysis -->
-        <div class="feature-card" data-id="client-behavior">
+        <div class="feature-card">
           <h3>🧠 Client Behavior Analysis</h3>
           <p>Detects bots and anomalies through behavior patterns</p>
         </div>
-        <template id="client-behavior">
-          <ul>
-            <li>Tracks mouse, keyboard, and click patterns</li>
-            <li>Detects headless browsers</li>
-            <li>Generates risk scores</li>
-          </ul>
-        </template>
-        <!-- 1. Tor Exit Node Blocking -->
-        <div class="feature-card" data-id="tor-blocking">
+        <div class="feature-card">
           <h3>🕵️‍♂️ Tor Exit Node Blocking</h3>
           <p>Blocks traffic from anonymous networks</p>
         </div>
-        <template id="tor-blocking">
-          <ul>
-            <li>Identifies Tor exit nodes and blocks requests</li>
-            <li>Prevents anonymized attacks</li>
-            <li>Logs blocked Tor connections</li>
-          </ul>
-        </template>
-
-        <!-- 2. DNS Rebinding Protection -->
-        <div class="feature-card" data-id="dns-rebinding">
+        <div class="feature-card">
           <h3>🌐 DNS Rebinding Protection</h3>
           <p>Detects domain hijack via rebinding techniques</p>
         </div>
-        <template id="dns-rebinding">
-          <ul>
-            <li>Blocks requests to unexpected IPs for trusted domains</li>
-            <li>Prevents internal network exposure</li>
-            <li>Monitors DNS rebinding attempts</li>
-          </ul>
-        </template>
-
-        <!-- 3. Injection & Code Execution Protection -->
-        <div class="feature-card" data-id="injection-protection">
+        <div class="feature-card">
           <h3>🧹 Injection & Code Execution Protection</h3>
           <p>Blocks SQLi, LFI, RFI, XXE, and similar payloads</p>
         </div>
-        <template id="injection-protection">
-          <ul>
-            <li>Detects common injection patterns</li>
-            <li>Prevents execution of injected code</li>
-            <li>Logs attempted injections for analysis</li>
-          </ul>
-        </template>
-
-        <!-- 4. Bot & Headless Browser Blocking -->
-        <div class="feature-card" data-id="bot-blocking">
+        <div class="feature-card">
           <h3>🤖 Bot & Headless Browser Blocking</h3>
           <p>Prevents scraping and automation by detecting headless tools</p>
         </div>
-        <template id="bot-blocking">
-          <ul>
-            <li>Detects Puppeteer, Selenium, Playwright usage</li>
-            <li>Blocks automated scraping attempts</li>
-            <li>Generates bot risk scores</li>
-          </ul>
-        </template>
-
-        <!-- 5. AI & Behavioral Analysis -->
-        <div class="feature-card" data-id="ai-behavior">
+        <div class="feature-card">
           <h3>🧬 AI & Behavioral Analysis</h3>
           <p>Uses ML models for payload scoring and anomaly detection</p>
         </div>
-        <template id="ai-behavior">
-          <ul>
-            <li>Analyzes traffic patterns for anomalies</li>
-            <li>Scores requests based on risk</li>
-            <li>Improves detection over time with ML models</li>
-          </ul>
-        </template>
-
-        <!-- 6. Response Body Rewriting -->
-        <div class="feature-card" data-id="response-rewriting">
+        <div class="feature-card">
           <h3>🔄 Response Body Rewriting</h3>
           <p>Cleanses HTML, JSON from leaks or scripts dynamically</p>
         </div>
-        <template id="response-rewriting">
-          <ul>
-            <li>Removes sensitive data from responses</li>
-            <li>Sanitizes scripts and inline code</li>
-            <li>Prevents client-side leaks of secrets</li>
-          </ul>
-        </template>
-
-        <!-- 7. AI & Agentic Detection -->
-        <div class="feature-card" data-id="ai-agentic">
+        <div class="feature-card">
           <h3>🧠 AI & Agentic Detection</h3>
           <p>Detects spoofed fingerprints, CLoFix, automation tools, etc</p>
         </div>
-        <template id="ai-agentic">
-          <ul>
-            <li>Identifies fake fingerprints</li>
-            <li>Detects automation agents or bots</li>
-            <li>Provides risk scoring per session</li>
-          </ul>
-        </template>
-
-        <!-- 8. Flooding Attack Protection -->
-        <div class="feature-card" data-id="flooding-protection">
+        <div class="feature-card">
           <h3>🌊 Flooding Attack Protection</h3>
           <p>Identifies and blocks burst/loop request attacks</p>
         </div>
-        <template id="flooding-protection">
-          <ul>
-            <li>Monitors request frequency</li>
-            <li>Blocks traffic spikes exceeding thresholds</li>
-            <li>Logs potential DoS attacks</li>
-          </ul>
-        </template>
-        <!-- 1. Slowloris Protection -->
-        <div class="feature-card" data-id="slowloris-protection">
+        <div class="feature-card">
           <h3>🐌 Slowloris Protection</h3>
           <p>Blocks slow HTTP DoS attacks.</p>
         </div>
-        <template id="slowloris-protection">
-          <ul>
-            <li>Detects slow header and body uploads</li>
-            <li>Prevents resource exhaustion attacks</li>
-            <li>Logs slow connection attempts for analysis</li>
-          </ul>
-        </template>
-
-        <!-- 2. Brute Force Protection -->
-        <div class="feature-card" data-id="brute-force-protection">
+        <div class="feature-card">
           <h3>🔨 Brute Force Protection</h3>
           <p>Detects repeated login/credential attempts and blocks them</p>
         </div>
-        <template id="brute-force-protection">
-          <ul>
-            <li>Monitors failed login attempts per user/IP</li>
-            <li>Blocks repeated credential guessing attempts</li>
-            <li>Provides alerts and logs for admin review</li>
-          </ul>
-        </template>
-
-        <!-- 3. Rate Limiting -->
-        <div class="feature-card" data-id="rate-limiting">
+        <div class="feature-card">
           <h3>🛡️ Rate Limiting</h3>
           <p>Controls request volume per IP or session</p>
         </div>
-        <template id="rate-limiting">
-          <ul>
-            <li>Limits request frequency per IP or session</li>
-            <li>Prevents abuse and DoS attacks</li>
-            <li>Customizable thresholds per endpoint</li>
-          </ul>
-        </template>
-
-        <!-- 4. Time-Based Verification -->
-        <div class="feature-card" data-id="time-verification">
+        <div class="feature-card">
           <h3>⏱️ Time-Based Verification</h3>
           <p>Ensures delay enforcement to block automated tools</p>
         </div>
-        <template id="time-verification">
-          <ul>
-            <li>Validates expected time between requests</li>
-            <li>Detects bots and automation scripts</li>
-            <li>Blocks requests violating timing policies</li>
-          </ul>
-        </template>
-
-        <!-- 5. Header Length Limits -->
-        <div class="feature-card" data-id="header-length-limits">
+        <div class="feature-card">
           <h3>📏 Header Length Limits</h3>
           <p>Rejects headers that exceed defined byte limits</p>
         </div>
-        <template id="header-length-limits">
-          <ul>
-            <li>Enforces maximum header sizes</li>
-            <li>Prevents buffer overflow or malformed header attacks</li>
-            <li>Logs and alerts oversized headers</li>
-          </ul>
-        </template>
-
-        <!-- 6. Malformed Header Protection -->
-        <div class="feature-card" data-id="malformed-header-protection">
+        <div class="feature-card">
           <h3>⚠️ Malformed Header Protection</h3>
           <p>Filters out invalid or corrupted headers</p>
         </div>
-        <template id="malformed-header-protection">
-          <ul>
-            <li>Validates header syntax and encoding</li>
-            <li>Blocks requests with corrupted headers</li>
-            <li>Prevents protocol abuse and attacks</li>
-          </ul>
-        </template>
-
-        <!-- 7. Header Scan Protection -->
-        <div class="feature-card" data-id="header-scan-protection">
+        <div class="feature-card">
           <h3>🔍 Header Scan Protection</h3>
           <p>Detects and blocks crafted or probe headers</p>
         </div>
-        <template id="header-scan-protection">
-          <ul>
-            <li>Identifies scanning/probing patterns in headers</li>
-            <li>Blocks suspicious header sequences</li>
-            <li>Provides real-time alerts for admins</li>
-          </ul>
-        </template>
-
-        <!-- 8. Request Validation & Enforcement -->
-        <div class="feature-card" data-id="request-validation">
+        <div class="feature-card">
           <h3>📊 Request Validation & Enforcement</h3>
           <p>Validates method, size, encoding, spoof checks</p>
         </div>
-        <template id="request-validation">
-          <ul>
-            <li>Checks HTTP methods and allowed payload types</li>
-            <li>Enforces content length and encoding rules</li>
-            <li>Blocks spoofed or invalid requests</li>
-          </ul>
-        </template>
-        <!-- 1. Session Cookie Validation -->
-        <div class="feature-card" data-id="session-cookie-validation">
+        <div class="feature-card">
           <h3>🔒 Session Cookie Validation</h3>
           <p>Ensures session state and integrity</p>
         </div>
-        <template id="session-cookie-validation">
-          <ul>
-            <li>Validates session cookies for authenticity</li>
-            <li>Detects tampering or unauthorized changes</li>
-            <li>Prevents session hijacking and replay attacks</li>
-          </ul>
-        </template>
-
-        <!-- 2. Cookie Tampering Protection -->
-        <div class="feature-card" data-id="cookie-tampering-protection">
+        <div class="feature-card">
           <h3>🔎 Cookie Tampering Protection</h3>
           <p>Detects unauthorized modifications to cookies</p>
         </div>
-        <template id="cookie-tampering-protection">
-          <ul>
-            <li>Monitors cookie integrity in real-time</li>
-            <li>Blocks suspicious or modified cookies</li>
-            <li>Logs tampering attempts for review</li>
-          </ul>
-        </template>
-
-        <!-- 3. Session & Cookie Management -->
-        <div class="feature-card" data-id="session-cookie-management">
+        <div class="feature-card">
           <h3>🧩 Session & Cookie Management</h3>
           <p>Protects against hijacking and replay attacks</p>
         </div>
-        <template id="session-cookie-management">
-          <ul>
-            <li>Manages secure session lifecycle</li>
-            <li>Enforces cookie and session expiration policies</li>
-            <li>Prevents replay and unauthorized session reuse</li>
-          </ul>
-        </template>
-
-        <!-- 4. Duplicate Cookie Tampering Protection -->
-        <div class="feature-card" data-id="cookie-tampering-duplicate">
-          <h3>🔎 Cookie Tampering Protection</h3>
+        <div class="feature-card">
+          <h3>🔎 Cookie Tampering Protection </h3>
           <p>Detects unauthorized modifications to cookies</p>
         </div>
-        <template id="cookie-tampering-duplicate">
-          <ul>
-            <li>Duplicate layer of protection for cookie integrity</li>
-            <li>Alerts admins on suspicious activity</li>
-            <li>Blocks potentially malicious cookie usage</li>
-          </ul>
-        </template>
-
-        <!-- 5. Secure Cookie Flags -->
-        <div class="feature-card" data-id="secure-cookie-flags">
+        <div class="feature-card">
           <h3>🍪 Secure Cookie Flags</h3>
           <p>Enforces HttpOnly, Secure, and SameSite cookie attributes</p>
         </div>
-        <template id="secure-cookie-flags">
-          <ul>
-            <li>Ensures cookies are inaccessible via JavaScript</li>
-            <li>Enforces HTTPS-only cookies</li>
-            <li>Prevents cross-site request leakage using SameSite flags</li>
-          </ul>
-        </template>
-
-        <!-- 6. IP Reputation Check -->
-        <div class="feature-card" data-id="ip-reputation-check">
+        <div class="feature-card">
           <h3>🚷 IP Reputation Check</h3>
           <p>Blocks blacklisted/suspicious IPs (e.g., blocklist.de)</p>
         </div>
-        <template id="ip-reputation-check">
-          <ul>
-            <li>Checks IP against public and private blacklists</li>
-            <li>Blocks high-risk or suspicious IPs automatically</li>
-            <li>Logs and alerts admins for repeated offenders</li>
-          </ul>
-        </template>
-
-        <!-- 7. GeoIP Blocking -->
-        <div class="feature-card" data-id="geoip-blocking">
+        <div class="feature-card">
           <h3>🗺️ GeoIP Blocking</h3>
           <p>Country- or ASN-level access control</p>
         </div>
-        <template id="geoip-blocking">
-          <ul>
-            <li>Blocks access from specified countries or ASNs</li>
-            <li>Customizable allow/block lists per site</li>
-            <li>Supports automated threat mitigation based on geo</li>
-          </ul>
-        </template>
-
-        <!-- 8. IP, Geo & Network Filtering -->
-        <div class="feature-card" data-id="ip-geo-network-filtering">
+        <div class="feature-card">
           <h3>🌐 IP, Geo & Network Filtering</h3>
           <p>Combines IP, geo, ASN, Tor, DNSRebind into one layer</p>
         </div>
-        <template id="ip-geo-network-filtering">
-          <ul>
-            <li>Unified filtering for IP, country, ASN, and network anomalies</li>
-            <li>Blocks Tor exit nodes and DNS rebinding attacks</li>
-            <li>Provides detailed logging and AI-assisted threat scoring</li>
-          </ul>
-        </template>
-
-        <!-- 9. Configuration Misuse Detection -->
-        <div class="feature-card" data-id="configuration-misuse">
+        <div class="feature-card">
           <h3>⚙️ Configuration Misuse Detection</h3>
           <p>Detects exposed admin panels, unsafe settings</p>
         </div>
-        <template id="configuration-misuse">
-          <ul>
-            <li>Detects publicly exposed admin endpoints</li>
-            <li>Warns of insecure or default settings</li>
-            <li>Prevents misconfigurations from being exploited</li>
-          </ul>
-        </template>
-        <!-- 1. OWASP Top 10 Protections -->
-        <div class="feature-card" data-id="owasp-top-10">
+        <div class="feature-card">
           <h3>🛡️ OWASP Top 10 Protections</h3>
           <p>Covers all major web attack categories</p>
         </div>
-        <template id="owasp-top-10">
-          <ul>
-            <li>Protects against SQL Injection, XSS, CSRF, and more</li>
-            <li>Implements secure headers and input validation</li>
-            <li>Regularly updated to match OWASP guidelines</li>
-          </ul>
-        </template>
-
-        <!-- 2. TLS/SSL Hardening -->
-        <div class="feature-card" data-id="tls-ssl-hardening">
+        <div class="feature-card">
           <h3>🔒 TLS/SSL Hardening</h3>
           <p>Forces strong ciphers, disables weak TLS, and enforces HTTPS</p>
         </div>
-        <template id="tls-ssl-hardening">
-          <ul>
-            <li>Disables TLS < 1.2 and weak ciphers</li>
-            <li>Enforces HTTPS for all traffic</li>
-            <li>Prevents downgrade attacks and MITM attempts</li>
-          </ul>
-        </template>
-
-        <!-- 3. CloFix Fingerprint Detection -->
-        <div class="feature-card" data-id="clofix-fingerprint">
+        <div class="feature-card">
           <h3>🧠 CloFix Fingerprint Detection</h3>
           <p>Identifies spoofed or abnormal clients detection</p>
         </div>
-        <template id="clofix-fingerprint">
-          <ul>
-            <li>Detects abnormal device/browser fingerprints</li>
-            <li>Blocks spoofed or automated clients</li>
-            <li>Supports AI-assisted risk scoring</li>
-          </ul>
-        </template>
-
-        <!-- 4. ClickHouse Logging -->
-        <div class="feature-card" data-id="clickhouse-logging">
+        <div class="feature-card">
           <h3>📈 ClickHouse Logging</h3>
           <p>Real-time logs with high-performance analytics storage</p>
         </div>
-        <template id="clickhouse-logging">
-          <ul>
-            <li>High-speed logging for large-scale traffic</li>
-            <li>Supports real-time monitoring and alerts</li>
-            <li>Optimized for analytical queries</li>
-          </ul>
-        </template>
-
-        <!-- 5. Geo Analytics & Visualization -->
-        <div class="feature-card" data-id="geo-analytics">
+        <div class="feature-card">
           <h3>🧭 Geo Analytics & Visualization</h3>
           <p>Shows traffic on heatmaps by country or ASN</p>
         </div>
-        <template id="geo-analytics">
-          <ul>
-            <li>Visualizes traffic origin and patterns</li>
-            <li>Supports per-country, per-ASN breakdown</li>
-            <li>Integrates with AI threat scoring for hotspots</li>
-          </ul>
-        </template>
-
-        <!-- 6. Information Leak Detection -->
-        <div class="feature-card" data-id="info-leak-detection">
+        <div class="feature-card">
           <h3>🛑 Information Leak Detection</h3>
           <p>Scans response for secrets, tokens, CC numbers</p>
         </div>
-        <template id="info-leak-detection">
-          <ul>
-            <li>Monitors outgoing responses for sensitive data</li>
-            <li>Detects API keys, credentials, and credit cards</li>
-            <li>Logs and optionally blocks leaks automatically</li>
-          </ul>
-        </template>
-
-        <!-- 7. PDF/HTML Reports -->
-        <div class="feature-card" data-id="pdf-html-reports">
+        <div class="feature-card">
           <h3>🧾 PDF/HTML Reports</h3>
           <p>Generate detailed logs, incidents, and threat reports</p>
         </div>
-        <template id="pdf-html-reports">
-          <ul>
-            <li>Generates downloadable PDF and HTML reports</li>
-            <li>Summarizes incidents, anomalies, and threat scores</li>
-            <li>Supports scheduled reporting</li>
-          </ul>
-        </template>
-
-        <!-- 8. Real-Time Alerts -->
-        <div class="feature-card" data-id="real-time-alerts">
+        <div class="feature-card">
           <h3>🔔 Real-Time Alerts</h3>
-          <p>Webhook alerts for suspicious or blocked requests</p>
+          <p>webhook alerts for suspicious or blocked requests</p>
         </div>
-        <template id="real-time-alerts">
-          <ul>
-            <li>Instant alerts via webhooks, email, or messaging</li>
-            <li>Customizable triggers based on severity or type</li>
-            <li>Integrates with monitoring dashboards</li>
-          </ul>
-        </template>
-
-        <!-- 9. Lua Scripting Support -->
-        <div class="feature-card" data-id="lua-scripting">
+        <div class="feature-card">
           <h3>🧬 Lua Scripting Support</h3>
           <p>Inject custom logic using embedded Lua scripts</p>
         </div>
-        <template id="lua-scripting">
-          <ul>
-            <li>Create custom rules and checks with Lua scripts</li>
-            <li>Extends WAF functionality for unique use cases</li>
-            <li>Safe sandboxed execution for production environments</li>
-          </ul>
-        </template>
-        <!-- 10. AI Plugin Integration -->
-        <div class="feature-card" data-id="ai-plugin-integration">
+        <div class="feature-card">
           <h3>🤖 AI Plugin Integration</h3>
-          <p>Connect with Python-based AI scoring APIs</p>
+          <p>Connect with Python-based AI scoring APIs </p>
         </div>
-        <template id="ai-plugin-integration">
-          <ul>
-            <li>Integrate AI scoring and threat detection plugins</li>
-            <li>Supports Python-based scoring endpoints</li>
-            <li>Extensible for custom AI models</li>
-          </ul>
-        </template>
-
-        <!-- 11. Reverse Proxy & Performance -->
-        <div class="feature-card" data-id="reverse-proxy">
+        <div class="feature-card">
           <h3>🔄 Reverse Proxy & Performance</h3>
           <p>Gzip, HTTP/2, path-routing, failover handling</p>
         </div>
-        <template id="reverse-proxy">
-          <ul>
-            <li>Handles load balancing and failover</li>
-            <li>Optimizes HTTP/2 & compression</li>
-            <li>Supports path-based routing for multiple backends</li>
-          </ul>
-        </template>
-
-        <!-- 12. Proxy Optimization & Caching -->
-        <div class="feature-card" data-id="proxy-caching">
+        <div class="feature-card">
           <h3>⚙️ Proxy Optimization & Caching</h3>
           <p>CloFix CDN passthrough, static cache tuning, faster</p>
         </div>
-        <template id="proxy-caching">
-          <ul>
-            <li>Integrates with CDN passthroughs</li>
-            <li>Supports static file caching and tuning</li>
-            <li>Reduces latency and increases performance</li>
-          </ul>
-        </template>
-
-        <!-- 13. Common WP Attack Blockers -->
-        <div class="feature-card" data-id="wp-attack-blockers">
+        <div class="feature-card">
           <h3>🛡️ Common WP Attack Blockers</h3>
           <p>Blocks xmlrpc abuse, wp-login brute force, plugin scans</p>
         </div>
-        <template id="wp-attack-blockers">
-          <ul>
-            <li>Protects WordPress sites from common attacks</li>
-            <li>Blocks brute force and xmlrpc attacks</li>
-            <li>Stops automated plugin scanning attempts</li>
-          </ul>
-        </template>
-
-        <!-- 14. Sensitive Path Guarding -->
-        <div class="feature-card" data-id="sensitive-paths">
+        <div class="feature-card">
           <h3>🔍 Sensitive Path Guarding</h3>
           <p>Hides /wp-admin, /wp-content, etc</p>
         </div>
-        <template id="sensitive-paths">
-          <ul>
-            <li>Protects sensitive directories from public access</li>
-            <li>Prevents enumeration of admin or config paths</li>
-          </ul>
-        </template>
-
-        <!-- 15. Theme/Plugin Exploit Detection -->
-        <div class="feature-card" data-id="theme-plugin-exploit">
+        <div class="feature-card">
           <h3>🧱 Theme/Plugin Exploit Detection</h3>
           <p>Stops known WP vuln signatures</p>
         </div>
-        <template id="theme-plugin-exploit">
-          <ul>
-            <li>Detects exploits targeting vulnerable themes/plugins</li>
-            <li>Blocks known WordPress attack signatures</li>
-          </ul>
-        </template>
-
-        <!-- 16. License Management -->
-        <div class="feature-card" data-id="license-management">
-          <h3>🔑 License Management</h3>
+        <div class="feature-card">
+          <h3>🔑 License Management </h3>
           <p>Trial, Basic, Business, Enterprise with domain/bandwidth/date expiry controls</p>
         </div>
-        <template id="license-management">
-          <ul>
-            <li>Manages licenses per tier and expiration</li>
-            <li>Supports domain- or IP-based enforcement</li>
-            <li>Tracks bandwidth and usage limits</li>
-          </ul>
-        </template>
-
-        <!-- 17. Per-Domain Feature Settings -->
-        <div class="feature-card" data-id="per-domain-settings">
+        <div class="feature-card">
           <h3>📦 Per-Domain Feature Settings</h3>
           <p>Enable/disable protection per hosted domain</p>
         </div>
-        <template id="per-domain-settings">
-          <ul>
-            <li>Customize protection per domain</li>
-            <li>Enable/disable individual security modules</li>
-          </ul>
-        </template>
-
-        <!-- 18. AI: Fingerprint Scoring -->
-        <div class="feature-card" data-id="ai-fingerprint-scoring">
+        <div class="feature-card">
           <h3>🧠 AI: Fingerprint Scoring</h3>
           <p>Evaluates client fingerprints to detect anomalies or spoofing.</p>
         </div>
-        <template id="ai-fingerprint-scoring">
-          <ul>
-            <li>Analyzes browser/device fingerprints</li>
-            <li>Detects spoofed clients and bots</li>
-          </ul>
-        </template>
 
-        <!-- 19. AI: Payload Detector -->
-        <div class="feature-card" data-id="ai-payload-detector">
+        <div class="feature-card">
           <h3>🧠 AI: Payload Detector</h3>
           <p>Classifies HTTP payloads using AI models for potential attacks.</p>
         </div>
-        <template id="ai-payload-detector">
-          <ul>
-            <li>Detects malicious input in requests</li>
-            <li>Uses AI models for dynamic attack scoring</li>
-          </ul>
-        </template>
 
-
-        <!-- 20. AI: Traffic Anomaly Detection -->
-        <div class="feature-card" data-id="ai-traffic-anomaly">
+        <div class="feature-card">
           <h3>🧠 AI: Traffic Anomaly Detection</h3>
           <p>Detects irregular request patterns or usage spikes.</p>
         </div>
-        <template id="ai-traffic-anomaly">
-          <ul>
-            <li>Detects abnormal spikes in traffic</li>
-            <li>Identifies unusual request patterns</li>
-          </ul>
-        </template>
 
-        <!-- 21. AI: Client Reputation Scoring -->
-        <div class="feature-card" data-id="ai-client-reputation">
+        <div class="feature-card">
           <h3>🧠 AI: Client Reputation Scoring</h3>
           <p>Scores IP reputation using AI threat intelligence.</p>
         </div>
-        <template id="ai-client-reputation">
-          <ul>
-            <li>Evaluates IP and client trustworthiness</li>
-            <li>Incorporates AI threat intelligence feeds</li>
-          </ul>
-        </template>
 
-        <!-- 22. AI: JS Behavior Scoring -->
-        <div class="feature-card" data-id="ai-js-behavior">
+        <div class="feature-card">
           <h3>🧠 AI: JS Behavior Scoring</h3>
           <p>Analyzes JavaScript behavior to detect bots and automation.</p>
         </div>
-        <template id="ai-js-behavior">
-          <ul>
-            <li>Detects headless browsers or automation scripts</li>
-            <li>Scores browser behavior for anomalies</li>
-          </ul>
-        </template>
 
-        <!-- 23. AI: Cookie Validation Score -->
-        <div class="feature-card" data-id="ai-cookie-validation">
+        <div class="feature-card">
           <h3>🧠 AI: Cookie Validation Score</h3>
           <p>Validates browser cookies using AI-based scoring.</p>
         </div>
-        <template id="ai-cookie-validation">
-          <ul>
-            <li>Checks cookie integrity and tampering</li>
-            <li>Scores cookies for trustworthiness</li>
-          </ul>
-        </template>
 
-        <!-- 24. AI: Device Identity Score -->
-        <div class="feature-card" data-id="ai-device-identity">
+        <div class="feature-card">
           <h3>🧠 AI: Device Identity Score</h3>
           <p>Analyzes device fingerprint consistency and trust.</p>
         </div>
-        <template id="ai-device-identity">
-          <ul>
-            <li>Evaluates device fingerprint for anomalies</li>
-            <li>Assesses device trust over time</li>
-          </ul>
-        </template>
 
-        <!-- 25. AI: Automation Tool Detection -->
-        <div class="feature-card" data-id="ai-automation-detection">
+        <div class="feature-card">
           <h3>🧠 AI: Automation Tool Detection</h3>
           <p>Detects use of tools like Selenium, Puppeteer, or Playwright.</p>
         </div>
-        <template id="ai-automation-detection">
-          <ul>
-            <li>Identifies automation or scraping tools</li>
-            <li>Scores automated request likelihood</li>
-          </ul>
-        </template>
 
-        <!-- 26. AI: Cloud Service Fingerprint -->
-        <div class="feature-card" data-id="ai-cloud-fingerprint">
+        <div class="feature-card">
           <h3>🧠 AI: Cloud Service Fingerprint</h3>
           <p>Detects traffic originating from cloud data centers.</p>
         </div>
-        <template id="ai-cloud-fingerprint">
-          <ul>
-            <li>Detects cloud/VPS origins</li>
-            <li>Flags non-standard or high-risk hosting sources</li>
-          </ul>
-        </template>
 
-        <!-- 27. AI: DNS Rebinding Score -->
-        <div class="feature-card" data-id="ai-dns-rebinding-score">
+        <div class="feature-card">
           <h3>🧠 AI: DNS Rebinding Score</h3>
           <p>Identifies DNS rebinding attacks via behavior analysis.</p>
         </div>
-        <template id="ai-dns-rebinding-score">
-          <ul>
-            <li>Monitors DNS and request behavior</li>
-            <li>Scores potential DNS rebinding attacks</li>
-          </ul>
-        </template>
 
-
-        <!-- 28. AI: User Behavior Learning -->
-        <div class="feature-card" data-id="ai-user-behavior-learning">
+        <div class="feature-card">
           <h3>🧠 AI: User Behavior Learning</h3>
           <p>Detects deviations from learned user interaction patterns.</p>
         </div>
-        <template id="ai-user-behavior-learning">
-          <ul>
-            <li>Analyzes typical user interaction patterns</li>
-            <li>Flags abnormal or suspicious behavior</li>
-          </ul>
-        </template>
 
-        <!-- 29. AI: Crawler Detection Score -->
-        <div class="feature-card" data-id="ai-crawler-detection">
+        <div class="feature-card">
           <h3>🧠 AI: Crawler Detection Score</h3>
           <p>Identifies known and unknown web crawlers.</p>
         </div>
-        <template id="ai-crawler-detection">
-          <ul>
-            <li>Detects known crawlers via signatures</li>
-            <li>Identifies unknown bots through behavior</li>
-          </ul>
-        </template>
 
-        <!-- 30. AI: API Abuse Detection -->
-        <div class="feature-card" data-id="ai-api-abuse">
+        <div class="feature-card">
           <h3>🧠 AI: API Abuse Detection</h3>
           <p>Detects abnormal API access or misuse using ML.</p>
         </div>
-        <template id="ai-api-abuse">
-          <ul>
-            <li>Monitors API usage patterns</li>
-            <li>Flags unusual or abusive requests</li>
-          </ul>
-        </template>
 
-        <!-- 31. AI: Header Injection Score -->
-        <div class="feature-card" data-id="ai-header-injection">
+        <div class="feature-card">
           <h3>🧠 AI: Header Injection Score</h3>
           <p>Analyzes and scores header anomalies or manipulations.</p>
         </div>
-        <template id="ai-header-injection">
-          <ul>
-            <li>Detects malformed or malicious headers</li>
-            <li>Scores header integrity and risk</li>
-          </ul>
-        </template>
 
-        <!-- 32. AI: TLS Fingerprint Score -->
-        <div class="feature-card" data-id="ai-tls-fingerprint">
+        <div class="feature-card">
           <h3>🧠 AI: TLS Fingerprint Score</h3>
           <p>Detects TLS/JA3 mismatches and fingerprinting anomalies.</p>
         </div>
-        <template id="ai-tls-fingerprint">
-          <ul>
-            <li>Monitors TLS handshake fingerprints</li>
-            <li>Flags mismatched or suspicious TLS connections</li>
-          </ul>
-        </template>
 
-        <!-- 33. AI: SSL MITM Detection -->
-        <div class="feature-card" data-id="ai-ssl-mitm">
+        <div class="feature-card">
           <h3>🧠 AI: SSL MITM Detection</h3>
           <p>Detects signs of SSL stripping or man-in-the-middle attacks.</p>
         </div>
-        <template id="ai-ssl-mitm">
-          <ul>
-            <li>Monitors SSL/TLS integrity</li>
-            <li>Detects MITM or stripping attempts</li>
-          </ul>
-        </template>
 
-        <!-- 34. AI: Open Redirect Detection -->
-        <div class="feature-card" data-id="ai-open-redirect">
+        <div class="feature-card">
           <h3>🧠 AI: Open Redirect Detection</h3>
           <p>Identifies open redirect attempts in URLs.</p>
         </div>
-        <template id="ai-open-redirect">
-          <ul>
-            <li>Monitors URL redirection patterns</li>
-            <li>Flags suspicious or unsafe redirects</li>
-          </ul>
-        </template>
 
-        <!-- 35. AI: Fake Bot Detection -->
-        <div class="feature-card" data-id="ai-fake-bot">
+        <div class="feature-card">
           <h3>🧠 AI: Fake Bot Detection</h3>
           <p>Flags bots masquerading as legitimate clients.</p>
         </div>
-        <template id="ai-fake-bot">
-          <ul>
-            <li>Detects bot-like behavior disguised as real users</li>
-            <li>Scores traffic for bot likelihood</li>
-          </ul>
-        </template>
 
-
-        <!-- 36. AI: Rate Limit AI Score -->
-        <div class="feature-card" data-id="ai-rate-limit-score">
+        <div class="feature-card">
           <h3>🧠 AI: Rate Limit AI Score</h3>
           <p>Scores request frequency using adaptive AI rate control.</p>
         </div>
-        <template id="ai-rate-limit-score">
-          <ul>
-            <li>Monitors request frequency per IP or session</li>
-            <li>Applies adaptive blocking based on AI scoring</li>
-          </ul>
-        </template>
-
-        <!-- 37. jQuery Guard -->
-        <div class="feature-card" data-id="jquery-guard">
-          <h3>🔒 jQuery Guard</h3>
-          <p>Blocks malicious frontend requests and scores suspicious activity using AI.</p>
-        </div>
-        <template id="jquery-guard">
-          <p>
-            jQuery Guard protects your application by intercepting malicious requests before they reach the backend. It prevents CVE-related vulnerabilities, eliminates information leakage, and assigns risk scores for suspicious payloads.
-          </p>
-          <ul>
-            <li>Blocks malicious requests before they hit the server</li>
-            <li>Prevents CVE-related exploits (CVE-2022-31147, CVE-2021-21252, CVE-2021-43306)</li>
-            <li>Never echoes attacker input, eliminating information leakage</li>
-            <li>Assigns risk scores for suspicious payloads</li>
-            <li>Unified API response: <code>{score, block, reason, engine}</code></li>
-            <li>Provides server-side hardening guidance (CSRF, CSP, sanitization)</li>
-            <li>Fully logs and monitors blocked attempts</li>
-            <li>Simple integration with Flask / Python APIs</li>
-          </ul>
-          <p><strong>Test Coverage:</strong> Clean requests, Script Injection, XSS, CSS Injection, DOM Manipulation, Code Execution, Obfuscation, Template Injection, Complex Multi-vector Attacks, Edge Cases</p>
-        </template>
 
 
       </div>
