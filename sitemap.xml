@@ -25,6 +25,11 @@
     <lastmod>2025-08-21T12:00:00+00:00</lastmod>
   </sitemap>
 
+  <sitemap>
+    <loc>https://clofix.com/sitemap/blogs-sitemap.xml</loc>
+    <lastmod>2025-08-21T12:00:00+00:00</lastmod>
+  </sitemap>
+
   <!-- Contact page sitemap -->
   <sitemap>
     <loc>https://clofix.com/sitemap/contact-sitemap.xml</loc>
