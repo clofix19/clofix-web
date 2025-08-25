@@ -16,17 +16,18 @@ echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> "$M
 CURRENT_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S+00:00")
 
 # --- Process index.html first as home-sitemap.xml ---
+# --- Process index.html first as home-sitemap.xml ---
 if [ -f "index.html" ]; then
     SITEMAP_NAME="home-sitemap.xml"
     CHANGEFREQ="daily"
     PRIORITY="1.0"
 
-    # Generate home sitemap
+    # Generate home sitemap pointing to root URL
     SITEMAP_FILE="$SITEMAP_DIR/$SITEMAP_NAME"
     echo '<?xml version="1.0" encoding="UTF-8"?>' > "$SITEMAP_FILE"
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> "$SITEMAP_FILE"
     echo "  <url>" >> "$SITEMAP_FILE"
-    echo "    <loc>$BASE_URL/index.html</loc>" >> "$SITEMAP_FILE"
+    echo "    <loc>$BASE_URL</loc>" >> "$SITEMAP_FILE"   # <-- no /index.html
     echo "    <lastmod>$CURRENT_DATE</lastmod>" >> "$SITEMAP_FILE"
     echo "    <changefreq>$CHANGEFREQ</changefreq>" >> "$SITEMAP_FILE"
     echo "    <priority>$PRIORITY</priority>" >> "$SITEMAP_FILE"
@@ -39,6 +40,7 @@ if [ -f "index.html" ]; then
     echo "    <lastmod>$CURRENT_DATE</lastmod>" >> "$MASTER_SITEMAP"
     echo "  </sitemap>" >> "$MASTER_SITEMAP"
 fi
+
 
 # --- Loop through all other HTML files ---
 for file in *.html; do
