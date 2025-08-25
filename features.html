@@ -442,7 +442,26 @@
           <p>Scores request frequency using adaptive AI rate control.</p>
         </div>
 
-
+        <div class="feature-card" data-id="jquery-guard">
+          <h3>🔒 jQuery Guard</h3>
+          <p>Blocks malicious frontend requests and scores suspicious activity using AI.</p>
+        </div>
+        <template id="jquery-guard">
+          <p>
+            jQuery Guard protects your application by intercepting malicious requests before they reach the backend. It prevents CVE-related vulnerabilities, eliminates information leakage, and assigns risk scores for suspicious payloads.
+          </p>
+          <ul>
+            <li>Blocks malicious requests before they hit the server</li>
+            <li>Prevents CVE-related exploits (CVE-2022-31147, CVE-2021-21252, CVE-2021-43306)</li>
+            <li>Never echoes attacker input, eliminating information leakage</li>
+            <li>Assigns risk scores for suspicious payloads</li>
+            <li>Unified API response: <code>{score, block, reason, engine}</code></li>
+            <li>Provides server-side hardening guidance (CSRF, CSP, sanitization)</li>
+            <li>Fully logs and monitors blocked attempts</li>
+            <li>Simple integration with Flask / Python APIs</li>
+          </ul>
+          <p><strong>Test Coverage:</strong> Clean requests, Script Injection, XSS, CSS Injection, DOM Manipulation, Code Execution, Obfuscation, Template Injection, Complex Multi-vector Attacks, Edge Cases</p>
+        </template>
       </div>
     </section>
   </main>
