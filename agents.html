@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Standard SEO Meta -->
-    <!-- <meta name="description" content="CloFix Agent is a lightweight, intelligent security module that integrates with the CloFix AI engine and API. It delivers real-time behavioral analysis, fingerprinting, and threat scoring to block attacks and allow clean traffic. Seamlessly deployable with Nginx and Apache, it ensures proactive protection against automated tools, API abuse, and zero-day threats."> -->
+
+    <!-- SEO -->
     <meta name="description"
         content="CloFix Agent is an AI-powered WAF module for Nginx & Apache, delivering real-time threat scoring, bot & API abuse protection, and behavioral attack detection.">
-
-
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -37,9 +35,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+
+    <!-- Your main stylesheet -->
     <link href="./style.css" rel="stylesheet" />
 
-    <!-- <link rel="icon" type="image/png" href="img/clofix.png" /> -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -58,7 +57,6 @@
                     <a href="index.html">
                         <img src="img/logo.png" alt="Logo" class="c-logo__img" />
                     </a>
-
                     <span class="c-logo__text c-logo__text--white"></span>
                 </div>
                 <nav class="c-nav">
@@ -103,73 +101,106 @@
     <main>
         <section class="clofix-agent-section">
             <div class="container clofix-agent-wrapper">
+                <!-- LEFT: Content -->
                 <div class="clofix-agent-content">
                     <h1 class="agent-title">
-                        <span class="glow-white">Smarter Security with</span><br />
-                        <span class="glow-gradient">CloFix Agent</span><br />
-                        <span class="glow-white">Intelligence</span>
+                        <span class="glow-gradient">Revolutionary AI-Powered Security Intelligence</span>
                     </h1>
+
+                    <!-- First paragraph always visible -->
                     <p class="agent-description">
                         <strong class="glow-gradient">CloFix Agent</strong> is a lightweight, intelligent security
-                        module designed to integrate seamlessly with the <strong class="glow-gradient">CloFix AI
-                            engine</strong> and <strong class="glow-gradient">API</strong>. It monitors and analyzes
-                        every incoming request to your system in real-time using advanced techniques like <strong
-                            class="glow-gradient">behavioral analysis</strong>, <strong
-                            class="glow-gradient">fingerprinting</strong>, and <strong class="glow-gradient">threat
-                            scoring</strong>. Based on this deep analysis, it makes an informed decision whether to
-                        block the request as an attack or allow it as clean traffic, ensuring <strong
-                            class="glow-gradient">proactive</strong> and <strong class="glow-gradient">precise threat
-                            mitigation</strong>.
-                    </p>
-                    <p class="agent-description">
-                        In addition, <strong class="glow-gradient">CloFix Agent</strong> supports easy integration with
-                        <strong class="glow-gradient">Nginx</strong> and <strong class="glow-gradient">Apache</strong>,
-                        enabling fast and flexible deployment within your existing infrastructure. This <strong
-                            class="glow-gradient">edge-level protection</strong> strengthens your system against modern
-                        threats such as <strong class="glow-gradient">automated tools</strong>, <strong
-                            class="glow-gradient">API abuse</strong>, and <strong class="glow-gradient">zero-day
-                            attacks</strong>. By acting as a <strong class="glow-gradient">smart decision-making
-                            layer</strong>, <strong class="glow-gradient">CloFix Agent</strong> enhances your overall
-                        security, reduces <strong class="glow-gradient">false positives</strong>, and ensures <strong
-                            class="glow-gradient">safe</strong>, <strong class="glow-gradient">reliable</strong>, and
-                        <strong class="glow-gradient">efficient application delivery</strong>.
+                        module designed
+                        to integrate seamlessly with the <strong class="glow-gradient">CloFix AI engine</strong> and
+                        <strong class="glow-gradient">API</strong>. This advanced edge security solution monitors and
+                        analyzes every
+                        incoming request to your system in real-time using sophisticated techniques like
+                        <strong class="glow-gradient">behavioral analysis</strong>, <strong class="glow-gradient">device
+                            fingerprinting</strong>, <strong class="glow-gradient">IP reputation scoring</strong>, and
+                        <strong class="glow-gradient">machine learning–based threat detection</strong>.
                     </p>
 
-                    <div class="agent-buttons">
+                    <!-- Hidden part (starts AFTER the first para) -->
+                    <div id="extraContent" class="extra-collapsed">
+                        <h2 class="agent-subtitle">Seamless Infrastructure Integration</h2>
+                        <p class="agent-description">
+                            <strong class="glow-gradient">CloFix Agent</strong> supports easy integration with popular
+                            web servers
+                            including <strong class="glow-gradient">Nginx</strong> and <strong
+                                class="glow-gradient">Apache</strong>,
+                            enabling fast and flexible deployment within your existing infrastructure. Our
+                            plug-and-protect technology
+                            requires minimal configuration and automatically adapts to your application architecture.
+                        </p>
+
+                        <h2 class="agent-subtitle">Enterprise-Grade Protection Features</h2>
+                        <ul class="terms__list">
+                            <li><strong>Zero-Day Attack Prevention</strong>: Protects against unknown vulnerabilities
+                                and emerging threats</li>
+                            <li><strong>API Security & Rate Limiting</strong>: Advanced protection for REST APIs and
+                                microservices</li>
+                            <li><strong>DDoS Mitigation</strong>: Intelligent traffic filtering to prevent distributed
+                                denial-of-service attacks</li>
+                            <li><strong>SQL Injection Protection</strong>: Real-time detection and blocking of database
+                                attack attempts</li>
+                            <li><strong>Cross-Site Scripting (XSS) Prevention</strong>: Advanced filtering to prevent
+                                malicious script injection</li>
+                            <li><strong>Brute Force Protection</strong>: Intelligent login attempt monitoring and
+                                blocking</li>
+                            <li><strong>Geographic Blocking</strong>: Country and region-based access control</li>
+                        </ul>
+
+                        <h2 class="agent-subtitle">Performance & Reliability</h2>
+                        <p class="agent-description">
+                            This edge-level protection strengthens your system against modern threats such as automated
+                            tools, API abuse,
+                            and zero-day attacks while maintaining optimal performance. By acting as a smart
+                            decision-making layer,
+                            <strong class="glow-gradient">CloFix Agent</strong> enhances your overall cybersecurity
+                            posture, reduces
+                            false positives, and ensures safe, reliable, and efficient application delivery.
+                        </p>
+
+                        <h2 class="agent-subtitle">Real-Time Dashboard & Analytics</h2>
+                        <p class="agent-description">
+                            Monitor your security status with comprehensive analytics including threat trends, blocked
+                            attacks, traffic
+                            patterns, and performance metrics. Our intuitive dashboard provides actionable insights for
+                            security
+                            optimization and compliance reporting.
+                        </p>
+                    </div>
+
+                    <a href="#" id="toggleLink" class="read-more-link" aria-controls="extraContent"
+                        aria-expanded="false">Read more...</a>
+
+                    <!-- <div class="agent-buttons" style="margin-top: 1rem;">
                         <a href="ticket.html" class="c-button c-button--primary">Get Started</a>
                         <a href="#" class="c-button c-button--secondary">Watch Video</a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="clofix-agent-image ai-visual">
                     <img src="img/clofix-agent-new.png" alt="CloFix Agent" />
                     <div class="floating-label top-right">
                         <div class="icon-block purple">🧠</div>
-                        <div>
-                            <strong>Smart Detection</strong><br /><small>Real-Time Threat Scoring</small>
-                        </div>
+                        <div><strong>Smart Detection</strong><br /><small>Real-Time Threat Scoring</small></div>
                     </div>
                     <div class="floating-label middle-left">
                         <div class="icon-block blue">⚙️</div>
-                        <div>
-                            <strong>Apache + Nginx Support</strong><br /><small>Plug-and-Protect Easily</small>
-                        </div>
+                        <div><strong>Apache + Nginx Support</strong><br /><small>Plug-and-Protect Easily</small></div>
                     </div>
                     <div class="floating-label bottom-right">
                         <div class="icon-block green">🛡️</div>
-                        <div>
-                            <strong>Edge Protection</strong><br /><small>Stops Attacks Before Entry</small>
-                        </div>
+                        <div><strong>Edge Protection</strong><br /><small>Stops Attacks Before Entry</small></div>
                     </div>
                 </div>
             </div>
         </section>
-
-
     </main>
 
-    <footer class="footer">
 
+    <footer class="footer">
         <div class="stars"></div>
         <div class="stars2"></div>
         <div class="stars3"></div>
@@ -179,9 +210,7 @@
                 <a href="#" class="c-footer__brand">
                     <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
                 </a>
-                <p class="c-footer__text">
-                    <strong>Secure. Automate. Scale</strong>
-                </p>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
                 <ul class="social">
                     <li class="social-li">
                         <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
@@ -204,7 +233,6 @@
                         </a>
                     </li>
                 </ul>
-
             </div>
 
             <div class="c-footer__column">
@@ -239,22 +267,40 @@
             <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
         </div>
     </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+        if (navToggle && navContent) {
+            navToggle.addEventListener('click', () => {
+                navContent.classList.toggle('active');
+            });
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WP02RFXGSE');
+
+        const toggleLink = document.getElementById("toggleLink");
+        const extraContent = document.getElementById("extraContent");
+
+        toggleLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            const expanded = extraContent.classList.toggle("extra-expanded");
+
+            if (expanded) {
+                extraContent.classList.remove("extra-collapsed");
+                toggleLink.textContent = "Read less";
+                toggleLink.setAttribute("aria-expanded", "true");
+            } else {
+                extraContent.classList.add("extra-collapsed");
+                toggleLink.textContent = "Read more";
+                toggleLink.setAttribute("aria-expanded", "false");
+            }
+        });
+    </script>
 </body>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-<script>
-
-    const navToggle = document.getElementById('navToggle');
-    const navContent = document.querySelector('.c-nav__content');
-
-    navToggle.addEventListener('click', () => {
-        navContent.classList.toggle('active');
-    });
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-WP02RFXGSE');
-</script>
 
 </html>

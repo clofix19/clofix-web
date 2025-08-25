@@ -2481,3 +2481,23 @@ body {
   opacity: 0.5;
   cursor: not-allowed
 }
+
+.read-more-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #38bdf8;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+.read-more-link:hover {
+  color: #f59e0b;
+}
+
+.extra-collapsed {
+  display: none;
+}
+.extra-expanded {
+  display: block;
+}
