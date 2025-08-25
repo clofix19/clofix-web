@@ -74,14 +74,15 @@
   border: 2px solid #fff;
   color: #fff;
   padding: 0.6rem 1.2rem;
-  align-self: flex-start; /* aligns button to left; change to center/right if needed */
+  align-self: flex-start;
   transition: all 0.2s ease;
   border-radius: 6px;
+  text-decoration: none;
 }
 
 .special-card .c-button:hover {
-  background: #f59e0b;
-  color: #2c5364;
+  background: #b45309;
+  color: #e2e8f0;
 }
 
 
