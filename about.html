@@ -164,7 +164,7 @@
       <div class="why-head">
         <h2 class="why-title">Why Choose <span class="trust-gradient">CloFix</span>?</h2>
         <p class="why-sub">
-          Built for modern teams: proactive defense, zero-day resilience, and seamless DevOps fit—all designed to scale
+          Built for modern teams: proactive defense, zero-day resilience, and seamless DevOps fit all designed to scale
           from startup to enterprise.
         </p>
       </div>
@@ -305,21 +305,17 @@
     </div>
   </footer>
 
-  <!-- Analytics + Nav + Hero reveal -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
   <script>
-    // mobile nav toggle
     const navToggle = document.getElementById('navToggle');
     const navContent = document.querySelector('.c-nav__content');
     navToggle.addEventListener('click', () => navContent.classList.toggle('active'));
 
-    // GA
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-WP02RFXGSE');
 
-    // ===== Reveal on scroll (cards + why items + compliance) =====
     (function () {
       const reveals = document.querySelectorAll(
         '.trust-inner, .trust-card, .why-item, .compliance-card, .badge-pill'
