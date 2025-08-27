@@ -2758,10 +2758,16 @@ body {
 .badge-pill.trust-reveal{ opacity:1; transform:translateY(0); transition:all .6s ease; }
 
 .comp-right{ position:relative; border-radius:14px; background:rgba(30,41,59,.35); border:1px solid rgba(148,163,184,.12); }
-.comp-lock{
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  color:#e2e8f0; opacity:.9; filter:drop-shadow(0 12px 22px rgba(56,189,248,.18));
+.comp-lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #3b82f6; /* Tailwind Blue-500 */
+  opacity: .95;
+  filter: drop-shadow(0 12px 22px rgba(59, 130, 246, 0.35)); /* Blue glow */
 }
+
 .comp-grid{
   position:absolute; inset:0; background:
     linear-gradient(transparent 22px, rgba(148,163,184,.08) 23px) 0 0 / 100% 24px,

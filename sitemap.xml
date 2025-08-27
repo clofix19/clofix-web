@@ -2,74 +2,78 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://clofix.com/xml/home-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/about-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/agents-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/blog-api-security-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/blog-bot-prevention-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://clofix.com/xml/blog-digital-protection-sitemap.xml</loc>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/blog-owasp-top10-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/blogs-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/blog-waf-guide-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/blog-wordpress-security-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/contact-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/features-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/partner-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/plans-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/pricing-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/release-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/support-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/terms-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/ticket-sitemap.xml</loc>
-    <lastmod>2025-08-25T07:23:57+00:00</lastmod>
+    <lastmod>2025-08-27T04:47:15+00:00</lastmod>
   </sitemap>
 </sitemapindex>
