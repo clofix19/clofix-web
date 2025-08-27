@@ -2797,3 +2797,128 @@ body {
   .trust-card__text{ font-size:.98rem; }
 }
 
+.eclipse-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.eclipse-inner {
+  display: inline-block;
+  text-align: center;
+}
+
+.summary-cards {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin: 4rem 0;
+  padding: 4rem 1rem;
+  border-radius: 1.25rem;
+
+  background: #3498DB;
+  animation: sky 10s ease-in-out infinite;
+}
+
+.summary-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  text-shadow: 0 0 15px rgba(59,130,246,0.8);
+  margin: 0 0 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes sky {
+ 0%   { background: #1e3a8a; }    
+  45%,55% { background: #0f172a; }  
+  100% { background: #1e3a8a; } 
+}
+
+svg #sun-g {
+  transform: translateX(200px);
+  animation: sun-g 10s ease-in-out infinite;
+}
+svg #sun {
+  transform: translateX(-200px);
+  animation: sun 10s ease-in-out infinite;
+}
+
+@keyframes sun-g {
+  0% { transform: translateX(200px); }
+  45%,55% { transform: translateX(0px); }
+  100% { transform: translateX(-200px); }
+}
+@keyframes sun {
+  0% { transform: translateX(-200px); }
+  45%,55% { transform: translateX(0px); }
+  100% { transform: translateX(200px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summary-cards { animation: none !important; }
+  svg #sun-g, svg #sun { animation: none !important; }
+}
+
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cards-wrapper .card {
+  background: linear-gradient(160deg, #0a0f1c, #1e293b 80%);
+  border: 1px solid rgba(59,130,246,0.35);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  color: #e2e8f0;
+  box-shadow: 0 0 25px rgba(59,130,246,0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.cards-wrapper .card::before {
+  content: "";
+  position: absolute; inset: -1px;
+  background: radial-gradient(500px 220px at var(--hover-x,50%) var(--hover-y,50%),
+              rgba(59,130,246,0.12), transparent 60%);
+  transition: opacity .25s ease;
+  opacity: .6;
+}
+
+.cards-wrapper .card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 0 40px rgba(59,130,246,0.8);
+}
+
+.cards-wrapper .card-inner {
+  height: 100%;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition: transform 0.15s ease-out;
+}
+
+.cards-wrapper .card h3 {
+  font-size: 1.4rem;
+  color: #60a5fa;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cards-wrapper .card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  position: relative;
+  z-index: 1;
+}
+
