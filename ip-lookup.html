@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Lookup Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 500px;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0077cc;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #222;
+    }
+    .result strong {
+      display: inline-block;
+      width: 130px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>IP Lookup Tool</h1>
+    <input type="text" id="ipInput" placeholder="Enter IP address (e.g. 103.4.144.130)">
+    <button onclick="lookupIP()">Lookup</button>
+
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    function lookupIP() {
+      const ip = document.getElementById("ipInput").value.trim();
+      const output = document.getElementById("output");
+      if (!ip) {
+        output.innerHTML = "<p>Please enter a valid IP address.</p>";
+        return;
+      }
+
+      fetch(`https://ipapi.co/${ip}/json/`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            output.innerHTML = "<p>Invalid IP or not found.</p>";
+            return;
+          }
+
+          output.innerHTML = `
+            <p><strong>IP Address:</strong> ${ip}</p>
+            <p><strong>Decimal:</strong> ${ipToDecimal(ip)}</p>
+            <p><strong>Hostname:</strong> ${data.org || "N/A"}</p>
+            <p><strong>ASN:</strong> ${data.asn || "N/A"}</p>
+            <p><strong>ISP:</strong> ${data.org || "N/A"}</p>
+            <p><strong>Services:</strong> None detected</p>
+            <p><strong>Country:</strong> ${data.country_name} (${data.country_code})</p>
+            <p><strong>State/Region:</strong> ${data.region || "N/A"}</p>
+            <p><strong>City:</strong> ${data.city || "N/A"}</p>
+            <p><strong>Latitude:</strong> ${data.latitude} (${toDMS(data.latitude, true)})</p>
+            <p><strong>Longitude:</strong> ${data.longitude} (${toDMS(data.longitude, false)})</p>
+          `;
+        })
+        .catch(() => {
+          output.innerHTML = "<p>Error fetching IP details.</p>";
+        });
+    }
+
+    function ipToDecimal(ip) {
+      return ip.split('.').reduce((acc, oct) => (acc << 8) + parseInt(oct), 0);
+    }
+
+    function toDMS(deg, isLat) {
+      const absolute = Math.abs(deg);
+      const degrees = Math.floor(absolute);
+      const minutesNotTruncated = (absolute - degrees) * 60;
+      const minutes = Math.floor(minutesNotTruncated);
+      const seconds = ((minutesNotTruncated - minutes) * 60).toFixed(2);
+      const direction = deg >= 0
+        ? (isLat ? "N" : "E")
+        : (isLat ? "S" : "W");
+      return `${degrees}° ${minutes}′ ${seconds}″ ${direction}`;
+    }
+  </script>
+</body>
+</html>
