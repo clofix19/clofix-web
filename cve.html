@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CVE Search Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 900px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      padding: 12px 18px;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .error {
+      color: red;
+      margin-top: 15px;
+      text-align: center;
+    }
+    /* Progress bar */
+    .progress {
+      width: 100%;
+      background: #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 10px;
+      display: none;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 12px;
+      background: #0077cc;
+      transition: width 0.3s ease;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    th {
+      background: #f0f3f7;
+      color: #222;
+    }
+    .severity {
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: white;
+    }
+    .Critical { background: #d32f2f; }
+    .HIGH { background: #f57c00; }
+    .MEDIUM { background: #fbc02d; color: #222; }
+    .LOW { background: #388e3c; }
+    .pager {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .pager button {
+      margin: 0 5px;
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔎 CVE Search Tool</h1>
+    <div class="search-box">
+      <input type="text" id="cveInput" placeholder="Enter CVE ID or Keyword (e.g. CVE-2023-23397 or Windows Outlook)">
+      <button onclick="lookupCVE()">Search</button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress" id="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    let currentPage = 0;
+    let currentResults = [];
+
+    function lookupCVE(page = 0) {
+      const query = document.getElementById("cveInput").value.trim();
+      const output = document.getElementById("output");
+      const progress = document.getElementById("progress");
+      const progressBar = document.getElementById("progressBar");
+      output.innerHTML = "";
+      currentResults = [];
+
+      if (!query) {
+        output.innerHTML = '<p class="error">⚠ Please enter a CVE ID or keyword.</p>';
+        return;
+      }
+
+      // Show progress bar
+      progress.style.display = "block";
+      progressBar.style.width = "0%";
+
+      let width = 0;
+      const loading = setInterval(() => {
+        if (width >= 90) {
+          clearInterval(loading);
+        } else {
+          width += 10;
+          progressBar.style.width = width + "%";
+        }
+      }, 300);
+
+      // Detect if it's a CVE ID
+      let apiUrl = query.match(/^CVE-\d{4}-\d+$/i)
+        ? `https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${query}`
+        : `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(query)}&startIndex=${page * 10}&resultsPerPage=10`;
+
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+          clearInterval(loading);
+          progressBar.style.width = "100%";
+          setTimeout(() => { progress.style.display = "none"; }, 500);
+
+          if (!data.vulnerabilities || data.vulnerabilities.length === 0) {
+            output.innerHTML = '<p class="error">❌ No results found.</p>';
+            return;
+          }
+
+          currentResults = data.vulnerabilities;
+
+          // Single CVE
+          if (query.match(/^CVE-\d{4}-\d+$/i)) {
+            renderDetails(currentResults[0].cve, output);
+          } else {
+            renderList(currentResults, output, page, data.totalResults || 0);
+          }
+        })
+        .catch(() => {
+          clearInterval(loading);
+          progress.style.display = "none";
+          output.innerHTML = '<p class="error">⚠ Error fetching CVE details.</p>';
+        });
+    }
+
+    function renderDetails(cve, output) {
+      const metrics = cve.metrics?.cvssMetricV31?.[0] || cve.metrics?.cvssMetricV30?.[0] || cve.metrics?.cvssMetricV2?.[0];
+      const severity = metrics ? `<span class="severity ${metrics.cvssData.baseSeverity}">${metrics.cvssData.baseSeverity}</span>` : "N/A";
+
+      output.innerHTML = `
+        <table>
+          <tr><th>CVE ID</th><td>${cve.id}</td></tr>
+          <tr><th>Published</th><td>${cve.published}</td></tr>
+          <tr><th>Last Modified</th><td>${cve.lastModified}</td></tr>
+          <tr><th>Description</th><td>${cve.descriptions[0].value}</td></tr>
+          <tr><th>Severity</th><td>${severity}</td></tr>
+          <tr><th>CVSS Score</th><td>${metrics ? metrics.cvssData.baseScore : "N/A"}</td></tr>
+          <tr><th>Vector</th><td>${metrics ? metrics.cvssData.vectorString : "N/A"}</td></tr>
+          <tr><th>Source</th><td>
+            <a href="https://nvd.nist.gov/vuln/detail/${cve.id}" target="_blank">NVD</a> | 
+            <a href="https://www.exploit-db.com/search?cve=${cve.id}" target="_blank">Exploit DB</a>
+          </td></tr>
+        </table>
+      `;
+    }
+
+    function renderList(results, output, page, total) {
+      let html = `
+        <table>
+          <tr><th>CVE ID</th><th>Description</th><th>Severity</th><th>Score</th></tr>
+      `;
+
+      results.forEach(v => {
+        const cve = v.cve;
+        const metrics = cve.metrics?.cvssMetricV31?.[0] || cve.metrics?.cvssMetricV30?.[0] || cve.metrics?.cvssMetricV2?.[0];
+        const severity = metrics ? `<span class="severity ${metrics.cvssData.baseSeverity}">${metrics.cvssData.baseSeverity}</span>` : "N/A";
+        const score = metrics ? metrics.cvssData.baseScore : "N/A";
+
+        html += `
+          <tr>
+            <td><a href="#" onclick="renderDetails(${JSON.stringify(cve).replace(/"/g, '&quot;')}, document.getElementById('output'))">${cve.id}</a></td>
+            <td>${cve.descriptions[0].value.substring(0, 80)}...</td>
+            <td>${severity}</td>
+            <td>${score}</td>
+          </tr>
+        `;
+      });
+
+      html += "</table>";
+
+      // Pagination
+      const totalPages = Math.ceil(total / 10);
+      if (totalPages > 1) {
+        html += `<div class="pager">`;
+        if (page > 0) html += `<button onclick="lookupCVE(${page - 1})">⬅ Prev</button>`;
+        html += `<span> Page ${page + 1} of ${totalPages} </span>`;
+        if (page < totalPages - 1) html += `<button onclick="lookupCVE(${page + 1})">Next ➡</button>`;
+        html += `</div>`;
+      }
+
+      output.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
