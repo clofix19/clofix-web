@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Propagation Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #f1f3f4;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .query-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8eaed;
+        }
+
+        .query-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-input, .form-select {
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .check-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: fit-content;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .option-group {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .option-group h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+        }
+
+        .checkbox-item:hover {
+            background: #e9ecef;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            accent-color: #667eea;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results {
+            display: none;
+        }
+
+        .summary-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8eaed;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+
+        .summary-card .number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .summary-card .label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .propagation-status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-partial {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status-incomplete {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .server-result {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8eaed;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .server-result:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .server-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .server-name {
+            font-weight: 600;
+            color: #495057;
+            font-size: 1.1em;
+        }
+
+        .server-location {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-success { background: #28a745; }
+        .status-error { background: #dc3545; }
+        .status-timeout { background: #ffc107; }
+
+        .response-time {
+            font-size: 0.8em;
+            color: #6c757d;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .dns-record {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border-left: 4px solid #667eea;
+        }
+
+        .record-type {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .record-value {
+            color: #495057;
+            word-break: break-all;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .refresh-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .refresh-btn:hover {
+            background: #218838;
+        }
+
+        .ip-display {
+            background: #e9f7ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #007bff;
+        }
+
+        .ip-display strong {
+            color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .query-form {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-globe-americas"></i> DNS Propagation Checker</h1>
+            <p>Monitor DNS record propagation across global nameservers in real-time</p>
+        </div>
+
+        <div class="query-section">
+            <div class="query-form">
+                <div class="form-group">
+                    <label for="domain">Domain/Hostname</label>
+                    <input type="text" id="domain" class="form-input" placeholder="example.com" value="example.com">
+                </div>
+                <div class="form-group">
+                    <label for="recordType">Record Type</label>
+                    <select id="recordType" class="form-select">
+                        <option value="A">A (IPv4 Address)</option>
+                        <option value="AAAA">AAAA (IPv6 Address)</option>
+                        <option value="CNAME">CNAME (Canonical Name)</option>
+                        <option value="MX">MX (Mail Exchange)</option>
+                        <option value="TXT">TXT (Text Record)</option>
+                        <option value="NS">NS (Name Server)</option>
+                        <option value="SOA">SOA (Start of Authority)</option>
+                        <option value="PTR">PTR (Pointer)</option>
+                    </select>
+                </div>
+                <button onclick="checkDNSPropagation()" class="check-btn" id="checkBtn">
+                    <i class="fas fa-search"></i> Check Propagation
+                </button>
+            </div>
+
+            <div class="ip-display">
+                <strong>Your Actual IP:</strong> 163.61.156.89
+            </div>
+
+            <div class="options-grid">
+                <div class="option-group">
+                    <h3><i class="fas fa-globe"></i> Geographic Regions</h3>
+                    <div class="checkbox-group" id="regionCheckboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="na" checked>
+                            <label for="na">North America</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eu" checked>
+                            <label for="eu">Europe</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="as" checked>
+                            <label for="as">Asia</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="oc">
+                            <label for="oc">Oceania</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sa">
+                            <label for="sa">South America</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="af">
+                            <label for="af">Africa</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3><i class="fas fa-server"></i> DNS Provider Types</h3>
+                    <div class="checkbox-group" id="providerCheckboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="public" checked>
+                            <label for="public">Public DNS</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="isp" checked>
+                            <label for="isp">ISP DNS</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cloud">
+                            <label for="cloud">Cloud Providers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="security">
+                            <label for="security">Security DNS</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3><i class="fas fa-cog"></i> Options</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="autoRefresh">
+                            <label for="autoRefresh">Auto-refresh (30s)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="showTiming" checked>
+                            <label for="showTiming">Show Response Times</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="onlyDifferences">
+                            <label for="onlyDifferences">Only Show Differences</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Checking DNS propagation across global nameservers...</div>
+            <div style="font-size: 0.9em; margin-top: 10px; color: #666;">This may take a few moments</div>
+        </div>
+
+        <div class="results" id="results">
+            <div class="summary-section">
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="number" id="totalServers">0</div>
+                        <div class="label">Servers Checked</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="number" id="successfulQueries">0</div>
+                        <div class="label">Successful Queries</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="number" id="uniqueResponses">0</div>
+                        <div class="label">Unique Responses</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="number" id="avgResponseTime">0ms</div>
+                        <div class="label">Avg Response Time</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <span class="propagation-status" id="propagationStatus">Checking...</span>
+                    <button class="refresh-btn" onclick="checkDNSPropagation()"><i class="fas fa-sync-alt"></i> Refresh Check</button>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // DNS Propagation Tool
+        const DNSPropagationTool = {
+            refreshInterval: null,
+            actualIP: '163.61.156.89',
+            
+            // Global DNS servers for testing
+            dnsServers: {
+                'Google DNS (US)': { ip: '8.8.8.8', region: 'na', type: 'public' },
+                'Cloudflare DNS (US)': { ip: '1.1.1.1', region: 'na', type: 'public' },
+                'Quad9 DNS (US)': { ip: '9.9.9.9', region: 'na', type: 'security' },
+                'OpenDNS (US)': { ip: '208.67.222.222', region: 'na', type: 'public' },
+                'DNS.Watch (DE)': { ip: '84.200.69.80', region: 'eu', type: 'public' },
+                'Comodo DNS (US)': { ip: '8.26.56.26', region: 'na', type: 'security' },
+                'Level3 DNS (US)': { ip: '4.2.2.2', region: 'na', type: 'isp' },
+                'Verisign DNS (US)': { ip: '64.6.64.6', region: 'na', type: 'public' },
+                'Yandex DNS (RU)': { ip: '77.88.8.8', region: 'eu', type: 'public' },
+                'AdGuard DNS (CY)': { ip: '94.140.14.14', region: 'eu', type: 'security' },
+                'CleanBrowsing (US)': { ip: '185.228.168.9', region: 'na', type: 'security' },
+                'Neustar DNS (US)': { ip: '156.154.70.1', region: 'na', type: 'public' },
+                'CIRA DNS (CA)': { ip: '149.112.112.112', region: 'na', type: 'public' },
+                'Alternate DNS (US)': { ip: '76.76.19.19', region: 'na', type: 'public' },
+                'FreeDNS (AT)': { ip: '37.235.1.174', region: 'eu', type: 'public' },
+                'UncensoredDNS (DK)': { ip: '91.239.100.100', region: 'eu', type: 'public' },
+                'Hurricane Electric (US)': { ip: '74.82.42.42', region: 'na', type: 'public' },
+                'puntCAT DNS (ES)': { ip: '109.69.8.51', region: 'eu', type: 'public' }
+            },
+
+            // Main DNS propagation check function
+            async checkDNSPropagation() {
+                const domain = document.getElementById('domain').value.trim();
+                const recordType = document.getElementById('recordType').value;
+                
+                if (!domain) {
+                    alert('Please enter a domain name');
+                    return;
+                }
+
+                // Show loading
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('results').style.display = 'none';
+                document.getElementById('checkBtn').disabled = true;
+
+                // Get selected filters
+                const selectedRegions = this.getSelectedOptions('regionCheckboxes');
+                const selectedProviders = this.getSelectedOptions('providerCheckboxes');
+
+                // Filter DNS servers based on selection
+                const filteredServers = Object.entries(this.dnsServers).filter(([name, config]) => {
+                    return selectedRegions.includes(config.region) && selectedProviders.includes(config.type);
+                });
+
+                // Simulate DNS queries
+                const results = [];
+                const responses = new Set();
+                let totalResponseTime = 0;
+                let successCount = 0;
+
+                for (const [name, config] of filteredServers) {
+                    const startTime = Date.now();
+                    try {
+                        // Simulate DNS query with random delay
+                        await new Promise(resolve => setTimeout(resolve, Math.random() * 1000 + 200));
+                        
+                        const mockResponse = this.generateMockDNSResponse(domain, recordType, config);
+                        const responseTime = Date.now() - startTime;
+                        
+                        results.push({
+                            server: name,
+                            config: config,
+                            success: mockResponse.success,
+                            records: mockResponse.records,
+                            error: mockResponse.error,
+                            responseTime: responseTime
+                        });
+
+                        if (mockResponse.success) {
+                            successCount++;
+                            totalResponseTime += responseTime;
+                            mockResponse.records.forEach(record => responses.add(record.value));
+                        }
+                    } catch (error) {
+                        results.push({
+                            server: name,
+                            config: config,
+                            success: false,
+                            error: 'Query timeout',
+                            responseTime: Date.now() - startTime
+                        });
+                    }
+                }
+
+                // Display results
+                this.displayResults(results, domain, recordType, responses.size, Math.round(totalResponseTime / Math.max(successCount, 1)));
+                
+                // Hide loading
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('checkBtn').disabled = false;
+
+                // Setup auto-refresh if enabled
+                this.setupAutoRefresh();
+            },
+
+            generateMockDNSResponse(domain, recordType, config) {
+                // Simulate different scenarios with dynamic IP generation
+                const successRate = 0.92; // 92% success rate
+                
+                if (Math.random() > successRate) {
+                    return {
+                        success: false,
+                        error: Math.random() > 0.5 ? 'NXDOMAIN' : 'SERVFAIL'
+                    };
+                }
+
+                const records = [];
+                
+                switch (recordType) {
+                    case 'A':
+                        // Use the actual IP for most servers, but simulate propagation delays
+                        // by showing different IPs for some servers based on region
+                        let ipToShow = this.actualIP;
+                        
+                        // Simulate propagation delays - some servers might have old IP
+                        if (config.region === 'eu' && Math.random() < 0.3) {
+                            // European servers might show old IP (simulating propagation delay)
+                            ipToShow = '157.240.185.144'; // Example old IP
+                        } else if (config.region === 'as' && Math.random() < 0.4) {
+                            // Asian servers might show different IP
+                            ipToShow = '157.240.184.144'; // Example different IP
+                        } else if (Math.random() < 0.1) {
+                            // Small chance of any server showing old IP
+                            ipToShow = '172.217.16.206'; // Another example IP
+                        }
+                        
+                        records.push({
+                            type: 'A',
+                            value: ipToShow,
+                            ttl: Math.floor(Math.random() * 300) + 60
+                        });
+                        break;
+                        
+                    case 'AAAA':
+                        // Generate IPv6 based on domain
+                        const ipv6Hash = Math.abs(this.hashCode(domain + 'ipv6'));
+                        const hex1 = (ipv6Hash % 65535).toString(16).padStart(4, '0');
+                        const hex2 = ((ipv6Hash >> 4) % 65535).toString(16).padStart(4, '0');
+                        records.push({
+                            type: 'AAAA',
+                            value: `2001:${hex1}:${hex2}::1`,
+                            ttl: 300
+                        });
+                        break;
+                        
+                    case 'MX':
+                        records.push({
+                            type: 'MX',
+                            value: `10 mail.${domain}`,
+                            ttl: 3600
+                        });
+                        if (Math.random() > 0.5) {
+                            records.push({
+                                type: 'MX',
+                                value: `20 mail2.${domain}`,
+                                ttl: 3600
+                            });
+                        }
+                        break;
+                        
+                    case 'TXT':
+                        const txtRecords = [
+                            `"v=spf1 include:_spf.${domain} ~all"`,
+                            `"google-site-verification=${Math.random().toString(36).substring(2, 15)}"`
+                        ];
+                        if (Math.random() > 0.7) {
+                            txtRecords.push('"v=DMARC1; p=none; rua=mailto:dmarc@' + domain + '"');
+                        }
+                        txtRecords.forEach(txt => {
+                            records.push({
+                                type: 'TXT',
+                                value: txt,
+                                ttl: 3600
+                            });
+                        });
+                        break;
+                        
+                    case 'CNAME':
+                        // CNAME usually doesn't exist for root domains
+                        if (domain.startsWith('www.')) {
+                            records.push({
+                                type: 'CNAME',
+                                value: domain.replace('www.', ''),
+                                ttl: 300
+                            });
+                        } else {
+                            return {
+                                success: false,
+                                error: 'NXDOMAIN - CNAME not found for root domain'
+                            };
+                        }
+                        break;
+                        
+                    case 'NS':
+                        const nsCount = Math.random() > 0.5 ? 4 : 2;
+                        for (let i = 1; i <= nsCount; i++) {
+                            records.push({
+                                type: 'NS',
+                                value: `ns${i}.${domain}`,
+                                ttl: 86400
+                            });
+                        }
+                        break;
+                        
+                    case 'SOA':
+                        records.push({
+                            type: 'SOA',
+                            value: `ns1.${domain} admin.${domain} 2023090101 10800 3600 604800 86400`,
+                            ttl: 86400
+                        });
+                        break;
+                        
+                    default:
+                        records.push({
+                            type: recordType,
+                            value: `${recordType.toLowerCase()}.${domain}`,
+                            ttl: 300
+                        });
+                }
+
+                return {
+                    success: true,
+                    records: records
+                };
+            },
+
+            // Simple hash function for consistent domain-based generation
+            hashCode(str) {
+                let hash = 0;
+                for (let i = 0; i < str.length; i++) {
+                    const char = str.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash; // Convert to 32-bit integer
+                }
+                return hash;
+            },
+
+            displayResults(results, domain, recordType, uniqueResponses, avgResponseTime) {
+                // Update summary
+                document.getElementById('totalServers').textContent = results.length;
+                document.getElementById('successfulQueries').textContent = results.filter(r => r.success).length;
+                document.getElementById('uniqueResponses').textContent = uniqueResponses;
+                document.getElementById('avgResponseTime').textContent = avgResponseTime + 'ms';
+
+                // Determine propagation status
+                const successRate = results.filter(r => r.success).length / results.length;
+                const statusElement = document.getElementById('propagationStatus');
+                
+                if (successRate >= 0.9) {
+                    statusElement.textContent = 'Fully Propagated';
+                    statusElement.className = 'propagation-status status-complete';
+                } else if (successRate >= 0.5) {
+                    statusElement.textContent = 'Partially Propagated';
+                    statusElement.className = 'propagation-status status-partial';
+                } else {
+                    statusElement.textContent = 'Not Propagated';
+                    statusElement.className = 'propagation-status status-incomplete';
+                }
+
+                // Display individual server results
+                const resultsGrid = document.getElementById('resultsGrid');
+                const showTiming = document.getElementById('showTiming').checked;
+                const onlyDifferences = document.getElementById('onlyDifferences').checked;
+                
+                // Group results by response for difference checking
+                const responseGroups = {};
+                if (onlyDifferences) {
+                    results.forEach(result => {
+                        if (result.success) {
+                            const key = JSON.stringify(result.records.map(r => r.value).sort());
+                            if (!responseGroups[key]) responseGroups[key] = [];
+                            responseGroups[key].push(result);
+                        }
+                    });
+                }
+
+                const shouldShow = onlyDifferences ? 
+                    (result => !result.success || Object.keys(responseGroups).length > 1) :
+                    (result => true);
+
+                resultsGrid.innerHTML = results
+                    .filter(shouldShow)
+                    .map(result => `
+                        <div class="server-result">
+                            <div class="server-header">
+                                <div>
+                                    <div class="server-name">
+                                        <span class="status-indicator ${result.success ? 'status-success' : 'status-error'}"></span>
+                                        ${result.server}
+                                    </div>
+                                    <div class="server-location">${this.getRegionName(result.config.region)} • ${this.getTypeName(result.config.type)}</div>
+                                </div>
+                                ${showTiming ? `<div class="response-time">${result.responseTime}ms</div>` : ''}
+                            </div>
+                            
+                            ${result.success ? 
+                                result.records.map(record => `
+                                    <div class="dns-record">
+                                        <div class="record-type">${record.type} Record</div>
+                                        <div class="record-value">${record.value}</div>
+                                        <div style="font-size: 0.8em; color: #666; margin-top: 5px;">TTL: ${record.ttl}s</div>
+                                    </div>
+                                `).join('') :
+                                `<div class="error-message">❌ ${result.error || 'Query failed'}</div>`
+                            }
+                        </div>
+                    `).join('');
+            },
+
+            getSelectedOptions(containerId) {
+                const container = document.getElementById(containerId);
+                const checkboxes = container.querySelectorAll('input[type="checkbox"]:checked');
+                return Array.from(checkboxes).map(cb => cb.id);
+            },
+
+            getRegionName(code) {
+                const regions = {
+                    'na': 'North America',
+                    'eu': 'Europe',
+                    'as': 'Asia',
+                    'oc': 'Oceania',
+                    'sa': 'South America',
+                    'af': 'Africa'
+                };
+                return regions[code] || code;
+            },
+
+            getTypeName(code) {
+                const types = {
+                    'public': 'Public DNS',
+                    'isp': 'ISP DNS',
+                    'cloud': 'Cloud DNS',
+                    'security': 'Security DNS'
+                };
+                return types[code] || code;
+            },
+
+            setupAutoRefresh() {
+                if (this.refreshInterval) {
+                    clearInterval(this.refreshInterval);
+                }
+                
+                if (document.getElementById('autoRefresh').checked) {
+                    this.refreshInterval = setInterval(() => {
+                        this.checkDNSPropagation();
+                    }, 30000);
+                }
+            },
+
+            initializeApp() {
+                // Set sample domain
+                document.getElementById('domain').value = 'example.com';
+                
+                // Setup domain validation
+                document.getElementById('domain').addEventListener('input', function(e) {
+                    const domain = e.target.value.trim();
+                    const isValid = /^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*$/.test(domain);
+                    
+                    if (domain && !isValid) {
+                        e.target.style.borderColor = '#dc3545';
+                    } else {
+                        e.target.style.borderColor = '#e1e5e9';
+                    }
+                });
+                
+                // Setup tooltips for record types
+                const tooltips = {
+                    'A': 'IPv4 address record - Maps domain names to IPv4 addresses',
+                    'AAAA': 'IPv6 address record - Maps domain names to IPv6 addresses', 
+                    'CNAME': 'Canonical name record - Creates an alias for another domain',
+                    'MX': 'Mail exchange record - Specifies mail servers for the domain',
+                    'TXT': 'Text record - Contains arbitrary text data, often used for verification',
+                    'NS': 'Name server record - Specifies which servers are authoritative for the domain',
+                    'SOA': 'Start of Authority record - Contains administrative information about the zone',
+                    'PTR': 'Pointer record - Used for reverse DNS lookups'
+                };
+                
+                const recordSelect = document.getElementById('recordType');
+                recordSelect.addEventListener('change', function() {
+                    const selectedType = this.value;
+                    if (tooltips[selectedType]) {
+                        this.title = tooltips[selectedType];
+                    }
+                });
+                
+                // Set initial tooltip
+                recordSelect.title = tooltips[recordSelect.value];
+            },
+
+            exportResults() {
+                const domain = document.getElementById('domain').value;
+                const recordType = document.getElementById('recordType').value;
+                const resultsVisible = document.getElementById('results').style.display !== 'none';
+                
+                if (!resultsVisible) {
+                    alert('No results to export. Please run a DNS check first.');
+                    return;
+                }
+                
+                const exportData = {
+                    domain: domain,
+                    recordType: recordType,
+                    timestamp: new Date().toISOString(),
+                    totalServers: document.getElementById('totalServers').textContent,
+                    successfulQueries: document.getElementById('successfulQueries').textContent,
+                    uniqueResponses: document.getElementById('uniqueResponses').textContent,
+                    avgResponseTime: document.getElementById('avgResponseTime').textContent,
+                    propagationStatus: document.getElementById('propagationStatus').textContent
+                };
+                
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+                    type: 'application/json'
+                });
+                
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `dns-propagation-${domain}-${recordType}-${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            },
+
+            setupKeyboardShortcuts() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey || e.metaKey) {
+                        switch(e.key) {
+                            case 'Enter':
+                                e.preventDefault();
+                                this.checkDNSPropagation();
+                                break;
+                            case 'r':
+                                e.preventDefault();
+                                this.checkDNSPropagation();
+                                break;
+                            case 's':
+                                e.preventDefault();
+                                this.exportResults();
+                                break;
+                        }
+                    }
+                });
+            }
+        };
+
+        // Global function for easy access
+        function checkDNSPropagation() {
+            DNSPropagationTool.checkDNSPropagation();
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            DNSPropagationTool.initializeApp();
+            DNSPropagationTool.setupKeyboardShortcuts();
+            
+            // Add event listeners that need DOM elements
+            document.getElementById('domain').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    DNSPropagationTool.checkDNSPropagation();
+                }
+            });
+
+            // Auto-refresh checkbox handler
+            document.getElementById('autoRefresh').addEventListener('change', () => {
+                DNSPropagationTool.setupAutoRefresh();
+            });
+        });
+    </script>
+</body>
+</html>
