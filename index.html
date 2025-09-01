@@ -378,6 +378,13 @@
   gtag('js', new Date());
 
   gtag('config', 'G-WP02RFXGSE');
+
+  document.querySelectorAll('.c-nav__content a').forEach(a => {
+    a.addEventListener('click', () => {
+      navContent.classList.remove('active');
+    });
+  });
+
 </script>
 
 </html>

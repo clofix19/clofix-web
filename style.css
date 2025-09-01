@@ -2922,3 +2922,32 @@ svg #sun {
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .c-list__item {
+    padding: 0 !important;
+    border-bottom: none !important;
+  }
+
+  .c-list__item > a {
+    display: block !important;
+    width: 100%;
+    padding: 0.75rem 0 !important;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .c-list__item > a:hover {
+    background: rgba(255,255,255,0.03);
+    color: #38bdf8;
+  }
+
+
+  .c-nav__content .ticket-button {
+    display: block !important;
+    width: 100%;
+  } 
+}
+
+.c-list__item > a {
+  display: inline-block;
+  padding: 0.5rem 0;
+}
