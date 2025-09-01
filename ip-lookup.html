@@ -2,42 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>IP Lookup Tool</title>
+  <title>IP Lookup Search</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f6f9;
+      background: #f5f7fa;
       padding: 40px;
       display: flex;
       justify-content: center;
     }
-    .card {
+    .container {
+      width: 700px;
       background: #fff;
-      padding: 25px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 500px;
+      padding: 25px;
     }
     h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
       text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
       color: #333;
     }
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
     input {
-      width: 100%;
+      flex: 1;
       padding: 12px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      margin-bottom: 15px;
       font-size: 16px;
     }
     button {
-      width: 100%;
-      padding: 12px;
+      padding: 12px 18px;
       background: #0077cc;
-      color: #fff;
-      font-size: 16px;
+      color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -45,61 +47,122 @@
     button:hover {
       background: #005fa3;
     }
-    .result {
-      margin-top: 20px;
-      font-size: 15px;
-      line-height: 1.6;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      width: 180px;
+      background: #f0f3f7;
       color: #222;
     }
-    .result strong {
-      display: inline-block;
-      width: 130px;
-      color: #000;
+    td {
+      color: #333;
+    }
+    .error {
+      color: red;
+      margin-top: 15px;
+      text-align: center;
+    }
+    /* Progress bar */
+    .progress {
+      width: 100%;
+      background: #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 10px;
+      display: none;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 12px;
+      background: #0077cc;
+      transition: width 0.3s ease;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>IP Lookup Tool</h1>
-    <input type="text" id="ipInput" placeholder="Enter IP address (e.g. 103.4.144.130)">
-    <button onclick="lookupIP()">Lookup</button>
+  <div class="container">
+    <h1>🔎 IP Lookup Tool</h1>
+    <div class="search-box">
+      <input type="text" id="ipInput" placeholder="Enter IP address (e.g. 103.4.144.130)">
+      <button onclick="lookupIP()">Search</button>
+    </div>
 
-    <div id="output" class="result"></div>
+    <!-- Progress bar -->
+    <div class="progress" id="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div id="output"></div>
   </div>
 
   <script>
     function lookupIP() {
       const ip = document.getElementById("ipInput").value.trim();
       const output = document.getElementById("output");
+      const progress = document.getElementById("progress");
+      const progressBar = document.getElementById("progressBar");
+      output.innerHTML = "";
+      
       if (!ip) {
-        output.innerHTML = "<p>Please enter a valid IP address.</p>";
+        output.innerHTML = '<p class="error">⚠ Please enter a valid IP address.</p>';
         return;
       }
 
+      // Show progress bar
+      progress.style.display = "block";
+      progressBar.style.width = "0%";
+
+      let width = 0;
+      const loading = setInterval(() => {
+        if (width >= 90) { // stop at 90% until data comes
+          clearInterval(loading);
+        } else {
+          width += 10;
+          progressBar.style.width = width + "%";
+        }
+      }, 300);
+
       fetch(`https://ipapi.co/${ip}/json/`)
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
+          clearInterval(loading);
+          progressBar.style.width = "100%";
+          setTimeout(() => { progress.style.display = "none"; }, 500);
+
           if (data.error) {
-            output.innerHTML = "<p>Invalid IP or not found.</p>";
+            output.innerHTML = '<p class="error">❌ Invalid IP or not found.</p>';
             return;
           }
 
           output.innerHTML = `
-            <p><strong>IP Address:</strong> ${ip}</p>
-            <p><strong>Decimal:</strong> ${ipToDecimal(ip)}</p>
-            <p><strong>Hostname:</strong> ${data.org || "N/A"}</p>
-            <p><strong>ASN:</strong> ${data.asn || "N/A"}</p>
-            <p><strong>ISP:</strong> ${data.org || "N/A"}</p>
-            <p><strong>Services:</strong> None detected</p>
-            <p><strong>Country:</strong> ${data.country_name} (${data.country_code})</p>
-            <p><strong>State/Region:</strong> ${data.region || "N/A"}</p>
-            <p><strong>City:</strong> ${data.city || "N/A"}</p>
-            <p><strong>Latitude:</strong> ${data.latitude} (${toDMS(data.latitude, true)})</p>
-            <p><strong>Longitude:</strong> ${data.longitude} (${toDMS(data.longitude, false)})</p>
+            <table>
+              <tr><th>IP Address</th><td>${ip}</td></tr>
+              <tr><th>Decimal</th><td>${ipToDecimal(ip)}</td></tr>
+              <tr><th>Hostname</th><td>${data.org || "N/A"}</td></tr>
+              <tr><th>ASN</th><td>${data.asn || "N/A"}</td></tr>
+              <tr><th>ISP</th><td>${data.org || "N/A"}</td></tr>
+              <tr><th>Services</th><td>None detected</td></tr>
+              <tr><th>Country</th><td>${data.country_name} (${data.country_code})</td></tr>
+              <tr><th>Region</th><td>${data.region || "N/A"}</td></tr>
+              <tr><th>City</th><td>${data.city || "N/A"}</td></tr>
+              <tr><th>Latitude</th><td>${data.latitude} (${toDMS(data.latitude, true)})</td></tr>
+              <tr><th>Longitude</th><td>${data.longitude} (${toDMS(data.longitude, false)})</td></tr>
+            </table>
           `;
         })
         .catch(() => {
-          output.innerHTML = "<p>Error fetching IP details.</p>";
+          clearInterval(loading);
+          progress.style.display = "none";
+          output.innerHTML = '<p class="error">⚠ Error fetching IP details.</p>';
         });
     }
 
@@ -108,6 +171,7 @@
     }
 
     function toDMS(deg, isLat) {
+      if (!deg) return "N/A";
       const absolute = Math.abs(deg);
       const degrees = Math.floor(absolute);
       const minutesNotTruncated = (absolute - degrees) * 60;
