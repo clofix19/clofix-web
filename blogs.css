@@ -162,3 +162,42 @@
   margin-bottom: 2rem;
 }
 
+/* -------------------------------
+   Code Example Box
+-------------------------------- */
+.code-example {
+  background: #111;
+  color: #f4f4f4;
+  font-family: "Courier New", monospace;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.code-example .highlight {
+  color: #00ff9d;
+}
+
+/* -------------------------------
+   Highlight / Alert Boxes
+-------------------------------- */
+.highlight {
+  background: #333;
+  border-left: 5px solid #1da1f2;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  color: #1a73e8; /* Google-style blue */
+}
+
+.alert {
+  background: #fff4f4;
+  border-left: 5px solid #e74c3c;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  color: #721c24;
+}

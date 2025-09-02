@@ -462,6 +462,29 @@
           </ul>
           <p><strong>Test Coverage:</strong> Clean requests, Script Injection, XSS, CSS Injection, DOM Manipulation, Code Execution, Obfuscation, Template Injection, Complex Multi-vector Attacks, Edge Cases</p>
         </template>
+
+        <div class="feature-card" data-id="terminal-access">
+          <h3>🖥️ Terminal Access Detection</h3>
+          <p>Detects and blocks reverse shells, command injection, and multi-layer obfuscation attacks in real time.</p>
+        </div>
+
+        <template id="terminal-access">
+          <p>
+            Terminal Access Detection protects your application and infrastructure by identifying and preventing unauthorized terminal access attempts. It blocks reverse shells, PowerShell payloads, Living-off-the-Land (LOLBin) techniques, and obfuscated commands before they can execute.
+          </p>
+          <ul>
+            <li>Detects and blocks reverse shells over bash, Netcat, Socat, and PowerShell</li>
+            <li>Prevents multi-layer obfuscation including Base64, URL encoding, Hex, and Unicode escapes</li>
+            <li>Blocks Living-off-the-Land (LOLBin) attacks using legitimate binaries (WMIC, PowerShell, RegSvr32, MSHTA)</li>
+            <li>Assigns dynamic risk scores based on threat sophistication and behavior</li>
+            <li>Provides detailed logging and forensic data for each blocked attempt</li>
+            <li>Integrates with AI-based behavioral analysis for zero-day detection</li>
+            <li>Offers server-side hardening guidance for secure terminal access policies</li>
+            <li>Easy integration with Flask / Python APIs for automated response</li>
+          </ul>
+          <p><strong>Test Coverage:</strong> Basic & advanced reverse shells, PowerShell payloads, multi-layer obfuscation, LOLBin abuse, process injection, privilege escalation, persistence mechanisms, zero-day command injection, and edge cases.</p>
+        </template>
+
       </div>
     </section>
   </main>
