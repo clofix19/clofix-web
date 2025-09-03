@@ -102,33 +102,98 @@
   </header>
 
   <main class="container section">
-    <div class="contact">
-      <h1 class="contact__title heading heading--2">Get in Touch with CloFix</h1>
 
-      <div class="contact__grid">
-        <div class="contact__info">
-          <p><strong>📞 Phone:</strong> <a href="tel:01850603126">01850603126</a></p>
-          <p><strong>📍 Address:</strong> <span class="contact__address">Agargaon, Dhaka - 1207</span></p>
-          <p><strong>✉️ Email:</strong>
-            <!-- Fix mailto to match visible email -->
-            <a href="mailto:info@clofix.com">info@clofix.com</a> |
-            <a href="mailto:support@clofix.com">support@clofix.com</a>
-          </p>
-          <p><strong>🕒 Hours:</strong> <span class="contact__hours">Sun - Thu | 9AM - 6PM</span></p>
+    <section class="parallax-hero" aria-label="Contact CloFix Hero">
+      <div class="ph-layer ph-stars" data-depth="0.06"></div>
+      <div class="ph-layer ph-grid" data-depth="0.12"></div>
+      <div class="ph-layer ph-net" data-depth="0.18"></div>
+      <div class="ph-layer ph-orbs" data-depth="0.26" aria-hidden="true">
+        <span class="orb orb--sm"></span>
+        <span class="orb orb--md"></span>
+        <span class="orb orb--lg"></span>
+      </div>
+
+      <div class="ph-inner">
+        <p class="ph-pill">Trusted by engineering & security teams</p>
+        <h1 class="ph-title">
+          Need Some<span class="neon">Help ?</span> <br>
+          <span class="gradient">We’re Just a Click Away</span>
+        </h1>
+        <p class="ph-sub">
+          Need support or guidance? Our team is here to craft secure, scalable, and future-ready solutions that fit your
+          business
+        </p>
+
+        <div class="ph-glass">
+          <div class="ph-cards">
+            <a class="ph-card" href="tel:01850603126" aria-label="Call CloFix">
+              <div class="ph-kicker">📞 Phone</div>
+              <div class="ph-card-main">01850603126</div>
+              <div class="ph-card-sub">Tap to call</div>
+            </a>
+
+            <div class="ph-card" aria-label="Email CloFix">
+              <div class="ph-kicker">✉️ Email</div>
+              <div class="ph-card-main ph-card-list">
+                <a class="ph-link" href="mailto:info@clofix.com">info@clofix.com</a>
+                <a class="ph-link" href="mailto:support@clofix.com">support@clofix.com</a>
+              </div>
+            </div>
+
+            <div class="ph-card" aria-label="CloFix Office Address">
+              <div class="ph-kicker">📍 Address</div>
+              <div class="ph-card-main">House 8/10, Road 4, Sher-E-Bangla Nagar
+                , Dhaka — 1207</div>
+              <div class="ph-card-sub">Sun–Thu • 9AM–6PM</div>
+            </div>
+          </div>
+
+
         </div>
 
-        <div class="contact__cta">
-          <a href="ticket.html" class="animated-contact-button">Send Us an Email</a>
+        <ul class="ph-badges" aria-label="Highlights">
+          <li>OWASP-aligned</li>
+          <li>Quick Response</li>
+          <li>AI-Driven Policies</li>
+          <li>Zero-Config Onboarding</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact-copy">
+      <div class="contact-copy__inner">
+        <h2 class="heading--2">Why contact CloFix?</h2>
+        <div class="copy-grid">
+          <div class="copy-card">
+            <h3>Production-grade WAF</h3>
+            <p>We harden your apps with real-time threat intelligence, bot mitigation, and
+              adaptive rate-limiting, without site slowdown.</p>
+          </div>
+          <div class="copy-card">
+            <h3>Smart Security Made Simple</h3>
+            <p>Smart systems keep things smooth, catch issues early, and let you move forward with confidence.</p>
+          </div>
+          <div class="copy-card">
+            <h3>Built to Grow with You</h3>
+            <p>As your needs change, our AI-driven tools expand effortlessly, making growth smooth and stress-free.</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <div id="contact" class="contact">
+      <div class="contact__cta" style="text-align:center; margin-bottom:2rem;">
+        <a href="ticket.html" class="animated-contact-button">Send Us an Email</a>
       </div>
 
       <div class="contact__map-wrapper">
-        <iframe class="contact__map" src="https://www.google.com/maps?q=Agargaon,%20Dhaka%20-%201207&output=embed"
-          allowfullscreen="" loading="lazy">
-        </iframe>
+        <iframe class="contact__map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6140.26139301006!2d90.374113978278!3d23.78225696572581!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c100209b43e1%3A0xee23e9ff18eeb2f2!2sJanata%20Housing%2C%20Road%208%2C%20Dhaka%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1756894525244!5m2!1sen!2sus"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </main>
+
 
   <footer class="footer">
     <div class="stars"></div>
@@ -213,6 +278,35 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-WP02RFXGSE');
+
+    (function () {
+      const hero = document.querySelector('.parallax-hero');
+      if (!hero) return;
+      const layers = hero.querySelectorAll('.ph-layer');
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const cx = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5..0.5
+        const cy = (e.clientY - rect.top) / rect.height - 0.5;
+
+        layers.forEach(layer => {
+          const depth = parseFloat(layer.dataset.depth || 0.1);
+          const tx = -cx * depth * 40;  // adjust intensity
+          const ty = -cy * depth * 40;
+          layer.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        });
+      });
+
+      const onScroll = () => {
+        const top = hero.getBoundingClientRect().top;
+        const vh = window.innerHeight;
+        const vis = Math.max(0, 1 - Math.abs(top) / vh); // 0..1
+        hero.style.filter = `saturate(${0.9 + vis * 0.2})`;
+        hero.style.transform = `translateZ(0) translateY(${top * 0.05}px)`;
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })(); 
   </script>
 </body>
 
