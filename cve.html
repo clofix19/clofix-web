@@ -1,124 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>CVE Search Tool</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      width: 900px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 25px;
-    }
-    h1 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    .search-box {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    input {
-      flex: 1;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    button {
-      padding: 12px 18px;
-      background: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005fa3;
-    }
-    .error {
-      color: red;
-      margin-top: 15px;
-      text-align: center;
-    }
-    /* Progress bar */
-    .progress {
-      width: 100%;
-      background: #eee;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-top: 10px;
-      display: none;
-    }
-    .progress-bar {
-      width: 0%;
-      height: 12px;
-      background: #0077cc;
-      transition: width 0.3s ease;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-      font-size: 14px;
-      vertical-align: top;
-    }
-    th {
-      background: #f0f3f7;
-      color: #222;
-    }
-    .severity {
-      font-weight: bold;
-      padding: 4px 8px;
-      border-radius: 6px;
-      color: white;
-    }
-    .Critical { background: #d32f2f; }
-    .HIGH { background: #f57c00; }
-    .MEDIUM { background: #fbc02d; color: #222; }
-    .LOW { background: #388e3c; }
-    .pager {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .pager button {
-      margin: 0 5px;
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="cve.css" />
 </head>
+
 <body>
-  <div class="container">
-    <h1>🔎 CVE Search Tool</h1>
-    <div class="search-box">
-      <input type="text" id="cveInput" placeholder="Enter CVE ID or Keyword (e.g. CVE-2023-23397 or Windows Outlook)">
-      <button onclick="lookupCVE()">Search</button>
-    </div>
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+          </a>
 
-    <!-- Progress bar -->
-    <div class="progress" id="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        </a>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
 
-    <div id="output"></div>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item">
+                <a href="about.html" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="features.html" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item">
+                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+              </li>
+              <li class="c-list__item">
+                <a href="contact.html" class="c-link c-link--list">Contact</a>
+              </li>
+            </ul>
+            <a href="ticket.html" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">
+                Create Ticket
+              </button>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="cve-intro">
+    <div class="container">
+      <h1 class="cve-title">Revolutionary AI-Powered<br>Security Intelligence</h1>
+      <p class="cve-subtext">
+        Welcome to the CVE Search Tool. Use this tool to quickly find CVE IDs or explore vulnerabilities with ease.
+      </p>
+    </div>
   </div>
+
+
+  <main class="dve">
+    <div class="container">
+      <h2>🔎 CVE Search Tool</h2>
+      <div class="search-box">
+        <input type="text" id="cveInput" placeholder="Enter CVE ID or Keyword (e.g. CVE-2023-23397 or Windows Outlook)">
+        <button onclick="lookupCVE()">Search</button>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress" id="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div id="output"></div>
+    </div>
+  </main>
+  <footer class="footer">
+
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="#" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text">
+          <strong>Secure. Automate. Scale</strong>
+        </p>
+        <ul class="social">
+          <li class="social-li">
+            <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
+              <img src="img/facebook_clofix.png" alt="Facebook" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://x.com/clofix19" target="_blank">
+              <img src="img/X_clofix.png" alt="X" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
+              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li class="social-li">
+            <a href="https://wa.me/8801850603126" target="_blank">
+              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="about.html">About CloFix</a></li>
+          <li><a href="contact.html">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="support.html">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#">Events</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="partner.html">Become A Partner</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="terms.html">Terms and Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+    </div>
+  </footer>
 
   <script>
     let currentPage = 0;
@@ -243,4 +280,5 @@
     }
   </script>
 </body>
+
 </html>
