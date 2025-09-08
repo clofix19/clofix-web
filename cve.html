@@ -226,20 +226,21 @@
       const severity = metrics ? `<span class="severity ${metrics.cvssData.baseSeverity}">${metrics.cvssData.baseSeverity}</span>` : "N/A";
 
       output.innerHTML = `
-        <table>
-          <tr><th>CVE ID</th><td>${cve.id}</td></tr>
-          <tr><th>Published</th><td>${cve.published}</td></tr>
-          <tr><th>Last Modified</th><td>${cve.lastModified}</td></tr>
-          <tr><th>Description</th><td>${cve.descriptions[0].value}</td></tr>
-          <tr><th>Severity</th><td>${severity}</td></tr>
-          <tr><th>CVSS Score</th><td>${metrics ? metrics.cvssData.baseScore : "N/A"}</td></tr>
-          <tr><th>Vector</th><td>${metrics ? metrics.cvssData.vectorString : "N/A"}</td></tr>
-          <tr><th>Source</th><td>
-            <a href="https://nvd.nist.gov/vuln/detail/${cve.id}" target="_blank">NVD</a> | 
-            <a href="https://www.exploit-db.com/search?cve=${cve.id}" target="_blank">Exploit DB</a>
-          </td></tr>
-        </table>
-      `;
+  <div class="cve-details">
+    <div class="cve-item"><strong>CVE ID:</strong> ${cve.id}</div>
+    <div class="cve-item"><strong>Published:</strong> ${cve.published}</div>
+    <div class="cve-item"><strong>Last Modified:</strong> ${cve.lastModified}</div>
+    <div class="cve-item"><strong>Description:</strong> ${cve.descriptions[0].value}</div>
+    <div class="cve-item"><strong>Severity:</strong> ${severity}</div>
+    <div class="cve-item"><strong>CVSS Score:</strong> ${metrics ? metrics.cvssData.baseScore : "N/A"}</div>
+    <div class="cve-item"><strong>Vector:</strong> ${metrics ? metrics.cvssData.vectorString : "N/A"}</div>
+    <div class="cve-item"><strong>Source:</strong> 
+      <a href="https://nvd.nist.gov/vuln/detail/${cve.id}" target="_blank">NVD</a> | 
+      <a href="https://www.exploit-db.com/search?cve=${cve.id}" target="_blank">Exploit DB</a>
+    </div>
+  </div>
+`;
+
     }
 
     function renderList(results, output, page, total) {
