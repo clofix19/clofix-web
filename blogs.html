@@ -54,7 +54,6 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <!-- <a class="c-link" href="#"> -->
         <div class="c-logo">
           <a href="index.html">
             <img src="img/logo.png" alt="Logo" class="c-logo__img" />
@@ -96,10 +95,6 @@
                 Create Ticket
               </button>
             </a>
-
-            <!--  <button class="c-button c-button--small c-button--secondary">
-                Create Ticket
-              </button> -->
           </div>
         </nav>
       </div>
@@ -112,7 +107,6 @@
     <section class="blogs-section">
       <div class="blogs-grid">
 
-        <!-- Blog Card 1 -->
         <div class="blog-card special-card">
           <h1 class="blog-card__title">Complete Guide to Web Application Firewall (WAF) Protection</h1>
           <div class="blog-card__content">
@@ -124,7 +118,6 @@
           </div>
         </div>
 
-        <!-- Blog Card 2 -->
         <div class="blog-card special-card">
           <h1 class="blog-card__title">OWASP Top 10 Vulnerabilities: How to Protect Your Website</h1>
           <div class="blog-card__content">
@@ -136,7 +129,6 @@
           </div>
         </div>
 
-        <!-- Blog Card 3 (Highlighted) -->
         <div class="blog-card special-card">
           <h1 class="blog-card__title">Bot Attack Prevention: Advanced Strategies</h1>
           <div class="blog-card__content">
@@ -148,7 +140,6 @@
           </div>
         </div>
 
-        <!-- Blog Card 4 -->
         <div class="blog-card special-card">
           <h1 class="blog-card__title">WordPress Security: Essential Protection Against Common Attacks</h1>
           <div class="blog-card__content">
@@ -160,7 +151,6 @@
           </div>
         </div>
 
-        <!-- Blog Card 5 -->
         <div class="blog-card special-card">
           <h1 class="blog-card__title">API Security Best Practices: Protecting Your Web Services</h1>
           <div class="blog-card__content">
@@ -171,8 +161,6 @@
             <a href="blog-api-security.html" class="c-button c-button--small c-button--secondary">Read More</a>
           </div>
         </div>
-
-        <!-- Blog Card 5 -->
 
         <div class="blog-card special-card">
           <h1 class="blog-card__title">CloFix WAF: Advanced Web Application Firewall for Complete Digital Protection
@@ -350,6 +338,35 @@
   gtag('js', new Date());
 
   gtag('config', 'G-WP02RFXGSE');
+</script>
+<script>
+  (function makeCardsClickable() {
+    const cards = document.querySelectorAll('.blog-card');
+    cards.forEach(card => {
+      const link = card.querySelector('a.c-button[href]');
+      if (!link) return;
+
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'link');
+
+      const titleEl = card.querySelector('.blog-card__title');
+      if (titleEl && titleEl.textContent.trim()) {
+        card.setAttribute('aria-label', titleEl.textContent.trim());
+      }
+
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        window.location.href = link.href;
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = link.href;
+        }
+      });
+    });
+  })();
 </script>
 
 </html>

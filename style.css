@@ -2128,17 +2128,14 @@ body {
   }
 }
 
-/* Global container max-width for better layout on large screens */
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* ===================== */
-/* FIXED: TABLETS AND BELOW (UP TO 768px) */
-/* ===================== */
 @media (max-width: 768px) {
   .clofix-agent-wrapper {
     flex-direction: column;

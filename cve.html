@@ -2,56 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>CVE Search Tool</title>
+
+  <!-- Your stylesheets (order matters: global first, then page-specific) -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="cve.css" />
 </head>
 
 <body>
+  <!-- Header / Nav -->
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
         <div class="c-logo">
-          <a href="index.html">
-            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+          <a href="index.html" aria-label="CloFix Home">
+            <img src="img/logo.png" alt="CloFix Logo" class="c-logo__img" />
           </a>
-
           <span class="c-logo__text c-logo__text--white"></span>
         </div>
-        </a>
-        <nav class="c-nav">
+
+        <nav class="c-nav" aria-label="Primary navigation">
           <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
           </button>
 
-          <div class="c-nav__content">
+          <div class="c-nav__content" id="navContent">
             <ul class="c-list c-list--flex">
-              <li class="c-list__item">
-                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="index.html#section-services" class="c-link c-link--list">Services</a>
               </li>
-              <li class="c-list__item">
-                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
-              </li>
-              <li class="c-list__item">
-                <a href="about.html" class="c-link c-link--list">About</a>
-              </li>
-              <li class="c-list__item">
-                <a href="features.html" class="c-link c-link--list">Features</a>
-              </li>
-              <li class="c-list__item">
-                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
-              </li>
-              <li class="c-list__item">
-                <a href="contact.html" class="c-link c-link--list">Contact</a>
-              </li>
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
             </ul>
             <a href="ticket.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">
-                Create Ticket
-              </button>
+              <button class="c-button c-button--small c-button--secondary">Create Ticket</button>
             </a>
           </div>
         </nav>
@@ -59,34 +48,39 @@
     </div>
   </header>
 
+  <!-- Intro -->
   <div class="cve-intro">
     <div class="container">
-      <h1 class="cve-title">Revolutionary AI-Powered<br>Security Intelligence</h1>
+      <h1 class="cve-title">Revolutionary AI-Powered<br />Security Intelligence</h1>
       <p class="cve-subtext">
         Welcome to the CVE Search Tool. Use this tool to quickly find CVE IDs or explore vulnerabilities with ease.
       </p>
     </div>
   </div>
 
-
+  <!-- App Surface -->
   <main class="dve">
     <div class="container">
       <h2>🔎 CVE Search Tool</h2>
-      <div class="search-box">
-        <input type="text" id="cveInput" placeholder="Enter CVE ID or Keyword (e.g. CVE-2023-23397 or Windows Outlook)">
-        <button onclick="lookupCVE()">Search</button>
+
+      <div class="search-box" role="search">
+        <input type="text" id="cveInput" placeholder="Enter CVE ID or Keyword (e.g. CVE-2023-23397 or Windows Outlook)"
+          aria-label="Search by CVE ID or keyword" />
+        <button id="searchBtn" type="button">Search</button>
       </div>
 
       <!-- Progress bar -->
-      <div class="progress" id="progress">
-        <div class="progress-bar" id="progressBar"></div>
+      <div class="progress" id="progress" aria-hidden="true">
+        <div class="progress-bar" id="progressBar" style="width:0%"></div>
       </div>
 
-      <div id="output"></div>
+      <!-- Results / Details -->
+      <div id="output" aria-live="polite"></div>
     </div>
   </main>
-  <footer class="footer">
 
+  <!-- Footer -->
+  <footer class="footer">
     <div class="stars"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
@@ -96,32 +90,25 @@
         <a href="#" class="c-footer__brand">
           <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
         </a>
-        <p class="c-footer__text">
-          <strong>Secure. Automate. Scale</strong>
-        </p>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
         <ul class="social">
           <li class="social-li">
-            <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
-              <img src="img/facebook_clofix.png" alt="Facebook" />
-            </a>
+            <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a>
           </li>
           <li class="social-li">
-            <a href="https://x.com/clofix19" target="_blank">
-              <img src="img/X_clofix.png" alt="X" />
-            </a>
+            <a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png"
+                alt="X (Twitter)" /></a>
           </li>
           <li class="social-li">
-            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
-              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
-            </a>
+            <a href="https://www.linkedin.com/company/clofix/" target="_blank" rel="noopener"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a>
           </li>
           <li class="social-li">
-            <a href="https://wa.me/8801850603126" target="_blank">
-              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
-            </a>
+            <a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png"
+                alt="WhatsApp" /></a>
           </li>
         </ul>
-
       </div>
 
       <div class="c-footer__column">
@@ -157,25 +144,68 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
+    // -----------------------------
+    // Small UX helpers
+    // -----------------------------
+    (function initNav() {
+      const toggle = document.getElementById("navToggle");
+      const content = document.getElementById("navContent");
+      if (toggle && content) {
+        toggle.addEventListener("click", () => {
+          content.classList.toggle("active");
+        });
+      }
+    })();
+
+    (function initSearchTriggers() {
+      const input = document.getElementById("cveInput");
+      const btn = document.getElementById("searchBtn");
+
+      if (btn) btn.addEventListener("click", () => lookupCVE(0));
+      if (input) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") lookupCVE(0);
+        });
+      }
+    })();
+
+    // -----------------------------
+    // App state
+    // -----------------------------
     let currentPage = 0;
     let currentResults = [];
 
+    // -----------------------------
+    // HTML escape helper
+    // -----------------------------
+    const escapeHTML = (s = "") =>
+      s.replace(/[&<>"'`=\/]/g, c => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;", "/": "&#x2F;", "`": "&#x60;", "=": "&#x3D;"
+      }[c]));
+
+    // -----------------------------
+    // Fetch & render
+    // -----------------------------
     function lookupCVE(page = 0) {
       const query = document.getElementById("cveInput").value.trim();
       const output = document.getElementById("output");
       const progress = document.getElementById("progress");
       const progressBar = document.getElementById("progressBar");
+
       output.innerHTML = "";
       currentResults = [];
+      currentPage = page;
 
       if (!query) {
         output.innerHTML = '<p class="error">⚠ Please enter a CVE ID or keyword.</p>';
         return;
       }
 
-      // Show progress bar
+      // show progress
       progress.style.display = "block";
+      progress.setAttribute("aria-hidden", "false");
       progressBar.style.width = "0%";
 
       let width = 0;
@@ -188,9 +218,10 @@
         }
       }, 300);
 
-      // Detect if it's a CVE ID
-      let apiUrl = query.match(/^CVE-\d{4}-\d+$/i)
-        ? `https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${query}`
+      // detect CVE id pattern
+      const isId = /^CVE-\d{4}-\d+$/i.test(query);
+      const apiUrl = isId
+        ? `https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${encodeURIComponent(query)}`
         : `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(query)}&startIndex=${page * 10}&resultsPerPage=10`;
 
       fetch(apiUrl)
@@ -198,17 +229,16 @@
         .then(data => {
           clearInterval(loading);
           progressBar.style.width = "100%";
-          setTimeout(() => { progress.style.display = "none"; }, 500);
+          setTimeout(() => { progress.style.display = "none"; progress.setAttribute("aria-hidden", "true"); }, 500);
 
-          if (!data.vulnerabilities || data.vulnerabilities.length === 0) {
+          const list = data.vulnerabilities || [];
+          if (list.length === 0) {
             output.innerHTML = '<p class="error">❌ No results found.</p>';
             return;
           }
 
-          currentResults = data.vulnerabilities;
-
-          // Single CVE
-          if (query.match(/^CVE-\d{4}-\d+$/i)) {
+          currentResults = list;
+          if (isId) {
             renderDetails(currentResults[0].cve, output);
           } else {
             renderList(currentResults, output, page, data.totalResults || 0);
@@ -217,63 +247,123 @@
         .catch(() => {
           clearInterval(loading);
           progress.style.display = "none";
+          progress.setAttribute("aria-hidden", "true");
           output.innerHTML = '<p class="error">⚠ Error fetching CVE details.</p>';
         });
     }
 
+    // Two-column details table
     function renderDetails(cve, output) {
-      const metrics = cve.metrics?.cvssMetricV31?.[0] || cve.metrics?.cvssMetricV30?.[0] || cve.metrics?.cvssMetricV2?.[0];
-      const severity = metrics ? `<span class="severity ${metrics.cvssData.baseSeverity}">${metrics.cvssData.baseSeverity}</span>` : "N/A";
+      const metrics = cve.metrics?.cvssMetricV31?.[0]
+        || cve.metrics?.cvssMetricV30?.[0]
+        || cve.metrics?.cvssMetricV2?.[0];
+
+      const sev = metrics?.cvssData?.baseSeverity || "N/A";
+      const pill = metrics
+        ? `<span class="severity ${sev}">${sev}</span>`
+        : `<span class="severity">N/A</span>`;
+
+      const score = metrics?.cvssData?.baseScore ?? "N/A";
+      const vector = metrics?.cvssData?.vectorString ?? "N/A";
+      const desc = escapeHTML(cve.descriptions?.[0]?.value || "No description.");
 
       output.innerHTML = `
-  <div class="cve-details">
-    <div class="cve-item"><strong>CVE ID:</strong> ${cve.id}</div>
-    <div class="cve-item"><strong>Published:</strong> ${cve.published}</div>
-    <div class="cve-item"><strong>Last Modified:</strong> ${cve.lastModified}</div>
-    <div class="cve-item"><strong>Description:</strong> ${cve.descriptions[0].value}</div>
-    <div class="cve-item"><strong>Severity:</strong> ${severity}</div>
-    <div class="cve-item"><strong>CVSS Score:</strong> ${metrics ? metrics.cvssData.baseScore : "N/A"}</div>
-    <div class="cve-item"><strong>Vector:</strong> ${metrics ? metrics.cvssData.vectorString : "N/A"}</div>
-    <div class="cve-item"><strong>Source:</strong> 
-      <a href="https://nvd.nist.gov/vuln/detail/${cve.id}" target="_blank">NVD</a> | 
-      <a href="https://www.exploit-db.com/search?cve=${cve.id}" target="_blank">Exploit DB</a>
-    </div>
-  </div>
-`;
-
+        <div class="cve-details">
+          <table class="cve-details-table">
+            <tbody>
+              <tr>
+                <th scope="row">CVE ID</th>
+                <td>
+                  <div class="cve-id-row">
+                    <span class="cve-id">${cve.id}</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${cve.id}')">Copy</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Published</th>
+                <td>${cve.published || "N/A"}</td>
+              </tr>
+              <tr>
+                <th scope="row">Last Modified</th>
+                <td>${cve.lastModified || "N/A"}</td>
+              </tr>
+              <tr>
+                <th scope="row">Description</th>
+                <td>${desc}</td>
+              </tr>
+              <tr>
+                <th scope="row">Severity</th>
+                <td>${pill}</td>
+              </tr>
+              <tr>
+                <th scope="row">CVSS Score</th>
+                <td>${score}</td>
+              </tr>
+              <tr>
+                <th scope="row">Vector</th>
+                <td>${vector}</td>
+              </tr>
+              <tr>
+                <th scope="row">Source</th>
+                <td>
+                  <a href="https://nvd.nist.gov/vuln/detail/${cve.id}" target="_blank" rel="noopener">NVD</a>
+                  &nbsp;|&nbsp;
+                  <a href="https://www.exploit-db.com/search?cve=${cve.id}" target="_blank" rel="noopener">Exploit DB</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Results list
     function renderList(results, output, page, total) {
       let html = `
-        <table>
-          <tr><th>CVE ID</th><th>Description</th><th>Severity</th><th>Score</th></tr>
+        <table aria-label="CVE results">
+          <thead>
+            <tr><th>CVE ID</th><th>Description</th><th>Severity</th><th>Score</th></tr>
+          </thead>
+          <tbody>
       `;
 
       results.forEach(v => {
         const cve = v.cve;
-        const metrics = cve.metrics?.cvssMetricV31?.[0] || cve.metrics?.cvssMetricV30?.[0] || cve.metrics?.cvssMetricV2?.[0];
-        const severity = metrics ? `<span class="severity ${metrics.cvssData.baseSeverity}">${metrics.cvssData.baseSeverity}</span>` : "N/A";
-        const score = metrics ? metrics.cvssData.baseScore : "N/A";
+        const metrics = cve.metrics?.cvssMetricV31?.[0]
+          || cve.metrics?.cvssMetricV30?.[0]
+          || cve.metrics?.cvssMetricV2?.[0];
+
+        const sevText = metrics?.cvssData?.baseSeverity || "N/A";
+        const severity = metrics
+          ? `<span class="severity ${sevText}">${sevText}</span>`
+          : "N/A";
+        const score = metrics?.cvssData?.baseScore ?? "N/A";
+        const snippet = escapeHTML((cve.descriptions?.[0]?.value || "No description.").substring(0, 80));
+
+        // Pass the CVE object via inline onclick (already escaped)
+        const cveJson = JSON.stringify(cve).replace(/"/g, '&quot;');
 
         html += `
           <tr>
-            <td><a href="#" onclick="renderDetails(${JSON.stringify(cve).replace(/"/g, '&quot;')}, document.getElementById('output'))">${cve.id}</a></td>
-            <td>${cve.descriptions[0].value.substring(0, 80)}...</td>
+            <td><a href="#" onclick="renderDetails(${cveJson}, document.getElementById('output'))">${cve.id}</a></td>
+            <td>${snippet}...</td>
             <td>${severity}</td>
             <td>${score}</td>
           </tr>
         `;
       });
 
-      html += "</table>";
+      html += `</tbody></table>`;
 
       // Pagination
-      const totalPages = Math.ceil(total / 10);
+      const totalPages = Math.ceil((total || 0) / 10);
       if (totalPages > 1) {
         html += `<div class="pager">`;
-        if (page > 0) html += `<button onclick="lookupCVE(${page - 1})">⬅ Prev</button>`;
+        if (page > 0) html += `<button type="button" onclick="lookupCVE(${page - 1})" aria-label="Previous page">⬅ Prev</button>`;
         html += `<span> Page ${page + 1} of ${totalPages} </span>`;
-        if (page < totalPages - 1) html += `<button onclick="lookupCVE(${page + 1})">Next ➡</button>`;
+        if (page < totalPages - 1) html += `<button type="button" onclick="lookupCVE(${page + 1})" aria-label="Next page">Next ➡</button>`;
         html += `</div>`;
       }
 
