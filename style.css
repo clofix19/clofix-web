@@ -56,7 +56,7 @@ p {
 
 @media (max-width: 768px) {
   .container {
-   padding: 0;
+   padding: 0 1rem;
  }
 }
 
@@ -3164,4 +3164,203 @@ svg #sun {
 
 .partner-main {
   margin-bottom: 1rem;
+}
+
+/* === NAV: DROPDOWN === */
+.c-dropdown {
+  position: relative;
+}
+.c-dropdown__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #e2e8f0;
+  font: inherit;
+}
+.c-dropdown__chev {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+.c-dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 0.4rem;
+  list-style: none;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  display: none;
+  z-index: 999;
+}
+.c-dropdown.open .c-dropdown__menu {
+  display: block;
+}
+.c-dropdown__menu a {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: #e2e8f0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.c-dropdown__menu a:hover {
+  background: rgba(255,255,255,0.04);
+  color: #38bdf8;
+}
+
+/* Hover open on desktop */
+@media (min-width: 769px) {
+  .c-dropdown:hover .c-dropdown__menu {
+    display: block;
+  }
+}
+
+/* Mobile: make dropdown menu full-width under item */
+@media (max-width: 768px) {
+  .c-dropdown__menu a {
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .c-dropdown__menu {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+}
+
+:root { --header-h: 64px; } /* tweak if your header is taller */
+
+/* Mobile nav layout */
+@media (max-width: 768px) {
+  .header { position: sticky; top: 0; z-index: 1000; }
+
+  .c-nav { position: relative; z-index: 1001; }
+  .c-nav__toggle { display: flex; position: relative; z-index: 1002; }
+
+  /* Full-screen slide-out panel */
+  .c-nav__content {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0f172a;
+    display: none;
+    padding: 1rem 1.5rem;
+    overflow-y: auto;
+    border-top: 1px solid #1e293b;
+  }
+  .c-nav__content.active { display: block; }
+
+  /* Prevent background scroll when menu open */
+  body.nav-open { overflow: hidden; }
+
+  /* Menu list look/feel */
+  .c-list--flex {
+    flex-direction: column;
+    gap: 0;
+  }
+  .c-list__item > a {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Tools dropdown = accordion */
+  .c-dropdown { width: 100%; }
+  .c-dropdown__toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: 0;
+    padding: 0.9rem 0;
+    color: #e2e8f0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+  }
+  .c-dropdown__chev { transition: transform .25s ease; }
+  .c-dropdown.open .c-dropdown__chev { transform: rotate(180deg); }
+
+  .c-dropdown__menu {
+    position: static;
+    display: none;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+  .c-dropdown.open .c-dropdown__menu { display: block; }
+
+  .c-dropdown__menu a {
+    display: block;
+    padding: 0.85rem 0 0.85rem 0.75rem; /* slight indent */
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+}
+
+@media (max-width: 768px) {
+  .c-dropdown__menu {
+    display: none !important;
+    position: static;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  .c-dropdown.open .c-dropdown__menu {
+    display: block !important;
+  }
+
+  .c-dropdown__toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .c-dropdown__chev { transition: transform .25s ease; }
+  .c-dropdown.open .c-dropdown__chev { transform: rotate(180deg); }
+
+  .c-dropdown__menu a {
+    display: block;
+    padding: 0.85rem 0 0.85rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ensure each list item stacks (prevents same-row issue) */
+  .c-list__item { display: block; gap: 0 !important; }
+
+  /* spacing before Create Ticket */
+  .c-nav__content .ticket-button { display: block; width: 100%; margin-top: 0.75rem; }
+}
+
+@media (max-width: 768px) {
+  .header { 
+    padding: .5rem 0;            /* shorter header on phones */
+  }
+
+  .c-logo .c-logo__img{
+    height: 2.25rem;             /* was 3rem; shrink to avoid cropping */
+    width: auto;
+    display: block;               /* avoids baseline clipping */
+    object-fit: contain;
+  }
+
+  .header__wrapper{
+    gap: .75rem;                  /* tighter spacing = less wrap risk */
+  }
 }

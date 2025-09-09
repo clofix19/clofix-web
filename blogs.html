@@ -58,10 +58,8 @@
           <a href="index.html">
             <img src="img/logo.png" alt="Logo" class="c-logo__img" />
           </a>
-
           <span class="c-logo__text c-logo__text--white"></span>
         </div>
-        </a>
         <nav class="c-nav">
           <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
@@ -75,7 +73,7 @@
                 <a href="pricing.html" class="c-link c-link--list">Pricing</a>
               </li>
               <li class="c-list__item">
-                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
+                <a href="#section-services" class="c-link c-link--list">Services</a>
               </li>
               <li class="c-list__item">
                 <a href="about.html" class="c-link c-link--list">About</a>
@@ -88,6 +86,18 @@
               </li>
               <li class="c-list__item">
                 <a href="contact.html" class="c-link c-link--list">Contact</a>
+              </li>
+              <!-- Tools dropdown -->
+              <li class="c-list__item c-dropdown">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Tools
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <ul class="c-dropdown__menu" role="menu">
+                  <li role="none">
+                    <a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a>
+                  </li>
+                </ul>
               </li>
             </ul>
             <a href="ticket.html" class="ticket-button">
@@ -243,6 +253,36 @@
           </div>
         </div>
 
+        <div class="blog-card special-card">
+          <h1 class="blog-card__title">What is CloFix? AI-Powered WAF Protection for Websites</h1>
+          <div class="blog-card__content">
+            <p class="blog-card__excerpt">
+              In the digital era, websites and APIs are constantly exposed to cyber threats ranging from SQL injection
+              (SQLi) and cross-site scripting (XSS) to automated bot attacks and API abuse. Protecting your web
+              applications has never been more critical
+            </p>
+            <a href="What is CloFix_ AI-Powered WAF Protection for Websites.html"
+              class="c-button c-button--small c-button--secondary">
+              Learn More
+            </a>
+          </div>
+        </div>
+
+        <div class="blog-card special-card">
+          <h1 class="blog-card__title">Understanding Bot Protection and WAF Security with CloFix</h1>
+          <div class="blog-card__content">
+            <p class="blog-card__excerpt">
+              Malicious bots are one of the fastest-growing threats to modern websites and APIs. From scraping sensitive
+              data to credential stuffing and DDoS attacks, bots can disrupt operations, steal valuable information, and
+              compromise user trust
+            </p>
+            <a href="Understanding Bot Protection and WAF Security with CloFix.html"
+              class="c-button c-button--small c-button--secondary">
+              Learn More
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -329,8 +369,95 @@
   const navToggle = document.getElementById('navToggle');
   const navContent = document.querySelector('.c-nav__content');
 
-  navToggle.addEventListener('click', () => {
-    navContent.classList.toggle('active');
+  // Helpers
+  const dropdowns = document.querySelectorAll('.c-dropdown');
+  function closeAllDropdowns() {
+    dropdowns.forEach(dd => {
+      dd.classList.remove('open');
+      const btn = dd.querySelector('.c-dropdown__toggle');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Mobile nav toggle + body lock + aria-expanded
+  if (navToggle && navContent) {
+    navToggle.setAttribute('aria-expanded', 'false');
+
+    navToggle.addEventListener('click', () => {
+      const open = navContent.classList.toggle('active');
+      document.body.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) closeAllDropdowns();
+    });
+
+    // Close menu when any nav link clicked
+    navContent.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      });
+    });
+
+    // Close menu with ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navContent.classList.contains('active')) {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      }
+    });
+
+    // If resized to desktop, ensure body scroll is restored and panel closed
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        document.body.classList.remove('nav-open');
+        navContent.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      }
+    });
+  }
+
+  // Dropdown toggle (accordion on mobile, click on desktop)
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.c-dropdown__toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const willOpen = !dd.classList.contains('open');
+
+      // Close all
+      closeAllDropdowns();
+
+      // Open current if it was closed
+      if (willOpen) {
+        dd.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+  document.addEventListener('click', (e) => {
+    const panelOpen = navContent && navContent.classList.contains('active');
+    if (panelOpen) return; // mobile panel manages its own closing
+    if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+  });
+
+  // Also close dropdowns explicitly when a dropdown link is clicked
+  document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      closeAllDropdowns();
+      if (navContent) navContent.classList.remove('active');
+      document.body.classList.remove('nav-open');
+      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    });
   });
 
   window.dataLayer = window.dataLayer || [];
@@ -366,6 +493,19 @@
         }
       });
     });
+  })();
+
+  (function () {
+    const headerEl = document.querySelector('.header');
+    function syncHeaderHeight() {
+      if (!headerEl) return;
+      document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+    }
+    window.addEventListener('load', syncHeaderHeight);
+    window.addEventListener('resize', syncHeaderHeight);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncHeaderHeight);
+    }
   })();
 </script>
 

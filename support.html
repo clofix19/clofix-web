@@ -278,6 +278,19 @@
     gtag('js', new Date());
 
     gtag('config', 'G-WP02RFXGSE');
+
+    (function () {
+        const headerEl = document.querySelector('.header');
+        function syncHeaderHeight() {
+            if (!headerEl) return;
+            document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+        }
+        window.addEventListener('load', syncHeaderHeight);
+        window.addEventListener('resize', syncHeaderHeight);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(syncHeaderHeight);
+        }
+    })();
 </script>
 
 </html>

@@ -3,44 +3,103 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Standard SEO Meta -->
+  <meta name="description"
+    content="CloFix delivers WAF, AI-driven automation, DevOps support, and on-demand engineering to secure, optimize, and scale workloads across multi-cloud and hybrid.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About CloFix | Cloud Security & DevOps Solutions">
+  <meta property="og:description"
+    content="CloFix delivers enterprise-grade WAF, AI-driven automation, DevOps support, and on-demand engineering to empower businesses with secure, scalable operations.">
+  <meta property="og:url" content="https://clofix.com/about">
+  <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+
+  <!-- LinkedIn -->
+  <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About CloFix | Cloud Security & DevOps Solutions">
+  <meta name="twitter:description"
+    content="Enterprise-grade WAF, AI-driven automation, and DevOps expertise to secure, optimize, and scale across multi-cloud and hybrid environments.">
+  <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+  <meta name="twitter:site" content="@clofix19">
+
+  <!-- WhatsApp -->
+  <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <title>CVE Search Tool</title>
 
-  <!-- Your stylesheets (order matters: global first, then page-specific) -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="cve.css" />
 </head>
 
 <body>
-  <!-- Header / Nav -->
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
         <div class="c-logo">
-          <a href="index.html" aria-label="CloFix Home">
-            <img src="img/logo.png" alt="CloFix Logo" class="c-logo__img" />
+          <a href="index.html">
+            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
           </a>
           <span class="c-logo__text c-logo__text--white"></span>
         </div>
-
-        <nav class="c-nav" aria-label="Primary navigation">
+        <nav class="c-nav">
           <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
           </button>
 
-          <div class="c-nav__content" id="navContent">
+          <div class="c-nav__content">
             <ul class="c-list c-list--flex">
-              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
-              <li class="c-list__item"><a href="index.html#section-services" class="c-link c-link--list">Services</a>
+              <li class="c-list__item">
+                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
               </li>
-              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
-              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
-              <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
-              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+              <li class="c-list__item">
+                <a href="#section-services" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item">
+                <a href="about.html" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="features.html" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item">
+                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+              </li>
+              <li class="c-list__item">
+                <a href="contact.html" class="c-link c-link--list">Contact</a>
+              </li>
+              <!-- Tools dropdown -->
+              <li class="c-list__item c-dropdown">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Tools
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <ul class="c-dropdown__menu" role="menu">
+                  <li role="none">
+                    <a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
             <a href="ticket.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">Create Ticket</button>
+              <button class="c-button c-button--small c-button--secondary">
+                Create Ticket
+              </button>
             </a>
           </div>
         </nav>
@@ -146,9 +205,100 @@
 
   <!-- Scripts -->
   <script>
-    // -----------------------------
-    // Small UX helpers
-    // -----------------------------
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+
+    // Helpers
+    const dropdowns = document.querySelectorAll('.c-dropdown');
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Mobile nav toggle + body lock + aria-expanded
+    if (navToggle && navContent) {
+      navToggle.setAttribute('aria-expanded', 'false');
+
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
+      });
+
+      // Close menu when any nav link clicked
+      navContent.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        });
+      });
+
+      // Close menu with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+
+      // If resized to desktop, ensure body scroll is restored and panel closed
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
+          navContent.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+    }
+
+    // Dropdown toggle (accordion on mobile, click on desktop)
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const willOpen = !dd.classList.contains('open');
+
+        // Close all
+        closeAllDropdowns();
+
+        // Open current if it was closed
+        if (willOpen) {
+          dd.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+    document.addEventListener('click', (e) => {
+      const panelOpen = navContent && navContent.classList.contains('active');
+      if (panelOpen) return; // mobile panel manages its own closing
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
+
+    // Also close dropdowns explicitly when a dropdown link is clicked
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeAllDropdowns();
+        if (navContent) navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
     (function initNav() {
       const toggle = document.getElementById("navToggle");
       const content = document.getElementById("navContent");
@@ -171,23 +321,14 @@
       }
     })();
 
-    // -----------------------------
-    // App state
-    // -----------------------------
     let currentPage = 0;
     let currentResults = [];
 
-    // -----------------------------
-    // HTML escape helper
-    // -----------------------------
     const escapeHTML = (s = "") =>
       s.replace(/[&<>"'`=\/]/g, c => ({
         "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;", "/": "&#x2F;", "`": "&#x60;", "=": "&#x3D;"
       }[c]));
 
-    // -----------------------------
-    // Fetch & render
-    // -----------------------------
     function lookupCVE(page = 0) {
       const query = document.getElementById("cveInput").value.trim();
       const output = document.getElementById("output");
@@ -203,7 +344,6 @@
         return;
       }
 
-      // show progress
       progress.style.display = "block";
       progress.setAttribute("aria-hidden", "false");
       progressBar.style.width = "0%";
@@ -218,7 +358,6 @@
         }
       }, 300);
 
-      // detect CVE id pattern
       const isId = /^CVE-\d{4}-\d+$/i.test(query);
       const apiUrl = isId
         ? `https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${encodeURIComponent(query)}`
@@ -252,7 +391,6 @@
         });
     }
 
-    // Two-column details table
     function renderDetails(cve, output) {
       const metrics = cve.metrics?.cvssMetricV31?.[0]
         || cve.metrics?.cvssMetricV30?.[0]
@@ -319,7 +457,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Results list
     function renderList(results, output, page, total) {
       let html = `
         <table aria-label="CVE results">
@@ -357,7 +494,6 @@
 
       html += `</tbody></table>`;
 
-      // Pagination
       const totalPages = Math.ceil((total || 0) / 10);
       if (totalPages > 1) {
         html += `<div class="pager">`;
@@ -369,6 +505,19 @@
 
       output.innerHTML = html;
     }
+
+    (function () {
+      const headerEl = document.querySelector('.header');
+      function syncHeaderHeight() {
+        if (!headerEl) return;
+        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+      }
+      window.addEventListener('load', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeaderHeight);
+      }
+    })();
   </script>
 </body>
 
