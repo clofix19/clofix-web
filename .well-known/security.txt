@@ -1,0 +1,6 @@
+# CloFix Security Policy
+Contact: mailto:support@clofix.com
+Encryption: https://clofix.com/.well-known/pgp-key.txt
+Preferred-Languages: en
+Canonical: https://clofix.com/.well-known/security.txt
+Expires: 2026-08-22T23:59:59Z
