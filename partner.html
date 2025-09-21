@@ -3,36 +3,30 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Standard SEO Meta -->
-  <!-- <meta name="description" content="Partner with CloFix to grow your brand and revenue. Become a Solution Partner to resell CloFix WAF, DevOps, and Cloud Automation services with full technical support."> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- SEO -->
+  <title>Partner with CloFix</title>
   <meta name="description"
-    content="Partner with CloFix to grow revenue. Become a Solution Partner to resell CloFix WAF, DevOps, and Cloud Automation with full technical support and co-marketing.">
+    content="Partner with CloFix to grow revenue. Become a Solution or Sales Partner to resell CloFix WAF, DevOps, and Cloud Automation with full technical support and co-marketing.">
 
-
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Partner with CloFix | Solution & Technology Partnerships">
   <meta property="og:description"
-    content="Join CloFix as a Solution Partner. Resell WAF, DevOps, and Cloud Automation services, grow your brand, and earn rewards with full technical support.">
+    content="Join CloFix as a Solution or Sales Partner. Resell WAF, DevOps, and Cloud Automation services with expert delivery, support, and shared growth." />
   <meta property="og:url" content="https://clofix.com/partner">
   <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
-
-  <!-- LinkedIn -->
-  <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Partner with CloFix | Solution & Technology Partnerships">
   <meta name="twitter:description"
-    content="Become a CloFix Solution Partner to resell WAF, DevOps, and Cloud Automation services. Grow your brand with expert support and rewards.">
+    content="Become a CloFix Partner and earn with WAF, DevOps & Cloud services. Co-marketing + full technical support." />
   <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
   <meta name="twitter:site" content="@clofix19">
 
-  <!-- WhatsApp -->
-  <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
-
-  <!-- <link rel="icon" type="image/png" href="img/clofix.png" /> -->
+  <!-- Icons / Manifest -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -40,76 +34,108 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
     rel="stylesheet" />
-  <link href="./style.css" rel="stylesheet" />
 
-  <title>Be CloFix's Partner</title>
+  <!-- Your existing stylesheet (keep it) -->
+  <link href="./style.css" rel="stylesheet" />
 </head>
 
 <body>
+  <!-- ===== Header / Nav (unchanged) ===== -->
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <!-- <a class="c-link" href="#"> -->
         <div class="c-logo">
-          <a href="index.html">
-            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+          <a href="index.html" aria-label="CloFix Home">
+            <img src="img/logo.png" alt="CloFix Logo" class="c-logo__img" />
           </a>
-
           <span class="c-logo__text c-logo__text--white"></span>
         </div>
-        </a>
-        <nav class="c-nav">
-          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+
+        <nav class="c-nav" aria-label="Primary">
+          <button class="c-nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu"
+            aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
           </button>
 
-          <div class="c-nav__content">
+          <div class="c-nav__content" id="navMenu">
             <ul class="c-list c-list--flex">
-              <li class="c-list__item">
-                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="index.html#section-services" class="c-link c-link--list">Services</a>
               </li>
-              <li class="c-list__item">
-                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
-              </li>
-              <li class="c-list__item">
-                <a href="about.html" class="c-link c-link--list">About</a>
-              </li>
-              <li class="c-list__item">
-                <a href="features.html" class="c-link c-link--list">Features</a>
-              </li>
-              <li class="c-list__item">
-                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
-              </li>
-              <li class="c-list__item">
-                <a href="contact.html" class="c-link c-link--list">Contact</a>
-              </li>
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
             </ul>
-            <a href="ticket.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">
-                Create Ticket
-              </button>
+            <a href="faq.html" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">FAQ</button>
             </a>
-
-            <!--  <button class="c-button c-button--small c-button--secondary">
-                Create Ticket
-              </button> -->
           </div>
         </nav>
       </div>
     </div>
   </header>
 
-  <main class="partner-main container">
-    <h1 class="partner-heading">Partner with CloFix</h1>
-    <p class="partner-subheading">Choose your path to success with CloFix - become a partner, grow your brand, and earn
-      rewards by securing the digital world together.</p>
+  <!-- ===== NEXT-GEN PARALLAX HERO ===== -->
+  <section class="nx-hero" aria-label="Partner with CloFix">
+    <div class="nx-stage" data-nx-stage>
+      <!-- depth layers -->
+      <div class="nx-layer nx-back" data-depth="0.06"></div>
+      <canvas class="nx-stars" data-nx-stars aria-hidden="true"></canvas>
+      <div class="nx-layer nx-nebula" data-depth="0.12"></div>
+      <div class="nx-layer nx-grid" data-depth="0.18"></div>
+
+      <svg class="nx-layer nx-shards" data-depth="0.28" viewBox="0 0 800 400" preserveAspectRatio="none"
+        aria-hidden="true">
+        <polygon class="shard" points="60,120 120,80 140,150" />
+        <polygon class="shard" points="300,60 360,40 340,110" />
+        <polygon class="shard" points="520,220 590,190 560,260" />
+        <polygon class="shard" points="680,120 740,90 710,150" />
+      </svg>
+
+      <svg class="nx-layer nx-foreground" data-depth="0.45" viewBox="0 0 1440 320" preserveAspectRatio="none"
+        aria-hidden="true">
+        <path
+          d="M0,256L60,229.3C120,203,240,149,360,122.7C480,96,600,96,720,128C840,160,960,224,1080,229.3C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+        </path>
+      </svg>
+
+      <!-- content plane -->
+      <div class="nx-layer nx-content" data-depth="0.02">
+        <div class="nx-inner container">
+          <p class="nx-pill">CloFix Partnerships</p>
+          <h1 class="nx-title">Partner with <span class="nx-gradient">CloFix</span></h1>
+          <p class="nx-sub">Choose your path to success with CloFix - become a partner, grow your brand, and earn
+            rewards by securing the digital world together.</p>
+          <div class="nx-cta">
+            <a class="c-button c-button--primary" href="#partners">Explore Programs</a>
+            <a class="c-button c-button--secondary" href="contact.html">Talk to Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- spark particles -->
+      <ul class="nx-sparks" aria-hidden="true">
+        <li style="--x:8%; --y:22%; --d:7s"></li>
+        <li style="--x:82%; --y:18%; --d:6.2s"></li>
+        <li style="--x:14%; --y:74%; --d:7.8s"></li>
+        <li style="--x:56%; --y:42%; --d:8.4s"></li>
+        <li style="--x:72%; --y:66%; --d:6.6s"></li>
+        <li style="--x:34%; --y:84%; --d:9.1s"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== EXISTING PARTNER CONTENT (kept) ===== -->
+  <main class="partner-main container" id="partners">
 
     <div class="partner-grid">
-      <div class="partner-card">
+      <div class="partner-card reveal">
         <img src="img/solution_partner.png" alt="Solution Partner" class="partner-img" />
         <h2>Become a Solution Partner</h2>
         <p>
@@ -119,13 +145,12 @@
         </p>
         <div class="partner-buttons">
           <a href="https://drive.google.com/file/d/1EQHPOVURVzcZR9ODHlM79oK6OeFD_e6O/view?usp=drive_link"
-            target="_blank" class="c-button c-button--primary">English</a>
-          <a href="#" target="_blank" class="c-button c-button--secondary c-button-bangla">বাংলা</a>
+            target="_blank" rel="noopener" class="c-button c-button--primary">English</a>
+          <a href="#" class="c-button c-button--secondary c-button-bangla" aria-disabled="true">বাংলা</a>
         </div>
       </div>
 
-      <!-- Sales Partner Card -->
-      <div class="partner-card">
+      <div class="partner-card reveal">
         <img src="img/sales_partner.png" alt="Sales Partner" class="partner-img" />
         <h2>Become a Sales Partner</h2>
         <p>
@@ -136,51 +161,37 @@
         </p>
         <div class="partner-buttons">
           <a href="https://drive.google.com/file/d/1uJkedu-VUbT6aV2NeDXJn8SAzJbSadYg/view?usp=drive_link"
-            target="_blank" class="c-button c-button--primary">English</a>
+            target="_blank" rel="noopener" class="c-button c-button--primary">English</a>
           <a href="https://drive.google.com/file/d/1XEiuAQDD0zEIHLvsJ6KJgTaCXt3KY_nw/view?usp=drive_link"
-            target="_blank" class="c-button c-button--secondary">বাংলা</a>
+            target="_blank" rel="noopener" class="c-button c-button--secondary">বাংলা</a>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- ===== Footer (kept) ===== -->
   <footer class="footer">
-
     <div class="stars"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
 
     <div class="container c-footer">
       <div class="c-footer__column c-footer__logo-column">
-        <a href="#" class="c-footer__brand">
+        <a href="index.html" class="c-footer__brand">
           <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
         </a>
-        <p class="c-footer__text">
-          <strong>Secure. Automate. Scale</strong>
-        </p>
-        <ul class="social">
-          <li class="social-li">
-            <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
-              <img src="img/facebook_clofix.png" alt="Facebook" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://x.com/clofix19" target="_blank">
-              <img src="img/X_clofix.png" alt="X" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
-              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://wa.me/8801850603126" target="_blank">
-              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
-            </a>
-          </li>
-        </ul>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale.</strong></p>
 
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img
+                src="img/X_clofix.png" alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix/" target="_blank" rel="noopener"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img
+                src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+        </ul>
       </div>
 
       <div class="c-footer__column">
@@ -212,37 +223,153 @@
     </div>
 
     <div class="container">
-      <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+      <p class="footer__text">© 2025 CloFix – All Rights Reserved</p>
     </div>
   </footer>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date()); gtag('config', 'G-WP02RFXGSE');
+  </script>
+
+  <script>
+    (function () {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      if (!navToggle || !navMenu) return;
+      navToggle.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+      });
+    })();
+
+    (function () {
+      const headerEl = document.querySelector('.header');
+      function syncHeaderHeight() {
+        if (!headerEl) return;
+        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+      }
+      window.addEventListener('load', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeaderHeight);
+      syncHeaderHeight();
+    })();
+
+    (function () {
+      const stage = document.querySelector('[data-nx-stage]');
+      if (!stage) return;
+
+      const layers = Array.from(stage.querySelectorAll('[data-depth]'));
+      const starsCanvas = stage.querySelector('[data-nx-stars]');
+      const ctx = starsCanvas?.getContext('2d');
+
+      function fitCanvas() {
+        if (!starsCanvas) return;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = stage.getBoundingClientRect();
+        starsCanvas.width = Math.floor(rect.width * dpr);
+        starsCanvas.height = Math.floor(rect.height * dpr);
+        starsCanvas.style.width = rect.width + 'px';
+        starsCanvas.style.height = rect.height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        drawStars();
+      }
+
+      let starCache = [];
+      function drawStars() {
+        if (!ctx) return;
+        const w = starsCanvas.clientWidth;
+        const h = starsCanvas.clientHeight;
+        const count = Math.floor((w * h) / 8000);
+        if (!starCache.length) {
+          for (let i = 0; i < count; i++) {
+            starCache.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              r: Math.random() * 1.6 + 0.2,
+              a: 0.6 + Math.random() * 0.4
+            });
+          }
+        }
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = 'rgba(203, 213, 225, 0.9)';
+        starCache.forEach(s => {
+          ctx.globalAlpha = s.a;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      let scrollY = window.scrollY || 0;
+      let targetTiltX = 0, targetTiltY = 0;
+      let tiltX = 0, tiltY = 0;
+      const stiffness = 0.12;
+      const damping = 0.85;
+
+      function onMouseMove(e) {
+        const rect = stage.getBoundingClientRect();
+        const nx = (e.clientX - rect.left) / rect.width - 0.5;
+        const ny = (e.clientY - rect.top) / rect.height - 0.5;
+        targetTiltX = nx * 10;
+        targetTiltY = ny * 8;
+      }
+      function onLeave() { targetTiltX = 0; targetTiltY = 0; }
+
+      window.addEventListener('scroll', () => { scrollY = window.scrollY || 0; }, { passive: true });
+      stage.addEventListener('mousemove', onMouseMove, { passive: true });
+      stage.addEventListener('mouseleave', onLeave, { passive: true });
+      stage.addEventListener('touchstart', onLeave, { passive: true });
+
+      function render() {
+        const vx = (targetTiltX - tiltX) * stiffness;
+        const vy = (targetTiltY - tiltY) * stiffness;
+        tiltX += vx; tiltY += vy;
+        tiltX *= damping; tiltY *= damping;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        layers.forEach(el => {
+          const depth = parseFloat(el.getAttribute('data-depth')) || 0.2;
+          const y = scrollY * depth * 0.5;
+          const mx = tiltX * depth * (reduce ? 0 : 1);
+          const my = tiltY * depth * (reduce ? 0 : 1);
+          const scale = 1 + depth * 0.06;
+          el.style.transform = `translate3d(${mx}px, ${y + my}px, 0) scale(${scale})`;
+        });
+
+        requestAnimationFrame(render);
+      }
+
+      const ro = new ResizeObserver(fitCanvas);
+      ro.observe(stage);
+      window.addEventListener('orientationchange', fitCanvas);
+      fitCanvas();
+      render();
+    })();
+
+    (function () {
+      const items = document.querySelectorAll('.reveal');
+      if (!items.length) return;
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(el => el.classList.add('show'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('show');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const navContent = document.querySelector('.c-nav__content');
-
-  navToggle.addEventListener('click', () => {
-    navContent.classList.toggle('active');
-  });
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'G-WP02RFXGSE');
-
-  (function () {
-    const headerEl = document.querySelector('.header');
-    function syncHeaderHeight() {
-      if (!headerEl) return;
-      document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
-    }
-    window.addEventListener('load', syncHeaderHeight);
-    window.addEventListener('resize', syncHeaderHeight);
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(syncHeaderHeight);
-    }
-  })();
-</script>
 
 </html>

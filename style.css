@@ -1167,12 +1167,14 @@ body {
   display: block;
   width: 100%;
   border: 2px solid #f59e0b;
+  text-decoration: none;
 }
 
 .c-button--primary {
   background-color: #f59e0b;
   color: #fff;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 .c-button--primary:hover {
@@ -3364,3 +3366,147 @@ svg #sun {
     gap: .75rem;                  /* tighter spacing = less wrap risk */
   }
 }
+
+/* ==============================
+   NEXT-GEN PARALLAX HERO (NX)
+   ============================== */
+:root { --header-h: 64px; }
+
+.nx-hero{
+  position:relative; overflow:clip; isolation:isolate;
+  background:#0f172a;
+  border-bottom:1px solid rgba(56,189,248,.12);
+  box-shadow:0 18px 60px rgba(0,0,0,.35);
+}
+.nx-stage{
+  position:relative; height:min(72vh, 760px); min-height:520px;
+  perspective: 900px;
+}
+
+/* Back gradient sky */
+.nx-back{
+  position:absolute; inset:-20% -10% -20% -10%;
+  background:
+    radial-gradient(1200px 600px at 50% 0%, #0a1225 0%, #0f172a 60%, #0a0f1f 100%);
+  filter: saturate(110%);
+  z-index:0;
+}
+
+/* Stars canvas */
+.nx-stars{
+  position:absolute; inset:0; z-index:1; opacity:.65;
+}
+
+/* Aurora/Nebula band */
+.nx-nebula{
+  position:absolute; inset:-30% -10% -40% -10%;
+  background:
+    radial-gradient(50% 22% at 50% 25%, rgba(59,130,246,.18), transparent 70%),
+    radial-gradient(48% 20% at 50% 38%, rgba(16,185,129,.14), transparent 70%),
+    radial-gradient(46% 18% at 50% 50%, rgba(14,165,233,.16), transparent 70%);
+  filter: blur(32px) saturate(115%);
+  z-index:2;
+  mix-blend-mode: screen;
+}
+
+/* Subtle grid shimmer */
+.nx-grid{
+  position:absolute; inset:0; z-index:3; opacity:.55;
+  background:
+    linear-gradient(transparent 24px, rgba(148,163,184,.08) 25px) 0 0 / 100% 26px,
+    linear-gradient(90deg, transparent 24px, rgba(148,163,184,.07) 25px) 0 0 / 26px 100%;
+  mask-image: radial-gradient(1200px 500px at 50% 24%, #000 0%, transparent 70%);
+}
+
+/* Floating shards */
+.nx-shards{
+  position:absolute; inset:0; z-index:4;
+}
+.nx-shards .shard{
+  fill: rgba(59,130,246,.18);
+  filter: drop-shadow(0 10px 24px rgba(56,189,248,.35));
+  transform-origin: center;
+  animation: nxShardFloat 7.5s ease-in-out infinite;
+}
+.nx-shards .shard:nth-child(2){ animation-duration: 6.5s; fill: rgba(99,102,241,.22); }
+.nx-shards .shard:nth-child(3){ animation-duration: 8.2s; fill: rgba(14,165,233,.24); }
+.nx-shards .shard:nth-child(4){ animation-duration: 7.1s; fill: rgba(56,189,248,.20); }
+
+@keyframes nxShardFloat {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%     { transform: translateY(-8px) rotate(3deg); }
+}
+
+/* Foreground decorative wave */
+.nx-foreground{
+  position:absolute; left:0; right:0; bottom:-1px; height:40%;
+  z-index:5; opacity:.85;
+}
+.nx-foreground path{
+  fill: #0f172a;
+  filter: drop-shadow(0 -6px 24px rgba(56,189,248,.15));
+}
+
+/* Content plane */
+.nx-content{
+  position:absolute; inset:0; z-index:6; display:grid; place-items:center; text-align:center;
+}
+.nx-inner{ padding: 1rem; }
+.nx-pill{
+  display:inline-block; padding:.38rem .8rem; border-radius:999px;
+  background:rgba(148,163,184,.12); border:1px solid rgba(148,163,184,.25);
+  color:#e2e8f0; font-size:.92rem; letter-spacing:.25px;
+}
+.nx-title{
+  font-family:'Hind', sans-serif;
+  font-size: clamp(2.1rem, 4.6vw + .5rem, 3.6rem);
+  line-height:1.12; margin:1rem auto .6rem; color:#e2e8f0;
+}
+.nx-gradient{
+  background:linear-gradient(90deg, #38bdf8, #34d399);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  text-shadow:0 0 18px rgba(34,211,238,.28);
+}
+.nx-sub{ color:#94a3b8; max-width:780px; margin:0 auto 1.45rem; font-size:1.06rem; }
+.nx-cta{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
+
+/* Spark dots */
+.nx-sparks{
+  position:absolute; inset:0; margin:0; padding:0; list-style:none; z-index:7; pointer-events:none;
+}
+.nx-sparks li{
+  position:absolute; width:8px; height:8px; border-radius:50%;
+  left: var(--x); top: var(--y);
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.9), rgba(99,102,241,.65) 60%, rgba(14,165,233,.4));
+  box-shadow: 0 0 18px rgba(56,189,248,.5);
+  animation: nxSparkFloat var(--d, 7s) ease-in-out infinite;
+  filter: blur(0.5px);
+}
+@keyframes nxSparkFloat{
+  0%,100% { transform: translateY(0); opacity:.95; }
+  50%     { transform: translateY(-10px); opacity:1; }
+}
+
+/* Reveal cards (reuse) */
+.reveal{ opacity:0; transform: translateY(18px); }
+.reveal.show{ opacity:1; transform:none; transition: all .6s ease; }
+
+/* Mobile polish + reduced motion */
+@media (max-width: 768px){
+  .nx-stage{ height:min(64vh, 640px); min-height:460px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .nx-shards .shard, .nx-sparks li{ animation:none !important; }
+}
+
+/* Ensure logo never crops on tiny screens */
+.c-logo .c-logo__img{
+  height: 2.4rem;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Body lock when mobile menu open (works with your existing JS) */
+body.nav-open{ overflow:hidden; }
+

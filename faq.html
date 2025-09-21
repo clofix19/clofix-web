@@ -151,9 +151,9 @@
                 </ul>
               </li>
             </ul>
-            <a href="ticket.html" class="ticket-button">
+            <a href="faq.html" class="ticket-button">
               <button class="c-button c-button--small c-button--secondary">
-                Create Ticket
+                FAQ
               </button>
             </a>
           </div>
@@ -165,1550 +165,1678 @@
   <main>
     <!-- ================= FAQ SECTION ================= -->
     <section id="faq" class="faq-section">
-  <div class="container">
-    <h2 class="faq-title">Frequently Asked Questions</h2>
-    
-    <div class="search-container">
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search frequently asked questions...">
-        <span class="search-icon">🔍</span>
-      </div>
-    </div>
-
-    <div class="category-filters">
-      <button class="category-btn active" data-category="all">All (100)</button>
-      <button class="category-btn" data-category="basics">Basics</button>
-      <button class="category-btn" data-category="security">Security</button>
-      <button class="category-btn" data-category="features">Features</button>
-      <button class="category-btn" data-category="integration">Integration</button>
-      <button class="category-btn" data-category="pricing">Pricing</button>
-      <button class="category-btn" data-category="performance">Performance</button>
-      <button class="category-btn" data-category="support">Support</button>
-      <button class="category-btn" data-category="compliance">Compliance</button>
-    </div>
-
-    <div class="faq-list" id="faqList">
-      <!-- Basics (1-15) -->
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">1</span>
-          <span class="faq-q-icon">❓</span>
-          What is CloFix WAF?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF is a fully managed Web Application Firewall that protects modern web applications, APIs, and digital services against advanced threats, bot attacks, and OWASP Top 10 vulnerabilities. It provides comprehensive protection including CDN services and WordPress-specific security features, all with minimal latency and maximum scalability.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">2</span>
-          <span class="faq-q-icon">❓</span>
-          How does a Web Application Firewall work?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            A WAF sits between your web application and the internet, filtering HTTP/HTTPS traffic based on predefined security rules. It analyzes requests in real-time and blocks malicious traffic before it reaches your application server.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">3</span>
-          <span class="faq-q-icon">❓</span>
-          What makes CloFix WAF different from other solutions?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF combines AI-driven detection, behavioral analysis, advanced bot protection, and WordPress-specific security features in a fully managed platform with minimal setup requirements and enterprise-grade scalability.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">4</span>
-          <span class="faq-q-icon">❓</span>
-          Do I need technical expertise to use CloFix WAF?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            No, CloFix WAF is designed as a fully managed solution with intelligent defaults. Basic configuration can be done through an intuitive dashboard without deep technical knowledge.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">5</span>
-          <span class="faq-q-icon">❓</span>
-          What types of websites can benefit from CloFix WAF?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Any website handling sensitive data, e-commerce sites, SaaS applications, APIs, WordPress sites, financial services, healthcare platforms, and web applications of any size can benefit from WAF protection.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">6</span>
-          <span class="faq-q-icon">❓</span>
-          Is CloFix WAF cloud-based or on-premises?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF is a cloud-based solution that provides global protection through distributed infrastructure, eliminating the need for on-premises hardware while offering hybrid deployment options.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">7</span>
-          <span class="faq-q-icon">❓</span>
-          How quickly can I deploy CloFix WAF?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF can be deployed in minutes using DNS changes or reverse proxy configuration, with protection active immediately after setup and comprehensive onboarding support.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">8</span>
-          <span class="faq-q-icon">❓</span>
-          What is the difference between WAF and antivirus software?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            WAF protects web applications at the network level by filtering HTTP traffic, while antivirus protects individual devices from malware. WAF focuses on web-specific attacks like SQL injection and XSS.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">9</span>
-          <span class="faq-q-icon">❓</span>
-          Can CloFix WAF protect multiple domains?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports multi-domain protection under a single account, allowing you to secure multiple websites and applications with unified management and centralized policies.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">10</span>
-          <span class="faq-q-icon">❓</span>
-          What happens if CloFix WAF goes down?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF operates on redundant global infrastructure with automatic failover capabilities to ensure continuous protection and minimal downtime with 99.9% uptime SLA.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">11</span>
-          <span class="faq-q-icon">❓</span>
-          Do I need to modify my application code?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            No code modifications are required. CloFix WAF works transparently by routing traffic through our protection layer without changing your application architecture or code.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">12</span>
-          <span class="faq-q-icon">❓</span>
-          What is the learning curve for CloFix WAF?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            The platform is designed for ease of use with intuitive dashboards and smart defaults. Most users can configure basic protection within 30 minutes with guided setup wizards.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">13</span>
-          <span class="faq-q-icon">❓</span>
-          Can I test CloFix WAF before purchasing?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix offers free trial periods and demo environments to evaluate the platform's effectiveness for your specific use case with full feature access.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">14</span>
-          <span class="faq-q-icon">❓</span>
-          What protocols does CloFix WAF support?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF supports HTTP/1.1, HTTP/2, HTTP/3, HTTPS/TLS 1.3, WebSockets, gRPC, and other modern web protocols for comprehensive application protection.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="basics">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">15</span>
-          <span class="faq-q-icon">❓</span>
-          Is CloFix WAF suitable for small businesses?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF offers scalable pricing plans suitable for small businesses to enterprise-level organizations with varying security needs and budget requirements.
-          </p>
-        </div>
-      </div>
-
-      <!-- Security (16-30) -->
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">16</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF detect attacks?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Detection is multi-layered: signature analysis, behavior AI, TLS/JA3 fingerprinting, anomaly scoring, and payload classification — ensuring real-time protection against SQLi, XSS, RCE, bots, and more. Our AI-driven system continuously learns from attack patterns to provide proactive defense.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">17</span>
-          <span class="faq-q-icon">❓</span>
-          What is OWASP Top 10 protection?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            OWASP Top 10 protection covers the most critical web application security risks including injection attacks, broken authentication, sensitive data exposure, XML external entities, security misconfigurations, and insecure deserialization.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">18</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF detect SQL injection attacks?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF uses signature-based detection, machine learning algorithms, and behavioral analysis to identify SQL injection patterns in HTTP requests and block them in real-time with minimal false positives.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">19</span>
-          <span class="faq-q-icon">❓</span>
-          Can CloFix WAF prevent Cross-Site Scripting (XSS)?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF detects and blocks various XSS attack vectors including reflected, stored, and DOM-based XSS through advanced pattern recognition and content filtering with contextual analysis.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">20</span>
-          <span class="faq-q-icon">❓</span>
-          How does behavioral AI detection work?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Behavioral AI analyzes user patterns, request frequencies, navigation behaviors, and anomalous activities to identify suspicious behavior that may indicate attack attempts or automated bot activity.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">21</span>
-          <span class="faq-q-icon">❓</span>
-          What is TLS/JA3 fingerprinting?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            TLS/JA3 fingerprinting analyzes SSL/TLS handshake characteristics to identify and classify clients, helping detect malicious tools and bots that may bypass other detection methods through unique fingerprints.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">22</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF handle zero-day exploits?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF uses AI-driven anomaly detection and behavioral analysis to identify unusual patterns that may indicate zero-day exploits, providing protection against unknown threats through heuristic analysis.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">23</span>
-          <span class="faq-q-icon">❓</span>
-          Can I create custom security rules?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes. You can define custom rules, allowlists/denylists, and AI policies directly from the dashboard or API for full flexibility. The platform supports granular rule customization to match your specific application requirements and security policies.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">24</span>
-          <span class="faq-q-icon">❓</span>
-          What types of DDoS attacks can CloFix WAF mitigate?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF can mitigate Layer 7 application-layer DDoS attacks, including HTTP floods, slow attacks, targeted application-specific DDoS attempts, and sophisticated volumetric attacks.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">25</span>
-          <span class="faq-q-icon">❓</span>
-          How does rate limiting work?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Rate limiting controls the number of requests from specific IP addresses or users within defined time periods, preventing abuse and ensuring fair resource usage with configurable thresholds and actions.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">26</span>
-          <span class="faq-q-icon">❓</span>
-          Can CloFix WAF protect against credential stuffing?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF detects credential stuffing attacks through behavioral analysis, rate limiting, pattern recognition, and CAPTCHA challenges to protect login endpoints and user accounts.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">27</span>
-          <span class="faq-q-icon">❓</span>
-          What is payload classification?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Payload classification analyzes request content using machine learning to categorize and score the threat level of incoming data, enabling intelligent blocking decisions based on content analysis.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">28</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF handle false positives?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF uses machine learning to reduce false positives and provides easy whitelist management, rule tuning capabilities, and learning modes to minimize legitimate traffic blocking.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">29</span>
-          <span class="faq-q-icon">❓</span>
-          Can I block specific geographic regions?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports geo-blocking capabilities allowing you to restrict access from specific countries or regions based on your security requirements with granular control.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="security">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">30</span>
-          <span class="faq-q-icon">❓</span>
-          What encryption standards does CloFix WAF support?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF supports modern encryption standards including TLS 1.3, AES-256, elliptic curve cryptography, and perfect forward secrecy for secure data transmission and certificate management.
-          </p>
-        </div>
-      </div>
-
-      <!-- Features (31-45) -->
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">31</span>
-          <span class="faq-q-icon">❓</span>
-          What types of applications does CloFix WAF protect?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF protects a wide range of digital assets including modern web applications, REST and GraphQL APIs, WordPress websites, e-commerce platforms, and other digital services. It's designed to secure both legacy systems and cloud-native applications.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">32</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF handle bot protection?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF employs advanced AI-driven bot mitigation and behavioral detection to distinguish between legitimate users and malicious bots. It protects against various bot attacks including scraping, credential stuffing, and automated attacks while allowing beneficial bots like search engines.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">33</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF include CDN services?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF includes integrated CDN capabilities to improve website performance while providing security protection through global edge locations and intelligent caching.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">34</span>
-          <span class="faq-q-icon">❓</span>
-          What WordPress-specific protections are available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers specialized WordPress protection including plugin vulnerability detection, theme security scanning, WordPress-specific attack pattern recognition, and brute force protection for admin areas.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">35</span>
-          <span class="faq-q-icon">❓</span>
-          Can I monitor traffic in real-time?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF provides real-time dashboards with traffic analytics, threat detection metrics, detailed logging capabilities, and customizable monitoring views.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">36</span>
-          <span class="faq-q-icon">❓</span>
-          What reporting features are available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers comprehensive reporting including security incident reports, traffic analytics, performance metrics, compliance documentation, and automated scheduled reports.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">37</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF support API protection?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF includes specialized API security features including rate limiting, payload validation, API-specific attack detection, and OpenAPI/Swagger integration for comprehensive API protection.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">38</span>
-          <span class="faq-q-icon">❓</span>
-          Can I set up automated responses to threats?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports automated threat response including IP blocking, CAPTCHA challenges, custom action triggers based on threat levels, and integration with incident response systems.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">39</span>
-          <span class="faq-q-icon">❓</span>
-          What load balancing features are included?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF includes intelligent load balancing capabilities to distribute traffic across multiple servers while maintaining security protection with health checks and failover mechanisms.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">40</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF support SSL/TLS termination?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF can handle SSL/TLS termination and re-encryption, managing certificates, automatic renewal, and secure connections for your applications with Let's Encrypt integration.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">41</span>
-          <span class="faq-q-icon">❓</span>
-          Can I create custom dashboards?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF allows creation of custom dashboards with personalized metrics, alerts, visualizations based on your specific needs, and role-based access controls for different team members.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">42</span>
-          <span class="faq-q-icon">❓</span>
-          What alerting mechanisms are available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF supports multiple alerting channels including email, SMS, webhook notifications, Slack integration, and integration with monitoring systems like PagerDuty and OpsGenie.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">43</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF support content filtering?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF includes content filtering capabilities to block malicious content, inappropriate material, policy violations, and data loss prevention with customizable filtering rules.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">44</span>
-          <span class="faq-q-icon">❓</span>
-          Can I whitelist trusted IP addresses?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports IP whitelisting and blacklisting with flexible rule management for trusted and blocked addresses, including CIDR ranges and dynamic IP lists.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="features">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">45</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF support regex-based filtering?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports advanced regex-based filtering for custom pattern matching and sophisticated attack detection with performance-optimized regex engine.
-          </p>
-        </div>
-      </div>
-
-      <!-- Integration (46-60) -->
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">46</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF support scaling in the cloud?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Absolutely. CloFix WAF integrates with CI/CD, cloud-native platforms, and containerized environments, auto-scaling with your infrastructure needs. It's built for maximum scalability while maintaining minimal latency across global deployments.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">47</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF integrate with CI/CD pipelines?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF provides APIs and automation tools for seamless integration with CI/CD pipelines, enabling automated security policy deployment, testing, and GitOps workflows.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">48</span>
-          <span class="faq-q-icon">❓</span>
-          Can I integrate CloFix WAF with existing monitoring tools?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports integration with popular monitoring platforms through APIs, webhooks, standard logging formats, and pre-built connectors for major tools.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">49</span>
-          <span class="faq-q-icon">❓</span>
-          What APIs does CloFix WAF provide?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers comprehensive REST APIs for configuration management, rule deployment, analytics retrieval, administrative functions, and real-time threat intelligence integration.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">50</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF work with cloud platforms?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF integrates with major cloud platforms including AWS, Azure, Google Cloud, and containerized environments with native integrations and marketplace availability.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">51</span>
-          <span class="faq-q-icon">❓</span>
-          Can I use CloFix WAF with Kubernetes?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports Kubernetes integration through ingress controllers, service mesh integration, and can protect containerized applications automatically with Helm charts.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">52</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF integrate with SIEM systems?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF can export logs and alerts to SIEM systems using standard formats like CEF, JSON, syslog for centralized security monitoring and correlation analysis.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">53</span>
-          <span class="faq-q-icon">❓</span>
-          Can I use CloFix WAF with existing load balancers?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF can be deployed alongside existing load balancers or can replace them with integrated load balancing capabilities and seamless migration paths.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">54</span>
-          <span class="faq-q-icon">❓</span>
-          What deployment models does CloFix WAF support?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF supports multiple deployment models including reverse proxy, DNS-based routing, inline deployment options, and hybrid cloud configurations.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">55</span>
-          <span class="faq-q-icon">❓</span>
-          Does CloFix WAF support Terraform?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF provides Terraform providers for infrastructure-as-code deployment and configuration management with version control and automated provisioning.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">56</span>
-          <span class="faq-q-icon">❓</span>
-          Can I integrate with identity providers?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF supports integration with identity providers including SAML, OAuth, LDAP for enhanced authentication and user-based security policies.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">57</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF work with microservices?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF provides service mesh integration and API gateway functionality to protect microservice architectures comprehensively with distributed security policies.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">58</span>
-          <span class="faq-q-icon">❓</span>
-          What webhook integrations are available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF supports webhook integrations for real-time notifications, automated responses, and integration with third-party systems including ticketing and communication platforms.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">59</span>
-          <span class="faq-q-icon">❓</span>
-          Can I export configuration settings?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF allows export and import of configuration settings for backup, migration, environment synchronization, and disaster recovery scenarios.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="integration">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">60</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF handle multi-cloud deployments?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF provides unified protection across multi-cloud environments with centralized management, consistent security policies, and cross-cloud traffic routing capabilities.
-          </p>
-        </div>
-      </div>
-
-      <!-- Pricing (61-70) -->
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">61</span>
-          <span class="faq-q-icon">❓</span>
-          How is CloFix WAF licensed?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Flexible licensing: monthly subscriptions, enterprise packages, and request-based plans — all managed via the secure <code>/license-agent</code> system. Our pricing model is designed to scale with your business needs and traffic volume.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">62</span>
-          <span class="faq-q-icon">❓</span>
-          What pricing models does CloFix WAF offer?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers flexible pricing including monthly subscriptions, annual contracts, enterprise packages, and request-based plans to suit different business needs and traffic volumes.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">63</span>
-          <span class="faq-q-icon">❓</span>
-          Is there a free trial available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF offers free trial periods and demo environments allowing you to evaluate the platform's effectiveness before making a commitment with full feature access.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">64</span>
-          <span class="faq-q-icon">❓</span>
-          Are there volume discounts available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF offers volume discounts for high-traffic applications and enterprise customers with multiple domains, applications, or long-term commitments.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">65</span>
-          <span class="faq-q-icon">❓</span>
-          What is included in the basic plan?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            The basic plan includes core WAF protection, OWASP Top 10 coverage, basic bot protection, SSL termination, and standard support with essential security features.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">66</span>
-          <span class="faq-q-icon">❓</span>
-          Do you offer custom enterprise pricing?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF provides custom enterprise pricing for large-scale deployments with specific requirements, dedicated support, and SLA guarantees.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">67</span>
-          <span class="faq-q-icon">❓</span>
-          Are there additional costs for high traffic?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Pricing scales with traffic volume, but CloFix WAF offers predictable pricing models and traffic bundles to help budget for varying traffic levels and seasonal spikes.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">68</span>
-          <span class="faq-q-icon">❓</span>
-          What payment methods are accepted?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF accepts major credit cards, bank transfers, enterprise purchase orders, and cryptocurrency payments for flexible payment options.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">69</span>
-          <span class="faq-q-icon">❓</span>
-          Can I change my plan later?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, you can upgrade or downgrade your plan at any time based on changing requirements and traffic patterns with prorated billing adjustments.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="pricing">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">70</span>
-          <span class="faq-q-icon">❓</span>
-          Is there a money-back guarantee?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers satisfaction guarantees and flexible contract terms to ensure customer satisfaction with 30-day money-back guarantee for new customers.
-          </p>
-        </div>
-      </div>
-
-      <!-- Performance (71-80) -->
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">71</span>
-          <span class="faq-q-icon">❓</span>
-          What is the latency impact of CloFix WAF?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF is optimized for minimal latency, typically adding less than 5ms to request processing time through global edge locations and optimized routing algorithms.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">72</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF affect website speed?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            With integrated CDN capabilities and optimized processing, CloFix WAF often improves website performance while providing security protection through caching and compression.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">73</span>
-          <span class="faq-q-icon">❓</span>
-          What is the throughput capacity?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF can handle millions of requests per second with automatic scaling to accommodate traffic spikes and high-volume applications without performance degradation.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">74</span>
-          <span class="faq-q-icon">❓</span>
-          How many global locations does CloFix WAF have?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF operates from 200+ global data centers and edge locations across 6 continents to provide low-latency protection worldwide with intelligent traffic routing.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">75</span>
-          <span class="faq-q-icon">❓</span>
-          What uptime guarantee does CloFix WAF provide?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF provides 99.99% uptime SLA with redundant infrastructure, automated failover mechanisms, and 24/7 monitoring for maximum availability.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">76</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF handle traffic spikes?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF automatically scales to handle traffic spikes without manual intervention, maintaining protection and performance during high-traffic events with elastic capacity.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">77</span>
-          <span class="faq-q-icon">❓</span>
-          What caching capabilities are included?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF includes intelligent caching mechanisms with customizable cache rules, purge capabilities, and edge caching to improve performance while maintaining security.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">78</span>
-          <span class="faq-q-icon">❓</span>
-          Can I monitor performance metrics?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF provides detailed performance analytics including response times, throughput metrics, cache hit ratios, and optimization recommendations.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">79</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF optimize for mobile traffic?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF includes mobile-specific optimizations including adaptive compression, image optimization, and mobile-aware security policies for enhanced mobile experience.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="performance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">80</span>
-          <span class="faq-q-icon">❓</span>
-          What happens during maintenance windows?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF performs rolling updates and maintenance with zero downtime through redundant infrastructure and traffic failover capabilities with advance notifications.
-          </p>
-        </div>
-      </div>
-
-      <!-- Support (81-90) -->
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">81</span>
-          <span class="faq-q-icon">❓</span>
-          What support options are available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers 24/7 technical support, email support, phone support for enterprise customers, live chat, and comprehensive online documentation and knowledge base.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">82</span>
-          <span class="faq-q-icon">❓</span>
-          Is there onboarding assistance?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF provides dedicated onboarding specialists, setup assistance, configuration review, and best practices guidance for smooth implementation.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">83</span>
-          <span class="faq-q-icon">❓</span>
-          What training resources are available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF offers comprehensive training resources including video tutorials, webinars, documentation, certification programs, and hands-on workshops for team training.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">84</span>
-          <span class="faq-q-icon">❓</span>
-          Can I get dedicated support?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, enterprise customers can access dedicated technical account managers, priority support queues, and direct access to engineering teams for critical issues.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">85</span>
-          <span class="faq-q-icon">❓</span>
-          What are the support response times?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF provides tiered support response times: Critical issues within 15 minutes, high priority within 2 hours, and standard requests within 24 hours.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">86</span>
-          <span class="faq-q-icon">❓</span>
-          Is there a community forum?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF maintains an active community forum where users can share experiences, get peer support, and access community-contributed resources and solutions.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">87</span>
-          <span class="faq-q-icon">❓</span>
-          Can I get help with rule optimization?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF security experts can help optimize your security rules, reduce false positives, and fine-tune configurations for optimal protection and performance.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">88</span>
-          <span class="faq-q-icon">❓</span>
-          What incident response support is available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF provides incident response support including attack analysis, forensic assistance, emergency rule deployment, and post-incident recommendations.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">89</span>
-          <span class="faq-q-icon">❓</span>
-          Are there migration services?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF offers migration services from other WAF solutions including configuration transfer, rule migration, and seamless transition support.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="support">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">90</span>
-          <span class="faq-q-icon">❓</span>
-          Can I schedule support calls?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, enterprise customers can schedule regular support calls, health checks, and strategic planning sessions with technical experts for proactive support.
-          </p>
-        </div>
-      </div>
-
-      <!-- Compliance (91-100) -->
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">91</span>
-          <span class="faq-q-icon">❓</span>
-          What compliance standards does CloFix WAF meet?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF meets major compliance standards including PCI DSS, HIPAA, SOC 2 Type II, ISO 27001, GDPR, and other regional data protection regulations.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">92</span>
-          <span class="faq-q-icon">❓</span>
-          Is CloFix WAF PCI DSS compliant?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF is PCI DSS Level 1 compliant and helps customers meet PCI DSS requirements for cardholder data protection with detailed compliance reporting.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">93</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF help with GDPR compliance?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF supports GDPR compliance through data protection features, privacy controls, audit logging, data residency options, and breach notification capabilities.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">94</span>
-          <span class="faq-q-icon">❓</span>
-          Are audit logs available?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF provides comprehensive audit logs including security events, configuration changes, user activities, and detailed forensic data for compliance reporting.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">95</span>
-          <span class="faq-q-icon">❓</span>
-          Can I control data residency?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF offers data residency controls allowing you to specify geographic regions for data processing and storage to meet local compliance requirements.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">96</span>
-          <span class="faq-q-icon">❓</span>
-          What certifications does CloFix WAF have?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF holds certifications including ISO 27001, SOC 2 Type II, FedRAMP, and other industry-standard security and compliance certifications.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">97</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF handle data encryption?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF implements end-to-end encryption with data encrypted in transit using TLS 1.3 and at rest using AES-256, with proper key management and rotation.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">98</span>
-          <span class="faq-q-icon">❓</span>
-          Can I get compliance reports?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            Yes, CloFix WAF generates automated compliance reports for various standards including PCI DSS, HIPAA, and custom compliance frameworks with scheduled delivery.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">99</span>
-          <span class="faq-q-icon">❓</span>
-          What about regulatory changes?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF continuously monitors regulatory changes and updates security policies automatically to maintain compliance with evolving standards and requirements.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item" data-category="compliance">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-number">100</span>
-          <span class="faq-q-icon">❓</span>
-          How does CloFix WAF support business continuity?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            <span class="faq-a-icon">💡</span>
-            CloFix WAF ensures business continuity through redundant global infrastructure, automated failover, disaster recovery capabilities, and comprehensive backup systems with RTO/RPO guarantees.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-footer">
-      <div class="stats-summary">
-        <h3>Still have questions?</h3>
-        <p>Our expert team is here to help you secure your applications with CloFix WAF.</p>
-        <div class="contact-buttons">
-          <button class="contact-btn primary">Contact Sales</button>
-          <button class="contact-btn secondary">Technical Support</button>
-          <button class="contact-btn">Documentation</button>
+      <div class="container">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+
+        <div class="search-container">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search frequently asked questions...">
+            <span class="search-icon">🔍</span>
+          </div>
+        </div>
+
+        <div class="category-filters">
+          <button class="category-btn active" data-category="all">All (100)</button>
+          <button class="category-btn" data-category="basics">Basics</button>
+          <button class="category-btn" data-category="security">Security</button>
+          <button class="category-btn" data-category="features">Features</button>
+          <button class="category-btn" data-category="integration">Integration</button>
+          <button class="category-btn" data-category="pricing">Pricing</button>
+          <button class="category-btn" data-category="performance">Performance</button>
+          <button class="category-btn" data-category="support">Support</button>
+          <button class="category-btn" data-category="compliance">Compliance</button>
+        </div>
+
+        <div class="faq-list" id="faqList">
+          <!-- Basics (1-15) -->
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">1</span>
+              <span class="faq-q-icon">❓</span>
+              What is CloFix WAF?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF is a fully managed Web Application Firewall that protects modern web applications, APIs, and
+                digital services against advanced threats, bot attacks, and OWASP Top 10 vulnerabilities. It provides
+                comprehensive protection including CDN services and WordPress-specific security features, all with
+                minimal latency and maximum scalability.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">2</span>
+              <span class="faq-q-icon">❓</span>
+              How does a Web Application Firewall work?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                A WAF sits between your web application and the internet, filtering HTTP/HTTPS traffic based on
+                predefined security rules. It analyzes requests in real-time and blocks malicious traffic before it
+                reaches your application server.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">3</span>
+              <span class="faq-q-icon">❓</span>
+              What makes CloFix WAF different from other solutions?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF combines AI-driven detection, behavioral analysis, advanced bot protection, and
+                WordPress-specific security features in a fully managed platform with minimal setup requirements and
+                enterprise-grade scalability.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">4</span>
+              <span class="faq-q-icon">❓</span>
+              Do I need technical expertise to use CloFix WAF?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                No, CloFix WAF is designed as a fully managed solution with intelligent defaults. Basic configuration
+                can be done through an intuitive dashboard without deep technical knowledge.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">5</span>
+              <span class="faq-q-icon">❓</span>
+              What types of websites can benefit from CloFix WAF?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Any website handling sensitive data, e-commerce sites, SaaS applications, APIs, WordPress sites,
+                financial services, healthcare platforms, and web applications of any size can benefit from WAF
+                protection.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">6</span>
+              <span class="faq-q-icon">❓</span>
+              Is CloFix WAF cloud-based or on-premises?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF is a cloud-based solution that provides global protection through distributed infrastructure,
+                eliminating the need for on-premises hardware while offering hybrid deployment options.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">7</span>
+              <span class="faq-q-icon">❓</span>
+              How quickly can I deploy CloFix WAF?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF can be deployed in minutes using DNS changes or reverse proxy configuration, with protection
+                active immediately after setup and comprehensive onboarding support.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">8</span>
+              <span class="faq-q-icon">❓</span>
+              What is the difference between WAF and antivirus software?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                WAF protects web applications at the network level by filtering HTTP traffic, while antivirus protects
+                individual devices from malware. WAF focuses on web-specific attacks like SQL injection and XSS.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">9</span>
+              <span class="faq-q-icon">❓</span>
+              Can CloFix WAF protect multiple domains?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports multi-domain protection under a single account, allowing you to secure multiple
+                websites and applications with unified management and centralized policies.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">10</span>
+              <span class="faq-q-icon">❓</span>
+              What happens if CloFix WAF goes down?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF operates on redundant global infrastructure with automatic failover capabilities to ensure
+                continuous protection and minimal downtime with 99.9% uptime SLA.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">11</span>
+              <span class="faq-q-icon">❓</span>
+              Do I need to modify my application code?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                No code modifications are required. CloFix WAF works transparently by routing traffic through our
+                protection layer without changing your application architecture or code.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">12</span>
+              <span class="faq-q-icon">❓</span>
+              What is the learning curve for CloFix WAF?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                The platform is designed for ease of use with intuitive dashboards and smart defaults. Most users can
+                configure basic protection within 30 minutes with guided setup wizards.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">13</span>
+              <span class="faq-q-icon">❓</span>
+              Can I test CloFix WAF before purchasing?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix offers free trial periods and demo environments to evaluate the platform's effectiveness for
+                your specific use case with full feature access.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">14</span>
+              <span class="faq-q-icon">❓</span>
+              What protocols does CloFix WAF support?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF supports HTTP/1.1, HTTP/2, HTTP/3, HTTPS/TLS 1.3, WebSockets, gRPC, and other modern web
+                protocols for comprehensive application protection.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="basics">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">15</span>
+              <span class="faq-q-icon">❓</span>
+              Is CloFix WAF suitable for small businesses?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF offers scalable pricing plans suitable for small businesses to enterprise-level
+                organizations with varying security needs and budget requirements.
+              </p>
+            </div>
+          </div>
+
+          <!-- Security (16-30) -->
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">16</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF detect attacks?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Detection is multi-layered: signature analysis, behavior AI, TLS/JA3 fingerprinting, anomaly scoring,
+                and payload classification — ensuring real-time protection against SQLi, XSS, RCE, bots, and more. Our
+                AI-driven system continuously learns from attack patterns to provide proactive defense.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">17</span>
+              <span class="faq-q-icon">❓</span>
+              What is OWASP Top 10 protection?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                OWASP Top 10 protection covers the most critical web application security risks including injection
+                attacks, broken authentication, sensitive data exposure, XML external entities, security
+                misconfigurations, and insecure deserialization.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">18</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF detect SQL injection attacks?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF uses signature-based detection, machine learning algorithms, and behavioral analysis to
+                identify SQL injection patterns in HTTP requests and block them in real-time with minimal false
+                positives.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">19</span>
+              <span class="faq-q-icon">❓</span>
+              Can CloFix WAF prevent Cross-Site Scripting (XSS)?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF detects and blocks various XSS attack vectors including reflected, stored, and DOM-based
+                XSS through advanced pattern recognition and content filtering with contextual analysis.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">20</span>
+              <span class="faq-q-icon">❓</span>
+              How does behavioral AI detection work?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Behavioral AI analyzes user patterns, request frequencies, navigation behaviors, and anomalous
+                activities to identify suspicious behavior that may indicate attack attempts or automated bot activity.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">21</span>
+              <span class="faq-q-icon">❓</span>
+              What is TLS/JA3 fingerprinting?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                TLS/JA3 fingerprinting analyzes SSL/TLS handshake characteristics to identify and classify clients,
+                helping detect malicious tools and bots that may bypass other detection methods through unique
+                fingerprints.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">22</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF handle zero-day exploits?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF uses AI-driven anomaly detection and behavioral analysis to identify unusual patterns that
+                may indicate zero-day exploits, providing protection against unknown threats through heuristic analysis.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">23</span>
+              <span class="faq-q-icon">❓</span>
+              Can I create custom security rules?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes. You can define custom rules, allowlists/denylists, and AI policies directly from the dashboard or
+                API for full flexibility. The platform supports granular rule customization to match your specific
+                application requirements and security policies.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">24</span>
+              <span class="faq-q-icon">❓</span>
+              What types of DDoS attacks can CloFix WAF mitigate?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF can mitigate Layer 7 application-layer DDoS attacks, including HTTP floods, slow attacks,
+                targeted application-specific DDoS attempts, and sophisticated volumetric attacks.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">25</span>
+              <span class="faq-q-icon">❓</span>
+              How does rate limiting work?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Rate limiting controls the number of requests from specific IP addresses or users within defined time
+                periods, preventing abuse and ensuring fair resource usage with configurable thresholds and actions.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">26</span>
+              <span class="faq-q-icon">❓</span>
+              Can CloFix WAF protect against credential stuffing?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF detects credential stuffing attacks through behavioral analysis, rate limiting, pattern
+                recognition, and CAPTCHA challenges to protect login endpoints and user accounts.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">27</span>
+              <span class="faq-q-icon">❓</span>
+              What is payload classification?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Payload classification analyzes request content using machine learning to categorize and score the
+                threat level of incoming data, enabling intelligent blocking decisions based on content analysis.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">28</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF handle false positives?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF uses machine learning to reduce false positives and provides easy whitelist management, rule
+                tuning capabilities, and learning modes to minimize legitimate traffic blocking.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">29</span>
+              <span class="faq-q-icon">❓</span>
+              Can I block specific geographic regions?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports geo-blocking capabilities allowing you to restrict access from specific
+                countries or regions based on your security requirements with granular control.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="security">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">30</span>
+              <span class="faq-q-icon">❓</span>
+              What encryption standards does CloFix WAF support?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF supports modern encryption standards including TLS 1.3, AES-256, elliptic curve cryptography,
+                and perfect forward secrecy for secure data transmission and certificate management.
+              </p>
+            </div>
+          </div>
+
+          <!-- Features (31-45) -->
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">31</span>
+              <span class="faq-q-icon">❓</span>
+              What types of applications does CloFix WAF protect?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF protects a wide range of digital assets including modern web applications, REST and GraphQL
+                APIs, WordPress websites, e-commerce platforms, and other digital services. It's designed to secure both
+                legacy systems and cloud-native applications.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">32</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF handle bot protection?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF employs advanced AI-driven bot mitigation and behavioral detection to distinguish between
+                legitimate users and malicious bots. It protects against various bot attacks including scraping,
+                credential stuffing, and automated attacks while allowing beneficial bots like search engines.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">33</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF include CDN services?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF includes integrated CDN capabilities to improve website performance while providing
+                security protection through global edge locations and intelligent caching.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">34</span>
+              <span class="faq-q-icon">❓</span>
+              What WordPress-specific protections are available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers specialized WordPress protection including plugin vulnerability detection, theme
+                security scanning, WordPress-specific attack pattern recognition, and brute force protection for admin
+                areas.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">35</span>
+              <span class="faq-q-icon">❓</span>
+              Can I monitor traffic in real-time?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF provides real-time dashboards with traffic analytics, threat detection metrics, detailed
+                logging capabilities, and customizable monitoring views.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">36</span>
+              <span class="faq-q-icon">❓</span>
+              What reporting features are available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers comprehensive reporting including security incident reports, traffic analytics,
+                performance metrics, compliance documentation, and automated scheduled reports.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">37</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF support API protection?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF includes specialized API security features including rate limiting, payload validation,
+                API-specific attack detection, and OpenAPI/Swagger integration for comprehensive API protection.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">38</span>
+              <span class="faq-q-icon">❓</span>
+              Can I set up automated responses to threats?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports automated threat response including IP blocking, CAPTCHA challenges, custom
+                action triggers based on threat levels, and integration with incident response systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">39</span>
+              <span class="faq-q-icon">❓</span>
+              What load balancing features are included?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF includes intelligent load balancing capabilities to distribute traffic across multiple
+                servers while maintaining security protection with health checks and failover mechanisms.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">40</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF support SSL/TLS termination?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF can handle SSL/TLS termination and re-encryption, managing certificates, automatic
+                renewal, and secure connections for your applications with Let's Encrypt integration.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">41</span>
+              <span class="faq-q-icon">❓</span>
+              Can I create custom dashboards?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF allows creation of custom dashboards with personalized metrics, alerts, visualizations
+                based on your specific needs, and role-based access controls for different team members.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">42</span>
+              <span class="faq-q-icon">❓</span>
+              What alerting mechanisms are available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF supports multiple alerting channels including email, SMS, webhook notifications, Slack
+                integration, and integration with monitoring systems like PagerDuty and OpsGenie.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">43</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF support content filtering?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF includes content filtering capabilities to block malicious content, inappropriate
+                material, policy violations, and data loss prevention with customizable filtering rules.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">44</span>
+              <span class="faq-q-icon">❓</span>
+              Can I whitelist trusted IP addresses?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports IP whitelisting and blacklisting with flexible rule management for trusted and
+                blocked addresses, including CIDR ranges and dynamic IP lists.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="features">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">45</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF support regex-based filtering?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports advanced regex-based filtering for custom pattern matching and sophisticated
+                attack detection with performance-optimized regex engine.
+              </p>
+            </div>
+          </div>
+
+          <!-- Integration (46-60) -->
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">46</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF support scaling in the cloud?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Absolutely. CloFix WAF integrates with CI/CD, cloud-native platforms, and containerized environments,
+                auto-scaling with your infrastructure needs. It's built for maximum scalability while maintaining
+                minimal latency across global deployments.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">47</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF integrate with CI/CD pipelines?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF provides APIs and automation tools for seamless integration with CI/CD pipelines, enabling
+                automated security policy deployment, testing, and GitOps workflows.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">48</span>
+              <span class="faq-q-icon">❓</span>
+              Can I integrate CloFix WAF with existing monitoring tools?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports integration with popular monitoring platforms through APIs, webhooks, standard
+                logging formats, and pre-built connectors for major tools.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">49</span>
+              <span class="faq-q-icon">❓</span>
+              What APIs does CloFix WAF provide?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers comprehensive REST APIs for configuration management, rule deployment, analytics
+                retrieval, administrative functions, and real-time threat intelligence integration.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">50</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF work with cloud platforms?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF integrates with major cloud platforms including AWS, Azure, Google Cloud, and
+                containerized environments with native integrations and marketplace availability.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">51</span>
+              <span class="faq-q-icon">❓</span>
+              Can I use CloFix WAF with Kubernetes?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports Kubernetes integration through ingress controllers, service mesh integration,
+                and can protect containerized applications automatically with Helm charts.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">52</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF integrate with SIEM systems?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF can export logs and alerts to SIEM systems using standard formats like CEF, JSON, syslog for
+                centralized security monitoring and correlation analysis.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">53</span>
+              <span class="faq-q-icon">❓</span>
+              Can I use CloFix WAF with existing load balancers?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF can be deployed alongside existing load balancers or can replace them with integrated
+                load balancing capabilities and seamless migration paths.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">54</span>
+              <span class="faq-q-icon">❓</span>
+              What deployment models does CloFix WAF support?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF supports multiple deployment models including reverse proxy, DNS-based routing, inline
+                deployment options, and hybrid cloud configurations.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">55</span>
+              <span class="faq-q-icon">❓</span>
+              Does CloFix WAF support Terraform?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF provides Terraform providers for infrastructure-as-code deployment and configuration
+                management with version control and automated provisioning.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">56</span>
+              <span class="faq-q-icon">❓</span>
+              Can I integrate with identity providers?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF supports integration with identity providers including SAML, OAuth, LDAP for enhanced
+                authentication and user-based security policies.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">57</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF work with microservices?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF provides service mesh integration and API gateway functionality to protect microservice
+                architectures comprehensively with distributed security policies.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">58</span>
+              <span class="faq-q-icon">❓</span>
+              What webhook integrations are available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF supports webhook integrations for real-time notifications, automated responses, and
+                integration with third-party systems including ticketing and communication platforms.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">59</span>
+              <span class="faq-q-icon">❓</span>
+              Can I export configuration settings?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF allows export and import of configuration settings for backup, migration, environment
+                synchronization, and disaster recovery scenarios.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="integration">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">60</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF handle multi-cloud deployments?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF provides unified protection across multi-cloud environments with centralized management,
+                consistent security policies, and cross-cloud traffic routing capabilities.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pricing (61-70) -->
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">61</span>
+              <span class="faq-q-icon">❓</span>
+              How is CloFix WAF licensed?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Flexible licensing: monthly subscriptions, enterprise packages, and request-based plans — all managed
+                via the secure <code>/license-agent</code> system. Our pricing model is designed to scale with your
+                business needs and traffic volume.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">62</span>
+              <span class="faq-q-icon">❓</span>
+              What pricing models does CloFix WAF offer?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers flexible pricing including monthly subscriptions, annual contracts, enterprise
+                packages, and request-based plans to suit different business needs and traffic volumes.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">63</span>
+              <span class="faq-q-icon">❓</span>
+              Is there a free trial available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF offers free trial periods and demo environments allowing you to evaluate the platform's
+                effectiveness before making a commitment with full feature access.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">64</span>
+              <span class="faq-q-icon">❓</span>
+              Are there volume discounts available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF offers volume discounts for high-traffic applications and enterprise customers with
+                multiple domains, applications, or long-term commitments.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">65</span>
+              <span class="faq-q-icon">❓</span>
+              What is included in the basic plan?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                The basic plan includes core WAF protection, OWASP Top 10 coverage, basic bot protection, SSL
+                termination, and standard support with essential security features.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">66</span>
+              <span class="faq-q-icon">❓</span>
+              Do you offer custom enterprise pricing?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF provides custom enterprise pricing for large-scale deployments with specific
+                requirements, dedicated support, and SLA guarantees.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">67</span>
+              <span class="faq-q-icon">❓</span>
+              Are there additional costs for high traffic?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Pricing scales with traffic volume, but CloFix WAF offers predictable pricing models and traffic bundles
+                to help budget for varying traffic levels and seasonal spikes.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">68</span>
+              <span class="faq-q-icon">❓</span>
+              What payment methods are accepted?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF accepts major credit cards, bank transfers, enterprise purchase orders, and cryptocurrency
+                payments for flexible payment options.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">69</span>
+              <span class="faq-q-icon">❓</span>
+              Can I change my plan later?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, you can upgrade or downgrade your plan at any time based on changing requirements and traffic
+                patterns with prorated billing adjustments.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="pricing">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">70</span>
+              <span class="faq-q-icon">❓</span>
+              Is there a money-back guarantee?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers satisfaction guarantees and flexible contract terms to ensure customer satisfaction
+                with 30-day money-back guarantee for new customers.
+              </p>
+            </div>
+          </div>
+
+          <!-- Performance (71-80) -->
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">71</span>
+              <span class="faq-q-icon">❓</span>
+              What is the latency impact of CloFix WAF?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF is optimized for minimal latency, typically adding less than 5ms to request processing time
+                through global edge locations and optimized routing algorithms.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">72</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF affect website speed?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                With integrated CDN capabilities and optimized processing, CloFix WAF often improves website performance
+                while providing security protection through caching and compression.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">73</span>
+              <span class="faq-q-icon">❓</span>
+              What is the throughput capacity?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF can handle millions of requests per second with automatic scaling to accommodate traffic
+                spikes and high-volume applications without performance degradation.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">74</span>
+              <span class="faq-q-icon">❓</span>
+              How many global locations does CloFix WAF have?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF operates from 200+ global data centers and edge locations across 6 continents to provide
+                low-latency protection worldwide with intelligent traffic routing.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">75</span>
+              <span class="faq-q-icon">❓</span>
+              What uptime guarantee does CloFix WAF provide?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF provides 99.99% uptime SLA with redundant infrastructure, automated failover mechanisms, and
+                24/7 monitoring for maximum availability.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">76</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF handle traffic spikes?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF automatically scales to handle traffic spikes without manual intervention, maintaining
+                protection and performance during high-traffic events with elastic capacity.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">77</span>
+              <span class="faq-q-icon">❓</span>
+              What caching capabilities are included?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF includes intelligent caching mechanisms with customizable cache rules, purge capabilities,
+                and edge caching to improve performance while maintaining security.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">78</span>
+              <span class="faq-q-icon">❓</span>
+              Can I monitor performance metrics?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF provides detailed performance analytics including response times, throughput metrics,
+                cache hit ratios, and optimization recommendations.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">79</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF optimize for mobile traffic?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF includes mobile-specific optimizations including adaptive compression, image optimization,
+                and mobile-aware security policies for enhanced mobile experience.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="performance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">80</span>
+              <span class="faq-q-icon">❓</span>
+              What happens during maintenance windows?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF performs rolling updates and maintenance with zero downtime through redundant infrastructure
+                and traffic failover capabilities with advance notifications.
+              </p>
+            </div>
+          </div>
+
+          <!-- Support (81-90) -->
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">81</span>
+              <span class="faq-q-icon">❓</span>
+              What support options are available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers 24/7 technical support, email support, phone support for enterprise customers, live
+                chat, and comprehensive online documentation and knowledge base.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">82</span>
+              <span class="faq-q-icon">❓</span>
+              Is there onboarding assistance?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF provides dedicated onboarding specialists, setup assistance, configuration review, and
+                best practices guidance for smooth implementation.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">83</span>
+              <span class="faq-q-icon">❓</span>
+              What training resources are available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF offers comprehensive training resources including video tutorials, webinars, documentation,
+                certification programs, and hands-on workshops for team training.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">84</span>
+              <span class="faq-q-icon">❓</span>
+              Can I get dedicated support?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, enterprise customers can access dedicated technical account managers, priority support queues, and
+                direct access to engineering teams for critical issues.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">85</span>
+              <span class="faq-q-icon">❓</span>
+              What are the support response times?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF provides tiered support response times: Critical issues within 15 minutes, high priority
+                within 2 hours, and standard requests within 24 hours.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">86</span>
+              <span class="faq-q-icon">❓</span>
+              Is there a community forum?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF maintains an active community forum where users can share experiences, get peer support,
+                and access community-contributed resources and solutions.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">87</span>
+              <span class="faq-q-icon">❓</span>
+              Can I get help with rule optimization?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF security experts can help optimize your security rules, reduce false positives, and
+                fine-tune configurations for optimal protection and performance.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">88</span>
+              <span class="faq-q-icon">❓</span>
+              What incident response support is available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF provides incident response support including attack analysis, forensic assistance, emergency
+                rule deployment, and post-incident recommendations.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">89</span>
+              <span class="faq-q-icon">❓</span>
+              Are there migration services?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF offers migration services from other WAF solutions including configuration transfer,
+                rule migration, and seamless transition support.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="support">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">90</span>
+              <span class="faq-q-icon">❓</span>
+              Can I schedule support calls?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, enterprise customers can schedule regular support calls, health checks, and strategic planning
+                sessions with technical experts for proactive support.
+              </p>
+            </div>
+          </div>
+
+          <!-- Compliance (91-100) -->
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">91</span>
+              <span class="faq-q-icon">❓</span>
+              What compliance standards does CloFix WAF meet?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF meets major compliance standards including PCI DSS, HIPAA, SOC 2 Type II, ISO 27001, GDPR,
+                and other regional data protection regulations.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">92</span>
+              <span class="faq-q-icon">❓</span>
+              Is CloFix WAF PCI DSS compliant?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF is PCI DSS Level 1 compliant and helps customers meet PCI DSS requirements for
+                cardholder data protection with detailed compliance reporting.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">93</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF help with GDPR compliance?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF supports GDPR compliance through data protection features, privacy controls, audit logging,
+                data residency options, and breach notification capabilities.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">94</span>
+              <span class="faq-q-icon">❓</span>
+              Are audit logs available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF provides comprehensive audit logs including security events, configuration changes, user
+                activities, and detailed forensic data for compliance reporting.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">95</span>
+              <span class="faq-q-icon">❓</span>
+              Can I control data residency?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF offers data residency controls allowing you to specify geographic regions for data
+                processing and storage to meet local compliance requirements.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">96</span>
+              <span class="faq-q-icon">❓</span>
+              What certifications does CloFix WAF have?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF holds certifications including ISO 27001, SOC 2 Type II, FedRAMP, and other industry-standard
+                security and compliance certifications.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">97</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF handle data encryption?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF implements end-to-end encryption with data encrypted in transit using TLS 1.3 and at rest
+                using AES-256, with proper key management and rotation.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">98</span>
+              <span class="faq-q-icon">❓</span>
+              Can I get compliance reports?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                Yes, CloFix WAF generates automated compliance reports for various standards including PCI DSS, HIPAA,
+                and custom compliance frameworks with scheduled delivery.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">99</span>
+              <span class="faq-q-icon">❓</span>
+              What about regulatory changes?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF continuously monitors regulatory changes and updates security policies automatically to
+                maintain compliance with evolving standards and requirements.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-category="compliance">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-number">100</span>
+              <span class="faq-q-icon">❓</span>
+              How does CloFix WAF support business continuity?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                <span class="faq-a-icon">💡</span>
+                CloFix WAF ensures business continuity through redundant global infrastructure, automated failover,
+                disaster recovery capabilities, and comprehensive backup systems with RTO/RPO guarantees.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-footer">
+          <div class="stats-summary">
+            <h3>Still have questions?</h3>
+            <p>Our expert team is here to help you secure your applications with CloFix WAF.</p>
+            <div class="contact-buttons">
+
+              <a href="partner.html">
+                <button class="contact-btn primary">
+                  Contact Sales
+                </button>
+              </a>
+              <a href="ticket.html">
+                <button class="contact-btn primary">
+                  Technical Support
+                </button>
+              </a>
+              <a href="#">
+                <button class="contact-btn primary">
+                  Documentation
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
   </main>
 
@@ -1786,72 +1914,72 @@
 </body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      const searchInput = document.getElementById('searchInput');
-      const categoryButtons = document.querySelectorAll('.category-btn');
-      const faqItems = document.querySelectorAll('.faq-item');
-      
-      // FAQ accordion functionality
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-          const faqItem = this.closest('.faq-item');
-          const isActive = faqItem.classList.contains('active');
-          
-          // Close all other FAQ items
-          document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
-            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          });
-          
-          // Toggle current item
-          if (!isActive) {
-            faqItem.classList.add('active');
-            this.setAttribute('aria-expanded', 'true');
-          }
-        });
-      });
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    const searchInput = document.getElementById('searchInput');
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const faqItems = document.querySelectorAll('.faq-item');
 
-      // Search functionality
-      searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        
+    // FAQ accordion functionality
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', function () {
+        const faqItem = this.closest('.faq-item');
+        const isActive = faqItem.classList.contains('active');
+
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+          item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle current item
+        if (!isActive) {
+          faqItem.classList.add('active');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', function () {
+      const searchTerm = this.value.toLowerCase();
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+
+        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+
+    // Category filtering
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const category = this.dataset.category;
+
+        // Update active button
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter FAQ items
         faqItems.forEach(item => {
-          const question = item.querySelector('.faq-question').textContent.toLowerCase();
-          const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
-          
-          if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+          if (category === 'all' || item.dataset.category === category) {
             item.classList.remove('hidden');
           } else {
             item.classList.add('hidden');
           }
         });
-      });
 
-      // Category filtering
-      categoryButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const category = this.dataset.category;
-          
-          // Update active button
-          categoryButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-          
-          // Filter FAQ items
-          faqItems.forEach(item => {
-            if (category === 'all' || item.dataset.category === category) {
-              item.classList.remove('hidden');
-            } else {
-              item.classList.add('hidden');
-            }
-          });
-          
-          // Clear search when filtering
-          searchInput.value = '';
-        });
+        // Clear search when filtering
+        searchInput.value = '';
       });
     });
-  </script>
+  });
+</script>
 <script>
   const navToggle = document.getElementById('navToggle');
   const navContent = document.querySelector('.c-nav__content');
