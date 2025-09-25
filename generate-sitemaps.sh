@@ -16,7 +16,6 @@ echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> "$M
 CURRENT_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S+00:00")
 
 # --- Process index.html first as home-sitemap.xml ---
-# --- Process index.html first as home-sitemap.xml ---
 if [ -f "index.html" ]; then
     SITEMAP_NAME="home-sitemap.xml"
     CHANGEFREQ="daily"
@@ -27,7 +26,7 @@ if [ -f "index.html" ]; then
     echo '<?xml version="1.0" encoding="UTF-8"?>' > "$SITEMAP_FILE"
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> "$SITEMAP_FILE"
     echo "  <url>" >> "$SITEMAP_FILE"
-    echo "    <loc>$BASE_URL</loc>" >> "$SITEMAP_FILE"   # <-- no /index.html
+    echo "    <loc>$BASE_URL</loc>" >> "$SITEMAP_FILE"   # root only
     echo "    <lastmod>$CURRENT_DATE</lastmod>" >> "$SITEMAP_FILE"
     echo "    <changefreq>$CHANGEFREQ</changefreq>" >> "$SITEMAP_FILE"
     echo "    <priority>$PRIORITY</priority>" >> "$SITEMAP_FILE"
@@ -40,7 +39,6 @@ if [ -f "index.html" ]; then
     echo "    <lastmod>$CURRENT_DATE</lastmod>" >> "$MASTER_SITEMAP"
     echo "  </sitemap>" >> "$MASTER_SITEMAP"
 fi
-
 
 # --- Loop through all other HTML files ---
 for file in *.html; do
@@ -70,7 +68,7 @@ for file in *.html; do
     echo '<?xml version="1.0" encoding="UTF-8"?>' > "$SITEMAP_FILE"
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> "$SITEMAP_FILE"
     echo "  <url>" >> "$SITEMAP_FILE"
-    echo "    <loc>$BASE_URL/$file</loc>" >> "$SITEMAP_FILE"
+    echo "    <loc>$BASE_URL/$name</loc>" >> "$SITEMAP_FILE"   # <-- no .html
     echo "    <lastmod>$CURRENT_DATE</lastmod>" >> "$SITEMAP_FILE"
     echo "    <changefreq>$CHANGEFREQ</changefreq>" >> "$SITEMAP_FILE"
     echo "    <priority>$PRIORITY</priority>" >> "$SITEMAP_FILE"
@@ -87,4 +85,4 @@ done
 # Close master sitemap.xml
 echo '</sitemapindex>' >> "$MASTER_SITEMAP"
 
-echo "✅ Master sitemap.xml created with home-sitemap.xml first, individual sitemaps in $SITEMAP_DIR"
+echo "✅ Master sitemap.xml created without .html in URLs, with home-sitemap.xml first, individual sitemaps in $SITEMAP_DIR"
