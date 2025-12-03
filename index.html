@@ -238,11 +238,129 @@
 
       </div>
     </section>
-    <section class="section" id="section-services">
-      <div class="section__title-wrapper">
-        <h2 class="heading heading--2 clofix-pricing">Our Services</h2>
-        <div class="c-card__img-holder">
-          <p class="c-paragraph c-card__text">
+
+    <!-- <section class="section orbit-section">
+      <div class="orbit orbit--xl" aria-roledescription="carousel" aria-label="Circular slider">
+        <ul class="orbit__ring">
+
+          <li class="orbit__card" data-href="features.html#support">
+            <clofix-devops-logo variant="orbit" color="#38bdf8" speed="4">
+            </clofix-devops-logo>
+          </li>
+
+          <li class="orbit__card" data-href="features.html#automation">
+            <clofix-automation-logo variant="orbit" color="#38bdf8" speed="4">
+            </clofix-automation-logo>
+          </li>
+
+          <li class="orbit__card" data-href="features.html#devsecops">
+            <clofix-on-demand-engineering-support-logo variant="orbit" color="#38bdf8" speed="4"
+              data-href="support.html">
+            </clofix-on-demand-engineering-support-logo>
+
+          </li>
+
+          <li class="orbit__card" data-href="features.html#waf">
+            <clofix-waf-logo variant="orbit" color="#38bdf8" speed="4">
+            </clofix-waf-logo>
+          </li>
+
+        </ul>
+      </div>
+    </section> -->
+
+    <!-- MOBILE (<769px): you already have quantum-section -->
+
+    <section class="quantum-section">
+      <div class="quantum-bg" aria-hidden="true">
+        <div class="quantum-aurora"></div>
+        <div class="quantum-scanline"></div>
+        <div class="quantum-grid"></div>
+      </div>
+
+      <div class="quantum-shell" aria-roledescription="carousel" aria-label="CloFix capabilities selector">
+        <!-- HOLOGRAPHIC PORTAL / ACTIVE CARD RENDER -->
+        <div class="portal-frame">
+          <div class="portal-ring">
+            <div class="portal-glow"></div>
+
+            <!-- CINEMATIC OVERLAY -->
+            <div class="portal-cinematic" aria-hidden="true">
+              <div class="cinematic-flash"></div>
+              <div class="cinematic-scan"></div>
+              <div class="cinematic-bar"></div>
+            </div>
+
+            <!-- ACTIVE CARD SLOT -->
+            <div class="portal-core" id="portalActiveSlot">
+              <!-- JS injects active card clone here -->
+            </div>
+          </div>
+
+          <!-- GHOST PREVIEW (PREV) -->
+          <button class="ghost-card ghost-prev" id="ghostPrev" aria-label="Previous capability">
+            <!-- JS injects previous card clone here -->
+          </button>
+
+          <!-- GHOST PREVIEW (NEXT) -->
+          <button class="ghost-card ghost-next" id="ghostNext" aria-label="Next capability">
+            <!-- JS injects next card clone here -->
+          </button>
+        </div>
+
+        <!-- CONTROLS (ONLY ARROWS NOW) -->
+        <div class="quantum-ui">
+          <button class="quantum-arrow quantum-prev" id="qPrev" aria-label="Previous">
+            <span>◄</span>
+          </button>
+
+          <button class="quantum-arrow quantum-next" id="qNext" aria-label="Next">
+            <span>►</span>
+          </button>
+        </div>
+
+        <!-- SOURCE CARDS (HIDDEN IN DOM, WE CLONE THESE) -->
+        <ul class="quantum-source-list" id="quantumSource">
+          <li class="cap-card" data-href="features.html#support">
+            <clofix-devops-logo variant="orbit" color="#38bdf8" speed="4"></clofix-devops-logo>
+          </li>
+
+          <li class="cap-card" data-href="features.html#automation">
+            <clofix-automation-logo variant="orbit" color="#38bdf8" speed="4"></clofix-automation-logo>
+          </li>
+
+          <li class="cap-card" data-href="features.html#devsecops">
+            <clofix-on-demand-engineering-support-logo variant="orbit" color="#38bdf8"
+              speed="4"></clofix-on-demand-engineering-support-logo>
+          </li>
+
+          <li class="cap-card" data-href="features.html#waf">
+            <clofix-waf-logo variant="orbit" color="#38bdf8" speed="4"></clofix-waf-logo>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DESKTOP / TABLET (>=769px): this new block shows instead -->
+    <section class="ops-deck" aria-label="CloFix Systems Deck">
+      <div class="ops-bg" aria-hidden="true">
+        <div class="ops-vignette"></div>
+        <div class="ops-gridlines"></div>
+        <div class="ops-aurora"></div>
+      </div>
+
+      <div class="ops-shell">
+        <header class="ops-head">
+          <div class="ops-pill">
+            <span class="ops-pill-led"></span>
+            operational
+          </div>
+
+          <h2 class="ops-title">
+            Our Services
+          </h2>
+
+          <p class="ops-sub">
             CloFix delivers powerful security, automation, and infrastructure solutions tailored for cloud-native and
             enterprise-grade applications.
             We specialize in Web Application Firewall (WAF), DevSecOps, and intelligent cloud automation enabling
@@ -252,90 +370,69 @@
             Whether you're running SaaS platforms, e-commerce portals, or mission-critical APIs, CloFix ensures
             performance, protection, and peace of mind 24/7.
           </p>
+        </header>
+
+        <div class="ops-grid">
+          <!-- TILE: DevSecOps Support -->
+          <a class="ops-tile" href="features.html#support">
+            <div class="ops-tile-inner">
+              <div class="ops-top">
+                <div class="ops-icon">
+                  <clofix-devops-logo variant="orbit" color="#38bdf8" speed="4"></clofix-devops-logo>
+                </div>
+
+              </div>
+            </div>
+          </a>
+
+          <!-- TILE: Automation & Management -->
+          <a class="ops-tile" href="features.html#automation">
+            <div class="ops-tile-inner">
+              <div class="ops-top">
+                <div class="ops-icon">
+                  <clofix-automation-logo variant="orbit" color="#38bdf8" speed="4"></clofix-automation-logo>
+                </div>
+
+              </div>
+
+            </div>
+          </a>
+
+          <!-- TILE: On-Demand Engineering -->
+          <a class="ops-tile" href="features.html#devsecops">
+            <div class="ops-tile-inner">
+              <div class="ops-top">
+                <div class="ops-icon">
+                  <clofix-on-demand-engineering-support-logo variant="orbit" color="#38bdf8"
+                    speed="4"></clofix-on-demand-engineering-support-logo>
+                </div>
+
+              </div>
+            </div>
+          </a>
+
+          <!-- TILE: CloFix WAF -->
+          <a class="ops-tile" href="features.html#waf">
+            <div class="ops-tile-inner">
+              <div class="ops-top">
+                <div class="ops-icon">
+                  <clofix-waf-logo variant="orbit" color="#38bdf8" speed="4"></clofix-waf-logo>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="container">
-        <div class="box box--flex">
-          <article class="c-card">
-            <div class="c-card__content">
-              <h3 class="c-card__title heading heading--3">
-                CloFix - WAF
-              </h3>
-              <p class="c-paragraph c-card__text">
-                CloFix WAF is a fully managed Web Application Firewall designed to protect modern web applications,
-                APIs, and digital services against advanced threats, bot attacks, CDN Service, Wordpress Protection and
-                OWASP Top 10 vulnerabilities all with minimal latency and maximum scalability.
-              </p>
-            </div>
-            <div class="c-card__img-holder">
-              <img class="c-card__img" src="img/waf-1.png" alt="CloFix WAF" />
-            </div>
-          </article>
 
-          <article class="c-card">
-            <div class="c-card__content">
-              <h3 class="c-card__title heading heading--3">
-                CloFix - DevSecOps Support
-              </h3>
-              <p class="c-paragraph c-card__text">
-                CloFix DevSecOps ensures fast, secure, and scalable application delivery by integrating security into
-                every stage of the development and operations lifecycle. Our team automates CI/CD pipelines, embeds
-                security checks into workflows, and optimizes cloud infrastructure while maintaining real-time
-                observability. This approach guarantees high availability, top-tier performance, and robust security for
-                cloud-native applications.
-              </p>
-            </div>
 
-            <div class="c-card__img-holder">
-              <img class="c-card__img" src="img/devops_support.png" alt="CloFix DevSecOps Support" />
-            </div>
-          </article>
-
-          <article class="c-card">
-            <div class="c-card__content">
-              <h3 class="c-card__title heading heading--3">
-                CloFix - Automation & Management
-              </h3>
-              <p class="c-paragraph c-card__text">
-                CloFix provides reliable, secure, and cost-effective cloud automation and infrastructure management
-                services. We help businesses streamline operations, reduce manual effort, and achieve continuous
-                availability.
-              </p>
-            </div>
-
-            <div class="c-card__img-holder">
-              <img class="c-card__img" src="img/automation.png" alt="CloFix Automation & Management" />
-            </div>
-          </article>
-
-          <article class="c-card">
-            <div class="c-card__content">
-              <h3 class="c-card__title heading heading--3">
-                CloFix - On-Demand Engineering Support
-              </h3>
-              <p class="c-paragraph c-card__text">
-                CloFix On-Demand Engineering Support delivers fast, expert-level technical assistance exactly when you
-                need it. Our seasoned engineers help you troubleshoot, optimize, and secure your infrastructure,
-                deployments, and DevOps pipelines ensuring resilience, efficiency, and reliability at every step.
-              </p>
-            </div>
-
-            <div class="c-card__img-holder">
-              <img class="c-card__img" src="img/support_clofix.png" alt="CloFix On-Demand Engineering Support" />
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
 
-    <div class="stars"></div>
+    <!-- <div class="stars"></div>
     <div class="stars2"></div>
-    <div class="stars3"></div>
+    <div class="stars3"></div> -->
 
     <div class="container c-footer">
       <div class="c-footer__column c-footer__logo-column">
@@ -405,65 +502,7 @@
 </body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
-  let currentIndex = 0;
-  const slides = document.getElementById("slides");
-  const totalSlides = slides.children.length;
 
-  const dotsContainer = document.getElementById("sliderDots");
-
-  function createDots() {
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement("button");
-      dot.setAttribute("data-index", i);
-      dot.addEventListener("click", () => {
-        showSlide(i);
-      });
-      dotsContainer.appendChild(dot);
-    }
-    updateDots();
-  }
-
-  function updateDots() {
-    const dots = dotsContainer.querySelectorAll("button");
-    dots.forEach(dot => dot.classList.remove("active"));
-    if (dots[currentIndex]) {
-      dots[currentIndex].classList.add("active");
-    }
-  }
-
-  function showSlide(index) {
-    if (index >= totalSlides) currentIndex = 0;
-    else if (index < 0) currentIndex = totalSlides - 1;
-    else currentIndex = index;
-
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    updateDots();
-  }
-
-  function nextSlide() {
-    showSlide(currentIndex + 1);
-  }
-
-  function prevSlide() {
-    showSlide(currentIndex - 1);
-  }
-
-  setInterval(nextSlide, 6000); // auto-slide every 6s
-
-  // Touch support (swipe)
-  let startX = 0;
-  slides.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  slides.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const delta = startX - endX;
-    if (delta > 50) nextSlide();
-    else if (delta < -50) prevSlide();
-  });
-
-  createDots();
 
   const navToggle = document.getElementById('navToggle');
   const navContent = document.querySelector('.c-nav__content');
@@ -571,166 +610,186 @@
     }
   })();
 </script>
-<!-- <script>
-  (async function () {
-    // ================== Anti-Wappalyzer / JS spoofing ==================
-    Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3] });
-    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-    Object.defineProperty(navigator, 'webdriver', { get: () => false });
-    Object.defineProperty(navigator, 'vendor', { get: () => 'Google Inc.' });
 
-    const originalGetParameter = WebGLRenderingContext.prototype.getParameter;
-    WebGLRenderingContext.prototype.getParameter = function (parameter) {
-      if (parameter === this.RENDERER) return "Intel Inc.";
-      if (parameter === this.VENDOR) return "Intel";
-      return originalGetParameter.call(this, parameter);
-    };
+<script>
+  (function () {
+    const sourceList = document.getElementById('quantumSource');
+    const cards = Array.from(sourceList.querySelectorAll('.cap-card'));
+    const total = cards.length;
 
-    // ================== Virtualization / Sandbox Detection ==================
-    function detectVM() {
-      let risk = 0;
-      let reasons = [];
+    const portalSlot = document.getElementById('portalActiveSlot');
+    const ghostPrevSlot = document.getElementById('ghostPrev');
+    const ghostNextSlot = document.getElementById('ghostNext');
 
-      // CPU check
-      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
-        risk += 15;
-        reasons.push("Low CPU cores (" + navigator.hardwareConcurrency + ")");
-      }
+    const qPrevBtn = document.getElementById('qPrev');
+    const qNextBtn = document.getElementById('qNext');
 
-      // RAM check
-      let ram = navigator.deviceMemory || 0;
-      if (ram > 0 && ram <= 8) {
-        risk += 15;
-        reasons.push("Low RAM (" + ram + " GB)");
-      }
-      if (ram === 0) {
-        risk += 20;
-        reasons.push("Unknown RAM reported");
-      }
+    const portalCoreEl = portalSlot.closest('.portal-core');
+    const portalRing = portalCoreEl.closest('.portal-ring');
+    const portalCinematic = portalRing.querySelector('.portal-cinematic');
 
-      // Screen resolution check
-      if (window.screen.width <= 1366 && window.screen.height <= 768) {
-        risk += 10;
-        reasons.push("Low screen resolution");
-      }
+    let current = 0;
 
-      // Plugins
-      if (navigator.plugins.length === 0) {
-        risk += 10;
-        reasons.push("No browser plugins detected");
-      }
-
-      // WebGL Renderer check
-      let canvas = document.createElement("canvas");
-      let gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-      if (gl) {
-        let renderer = gl.getParameter(gl.RENDERER);
-        let vendor = gl.getParameter(gl.VENDOR);
-        let check = (renderer + " " + vendor).toLowerCase();
-        if (check.includes("swiftshader") ||
-          check.includes("virtual") ||
-          check.includes("vmware") ||
-          check.includes("parallels") ||
-          check.includes("basic renderer")) {
-          risk += 25;
-          reasons.push("Virtual GPU detected (" + renderer + ")");
-        }
-      } else {
-        risk += 10;
-        reasons.push("No WebGL support");
-      }
-
-      // WebDriver
-      if (navigator.webdriver) {
-        risk += 30;
-        reasons.push("WebDriver flag detected");
-      }
-
-      // Platform vs UA mismatch
-      if (navigator.userAgent.includes("x64") && navigator.platform === "Win32") {
-        risk += 15;
-        reasons.push("Platform/UA mismatch (x64 vs Win32)");
-      }
-
-      // Battery API
-      if (navigator.getBattery) {
-        navigator.getBattery().then(b => {
-          if (b.charging && b.level === 1) {
-            risk += 10;
-            reasons.push("Unrealistic battery state");
-          }
-        });
-      }
-
-      // Media devices
-      if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-        navigator.mediaDevices.enumerateDevices().then(devices => {
-          if (devices.length < 2) {
-            risk += 10;
-            reasons.push("Few media devices (likely VM)");
-          }
-        });
-      }
-
-      return { vm_risk_score: risk, vm_reasons: reasons };
+    function wrapIndex(i) {
+      if (i < 0) return total - 1;
+      if (i >= total) return 0;
+      return i;
     }
 
-    const vmResult = detectVM();
+    function cloneCard(i) {
+      const node = cards[i];
+      return node.cloneNode(true);
+    }
 
-    // ================== Collect Client Signals ==================
-    const clientSignals = {
-      ...vmResult,
-      cpu_cores: navigator.hardwareConcurrency,
-      ram_gb: navigator.deviceMemory || "unknown",
-      platform: navigator.platform || "unknown",
-      user_agent: navigator.userAgent,
-      vendor: navigator.vendor || "unknown",
-      screen_resolution: `${window.screen.width}x${window.screen.height}`,
-      color_depth: window.screen.colorDepth,
-      pixel_depth: window.screen.pixelDepth,
-      avail_width: window.screen.availWidth,
-      avail_height: window.screen.availHeight,
-      plugins_count: navigator.plugins.length,
-      languages: navigator.languages || ['unknown'],
-      webdriver: navigator.webdriver || false,
-      cookies_enabled: navigator.cookieEnabled,
-      do_not_track: navigator.doNotTrack,
-      canvas_hash: (() => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        ctx.textBaseline = 'top';
-        ctx.font = '14px Arial';
-        ctx.fillText('CloFixTest', 2, 2);
-        return canvas.toDataURL();
-      })(),
-      webgl_vendor: (() => {
-        const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-        if (!gl) return 'unknown';
-        return gl.getParameter(gl.VENDOR) + ' | ' + gl.getParameter(gl.RENDERER);
-      })(),
-      timezone_offset: new Date().getTimezoneOffset(),
-      locale: navigator.language || "unknown",
-      connection_type: navigator.connection ? navigator.connection.effectiveType : "unknown",
-      downlink: navigator.connection ? navigator.connection.downlink : "unknown",
-      rtt: navigator.connection ? navigator.connection.rtt : "unknown",
-      service_worker_supported: 'serviceWorker' in navigator,
-      local_storage_supported: 'localStorage' in window,
-      session_storage_supported: 'sessionStorage' in window,
-      indexeddb_supported: 'indexedDB' in window,
-      origin_domain: window.location.origin
-    };
+    function triggerWarpAnimation() {
+      portalCoreEl.classList.add('portal-warp');
+      setTimeout(() => {
+        portalCoreEl.classList.remove('portal-warp');
+      }, 120);
+    }
 
-    // ================== Send to WAF server ==================
-    fetch("/check-request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(clientSignals)
-    })
-      .then(res => res.json())
-      .then(data => console.log("CloFix WAF Response:", data))
-      .catch(err => console.error("CloFix WAF request failed:", err));
+    function triggerCinematic() {
+      portalCinematic.classList.remove('portal-cinematic--play');
+      void portalCinematic.offsetWidth; // force reflow to restart animation
+      portalCinematic.classList.add('portal-cinematic--play');
+    }
+
+    function render() {
+      const prevI = wrapIndex(current - 1);
+      const nextI = wrapIndex(current + 1);
+
+      triggerWarpAnimation();
+      triggerCinematic();
+
+      // reset content slots
+      portalSlot.innerHTML = '';
+      ghostPrevSlot.innerHTML = '';
+      ghostNextSlot.innerHTML = '';
+
+      // mount active card
+      const activeClone = cloneCard(current);
+      portalSlot.appendChild(activeClone);
+
+      // mount previews
+      ghostPrevSlot.appendChild(cloneCard(prevI));
+      ghostNextSlot.appendChild(cloneCard(nextI));
+
+      // make main portal clickable to card's href
+      const href = cards[current].getAttribute('data-href');
+      portalRing.onclick = () => {
+        if (href) window.location.href = href;
+      };
+    }
+
+    function goNext() {
+      current = wrapIndex(current + 1);
+      render();
+    }
+    function goPrev() {
+      current = wrapIndex(current - 1);
+      render();
+    }
+
+    // controls
+    qNextBtn.addEventListener('click', goNext);
+    qPrevBtn.addEventListener('click', goPrev);
+    ghostNextSlot.addEventListener('click', goNext);
+    ghostPrevSlot.addEventListener('click', goPrev);
+
+    // swipe on portal for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    portalRing.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    portalRing.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].clientX;
+      const dx = touchEndX - touchStartX;
+      if (Math.abs(dx) > 40) {
+        if (dx < 0) {
+          goNext();
+        } else {
+          goPrev();
+        }
+      }
+    }, { passive: true });
+
+    // autoplay logic
+    let autoOn = true;
+    let autoTimer = null;
+
+    function startAuto() {
+      if (autoTimer) return;
+      autoTimer = setInterval(() => {
+        if (autoOn) goNext();
+      }, 5000);
+    }
+
+    function stopAuto() {
+      if (!autoTimer) return;
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    // pause autoplay on hover/focus/touch
+    const interactiveEls = [portalRing, qPrevBtn, qNextBtn, ghostPrevSlot, ghostNextSlot];
+
+    interactiveEls.forEach(el => {
+      el.addEventListener('mouseenter', () => { autoOn = false; });
+      el.addEventListener('mouseleave', () => { autoOn = true; });
+      el.addEventListener('focusin', () => { autoOn = false; });
+      el.addEventListener('focusout', () => { autoOn = true; });
+      el.addEventListener('touchstart', () => { autoOn = false; stopAuto(); }, { passive: true });
+    });
+
+    // init
+    render();
+    startAuto();
   })();
-</script> -->
+</script>
+
+<script>
+  (function () {
+    const mq = window.matchMedia("(min-width: 769px)");
+    if (!mq.matches) return; // desktop/tablet only
+
+    const cards = document.querySelectorAll('.neuro-card');
+    const maxTilt = 6; // degrees
+
+    cards.forEach(card => {
+      function handleMove(e) {
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        const x = e.clientX - cx;
+        const y = e.clientY - cy;
+
+        const nx = x / (rect.width / 2);
+        const ny = y / (rect.height / 2);
+
+        const rx = (-ny * maxTilt).toFixed(2);
+        const ry = (nx * maxTilt).toFixed(2);
+
+        card.style.setProperty('--rx', rx + 'deg');
+        card.style.setProperty('--ry', ry + 'deg');
+        card.style.setProperty('--tz', '40px');
+      }
+
+      function handleLeave() {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--tz', '0px');
+      }
+
+      card.addEventListener('mousemove', handleMove);
+      card.addEventListener('mouseleave', handleLeave);
+      card.addEventListener('focusout', handleLeave);
+    });
+  })();
+</script>
+
 
 </html>
