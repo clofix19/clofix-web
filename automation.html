@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://clofix.com/" />
+
+    <script src="./assets/clofix-orbit-logo.js" defer></script>
+    <script src="./assets/clofix-anime-devops-logo.js" defer></script>
+    <script src="./assets/clofix-anime-automation-logo.js" defer></script>
+    <script src="./assets/clofix-on-demand-engineering-support-logo.js" defer></script>
+    <script src="./assets/clofix-anime-waf-logo.js" defer></script>
+
+    <!-- Standard SEO Meta -->
+    <meta name="description"
+        content="End-to-end DevOps automation: we build, test, deploy, scale, and keep it healthy in production. Less manual work, faster delivery, lower cost.">
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CloFix Security",
+    "url": "https://clofix.com/",
+    "description": "CloFix provides cloud infrastructure, automation, and AI-powered WAF security services for reliable and scalable deployments.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/logo.png"
+      }
+    },
+    "sameAs": [
+      "https://twitter.com/clofix",
+      "https://linkedin.com/company/clofix",
+      "https://github.com/clofix"
+    ]
+  }
+  </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CloFix Security",
+    "url": "https://clofix.com/",
+    "logo": "https://clofix.com/img/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "Md Shariful Islam",
+      "jobTitle": "Founder & CISO"
+    },
+    "foundingDate": "2025-07-19",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "House 8/10. Road 5",
+      "addressLocality": "Dhaka 1207",
+      "addressCountry": "Bangladesh"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+880-1850603126",
+      "contactType": "customer support",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English", "Bengali"]
+    }],
+    "department": [
+      {
+        "@type": "Organization",
+        "name": "CloFix WAF",
+        "url": "https://clofix.com/waf",
+        "description": "CloFix WAF is an AI-powered Web Application Firewall providing behavioral threat analysis, fingerprinting detection, and automated security enforcement."
+      }
+    ]
+  }
+  </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix | Automation">
+    <meta property="og:description"
+        content="End-to-end DevOps automation: we build, test, deploy, scale, and keep it healthy in production. Less manual work, faster delivery, lower cost.">
+    <meta property="og:url" content="https://clofix.com/">
+    <meta property="og:image" content="/img/facebook_clofix.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix | Automation">
+    <meta name="twitter:description"
+        content="End-to-end DevOps automation: we build, test, deploy, scale, and keep it healthy in production. Less manual work, faster delivery, lower cost.">
+    <meta name="twitter:image" content="/img/X_clofix.png">
+    <meta name="twitter:site" content="@clofix19">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Local Fonts + Global Styles -->
+    <link href="./fonts/fonts.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
+
+    <!-- Page CSS (separate file) -->
+    <link href="./automation.css" rel="stylesheet" />
+
+    <title>CloFix | Automation</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="c-logo">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+                    </a>
+                    <span class="c-logo__text c-logo__text--white"></span>
+                </div>
+
+                <nav class="c-nav">
+                    <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span class="c-nav__bar"></span>
+                        <span class="c-nav__bar"></span>
+                        <span class="c-nav__bar"></span>
+                    </button>
+
+                    <div class="c-nav__content">
+                        <ul class="c-list c-list--flex">
+                            <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                            <li class="c-list__item"><a href="#section-services"
+                                    class="c-link c-link--list">Services</a></li>
+                            <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                            <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a>
+                            </li>
+                            <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+                            </li>
+                            <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+
+                            <!-- Tools dropdown -->
+                            <li class="c-list__item c-dropdown">
+                                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false"
+                                    aria-haspopup="true">
+                                    Tools
+                                    <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                                </button>
+                                <ul class="c-dropdown__menu" role="menu">
+                                    <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE
+                                            Checker</a></li>
+                                    <li role="none"><a role="menuitem" href="pentest.html"
+                                            class="c-link c-link--list">Clofix Pentest</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <a href="faq.html" class="ticket-button">
+                            <button class="c-button c-button--small c-button--secondary">FAQ</button>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="auto-page">
+
+        <!-- HERO -->
+        <section class="auto-hero">
+            <div class="auto-container">
+                <div class="auto-hero__grid">
+
+                    <div class="auto-hero__left">
+                        <div class="auto-kicker">
+                            <span class="auto-dot" aria-hidden="true"></span>
+                            End-to-end DevOps automation, wired into delivery
+                        </div>
+
+                        <h1 class="auto-title">
+                            End-to-end <span class="auto-grad">DevOps automation</span> that ships faster.
+                        </h1>
+
+                        <p class="auto-subtitle">
+                            We build, test, deploy, scale, and keep it healthy in production.
+                            Less manual work, faster delivery, lower cost with repeatable pipelines and clear
+                            runbooks.
+                        </p>
+
+                        <div class="auto-ctaRow">
+                            <a class="auto-btn auto-btn--primary" href="contact.html">
+                                Get Automation Help <span aria-hidden="true">→</span>
+                            </a>
+                            <a class="auto-btn auto-btn--ghost" href="#section-services">
+                                See the workflow <span aria-hidden="true">↓</span>
+                            </a>
+                            <a class="auto-btn auto-btn--ghost" href="features.html">
+                                Explore platform <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+
+                        <div class="auto-metrics">
+                            <div class="auto-metric">
+                                <b>Cycle time</b>
+                                <span>Shorter lead time from commit → production.</span>
+                            </div>
+                            <div class="auto-metric">
+                                <b>Reliability</b>
+                                <span>Fewer incidents through repeatable releases + checks.</span>
+                            </div>
+                            <div class="auto-metric">
+                                <b>Cost</b>
+                                <span>Less toil through automation + self-healing operations.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Automation Console -->
+                    <aside class="auto-panel" aria-label="Automation workflow panel">
+                        <div class="auto-panel__inner">
+
+                            <div class="auto-panel__hdr">
+                                <div>
+                                    <div class="auto-miniTitle">Automation Console</div>
+                                    <div class="auto-miniSub">One workflow from build to health</div>
+                                </div>
+
+                                <div class="auto-badge">
+                                    <span class="auto-badge__dot" aria-hidden="true"></span>
+                                    Pipeline: RUNNING
+                                </div>
+                            </div>
+
+                            <div class="auto-timeline" id="autoTimeline" aria-live="polite">
+                                <div class="auto-step is-active" data-step="1">
+                                    <div class="auto-step__icon">1</div>
+                                    <div class="auto-step__meta">
+                                        <b>Build</b>
+                                        <span>Artifacts produced • versioned • repeatable</span>
+                                    </div>
+                                    <span class="auto-chip auto-chip--good">OK</span>
+                                </div>
+
+                                <div class="auto-step" data-step="2">
+                                    <div class="auto-step__icon">2</div>
+                                    <div class="auto-step__meta">
+                                        <b>Test</b>
+                                        <span>Unit • integration • security checks</span>
+                                    </div>
+                                    <span class="auto-chip auto-chip--warn">Queued</span>
+                                </div>
+
+                                <div class="auto-step" data-step="3">
+                                    <div class="auto-step__icon">3</div>
+                                    <div class="auto-step__meta">
+                                        <b>Deploy</b>
+                                        <span>Progressive rollout • rollback ready</span>
+                                    </div>
+                                    <span class="auto-chip">Pending</span>
+                                </div>
+
+                                <div class="auto-step" data-step="4">
+                                    <div class="auto-step__icon">4</div>
+                                    <div class="auto-step__meta">
+                                        <b>Scale</b>
+                                        <span>Auto-scale rules • resource tuning</span>
+                                    </div>
+                                    <span class="auto-chip">Pending</span>
+                                </div>
+
+                                <div class="auto-step" data-step="5">
+                                    <div class="auto-step__icon">5</div>
+                                    <div class="auto-step__meta">
+                                        <b>Health</b>
+                                        <span>Monitoring • alerts • self-healing runbooks</span>
+                                    </div>
+                                    <span class="auto-chip">Pending</span>
+                                </div>
+                            </div>
+
+                            <div class="auto-divider"></div>
+
+                            <div class="auto-callout">
+                                <b>What you get</b>
+                                <span>
+                                    Standardized pipelines, predictable releases, automated rollbacks,
+                                    and production health automation that reduces on-call pressure.
+                                </span>
+                            </div>
+
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="auto-container">
+            <div class="auto-divider"></div>
+        </div>
+
+        <!-- SERVICES -->
+        <section class="auto-section" id="section-services">
+            <div class="auto-container">
+                <div class="auto-section__head">
+                    <div>
+                        <h2 class="auto-h2">What “end-to-end automation” includes</h2>
+                        <p class="auto-lead">
+                            This isn’t “some scripts.” This is a delivery system: CI/CD, infrastructure, scaling,
+                            and production operations all automated and measurable.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="auto-grid">
+
+                    <article class="auto-card auto-card--span4">
+                        <h3>Build</h3>
+                        <p>Repeatable builds with versioning, artifacts, and reproducible environments.</p>
+                        <ul class="auto-list">
+                            <li>Build caching & dependency control</li>
+                            <li>Artifact management</li>
+                            <li>Release tagging strategy</li>
+                        </ul>
+                    </article>
+
+                    <article class="auto-card auto-card--span4">
+                        <h3>Test</h3>
+                        <p>Confidence before deployment with automated quality and safety checks.</p>
+                        <ul class="auto-list">
+                            <li>Unit + integration automation</li>
+                            <li>Security scanning hooks</li>
+                            <li>Quality gates and thresholds</li>
+                        </ul>
+                    </article>
+
+                    <article class="auto-card auto-card--span4">
+                        <h3>Deploy</h3>
+                        <p>Safe delivery with progressive rollouts and rollback-ready releases.</p>
+                        <ul class="auto-list">
+                            <li>Blue/green or canary releases</li>
+                            <li>Environment promotions</li>
+                            <li>Automated rollback triggers</li>
+                        </ul>
+                    </article>
+
+                    <article class="auto-card auto-card--span6">
+                        <h3>Scale</h3>
+                        <p>Performance and cost control using policy-driven scaling and tuning.</p>
+                        <ul class="auto-list">
+                            <li>Auto-scaling based on metrics</li>
+                            <li>Resource right-sizing</li>
+                            <li>Cost guardrails</li>
+                        </ul>
+                    </article>
+
+                    <article class="auto-card auto-card--span6">
+                        <h3>Production health</h3>
+                        <p>Monitoring, alert routing, and self-healing runbooks to reduce incidents.</p>
+                        <ul class="auto-list">
+                            <li>SLI/SLO dashboards</li>
+                            <li>On-call routing & incident playbooks</li>
+                            <li>Auto-remediation actions</li>
+                        </ul>
+                    </article>
+
+                    <article class="auto-card auto-card--span7">
+                        <h3>Example: release workflow (clean + simple)</h3>
+                        <p>Readable automation that your team can review and evolve safely.</p>
+                        <div class="auto-sample" role="region" aria-label="Automation workflow example">
+                            # clofix-automation.yml
+                            pipeline:
+                            build:
+                            - compile
+                            - create_artifact
+                            - sign_artifact
+                            test:
+                            - unit_tests
+                            - integration_tests
+                            - security_checks
+                            deploy:
+                            - canary_rollout
+                            - verify_metrics
+                            - promote_or_rollback
+                            ops:
+                            - autoscale
+                            - alert_routing
+                            - self_heal_runbooks
+                        </div>
+                    </article>
+
+                    <article class="auto-card auto-card--span5">
+                        <h3>Where we plug in</h3>
+                        <p>We can start from your current stack and automate step-by-step.</p>
+                        <ul class="auto-list">
+                            <li><b>CI/CD:</b> GitHub Actions / GitLab CI / Jenkins</li>
+                            <li><b>IaC:</b> Terraform / Ansible</li>
+                            <li><b>Containers:</b> Docker / Kubernetes</li>
+                            <li><b>Observability:</b> metrics, logs, traces, alerts</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <div class="auto-ctaBand">
+                    <div>
+                        <h3>Want faster releases with less operational stress?</h3>
+                        <p>
+                            CloFix automation reduces manual steps, standardizes delivery, and keeps production healthy.
+                        </p>
+                    </div>
+                    <div class="auto-ctaRow auto-ctaRow--right">
+                        <a class="auto-btn auto-btn--primary" href="contact.html">Request a demo <span
+                                aria-hidden="true">→</span></a>
+                        <a class="auto-btn auto-btn--ghost" href="pricing.html">See pricing <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand">
+                    <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+                </a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+
+                <ul class="social">
+                    <li class="social-li">
+                        <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener noreferrer">
+                            <img src="img/facebook_clofix.png" alt="Facebook" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://x.com/clofix19" target="_blank" rel="noopener noreferrer">
+                            <img src="img/X_clofix.png" alt="X" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://www.linkedin.com/company/clofix/" target="_blank" rel="noopener noreferrer">
+                            <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://wa.me/8801850603126" target="_blank" rel="noopener noreferrer">
+                            <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+    <script>
+        // ===== Your existing nav + dropdown logic (kept intact) =====
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+
+        const dropdowns = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns() {
+            dropdowns.forEach(dd => {
+                dd.classList.remove('open');
+                const btn = dd.querySelector('.c-dropdown__toggle');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        if (navToggle && navContent) {
+            navToggle.setAttribute('aria-expanded', 'false');
+
+            navToggle.addEventListener('click', () => {
+                const open = navContent.classList.toggle('active');
+                document.body.classList.toggle('nav-open', open);
+                navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (!open) closeAllDropdowns();
+            });
+
+            navContent.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navContent.classList.contains('active')) {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('nav-open');
+                    navContent.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        dropdowns.forEach(dd => {
+            const toggle = dd.querySelector('.c-dropdown__toggle');
+            if (!toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const willOpen = !dd.classList.contains('open');
+                closeAllDropdowns();
+                if (willOpen) {
+                    dd.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const panelOpen = navContent && navContent.classList.contains('active');
+            if (panelOpen) return;
+            if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+        });
+
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+            a.addEventListener('click', () => {
+                closeAllDropdowns();
+                if (navContent) navContent.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        (function () {
+            const headerEl = document.querySelector('.header');
+            function syncHeaderHeight() {
+                if (!headerEl) return;
+                document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+            }
+            window.addEventListener('load', syncHeaderHeight);
+            window.addEventListener('resize', syncHeaderHeight);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncHeaderHeight);
+            }
+        })();
+
+        // Smooth scroll for in-page anchors
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const id = a.getAttribute('href');
+                if (!id || id === "#") return;
+                const el = document.querySelector(id);
+                if (!el) return;
+                e.preventDefault();
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+
+        // ===== Small page animation: timeline cycles steps =====
+        (function () {
+            const timeline = document.getElementById('autoTimeline');
+            if (!timeline) return;
+
+            const steps = Array.from(timeline.querySelectorAll('.auto-step'));
+            if (!steps.length) return;
+
+            let i = 0;
+            function setStep(idx) {
+                steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+
+                // update chips to feel "alive"
+                steps.forEach((s, k) => {
+                    const chip = s.querySelector('.auto-chip');
+                    if (!chip) return;
+
+                    chip.classList.remove('auto-chip--good', 'auto-chip--warn', 'auto-chip--bad');
+
+                    if (k < idx) {
+                        chip.textContent = "OK";
+                        chip.classList.add('auto-chip--good');
+                    } else if (k === idx) {
+                        chip.textContent = "RUN";
+                        chip.classList.add('auto-chip--warn');
+                    } else {
+                        chip.textContent = "Pending";
+                    }
+                });
+            }
+
+            setStep(0);
+            setInterval(() => {
+                i = (i + 1) % steps.length;
+                setStep(i);
+            }, 2200);
+        })();
+    </script>
+
+</body>
+
+</html>

@@ -1,34 +1,3 @@
-// ======================================================================
-// CloFix WAF Logo (Cyberpunk Firewall Shield v2)
-// File: clofix-anime-waf-logo.js
-//
-// Direction:
-// - Cyberpunk red/blue security wall like your reference
-// - Neon firewall "brick wall" in the center
-// - Central shield with checkmark (green/secure)
-// - Flames (active threats) on edges
-// - Horizontal scan sweep across the wall
-//
-// Animations:
-// - Flame flicker
-// - Scan bar sweeping left→right
-// - Shield aura pulsing
-//
-// API (unchanged):
-// <clofix-waf-logo
-//   variant="orbit"
-//   color="#38bdf8"
-//   speed="4"
-//   data-href="waf.html">
-// </clofix-waf-logo>
-//
-// Attributes:
-//   color       = accent for "clean / protected" glow
-//   speed       = base animation seconds
-//   data-href   = optional click nav
-//   variant     = "orbit" (220x220 tile mode)
-// ======================================================================
-
 class ClofixWAFLogo extends HTMLElement {
   static get observedAttributes() {
     return ["color", "speed", "data-href", "variant"];
@@ -120,6 +89,7 @@ class ClofixWAFLogo extends HTMLElement {
   height:220px;
   max-height:220px;
   padding:.8rem .8rem .7rem;
+  gap:1rem;
   border-radius:20px;
 
   background: var(--bg-card-top);
@@ -557,9 +527,7 @@ class ClofixWAFLogo extends HTMLElement {
       <span class="service">WAF</span>
     </div>
     <div class="subtext">
-      Fully managed Web Application Firewall. CloFix inspects and filters
-      hostile traffic in real time — blocking bots, exploit attempts, and
-      OWASP Top 10 vectors, while letting clean API / CDN traffic flow fast.
+      Real-time attack filtering that keeps apps fast and secure
     </div>
   </div>
 </div>

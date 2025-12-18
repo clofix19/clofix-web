@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://clofix.com/" />
+
+    <script src="./assets/clofix-orbit-logo.js" defer></script>
+    <script src="./assets/clofix-anime-devops-logo.js" defer></script>
+    <script src="./assets/clofix-anime-automation-logo.js" defer></script>
+    <script src="./assets/clofix-on-demand-engineering-support-logo.js" defer></script>
+    <script src="./assets/clofix-anime-waf-logo.js" defer></script>
+
+    <!-- Standard SEO Meta -->
+    <meta name="description"
+        content="CloFix intercepts insecure code before it ships. We scan, remediate, and enforce policy at the pipeline — only verified builds are allowed through to production.">
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CloFix Security",
+    "url": "https://clofix.com/",
+    "description": "CloFix provides cloud infrastructure, automation, and AI-powered WAF security services for reliable and scalable deployments.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/logo.png"
+      }
+    },
+    "sameAs": [
+      "https://twitter.com/clofix",
+      "https://linkedin.com/company/clofix",
+      "https://github.com/clofix"
+    ]
+  }
+  </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CloFix Security",
+    "url": "https://clofix.com/",
+    "logo": "https://clofix.com/img/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "Md Shariful Islam",
+      "jobTitle": "Founder & CISO"
+    },
+    "foundingDate": "2025-07-19",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "House 8/10. Road 5",
+      "addressLocality": "Dhaka 1207",
+      "addressCountry": "Bangladesh"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+880-1850603126",
+      "contactType": "customer support",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English", "Bengali"]
+    }],
+    "department": [
+      {
+        "@type": "Organization",
+        "name": "CloFix WAF",
+        "url": "https://clofix.com/waf",
+        "description": "CloFix WAF is an AI-powered Web Application Firewall providing behavioral threat analysis, fingerprinting detection, and automated security enforcement."
+      }
+    ]
+  }
+  </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix | DevSecOps Pipeline Enforcement">
+    <meta property="og:description"
+        content="CloFix intercepts insecure code before it ships. We scan, remediate, and enforce policy at the pipeline — only verified builds are allowed through to production.">
+    <meta property="og:url" content="https://clofix.com/">
+    <meta property="og:image" content="/img/facebook_clofix.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix | DevSecOps Pipeline Enforcement">
+    <meta name="twitter:description"
+        content="CloFix intercepts insecure code before it ships. We scan, remediate, and enforce policy at the pipeline — only verified builds are allowed through to production.">
+    <meta name="twitter:image" content="/img/X_clofix.png">
+    <meta name="twitter:site" content="@clofix19">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Local Fonts + Global Styles -->
+    <link href="./fonts/fonts.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
+
+    <!-- Page CSS (separate file) -->
+    <link href="./devsecops.css" rel="stylesheet" />
+
+    <title>CloFix | DevSecOps Support</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="c-logo">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+                    </a>
+                    <span class="c-logo__text c-logo__text--white"></span>
+                </div>
+
+                <nav class="c-nav">
+                    <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span class="c-nav__bar"></span>
+                        <span class="c-nav__bar"></span>
+                        <span class="c-nav__bar"></span>
+                    </button>
+
+                    <div class="c-nav__content">
+                        <ul class="c-list c-list--flex">
+                            <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                            <li class="c-list__item"><a href="#section-services"
+                                    class="c-link c-link--list">Services</a></li>
+                            <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                            <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a>
+                            </li>
+                            <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+                            </li>
+                            <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+
+                            <!-- Tools dropdown -->
+                            <li class="c-list__item c-dropdown">
+                                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false"
+                                    aria-haspopup="true">
+                                    Tools
+                                    <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                                </button>
+                                <ul class="c-dropdown__menu" role="menu">
+                                    <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE
+                                            Checker</a></li>
+                                    <li role="none"><a role="menuitem" href="pentest.html"
+                                            class="c-link c-link--list">Clofix Pentest</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <a href="faq.html" class="ticket-button">
+                            <button class="c-button c-button--small c-button--secondary">FAQ</button>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="ds-page">
+
+        <!-- HERO -->
+        <section class="ds-hero">
+            <div class="ds-container">
+                <div class="ds-hero__grid">
+
+                    <div class="ds-hero__left">
+                        <div class="ds-kicker">
+                            <span class="ds-dot" aria-hidden="true"></span>
+                            DevSecOps enforcement that actually blocks risky releases
+                        </div>
+
+                        <h1 class="ds-title">
+                            CloFix intercepts <span class="ds-title__grad">insecure code</span> before it ships.
+                        </h1>
+
+                        <p class="ds-subtitle">
+                            We scan, remediate, and enforce policy at the pipeline only verified builds are allowed
+                            through to production. Your teams move fast; your releases stay clean.
+                        </p>
+
+                        <div class="ds-ctaRow">
+                            <a class="ds-btn ds-btn--primary" href="features.html">
+                                View Features <span aria-hidden="true">→</span>
+                            </a>
+                            <a class="ds-btn ds-btn--ghost" href="contact.html">
+                                Talk to CloFix <span aria-hidden="true">↗</span>
+                            </a>
+                            <a class="ds-btn ds-btn--ghost" href="#section-services">
+                                How it works <span aria-hidden="true">↓</span>
+                            </a>
+                        </div>
+
+                        <div class="ds-heroFacts">
+                            <div class="ds-fact">
+                                <b>Shift-left + shift-right</b>
+                                <span>Catch issues in PR/CI, then re-verify artifacts at deploy time.</span>
+                            </div>
+                            <div class="ds-fact">
+                                <b>Remediation, not noise</b>
+                                <span>Clear fixes and prioritization reduce security backlog.</span>
+                            </div>
+                            <div class="ds-fact">
+                                <b>Hard gates</b>
+                                <span>Policy decides what ships. “Informational-only” doesn’t protect prod.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Release gate panel -->
+                    <aside class="ds-panel" aria-label="Verified build gate">
+                        <div class="ds-panel__inner">
+                            <div class="ds-panel__hdr">
+                                <div>
+                                    <div class="ds-miniTitle">Release Gate</div>
+                                    <div class="ds-miniSub">Only verified artifacts → production</div>
+                                </div>
+                                <div class="ds-badge">
+                                    <span class="ds-badge__dot" aria-hidden="true"></span>
+                                    Policy Engine: ACTIVE
+                                </div>
+                            </div>
+
+                            <div class="ds-pipeline">
+                                <div class="ds-step">
+                                    <div class="ds-step__icon" aria-hidden="true">S</div>
+                                    <div class="ds-step__meta">
+                                        <b>Scan</b>
+                                        <span>SAST • SCA • Secrets • IaC • Containers</span>
+                                    </div>
+                                    <span class="ds-chip ds-chip--warn">Findings</span>
+                                </div>
+
+                                <div class="ds-step">
+                                    <div class="ds-step__icon" aria-hidden="true">R</div>
+                                    <div class="ds-step__meta">
+                                        <b>Remediate</b>
+                                        <span>Fix suggestions • PR feedback • Auto patches</span>
+                                    </div>
+                                    <span class="ds-chip ds-chip--good">Patched</span>
+                                </div>
+
+                                <div class="ds-step">
+                                    <div class="ds-step__icon" aria-hidden="true">P</div>
+                                    <div class="ds-step__meta">
+                                        <b>Policy</b>
+                                        <span>Block risky builds • Allow only attested artifacts</span>
+                                    </div>
+                                    <span class="ds-chip ds-chip--good">PASS</span>
+                                </div>
+
+                                <div class="ds-step">
+                                    <div class="ds-step__icon" aria-hidden="true">✓</div>
+                                    <div class="ds-step__meta">
+                                        <b>Deploy</b>
+                                        <span>Signed + verified build promoted to production</span>
+                                    </div>
+                                    <span class="ds-chip ds-chip--good">VERIFIED</span>
+                                </div>
+                            </div>
+
+                            <div class="ds-divider"></div>
+
+                            <div class="ds-callout">
+                                <b>What this prevents</b>
+                                <span>
+                                    Vulnerable dependencies, leaked secrets, unsafe containers, misconfigured IaC,
+                                    and “works-on-my-machine” releases that bypass controls.
+                                </span>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="ds-container">
+            <div class="ds-divider"></div>
+        </div>
+
+        <!-- SERVICES / HOW IT WORKS -->
+        <section class="ds-section" id="section-services">
+            <div class="ds-container">
+                <div class="ds-section__head">
+                    <div>
+                        <h2 class="ds-h2">How CloFix enforces pipeline security</h2>
+                        <p class="ds-lead">
+                            Security fails when it’s optional. CloFix turns security into a repeatable release system:
+                            detect risk, fix fast, and block what violates policy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ds-grid">
+                    <article class="ds-card ds-card--span4">
+                        <h3>1) Scan what actually matters</h3>
+                        <p>Coverage across the most common breach paths, wired into CI/CD.</p>
+                        <ul class="ds-list">
+                            <li>Source code issues (SAST)</li>
+                            <li>Dependencies & CVEs (SCA)</li>
+                            <li>Secrets & tokens leakage</li>
+                            <li>IaC misconfigurations</li>
+                            <li>Container image vulnerabilities</li>
+                        </ul>
+                    </article>
+
+                    <article class="ds-card ds-card--span4">
+                        <h3>2) Remediate with speed</h3>
+                        <p>Findings are useless if they don’t change the next commit.</p>
+                        <ul class="ds-list">
+                            <li>Developer-facing explanations</li>
+                            <li>Fix suggestions + safer alternatives</li>
+                            <li>Auto-remediation for common issues</li>
+                            <li>Pull-request feedback loop</li>
+                            <li>Owner + SLA routing</li>
+                        </ul>
+                    </article>
+
+                    <article class="ds-card ds-card--span4">
+                        <h3>3) Enforce policy at the gate</h3>
+                        <p>Only compliant builds move forward, enforced automatically.</p>
+                        <ul class="ds-list">
+                            <li>Fail builds on critical violations</li>
+                            <li>Block deploy if attestation missing</li>
+                            <li>Rules per environment (dev/stage/prod)</li>
+                            <li>Expiring exceptions (ticketed)</li>
+                            <li>Audit-ready decision trail</li>
+                        </ul>
+                    </article>
+
+                    <article class="ds-card ds-card--span7">
+                        <h3>Policy-as-code example</h3>
+                        <p>Readable rules your team can version-control and review like any other change.</p>
+                        <div class="ds-sample" role="region" aria-label="Policy-as-code example">
+                            # clofix-policy.yml
+                            release_gate:
+                            environment: production
+                            require:
+                            - sbom: true
+                            - signed_artifact: true
+                            - build_attestation: true
+                            block_if:
+                            - severity: "CRITICAL"
+                            - secrets_detected: true
+                            - container_vulns_over: 0
+                            allow_with_exception:
+                            - severity: "HIGH"
+                            expires_in_days: 7
+                            require_ticket: true
+                        </div>
+                    </article>
+
+                    <article class="ds-card ds-card--span5">
+                        <h3>Where CloFix plugs in</h3>
+                        <p>Choose one entry point or cover the full lifecycle.</p>
+                        <ul class="ds-list">
+                            <li><b>PR stage:</b> comment + guidance before merge</li>
+                            <li><b>CI stage:</b> break builds on policy violations</li>
+                            <li><b>Artifact stage:</b> SBOM + signing + attestation</li>
+                            <li><b>CD stage:</b> verify before deploy to prod</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="ds-ctaBand">
+                    <div>
+                        <h3>Ready to turn “security checks” into real release gates?</h3>
+                        <p>
+                            If a build can’t prove it’s safe, it shouldn’t ship. CloFix makes that rule automatic.
+                        </p>
+                    </div>
+                    <div class="ds-ctaRow ds-ctaRow--right">
+                        <a class="ds-btn ds-btn--primary" href="contact.html">Request a demo <span
+                                aria-hidden="true">→</span></a>
+                        <a class="ds-btn ds-btn--ghost" href="pricing.html">See pricing <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand">
+                    <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+                </a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+
+                <ul class="social">
+                    <li class="social-li">
+                        <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener noreferrer">
+                            <img src="img/facebook_clofix.png" alt="Facebook" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://x.com/clofix19" target="_blank" rel="noopener noreferrer">
+                            <img src="img/X_clofix.png" alt="X" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://www.linkedin.com/company/clofix/" target="_blank" rel="noopener noreferrer">
+                            <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://wa.me/8801850603126" target="_blank" rel="noopener noreferrer">
+                            <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+    <script>
+        // ===== Your existing nav + dropdown logic (kept intact) =====
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+
+        const dropdowns = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns() {
+            dropdowns.forEach(dd => {
+                dd.classList.remove('open');
+                const btn = dd.querySelector('.c-dropdown__toggle');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        if (navToggle && navContent) {
+            navToggle.setAttribute('aria-expanded', 'false');
+
+            navToggle.addEventListener('click', () => {
+                const open = navContent.classList.toggle('active');
+                document.body.classList.toggle('nav-open', open);
+                navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (!open) closeAllDropdowns();
+            });
+
+            navContent.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navContent.classList.contains('active')) {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('nav-open');
+                    navContent.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        dropdowns.forEach(dd => {
+            const toggle = dd.querySelector('.c-dropdown__toggle');
+            if (!toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const willOpen = !dd.classList.contains('open');
+                closeAllDropdowns();
+                if (willOpen) {
+                    dd.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const panelOpen = navContent && navContent.classList.contains('active');
+            if (panelOpen) return;
+            if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+        });
+
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+            a.addEventListener('click', () => {
+                closeAllDropdowns();
+                if (navContent) navContent.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        (function () {
+            const headerEl = document.querySelector('.header');
+            function syncHeaderHeight() {
+                if (!headerEl) return;
+                document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+            }
+            window.addEventListener('load', syncHeaderHeight);
+            window.addEventListener('resize', syncHeaderHeight);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncHeaderHeight);
+            }
+        })();
+
+        // ===== Optional: smooth scroll for in-page anchor =====
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const id = a.getAttribute('href');
+                if (!id || id === "#") return;
+                const el = document.querySelector(id);
+                if (!el) return;
+                e.preventDefault();
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://clofix.com/" />
+
+    <script src="./assets/clofix-orbit-logo.js" defer></script>
+    <script src="./assets/clofix-anime-devops-logo.js" defer></script>
+    <script src="./assets/clofix-anime-automation-logo.js" defer></script>
+    <script src="./assets/clofix-on-demand-engineering-support-logo.js" defer></script>
+    <script src="./assets/clofix-anime-waf-logo.js" defer></script>
+
+    <!-- Standard SEO Meta -->
+    <meta name="description"
+        content="Live devops engineers on standby to troubleshoot, stabilize, and optimize your infrastructure and pipelines exactly when you need it.">
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CloFix Security",
+    "url": "https://clofix.com/",
+    "description": "CloFix provides cloud infrastructure, automation, and AI-powered WAF security services for reliable and scalable deployments.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/logo.png"
+      }
+    },
+    "sameAs": [
+      "https://twitter.com/clofix",
+      "https://linkedin.com/company/clofix",
+      "https://github.com/clofix"
+    ]
+  }
+  </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CloFix Security",
+    "url": "https://clofix.com/",
+    "logo": "https://clofix.com/img/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "Md Shariful Islam",
+      "jobTitle": "Founder & CISO"
+    },
+    "foundingDate": "2025-07-19",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "House 8/10. Road 5",
+      "addressLocality": "Dhaka 1207",
+      "addressCountry": "Bangladesh"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+880-1850603126",
+      "contactType": "customer support",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English", "Bengali"]
+    }],
+    "department": [
+      {
+        "@type": "Organization",
+        "name": "CloFix WAF",
+        "url": "https://clofix.com/waf",
+        "description": "CloFix WAF is an AI-powered Web Application Firewall providing behavioral threat analysis, fingerprinting detection, and automated security enforcement."
+      }
+    ]
+  }
+  </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix | On-Demand Engineering Support">
+    <meta property="og:description"
+        content="Live devops engineers on standby to troubleshoot, stabilize, and optimize your infrastructure and pipelines exactly when you need it.">
+    <meta property="og:url" content="https://clofix.com/">
+    <meta property="og:image" content="/img/facebook_clofix.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix | On-Demand Engineering Support">
+    <meta name="twitter:description"
+        content="Live devops engineers on standby to troubleshoot, stabilize, and optimize your infrastructure and pipelines exactly when you need it.">
+    <meta name="twitter:image" content="/img/X_clofix.png">
+    <meta name="twitter:site" content="@clofix19">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Local Fonts + Global Styles -->
+    <link href="./fonts/fonts.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
+
+    <!-- Page CSS (separate file) -->
+    <link href="./ondemand.css" rel="stylesheet" />
+
+    <title>CloFix | On-Demand Engineering Support</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="c-logo">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+                    </a>
+                    <span class="c-logo__text c-logo__text--white"></span>
+                </div>
+
+                <nav class="c-nav">
+                    <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span class="c-nav__bar"></span>
+                        <span class="c-nav__bar"></span>
+                        <span class="c-nav__bar"></span>
+                    </button>
+
+                    <div class="c-nav__content">
+                        <ul class="c-list c-list--flex">
+                            <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                            <li class="c-list__item"><a href="#section-services"
+                                    class="c-link c-link--list">Services</a></li>
+                            <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                            <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a>
+                            </li>
+                            <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+                            </li>
+                            <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+
+                            <!-- Tools dropdown -->
+                            <li class="c-list__item c-dropdown">
+                                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false"
+                                    aria-haspopup="true">
+                                    Tools
+                                    <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                                </button>
+                                <ul class="c-dropdown__menu" role="menu">
+                                    <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE
+                                            Checker</a></li>
+                                    <li role="none"><a role="menuitem" href="pentest.html"
+                                            class="c-link c-link--list">Clofix Pentest</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <a href="faq.html" class="ticket-button">
+                            <button class="c-button c-button--small c-button--secondary">FAQ</button>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="ods-page">
+
+        <!-- HERO -->
+        <section class="ods-hero">
+            <div class="ods-container">
+                <div class="ods-hero__grid">
+
+                    <div class="ods-hero__left">
+                        <div class="ods-kicker">
+                            <span class="ods-dot" aria-hidden="true"></span>
+                            Live engineers. Real fixes. Exactly when you need it.
+                        </div>
+
+                        <h1 class="ods-title">
+                            Live DevOps engineers on <span class="ods-grad">standby</span>.
+                        </h1>
+
+                        <p class="ods-subtitle">
+                            Troubleshoot, stabilize, and optimize your infrastructure and pipelines on demand.
+                            When production is on fire (or just slow), CloFix engineers jump in fast and leave it
+                            better than before.
+                        </p>
+
+                        <div class="ods-ctaRow">
+                            <a class="ods-btn ods-btn--primary" href="contact.html">
+                                Request urgent help <span aria-hidden="true">→</span>
+                            </a>
+                            <a class="ods-btn ods-btn--ghost" href="#section-services">
+                                How support works <span aria-hidden="true">↓</span>
+                            </a>
+                            <a class="ods-btn ods-btn--ghost" href="pricing.html">
+                                Support plans <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+
+                        <div class="ods-facts">
+                            <div class="ods-fact">
+                                <b>Incident-first</b>
+                                <span>Stabilize production, then fix the root cause.</span>
+                            </div>
+                            <div class="ods-fact">
+                                <b>Pipeline + platform</b>
+                                <span>CI/CD failures, Kubernetes, cloud infra, and performance.</span>
+                            </div>
+                            <div class="ods-fact">
+                                <b>Outcome-driven</b>
+                                <span>Not advice. Changes, runbooks, and measurable improvements.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Support console -->
+                    <aside class="ods-panel" aria-label="Support console">
+                        <div class="ods-panel__inner">
+
+                            <div class="ods-panel__hdr">
+                                <div>
+                                    <div class="ods-miniTitle">Support Console</div>
+                                    <div class="ods-miniSub">Triage → Stabilize → Optimize</div>
+                                </div>
+
+                                <div class="ods-badge" id="odsStatusBadge">
+                                    <span class="ods-badge__dot" aria-hidden="true"></span>
+                                    On-call: READY
+                                </div>
+                            </div>
+
+                            <div class="ods-console">
+                                <div class="ods-row">
+                                    <div class="ods-pill"><span class="ods-pill__dot ods-dot--good"></span> SLA Active
+                                    </div>
+                                    <div class="ods-pill"><span class="ods-pill__dot ods-dot--warn"></span> Priority
+                                        Queue</div>
+                                    <div class="ods-pill"><span class="ods-pill__dot ods-dot--blue"></span> Secure
+                                        Access</div>
+                                </div>
+
+                                <div class="ods-triage" id="odsTriage" aria-live="polite">
+                                    <div class="ods-step is-active">
+                                        <div class="ods-step__icon">1</div>
+                                        <div class="ods-step__meta">
+                                            <b>Triage</b>
+                                            <span>Identify blast radius • gather logs • isolate failing
+                                                components</span>
+                                        </div>
+                                        <span class="ods-chip ods-chip--warn">RUN</span>
+                                    </div>
+
+                                    <div class="ods-step">
+                                        <div class="ods-step__icon">2</div>
+                                        <div class="ods-step__meta">
+                                            <b>Stabilize</b>
+                                            <span>Stop the bleeding • rollback • hotfix • restore service</span>
+                                        </div>
+                                        <span class="ods-chip">Pending</span>
+                                    </div>
+
+                                    <div class="ods-step">
+                                        <div class="ods-step__icon">3</div>
+                                        <div class="ods-step__meta">
+                                            <b>Root cause</b>
+                                            <span>Post-incident analysis • fixes • guardrails</span>
+                                        </div>
+                                        <span class="ods-chip">Pending</span>
+                                    </div>
+
+                                    <div class="ods-step">
+                                        <div class="ods-step__icon">4</div>
+                                        <div class="ods-step__meta">
+                                            <b>Optimize</b>
+                                            <span>Speed up pipelines • reduce cost • improve reliability</span>
+                                        </div>
+                                        <span class="ods-chip">Pending</span>
+                                    </div>
+                                </div>
+
+                                <div class="ods-divider"></div>
+
+                                <div class="ods-ticket">
+                                    <div class="ods-ticket__head">
+                                        <b>New support request</b>
+                                        <span class="ods-ticket__muted">Fast intake → faster action</span>
+                                    </div>
+
+                                    <div class="ods-ticket__body">
+                                        <div class="ods-infoRow">
+                                            <span class="ods-infoLabel">Issue type</span>
+                                            <span class="ods-infoValue">Production incident</span>
+                                        </div>
+
+                                        <div class="ods-infoRow">
+                                            <span class="ods-infoLabel">Severity</span>
+                                            <span class="ods-sevPills" role="list" aria-label="Severity">
+                                                <span class="ods-pillMini ods-pillMini--p0" role="listitem">P0</span>
+                                                <span class="ods-pillMini ods-pillMini--p1" role="listitem">P1</span>
+                                                <span class="ods-pillMini ods-pillMini--p2" role="listitem">P2</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="ods-infoRow ods-infoRow--stack">
+                                            <span class="ods-infoLabel">Short summary</span>
+                                            <div class="ods-summaryBox">
+                                                Deploys failing on main, prod latency 5x
+                                            </div>
+                                        </div>
+
+                                        <a class="ods-submit ods-submit--link" href="contact.html">
+                                            Open request <span aria-hidden="true">→</span>
+                                        </a>
+
+                                        <p class="ods-note">
+                                            This routes to your contact page. Replace with your real ticketing endpoint
+                                            anytime.
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="ods-container">
+            <div class="ods-divider"></div>
+        </div>
+
+        <!-- SERVICES -->
+        <section class="ods-section" id="section-services">
+            <div class="ods-container">
+                <div class="ods-section__head">
+                    <div>
+                        <h2 class="ods-h2">What we help with (in real life)</h2>
+                        <p class="ods-lead">
+                            On-demand support works when it’s precise: diagnose fast, implement fixes, and add
+                            guardrails so it doesn’t repeat.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ods-grid">
+                    <article class="ods-card ods-card--span4">
+                        <h3>CI/CD failures</h3>
+                        <p>Broken pipelines, flaky tests, slow builds, and release bottlenecks.</p>
+                        <ul class="ods-list">
+                            <li>Pipeline reliability improvements</li>
+                            <li>Cache + parallelization strategies</li>
+                            <li>Release gates and rollback safety</li>
+                        </ul>
+                    </article>
+
+                    <article class="ods-card ods-card--span4">
+                        <h3>Production incidents</h3>
+                        <p>Stability restoration with measurable reduction in incident recurrence.</p>
+                        <ul class="ods-list">
+                            <li>Rapid triage and rollback plans</li>
+                            <li>Post-incident RCA</li>
+                            <li>Resilience and failover tuning</li>
+                        </ul>
+                    </article>
+
+                    <article class="ods-card ods-card--span4">
+                        <h3>Kubernetes & containers</h3>
+                        <p>Deploy, scale, troubleshoot, and harden workloads.</p>
+                        <ul class="ods-list">
+                            <li>CrashLoopBackOff + scheduling issues</li>
+                            <li>Ingress/service networking fixes</li>
+                            <li>Resource requests/limits tuning</li>
+                        </ul>
+                    </article>
+
+                    <article class="ods-card ods-card--span6">
+                        <h3>Performance & cost optimization</h3>
+                        <p>Reduce spend while improving throughput and reliability.</p>
+                        <ul class="ods-list">
+                            <li>Right-sizing + scaling policies</li>
+                            <li>Database and cache performance review</li>
+                            <li>Traffic shaping and latency reduction</li>
+                        </ul>
+                    </article>
+
+                    <article class="ods-card ods-card--span6">
+                        <h3>Observability that actually helps</h3>
+                        <p>Dashboards, alerts, and runbooks aligned with SLOs.</p>
+                        <ul class="ods-list">
+                            <li>Metrics/logs/traces pipeline</li>
+                            <li>Actionable alert rules</li>
+                            <li>Runbook automation + self-healing</li>
+                        </ul>
+                    </article>
+
+                    <article class="ods-card ods-card--span12">
+                        <div class="ods-ctaBand">
+                            <div>
+                                <h3>Need engineers now?</h3>
+                                <p>
+                                    When you’re blocked, your roadmap stops. CloFix gives you live DevOps help to
+                                    restore momentum.
+                                </p>
+                            </div>
+                            <div class="ods-ctaRow ods-ctaRow--right">
+                                <a class="ods-btn ods-btn--primary" href="contact.html">Talk to CloFix <span
+                                        aria-hidden="true">→</span></a>
+                                <a class="ods-btn ods-btn--ghost" href="pricing.html">See plans <span
+                                        aria-hidden="true">↗</span></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand">
+                    <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+                </a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+
+                <ul class="social">
+                    <li class="social-li">
+                        <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener noreferrer">
+                            <img src="img/facebook_clofix.png" alt="Facebook" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://x.com/clofix19" target="_blank" rel="noopener noreferrer">
+                            <img src="img/X_clofix.png" alt="X" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://www.linkedin.com/company/clofix/" target="_blank" rel="noopener noreferrer">
+                            <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://wa.me/8801850603126" target="_blank" rel="noopener noreferrer">
+                            <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+    <script>
+        // ===== Your existing nav + dropdown logic (kept intact) =====
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+
+        const dropdowns = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns() {
+            dropdowns.forEach(dd => {
+                dd.classList.remove('open');
+                const btn = dd.querySelector('.c-dropdown__toggle');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        if (navToggle && navContent) {
+            navToggle.setAttribute('aria-expanded', 'false');
+
+            navToggle.addEventListener('click', () => {
+                const open = navContent.classList.toggle('active');
+                document.body.classList.toggle('nav-open', open);
+                navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (!open) closeAllDropdowns();
+            });
+
+            navContent.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navContent.classList.contains('active')) {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('nav-open');
+                    navContent.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        dropdowns.forEach(dd => {
+            const toggle = dd.querySelector('.c-dropdown__toggle');
+            if (!toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const willOpen = !dd.classList.contains('open');
+                closeAllDropdowns();
+                if (willOpen) {
+                    dd.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const panelOpen = navContent && navContent.classList.contains('active');
+            if (panelOpen) return;
+            if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+        });
+
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+            a.addEventListener('click', () => {
+                closeAllDropdowns();
+                if (navContent) navContent.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        (function () {
+            const headerEl = document.querySelector('.header');
+            function syncHeaderHeight() {
+                if (!headerEl) return;
+                document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+            }
+            window.addEventListener('load', syncHeaderHeight);
+            window.addEventListener('resize', syncHeaderHeight);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncHeaderHeight);
+            }
+        })();
+
+        // ===== Optional: smooth scroll for in-page anchor =====
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const id = a.getAttribute('href');
+                if (!id || id === "#") return;
+                const el = document.querySelector(id);
+                if (!el) return;
+                e.preventDefault();
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+
+        // ===== Page micro-interaction: triage flow cycles + badge updates =====
+        (function () {
+            const triage = document.getElementById('odsTriage');
+            const badge = document.getElementById('odsStatusBadge');
+            if (!triage) return;
+
+            const steps = Array.from(triage.querySelectorAll('.ods-step'));
+            if (!steps.length) return;
+
+            const labels = ["On-call: READY", "Triage: IN PROGRESS", "Stabilizing: ACTIVE", "RCA: UNDERWAY", "Optimizing: RUNNING"];
+            let i = 0;
+
+            function apply(idx) {
+                steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+
+                steps.forEach((s, k) => {
+                    const chip = s.querySelector('.ods-chip');
+                    if (!chip) return;
+                    chip.classList.remove('ods-chip--good', 'ods-chip--warn', 'ods-chip--bad');
+
+                    if (k < idx) {
+                        chip.textContent = "OK";
+                        chip.classList.add('ods-chip--good');
+                    } else if (k === idx) {
+                        chip.textContent = "RUN";
+                        chip.classList.add('ods-chip--warn');
+                    } else {
+                        chip.textContent = "Pending";
+                    }
+                });
+
+                if (badge) badge.lastChild.textContent = " " + (labels[idx + 1] || labels[0]);
+            }
+
+            apply(0);
+            setInterval(() => {
+                i = (i + 1) % steps.length;
+                apply(i);
+            }, 2400);
+        })();
+    </script>
+
+</body>
+
+</html>

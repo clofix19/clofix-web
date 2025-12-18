@@ -1,35 +1,3 @@
-// ======================================================================
-// CloFix On-Demand Engineering Support Logo
-// Style: "Live Engineer Pod" (isometric support desk)
-// File: clofix-on-demand-engineering-support-logo.js
-//
-// This version matches the reference style you gave:
-// - Floating platform
-// - Seated engineer with headset
-// - Screens with question / debugging
-// - Support tools orbiting
-//
-// Animations:
-// - platform gently bobs
-// - tool icons orbit
-// - alert "?" pulses
-// - chat bubble blinks
-//
-// Attributes:
-//   variant="orbit" (220x220 tile mode)
-//   color       main accent (defaults CloFix cyan)
-//   speed       animation base seconds
-//   data-href   optional click nav
-//
-// Usage:
-// <clofix-on-demand-engineering-support-logo
-//   variant="orbit"
-//   color="#38bdf8"
-//   speed="4"
-//   data-href="support.html">
-// </clofix-on-demand-engineering-support-logo>
-// ======================================================================
-
 class ClofixOnDemandEngineeringSupportLogo extends HTMLElement {
   static get observedAttributes() {
     return ["color", "speed", "data-href", "variant"];
@@ -116,6 +84,7 @@ class ClofixOnDemandEngineeringSupportLogo extends HTMLElement {
   max-width:220px;
   height:220px;
   max-height:220px;
+  gap:1rem;
   padding:.8rem .8rem .7rem;
   border-radius:20px;
 
@@ -554,12 +523,10 @@ class ClofixOnDemandEngineeringSupportLogo extends HTMLElement {
     <div class="headline">
       <span class="brand">CloFix</span>
       <span class="dash">–</span>
-      <span class="service">On-Demand Engineering Support</span>
+      <span class="service">On-Demand Support</span>
     </div>
     <div class="subtext">
-      Live senior engineers on standby to troubleshoot, stabilize,
-      and optimize your infrastructure and pipelines — exactly
-      when you need it.
+      Instant expert support for secure, stable, and optimized systems
     </div>
   </div>
 </div>

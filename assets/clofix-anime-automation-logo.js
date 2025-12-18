@@ -1,26 +1,3 @@
-// ======================================================================
-// CloFix Automation & Management - DevOps Pipeline Orchestrator
-// File: clofix-anime-automation-logo.js
-//
-// Visual narrative:
-//   - A horizontal CI/CD conveyor pipeline: CODE → BUILD → TEST → DEPLOY → SCALE
-//   - Workload blocks ride the belt automatically
-//   - Animated gears drive the belt (no manual effort)
-//   - On the right: scalable cloud infra receiving the final artifact
-//   - Status badges show uptime + cost efficiency
-//
-// This says:
-//   "CloFix automates your delivery pipeline end-to-end AND keeps it
-//    running in production efficiently."
-//
-// Props supported:
-//   variant="orbit"   -> compact orbit card layout
-//   color="#38bdf8"   -> glow accent
-//   speed="4"         -> animation cycle seconds
-//   data-href="..."   -> make card clickable
-//
-// ======================================================================
-
 class ClofixAutomationLogo extends HTMLElement {
   static get observedAttributes() {
     return ["color", "speed", "data-href", "variant"];
@@ -923,8 +900,7 @@ class ClofixAutomationLogo extends HTMLElement {
       <span class="service">Automation &amp; Management</span>
     </div>
     <div class="subline">
-      End-to-end DevOps automation: we build, test, deploy, scale, and keep it
-      healthy in production. Less manual work, faster delivery, lower cost.
+      Next-gen automation for seamless, secure app delivery
     </div>
   </div>
 </div>

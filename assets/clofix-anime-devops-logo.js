@@ -1,25 +1,3 @@
-// ======================================================================
-// CloFix DevSecOps - Threat Hunt & Release Gate
-// File: clofix-anime-devops-logo.js
-//
-// Narrative visual:
-//   - Containers/artifacts move down a pipeline (conveyor).
-//   - A live security scanner (red/magenta lens) inspects them for malware.
-//   - Only "clean" artifacts reach the secure gate and ship to cloud.
-//   - Gate is represented by a shield/lock + production cloud behind it.
-//   - Gears + pipeline icons = automation & deployment flow.
-//
-// Message to the user at a glance:
-//   "CloFix blocks bad code from ever reaching production."
-//
-// Props supported:
-//   variant="orbit"   -> compact tile layout for orbit carousel
-//   color="#38bdf8"   -> aura accent around the outer card
-//   speed="4"         -> animation cycle seconds
-//   data-href="..."   -> makes whole card clickable
-//
-// ======================================================================
-
 class ClofixDevOpsLogo extends HTMLElement {
   static get observedAttributes() {
     return ["color", "speed", "data-href", "variant"];
@@ -771,7 +749,7 @@ class ClofixDevOpsLogo extends HTMLElement {
       <span class="service">DevSecOps Support</span>
     </div>
     <div class="subline">
-      CloFix intercepts insecure code before it ships. We scan, remediate, and enforce policy at the pipeline — only verified builds are allowed through to production.
+      CloFix makes security native to modern development
     </div>
   </div>
 </div>
