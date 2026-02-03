@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>404 – Page Not Found | CloFix</title>
+  <meta name="description" content="The page you are looking for could not be found on CloFix.">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="404 – Page Not Found | CloFix">
+  <meta property="og:description" content="This page does not exist or has been moved.">
+  <meta property="og:url" content="https://clofix.com/404">
+  <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="404 – Page Not Found | CloFix">
+  <meta name="twitter:description" content="The requested page could not be found on CloFix.">
+  <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+   .trust-frame {
+      position: relative;
+    }
+
+    .trust-inner {
+      position: relative;
+      z-index: 5; /* make sure text is on top */
+      color: #ffffff;
+      text-align: center; /* optional, center text */
+    }
+
+    .trust-title,
+    .trust-sub {
+      color: #ffffff !important;   /* force white text */
+      opacity: 1 !important;       /* ensure text is fully visible */
+      visibility: visible !important; /* make sure nothing hides it */
+    }
+
+    .trust-particles,
+    .trust-waves {
+      z-index: 1; /* behind the text */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+          </a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="#section-services" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item">
+                <a href="about.html" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="features.html" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item">
+                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+              </li>
+              <li class="c-list__item">
+                <a href="contact.html" class="c-link c-link--list">Contact</a>
+              </li>
+              <!-- Tools dropdown -->
+              <li class="c-list__item c-dropdown">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Tools
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <ul class="c-dropdown__menu" role="menu">
+                  <li role="none">
+                    <a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <a href="faq.html" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">
+                FAQ
+              </button>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+<!-- ================= MAIN 404 CONTENT ================= -->
+<main class="container section">
+  <section class="trust-hero">
+    <div style="background: #0f172a; color: white; padding: 100px 20px; text-align: center; border-radius: 10px;">
+      <h1 style="font-size: 48px; margin-bottom: 20px;">
+        404 – Page Not Found
+      </h1>
+      
+      <p style="font-size: 18px; max-width: 600px; margin: 0 auto 40px;">
+        The page you are trying to reach doesn't exist, may have been moved,
+        or the URL is incorrect.
+      </p>
+      
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://clofix.com" style="background: #007bff; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none;">
+          Go to Homepage
+        </a>
+        <a href="contact.html" style="background: #6c757d; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none;">
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="#" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png"
+                alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix/" target="_blank"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png"
+                alt="WhatsApp" /></a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#about">About CloFix</a></li>
+          <li><a href="contact.html">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="support.html">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#">Events</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="partner.html">Become A Partner</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="terms.html">Terms and Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p>
+    </div>
+  </footer>
+
+<!-- ================= JS ================= -->
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+
+  if (navToggle && navContent) {
+    navToggle.addEventListener('click', () => {
+      navContent.classList.toggle('active');
+      document.body.classList.toggle('nav-open');
+    });
+  }
+</script>
+
+</body>
+</html>
