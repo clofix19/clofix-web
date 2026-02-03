@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AWS Activity Monitor • CloFix Tools</title>
+    <meta name="description"
+        content="AWS Activity Monitor: high-signal AWS activity tracking for incident response, drift detection, and security posture visibility." />
+    <meta name="theme-color" content="#0b1020" />
+
+    <style>
+        :root {
+            --bg: #070b14;
+            --bg2: #0a1020;
+            --card: rgba(255, 255, 255, .06);
+            --card2: rgba(255, 255, 255, .04);
+            --stroke: rgba(150, 185, 220, .18);
+            --stroke2: rgba(120, 220, 255, .35);
+            --text: rgba(235, 245, 255, .92);
+            --muted: rgba(205, 225, 245, .74);
+            --muted2: rgba(205, 225, 245, .60);
+            --accentA: rgba(90, 220, 255, .96);
+            --accentB: rgba(255, 183, 74, .92);
+            --shadow: 0 26px 90px rgba(0, 0, 0, .55);
+            --radius: 18px;
+            --radius2: 999px;
+            --max: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background:
+                radial-gradient(900px 520px at 18% 15%, rgba(90, 220, 255, .14), transparent 60%),
+                radial-gradient(820px 520px at 82% 65%, rgba(255, 183, 74, .10), transparent 62%),
+                radial-gradient(900px 620px at 50% 110%, rgba(130, 120, 255, .10), transparent 60%),
+                linear-gradient(180deg, var(--bg), var(--bg2));
+            overflow-x: hidden;
+        }
+
+        /* Subtle stars */
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .35;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, .55) 40%, transparent 45%),
+                radial-gradient(1px 1px at 40% 70%, rgba(255, 255, 255, .40) 40%, transparent 45%),
+                radial-gradient(1px 1px at 70% 30%, rgba(255, 255, 255, .45) 40%, transparent 45%),
+                radial-gradient(1px 1px at 85% 80%, rgba(255, 255, 255, .35) 40%, transparent 45%),
+                radial-gradient(1px 1px at 20% 85%, rgba(255, 255, 255, .30) 40%, transparent 45%);
+            filter: blur(.2px);
+            animation: starFloat 14s linear infinite;
+        }
+
+        @keyframes starFloat {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-24px);
+            }
+        }
+
+        /* Header */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, rgba(7, 11, 20, .78), rgba(7, 11, 20, .44));
+            border-bottom: 1px solid rgba(150, 185, 220, .14);
+        }
+
+        .nav {
+            width: min(var(--max), calc(100% - 40px));
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background:
+                radial-gradient(18px 18px at 30% 30%, rgba(90, 220, 255, .35), transparent 60%),
+                linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .04));
+            border: 1px solid rgba(150, 185, 220, .18);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, .45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(210, 245, 255, .95);
+        }
+
+        .brand b {
+            letter-spacing: .02em;
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .navlinks a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .92rem;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            transition: .18s ease;
+        }
+
+        .navlinks a:hover {
+            color: var(--text);
+            border-color: rgba(150, 185, 220, .16);
+            background: rgba(255, 255, 255, .03);
+        }
+
+        /* Layout container */
+        .wrap {
+            width: min(var(--max), calc(100% - 40px));
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero */
+        .hero {
+            padding: clamp(34px, 5.8vw, 72px) 0 18px;
+            display: flex;
+            align-items: stretch;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .heroLeft {
+            flex: 1 1 520px;
+            min-width: 280px;
+        }
+
+        .kicker {
+            letter-spacing: .24em;
+            font-size: .78rem;
+            color: rgba(255, 183, 74, .88);
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(34px, 4.6vw, 58px);
+            line-height: 1.05;
+            text-shadow: 0 12px 40px rgba(0, 0, 0, .35);
+        }
+
+        .sub {
+            margin: 0;
+            max-width: 62ch;
+            font-size: clamp(15px, 1.65vw, 18px);
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        .heroCtas {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 15px;
+            border-radius: var(--radius2);
+            font-weight: 900;
+            font-size: .95rem;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease, border-color .18s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .btn.primary {
+            color: rgba(8, 12, 20, .92);
+            background: linear-gradient(135deg, var(--accentA), var(--accentB));
+            box-shadow:
+                0 18px 48px rgba(90, 220, 255, .18),
+                0 14px 38px rgba(255, 183, 74, .12);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+        }
+
+        .btn.ghost {
+            color: var(--text);
+            background: rgba(255, 255, 255, .04);
+            border-color: rgba(150, 185, 220, .18);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, .30);
+        }
+
+        .btn.ghost:hover {
+            transform: translateY(-2px);
+            border-color: rgba(120, 220, 255, .30);
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow:
+                0 0 0 3px rgba(90, 220, 255, .22),
+                0 0 0 1px rgba(255, 183, 74, .25) inset;
+        }
+
+        /* Hero right panel */
+        .heroRight {
+            flex: 1 1 360px;
+            min-width: 260px;
+            border-radius: var(--radius);
+            padding: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+            border: 1px solid rgba(150, 185, 220, .18);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heroRight::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(420px 220px at 20% 20%, rgba(90, 220, 255, .18), transparent 60%),
+                radial-gradient(420px 220px at 80% 70%, rgba(255, 183, 74, .12), transparent 60%);
+            filter: blur(12px);
+            opacity: .9;
+            pointer-events: none;
+        }
+
+        .panel {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .panelTitle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: .78rem;
+            color: rgba(210, 245, 255, .92);
+            border: 1px solid rgba(120, 220, 255, .28);
+            background: rgba(90, 220, 255, .10);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .tiny {
+            color: rgba(205, 225, 245, .62);
+            font-size: .92rem;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .panelList {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 10px;
+            border-radius: 14px;
+            border: 1px solid rgba(150, 185, 220, .14);
+            background: rgba(255, 255, 255, .03);
+            transition: .18s ease;
+        }
+
+        .row:hover {
+            border-color: rgba(120, 220, 255, .26);
+            background: rgba(255, 255, 255, .05);
+            transform: translateY(-2px);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            margin-top: 4px;
+            background: linear-gradient(135deg, var(--accentA), var(--accentB));
+            box-shadow: 0 0 0 3px rgba(90, 220, 255, .10);
+            flex: 0 0 auto;
+        }
+
+        .row b {
+            display: block;
+            font-size: .95rem;
+        }
+
+        .row span {
+            display: block;
+            color: rgba(205, 225, 245, .66);
+            font-size: .88rem;
+            margin-top: 2px;
+        }
+
+        /* Section blocks */
+        .sec {
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .028));
+            border: 1px solid rgba(150, 185, 220, .16);
+            box-shadow: 0 18px 70px rgba(0, 0, 0, .35);
+        }
+
+        .secHead {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .secHead h2 {
+            margin: 0;
+            font-size: 1.35rem;
+            letter-spacing: .01em;
+        }
+
+        .secHead p {
+            margin: 0;
+            color: rgba(205, 225, 245, .68);
+            max-width: 70ch;
+            line-height: 1.6;
+            font-size: .98rem;
+        }
+
+        /* Flex columns */
+        .cols {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1 1 320px;
+            min-width: 260px;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(150, 185, 220, .14);
+            background: rgba(255, 255, 255, .03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .col::after {
+            content: "";
+            position: absolute;
+            top: -40%;
+            left: -60%;
+            width: 120%;
+            height: 170%;
+            background: linear-gradient(115deg, transparent 0%, rgba(90, 220, 255, .10) 35%, rgba(255, 183, 74, .08) 50%, transparent 70%);
+            transform: rotate(8deg);
+            opacity: .0;
+            transition: opacity .22s ease;
+            pointer-events: none;
+        }
+
+        .col:hover::after {
+            opacity: .9;
+            animation: sheen 1.1s ease both;
+        }
+
+        @keyframes sheen {
+            0% {
+                transform: translateX(0) rotate(8deg);
+            }
+
+            100% {
+                transform: translateX(72%) rotate(8deg);
+            }
+        }
+
+        .col h3 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+        }
+
+        .col p {
+            margin: 0;
+            color: rgba(205, 225, 245, .70);
+            line-height: 1.65;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .step {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(150, 185, 220, .14);
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .num {
+            width: 34px;
+            height: 34px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: rgba(8, 12, 20, .92);
+            background: linear-gradient(135deg, var(--accentA), var(--accentB));
+            flex: 0 0 auto;
+        }
+
+        .step b {
+            display: block;
+        }
+
+        .step span {
+            display: block;
+            margin-top: 3px;
+            color: rgba(205, 225, 245, .68);
+            line-height: 1.6;
+        }
+
+        /* FAQ accordion */
+        .faq {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .q {
+            border-radius: 16px;
+            border: 1px solid rgba(150, 185, 220, .14);
+            background: rgba(255, 255, 255, .03);
+            overflow: hidden;
+        }
+
+        .q button {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: 0;
+            color: var(--text);
+            padding: 12px 12px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .q button span {
+            color: rgba(205, 225, 245, .82);
+            font-weight: 900;
+            opacity: .9;
+        }
+
+        .a {
+            padding: 0 12px 12px;
+            color: rgba(205, 225, 245, .70);
+            line-height: 1.7;
+            display: none;
+        }
+
+        .q.open .a {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 26px;
+            padding: 24px 0 34px;
+            border-top: 1px solid rgba(150, 185, 220, .14);
+            color: rgba(205, 225, 245, .62);
+        }
+
+        .foot {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .foot small {
+            display: block;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .wrap {
+                width: min(var(--max), calc(100% - 26px));
+            }
+
+            .nav {
+                width: min(var(--max), calc(100% - 26px));
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars" aria-hidden="true"></div>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="nav">
+            <a class="brand" href="../index.html" aria-label="CloFix Home">
+                <div class="logo" aria-hidden="true">
+                    <!-- simple orbit glyph -->
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2c5.5 0 10 4.5 10 10S17.5 22 12 22 2 17.5 2 12 6.5 2 12 2z" stroke="currentColor"
+                            stroke-width="1.7" opacity=".8" />
+                        <path d="M7 12c2-2 8-2 10 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <b>CloFix</b>
+            </a>
+
+            <div class="navlinks">
+                <a href="../index.html#tools">Back to Tools</a>
+                <a href="../features.html">Features</a>
+                <a href="../support.html">Support</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="wrap">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="heroLeft">
+                <div class="kicker">TOOL • SECURITY • TELEMETRY</div>
+                <h1>AWS Activity Monitor</h1>
+                <p class="sub">
+                    A high-signal activity layer for AWS: track critical changes, suspicious behavior, and drift
+                    indicators —
+                    then surface them in a timeline your incident process can actually use.
+                </p>
+
+                <div class="heroCtas">
+                    <a class="btn primary" href="#how-it-works">How it works →</a>
+                    <a class="btn ghost" href="#use-cases">Use cases</a>
+                </div>
+            </div>
+
+            <aside class="heroRight" aria-label="At-a-glance panel">
+                <div class="panel">
+                    <div class="panelTitle">
+                        <b>What you get</b>
+                        <div class="badge">signal-first</div>
+                    </div>
+                    <p class="tiny">
+                        Built for incidents and audits: prioritize what changes security posture, not every harmless
+                        event.
+                    </p>
+
+                    <div class="panelList">
+                        <div class="row">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div>
+                                <b>Change timeline</b>
+                                <span>IAM, networking, compute, storage, and security settings — in one view.</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div>
+                                <b>Action context</b>
+                                <span>Who did what, from where, and why it matters — ready for triage notes.</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div>
+                                <b>Priority routing</b>
+                                <span>Critical events go to alert channels; low-signal stays searchable.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- Overview -->
+        <section class="sec" id="use-cases">
+            <div class="secHead">
+                <h2>Where this tool fits</h2>
+                <p>
+                    AWS Activity Monitor is for teams who need <b>visibility into security-impacting changes</b> without
+                    drowning in logs.
+                    You use it during incidents, after deployments, and for continuous posture monitoring.
+                </p>
+            </div>
+
+            <div class="cols">
+                <div class="col">
+                    <h3>Incident response</h3>
+                    <p>Confirm when the first suspicious event happened, what changed afterward, and what privileges
+                        were involved.</p>
+                </div>
+                <div class="col">
+                    <h3>Drift + misconfig detection</h3>
+                    <p>Catch changes that quietly increase exposure: open ports, permissive IAM, disabled logging, and
+                        risky policies.</p>
+                </div>
+                <div class="col">
+                    <h3>Audit support</h3>
+                    <p>Produce a clean trail of meaningful actions — with severity and rationale — instead of raw event
+                        dumps.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What it monitors -->
+        <section class="sec">
+            <div class="secHead">
+                <h2>What it watches</h2>
+                <p>
+                    It’s designed to consume AWS security + activity sources (depending on your setup) and extract the
+                    <b>events that move risk</b>.
+                </p>
+            </div>
+
+            <div class="cols">
+                <div class="col">
+                    <h3>Identity + access</h3>
+                    <p>IAM users/roles/policies, permission escalations, access key activity, and suspicious auth
+                        patterns.</p>
+                </div>
+                <div class="col">
+                    <h3>Network exposure</h3>
+                    <p>Security group changes, NACL modifications, public endpoints, and route table shifts that widen
+                        access.</p>
+                </div>
+                <div class="col">
+                    <h3>Logging + detection</h3>
+                    <p>Visibility controls: CloudTrail/Config signals, alert sources, and changes that disable or weaken
+                        monitoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="sec" id="how-it-works">
+            <div class="secHead">
+                <h2>How it works</h2>
+                <p>
+                    A simple pipeline: collect → normalize → score → present. The goal is speed-to-clarity.
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="num">1</div>
+                    <div>
+                        <b>Ingest security-relevant activity</b>
+                        <span>Connect your event sources and ingest activity data in a consistent format for analysis
+                            and search.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="num">2</div>
+                    <div>
+                        <b>Normalize into a unified timeline</b>
+                        <span>Translate different event types into one language: actor, action, target, impact, and
+                            evidence.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="num">3</div>
+                    <div>
+                        <b>Score + route by risk</b>
+                        <span>Highlight high-impact changes (exposure, privilege, logging tamper) and reduce alert
+                            fatigue.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="num">4</div>
+                    <div>
+                        <b>Export incident-ready output</b>
+                        <span>Generate a clean summary for triage: top events, sequence, suspected blast radius, and
+                            next actions.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Output / Reporting -->
+        <section class="sec">
+            <div class="secHead">
+                <h2>Outputs you can use</h2>
+                <p>
+                    This tool is only valuable if it produces outputs that map to real operational decisions.
+                </p>
+            </div>
+
+            <div class="cols">
+                <div class="col">
+                    <h3>Event timeline</h3>
+                    <p>Chronological sequence with severity, actor identity, and “why this matters” notes.</p>
+                </div>
+                <div class="col">
+                    <h3>Change diff summaries</h3>
+                    <p>Readable diffs for policy/network/logging changes — easier to approve, revert, or explain.</p>
+                </div>
+                <div class="col">
+                    <h3>Incident brief</h3>
+                    <p>One-page snapshot: what happened, when, scope assumptions, and recommended containment steps.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="sec" id="faq">
+            <div class="secHead">
+                <h2>FAQ</h2>
+                <p>Short answers to the questions your security + DevOps leads will ask immediately.</p>
+            </div>
+
+            <div class="faq">
+                <div class="q">
+                    <button type="button" aria-expanded="false">
+                        Does it replace CloudTrail or SecurityHub?
+                        <span>+</span>
+                    </button>
+                    <div class="a">
+                        No. It sits above your sources and turns them into a signal-first timeline + summaries. Your AWS
+                        sources remain the ground truth.
+                    </div>
+                </div>
+
+                <div class="q">
+                    <button type="button" aria-expanded="false">
+                        How do you prevent alert fatigue?
+                        <span>+</span>
+                    </button>
+                    <div class="a">
+                        By routing only security-impacting changes to alerts and keeping everything else searchable. The
+                        point is “high-signal first.”
+                    </div>
+                </div>
+
+                <div class="q">
+                    <button type="button" aria-expanded="false">
+                        Is this real-time?
+                        <span>+</span>
+                    </button>
+                    <div class="a">
+                        It’s designed for near-real-time visibility depending on your ingestion path. The focus is
+                        reducing time-to-triage, not claiming impossible latency.
+                    </div>
+                </div>
+
+                <div class="q">
+                    <button type="button" aria-expanded="false">
+                        What’s the ideal first use?
+                        <span>+</span>
+                    </button>
+                    <div class="a">
+                        Start with a “post-deploy watch” for a week: you’ll quickly see which changes are normal and
+                        which need guardrails.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="sec">
+            <div class="secHead">
+                <h2>Next step</h2>
+                <p>
+                    If you want this integrated into your CloFix workflow, ship a minimal setup first — then expand
+                    coverage.
+                </p>
+            </div>
+
+            <div class="heroCtas">
+                <a class="btn primary" href="../support.html">Request setup support →</a>
+                <a class="btn ghost" href="../index.html#tools">Back to tools</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="foot">
+                <small><b>CloFix</b><br />Secure. Automate. Scale.</small>
+                <small>© 2026 CloFix. All rights reserved.</small>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Minimal FAQ accordion (clean + accessible)
+        document.querySelectorAll(".q button").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const wrap = btn.closest(".q");
+                const open = wrap.classList.contains("open");
+
+                // close others (optional: comment out if you want multi-open)
+                document.querySelectorAll(".q").forEach(q => {
+                    q.classList.remove("open");
+                    const b = q.querySelector("button");
+                    if (b) b.setAttribute("aria-expanded", "false");
+                    const s = q.querySelector("button span");
+                    if (s) s.textContent = "+";
+                });
+
+                if (!open) {
+                    wrap.classList.add("open");
+                    btn.setAttribute("aria-expanded", "true");
+                    btn.querySelector("span").textContent = "–";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
