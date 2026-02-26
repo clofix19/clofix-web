@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CloFix WAF Pricing</title>
+
   <!-- Primary Meta Tags -->
   <meta name="title" content="CloFix WAF Pricing">
   <meta name="description"
@@ -42,30 +43,23 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
     rel="stylesheet" />
-  
+
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
-  
+
   <!-- Libraries -->
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-  
+
   <style>
-    /* Additional Pricing Page Specific Styles */
     :root {
       --primary: #2563eb;
-      --primary-dark: #1d4ed8;
       --secondary: #7c3aed;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
       --dark: #1e293b;
-      --light: #f8fafc;
       --gray: #64748b;
       --ai-color: #8b5cf6;
       --core-color: #3b82f6;
-      --rules-color: #10b981;
     }
 
     .pricing-header {
@@ -89,63 +83,6 @@
       margin: 0 auto;
     }
 
-    /* Summary Cards Enhancement */
-    .summary-cards {
-      margin: 4rem 0;
-    }
-
-    .cards-wrapper {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-      border: 1px solid #eef2f6;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 1rem;
-    }
-
-    .card p {
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    /* Form Elements Enhancement */
     .calculator-section {
       background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
       border-radius: 24px;
@@ -176,6 +113,7 @@
       color: var(--dark);
     }
 
+    /* ✅ Force black input text */
     .basic-input input,
     .basic-input select {
       padding: 0.75rem 1rem;
@@ -184,6 +122,14 @@
       font-size: 1rem;
       transition: all 0.3s ease;
       background: white;
+      color: #02060a;
+      -webkit-text-fill-color: #02060a;
+      caret-color: #02060a;
+    }
+
+    .basic-input select option {
+      color: #02060a;
+      background: #ffffff;
     }
 
     .basic-input input:focus,
@@ -197,6 +143,7 @@
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .support-type {
@@ -204,6 +151,8 @@
       flex-direction: column;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
     }
 
     .support-label {
@@ -225,15 +174,6 @@
       text-decoration: underline;
     }
 
-    .support-type select {
-      padding: 0.75rem 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 12px;
-      font-size: 1rem;
-      background: white;
-    }
-
-    /* Type Chips */
     .type-chips {
       display: flex;
       flex-wrap: wrap;
@@ -241,55 +181,63 @@
       margin: 1rem 0;
     }
 
-    .type-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      animation: slideIn 0.3s ease;
+    .optional-features {
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin: 2rem 0 1rem;
+      text-align: center;
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .optional-feature-wrap {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid #eef2f6;
+      margin: 1rem 0 2rem;
     }
 
-    .chip-close {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
+    .optional-features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1rem;
+      max-height: 600px;
+      overflow-y: auto;
+      padding: 1rem;
+      justify-items: stretch;
+      align-items: start;
+    }
+
+    .optional-features-list label {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      color: #02060a;
       cursor: pointer;
-      font-size: 1.2rem;
-      line-height: 1;
-      padding: 0;
       transition: all 0.2s ease;
+      border: 1px solid #eef2f6;
+      font-size: 0.95rem;
+      width: 100%;
+      justify-self: stretch;
     }
 
-    .chip-close:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.1);
+    .feature-price {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
     }
 
-    /* Category Headers */
     .category-header {
       grid-column: 1 / -1;
+      width: 100%;
+      justify-self: stretch;
       margin: 2rem 0 1rem 0;
       padding: 1rem;
       border-radius: 12px;
@@ -313,93 +261,15 @@
       color: #1e40af;
     }
 
-    .category-header.rules-category {
-      border-left-color: var(--rules-color);
-      color: #065f46;
-    }
-
-    .category-header .category-icon {
-      font-size: 1.8rem;
-    }
-
     .category-header .category-count {
       margin-left: auto;
-      background: rgba(0,0,0,0.05);
+      background: rgba(0, 0, 0, 0.05);
       padding: 0.2rem 1rem;
       border-radius: 30px;
       font-size: 0.9rem;
       font-weight: 500;
     }
 
-    /* Features Grid */
-    .optional-features {
-      font-size: 1.5rem;
-      color: var(--dark);
-      margin: 2rem 0 1rem;
-      text-align: center;
-    }
-
-    .optional-feature-wrap {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid #eef2f6;
-      margin: 1rem 0 2rem;
-    }
-
-    .optional-features-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1rem;
-      max-height: 600px;
-      overflow-y: auto;
-      padding: 1rem;
-    }
-
-    .optional-features-list label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      background: #f8fafc;
-      border-radius: 8px;
-      color: #02060a;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: 1px solid #eef2f6;
-      font-size: 0.95rem;
-    }
-
-    .optional-features-list label:hover {
-      background: white;
-      transform: translateX(5px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .optional-features-list input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      accent-color: var(--primary);
-    }
-
-    .optional-features-list input[type="checkbox"]:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .feature-price {
-      margin-left: auto;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    /* Free Features Section */
     .free-features-section {
       margin: 2rem 0;
       padding: 1.5rem;
@@ -415,6 +285,7 @@
       font-size: 1.2rem;
       color: #166534;
       margin-bottom: 1rem;
+      font-weight: 700;
     }
 
     .free-features-grid {
@@ -435,13 +306,6 @@
       border: 1px solid #bbf7d0;
     }
 
-    .free-check {
-      color: #16a34a;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    /* Error Message */
     #errorMessage {
       padding: 1rem;
       background: #fee2e2;
@@ -452,7 +316,6 @@
       text-align: center;
     }
 
-    /* Calculate Button */
     .calculate {
       display: block;
       width: 100%;
@@ -469,12 +332,6 @@
       transition: all 0.3s ease;
     }
 
-    .calculate:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-    }
-
-    /* Result Table */
     #result {
       margin: 3rem 0;
       padding: 2rem;
@@ -509,21 +366,11 @@
       border-bottom: 1px solid #eef2f6;
     }
 
-    .pricing-table tbody tr:hover {
-      background: #f8fafc;
-    }
-
     .pricing-table tfoot tr {
       background: #f1f5f9;
       font-weight: 700;
     }
 
-    .pricing-table tfoot td,
-    .pricing-table tfoot th {
-      padding: 1rem;
-    }
-
-    /* Export Buttons */
     .export-buttons {
       display: flex;
       gap: 1rem;
@@ -547,15 +394,6 @@
       color: white;
     }
 
-    /* Feature Info Tooltip */
-    .feature-info {
-      margin-left: 0.5rem;
-      color: var(--gray);
-      cursor: help;
-      font-size: 0.9rem;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .calculator-section {
         padding: 1.5rem;
@@ -580,15 +418,6 @@
       .c-button--secondary {
         width: 100%;
       }
-
-      .category-header {
-        font-size: 1.1rem;
-        padding: 0.75rem;
-      }
-
-      .category-header .category-icon {
-        font-size: 1.4rem;
-      }
     }
   </style>
 </head>
@@ -603,6 +432,7 @@
           </a>
           <span class="c-logo__text c-logo__text--white"></span>
         </div>
+
         <nav class="c-nav">
           <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
@@ -612,112 +442,45 @@
 
           <div class="c-nav__content">
             <ul class="c-list c-list--flex">
-              <li class="c-list__item">
-                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="index.html#section-services" class="c-link c-link--list">Services</a>
               </li>
-              <li class="c-list__item">
-                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
-              </li>
-              <li class="c-list__item">
-                <a href="about.html" class="c-link c-link--list">About</a>
-              </li>
-              <li class="c-list__item">
-                <a href="features.html" class="c-link c-link--list">Features</a>
-              </li>
-              <li class="c-list__item">
-                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
-              </li>
-              <li class="c-list__item">
-                <a href="contact.html" class="c-link c-link--list">Contact</a>
-              </li>
-              <!-- Tools dropdown -->
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+
               <li class="c-list__item c-dropdown">
                 <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                  Tools
-                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                  Tools <span class="c-dropdown__chev" aria-hidden="true">▾</span>
                 </button>
                 <ul class="c-dropdown__menu" role="menu">
-                  <li role="none">
-                    <a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a>
+                  <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a></li>
+                  <li role="none"><a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a>
                   </li>
                 </ul>
               </li>
             </ul>
+
             <a href="faq.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">
-                FAQ
-              </button>
+              <button class="c-button c-button--small c-button--secondary">FAQ</button>
             </a>
           </div>
         </nav>
+
       </div>
     </div>
   </header>
 
   <main class="container">
-    <!-- Pricing Header -->
     <div class="pricing-header">
       <h1>Simple, Transparent Pricing</h1>
       <p>Choose the perfect plan for your business. All plans include core security features and 24/7 support.</p>
     </div>
 
-    <!-- Summary Cards -->
-    <section class="summary-cards">
-      <div class="eclipse-wrapper">
-        <div class="eclipse-inner">
-          <svg height="200" width="200" viewBox="0 0 200 200">
-            <mask id="moon">
-              <rect x="-200" y="0" width="600" height="200" fill="white" />
-              <circle cx="100" cy="100" r="95" fill="black" />
-            </mask>
-            <g id="sun-g" mask="url(#moon)">
-              <circle id="sun" cx="100" cy="100" r="100" fill="#DBBB34" />
-            </g>
-          </svg>
-        </div>
-      </div>
-
-      <h2 class="summary-heading">Why Our Pricing Makes Sense</h2>
-
-      <div class="cards-wrapper">
-        <div class="card">
-          <div class="card-inner">
-            <h3>Security First</h3>
-            <p>
-              We prioritize <strong>real protection</strong> over gimmicks. Your spend goes into layers that actually
-              stop threats.
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-inner">
-            <h3>Only Core Costs</h3>
-            <p>
-              Pricing reflects <strong>backend/server costs</strong>. Global edges, inspection engines, and resilient
-              infrastructure.
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-inner">
-            <h3>Enterprise-Grade</h3>
-            <p>
-              You get <strong>serious features</strong> used by big organizations, scaled for startups; fair,
-              transparent, sustainable.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Calculator Section -->
     <section class="calculator-section">
       <h2 class="price-heading">CloFix WAF - Pricing Calculator</h2>
 
-      <!-- Input Grid -->
       <div class="input-grid">
         <label class="basic-input">
           Number of Domains:
@@ -731,15 +494,14 @@
 
         <label class="basic-input">
           Monthly Requests (in millions):
-          <input type="number" id="requests" min="0" value="0" />
+          <input type="number" id="requests" min="0" value="1000000" />
         </label>
       </div>
 
-      <!-- Bandwidth Row -->
       <div class="bandwidth-row">
         <label class="basic-input">
           Bandwidth
-          <input type="number" id="bandwidth" min="1" value="10" required />
+          <input type="number" id="bandwidth" min="1" value="100" required />
         </label>
 
         <label class="basic-input">
@@ -751,7 +513,14 @@
         </label>
       </div>
 
-      <!-- Website Type -->
+      <!-- ✅ Rules input -->
+      <div class="input-grid">
+        <label class="basic-input">
+          Rules (Free Up to 10):
+          <input type="number" id="rules" min="0" value="10" />
+        </label>
+      </div>
+
       <label class="support-type">
         Website Type:
         <select id="siteType">
@@ -767,7 +536,6 @@
 
       <div id="selectedTypes" class="type-chips"></div>
 
-      <!-- Support Type -->
       <label class="support-type">
         <span class="support-label">
           CloFix WAF Support Type:
@@ -780,7 +548,6 @@
         </select>
       </label>
 
-      <!-- License Validation -->
       <label class="basic-input">
         License Validation:
         <select id="license" required>
@@ -789,24 +556,20 @@
         </select>
       </label>
 
-      <!-- Always Included Free Features -->
+      <!-- Free features -->
       <div class="free-features-section" id="freeFeaturesSection"></div>
 
-      <!-- Categorized Optional Features -->
       <h2 class="optional-features">Security Features by Category</h2>
       <div class="optional-feature-wrap">
         <div class="optional-features-list" id="featureList"></div>
       </div>
 
-      <!-- Error Message -->
       <div id="errorMessage" style="display:none;">
         ⚠️ Please fill in all required fields: Domains, Bandwidth must be greater than 0.
       </div>
 
-      <!-- Calculate Button -->
       <button class="calculate" onclick="calculatePricing()">Calculate Pricing</button>
 
-      <!-- Results -->
       <div class="section" id="result" style="display:none;">
         <h2 class="heading heading--3">Pricing Summary</h2>
         <table class="pricing-table">
@@ -824,558 +587,493 @@
             </tr>
           </tfoot>
         </table>
-        
+
         <div class="export-buttons">
-          <button class="c-button c-button--secondary" id="exportExcelBtn" style="display:none;">
-            Export as Excel
-          </button>
-          <button class="c-button c-button--secondary" id="exportPDFBtn" style="display:none;">
-            Export as PDF
-          </button>
+          <button class="c-button c-button--secondary" id="exportExcelBtn" style="display:none;">Export as
+            Excel</button>
+          <button class="c-button c-button--secondary" id="exportPDFBtn" style="display:none;">Export as PDF</button>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
-
-    <div class="container c-footer">
-      <div class="c-footer__column c-footer__logo-column">
-        <a href="#" class="c-footer__brand">
-          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
-        </a>
-        <p class="c-footer__text">
-          <strong>Secure. Automate. Scale</strong>
-        </p>
-        <ul class="social">
-          <li class="social-li">
-            <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
-              <img src="img/facebook_clofix.png" alt="Facebook" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://x.com/clofix19" target="_blank">
-              <img src="img/X_clofix.png" alt="X" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://www.linkedin.com/company/clofix/" target="_blank">
-              <img src="img/linkedin_clofix.png" alt="LinkedIn" />
-            </a>
-          </li>
-          <li class="social-li">
-            <a href="https://wa.me/8801850603126" target="_blank">
-              <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Company</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="about.html">About CloFix</a></li>
-          <li><a href="contact.html">Contact CloFix</a></li>
-          <li><a href="#">Documentation</a></li>
-          <li><a href="support.html">CloFix WAF Support Overview</a></li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Explore</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="#">Events</a></li>
-          <li><a href="release.html">Release</a></li>
-          <li><a href="partner.html">Become A Partner</a></li>
-          <li><a href="blogs.html">Blogs</a></li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Legal</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="terms.html">Terms and Conditions</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="container">
-      <p class="footer__text">© 2026 Clofix – Copyright All Rights Reserved</p>
-    </div>
-  </footer>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-  
-  <!-- Main Script -->
   <script>
-    // Feature data with proper categorization
+    // -----------------------------
+    // EXPORT STATE
+    // -----------------------------
+    let LAST_EXPORT_ROWS = [];
+    let LAST_EXPORT_TOTAL_TEXT = "";
+    let LAST_EXPORT_META = {};
+
+    const FREE_RULES_LIMIT = 10;
+    const EXTRA_RULE_PRICE = 0.02;
+
     const features = {
-        // AI & Advanced Detection Features (37 features)
-        "Fingerprint Blocking": 5,
-        "Payload Blocking": 4,
-        "Traffic Anomaly Blocking": 4,
-        "IP Reputation Blocking": 3,
-        "JavaScript Behavior Blocking": 4,
-        "Cookie Validation Blocking": 3,
-        "Device Identity Blocking": 4,
-        "Automation Tool Blocking": 3,
-        "Cloud Service Blocking": 3,
-        "DNS Rebinding Blocking": 3,
-        "Credential Stuffing Blocking": 4,
-        "Crawler Detection Blocking": 3,
-        "API Abuse Blocking": 4,
-        "Header Injection Blocking": 3,
-        "TLS Fingerprint Blocking": 4,
-        "SSL MITM Blocking": 4,
-        "Open Redirect Blocking": 2,
-        "Fake Bot Blocking": 3,
-        "AI Rate Limit Blocking": 4,
-        "JA3 Check": 3,
-        "VM/Debug Detection Blocking": 4,
-        "Canvas Fingerprint Blocking": 3,
-        "Path Traversal Blocking": 2,
-        "SQL Injection Blocking": 2,
-        "XSS Detection Blocking": 2,
-        "Command Injection Blocking": 2,
-        "XXE Detection Blocking": 2,
-        "LDAP Injection Blocking": 2,
-        "NoSQL Injection Blocking": 2,
-        "SSTI Detection Blocking": 2,
-        "CSRF Check Blocking": 2,
-        "Clickjacking Blocking": 2,
-        "Vulnerability Scanner Blocking": 3,
-        "Terminal Access Blocking": 4,
-        "jQuery Guard Blocking": 2,
-        "Scan Technique Blocking": 3,
-        
-        // Core Security Features (maintaining existing)
-        "OWASP Top 10 Protection": 5,
-        "XML External Entity Blocking": 2,
-        "Command Injection Protection": 2,
-        "Insecure Deserialization Blocking": 2,
-        "Slowloris Protection": 2,
-        "Flooding Attacks Protection": 2,
-        "Brute Force and DDos Protection": 2,
-        "Tor Exit Node Blocking": 3,
-        "Time-Based Verification": 1,
-        "Malformed Header Protection": 2,
-        "Header Scan Protection": 2,
-        "Session Cookie Validation": 2,
-        "Cookie Tampering Protection": 3,
-        "Client Behavior Analysis": 2,
-        "Information Leak Detection": 2,
-        "Payload Signature Checking": 2,
-        "Configuration Misuse Detection": 2,
-        "Sensitive Data Encryption": 2,
-        "Payload & Header Inspection": 2,
-        
-        // Additional Features
-        "Lua Scripting Support": 10,
-        "WordPress Protection": 2,
-        "Advanced Scripting & Rules": 5,
-        "Alert Service - Slack, Google": 3,
-        "AI & Agentic Detection, Behavioral Analysis": 13,
-        "Advance Fingerprinting Blocking": 5,
-        "Bot & Automation Defense": 4,
-        "Bot & Headless Browser Blocking": 3,
-        "Advance IP Reputation Check": 4,
-        "Advance Bad IP, ASN Blocking": 5,
-        
-        // Manage Rules (Free Features)
-        "Manage Rules - Path Blocking": 0,
-        "Manage Rules - Query Blocking": 0,
-        "Manage Rules - GeoIP Blocking": 0,
-        "Manage Rules - Bot Fingerprinting": 0,
-        "Manage Rules - IP Blocking": 0,
-        "Manage Rules - ASN Number Blocking": 0,
-        "Manage Rules - Geo Blocking": 0,
-        "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
+      "Fingerprint Blocking": 5,
+      "Payload Blocking": 4,
+      "Traffic Anomaly Blocking": 4,
+      "IP Reputation Blocking": 3,
+      "JavaScript Behavior Blocking": 4,
+      "Cookie Validation Blocking": 3,
+      "Device Identity Blocking": 4,
+      "Automation Tool Blocking": 3,
+      "Cloud Service Blocking": 3,
+      "DNS Rebinding Blocking": 3,
+      "Credential Stuffing Blocking": 4,
+      "Crawler Detection Blocking": 3,
+      "API Abuse Blocking": 4,
+      "Header Injection Blocking": 3,
+      "TLS Fingerprint Blocking": 4,
+      "SSL MITM Blocking": 4,
+      "Open Redirect Blocking": 2,
+      "Fake Bot Blocking": 3,
+      "AI Rate Limit Blocking": 4,
+      "JA3 Check": 3,
+      "VM/Debug Detection Blocking": 4,
+      "Canvas Fingerprint Blocking": 3,
+      "Path Traversal Blocking": 2,
+      "SQL Injection Blocking": 2,
+      "XSS Detection Blocking": 2,
+      "Command Injection Blocking": 2,
+      "XXE Detection Blocking": 2,
+      "LDAP Injection Blocking": 2,
+      "NoSQL Injection Blocking": 2,
+      "SSTI Detection Blocking": 2,
+      "CSRF Check Blocking": 2,
+      "Clickjacking Blocking": 2,
+      "Vulnerability Scanner Blocking": 3,
+      "Terminal Access Blocking": 4,
+      "jQuery Guard Blocking": 2,
+      "Scan Technique Blocking": 3,
+
+      "OWASP Top 10 Protection": 5,
+      "XML External Entity Blocking": 2,
+      "Command Injection Protection": 2,
+      "Insecure Deserialization Blocking": 2,
+      "Slowloris Protection": 2,
+      "Flooding Attacks Protection": 2,
+      "Brute Force and DDos Protection": 2,
+      "Tor Exit Node Blocking": 3,
+      "Time-Based Verification": 1,
+      "Malformed Header Protection": 2,
+      "Header Scan Protection": 2,
+      "Session Cookie Validation": 2,
+      "Cookie Tampering Protection": 3,
+      "Client Behavior Analysis": 2,
+      "Information Leak Detection": 2,
+      "Payload Signature Checking": 2,
+      "Configuration Misuse Detection": 2,
+      "Sensitive Data Encryption": 2,
+      "Payload & Header Inspection": 2,
+
+      "Lua Scripting Support": 10,
+      "WordPress Protection": 2,
+      "Advanced Scripting & Rules": 5,
+      "Alert Service - Slack, Google": 3,
+      "AI & Agentic Detection, Behavioral Analysis": 13,
+      "Advance Fingerprinting Blocking": 5,
+      "Bot & Automation Defense": 4,
+      "Bot & Headless Browser Blocking": 3,
+      "Advance IP Reputation Check": 4,
+      "Advance Bad IP, ASN Blocking": 5,
+
+      "Manage Rules - Path Blocking": 0,
+      "Manage Rules - Query Blocking": 0,
+      "Manage Rules - GeoIP Blocking": 0,
+      "Manage Rules - Bot Fingerprinting": 0,
+      "Manage Rules - IP Blocking": 0,
+      "Manage Rules - ASN Number Blocking": 0,
+      "Manage Rules - Geo Blocking": 0,
+      "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
     };
 
-    // Category Definitions
     const categories = {
-        aiFeatures: [
-            // AI-Powered Detection Features (37 features)
-            "Fingerprint Blocking",
-            "Payload Blocking",
-            "Traffic Anomaly Blocking",
-            "IP Reputation Blocking",
-            "JavaScript Behavior Blocking",
-            "Cookie Validation Blocking",
-            "Device Identity Blocking",
-            "Automation Tool Blocking",
-            "Cloud Service Blocking",
-            "DNS Rebinding Blocking",
-            "Credential Stuffing Blocking",
-            "Crawler Detection Blocking",
-            "API Abuse Blocking",
-            "Header Injection Blocking",
-            "TLS Fingerprint Blocking",
-            "SSL MITM Blocking",
-            "Open Redirect Blocking",
-            "Fake Bot Blocking",
-            "AI Rate Limit Blocking",
-            "JA3 Check",
-            "VM/Debug Detection Blocking",
-            "Canvas Fingerprint Blocking",
-            "Path Traversal Blocking",
-            "SQL Injection Blocking",
-            "XSS Detection Blocking",
-            "Command Injection Blocking",
-            "XXE Detection Blocking",
-            "LDAP Injection Blocking",
-            "NoSQL Injection Blocking",
-            "SSTI Detection Blocking",
-            "CSRF Check Blocking",
-            "Clickjacking Blocking",
-            "Vulnerability Scanner Blocking",
-            "Terminal Access Blocking",
-            "jQuery Guard Blocking",
-            "Scan Technique Blocking",
-            "AI & Agentic Detection, Behavioral Analysis",
-            "Advance Fingerprinting Blocking",
-            "Bot & Automation Defense",
-            "Bot & Headless Browser Blocking",
-            "Advance IP Reputation Check",
-            "Advance Bad IP, ASN Blocking"
-        ],
-        coreFeatures: [
-            // Core Security Features
-            "OWASP Top 10 Protection",
-            "XML External Entity Blocking",
-            "Command Injection Protection",
-            "Insecure Deserialization Blocking",
-            "Slowloris Protection",
-            "Flooding Attacks Protection",
-            "Brute Force and DDos Protection",
-            "Tor Exit Node Blocking",
-            "Time-Based Verification",
-            "Malformed Header Protection",
-            "Header Scan Protection",
-            "Session Cookie Validation",
-            "Cookie Tampering Protection",
-            "Client Behavior Analysis",
-            "Information Leak Detection",
-            "Payload Signature Checking",
-            "Configuration Misuse Detection",
-            "Sensitive Data Encryption",
-            "Payload & Header Inspection",
-            "Lua Scripting Support",
-            "WordPress Protection",
-            "Advanced Scripting & Rules",
-            "Alert Service - Slack, Google"
-        ],
-        rulesFeatures: [
-            "Manage Rules - Path Blocking",
-            "Manage Rules - Query Blocking",
-            "Manage Rules - GeoIP Blocking",
-            "Manage Rules - Bot Fingerprinting",
-            "Manage Rules - IP Blocking",
-            "Manage Rules - ASN Number Blocking",
-            "Manage Rules - Geo Blocking",
-            "Manage Rules - Clofix ID Fingerprint Detection and Block"
-        ]
+      aiFeatures: [
+        "Fingerprint Blocking", "Payload Blocking", "Traffic Anomaly Blocking", "IP Reputation Blocking",
+        "JavaScript Behavior Blocking", "Cookie Validation Blocking", "Device Identity Blocking", "Automation Tool Blocking",
+        "Cloud Service Blocking", "DNS Rebinding Blocking", "Credential Stuffing Blocking", "Crawler Detection Blocking",
+        "API Abuse Blocking", "Header Injection Blocking", "TLS Fingerprint Blocking", "SSL MITM Blocking",
+        "Open Redirect Blocking", "Fake Bot Blocking", "AI Rate Limit Blocking", "JA3 Check", "VM/Debug Detection Blocking",
+        "Canvas Fingerprint Blocking", "Path Traversal Blocking", "SQL Injection Blocking", "XSS Detection Blocking",
+        "Command Injection Blocking", "XXE Detection Blocking", "LDAP Injection Blocking", "NoSQL Injection Blocking",
+        "SSTI Detection Blocking", "CSRF Check Blocking", "Clickjacking Blocking", "Vulnerability Scanner Blocking",
+        "Terminal Access Blocking", "jQuery Guard Blocking", "Scan Technique Blocking",
+        "AI & Agentic Detection, Behavioral Analysis", "Advance Fingerprinting Blocking", "Bot & Automation Defense",
+        "Bot & Headless Browser Blocking", "Advance IP Reputation Check", "Advance Bad IP, ASN Blocking"
+      ],
+      coreFeatures: [
+        "OWASP Top 10 Protection", "XML External Entity Blocking", "Command Injection Protection",
+        "Insecure Deserialization Blocking", "Slowloris Protection", "Flooding Attacks Protection",
+        "Brute Force and DDos Protection", "Tor Exit Node Blocking", "Time-Based Verification",
+        "Malformed Header Protection", "Header Scan Protection", "Session Cookie Validation",
+        "Cookie Tampering Protection", "Client Behavior Analysis", "Information Leak Detection",
+        "Payload Signature Checking", "Configuration Misuse Detection", "Sensitive Data Encryption",
+        "Payload & Header Inspection", "Lua Scripting Support", "WordPress Protection",
+        "Advanced Scripting & Rules", "Alert Service - Slack, Google"
+      ],
+      rulesFeatures: [
+        "Manage Rules - Path Blocking",
+        "Manage Rules - Query Blocking",
+        "Manage Rules - GeoIP Blocking",
+        "Manage Rules - Bot Fingerprinting",
+        "Manage Rules - IP Blocking",
+        "Manage Rules - ASN Number Blocking",
+        "Manage Rules - Geo Blocking",
+        "Manage Rules - Clofix ID Fingerprint Detection and Block"
+      ]
     };
 
-    // Helper function to clean feature names for IDs
     function cleanFeatureId(feature) {
-        return feature.replace(/[^a-zA-Z0-9]/g, '_');
+      return feature.replace(/[^a-zA-Z0-9]/g, '_');
     }
 
-    // Render free features
     function renderFreeFeatures() {
-        const freeFeaturesSection = document.getElementById("freeFeaturesSection");
-        if (!freeFeaturesSection) return;
-        
-        let html = `
-            <div class="free-features-title">
-                <span>✅</span>
-                <span>Always Included Free Features - Manage Rules</span>
-            </div>
-            <div class="free-features-grid">
+      const freeFeaturesSection = document.getElementById("freeFeaturesSection");
+      if (!freeFeaturesSection) return;
+
+      let html = `
+        <div class="free-features-title">
+          <span>✅</span>
+          <span>Always Included Free Features - Manage Rules (Free Up to ${FREE_RULES_LIMIT})</span>
+        </div>
+        <div class="free-features-grid">
+      `;
+
+      categories.rulesFeatures.forEach(feature => {
+        html += `
+          <div class="free-feature-item">
+            <span>✓</span>
+            <span>${feature}</span>
+          </div>
         `;
-        
-        categories.rulesFeatures.forEach(feature => {
-            html += `
-                <div class="free-feature-item">
-                    <span class="free-check">✓</span>
-                    <span>${feature}</span>
-                </div>
-            `;
-        });
-        
-        html += '</div>';
-        freeFeaturesSection.innerHTML = html;
+      });
+
+      html += '</div>';
+      freeFeaturesSection.innerHTML = html;
     }
 
-    // Render categorized optional features
     function renderOptionalFeatures() {
-        const featureListDiv = document.getElementById("featureList");
-        if (!featureListDiv) return;
-        
-        featureListDiv.innerHTML = '';
+      const featureListDiv = document.getElementById("featureList");
+      if (!featureListDiv) return;
 
-        // AI Features Category
-        const aiHeader = document.createElement('div');
-        aiHeader.className = 'category-header ai-category';
-        aiHeader.innerHTML = `
-            <span class="category-icon">🤖</span>
-            <span>AI-Powered Detection Features (${categories.aiFeatures.length})</span>
-            <span class="category-count">${categories.aiFeatures.length} features</span>
-        `;
-        featureListDiv.appendChild(aiHeader);
+      featureListDiv.innerHTML = '';
 
-        // Sort AI features alphabetically
-        const sortedAIFeatures = [...categories.aiFeatures].sort();
-        sortedAIFeatures.forEach(feature => {
-            if (!categories.rulesFeatures.includes(feature)) {
-                addFeatureCheckbox(feature, features[feature] || 2);
-            }
-        });
+      const aiHeader = document.createElement('div');
+      aiHeader.className = 'category-header ai-category';
+      aiHeader.innerHTML = `
+        <span>🤖</span>
+        <span>AI-Powered Detection Features (${categories.aiFeatures.length})</span>
+        <span class="category-count">${categories.aiFeatures.length} features</span>
+      `;
+      featureListDiv.appendChild(aiHeader);
 
-        // Core Features Category
-        const coreHeader = document.createElement('div');
-        coreHeader.className = 'category-header core-category';
-        coreHeader.innerHTML = `
-            <span class="category-icon">🛡️</span>
-            <span>Core Security Features (${categories.coreFeatures.length})</span>
-            <span class="category-count">${categories.coreFeatures.length} features</span>
-        `;
-        featureListDiv.appendChild(coreHeader);
+      [...categories.aiFeatures].sort().forEach(feature => addFeatureCheckbox(feature, features[feature] || 2));
 
-        // Sort Core features alphabetically
-        const sortedCoreFeatures = [...categories.coreFeatures].sort();
-        sortedCoreFeatures.forEach(feature => {
-            if (!categories.rulesFeatures.includes(feature)) {
-                addFeatureCheckbox(feature, features[feature] || 2);
-            }
-        });
+      const coreHeader = document.createElement('div');
+      coreHeader.className = 'category-header core-category';
+      coreHeader.innerHTML = `
+        <span>🛡️</span>
+        <span>Core Security Features (${categories.coreFeatures.length})</span>
+        <span class="category-count">${categories.coreFeatures.length} features</span>
+      `;
+      featureListDiv.appendChild(coreHeader);
+
+      [...categories.coreFeatures].sort().forEach(feature => addFeatureCheckbox(feature, features[feature] || 2));
     }
 
     function addFeatureCheckbox(feature, price) {
-        const featureListDiv = document.getElementById("featureList");
-        if (!featureListDiv) return;
-        
-        const wrapper = document.createElement("label");
-        const featureId = cleanFeatureId(feature);
+      const featureListDiv = document.getElementById("featureList");
+      if (!featureListDiv) return;
 
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = feature;
-        checkbox.id = featureId;
+      const wrapper = document.createElement("label");
+      const featureId = cleanFeatureId(feature);
 
-        // Check if this is a core paid feature that should be auto-selected
-        const corePaidFeatures = [
-            "Advance Fingerprinting Blocking",
-            "OWASP Top 10 Protection",
-            "AI & Agentic Detection, Behavioral Analysis",
-            "Fingerprint Blocking",
-            "SQL Injection Blocking",
-            "XSS Detection Blocking"
-        ];
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = feature;
+      checkbox.id = featureId;
 
-        if (corePaidFeatures.includes(feature)) {
-            checkbox.checked = true;
-            checkbox.disabled = true;
-        }
+      const corePaidFeatures = [
+        "Advance Fingerprinting Blocking",
+        "OWASP Top 10 Protection",
+        "AI & Agentic Detection, Behavioral Analysis",
+        "Fingerprint Blocking",
+        "SQL Injection Blocking",
+        "XSS Detection Blocking"
+      ];
 
-        wrapper.htmlFor = featureId;
-        wrapper.appendChild(checkbox);
-        
-        const textSpan = document.createElement("span");
-        textSpan.textContent = feature;
-        wrapper.appendChild(textSpan);
-        
-        const priceSpan = document.createElement("span");
-        priceSpan.className = "feature-price";
-        priceSpan.textContent = `$${price}/domain`;
-        wrapper.appendChild(priceSpan);
+      if (corePaidFeatures.includes(feature)) {
+        checkbox.checked = true;
+        checkbox.disabled = true;
+      }
 
-        featureListDiv.appendChild(wrapper);
+      wrapper.appendChild(checkbox);
+
+      const nameSpan = document.createElement("span");
+      nameSpan.textContent = feature;
+      wrapper.appendChild(nameSpan);
+
+      const priceSpan = document.createElement("span");
+      priceSpan.className = "feature-price";
+      priceSpan.textContent = `$${price}/domain`;
+      wrapper.appendChild(priceSpan);
+
+      featureListDiv.appendChild(wrapper);
     }
 
-    // Update the calculatePricing function to handle all features
+    // -----------------------------
+    // EXPORTS
+    // -----------------------------
+    function exportExcel() {
+      if (!LAST_EXPORT_ROWS.length) return;
+
+      const aoa = [
+        ["CloFix WAF Pricing Summary"],
+        [],
+        ["Domains", String(LAST_EXPORT_META.domains)],
+        ["Subdomains", String(LAST_EXPORT_META.subdomains)],
+        ["Monthly Requests (in millions)", String(LAST_EXPORT_META.requests)],
+        ["Bandwidth", `${LAST_EXPORT_META.bandwidth} ${LAST_EXPORT_META.bandwidthUnit}`],
+        ["Rules", String(LAST_EXPORT_META.rules)],
+        ["Support", LAST_EXPORT_META.supportLabel],
+        ["License", LAST_EXPORT_META.licenseLabel],
+        [],
+        ["Component", "Cost (USD)"],
+        ...LAST_EXPORT_ROWS,
+        [],
+        ["Total", LAST_EXPORT_TOTAL_TEXT]
+      ];
+
+      const ws = XLSX.utils.aoa_to_sheet(aoa);
+      ws["!cols"] = [{ wch: 55 }, { wch: 22 }];
+
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
+      XLSX.writeFile(wb, "CloFix_WAF_Pricing_Summary.xlsx");
+    }
+
+    function exportPDF() {
+      if (!LAST_EXPORT_ROWS.length) return;
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(16);
+      doc.text("CloFix WAF Pricing Summary", 14, 16);
+
+      doc.setFontSize(10);
+      const metaLines = [
+        `Domains: ${LAST_EXPORT_META.domains} | Subdomains: ${LAST_EXPORT_META.subdomains} | Rules: ${LAST_EXPORT_META.rules}`,
+        `Requests (in millions): ${LAST_EXPORT_META.requests} | Bandwidth: ${LAST_EXPORT_META.bandwidth} ${LAST_EXPORT_META.bandwidthUnit}`,
+        `Support: ${LAST_EXPORT_META.supportLabel} | License: ${LAST_EXPORT_META.licenseLabel}`
+      ];
+      doc.text(metaLines, 14, 24);
+
+      doc.autoTable({
+        startY: 34,
+        head: [["Component", "Cost (USD)"]],
+        body: LAST_EXPORT_ROWS.map(r => [r[0], r[1]]),
+        styles: { fontSize: 9 },
+        columnStyles: { 0: { cellWidth: 125 }, 1: { cellWidth: 45 } }
+      });
+
+      const y = doc.lastAutoTable.finalY + 10;
+      doc.setFontSize(12);
+      doc.text(`Total: ${LAST_EXPORT_TOTAL_TEXT}`, 14, y);
+
+      doc.save("CloFix_WAF_Pricing_Summary.pdf");
+    }
+
+    // -----------------------------
+    // PRICING
+    // -----------------------------
     function calculatePricing() {
-        const domainCount = parseInt(document.getElementById("domains").value) || 0;
-        const subdomainCount = parseInt(document.getElementById("subdomains").value) || 0;
-        const requests = parseInt(document.getElementById("requests").value) || 0;
-        const bandwidth = parseFloat(document.getElementById("bandwidth").value) || 0;
-        const support = document.getElementById("support").value;
-        const license = document.getElementById("license").value;
+      const domainCount = parseInt(document.getElementById("domains").value) || 0;
+      const subdomainCount = parseInt(document.getElementById("subdomains").value) || 0;
+      const requests = parseInt(document.getElementById("requests").value) || 0;
+      const bandwidth = parseFloat(document.getElementById("bandwidth").value) || 0;
+      const rules = parseInt(document.getElementById("rules").value) || 0;
 
-        if (domainCount <= 0 || bandwidth <= 0) {
-            document.getElementById("errorMessage").style.display = "block";
-            document.getElementById("result").style.display = "none";
-            return;
+      const support = document.getElementById("support").value;
+      const license = document.getElementById("license").value;
+      const unit = document.getElementById("bandwidthUnit").value;
+
+      if (domainCount <= 0 || bandwidth <= 0) {
+        document.getElementById("errorMessage").style.display = "block";
+        document.getElementById("result").style.display = "none";
+        return;
+      }
+      document.getElementById("errorMessage").style.display = "none";
+
+      let total = 0;
+      const rows = [];
+
+      // Domains
+      const domainCost = domainCount * 4;
+      total += domainCost;
+      rows.push(["Domains (Base Fee)", `$${domainCost.toFixed(2)}`]);
+
+      // Subdomains
+      if (subdomainCount > 0) {
+        const cost = subdomainCount * 2;
+        total += cost;
+        rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
+      }
+
+      // Requests
+      if (requests > 0) {
+        let cost = 0;
+        if (requests > 1 && requests <= 100) cost = 1.25;
+        else if (requests > 100) cost = 1.00;
+        if (cost > 0) {
+          total += cost;
+          rows.push(["Monthly Requests", `$${cost.toFixed(2)}`]);
+        }
+      }
+
+      // Bandwidth
+      let actualBandwidthGB = bandwidth;
+      if (unit === "TB") actualBandwidthGB = bandwidth * 1024;
+
+      if (actualBandwidthGB > 0) {
+        if (actualBandwidthGB > 10) {
+          let cost = 0;
+          const tier1 = Math.min(actualBandwidthGB - 10, 15);
+          const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
+          const tier3 = Math.max(actualBandwidthGB - 50, 0);
+          cost += tier1 * 0.03;
+          cost += tier2 * 0.04;
+          cost += tier3 * 0.02;
+          total += cost;
+          rows.push([`Bandwidth (${actualBandwidthGB.toFixed(2)} GB)`, `$${cost.toFixed(2)}`]);
         } else {
-            document.getElementById("errorMessage").style.display = "none";
+          rows.push(["Bandwidth (up to 10 GB)", "Free"]);
         }
+      }
 
-        let total = 0;
-        const rows = [];
+      // ✅ Rules pricing (only shown inside Free section)
+      const extraRules = Math.max(rules - FREE_RULES_LIMIT, 0);
+      const extraRulesCost = extraRules * EXTRA_RULE_PRICE;
+      total += extraRulesCost;
 
-        // Domain costs
-        if (domainCount > 0) {
-            const cost = domainCount * 4;
-            total += cost;
-            rows.push(["Domains (Base Fee)", `$${cost.toFixed(2)}`]);
+      // Support
+      let supportCostMonthly = 0;
+      let supportLabel = "Support (Free Tier)";
+      if (support === "standard") { supportCostMonthly = 55; supportLabel = "Standard Support"; }
+      if (support === "enterprise") { supportCostMonthly = 500; supportLabel = "Enterprise Support"; }
+
+      // Selected features
+      let selectedFeaturesTotal = 0;
+
+      categories.aiFeatures.forEach(feature => {
+        const checkbox = document.getElementById(cleanFeatureId(feature));
+        if (checkbox && checkbox.checked) {
+          const price = features[feature] || 2;
+          const cost = price * domainCount;
+          selectedFeaturesTotal += cost;
+          rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
         }
+      });
 
-        // Subdomain costs
-        if (subdomainCount > 0) {
-            const cost = subdomainCount * 2;
-            total += cost;
-            rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
+      categories.coreFeatures.forEach(feature => {
+        const checkbox = document.getElementById(cleanFeatureId(feature));
+        if (checkbox && checkbox.checked) {
+          const price = features[feature] || 2;
+          const cost = price * domainCount;
+          selectedFeaturesTotal += cost;
+          rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
         }
+      });
 
-        // Request costs
-        if (requests > 0) {
-            let cost = 0;
-            if (requests > 1 && requests <= 100) {
-                cost = 1.25;
-            } else if (requests > 100) {
-                cost = 1.00;
-            }
-            if (cost > 0) {
-                total += cost;
-                rows.push(["Monthly Requests", `$${cost.toFixed(2)}`]);
-            }
-        }
+      total += selectedFeaturesTotal;
+      if (selectedFeaturesTotal > 0) rows.push(["Total Selected Features", `$${selectedFeaturesTotal.toFixed(2)}`]);
 
-        // Bandwidth costs
-        const unit = document.getElementById("bandwidthUnit").value;
-        let actualBandwidthGB = bandwidth;
-        if (unit === "TB") {
-            actualBandwidthGB = bandwidth * 1024;
-        }
+      // ✅ Free Included section + extra rules total inside this section
+      rows.push(["", `--- Free Included Features (Free Up to ${FREE_RULES_LIMIT}) ---`]);
+      categories.rulesFeatures.forEach(feature => rows.push([feature, "Free (Included)"]));
+      if (extraRules > 0) {
+        rows.push([`Extra Rules Cost (${extraRules} rules × $${EXTRA_RULE_PRICE.toFixed(2)})`, `$${extraRulesCost.toFixed(2)}`]);
+      }
 
-        if (actualBandwidthGB > 0) {
-            let cost = 0;
-            if (actualBandwidthGB > 10) {
-                const tier1 = Math.min(actualBandwidthGB - 10, 15);
-                const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
-                const tier3 = Math.max(actualBandwidthGB - 50, 0);
-                cost += tier1 * 0.03;
-                cost += tier2 * 0.04;
-                cost += tier3 * 0.02;
-                total += cost;
-                rows.push([`Bandwidth (${actualBandwidthGB.toFixed(2)} GB)`, `$${cost.toFixed(2)}`]);
-            } else {
-                rows.push(["Bandwidth (up to 10 GB)", "Free"]);
-            }
-        }
+      // Render table + license
+      const tbody = document.getElementById("pricingTable");
+      tbody.innerHTML = "";
 
-        // Support costs
-        let supportCostMonthly = 0;
-        let supportLabel = "Support (Free Tier)";
-        
-        if (support === "standard") {
-            supportCostMonthly = 55;
-            supportLabel = "Standard Support";
-        } else if (support === "enterprise") {
-            supportCostMonthly = 500;
-            supportLabel = "Enterprise Support";
-        }
+      let totalText = "";
+      const licenseLabel = (license === "yearly") ? "Yearly (10% Discount Applied)" : "Monthly";
 
-        // Calculate selected features cost
-        let selectedFeaturesCount = 0;
-        let selectedFeaturesTotal = 0;
+      if (license === "yearly") {
+        const monthlyTotal = total + supportCostMonthly;
+        const yearlyTotal = monthlyTotal * 12;
+        const discounted = yearlyTotal * 0.9;
+        const monthlyAfterDiscount = discounted / 12;
 
-        // Check all AI features
-        categories.aiFeatures.forEach(feature => {
-            if (!categories.rulesFeatures.includes(feature)) {
-                const checkbox = document.getElementById(cleanFeatureId(feature));
-                if (checkbox && checkbox.checked) {
-                    const price = features[feature] || 2;
-                    const cost = price * domainCount;
-                    selectedFeaturesTotal += cost;
-                    selectedFeaturesCount++;
-                    rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
-                }
-            }
-        });
+        rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
+        rows.push(["Billing Plan", licenseLabel]);
+        rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
+        rows.push(["Effective Monthly Cost", `$${monthlyAfterDiscount.toFixed(2)}`]);
 
-        // Check all Core features
-        categories.coreFeatures.forEach(feature => {
-            if (!categories.rulesFeatures.includes(feature)) {
-                const checkbox = document.getElementById(cleanFeatureId(feature));
-                if (checkbox && checkbox.checked) {
-                    const price = features[feature] || 2;
-                    const cost = price * domainCount;
-                    selectedFeaturesTotal += cost;
-                    selectedFeaturesCount++;
-                    rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
-                }
-            }
-        });
+        totalText = `$${discounted.toFixed(2)} (yearly)`;
+        document.getElementById("totalCost").innerText = totalText;
+      } else {
+        total += supportCostMonthly;
+        rows.push([supportLabel, `$${supportCostMonthly.toFixed(2)}/month`]);
+        rows.push(["Billing Plan", licenseLabel]);
 
-        total += selectedFeaturesTotal;
+        totalText = `$${total.toFixed(2)}/month`;
+        document.getElementById("totalCost").innerText = totalText;
+      }
 
-        // Add summary row for selected features
-        if (selectedFeaturesCount > 0) {
-            rows.push(["Total Selected Features", `$${selectedFeaturesTotal.toFixed(2)}`]);
-        }
-
-        // Free features note
-        rows.push(["", "--- Free Included Features ---"]);
-        categories.rulesFeatures.forEach(feature => {
-            rows.push([feature, "Free (Included)"]);
-        });
-
-        // Apply license and support
-        const tbody = document.getElementById("pricingTable");
-        tbody.innerHTML = "";
-
-        if (license === "yearly") {
-            const monthlyTotal = total + supportCostMonthly;
-            const yearlyTotal = monthlyTotal * 12;
-            const discounted = yearlyTotal * 0.9;
-            const monthlyAfterDiscount = discounted / 12;
-
-            rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
-            rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
-            rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
-            rows.push(["Effective Monthly Cost", `$${monthlyAfterDiscount.toFixed(2)}`]);
-
-            document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)} (yearly)`;
+      rows.forEach(([name, price]) => {
+        if (typeof price === "string" && price.startsWith("--- Free Included Features")) {
+          tbody.innerHTML += `
+            <tr style="background-color:#f0fdf4;">
+              <td colspan="2" style="text-align:center;font-weight:bold;color:#166534;">${price}</td>
+            </tr>`;
         } else {
-            total += supportCostMonthly;
-            rows.push([supportLabel, `$${supportCostMonthly.toFixed(2)}/month`]);
-            rows.push(["Billing Plan", "Monthly"]);
-
-            document.getElementById("totalCost").innerText = `$${total.toFixed(2)}/month`;
+          tbody.innerHTML += `<tr><td>${name}</td><td>${price}</td></tr>`;
         }
+      });
 
-        // Render table
-        rows.forEach(([name, price]) => {
-            if (name === "--- Free Included Features ---") {
-                const row = `<tr style="background-color: #f0fdf4;"><td colspan="2" style="text-align: center; font-weight: bold; color: #166534;">${name}</td></tr>`;
-                tbody.innerHTML += row;
-            } else {
-                const row = `<tr><td>${name}</td><td>${price}</td></tr>`;
-                tbody.innerHTML += row;
-            }
-        });
+      // ✅ Save export state
+      LAST_EXPORT_ROWS = rows.slice();
+      LAST_EXPORT_TOTAL_TEXT = totalText;
+      LAST_EXPORT_META = {
+        domains: domainCount,
+        subdomains: subdomainCount,
+        requests: requests,
+        bandwidth: bandwidth,
+        bandwidthUnit: unit,
+        rules: rules,
+        supportLabel: supportLabel,
+        licenseLabel: licenseLabel
+      };
 
-        document.getElementById("result").style.display = "block";
-        document.getElementById("exportExcelBtn").style.display = "inline-block";
-        document.getElementById("exportPDFBtn").style.display = "inline-block";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("exportExcelBtn").style.display = "inline-block";
+      document.getElementById("exportPDFBtn").style.display = "inline-block";
     }
 
-    // Initialize everything when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        renderFreeFeatures();
-        renderOptionalFeatures();
-        renderSelectedTypeChips();
+    // Placeholder if you already have chip logic
+    function renderSelectedTypeChips() { }
 
-        // Set default values
-        document.getElementById("domains").value = 1;
-        document.getElementById("bandwidth").value = 10;
+    document.addEventListener('DOMContentLoaded', function () {
+      renderFreeFeatures();
+      renderOptionalFeatures();
+      renderSelectedTypeChips();
+
+      // defaults
+      document.getElementById("domains").value = 1;
+      document.getElementById("subdomains").value = 0;
+      document.getElementById("requests").value = 1000000;
+      document.getElementById("bandwidth").value = 100;
+      document.getElementById("rules").value = 10;
+
+      // export handlers
+      document.getElementById("exportExcelBtn").addEventListener("click", exportExcel);
+      document.getElementById("exportPDFBtn").addEventListener("click", exportPDF);
     });
   </script>
 </body>
+
 </html>
