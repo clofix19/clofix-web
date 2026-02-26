@@ -114,6 +114,7 @@
     }
 
     /* ✅ Force black input text */
+    /* ✅ White inputs + black text (consistent everywhere) */
     .basic-input input,
     .basic-input select {
       padding: 0.75rem 1rem;
@@ -121,22 +122,26 @@
       border-radius: 12px;
       font-size: 1rem;
       transition: all 0.3s ease;
-      background: white;
+
+      background: #ffffff;
       color: #02060a;
       -webkit-text-fill-color: #02060a;
+      /* fixes Chrome/Safari weirdness */
       caret-color: #02060a;
     }
 
+    /* ✅ Dropdown options must also be dark */
     .basic-input select option {
-      color: #02060a;
       background: #ffffff;
+      color: #02060a;
     }
 
+    /* Optional: nicer hover/focus */
     .basic-input input:focus,
     .basic-input select:focus {
       border-color: var(--primary);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
     }
 
     .bandwidth-row {
