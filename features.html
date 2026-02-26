@@ -140,404 +140,1184 @@
       <h1 class="features-title">CloFix WAF Security – Key Features</h1>
 
       <div class="features-flex">
-        <div class="feature-card" data-id="sql-injection">
-          <h3>🔒 SQL Injection Protection</h3>
-          <p>Detects and blocks malicious SQL queries</p>
-        </div>
-        <template id="sql-injection">
-          <p>This feature blocks SQL injection attempts by inspecting query patterns in real time. It detects tampered
-            inputs and stops database compromise.</p>
-          <ul>
-            <li>Detects patterns like ' OR 1=1</li>
-            <li>Protects against stacked queries</li>
-            <li>Blocks UNION-based extraction</li>
-          </ul>
-        </template>
-        <div class="feature-card">
-          <h3>🛡️ Cross-Site Scripting (XSS) Protection</h3>
-          <p>Prevents client-side script injection attacks</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔑 CSRF Protection </h3>
-          <p>Validates tokens to prevent cross-origin request forgery</p>
-        </div>
-        <div class="feature-card">
-          <h3>🚫 SSRF Protection </h3>
-          <p>Blocks requests to internal/external services initiated by attackers</p>
-        </div>
-        <div class="feature-card">
-          <h3>🛡️ Path Traversal Protection</h3>
-          <p>Prevents access to unauthorized directories</p>
-        </div>
-        <div class="feature-card">
-          <h3>⚙️ Command Injection Protection</h3>
-          <p>Detects attempts to execute shell commands via input</p>
-        </div>
-        <div class="feature-card">
-          <h3>📄 XML External Entity (XXE) Blocking</h3>
-          <p>Stops XXE payloads in XML parsers</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔐 Insecure Deserialization Blocking</h3>
-          <p>Protects against tampering of serialized objects</p>
-        </div>
-        <div class="feature-card">
-          <h3>🛑 Extension Protection</h3>
-          <p>Restricts access to sensitive or executable file types</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔍 Payload Signature Checking </h3>
-          <p>Blocks threats via custom rule signatures</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧠 Client Behavior Analysis</h3>
-          <p>Detects bots and anomalies through behavior patterns</p>
-        </div>
-        <div class="feature-card">
-          <h3>🕵️‍♂️ Tor Exit Node Blocking</h3>
-          <p>Blocks traffic from anonymous networks</p>
-        </div>
-        <div class="feature-card">
-          <h3>🌐 DNS Rebinding Protection</h3>
-          <p>Detects domain hijack via rebinding techniques</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧹 Injection & Code Execution Protection</h3>
-          <p>Blocks SQLi, LFI, RFI, XXE, and similar payloads</p>
-        </div>
-        <div class="feature-card">
-          <h3>🤖 Bot & Headless Browser Blocking</h3>
-          <p>Prevents scraping and automation by detecting headless tools</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧬 AI & Behavioral Analysis</h3>
-          <p>Uses ML models for payload scoring and anomaly detection</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔄 Response Body Rewriting</h3>
-          <p>Cleanses HTML, JSON from leaks or scripts dynamically</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧠 AI & Agentic Detection</h3>
-          <p>Detects spoofed fingerprints, CLoFix, automation tools, etc</p>
-        </div>
-        <div class="feature-card">
-          <h3>🌊 Flooding Attack Protection</h3>
-          <p>Identifies and blocks burst/loop request attacks</p>
-        </div>
-        <div class="feature-card">
-          <h3>🐌 Slowloris Protection</h3>
-          <p>Blocks slow HTTP DoS attacks.</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔨 Brute Force Protection</h3>
-          <p>Detects repeated login/credential attempts and blocks them</p>
-        </div>
-        <div class="feature-card">
-          <h3>🛡️ Rate Limiting</h3>
-          <p>Controls request volume per IP or session</p>
-        </div>
-        <div class="feature-card">
-          <h3>⏱️ Time-Based Verification</h3>
-          <p>Ensures delay enforcement to block automated tools</p>
-        </div>
-        <div class="feature-card">
-          <h3>📏 Header Length Limits</h3>
-          <p>Rejects headers that exceed defined byte limits</p>
-        </div>
-        <div class="feature-card">
-          <h3>⚠️ Malformed Header Protection</h3>
-          <p>Filters out invalid or corrupted headers</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔍 Header Scan Protection</h3>
-          <p>Detects and blocks crafted or probe headers</p>
-        </div>
-        <div class="feature-card">
-          <h3>📊 Request Validation & Enforcement</h3>
-          <p>Validates method, size, encoding, spoof checks</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔒 Session Cookie Validation</h3>
-          <p>Ensures session state and integrity</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔎 Cookie Tampering Protection</h3>
-          <p>Detects unauthorized modifications to cookies</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧩 Session & Cookie Management</h3>
-          <p>Protects against hijacking and replay attacks</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔎 Cookie Tampering Protection </h3>
-          <p>Detects unauthorized modifications to cookies</p>
-        </div>
-        <div class="feature-card">
-          <h3>🍪 Secure Cookie Flags</h3>
-          <p>Enforces HttpOnly, Secure, and SameSite cookie attributes</p>
-        </div>
-        <div class="feature-card">
-          <h3>🚷 IP Reputation Check</h3>
-          <p>Blocks blacklisted/suspicious IPs (e.g., blocklist.de)</p>
-        </div>
-        <div class="feature-card">
-          <h3>🗺️ GeoIP Blocking</h3>
-          <p>Country- or ASN-level access control</p>
-        </div>
-        <div class="feature-card">
-          <h3>🌐 IP, Geo & Network Filtering</h3>
-          <p>Combines IP, geo, ASN, Tor, DNSRebind into one layer</p>
-        </div>
-        <div class="feature-card">
-          <h3>⚙️ Configuration Misuse Detection</h3>
-          <p>Detects exposed admin panels, unsafe settings</p>
-        </div>
-        <div class="feature-card">
-          <h3>🛡️ OWASP Top 10 Protections</h3>
-          <p>Covers all major web attack categories</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔒 TLS/SSL Hardening</h3>
-          <p>Forces strong ciphers, disables weak TLS, and enforces HTTPS</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧠 CloFix Fingerprint Detection</h3>
-          <p>Identifies spoofed or abnormal clients detection</p>
-        </div>
-        <div class="feature-card">
-          <h3>📈 ClickHouse Logging</h3>
-          <p>Real-time logs with high-performance analytics storage</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧭 Geo Analytics & Visualization</h3>
-          <p>Shows traffic on heatmaps by country or ASN</p>
-        </div>
-        <div class="feature-card">
-          <h3>🛑 Information Leak Detection</h3>
-          <p>Scans response for secrets, tokens, CC numbers</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧾 PDF/HTML Reports</h3>
-          <p>Generate detailed logs, incidents, and threat reports</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔔 Real-Time Alerts</h3>
-          <p>webhook alerts for suspicious or blocked requests</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧬 Lua Scripting Support</h3>
-          <p>Inject custom logic using embedded Lua scripts</p>
-        </div>
-        <div class="feature-card">
-          <h3>🤖 AI Plugin Integration</h3>
-          <p>Connect with Python-based AI scoring APIs </p>
-        </div>
-        <div class="feature-card">
-          <h3>🔄 Reverse Proxy & Performance</h3>
-          <p>Gzip, HTTP/2, path-routing, failover handling</p>
-        </div>
-        <div class="feature-card">
-          <h3>⚙️ Proxy Optimization & Caching</h3>
-          <p>CloFix CDN passthrough, static cache tuning, faster</p>
-        </div>
-        <div class="feature-card">
-          <h3>🛡️ Common WP Attack Blockers</h3>
-          <p>Blocks xmlrpc abuse, wp-login brute force, plugin scans</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔍 Sensitive Path Guarding</h3>
-          <p>Hides /wp-admin, /wp-content, etc</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧱 Theme/Plugin Exploit Detection</h3>
-          <p>Stops known WP vuln signatures</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔑 License Management </h3>
-          <p>Trial, Basic, Business, Enterprise with domain/bandwidth/date expiry controls</p>
-        </div>
-        <div class="feature-card">
-          <h3>📦 Per-Domain Feature Settings</h3>
-          <p>Enable/disable protection per hosted domain</p>
-        </div>
-        <div class="feature-card">
-          <h3>🧠 AI: Fingerprint Scoring</h3>
-          <p>Evaluates client fingerprints to detect anomalies or spoofing.</p>
-        </div>
+          <!-- AI CATEGORY -->        
+          <div class="feature-card" data-id="fingerprint_blocking">
+              <h3>🔍 Fingerprint Blocking</h3>
+              <p>Blocks requests based on malicious browser/device fingerprinting patterns</p>
+          </div>
+          <template id="fingerprint_blocking">
+              <p>Blocks requests based on malicious browser/device fingerprinting patterns.</p>
+              <ul>
+                  <li>Detects abnormal browser fingerprints</li>
+                  <li>Identifies spoofed user agents</li>
+                  <li>Blocks headless browser signatures</li>
+                  <li>Prevents fingerprint-based evasion techniques</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Payload Detector</h3>
-          <p>Classifies HTTP payloads using AI models for potential attacks.</p>
-        </div>
+          <div class="feature-card" data-id="payload_blocking">
+              <h3>📦 Payload Blocking</h3>
+              <p>Detects and blocks malicious payloads in requests</p>
+          </div>
+          <template id="payload_blocking">
+              <p>Detects and blocks malicious payloads in requests using AI-powered analysis.</p>
+              <ul>
+                  <li>Real-time payload inspection</li>
+                  <li>ML-based threat classification</li>
+                  <li>Zero-day exploit detection</li>
+                  <li>Multi-vector payload analysis</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Traffic Anomaly Detection</h3>
-          <p>Detects irregular request patterns or usage spikes.</p>
-        </div>
+          <div class="feature-card" data-id="traffic_anomaly_blocking">
+              <h3>📊 Traffic Anomaly Blocking</h3>
+              <p>Identifies and blocks abnormal traffic patterns</p>
+          </div>
+          <template id="traffic_anomaly_blocking">
+              <p>Identifies and blocks abnormal traffic patterns using behavioral analysis.</p>
+              <ul>
+                  <li>Detects traffic spikes and anomalies</li>
+                  <li>Identifies DDoS attack patterns</li>
+                  <li>Behavioral baselining</li>
+                  <li>Automated threat response</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Client Reputation Scoring</h3>
-          <p>Scores IP reputation using AI threat intelligence.</p>
-        </div>
+          <div class="feature-card" data-id="ip_reputation_blocking">
+              <h3>🚫 IP Reputation Blocking</h3>
+              <p>Blocks requests from known malicious IP addresses</p>
+          </div>
+          <template id="ip_reputation_blocking">
+              <p>Blocks requests from known malicious IP addresses using real-time threat intelligence.</p>
+              <ul>
+                  <li>Integration with blocklist.de</li>
+                  <li>Real-time IP reputation checks</li>
+                  <li>Dynamic blacklist updates</li>
+                  <li>Custom IP blacklisting</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: JS Behavior Scoring</h3>
-          <p>Analyzes JavaScript behavior to detect bots and automation.</p>
-        </div>
+          <div class="feature-card" data-id="javascript_behavior_blocking">
+              <h3>🕸️ JavaScript Behavior Blocking</h3>
+              <p>Analyzes and blocks suspicious JavaScript behavior</p>
+          </div>
+          <template id="javascript_behavior_blocking">
+              <p>Analyzes and blocks suspicious JavaScript behavior in real-time.</p>
+              <ul>
+                  <li>Detects malicious JS execution</li>
+                  <li>Identifies cryptojacking attempts</li>
+                  <li>Blocks DOM manipulation attacks</li>
+                  <li>Prevents JS-based data exfiltration</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Cookie Validation Score</h3>
-          <p>Validates browser cookies using AI-based scoring.</p>
-        </div>
+          <div class="feature-card" data-id="cookie_validation_blocking">
+              <h3>🍪 Cookie Validation Blocking</h3>
+              <p>Validates and blocks requests with tampered cookies</p>
+          </div>
+          <template id="cookie_validation_blocking">
+              <p>Validates and blocks requests with tampered cookies using AI-based scoring.</p>
+              <ul>
+                  <li>Detects cookie tampering attempts</li>
+                  <li>Validates session integrity</li>
+                  <li>Blocks session hijacking</li>
+                  <li>Prevents replay attacks</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Device Identity Score</h3>
-          <p>Analyzes device fingerprint consistency and trust.</p>
-        </div>
+          <div class="feature-card" data-id="device_identity_blocking">
+              <h3>📱 Device Identity Blocking</h3>
+              <p>Blocks requests from untrusted or spoofed devices</p>
+          </div>
+          <template id="device_identity_blocking">
+              <p>Blocks requests from untrusted or spoofed devices using device fingerprinting.</p>
+              <ul>
+                  <li>Device fingerprint validation</li>
+                  <li>Detects emulator environments</li>
+                  <li>Blocks device spoofing</li>
+                  <li>Cross-session device tracking</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Automation Tool Detection</h3>
-          <p>Detects use of tools like Selenium, Puppeteer, or Playwright.</p>
-        </div>
+          <div class="feature-card" data-id="automation_tool_blocking">
+              <h3>🤖 Automation Tool Blocking</h3>
+              <p>Detects and blocks automated bot/script traffic</p>
+          </div>
+          <template id="automation_tool_blocking">
+              <p>Detects and blocks automated bot/script traffic with high accuracy.</p>
+              <ul>
+                  <li>Detects Selenium, Puppeteer, Playwright</li>
+                  <li>Identifies headless browsers</li>
+                  <li>Blocks scraping tools</li>
+                  <li>Prevents automated attacks</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Cloud Service Fingerprint</h3>
-          <p>Detects traffic originating from cloud data centers.</p>
-        </div>
+          <div class="feature-card" data-id="cloud_service_blocking">
+              <h3>☁️ Cloud Service Blocking</h3>
+              <p>Blocks requests from known cloud hosting providers (if malicious)</p>
+          </div>
+          <template id="cloud_service_blocking">
+              <p>Blocks requests from known cloud hosting providers when malicious patterns are detected.</p>
+              <ul>
+                  <li>Identifies cloud data center traffic</li>
+                  <li>Blocks malicious cloud-based attacks</li>
+                  <li>AWS/Azure/GCP detection</li>
+                  <li>Cloud IP range filtering</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: DNS Rebinding Score</h3>
-          <p>Identifies DNS rebinding attacks via behavior analysis.</p>
-        </div>
+          <div class="feature-card" data-id="dns_rebinding_blocking">
+              <h3>🔄 DNS Rebinding Blocking</h3>
+              <p>Prevents DNS rebinding attacks</p>
+          </div>
+          <template id="dns_rebinding_blocking">
+              <p>Prevents DNS rebinding attacks through intelligent detection.</p>
+              <ul>
+                  <li>Detects DNS rebinding patterns</li>
+                  <li>Validates DNS responses</li>
+                  <li>Blocks internal IP exposure</li>
+                  <li>Prevents SSRF via DNS rebinding</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: User Behavior Learning</h3>
-          <p>Detects deviations from learned user interaction patterns.</p>
-        </div>
+          <div class="feature-card" data-id="credential_stuffing_blocking">
+              <h3>🔑 Credential Stuffing Blocking</h3>
+              <p>Detects and blocks credential stuffing attempts</p>
+          </div>
+          <template id="credential_stuffing_blocking">
+              <p>Detects and blocks credential stuffing attempts using behavioral analysis.</p>
+              <ul>
+                  <li>Identifies rapid login attempts</li>
+                  <li>Detects password spraying</li>
+                  <li>Blocks breached credential use</li>
+                  <li>Rate limiting for auth endpoints</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Crawler Detection Score</h3>
-          <p>Identifies known and unknown web crawlers.</p>
-        </div>
+          <div class="feature-card" data-id="crawler_detection_blocking">
+              <h3>🕷️ Crawler Detection Blocking</h3>
+              <p>Identifies and blocks malicious web crawlers</p>
+          </div>
+          <template id="crawler_detection_blocking">
+              <p>Identifies and blocks malicious web crawlers while allowing legitimate search engines.</p>
+              <ul>
+                  <li>Differentiates good/bad crawlers</li>
+                  <li>Validates search engine bots</li>
+                  <li>Blocks content scrapers</li>
+                  <li>Prevents competitive data mining</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: API Abuse Detection</h3>
-          <p>Detects abnormal API access or misuse using ML.</p>
-        </div>
+          <div class="feature-card" data-id="api_abuse_blocking">
+              <h3>🔌 API Abuse Blocking</h3>
+              <p>Prevents API abuse and excessive API calls</p>
+          </div>
+          <template id="api_abuse_blocking">
+              <p>Prevents API abuse and excessive API calls using ML-based detection.</p>
+              <ul>
+                  <li>Detects API scraping</li>
+                  <li>Identifies abnormal API patterns</li>
+                  <li>Prevents business logic abuse</li>
+                  <li>Intelligent rate limiting</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Header Injection Score</h3>
-          <p>Analyzes and scores header anomalies or manipulations.</p>
-        </div>
+          <div class="feature-card" data-id="header_injection_blocking">
+              <h3>📨 Header Injection Blocking</h3>
+              <p>Blocks HTTP header injection attacks</p>
+          </div>
+          <template id="header_injection_blocking">
+              <p>Blocks HTTP header injection attacks through comprehensive validation.</p>
+              <ul>
+                  <li>Detects CRLF injection</li>
+                  <li>Prevents response splitting</li>
+                  <li>Blocks host header attacks</li>
+                  <li>Validates all HTTP headers</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: TLS Fingerprint Score</h3>
-          <p>Detects TLS/JA3 mismatches and fingerprinting anomalies.</p>
-        </div>
+          <div class="feature-card" data-id="tls_fingerprint_blocking">
+              <h3>🔒 TLS Fingerprint Blocking</h3>
+              <p>Blocks requests based on malicious TLS fingerprint patterns (JA3)</p>
+          </div>
+          <template id="tls_fingerprint_blocking">
+              <p>Blocks requests based on malicious TLS fingerprint patterns (JA3/JA3S).</p>
+              <ul>
+                  <li>JA3 fingerprint analysis</li>
+                  <li>Detects malicious TLS clients</li>
+                  <li>Identifies bot TLS patterns</li>
+                  <li>Blocks known attack tools</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: SSL MITM Detection</h3>
-          <p>Detects signs of SSL stripping or man-in-the-middle attacks.</p>
-        </div>
+          <div class="feature-card" data-id="ssl_mitm_blocking">
+              <h3>🛡️ SSL MITM Blocking</h3>
+              <p>Detects and blocks SSL Man-in-the-Middle attacks</p>
+          </div>
+          <template id="ssl_mitm_blocking">
+              <p>Detects and blocks SSL Man-in-the-Middle attacks through advanced analysis.</p>
+              <ul>
+                  <li>Detects SSL stripping</li>
+                  <li>Identifies certificate anomalies</li>
+                  <li>Blocks MITM proxies</li>
+                  <li>Validates TLS handshakes</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Open Redirect Detection</h3>
-          <p>Identifies open redirect attempts in URLs.</p>
-        </div>
+          <div class="feature-card" data-id="open_redirect_blocking">
+              <h3>↪️ Open Redirect Blocking</h3>
+              <p>Prevents open redirect vulnerabilities</p>
+          </div>
+          <template id="open_redirect_blocking">
+              <p>Prevents open redirect vulnerabilities through intelligent URL validation.</p>
+              <ul>
+                  <li>Detects malicious redirects</li>
+                  <li>Validates redirect URLs</li>
+                  <li>Blocks phishing attempts</li>
+                  <li>Prevents open redirect exploitation</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Fake Bot Detection</h3>
-          <p>Flags bots masquerading as legitimate clients.</p>
-        </div>
+          <div class="feature-card" data-id="fake_bot_blocking">
+              <h3>🎭 Fake Bot Blocking</h3>
+              <p>Blocks fake/search engine bot impersonation</p>
+          </div>
+          <template id="fake_bot_blocking">
+              <p>Blocks fake/search engine bot impersonation through rigorous validation.</p>
+              <ul>
+                  <li>Validates search engine IPs</li>
+                  <li>Detects bot impersonation</li>
+                  <li>Reverse DNS verification</li>
+                  <li>Blocks fake crawlers</li>
+              </ul>
+          </template>
 
-        <div class="feature-card">
-          <h3>🧠 AI: Rate Limit AI Score</h3>
-          <p>Scores request frequency using adaptive AI rate control.</p>
-        </div>
+          <div class="feature-card" data-id="ai_rate_limit_blocking">
+              <h3>⚡ AI Rate Limit Blocking</h3>
+              <p>AI-based intelligent rate limiting</p>
+          </div>
+          <template id="ai_rate_limit_blocking">
+              <p>AI-based intelligent rate limiting that adapts to traffic patterns.</p>
+              <ul>
+                  <li>Dynamic rate limiting</li>
+                  <li>Behavior-based thresholds</li>
+                  <li>Adaptive response</li>
+                  <li>Prevents DDoS and abuse</li>
+              </ul>
+          </template>
 
-        <div class="feature-card" data-id="jquery-guard">
-          <h3>🔒 jQuery Guard</h3>
-          <p>Blocks malicious frontend requests and scores suspicious activity using AI.</p>
-        </div>
-        <template id="jquery-guard">
-          <p>
-            jQuery Guard protects your application by intercepting malicious requests before they reach the backend. It
-            prevents CVE-related vulnerabilities, eliminates information leakage, and assigns risk scores for suspicious
-            payloads.
-          </p>
-          <ul>
-            <li>Blocks malicious requests before they hit the server</li>
-            <li>Prevents CVE-related exploits (CVE-2022-31147, CVE-2021-21252, CVE-2021-43306)</li>
-            <li>Never echoes attacker input, eliminating information leakage</li>
-            <li>Assigns risk scores for suspicious payloads</li>
-            <li>Unified API response: <code>{score, block, reason, engine}</code></li>
-            <li>Provides server-side hardening guidance (CSRF, CSP, sanitization)</li>
-            <li>Fully logs and monitors blocked attempts</li>
-            <li>Simple integration with Flask / Python APIs</li>
-          </ul>
-          <p><strong>Test Coverage:</strong> Clean requests, Script Injection, XSS, CSS Injection, DOM Manipulation,
-            Code Execution, Obfuscation, Template Injection, Complex Multi-vector Attacks, Edge Cases</p>
-        </template>
+          <div class="feature-card" data-id="ja3_check">
+              <h3>🔐 JA3 Check</h3>
+              <p>Validates JA3 TLS fingerprint against known malicious patterns</p>
+          </div>
+          <template id="ja3_check">
+              <p>Validates JA3 TLS fingerprint against known malicious patterns.</p>
+              <ul>
+                  <li>JA3 blacklist matching</li>
+                  <li>Malicious client detection</li>
+                  <li>Attack tool identification</li>
+                  <li>Custom JA3 rules</li>
+              </ul>
+          </template>
 
-        <div class="feature-card" data-id="terminal-access">
-          <h3>🖥️ Terminal Access Detection</h3>
-          <p>Detects and blocks reverse shells, command injection, and multi-layer obfuscation attacks in real time.</p>
-        </div>
+          <div class="feature-card" data-id="vm_debug_detection_blocking">
+              <h3>🖥️ VM/Debug Detection Blocking</h3>
+              <p>Blocks requests from virtual machines/debugging environments</p>
+          </div>
+          <template id="vm_debug_detection_blocking">
+              <p>Blocks requests from virtual machines and debugging environments.</p>
+              <ul>
+                  <li>Detects VM environments</li>
+                  <li>Identifies debugger presence</li>
+                  <li>Blocks sandbox evasion</li>
+                  <li>Prevents analysis evasion</li>
+              </ul>
+          </template>
 
-        <template id="terminal-access">
-          <p>
-            Terminal Access Detection protects your application and infrastructure by identifying and preventing
-            unauthorized terminal access attempts. It blocks reverse shells, PowerShell payloads, Living-off-the-Land
-            (LOLBin) techniques, and obfuscated commands before they can execute.
-          </p>
-          <ul>
-            <li>Detects and blocks reverse shells over bash, Netcat, Socat, and PowerShell</li>
-            <li>Prevents multi-layer obfuscation including Base64, URL encoding, Hex, and Unicode escapes</li>
-            <li>Blocks Living-off-the-Land (LOLBin) attacks using legitimate binaries (WMIC, PowerShell, RegSvr32,
-              MSHTA)</li>
-            <li>Assigns dynamic risk scores based on threat sophistication and behavior</li>
-            <li>Provides detailed logging and forensic data for each blocked attempt</li>
-            <li>Integrates with AI-based behavioral analysis for zero-day detection</li>
-            <li>Offers server-side hardening guidance for secure terminal access policies</li>
-            <li>Easy integration with Flask / Python APIs for automated response</li>
-          </ul>
-          <p><strong>Test Coverage:</strong> Basic & advanced reverse shells, PowerShell payloads, multi-layer
-            obfuscation, LOLBin abuse, process injection, privilege escalation, persistence mechanisms, zero-day command
-            injection, and edge cases.</p>
-        </template>
+          <div class="feature-card" data-id="canvas_fingerprint_blocking">
+              <h3>🎨 Canvas Fingerprint Blocking</h3>
+              <p>Blocks based on malicious canvas fingerprinting</p>
+          </div>
+          <template id="canvas_fingerprint_blocking">
+              <p>Blocks requests based on malicious canvas fingerprinting patterns.</p>
+              <ul>
+                  <li>Detects canvas fingerprinting</li>
+                  <li>Blocks tracking attempts</li>
+                  <li>Identifies automation tools</li>
+                  <li>Prevents browser profiling</li>
+              </ul>
+          </template>
 
-        <div class="feature-card" data-id="subdomain-takeover">
-          <h3>🌐 Subdomain Takeover Protection</h3>
-          <p>Detects and prevents subdomain takeover vulnerabilities, protecting your brand, data, and customers from
-            hijacking and impersonation attacks.</p>
-        </div>
+          <div class="feature-card" data-id="path_traversal_blocking">
+              <h3>📁 Path Traversal Blocking</h3>
+              <p>Prevents directory/path traversal attacks</p>
+          </div>
+          <template id="path_traversal_blocking">
+              <p>Prevents directory/path traversal attacks through comprehensive filtering.</p>
+              <ul>
+                  <li>Blocks ../ patterns</li>
+                  <li>Prevents directory listing</li>
+                  <li>Protects sensitive files</li>
+                  <li>URL encoding detection</li>
+              </ul>
+          </template>
 
-        <template id="subdomain-takeover">
-          <p>
-            Subdomain Takeover Protection safeguards your organization from one of the most overlooked web
-            vulnerabilities —
-            unclaimed or misconfigured subdomains. It automatically scans DNS records, cloud resources, and connected
-            services
-            to identify dangling subdomains before attackers exploit them for phishing, malware hosting, or data theft.
-          </p>
-          <ul>
-            <li>Detects unclaimed DNS records pointing to inactive or deprovisioned cloud resources (S3, Azure, Vercel,
-              Netlify, etc.)</li>
-            <li>Prevents phishing, impersonation, and credential harvesting using compromised subdomains</li>
-            <li>Blocks unauthorized SSL/TLS certificate issuance and domain hijacking attempts</li>
-            <li>Identifies session hijacking, cookie theft, and data exfiltration via subdomain manipulation</li>
-            <li>Provides automated detection and remediation guidance for vulnerable subdomains</li>
-            <li>Integrates with AI-based DNS and behavioral analysis for zero-day takeover detection</li>
-            <li>Offers detailed forensic logs, audit trails, and risk scoring for compliance and reporting</li>
-            <li>Supports Flask / Python API integration for automated monitoring and response</li>
-          </ul>
-          <p>
-            <strong>Test Coverage:</strong> Dangling DNS records, unclaimed cloud resources, phishing page hosting,
-            SSL/TLS abuse, data exfiltration, brand impersonation, session hijacking, and zero-day subdomain takeovers.
-          </p>
-        </template>
+          <div class="feature-card" data-id="sql_injection_blocking">
+              <h3>💾 SQL Injection Blocking</h3>
+              <p>Detects and blocks SQL injection attempts</p>
+          </div>
+          <template id="sql_injection_blocking">
+              <p>Detects and blocks SQL injection attempts using advanced pattern matching.</p>
+              <ul>
+                  <li>Blocks UNION-based attacks</li>
+                  <li>Detects time-based injection</li>
+                  <li>Prevents error-based disclosure</li>
+                  <li>Blocks stacked queries</li>
+              </ul>
+          </template>
 
+          <div class="feature-card" data-id="xss_detection_blocking">
+              <h3>⚠️ XSS Detection Blocking</h3>
+              <p>Prevents Cross-Site Scripting (XSS) attacks</p>
+          </div>
+          <template id="xss_detection_blocking">
+              <p>Prevents Cross-Site Scripting (XSS) attacks through comprehensive filtering.</p>
+              <ul>
+                  <li>Blocks reflected XSS</li>
+                  <li>Prevents stored XSS</li>
+                  <li>Detects DOM-based XSS</li>
+                  <li>Filters malicious scripts</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="command_injection_blocking">
+              <h3>⌨️ Command Injection Blocking</h3>
+              <p>Blocks OS command injection attempts</p>
+          </div>
+          <template id="command_injection_blocking">
+              <p>Blocks OS command injection attempts through rigorous input validation.</p>
+              <ul>
+                  <li>Detects shell metacharacters</li>
+                  <li>Blocks command chaining</li>
+                  <li>Prevents RCE attempts</li>
+                  <li>Filters dangerous commands</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="xxe_detection_blocking">
+              <h3>📄 XXE Detection Blocking</h3>
+              <p>Prevents XML External Entity attacks</p>
+          </div>
+          <template id="xxe_detection_blocking">
+              <p>Prevents XML External Entity attacks through XML parsing protection.</p>
+              <ul>
+                  <li>Blocks external entity expansion</li>
+                  <li>Prevents XXE-based SSRF</li>
+                  <li>Disables dangerous DTDs</li>
+                  <li>Filters malicious XML</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ldap_injection_blocking">
+              <h3>📋 LDAP Injection Blocking</h3>
+              <p>Blocks LDAP injection attempts</p>
+          </div>
+          <template id="ldap_injection_blocking">
+              <p>Blocks LDAP injection attempts through comprehensive input filtering.</p>
+              <ul>
+                  <li>Detects LDAP metacharacters</li>
+                  <li>Blocks filter manipulation</li>
+                  <li>Prevents LDAP query tampering</li>
+                  <li>Input sanitization</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="nosql_injection_blocking">
+              <h3>🍃 NoSQL Injection Blocking</h3>
+              <p>Prevents NoSQL database injection attacks</p>
+          </div>
+          <template id="nosql_injection_blocking">
+              <p>Prevents NoSQL database injection attacks through specialized filtering.</p>
+              <ul>
+                  <li>Detects MongoDB operators</li>
+                  <li>Blocks JavaScript injection</li>
+                  <li>Prefers parameter pollution</li>
+                  <li>Validates JSON inputs</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ssti_detection_blocking">
+              <h3>📝 SSTI Detection Blocking</h3>
+              <p>Blocks Server-Side Template Injection attacks</p>
+          </div>
+          <template id="ssti_detection_blocking">
+              <p>Blocks Server-Side Template Injection attacks across multiple template engines.</p>
+              <ul>
+                  <li>Detects template syntax</li>
+                  <li>Blocks RCE via templates</li>
+                  <li>Prevents information disclosure</li>
+                  <li>Engine-specific detection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="csrf_check_blocking">
+              <h3>🔄 CSRF Check Blocking</h3>
+              <p>Prevents Cross-Site Request Forgery attacks</p>
+          </div>
+          <template id="csrf_check_blocking">
+              <p>Prevents Cross-Site Request Forgery attacks through token validation.</p>
+              <ul>
+                  <li>CSRF token validation</li>
+                  <li>Origin header checking</li>
+                  <li>Same-site verification</li>
+                  <li>Anti-automation measures</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="clickjacking_blocking">
+              <h3>🖱️ Clickjacking Blocking</h3>
+              <p>Prevents clickjacking/frame hijacking attempts</p>
+          </div>
+          <template id="clickjacking_blocking">
+              <p>Prevents clickjacking and frame hijacking attempts.</p>
+              <ul>
+                  <li>X-Frame-Options enforcement</li>
+                  <li>CSP frame-ancestors directive</li>
+                  <li>Frame-busting detection</li>
+                  <li>UI redress attack prevention</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="vul_website_scan_blocking">
+              <h3>🔍 Vulnerability Scanner Blocking</h3>
+              <p>Blocks automated vulnerability scanners</p>
+          </div>
+          <template id="vul_website_scan_blocking">
+              <p>Blocks automated vulnerability scanners through advanced detection.</p>
+              <ul>
+                  <li>Detects scanner fingerprints</li>
+                  <li>Blocks common scanning tools</li>
+                  <li>Identifies reconnaissance</li>
+                  <li>Prevents vulnerability probing</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="terminal_access_blocking">
+              <h3>💻 Terminal Access Blocking</h3>
+              <p>Prevents unauthorized terminal/console access</p>
+          </div>
+          <template id="terminal_access_blocking">
+              <p>Prevents unauthorized terminal and console access attempts.</p>
+              <ul>
+                  <li>Blocks reverse shells</li>
+                  <li>Detects command injection</li>
+                  <li>Prevents RCE attempts</li>
+                  <li>Filters shell commands</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="jquery_guard_blocking">
+              <h3>🛡️ jQuery Guard Blocking</h3>
+              <p>Protects against jQuery-based attacks</p>
+          </div>
+          <template id="jquery_guard_blocking">
+              <p>Protects against jQuery-based attacks and vulnerabilities.</p>
+              <ul>
+                  <li>Blocks jQuery XSS vectors</li>
+                  <li>Prevents jQuery DOM manipulation</li>
+                  <li>Detects jQuery exploitation</li>
+                  <li>CVE-specific protections</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="scan_tech_blocking">
+              <h3>📡 Scan Technique Blocking</h3>
+              <p>Blocks advanced scanning techniques</p>
+          </div>
+          <template id="scan_tech_blocking">
+              <p>Blocks advanced scanning techniques used by professional attackers.</p>
+              <ul>
+                  <li>Detects slow scans</li>
+                  <li>Blocks distributed scanning</li>
+                  <li>Identifies evasion techniques</li>
+                  <li>Prevents fingerprinting</li>
+              </ul>
+          </template>
+
+          <!-- CORE CATEGORY -->
+          <div class="feature-card" data-id="a1_sql_injection_protection">
+              <h3>🔒 SQL Injection Protection (A1)</h3>
+              <p>Protects against SQL injection attacks (OWASP Top 10 A1)</p>
+          </div>
+          <template id="a1_sql_injection_protection">
+              <p>Comprehensive protection against SQL injection attacks, addressing OWASP Top 10 A1.</p>
+              <ul>
+                  <li>Advanced SQLi detection</li>
+                  <li>Prevents data exfiltration</li>
+                  <li>Blocks injection attempts</li>
+                  <li>Database-agnostic protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a3_sensitive_data_encryption">
+              <h3>🔐 Sensitive Data Encryption (A3)</h3>
+              <p>Ensures sensitive data is properly encrypted (OWASP Top 10 A3)</p>
+          </div>
+          <template id="a3_sensitive_data_encryption">
+              <p>Ensures sensitive data is properly encrypted and protected.</p>
+              <ul>
+                  <li>Automatic encryption enforcement</li>
+                  <li>Prevents data leakage</li>
+                  <li>PCI-DSS compliance support</li>
+                  <li>GDPR data protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a4_xml_external_entities_blocked">
+              <h3>📄 XML External Entities Blocked (A4)</h3>
+              <p>Prevents XXE attacks (OWASP Top 10 A4)</p>
+          </div>
+          <template id="a4_xml_external_entities_blocked">
+              <p>Prevents XML External Entity attacks through comprehensive XML filtering.</p>
+              <ul>
+                  <li>Blocks external entity expansion</li>
+                  <li>Prevents XXE-based SSRF</li>
+                  <li>Disables dangerous DTDs</li>
+                  <li>XML parsing protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a5_path_traversal_protection">
+              <h3>📁 Path Traversal Protection (A5)</h3>
+              <p>Blocks directory/path traversal attempts (OWASP Top 10 A5)</p>
+          </div>
+          <template id="a5_path_traversal_protection">
+              <p>Blocks directory/path traversal attempts, addressing OWASP Top 10 A5.</p>
+              <ul>
+                  <li>Blocks directory traversal</li>
+                  <li>Prevents file access</li>
+                  <li>Protects sensitive paths</li>
+                  <li>URL normalization</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a6_misconfig_scan">
+              <h3>⚙️ Misconfiguration Scan (A6)</h3>
+              <p>Detects and blocks security misconfigurations (OWASP Top 10 A6)</p>
+          </div>
+          <template id="a6_misconfig_scan">
+              <p>Detects and blocks security misconfigurations, addressing OWASP Top 10 A6.</p>
+              <ul>
+                  <li>Scans for misconfigurations</li>
+                  <li>Blocks exposed admin panels</li>
+                  <li>Prevents default credential use</li>
+                  <li>Security header validation</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a7_xss_protection">
+              <h3>⚠️ XSS Protection (A7)</h3>
+              <p>Prevents Cross-Site Scripting attacks (OWASP Top 10 A7)</p>
+          </div>
+          <template id="a7_xss_protection">
+              <p>Prevents Cross-Site Scripting attacks, addressing OWASP Top 10 A7.</p>
+              <ul>
+                  <li>Reflected XSS prevention</li>
+                  <li>Stored XSS blocking</li>
+                  <li>DOM-based XSS protection</li>
+                  <li>Content Security Policy</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a8_insecure_deserialization_block">
+              <h3>📦 Insecure Deserialization Block (A8)</h3>
+              <p>Blocks insecure deserialization attempts (OWASP Top 10 A8)</p>
+          </div>
+          <template id="a8_insecure_deserialization_block">
+              <p>Blocks insecure deserialization attempts, addressing OWASP Top 10 A8.</p>
+              <ul>
+                  <li>Detects malicious serialized objects</li>
+                  <li>Blocks RCE via deserialization</li>
+                  <li>Prevents object injection</li>
+                  <li>Java/PHP/Python protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="a10_logging_and_monitoring">
+              <h3>📊 Logging and Monitoring (A10)</h3>
+              <p>Ensures proper logging and monitoring (OWASP Top 10 A10)</p>
+          </div>
+          <template id="a10_logging_and_monitoring">
+              <p>Ensures proper logging and monitoring, addressing OWASP Top 10 A10.</p>
+              <ul>
+                  <li>Comprehensive request logging</li>
+                  <li>Real-time threat monitoring</li>
+                  <li>ClickHouse analytics</li>
+                  <li>Alert generation</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="slowloris_protection">
+              <h3>🐌 Slowloris Protection</h3>
+              <p>Protects against Slowloris DDoS attacks</p>
+          </div>
+          <template id="slowloris_protection">
+              <p>Protects against Slowloris DDoS attacks through connection management.</p>
+              <ul>
+                  <li>Detects slow connections</li>
+                  <li>Manages partial requests</li>
+                  <li>Timeout enforcement</li>
+                  <li>Connection limiting</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="header_length_limit">
+              <h3>📏 Header Length Limit</h3>
+              <p>Limits maximum HTTP header length to 3019 bytes</p>
+          </div>
+          <template id="header_length_limit">
+              <p>Limits maximum HTTP header length to 3019 bytes to prevent buffer overflow attacks.</p>
+              <ul>
+                  <li>Enforces header size limits</li>
+                  <li>Prevents header overflow</li>
+                  <li>Blocks oversized requests</li>
+                  <li>Memory protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="flooding_attacks_protection">
+              <h3>🌊 Flooding Attacks Protection</h3>
+              <p>Protects against request flooding attacks</p>
+          </div>
+          <template id="flooding_attacks_protection">
+              <p>Protects against request flooding attacks through intelligent rate control.</p>
+              <ul>
+                  <li>Detects request bursts</li>
+                  <li>Blocks flood attacks</li>
+                  <li>Adaptive rate limiting</li>
+                  <li>DDoS mitigation</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="header_scan_protection">
+              <h3>🔍 Header Scan Protection</h3>
+              <p>Scans and validates HTTP headers for attacks</p>
+          </div>
+          <template id="header_scan_protection">
+              <p>Scans and validates HTTP headers for potential attacks and anomalies.</p>
+              <ul>
+                  <li>Header injection detection</li>
+                  <li>Malformed header blocking</li>
+                  <li>Security header validation</li>
+                  <li>Custom header rules</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="cookie_tampering_protection">
+              <h3>🍪 Cookie Tampering Protection</h3>
+              <p>Prevents cookie modification/tampering attempts</p>
+          </div>
+          <template id="cookie_tampering_protection">
+              <p>Prevents cookie modification and tampering attempts through validation.</p>
+              <ul>
+                  <li>Cookie integrity checking</li>
+                  <li>Encryption enforcement</li>
+                  <li>Session fixation prevention</li>
+                  <li>Tamper detection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="session_cookie_validation">
+              <h3>🔑 Session Cookie Validation</h3>
+              <p>Validates session cookies for security</p>
+          </div>
+          <template id="session_cookie_validation">
+              <p>Validates session cookies to ensure session integrity and security.</p>
+              <ul>
+                  <li>Session ID validation</li>
+                  <li>Expiration checking</li>
+                  <li>Signature verification</li>
+                  <li>Replay attack prevention</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="client_behavior_analysis">
+              <h3>📊 Client Behavior Analysis</h3>
+              <p>Analyzes client behavior patterns for anomalies</p>
+          </div>
+          <template id="client_behavior_analysis">
+              <p>Analyzes client behavior patterns to detect anomalies and threats.</p>
+              <ul>
+                  <li>Behavioral baselining</li>
+                  <li>Anomaly detection</li>
+                  <li>Session analysis</li>
+                  <li>Pattern recognition</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="block_malformed_headers">
+              <h3>🚫 Block Malformed Headers</h3>
+              <p>Blocks requests with malformed/invalid HTTP headers</p>
+          </div>
+          <template id="block_malformed_headers">
+              <p>Blocks requests with malformed or invalid HTTP headers.</p>
+              <ul>
+                  <li>Header syntax validation</li>
+                  <li>Protocol compliance</li>
+                  <li>Blocks malformed requests</li>
+                  <li>Prevents evasion</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="csrf_protection">
+              <h3>🔄 CSRF Protection</h3>
+              <p>Prevents Cross-Site Request Forgery attacks</p>
+          </div>
+          <template id="csrf_protection">
+              <p>Prevents Cross-Site Request Forgery attacks through multiple layers.</p>
+              <ul>
+                  <li>Token validation</li>
+                  <li>Origin checking</li>
+                  <li>SameSite enforcement</li>
+                  <li>Anti-automation</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ssrf_server_side_request_forgery">
+              <h3>🌐 SSRF Protection</h3>
+              <p>Blocks Server-Side Request Forgery attempts</p>
+          </div>
+          <template id="ssrf_server_side_request_forgery">
+              <p>Blocks Server-Side Request Forgery attempts through comprehensive filtering.</p>
+              <ul>
+                  <li>Blocks internal IP requests</li>
+                  <li>Prevents metadata access</li>
+                  <li>URL validation</li>
+                  <li>DNS rebinding protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="command_injection_protection">
+              <h3>⌨️ Command Injection Protection</h3>
+              <p>Prevents OS command injection attacks</p>
+          </div>
+          <template id="command_injection_protection">
+              <p>Prevents OS command injection attacks through rigorous input validation.</p>
+              <ul>
+                  <li>Shell metacharacter filtering</li>
+                  <li>Command chaining prevention</li>
+                  <li>RCE attempt blocking</li>
+                  <li>Input sanitization</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="brute_force_protection">
+              <h3>🔨 Brute Force Protection</h3>
+              <p>Protects against brute force login attempts</p>
+          </div>
+          <template id="brute_force_protection">
+              <p>Protects against brute force login attempts through intelligent rate limiting.</p>
+              <ul>
+                  <li>Login attempt limiting</li>
+                  <li>IP-based blocking</li>
+                  <li>CAPTCHA integration</li>
+                  <li>Account lockout</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="dns_rebinding_protection">
+              <h3>🔄 DNS Rebinding Protection</h3>
+              <p>Prevents DNS rebinding attacks</p>
+          </div>
+          <template id="dns_rebinding_protection">
+              <p>Prevents DNS rebinding attacks through intelligent DNS validation.</p>
+              <ul>
+                  <li>DNS response validation</li>
+                  <li>Internal IP blocking</li>
+                  <li>Pin-based protection</li>
+                  <li>Same-origin enforcement</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="time_check_client_protection">
+              <h3>⏱️ Time Check Client Protection</h3>
+              <p>Validates client time-based security checks</p>
+          </div>
+          <template id="time_check_client_protection">
+              <p>Validates client time-based security checks to prevent replay and automation.</p>
+              <ul>
+                  <li>Timestamp validation</li>
+                  <li>Request freshness checks</li>
+                  <li>Replay attack prevention</li>
+                  <li>Time-based tokens</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="tor_exit_node_blocking">
+              <h3>🧅 Tor Exit Node Blocking</h3>
+              <p>Blocks requests from Tor exit nodes</p>
+          </div>
+          <template id="tor_exit_node_blocking">
+              <p>Blocks requests from Tor exit nodes to prevent anonymous attacks.</p>
+              <ul>
+                  <li>Tor exit node detection</li>
+                  <li>Real-time node list updates</li>
+                  <li>Anonymous traffic blocking</li>
+                  <li>Custom allowlisting</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="information_detected_protection">
+              <h3>🔒 Information Detected Protection</h3>
+              <p>Prevents information disclosure/sensitive data exposure</p>
+          </div>
+          <template id="information_detected_protection">
+              <p>Prevents information disclosure and sensitive data exposure.</p>
+              <ul>
+                  <li>PII detection and blocking</li>
+                  <li>Credential leak prevention</li>
+                  <li>API key masking</li>
+                  <li>Error message sanitization</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="extension_protection">
+              <h3>📁 Extension Protection</h3>
+              <p>Protects against malicious file extension attacks</p>
+          </div>
+          <template id="extension_protection">
+              <p>Protects against malicious file extension attacks and uploads.</p>
+              <ul>
+                  <li>Blocks dangerous extensions</li>
+                  <li>File type validation</li>
+                  <li>MIME type checking</li>
+                  <li>Upload filtering</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ip_reputation_check">
+              <h3>🌍 IP Reputation Check</h3>
+              <p>Checks IP addresses against reputation databases</p>
+          </div>
+          <template id="ip_reputation_check">
+              <p>Checks IP addresses against reputation databases for threat intelligence.</p>
+              <ul>
+                  <li>Real-time reputation checks</li>
+                  <li>Multiple feed integration</li>
+                  <li>Malicious IP blocking</li>
+                  <li>Dynamic blacklisting</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="block_headless_browser">
+              <h3>🕶️ Block Headless Browser</h3>
+              <p>Detects and blocks headless browser automation</p>
+          </div>
+          <template id="block_headless_browser">
+              <p>Detects and blocks headless browser automation tools.</p>
+              <ul>
+                  <li>Headless Chrome detection</li>
+                  <li>Puppeteer/Playwright blocking</li>
+                  <li>PhantomJS detection</li>
+                  <li>Automation fingerprinting</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="payload_signature_check">
+              <h3>📝 Payload Signature Check</h3>
+              <p>Validates payloads against rules/payload_signatures.txt</p>
+          </div>
+          <template id="payload_signature_check">
+              <p>Validates payloads against comprehensive signature database.</p>
+              <ul>
+                  <li>Signature-based detection</li>
+                  <li>Custom rule support</li>
+                  <li>Pattern matching</li>
+                  <li>Known attack blocking</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="video_download_protection">
+              <h3>🎥 Video Download Protection</h3>
+              <p>Protects video content from unauthorized download</p>
+          </div>
+          <template id="video_download_protection">
+              <p>Protects video content (mp4, mp3, m3u8, png) from unauthorized download.</p>
+              <ul>
+                  <li>Stream protection</li>
+                  <li>Hotlink prevention</li>
+                  <li>Download blocking</li>
+                  <li>Content access control</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="waf_js_inject">
+              <h3>📜 WAF JS Inject</h3>
+              <p>Injects JavaScript protection into web pages</p>
+          </div>
+          <template id="waf_js_inject">
+              <p>Injects JavaScript protection into web pages for client-side security.</p>
+              <ul>
+                  <li>Bot detection scripts</li>
+                  <li>Behavioral analysis</li>
+                  <li>Client fingerprinting</li>
+                  <li>Anti-automation measures</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ip6_protection">
+              <h3>🌐 IPv6 Protection</h3>
+              <p>Enables security protections for IPv6 traffic</p>
+          </div>
+          <template id="ip6_protection">
+              <p>Enables comprehensive security protections for IPv6 traffic.</p>
+              <ul>
+                  <li>IPv6 attack detection</li>
+                  <li>IPv6 reputation checks</li>
+                  <li>IPv6 rate limiting</li>
+                  <li>IPv6 geo-blocking</li>
+              </ul>
+          </template>
+
+          <!-- OTHERS CATEGORY -->
+          <div class="feature-card" data-id="slack_alerts">
+              <h3>🔔 Real-Time Alerts - Slack</h3>
+              <p>Sends real-time security alerts and notifications to Slack channel</p>
+          </div>
+          <template id="slack_alerts">
+              <p>Sends real-time security alerts and notifications to Slack channels.</p>
+              <ul>
+                  <li>Instant threat notifications</li>
+                  <li>Custom alert rules</li>
+                  <li>Incident reporting</li>
+                  <li>Team collaboration</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="lua_scripting">
+              <h3>📝 Lua Scripting Support</h3>
+              <p>Custom security logic implementation using Lua scripting</p>
+          </div>
+          <template id="lua_scripting">
+              <p>Custom security logic implementation using Lua scripting for flexibility.</p>
+              <ul>
+                  <li>Custom rule creation</li>
+                  <li>Dynamic response logic</li>
+                  <li>Integration capabilities</li>
+                  <li>Extensible architecture</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="vpn_blocking">
+              <h3>🔒 VPN Blocking</h3>
+              <p>Detects and blocks requests from VPN services and proxies</p>
+          </div>
+          <template id="vpn_blocking">
+              <p>Detects and blocks requests from VPN services and proxy networks.</p>
+              <ul>
+                  <li>VPN IP detection</li>
+                  <li>Proxy server blocking</li>
+                  <li>Anonymizer detection</li>
+                  <li>Datacenter proxy filtering</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="bad_bot_blocking">
+              <h3>🤖 Bad Bot Blocking</h3>
+              <p>Identifies and blocks malicious bot traffic</p>
+          </div>
+          <template id="bad_bot_blocking">
+              <p>Identifies and blocks malicious bot traffic while allowing legitimate bots.</p>
+              <ul>
+                  <li>Malicious bot detection</li>
+                  <li>Scraper blocking</li>
+                  <li>Credential stuffing prevention</li>
+                  <li>Automated attack mitigation</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="user_agent_blocking">
+              <h3>📱 Agent UA Blocking</h3>
+              <p>Blocks requests based on suspicious User-Agent strings</p>
+          </div>
+          <template id="user_agent_blocking">
+              <p>Blocks requests based on suspicious or malicious User-Agent strings.</p>
+              <ul>
+                  <li>Suspicious UA detection</li>
+                  <li>Empty UA blocking</li>
+                  <li>Known malicious UA filtering</li>
+                  <li>Custom UA rules</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="seo_bot_analysis">
+              <h3>🔍 SEO Bot Analysis</h3>
+              <p>Analyzes and validates legitimate search engine bots</p>
+          </div>
+          <template id="seo_bot_analysis">
+              <p>Analyzes and validates legitimate search engine bots for SEO optimization.</p>
+              <ul>
+                  <li>Googlebot verification</li>
+                  <li>Bingbot validation</li>
+                  <li>Reverse DNS checking</li>
+                  <li>Bot allowlisting</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="signature_blocking">
+              <h3>📝 Signatures Blocking</h3>
+              <p>Blocks requests matching known attack signatures</p>
+          </div>
+          <template id="signature_blocking">
+              <p>Blocks requests matching known attack signatures from comprehensive databases.</p>
+              <ul>
+                  <li>CVE signature matching</li>
+                  <li>Attack pattern detection</li>
+                  <li>Custom signature support</li>
+                  <li>Regular updates</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="tor_blocking">
+              <h3>🧅 Tor Exit Node Monitor and Blocking</h3>
+              <p>Monitors and blocks requests from Tor exit nodes</p>
+          </div>
+          <template id="tor_blocking">
+              <p>Monitors and blocks requests from Tor exit nodes with real-time updates.</p>
+              <ul>
+                  <li>Tor network monitoring</li>
+                  <li>Exit node detection</li>
+                  <li>Anonymous traffic blocking</li>
+                  <li>Custom exemptions</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ip_blocking">
+              <h3>🚫 IP Blocking</h3>
+              <p>Blocks requests from specific IP addresses or IP ranges</p>
+          </div>
+          <template id="ip_blocking">
+              <p>Blocks requests from specific IP addresses or IP ranges with flexible rules.</p>
+              <ul>
+                  <li>Single IP blocking</li>
+                  <li>CIDR range blocking</li>
+                  <li>Dynamic blacklisting</li>
+                  <li>Whitelist support</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="path_blocking">
+              <h3>📁 Path Blocking</h3>
+              <p>Blocks access to specific URL paths/directories</p>
+          </div>
+          <template id="path_blocking">
+              <p>Blocks access to specific URL paths and directories for granular control.</p>
+              <ul>
+                  <li>Sensitive path protection</li>
+                  <li>Admin area blocking</li>
+                  <li>Pattern-based blocking</li>
+                  <li>Exception handling</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="headers_blocking">
+              <h3>📨 Headers Blocking</h3>
+              <p>Blocks requests containing specific HTTP headers</p>
+          </div>
+          <template id="headers_blocking">
+              <p>Blocks requests containing specific HTTP headers or header patterns.</p>
+              <ul>
+                  <li>Suspicious header filtering</li>
+                  <li>Header value validation</li>
+                  <li>Custom header rules</li>
+                  <li>Header injection prevention</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="hostname_blocking">
+              <h3>🌐 Hostname Blocking</h3>
+              <p>Blocks requests based on hostname/domain</p>
+          </div>
+          <template id="hostname_blocking">
+              <p>Blocks requests based on hostname or domain for virtual host protection.</p>
+              <ul>
+                  <li>Domain-based filtering</li>
+                  <li>Subdomain blocking</li>
+                  <li>Referrer validation</li>
+                  <li>Host header protection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="country_blocking">
+              <h3>🗺️ Country Blocking</h3>
+              <p>Blocks traffic from specific countries (geo-blocking)</p>
+          </div>
+          <template id="country_blocking">
+              <p>Blocks traffic from specific countries with granular geo-blocking controls.</p>
+              <ul>
+                  <li>Country-level filtering</li>
+                  <li>Region-based blocking</li>
+                  <li>GeoIP database integration</li>
+                  <li>Allow/block lists</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="body_content_blocking">
+              <h3>📄 Body Content Blocking</h3>
+              <p>Blocks requests containing specific patterns in request body</p>
+          </div>
+          <template id="body_content_blocking">
+              <p>Blocks requests containing specific patterns in request body for deep inspection.</p>
+              <ul>
+                  <li>POST data filtering</li>
+                  <li>JSON payload inspection</li>
+                  <li>XML content validation</li>
+                  <li>Malicious pattern detection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="query_blocking">
+              <h3>🔍 Query Blocking</h3>
+              <p>Blocks requests based on query string parameters</p>
+          </div>
+          <template id="query_blocking">
+              <p>Blocks requests based on query string parameters and patterns.</p>
+              <ul>
+                  <li>SQL injection detection</li>
+                  <li>XSS in query params</li>
+                  <li>Parameter pollution prevention</li>
+                  <li>Custom query filtering</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="clofix_id_blocking">
+              <h3>🆔 CloFix ID Blocking</h3>
+              <p>Blocks specific CloFix identification patterns</p>
+          </div>
+          <template id="clofix_id_blocking">
+              <p>Blocks specific CloFix identification patterns for advanced threat detection.</p>
+              <ul>
+                  <li>ID pattern matching</li>
+                  <li>Fingerprint validation</li>
+                  <li>Custom ID blocking</li>
+                  <li>Anomaly detection</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="asn_blocking">
+              <h3>🔢 ASN Blocking</h3>
+              <p>Blocks traffic from specific Autonomous System Numbers</p>
+          </div>
+          <template id="asn_blocking">
+              <p>Blocks traffic from specific Autonomous System Numbers for network-level control.</p>
+              <ul>
+                  <li>ASN-based filtering</li>
+                  <li>ISP/network blocking</li>
+                  <li>Cloud provider filtering</li>
+                  <li>Bogon ASN prevention</li>
+              </ul>
+          </template>
       </div>
     </section>
   </main>
