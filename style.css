@@ -5026,3 +5026,24 @@ body.nav-open{ overflow:hidden; }
   width: 100%;
   height: 100%;
 }
+
+.category-heading {
+    width: 100%;
+    font-size: 1.8rem;
+    color: #4a6fa5;
+    margin: 2rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e1e8f0;
+    grid-column: 1 / -1;
+}
+
+.category-heading:first-of-type {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .category-heading {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+}
