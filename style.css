@@ -173,7 +173,7 @@ p {
 }
 
 /* === BUTTONS === */
-.c-button {
+/* .c-button {
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 600;
@@ -182,6 +182,12 @@ p {
   transition: all 0.3s ease;
   font-size: 1rem;
   margin: 0rem;
+} */
+
+.ticket-form .c-button{
+  display:block;
+  width:100%;
+  border:2px solid #f59e0b;
 }
 
 .c-button--primary {
@@ -1585,7 +1591,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.learn-button {
+/* .learn-button {
   background-color: transparent;
     color: #f59e0b;
     border-radius: 8px;
@@ -1599,6 +1605,13 @@ body {
     border-radius: 8px;
     text-decoration: none;
     width: 80%;
+} */
+
+.learn-button,
+.request-button{
+  width:auto;
+  display:inline-flex;
+  text-decoration:none;
 }
 
 .price-heading {
@@ -4883,4 +4896,133 @@ body.nav-open{ overflow:hidden; }
 @media (prefers-reduced-motion: reduce){
   .tool-card, .btn{ transition: none !important; }
   .tool-card:hover::after{ animation: none !important; }
+}
+
+/* =========================
+   HERO WAF CTA (pill redesign)
+   ========================= */
+.c-hero__button-group{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.c-hero__button-group a{
+  display:inline-flex;
+  width:auto;
+}
+
+.c-hero__button-group .c-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  min-width: 190px;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  line-height: 1;
+  box-shadow: 0 14px 34px rgba(0,0,0,.35);
+  transform: translateZ(0);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.c-hero__button-group .c-button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0,0,0,.45);
+}
+
+.c-hero__button-group .c-button--primary{
+  background: linear-gradient(135deg, #f59e0b, #ffbf47);
+  color:#0b1020;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.c-hero__button-group .c-button--secondary{
+  background: rgba(15,23,42,.55);
+  color:#f8fafc;
+  border: 1px solid rgba(56,189,248,.35);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 520px){
+  .c-hero__button-group .c-button{
+    min-width: 220px;
+  }
+}
+
+/* =========================
+   VIDEO MODAL (WAF demo)
+   ========================= */
+.video-modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(2,6,23,.75);
+  backdrop-filter: blur(6px);
+  z-index: 99999;
+}
+
+.video-modal.is-open{ display:flex; }
+
+.video-modal__dialog{
+  width: min(980px, 96vw);
+  background: rgba(15,23,42,.85);
+  border: 1px solid rgba(56,189,248,.25);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  overflow: hidden;
+  position: relative;
+}
+
+.video-modal__close{
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(2,6,23,.6);
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+.video-modal__frame{
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #000;
+}
+
+.video-modal__frame iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-modal__actions{
+  padding: 12px 14px 14px;
+  display:flex;
+  justify-content: center;
+}
+
+.video-modal__yt{
+  display:inline-flex;
+  gap: 8px;
+  align-items:center;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 800;
+}
+.video-modal__yt:hover{ color:#f59e0b; }
+
+.video-modal__frame #ytPlayer{
+  width: 100%;
+  height: 100%;
 }
