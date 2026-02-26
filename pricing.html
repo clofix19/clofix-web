@@ -7,11 +7,8 @@
   <title>CloFix WAF Pricing</title>
   <!-- Primary Meta Tags -->
   <meta name="title" content="CloFix WAF Pricing">
-  <!-- <meta name="description"
-    content="Choose the right CloFix WAF pricing plan for your needs. From Free Tier to Enterprise, get advanced security, fast support, and AI-driven protection to secure your business."> -->
   <meta name="description"
     content="Choose CloFix WAF pricing: Free to Enterprise with advanced security, AI-driven protection, support, and flexible options to secure and scale your business.">
-
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -30,15 +27,11 @@
     content="Flexible CloFix WAF pricing for startups to enterprises. Get unmatched web application security with AI-driven protection.">
   <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
 
-  <!-- LinkedIn -->
+  <!-- LinkedIn & WhatsApp -->
   <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
   <meta property="og:image:alt" content="CloFix WAF Pricing">
 
-  <!-- WhatsApp -->
-  <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
-  <meta property="og:image:alt" content="CloFix WAF Pricing for WhatsApp Sharing">
-
-  <!-- <link rel="icon" type="image/png" href="img/clofix.png" /> -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -46,12 +39,558 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
     rel="stylesheet" />
+  
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- Libraries -->
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  
+  <style>
+    /* Additional Pricing Page Specific Styles */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #7c3aed;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --ai-color: #8b5cf6;
+      --core-color: #3b82f6;
+      --rules-color: #10b981;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .pricing-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-header p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Summary Cards Enhancement */
+    .summary-cards {
+      margin: 4rem 0;
+    }
+
+    .cards-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid #eef2f6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* Form Elements Enhancement */
+    .calculator-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      margin: 3rem 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .price-heading {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+      color: var(--dark);
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .basic-input {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .basic-input input,
+    .basic-input select {
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .basic-input input:focus,
+    .basic-input select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .bandwidth-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1rem;
+    }
+
+    .support-type {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .support-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .support-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .support-link:hover {
+      text-decoration: underline;
+    }
+
+    .support-type select {
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      background: white;
+    }
+
+    /* Type Chips */
+    .type-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .type-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chip-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    .chip-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* Category Headers */
+    .category-header {
+      grid-column: 1 / -1;
+      margin: 2rem 0 1rem 0;
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border-left: 6px solid;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .category-header.ai-category {
+      border-left-color: var(--ai-color);
+      color: #6d28d9;
+    }
+
+    .category-header.core-category {
+      border-left-color: var(--core-color);
+      color: #1e40af;
+    }
+
+    .category-header.rules-category {
+      border-left-color: var(--rules-color);
+      color: #065f46;
+    }
+
+    .category-header .category-icon {
+      font-size: 1.8rem;
+    }
+
+    .category-header .category-count {
+      margin-left: auto;
+      background: rgba(0,0,0,0.05);
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Features Grid */
+    .optional-features {
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    .optional-feature-wrap {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid #eef2f6;
+      margin: 1rem 0 2rem;
+    }
+
+    .optional-features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1rem;
+      max-height: 600px;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .optional-features-list label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      color: #02060a;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #eef2f6;
+      font-size: 0.95rem;
+    }
+
+    .optional-features-list label:hover {
+      background: white;
+      transform: translateX(5px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .optional-features-list input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+
+    .optional-features-list input[type="checkbox"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .feature-price {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Free Features Section */
+    .free-features-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+      border-radius: 16px;
+      border: 1px solid #86efac;
+    }
+
+    .free-features-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      color: #166534;
+      margin-bottom: 1rem;
+    }
+
+    .free-features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .free-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(134, 239, 172, 0.1);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .free-check {
+      color: #16a34a;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* Error Message */
+    #errorMessage {
+      padding: 1rem;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      color: #dc2626;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    /* Calculate Button */
+    .calculate {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .calculate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    /* Result Table */
+    #result {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .pricing-table thead tr {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .pricing-table th {
+      padding: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .pricing-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .pricing-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .pricing-table tfoot tr {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+
+    .pricing-table tfoot td,
+    .pricing-table tfoot th {
+      padding: 1rem;
+    }
+
+    /* Export Buttons */
+    .export-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+
+    .c-button--secondary {
+      background: white;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .c-button--secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Feature Info Tooltip */
+    .feature-info {
+      margin-left: 0.5rem;
+      color: var(--gray);
+      cursor: help;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .calculator-section {
+        padding: 1.5rem;
+      }
+
+      .input-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bandwidth-row {
+        grid-template-columns: 1fr;
+      }
+
+      .optional-features-list {
+        grid-template-columns: 1fr;
+      }
+
+      .export-buttons {
+        flex-direction: column;
+      }
+
+      .c-button--secondary {
+        width: 100%;
+      }
+
+      .category-header {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+      }
+
+      .category-header .category-icon {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -62,10 +601,8 @@
           <a href="index.html">
             <img src="img/logo.png" alt="Logo" class="c-logo__img" />
           </a>
-
           <span class="c-logo__text c-logo__text--white"></span>
         </div>
-        </a>
         <nav class="c-nav">
           <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
@@ -119,7 +656,15 @@
       </div>
     </div>
   </header>
+
   <main class="container">
+    <!-- Pricing Header -->
+    <div class="pricing-header">
+      <h1>Simple, Transparent Pricing</h1>
+      <p>Choose the perfect plan for your business. All plans include core security features and 24/7 support.</p>
+    </div>
+
+    <!-- Summary Cards -->
     <section class="summary-cards">
       <div class="eclipse-wrapper">
         <div class="eclipse-inner">
@@ -161,114 +706,138 @@
             <h3>Enterprise-Grade</h3>
             <p>
               You get <strong>serious features</strong> used by big organizations, scaled for startups; fair,
-              transparent,
-              sustainable.
+              transparent, sustainable.
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+      <h2 class="price-heading">CloFix WAF - Pricing Calculator</h2>
 
+      <!-- Input Grid -->
+      <div class="input-grid">
+        <label class="basic-input">
+          Number of Domains:
+          <input type="number" id="domains" min="1" value="1" required />
+        </label>
 
-    <h1 class="heading heading--3 price-heading">CloFix WAF - Pricing Calculator</h1>
+        <label class="basic-input">
+          Number of Subdomains:
+          <input type="number" id="subdomains" min="0" value="0" />
+        </label>
 
-    <label class="basic-input">Number of Domains:
-      <input type="number" id="domains" min="1" value="0" required />
-    </label>
-    <label class="basic-input">Number of Subdomains:
-      <input type="number" id="subdomains" min="0" value="0" />
-    </label>
-    <label class="basic-input">Monthly Requests (in millions):
-      <input type="number" id="requests" min="0" value="0" />
-    </label>
-    <div class="bandwidth-row">
-      <label class="basic-input">Bandwidth
-        <input type="number" id="bandwidth" min="1" value="0" required />
-      </label>
+        <label class="basic-input">
+          Monthly Requests (in millions):
+          <input type="number" id="requests" min="0" value="0" />
+        </label>
+      </div>
 
-      <label class="basic-input">Bandwidth Unit
-        <select id="bandwidthUnit">
-          <option value="GB">GB per month</option>
-          <option value="TB">TB per month</option>
+      <!-- Bandwidth Row -->
+      <div class="bandwidth-row">
+        <label class="basic-input">
+          Bandwidth
+          <input type="number" id="bandwidth" min="1" value="10" required />
+        </label>
+
+        <label class="basic-input">
+          Bandwidth Unit
+          <select id="bandwidthUnit">
+            <option value="GB">GB per month</option>
+            <option value="TB">TB per month</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Website Type -->
+      <label class="support-type">
+        Website Type:
+        <select id="siteType">
+          <option value="">Select Type</option>
+          <option value="wordpress">WordPress</option>
+          <option value="api">API Gateway</option>
+          <option value="saas">SaaS Web App</option>
+          <option value="bank">Banking / Finance</option>
+          <option value="ecommerce">E-commerce</option>
+          <option value="streaming">Streaming Service</option>
         </select>
       </label>
-    </div>
 
-    <label class="support-type">Website Type:
-      <select id="siteType">
-        <option value="">Select Type</option>
-        <option value="wordpress">WordPress</option>
-        <option value="api">API Gateway</option>
-        <option value="saas">SaaS Web App</option>
-        <option value="bank">Banking / Finance</option>
-        <option value="ecommerce">E-commerce</option>
-        <option value="streaming">Streaming Service</option>
-      </select>
-    </label>
+      <div id="selectedTypes" class="type-chips"></div>
 
-    <div id="selectedTypes" class="type-chips"></div>
+      <!-- Support Type -->
+      <label class="support-type">
+        <span class="support-label">
+          CloFix WAF Support Type:
+          <a href="plans.html" class="support-link">View Support Plans</a>
+        </span>
+        <select id="support" required>
+          <option value="email">Free Tier</option>
+          <option value="standard">Standard Support (55 USD/month)</option>
+          <option value="enterprise">Enterprise Support (500 USD/month)</option>
+        </select>
+      </label>
 
+      <!-- License Validation -->
+      <label class="basic-input">
+        License Validation:
+        <select id="license" required>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly (10% Discount)</option>
+        </select>
+      </label>
 
-    <label class="support-type">
-      <span class="support-label">
-        CloFix WAF Support Type:
-        <a href="plans.html" class="support-link">View Support Plans</a>
-      </span>
+      <!-- Always Included Free Features -->
+      <div class="free-features-section" id="freeFeaturesSection"></div>
 
-      <select id="support" required>
-        <option value="email">Free Tier</option>
-        <option value="standard">Standard Support (55 USD/month)</option>
-        <option value="enterprise">Enterprise Support (500 USD/month)</option>
-      </select>
-    </label>
+      <!-- Categorized Optional Features -->
+      <h2 class="optional-features">Security Features by Category</h2>
+      <div class="optional-feature-wrap">
+        <div class="optional-features-list" id="featureList"></div>
+      </div>
 
+      <!-- Error Message -->
+      <div id="errorMessage" style="display:none;">
+        ⚠️ Please fill in all required fields: Domains, Bandwidth must be greater than 0.
+      </div>
 
-    <label class="license-validation">License Validation:
-      <select id="license" required>
-        <option value="monthly">Monthly</option>
-        <option value="yearly">Yearly</option>
-      </select>
-    </label>
+      <!-- Calculate Button -->
+      <button class="calculate" onclick="calculatePricing()">Calculate Pricing</button>
 
-    <h2 class="optional-features">Add-Ons</h2>
-    <div class="optional-feature-wrap">
-      <div class="optional-features-list" id="featureList"></div>
-    </div>
-
-    <div id="errorMessage" style="display:none; color:#f87171; margin-top: 1rem; font-weight: bold;">
-      ⚠️ Please fill in all required fields: Domains, Bandwidth must be greater than 0.
-    </div>
-
-    <button class="c-button c-button--primary calculate" onclick="calculatePricing()">Calculate Pricing</button>
-
-    <div class="section" id="result" style="display:none;">
-      <h2 class="heading heading--3">Pricing Summary</h2>
-      <table class="pricing-table" border="1" cellpadding="8" cellspacing="0"
-        style="border-collapse: collapse; width: 100%;">
-        <thead class="pricing-table-thead">
-          <tr>
-            <th>Component</th>
-            <th>Cost (USD)</th>
-          </tr>
-        </thead>
-        <tbody id="pricingTable"></tbody>
-        <tfoot>
-          <tr>
-            <th>Total</th>
-            <th id="totalCost">$0.00</th>
-          </tr>
-        </tfoot>
-      </table>
-      <button class="c-button c-button--secondary" id="exportExcelBtn" style="display:none; margin-top: 1rem;">Export
-        as Excel</button>
-      <button class="c-button c-button--secondary" id="exportPDFBtn" style="display:none; margin-top: 1rem;">Export as
-        PDF</button>
-    </div>
+      <!-- Results -->
+      <div class="section" id="result" style="display:none;">
+        <h2 class="heading heading--3">Pricing Summary</h2>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Cost (USD)</th>
+            </tr>
+          </thead>
+          <tbody id="pricingTable"></tbody>
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <th id="totalCost">$0.00</th>
+            </tr>
+          </tfoot>
+        </table>
+        
+        <div class="export-buttons">
+          <button class="c-button c-button--secondary" id="exportExcelBtn" style="display:none;">
+            Export as Excel
+          </button>
+          <button class="c-button c-button--secondary" id="exportPDFBtn" style="display:none;">
+            Export as PDF
+          </button>
+        </div>
+      </div>
     </section>
   </main>
-  <footer class="footer">
 
+  <footer class="footer">
     <div class="stars"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
@@ -303,7 +872,6 @@
             </a>
           </li>
         </ul>
-
       </div>
 
       <div class="c-footer__column">
@@ -335,484 +903,479 @@
     </div>
 
     <div class="container">
-      <p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p>
+      <p class="footer__text">© 2026 Clofix – Copyright All Rights Reserved</p>
     </div>
   </footer>
-</body>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-<script>
-  const features = {
-    "AI & Agentic Detection, Behavioral Analysis": 13,
-    "OWASP Top 10 Protection": 5,
-    "XML External Entity Blocking": 2,
-    "Command Injection Protection": 2,
-    "Insecure Deserialization Blocking": 2,
-    "Slowloris Protection": 2,
-    "Flooding Attacks Protection": 2,
-    "Brute Force and DDos Protection": 2,
-    "Tor Exit Node Blocking": 3,
-    "DNS Rebinding Protection": 2,
-    "Time-Based Verification": 1,
-    "Malformed Header Protection": 2,
-    "Header Scan Protection": 2,
-    "Session Cookie Validation": 2,
-    "Cookie Tampering Protection": 3,
-    "Client Behavior Analysis": 2,
-    "Information Leak Detection": 2,
-    "Payload Signature Checking": 2,
-    "Advance IP Reputation Check": 4,
-    "Bot & Headless Browser Blocking": 3,
-    "Configuration Misuse Detection": 2,
-    "Sensitive Data Encryption": 2,
-    "Lua Scripting Support": 10,
-    "WordPress Protection": 2,
-    "Bot & Automation Defense": 4,
-    "Payload & Header Inspection": 2,
-    "Advanced Scripting & Rules": 5,
-    "Advance Fingerprinting Blocking": 5,
-    "Advance Bad IP, ASN Blocking": 5,
-    "Alert Service - Slack, Google": 3,
-    "Manage Rules - Path Blocking": 0,
-    "Manage Rules - Query Blocking": 0,
-    "Manage Rules - GeoIP Blocking": 0,
-    "Manage Rules - Bot Fingerprinting": 0,
-    "Manage Rules - IP Blocking": 0,
-    "Manage Rules - ASN Number Blocking": 0,
-    "Manage Rules - Geo Blocking": 0,
-    "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
-  };
 
-  const alwaysIncludedFreeFeatures = [
-    "Manage Rules - Path Blocking",
-    "Manage Rules - Query Blocking",
-    "Manage Rules - GeoIP Blocking",
-    "Manage Rules - Bot Fingerprinting",
-    "Manage Rules - IP Blocking",
-    "Manage Rules - ASN Number Blocking",
-    "Manage Rules - Geo Blocking",
-    "Manage Rules - Clofix ID Fingerprint Detection and Block"
-  ];
-
-  const corePaidFeatures = [
-    "Advance Fingerprinting Blocking",
-    "OWASP Top 10 Protection",
-    "AI & Agentic Detection, Behavioral Analysis"
-  ];
-
-  const typeFeatureMap = {
-    wordpress: ["WordPress Protection"],
-    api: ["Payload Signature Checking"],
-    saas: ["Brute Force and DDos Protection"],
-    bank: ["Client Behavior Analysis"],
-    ecommerce: ["Bot & Headless Browser Blocking"],
-    streaming: []
-  };
-
-
-  const featureListDiv = document.getElementById("featureList");
-  for (const [feature, price] of Object.entries(features)) {
-    if (!alwaysIncludedFreeFeatures.includes(feature)) {
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = feature;
-      checkbox.id = feature;
-
-      if (corePaidFeatures.includes(feature)) {
-        checkbox.checked = true;
-        checkbox.disabled = true;
-      }
-
-      const label = document.createElement("label");
-      label.htmlFor = feature;
-      label.innerText = feature;
-      label.prepend(checkbox);
-
-      featureListDiv.appendChild(label);
-    }
-  }
-
-  const siteTypeSelect = document.getElementById("siteType");
-  const selectedTypesContainer = document.getElementById("selectedTypes");
-  const selectedSiteTypes = new Set();
-
-  const typeLabel = {
-    wordpress: "WordPress",
-    api: "API Gateway",
-    saas: "SaaS Web App",
-    bank: "Banking / Finance",
-    ecommerce: "E-commerce",
-    streaming: "Streaming Service",
-  };
-
-  siteTypeSelect.addEventListener("change", (e) => {
-    const chosen = e.target.value;
-    if (!chosen || selectedSiteTypes.has(chosen)) return;
-
-    selectedSiteTypes.add(chosen);
-    renderSelectedTypeChips();
-    updateAutoSelectedFeatures();
-
-    siteTypeSelect.value = "";
-  });
-
-  function renderSelectedTypeChips() {
-    selectedTypesContainer.innerHTML = "";
-    selectedSiteTypes.forEach((type) => {
-      const chip = document.createElement("span");
-      chip.className = "type-chip";
-      chip.innerHTML = `
-      ${typeLabel[type] || type}
-      <button class="chip-close" aria-label="Remove ${type}">&times;</button>
-    `;
-      chip.querySelector(".chip-close").addEventListener("click", () => {
-        selectedSiteTypes.delete(type);
-        renderSelectedTypeChips();
-        updateAutoSelectedFeatures();
-      });
-      selectedTypesContainer.appendChild(chip);
-    });
-  }
-
-  function updateAutoSelectedFeatures() {
-    for (const feature of Object.keys(features)) {
-      if (
-        !alwaysIncludedFreeFeatures.includes(feature) &&
-        !corePaidFeatures.includes(feature)
-      ) {
-        const checkbox = document.getElementById(feature);
-        if (checkbox) {
-          checkbox.checked = false;
-          checkbox.disabled = false;
-        }
-      }
-    }
-
-    const union = new Set();
-    selectedSiteTypes.forEach((t) => {
-      (typeFeatureMap[t] || []).forEach((f) => union.add(f));
-    });
-
-    union.forEach((feature) => {
-      const checkbox = document.getElementById(feature);
-      if (checkbox) {
-        checkbox.checked = true;
-        checkbox.disabled = true;
-      }
-    });
-  }
-
-  renderSelectedTypeChips();
-
-  function calculatePricing() {
-    const domainCount = parseInt(document.getElementById("domains").value);
-    const subdomainCount = parseInt(document.getElementById("subdomains").value);
-    const requests = parseInt(document.getElementById("requests").value);
-    const bandwidth = parseFloat(document.getElementById("bandwidth").value);
-    const support = document.getElementById("support").value;
-    const license = document.getElementById("license").value;
-
-    if (domainCount <= 0 || bandwidth <= 0) {
-      document.getElementById("errorMessage").style.display = "block";
-      document.getElementById("result").style.display = "none";
-      return;
-    } else {
-      document.getElementById("errorMessage").style.display = "none";
-    }
-
-    let total = 0;
-    const rows = [];
-
-    if (domainCount > 0) {
-      const cost = domainCount * 4;
-      total += cost;
-      rows.push(["Domains", `$${cost.toFixed(2)}`]);
-    }
-
-    if (subdomainCount > 0) {
-      const cost = subdomainCount * 2;
-      total += cost;
-      rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
-    }
-
-    if (requests > 0) {
-      let cost = 0;
-
-      if (requests > 1 && requests <= 100) {
-        cost = 1.25;
-      } else if (requests > 100) {
-        cost = 1.00;
-      }
-
-      if (cost > 0) {
-        total += cost;
-        rows.push(["Requests", `$${cost.toFixed(2)}`]);
-      } else {
-        rows.push(["Requests", "Free (up to 1M)"]);
-      }
-    }
-
-    const unit = document.getElementById("bandwidthUnit").value;
-    let actualBandwidthGB = bandwidth;
-
-    if (unit === "TB") {
-      actualBandwidthGB = bandwidth * 1024;
-    }
-
-    if (actualBandwidthGB > 0) {
-      let cost = 0;
-      if (actualBandwidthGB > 10) {
-        const tier1 = Math.min(actualBandwidthGB - 10, 15);
-        const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
-        const tier3 = Math.max(actualBandwidthGB - 50, 0);
-        cost += tier1 * 0.03;
-        cost += tier2 * 0.04;
-        cost += tier3 * 0.02;
-        total += cost;
-        rows.push([`Bandwidth (${unit})`, `$${cost.toFixed(2)}`]);
-      } else {
-        rows.push([`Bandwidth (${unit})`, "Free"]);
-      }
-    }
-
-    let supportCostMonthly = 0;
-    let supportLabel = "Support (Email)";
-    let supportPriceText = "Free";
-
-    if (support === "standard") {
-      supportCostMonthly = 55;
-      supportLabel = "Standard Support";
-      supportPriceText = `$55 / month`;
-    } else if (support === "enterprise") {
-      supportCostMonthly = 500;
-      supportLabel = "Enterprise Support";
-      supportPriceText = `$500 / month`;
-    }
-
-    for (const [feature, price] of Object.entries(features)) {
-      if (
-        !alwaysIncludedFreeFeatures.includes(feature) &&
-        !corePaidFeatures.includes(feature)
-      ) {
-        const checkbox = document.getElementById(feature);
-        if (checkbox && checkbox.checked) {
-          const cost = price * domainCount; // scale by number of domains
-          total += cost;
-          rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
-        }
-      }
-    }
-
-    alwaysIncludedFreeFeatures.forEach((feature) => {
-      rows.push([feature, "Free"]);
-    });
-
-    corePaidFeatures.forEach((feature) => {
-      const price = features[feature];
-      const cost = price * domainCount; // scale by number of domains
-      total += cost;
-      rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
-    });
-
-    const tbody = document.getElementById("pricingTable");
-    tbody.innerHTML = "";
-
-    if (license === "yearly") {
-      const monthlyTotal = total + supportCostMonthly;
-      const yearlyTotal = monthlyTotal * 12;
-      const discounted = yearlyTotal * 0.9;
-      const monthlyAfterDiscount = discounted / 12;
-
-      rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
-      rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
-      rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
-      rows.push(["Monthly Cost After Discount", `$${monthlyAfterDiscount.toFixed(2)}`]);
-
-      document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)}`;
-      document.querySelector("#result tfoot th:first-child").innerText = "Total (Yearly)";
-    } else {
-      total += supportCostMonthly;
-      rows.push([supportLabel, supportPriceText]);
-      rows.push(["Billing Plan", "Monthly"]);
-
-      document.getElementById("totalCost").innerText = `$${total.toFixed(2)}`;
-      document.querySelector("#result tfoot th:first-child").innerText = "Total (Monthly)";
-    }
-
-    rows.forEach(([name, price]) => {
-      const row = `<tr><td>${name}</td><td>${price}</td></tr>`;
-      tbody.innerHTML += row;
-    });
-
-    document.getElementById("result").style.display = "block";
-    document.getElementById("exportExcelBtn").style.display = "inline-block";
-    document.getElementById("exportPDFBtn").style.display = "inline-block";
-
-    document.getElementById("exportExcelBtn").onclick = () => {
-      const table = document.querySelector(".pricing-table");
-      const wb = XLSX.utils.book_new();
-      const ws = XLSX.utils.table_to_sheet(table);
-      XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
-      XLSX.writeFile(wb, "CloFix_Pricing_Summary.xlsx");
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  
+  <!-- Main Script -->
+  <script>
+    // Feature data with proper categorization
+    const features = {
+        // AI & Advanced Detection Features (37 features)
+        "Fingerprint Blocking": 5,
+        "Payload Blocking": 4,
+        "Traffic Anomaly Blocking": 4,
+        "IP Reputation Blocking": 3,
+        "JavaScript Behavior Blocking": 4,
+        "Cookie Validation Blocking": 3,
+        "Device Identity Blocking": 4,
+        "Automation Tool Blocking": 3,
+        "Cloud Service Blocking": 3,
+        "DNS Rebinding Blocking": 3,
+        "Credential Stuffing Blocking": 4,
+        "Crawler Detection Blocking": 3,
+        "API Abuse Blocking": 4,
+        "Header Injection Blocking": 3,
+        "TLS Fingerprint Blocking": 4,
+        "SSL MITM Blocking": 4,
+        "Open Redirect Blocking": 2,
+        "Fake Bot Blocking": 3,
+        "AI Rate Limit Blocking": 4,
+        "JA3 Check": 3,
+        "VM/Debug Detection Blocking": 4,
+        "Canvas Fingerprint Blocking": 3,
+        "Path Traversal Blocking": 2,
+        "SQL Injection Blocking": 2,
+        "XSS Detection Blocking": 2,
+        "Command Injection Blocking": 2,
+        "XXE Detection Blocking": 2,
+        "LDAP Injection Blocking": 2,
+        "NoSQL Injection Blocking": 2,
+        "SSTI Detection Blocking": 2,
+        "CSRF Check Blocking": 2,
+        "Clickjacking Blocking": 2,
+        "Vulnerability Scanner Blocking": 3,
+        "Terminal Access Blocking": 4,
+        "jQuery Guard Blocking": 2,
+        "Scan Technique Blocking": 3,
+        
+        // Core Security Features (maintaining existing)
+        "OWASP Top 10 Protection": 5,
+        "XML External Entity Blocking": 2,
+        "Command Injection Protection": 2,
+        "Insecure Deserialization Blocking": 2,
+        "Slowloris Protection": 2,
+        "Flooding Attacks Protection": 2,
+        "Brute Force and DDos Protection": 2,
+        "Tor Exit Node Blocking": 3,
+        "Time-Based Verification": 1,
+        "Malformed Header Protection": 2,
+        "Header Scan Protection": 2,
+        "Session Cookie Validation": 2,
+        "Cookie Tampering Protection": 3,
+        "Client Behavior Analysis": 2,
+        "Information Leak Detection": 2,
+        "Payload Signature Checking": 2,
+        "Configuration Misuse Detection": 2,
+        "Sensitive Data Encryption": 2,
+        "Payload & Header Inspection": 2,
+        
+        // Additional Features
+        "Lua Scripting Support": 10,
+        "WordPress Protection": 2,
+        "Advanced Scripting & Rules": 5,
+        "Alert Service - Slack, Google": 3,
+        "AI & Agentic Detection, Behavioral Analysis": 13,
+        "Advance Fingerprinting Blocking": 5,
+        "Bot & Automation Defense": 4,
+        "Bot & Headless Browser Blocking": 3,
+        "Advance IP Reputation Check": 4,
+        "Advance Bad IP, ASN Blocking": 5,
+        
+        // Manage Rules (Free Features)
+        "Manage Rules - Path Blocking": 0,
+        "Manage Rules - Query Blocking": 0,
+        "Manage Rules - GeoIP Blocking": 0,
+        "Manage Rules - Bot Fingerprinting": 0,
+        "Manage Rules - IP Blocking": 0,
+        "Manage Rules - ASN Number Blocking": 0,
+        "Manage Rules - Geo Blocking": 0,
+        "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
     };
 
-    document.getElementById("exportPDFBtn").onclick = () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: "a4"
-      });
+    // Category Definitions
+    const categories = {
+        aiFeatures: [
+            // AI-Powered Detection Features (37 features)
+            "Fingerprint Blocking",
+            "Payload Blocking",
+            "Traffic Anomaly Blocking",
+            "IP Reputation Blocking",
+            "JavaScript Behavior Blocking",
+            "Cookie Validation Blocking",
+            "Device Identity Blocking",
+            "Automation Tool Blocking",
+            "Cloud Service Blocking",
+            "DNS Rebinding Blocking",
+            "Credential Stuffing Blocking",
+            "Crawler Detection Blocking",
+            "API Abuse Blocking",
+            "Header Injection Blocking",
+            "TLS Fingerprint Blocking",
+            "SSL MITM Blocking",
+            "Open Redirect Blocking",
+            "Fake Bot Blocking",
+            "AI Rate Limit Blocking",
+            "JA3 Check",
+            "VM/Debug Detection Blocking",
+            "Canvas Fingerprint Blocking",
+            "Path Traversal Blocking",
+            "SQL Injection Blocking",
+            "XSS Detection Blocking",
+            "Command Injection Blocking",
+            "XXE Detection Blocking",
+            "LDAP Injection Blocking",
+            "NoSQL Injection Blocking",
+            "SSTI Detection Blocking",
+            "CSRF Check Blocking",
+            "Clickjacking Blocking",
+            "Vulnerability Scanner Blocking",
+            "Terminal Access Blocking",
+            "jQuery Guard Blocking",
+            "Scan Technique Blocking",
+            "AI & Agentic Detection, Behavioral Analysis",
+            "Advance Fingerprinting Blocking",
+            "Bot & Automation Defense",
+            "Bot & Headless Browser Blocking",
+            "Advance IP Reputation Check",
+            "Advance Bad IP, ASN Blocking"
+        ],
+        coreFeatures: [
+            // Core Security Features
+            "OWASP Top 10 Protection",
+            "XML External Entity Blocking",
+            "Command Injection Protection",
+            "Insecure Deserialization Blocking",
+            "Slowloris Protection",
+            "Flooding Attacks Protection",
+            "Brute Force and DDos Protection",
+            "Tor Exit Node Blocking",
+            "Time-Based Verification",
+            "Malformed Header Protection",
+            "Header Scan Protection",
+            "Session Cookie Validation",
+            "Cookie Tampering Protection",
+            "Client Behavior Analysis",
+            "Information Leak Detection",
+            "Payload Signature Checking",
+            "Configuration Misuse Detection",
+            "Sensitive Data Encryption",
+            "Payload & Header Inspection",
+            "Lua Scripting Support",
+            "WordPress Protection",
+            "Advanced Scripting & Rules",
+            "Alert Service - Slack, Google"
+        ],
+        rulesFeatures: [
+            "Manage Rules - Path Blocking",
+            "Manage Rules - Query Blocking",
+            "Manage Rules - GeoIP Blocking",
+            "Manage Rules - Bot Fingerprinting",
+            "Manage Rules - IP Blocking",
+            "Manage Rules - ASN Number Blocking",
+            "Manage Rules - Geo Blocking",
+            "Manage Rules - Clofix ID Fingerprint Detection and Block"
+        ]
+    };
 
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(20);
-      doc.setTextColor(37, 99, 235); // #2563eb
-      doc.text("CloFix WAF Pricing Summary", 40, 50);
+    // Helper function to clean feature names for IDs
+    function cleanFeatureId(feature) {
+        return feature.replace(/[^a-zA-Z0-9]/g, '_');
+    }
 
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.setTextColor(107, 114, 128); // #6b7280
-      doc.text("Generated on: " + new Date().toLocaleString(), 40, 70);
+    // Render free features
+    function renderFreeFeatures() {
+        const freeFeaturesSection = document.getElementById("freeFeaturesSection");
+        if (!freeFeaturesSection) return;
+        
+        let html = `
+            <div class="free-features-title">
+                <span>✅</span>
+                <span>Always Included Free Features - Manage Rules</span>
+            </div>
+            <div class="free-features-grid">
+        `;
+        
+        categories.rulesFeatures.forEach(feature => {
+            html += `
+                <div class="free-feature-item">
+                    <span class="free-check">✓</span>
+                    <span>${feature}</span>
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+        freeFeaturesSection.innerHTML = html;
+    }
 
-      const table = document.querySelector(".pricing-table");
-      const rows = [["Component", "Cost (USD)"]];
-      for (const tr of table.querySelectorAll("tbody tr")) {
-        const tds = tr.querySelectorAll("td");
-        rows.push([tds[0].innerText, tds[1].innerText]);
-      }
-      rows.push(["Total", document.getElementById("totalCost").innerText]);
+    // Render categorized optional features
+    function renderOptionalFeatures() {
+        const featureListDiv = document.getElementById("featureList");
+        if (!featureListDiv) return;
+        
+        featureListDiv.innerHTML = '';
 
-      doc.autoTable({
-        startY: 100,
-        head: [rows[0]],
-        body: rows.slice(1),
-        theme: "striped",
-        headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255] },
-        styles: { cellPadding: 8, fontSize: 10, textColor: [55, 65, 81] },
-        alternateRowStyles: { fillColor: [240, 249, 255] },
-        margin: { top: 100, left: 40, right: 40 }
-      });
+        // AI Features Category
+        const aiHeader = document.createElement('div');
+        aiHeader.className = 'category-header ai-category';
+        aiHeader.innerHTML = `
+            <span class="category-icon">🤖</span>
+            <span>AI-Powered Detection Features (${categories.aiFeatures.length})</span>
+            <span class="category-count">${categories.aiFeatures.length} features</span>
+        `;
+        featureListDiv.appendChild(aiHeader);
 
-      doc.addPage();
+        // Sort AI features alphabetically
+        const sortedAIFeatures = [...categories.aiFeatures].sort();
+        sortedAIFeatures.forEach(feature => {
+            if (!categories.rulesFeatures.includes(feature)) {
+                addFeatureCheckbox(feature, features[feature] || 2);
+            }
+        });
 
-      const marginLeft = 40;
-      const maxWidth = 520;
-      let currentY = 50;
-      const lineHeight = 16;
-      const defaultColor = "#374151";
+        // Core Features Category
+        const coreHeader = document.createElement('div');
+        coreHeader.className = 'category-header core-category';
+        coreHeader.innerHTML = `
+            <span class="category-icon">🛡️</span>
+            <span>Core Security Features (${categories.coreFeatures.length})</span>
+            <span class="category-count">${categories.coreFeatures.length} features</span>
+        `;
+        featureListDiv.appendChild(coreHeader);
 
-      const hexToRgb = (hex) => {
-        const clean = hex.replace("#", "");
-        const bigint = parseInt(clean.length === 3
-          ? clean.split("").map(c => c + c).join("")
-          : clean, 16);
-        return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
-      };
+        // Sort Core features alphabetically
+        const sortedCoreFeatures = [...categories.coreFeatures].sort();
+        sortedCoreFeatures.forEach(feature => {
+            if (!categories.rulesFeatures.includes(feature)) {
+                addFeatureCheckbox(feature, features[feature] || 2);
+            }
+        });
+    }
 
-      const lines = [
-        { text: "Cost Breakdown Summary", bold: true },
-        { gap: true },
+    function addFeatureCheckbox(feature, price) {
+        const featureListDiv = document.getElementById("featureList");
+        if (!featureListDiv) return;
+        
+        const wrapper = document.createElement("label");
+        const featureId = cleanFeatureId(feature);
 
-        { text: '• WordPress: Includes "WordPress Protection" to guard popular plugins and themes from attacks.' },
-        { text: '• API Gateway: Uses "Payload Signature Checking" to validate incoming traffic structure.' },
-        { text: '• SaaS Web App: Adds "Brute Force and DDoS Protection" for user accounts and login endpoints.' },
-        { text: '• Banking/Finance: Applies "Client Behavior Analysis" to detect abnormal transaction patterns.' },
-        { text: '• E-commerce: Enables "Bot & Headless Browser Blocking" to prevent scraping and automated threats.' },
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = feature;
+        checkbox.id = featureId;
 
-        { gap: true },
-        { text: "Core Features (Always Included and Billed):", bold: true },
-        { gap: true },
+        // Check if this is a core paid feature that should be auto-selected
+        const corePaidFeatures = [
+            "Advance Fingerprinting Blocking",
+            "OWASP Top 10 Protection",
+            "AI & Agentic Detection, Behavioral Analysis",
+            "Fingerprint Blocking",
+            "SQL Injection Blocking",
+            "XSS Detection Blocking"
+        ];
 
-        { text: '• Advance Fingerprinting Blocking: Ensures advanced browser and bot fingerprint tracking prevention.' },
-        { text: '  - This is a critical layer of defense against modern bot attacks and browser emulation, and is included by default in all plans due to its essential role in baseline security.' },
-
-        { gap: true },
-
-        { text: '• CloFix CDN: Accelerates web content delivery through our secure, global CDN edge nodes.' },
-        { text: '  - This improves performance and protection by serving content closer to users while shielding origin servers. It is always active and therefore billed.' },
-
-        { gap: true },
-        { text: "Auto-Selected Features Based on Website Type:", bold: true },
-        { gap: true },
-
-        { text: "When you select a specific website type, certain add-on features are automatically included to match the common threat models and protection needs of that type. For example:" },
-        { text: '- WordPress sites face plugin vulnerabilities, so "WordPress Protection" is added.' },
-        { text: '- API Gateway traffic must be validated structurally, so "Payload Signature Checking" is included.' },
-        { text: '- Banking/Finance requires fraud behavior detection, so "Client Behavior Analysis" is activated.' },
-
-        { gap: true },
-        { text: "These auto-selected features are designed to simplify configuration and ensure essential protection by default." },
-
-        { gap: true },
-        {
-          text: "N.B: Please note that your selected add-ons may need adjustments to improve protection; some may be added and others removed. The CloFix team can review your configuration and recommend the most effective, cost-efficient setup tailored to your needs. For a free consultation, contact us or visit: "
-        },
-        {
-          text: "https://clofix.com/",
-          link: "https://clofix.com/",
-          color: "#0000EE"
-        },
-
-        { gap: true },
-        { text: "Thank you for choosing CloFix. We’re proud to secure and support your web infrastructure." }
-      ];
-
-      for (const line of lines) {
-        if (line.gap) {
-          currentY += lineHeight / 2;
-          continue;
+        if (corePaidFeatures.includes(feature)) {
+            checkbox.checked = true;
+            checkbox.disabled = true;
         }
 
-        doc.setFont("helvetica", line.bold ? "bold" : "normal");
-        doc.setFontSize(10);
+        wrapper.htmlFor = featureId;
+        wrapper.appendChild(checkbox);
+        
+        const textSpan = document.createElement("span");
+        textSpan.textContent = feature;
+        wrapper.appendChild(textSpan);
+        
+        const priceSpan = document.createElement("span");
+        priceSpan.className = "feature-price";
+        priceSpan.textContent = `$${price}/domain`;
+        wrapper.appendChild(priceSpan);
 
-        const useHex = line.color || defaultColor;
-        const [r, g, b] = hexToRgb(useHex);
-        doc.setTextColor(r, g, b);
+        featureListDiv.appendChild(wrapper);
+    }
 
-        if (line.link) {
-          doc.textWithLink(line.text, marginLeft, currentY, { url: line.link });
-          const linkWidth = doc.getTextWidth(line.text);
-          doc.setDrawColor(r, g, b);
-          doc.setLineWidth(0.5);
-          doc.line(marginLeft, currentY + 2, marginLeft + linkWidth, currentY + 2);
-          currentY += lineHeight;
+    // Update the calculatePricing function to handle all features
+    function calculatePricing() {
+        const domainCount = parseInt(document.getElementById("domains").value) || 0;
+        const subdomainCount = parseInt(document.getElementById("subdomains").value) || 0;
+        const requests = parseInt(document.getElementById("requests").value) || 0;
+        const bandwidth = parseFloat(document.getElementById("bandwidth").value) || 0;
+        const support = document.getElementById("support").value;
+        const license = document.getElementById("license").value;
+
+        if (domainCount <= 0 || bandwidth <= 0) {
+            document.getElementById("errorMessage").style.display = "block";
+            document.getElementById("result").style.display = "none";
+            return;
         } else {
-          const split = doc.splitTextToSize(line.text, maxWidth);
-          doc.text(split, marginLeft, currentY);
-          currentY += split.length * lineHeight;
+            document.getElementById("errorMessage").style.display = "none";
         }
-      }
 
-      doc.save("CloFix_Pricing_Summary.pdf");
-    };
+        let total = 0;
+        const rows = [];
 
-  }
+        // Domain costs
+        if (domainCount > 0) {
+            const cost = domainCount * 4;
+            total += cost;
+            rows.push(["Domains (Base Fee)", `$${cost.toFixed(2)}`]);
+        }
 
-  const navToggle = document.getElementById('navToggle');
-  const navContent = document.querySelector('.c-nav__content');
+        // Subdomain costs
+        if (subdomainCount > 0) {
+            const cost = subdomainCount * 2;
+            total += cost;
+            rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
+        }
 
-  navToggle.addEventListener('click', () => {
-    navContent.classList.toggle('active');
-  });
+        // Request costs
+        if (requests > 0) {
+            let cost = 0;
+            if (requests > 1 && requests <= 100) {
+                cost = 1.25;
+            } else if (requests > 100) {
+                cost = 1.00;
+            }
+            if (cost > 0) {
+                total += cost;
+                rows.push(["Monthly Requests", `$${cost.toFixed(2)}`]);
+            }
+        }
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-WP02RFXGSE');
+        // Bandwidth costs
+        const unit = document.getElementById("bandwidthUnit").value;
+        let actualBandwidthGB = bandwidth;
+        if (unit === "TB") {
+            actualBandwidthGB = bandwidth * 1024;
+        }
 
-  (function () {
-    const headerEl = document.querySelector('.header');
-    function syncHeaderHeight() {
-      if (!headerEl) return;
-      document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+        if (actualBandwidthGB > 0) {
+            let cost = 0;
+            if (actualBandwidthGB > 10) {
+                const tier1 = Math.min(actualBandwidthGB - 10, 15);
+                const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
+                const tier3 = Math.max(actualBandwidthGB - 50, 0);
+                cost += tier1 * 0.03;
+                cost += tier2 * 0.04;
+                cost += tier3 * 0.02;
+                total += cost;
+                rows.push([`Bandwidth (${actualBandwidthGB.toFixed(2)} GB)`, `$${cost.toFixed(2)}`]);
+            } else {
+                rows.push(["Bandwidth (up to 10 GB)", "Free"]);
+            }
+        }
+
+        // Support costs
+        let supportCostMonthly = 0;
+        let supportLabel = "Support (Free Tier)";
+        
+        if (support === "standard") {
+            supportCostMonthly = 55;
+            supportLabel = "Standard Support";
+        } else if (support === "enterprise") {
+            supportCostMonthly = 500;
+            supportLabel = "Enterprise Support";
+        }
+
+        // Calculate selected features cost
+        let selectedFeaturesCount = 0;
+        let selectedFeaturesTotal = 0;
+
+        // Check all AI features
+        categories.aiFeatures.forEach(feature => {
+            if (!categories.rulesFeatures.includes(feature)) {
+                const checkbox = document.getElementById(cleanFeatureId(feature));
+                if (checkbox && checkbox.checked) {
+                    const price = features[feature] || 2;
+                    const cost = price * domainCount;
+                    selectedFeaturesTotal += cost;
+                    selectedFeaturesCount++;
+                    rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
+                }
+            }
+        });
+
+        // Check all Core features
+        categories.coreFeatures.forEach(feature => {
+            if (!categories.rulesFeatures.includes(feature)) {
+                const checkbox = document.getElementById(cleanFeatureId(feature));
+                if (checkbox && checkbox.checked) {
+                    const price = features[feature] || 2;
+                    const cost = price * domainCount;
+                    selectedFeaturesTotal += cost;
+                    selectedFeaturesCount++;
+                    rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
+                }
+            }
+        });
+
+        total += selectedFeaturesTotal;
+
+        // Add summary row for selected features
+        if (selectedFeaturesCount > 0) {
+            rows.push(["Total Selected Features", `$${selectedFeaturesTotal.toFixed(2)}`]);
+        }
+
+        // Free features note
+        rows.push(["", "--- Free Included Features ---"]);
+        categories.rulesFeatures.forEach(feature => {
+            rows.push([feature, "Free (Included)"]);
+        });
+
+        // Apply license and support
+        const tbody = document.getElementById("pricingTable");
+        tbody.innerHTML = "";
+
+        if (license === "yearly") {
+            const monthlyTotal = total + supportCostMonthly;
+            const yearlyTotal = monthlyTotal * 12;
+            const discounted = yearlyTotal * 0.9;
+            const monthlyAfterDiscount = discounted / 12;
+
+            rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
+            rows.push(["Billing Plan", "Yearly (10% Discount Applied)"]);
+            rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
+            rows.push(["Effective Monthly Cost", `$${monthlyAfterDiscount.toFixed(2)}`]);
+
+            document.getElementById("totalCost").innerText = `$${discounted.toFixed(2)} (yearly)`;
+        } else {
+            total += supportCostMonthly;
+            rows.push([supportLabel, `$${supportCostMonthly.toFixed(2)}/month`]);
+            rows.push(["Billing Plan", "Monthly"]);
+
+            document.getElementById("totalCost").innerText = `$${total.toFixed(2)}/month`;
+        }
+
+        // Render table
+        rows.forEach(([name, price]) => {
+            if (name === "--- Free Included Features ---") {
+                const row = `<tr style="background-color: #f0fdf4;"><td colspan="2" style="text-align: center; font-weight: bold; color: #166534;">${name}</td></tr>`;
+                tbody.innerHTML += row;
+            } else {
+                const row = `<tr><td>${name}</td><td>${price}</td></tr>`;
+                tbody.innerHTML += row;
+            }
+        });
+
+        document.getElementById("result").style.display = "block";
+        document.getElementById("exportExcelBtn").style.display = "inline-block";
+        document.getElementById("exportPDFBtn").style.display = "inline-block";
     }
-    window.addEventListener('load', syncHeaderHeight);
-    window.addEventListener('resize', syncHeaderHeight);
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(syncHeaderHeight);
-    }
-  })();
 
-</script>
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        renderFreeFeatures();
+        renderOptionalFeatures();
+        renderSelectedTypeChips();
 
+        // Set default values
+        document.getElementById("domains").value = 1;
+        document.getElementById("bandwidth").value = 10;
+    });
+  </script>
+</body>
 </html>
