@@ -1347,6 +1347,99 @@
               </ul>
           </template>
 
+          <div class="feature-card" data-id="lfi_protection">
+              <h3>📁 Local File Inclusion (LFI) Protection</h3>
+              <p>Prevents attackers from including/reading local files on the server</p>
+          </div>
+
+          <template id="lfi_protection">
+              <p>Comprehensive protection against Local File Inclusion (LFI) attacks that attempt to read sensitive files on the server.</p>
+              
+              <h4>🔍 Path Traversal Detection</h4>
+              <ul>
+                  <li>Blocks directory traversal sequences (../, ..\, %2e%2e%2f)</li>
+                  <li>Detects encoded traversal patterns</li>
+                  <li>Prevents null byte injection (%00)</li>
+                  <li>Blocks access to sensitive system files</li>
+              </ul>
+              
+              <h4>📄 Sensitive File Protection</h4>
+              <ul>
+                  <li>/etc/passwd, /etc/shadow blocking</li>
+                  <li>Windows system file protection (boot.ini, win.ini)</li>
+                  <li>Application source code protection</li>
+                  <li>Configuration file access prevention</li>
+              </ul>
+              
+              <h4>🔌 PHP Wrapper Blocking</h4>
+              <ul>
+                  <li>php://filter, php://input</li>
+                  <li>expect:// wrapper</li>
+                  <li>data://, zlib://, zip://</li>
+                  <li>phar://, glob:// wrappers</li>
+              </ul>
+              
+              <h4>🛡️ Advanced Features</h4>
+              <ul>
+                  <li>Real-time payload signature matching</li>
+                  <li>URL normalization and decoding</li>
+                  <li>Path canonicalization checks</li>
+                  <li>Automated IP banning for repeat offenders</li>
+                  <li>Comprehensive attack logging</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="rfi_protection">
+              <h3>🌐 Remote File Inclusion (RFI) Protection</h3>
+              <p>Blocks attempts to include remote malicious files from external servers</p>
+          </div>
+
+          <template id="rfi_protection">
+              <p>Advanced protection against Remote File Inclusion (RFI) attacks that attempt to load and execute malicious code from external servers.</p>
+              
+              <h4>🌍 Remote URL Blocking</h4>
+              <ul>
+                  <li>Blocks http://, https:// inclusions</li>
+                  <li>Prevents ftp://, sftp://, file:// usage</li>
+                  <li>Blocks data://, input:// wrappers</li>
+                  <li>Detects base64 encoded remote inclusions</li>
+              </ul>
+              
+              <h4>🚫 Malicious Domain Filtering</h4>
+              <ul>
+                  <li>Blocks known malicious domains and IPs</li>
+                  <li>Filters suspicious TLDs (.ru, .cn, .tk, .ml, .ga, .cf, .xyz)</li>
+                  <li>Prevents connection to anonymous hosting</li>
+                  <li>Custom domain blacklist support</li>
+              </ul>
+              
+              <h4>🔍 PHP Function Monitoring</h4>
+              <ul>
+                  <li>Detects include()/require() with remote URLs</li>
+                  <li>Monitors allow_url_include/fopen settings</li>
+                  <li>Blocks curl_exec() with external URLs</li>
+                  <li>Prevents file_get_contents() abuse</li>
+              </ul>
+              
+              <h4>🛡️ Protection Features</h4>
+              <ul>
+                  <li>Real-time payload signature matching</li>
+                  <li>Multi-vector input inspection</li>
+                  <li>URL validation and sanitization</li>
+                  <li>Automated IP banning for attacks</li>
+                  <li>Detailed forensic logging</li>
+              </ul>
+              
+              <h4>📊 Attack Vectors Covered</h4>
+              <ul>
+                  <li>Query string parameters</li>
+                  <li>POST form data</li>
+                  <li>Cookie values</li>
+                  <li>HTTP headers</li>
+                  <li>File uploads (indirect RFI)</li>
+              </ul>
+          </template>
+
           <!-- OTHERS CATEGORY -->
           <h2 class="category-heading">Additional Security Features</h2>
 
