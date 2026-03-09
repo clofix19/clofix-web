@@ -829,7 +829,90 @@
 
           <!-- CORE CATEGORY -->
           <h2 class="category-heading">Core Security Features</h2>
+          
+          <div class="feature-card" data-id="ddos_protection">
+              <h3>🛡️ Advanced DDoS Protection</h3>
+              <p>Multi-layer protection against volumetric, protocol, and application-layer DDoS attacks</p>
+          </div>
 
+          <template id="ddos_protection">
+              <p>Advanced multi-layer DDoS mitigation designed to protect infrastructure, APIs, and applications from distributed denial-of-service attacks.</p>
+
+              <h4>🌐 Volumetric Attacks</h4>
+              <ul>
+                  <li>HTTP / HTTPS Flood</li>
+                  <li>SYN Flood</li>
+                  <li>UDP / ICMP Flood</li>
+                  <li>Amplification Attacks (DNS, NTP, Memcached, SSDP)</li>
+                  <li>Distributed HTTP Flood</li>
+                  <li>Layer-7 Bandwidth Exhaustion</li>
+              </ul>
+
+              <h4>⚙ Protocol Attacks</h4>
+              <ul>
+                  <li>Slowloris</li>
+                  <li>Slow-Read Attack</li>
+                  <li>RUDY (Slow POST)</li>
+                  <li>Ping-of-Death</li>
+                  <li>TCP Null / FIN / Xmas Flag Attacks</li>
+                  <li>LAND Attack</li>
+                  <li>IP Fragmentation Flood</li>
+                  <li>Malformed HTTP Requests</li>
+                  <li>Oversized Headers</li>
+                  <li>Keep-Alive Connection Abuse</li>
+              </ul>
+
+              <h4>🌍 Application Layer (L7)</h4>
+              <ul>
+                  <li>HTTP Flood (Layer-7)</li>
+                  <li>Cache-Busting Attacks</li>
+                  <li>Path Focusing Attacks</li>
+                  <li>Hash-Collision DoS</li>
+                  <li>Recursive / Deep GET Attacks</li>
+                  <li>Query-String Flood</li>
+                  <li>Form Parameter Flood</li>
+                  <li>Resource Exhaustion</li>
+                  <li>Regex DoS (ReDoS Probes)</li>
+              </ul>
+
+              <h4>🔗 API & Modern Application Attacks</h4>
+              <ul>
+                  <li>GraphQL Depth Bomb</li>
+                  <li>GraphQL Introspection Probing</li>
+                  <li>GraphQL Batch Abuse</li>
+                  <li>REST Endpoint Hammering</li>
+                  <li>API Key Brute-Force</li>
+                  <li>WebSocket Flood</li>
+                  <li>JSON Bomb / Nested Object Payload</li>
+              </ul>
+
+              <h4>💼 Business Logic Abuse</h4>
+              <ul>
+                  <li>Login Flood</li>
+                  <li>Credential Stuffing</li>
+                  <li>Upload Size Abuse</li>
+                  <li>Upload Rate Abuse</li>
+                  <li>OTP / Verification Code Hammering</li>
+                  <li>Coupon / Voucher Abuse</li>
+                  <li>Account Enumeration</li>
+                  <li>Password Spraying</li>
+                  <li>Checkout Flood</li>
+              </ul>
+
+              <h4>🧠 Behavioral & Threat Intelligence</h4>
+              <ul>
+                  <li>Error Flood Detection</li>
+                  <li>Missing / Spoofed User-Agent</li>
+                  <li>Known Bad Bot Detection</li>
+                  <li>Headless Browser Fingerprinting</li>
+                  <li>Scanner / Probe Signature Detection</li>
+                  <li>TOR Exit Node Indicator</li>
+                  <li>Session Abuse Detection</li>
+                  <li>Path Enumeration Detection</li>
+                  <li>Reputation-Based Risk Scoring</li>
+                  <li>Geo-Location Anomaly Detection</li>
+              </ul>
+          </template>
           <div class="feature-card" data-id="a1_sql_injection_protection">
               <h3>🔒 SQL Injection Protection (A1)</h3>
               <p>Protects against SQL injection attacks (OWASP Top 10 A1)</p>
