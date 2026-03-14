@@ -68,7 +68,7 @@ for file in *.html; do
     echo '<?xml version="1.0" encoding="UTF-8"?>' > "$SITEMAP_FILE"
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> "$SITEMAP_FILE"
     echo "  <url>" >> "$SITEMAP_FILE"
-    echo "    <loc>$BASE_URL/$name</loc>" >> "$SITEMAP_FILE"   # <-- no .html
+    echo "    <loc>$BASE_URL/$name.html</loc>" >> "$SITEMAP_FILE"   # <-- no .html
     echo "    <lastmod>$CURRENT_DATE</lastmod>" >> "$SITEMAP_FILE"
     echo "    <changefreq>$CHANGEFREQ</changefreq>" >> "$SITEMAP_FILE"
     echo "    <priority>$PRIORITY</priority>" >> "$SITEMAP_FILE"
