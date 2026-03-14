@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <link rel="canonical" href="https://clofix.com/clofix-lua-script" />
+    <link rel="canonical" href="https://clofix.com/lua-guide" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="CloFix WAF Lua Scripting Guide — write custom Lua scripts for rate limiting, bot detection, geo-blocking, and SQL injection protection.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CloFix WAF | Lua Scripting Guide">
-    <meta property="og:description" content="Write clofix Lua scripts to control every HTTP request flowing through CloFix WAF. Full reference, shared dictionaries, examples, and best practices.">
-    <meta property="og:url" content="https://clofix.com/clofix-lua-script.html">
+    <meta property="og:description" content="Write custom Lua scripts to control every HTTP request flowing through CloFix WAF. Full reference, shared dictionaries, examples, and best practices.">
+    <meta property="og:url" content="https://clofix.com/lua-guide">
     <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CloFix WAF | CloFix Lua Scripting Guide">
+    <meta name="twitter:title" content="CloFix WAF | Lua Scripting Guide">
     <meta name="twitter:description" content="Full reference guide for writing Lua scripts in CloFix WAF — request object, shared dicts, examples, and troubleshooting.">
     <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
     <meta name="twitter:site" content="@clofix19">
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <title>CloFix WAF — Clofix Lua Scripting Guide</title>
+    <title>CloFix WAF — Lua Scripting Guide</title>
     <style>
         :root {
             --lua-dark:    #080f1a;
@@ -236,13 +236,13 @@
         <div class="lua-hero">
             <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
                 <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
-                    <div class="lua-hero__badge">CloFix Lua SDK</div>
+                    <div class="lua-hero__badge">Lua SDK</div>
                     <span class="lua-version">v2.0 — clofix_main API</span>
                 </div>
                 <h1>CloFix <span>Lua Scripting</span> Guide</h1>
                 <p class="lua-hero__lead">
                     Write clofix Lua scripts to inspect, filter, and control every HTTP request flowing through
-                    <strong style="color:#fff;">CloFix WAF</strong> - with full access to request context,
+                    <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
                     threat intelligence, built-in <strong style="color:#fff;">clofix.*</strong> helpers,
                     and shared cross-request state.
                 </p>
@@ -270,6 +270,8 @@
             <aside class="lua-toc">
                 <div class="lua-toc__title">Contents</div>
                 <a href="#intro">Introduction</a>
+                <a href="#execution-flow">Execution Flow</a>
+                <a href="#quick-ref">Quick Reference</a>
                 <a href="#directory">Directory Structure</a>
                 <a href="#config">Domain Config</a>
                 <a href="#structure">Script Structure</a>
@@ -318,17 +320,38 @@
             <!-- Content -->
             <div class="lua-content">
 
-                <!-- 01 INTRO -->
+                                <!-- 01 INTRO (UPDATED) -->
+                                <!-- 01 INTRO (UPDATED - Comprehensive Protections) -->
                 <section class="lua-section" id="intro">
                     <h2 class="lua-section__title"><span class="sec-num">01</span> Introduction</h2>
                     <p>CloFix WAF executes Lua scripts on every HTTP request before it reaches your backend. Scripts have read access to a rich <strong style="color:#fff;">request object</strong>, a full <strong style="color:#fff;">clofix.*</strong> helper API, a <strong style="color:#fff;">utils.*</strong> string library, and read/write access to <strong style="color:#fff;">shared in-memory dictionaries</strong> for maintaining state across requests.</p>
+
+                    <!-- Architecture Diagram Card -->
+                    <div class="lua-box purple" style="padding:0; overflow:hidden;">
+                        <div style="background: var(--lua-surface); padding: 18px 24px; border-bottom: 1px solid var(--lua-border);">
+                            <strong style="display:block; margin-bottom:0;">⚙️ CloFix WAF Lua Architecture</strong>
+                        </div>
+                        <div style="padding: 24px; background: var(--lua-code); text-align: center; font-family: var(--lua-mono); font-size: 14px; line-height: 2; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <span style="color: var(--lua-muted);">HTTP Request</span>
+                            <span style="color: var(--lua-text);">→</span>
+                            <span style="color: var(--lua-teal);">WAF Engine<br><span style="font-size: 11px; color: var(--lua-muted);">(IP, Geo, TLS, Threat Intel)</span></span>
+                            <span style="color: var(--lua-text);">→</span>
+                            <span style="color: var(--lua-gold);">Lua VM<br><span style="font-size: 11px; color: var(--lua-muted);">(Isolated per script)</span></span>
+                            <span style="color: var(--lua-text);">→</span>
+                            <span style="color: var(--lua-purple);">Shared Dicts<br><span style="font-size: 11px; color: var(--lua-muted);">(State / Rate Limit)</span></span>
+                            <span style="color: var(--lua-text);">→</span>
+                            <span style="color: var(--lua-orange);">Action / Backend</span>
+                        </div>
+                    </div>
+
                     <div class="lua-box warn">
                         <strong>Breaking Change — v2.0</strong>
                         The entry point is now <span class="ic">clofix_main(request)</span> — not <span class="ic">process_request</span>. Scripts must return a <strong>single action table</strong>, not a boolean pair. See Section 04 &amp; 05 for the new structure.
                     </div>
+
                     <p class="lua-sub">Key Concepts</p>
                     <ul style="padding-left:22px;margin:0 0 16px;color:var(--lua-text);">
-                        <li style="margin-bottom:7px">Scripts live in <span class="ic">lua_script/&lt;domain&gt;/</span> — one directory per domain</li>
+                        <li style="margin-bottom:7px">Scripts live in <span class="ic">./lua_script/&lt;domain&gt;/</span> — one directory per domain</li>
                         <li style="margin-bottom:7px">All <span class="ic">.lua</span> files run in filesystem order; first blocking action wins</li>
                         <li style="margin-bottom:7px">Every script must define <span class="ic">function clofix_main(request)</span></li>
                         <li style="margin-bottom:7px">Scripts return a <strong>table</strong> with an <span class="ic">action</span> field, or a legacy <span class="ic">bool</span> for backwards compatibility</li>
@@ -336,11 +359,643 @@
                         <li style="margin-bottom:7px">The <span class="ic">utils.*</span> global provides string, JSON, and timing utilities</li>
                         <li>Each script runs in an isolated Lua state with a <strong>50 ms wall-clock timeout</strong></li>
                     </ul>
+
+                    <!-- OWASP Top 10 Protection List -->
+                    <p class="lua-sub" style="margin-top: 32px;">🛡️ OWASP Top 10 Coverage</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 16px 0 24px;">
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A01:2021-Broken Access Control</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Path/IP whitelisting, admin area protection, API key auth</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A02:2021-Cryptographic Failures</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Enforce HTTPS, detect missing security headers (HSTS)</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A03:2021-Injection</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">SQLi, NoSQLi, CMDi, LDAP, XPath via pattern matching</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A04:2021-Insecure Design</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Rate limiting, brute-force protection, bot mitigation</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A05:2021-Security Misconfiguration</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Block debug paths, .git, .env, directory listing attempts</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A06:2021-Vulnerable Components</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Detect scanner UA (nikto, nuclei) and known exploit paths</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A07:2021-Identification/Auth Failures</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Credential stuffing detection, MFA bypass monitoring</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A08:2021-Software/Data Integrity</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Prevent malicious file uploads, block webshell extensions</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A09:2021-Security Logging/Monitoring</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">clofix.log_attack() with full request context</span>
+                        </div>
+                        <div style="background: var(--lua-surface); border: 1px solid var(--lua-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--lua-mono); font-size: 13px; font-weight: 700; color: var(--lua-orange);">A10:2021-SSRF</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--lua-muted); margin-top: 6px;">Block internal IPs/hostnames in URL parameters</span>
+                        </div>
+                    </div>
+
+                    <!-- Comprehensive Protection Categories (Beyond OWASP Top 10) -->
+                    <p class="lua-sub" style="margin-top: 32px;">🔒 Comprehensive Protection Matrix — What You Can Build with Lua</p>
+                    
+                    <!-- Category 1: Injection & Payload Attacks -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">💉 INJECTION & PAYLOAD ATTACKS</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">💾</span> <span style="font-size: 13px;">SQL Injection (UNION, OR, SLEEP)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📊</span> <span style="font-size: 13px;">NoSQL Injection (MongoDB operators)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🐚</span> <span style="font-size: 13px;">Command Injection (; | && ` $() )</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📜</span> <span style="font-size: 13px;">XSS (Reflected, Stored, DOM-based)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📁</span> <span style="font-size: 13px;">Path Traversal (../, ..\, URL encoded)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🌐</span> <span style="font-size: 13px;">SSRF (Internal IPs, localhost, metadata)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📋</span> <span style="font-size: 13px;">LDAP Injection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔤</span> <span style="font-size: 13px;">XPath Injection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📧</span> <span style="font-size: 13px;">SMTP/Header Injection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🧩</span> <span style="font-size: 13px;">Template Injection (SSTI)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">⚡</span> <span style="font-size: 13px;">OGNL/EL Injection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔌</span> <span style="font-size: 13px;">HTTP Parameter Pollution</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Bot & Automated Threats -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">🤖 BOT & AUTOMATED THREATS</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🕷️</span> <span style="font-size: 13px;">Web Scraping / Crawlers</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔑</span> <span style="font-size: 13px;">Credential Stuffing</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔨</span> <span style="font-size: 13px;">Brute Force (Login, API, OTP)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📱</span> <span style="font-size: 13px;">Headless Browsers (Puppeteer, Playwright)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🤖</span> <span style="font-size: 13px;">AI Bots / GPT Crawlers</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔄</span> <span style="font-size: 13px;">Content Scraping / Price Harvesting</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📊</span> <span style="font-size: 13px;">Form Spam / Comment Spam</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🎣</span> <span style="font-size: 13px;">Phishing Kit Detection</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Rate Limiting & DoS Protection -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">⏱️ RATE LIMITING & DOS PROTECTION</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🌍</span> <span style="font-size: 13px;">Per-IP Rate Limiting</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔑</span> <span style="font-size: 13px;">Per-API Key / Token Quotas</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📁</span> <span style="font-size: 13px;">Per-Endpoint / Path Limits</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🌐</span> <span style="font-size: 13px;">Per-Session / User ID Limits</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">⚡</span> <span style="font-size: 13px;">Burst Protection (DDoS mitigation)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🛡️</span> <span style="font-size: 13px;">Layer 7 DDoS Shield</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">⏰</span> <span style="font-size: 13px;">Time-Based Access Control</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📊</span> <span style="font-size: 13px;">Concurrent Connection Limits</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Geolocation & Reputation -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">🌍 GEOLOCATION & IP REPUTATION</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🚫</span> <span style="font-size: 13px;">Country Blocking (sanctions, high-risk)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🧅</span> <span style="font-size: 13px;">Tor Exit Node Detection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔒</span> <span style="font-size: 13px;">VPN / Proxy / Datacenter Detection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">☁️</span> <span style="font-size: 13px;">Cloud Provider IPs (AWS, GCP, Azure)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">⚠️</span> <span style="font-size: 13px;">Malicious IP Reputation (blacklists)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🏢</span> <span style="font-size: 13px;">ASN / ISP-based filtering</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📍</span> <span style="font-size: 13px;">City/Region specific rules</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📡</span> <span style="font-size: 13px;">Anonymizer / Open Proxy Detection</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 5: Access Control & Authentication -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">🔐 ACCESS CONTROL & AUTHENTICATION</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔑</span> <span style="font-size: 13px;">API Key Validation & Rotation</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔐</span> <span style="font-size: 13px;">JWT Validation (expiry, signature, claims)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔒</span> <span style="font-size: 13px;">Basic Auth / Bearer Token enforcement</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🛡️</span> <span style="font-size: 13px;">IP Whitelisting / Blacklisting</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🚪</span> <span style="font-size: 13px;">Admin Area Protection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔓</span> <span style="font-size: 13px;">Password Protect Staging/Dev URLs</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🍪</span> <span style="font-size: 13px;">Session Hijacking Prevention</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔄</span> <span style="font-size: 13px;">CSRF Token Validation</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📱</span> <span style="font-size: 13px;">MFA Enforcement Check</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🕒</span> <span style="font-size: 13px;">Session Timeout / Inactivity Logout</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 6: File & Upload Security -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">📁 FILE & UPLOAD SECURITY</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🚫</span> <span style="font-size: 13px;">Dangerous File Extensions (.php, .exe, .sh)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🖼️</span> <span style="font-size: 13px;">Malicious Image / Polyglot Detection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📏</span> <span style="font-size: 13px;">File Size Limits (per endpoint)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔍</span> <span style="font-size: 13px;">MIME Type Validation</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🧪</span> <span style="font-size: 13px;">Upload-to-Webshell Prevention</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔒</span> <span style="font-size: 13px;">Executable Upload Blocking</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📦</span> <span style="font-size: 13px;">Archive Bomb / Zip Bomb Detection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🖨️</span> <span style="font-size: 13px;">Sensitive File Access (.env, .git, config)</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 7: Protocol & Header Security -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">📡 PROTOCOL & HEADER SECURITY</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔒</span> <span style="font-size: 13px;">HTTPS Enforcement (redirect HTTP)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📋</span> <span style="font-size: 13px;">HTTP Method Restriction (GET/POST only)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🛡️</span> <span style="font-size: 13px;">Security Headers (HSTS, CSP, X-Frame-Options)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔍</span> <span style="font-size: 13px;">User-Agent Filtering / Blocking</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🌐</span> <span style="font-size: 13px;">Referer / Origin Validation</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📏</span> <span style="font-size: 13px;">Header Size / Count Limits</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🚫</span> <span style="font-size: 13px;">Block Suspicious Headers (X-Forwarded-Host abuse)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔄</span> <span style="font-size: 13px;">Host Header Injection Protection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔐</span> <span style="font-size: 13px;">TLS Fingerprint (JA3/JA4) Validation</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🌍</span> <span style="font-size: 13px;">CORS Policy Enforcement</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 8: Business Logic & Abuse -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">💼 BUSINESS LOGIC & ABUSE PREVENTION</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🛒</span> <span style="font-size: 13px;">Coupon / Promo Code Brute Force</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🎫</span> <span style="font-size: 13px;">Ticket / Inventory Hoarding Prevention</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📧</span> <span style="font-size: 13px;">Email Verification / Rate Limit Signups</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔁</span> <span style="font-size: 13px;">Account Takeover Detection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">💰</span> <span style="font-size: 13px;">Payment Fraud / Carding Attempts</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📊</span> <span style="font-size: 13px;">Vote / Poll Manipulation</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📈</span> <span style="font-size: 13px;">Click Fraud / Ad Fraud Detection</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔄</span> <span style="font-size: 13px;">API Abuse / Webhook Bombing</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🚫</span> <span style="font-size: 13px;">Competitor Data Scraping</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 9: CMS & Platform Specific -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">📦 CMS & PLATFORM SPECIFIC</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔐</span> <span style="font-size: 13px;">WordPress: XML-RPC Block</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">👤</span> <span style="font-size: 13px;">WordPress: Author Enumeration</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📁</span> <span style="font-size: 13px;">WordPress: PHP in Uploads Block</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🛒</span> <span style="font-size: 13px;">WooCommerce: Bot Checkout Prevention</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📋</span> <span style="font-size: 13px;">Joomla / Drupal exploit paths</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">⚙️</span> <span style="font-size: 13px;">phpMyAdmin / Adminer Exposure</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔧</span> <span style="font-size: 13px;">Laravel Debug Mode Block</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🐍</span> <span style="font-size: 13px;">Django / Flask debug endpoints</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 10: Advanced & Custom Logic -->
+                    <div style="margin: 24px 0 16px;">
+                        <span style="font-family: var(--lua-mono); font-size: 14px; font-weight: 700; color: var(--lua-teal); border-bottom: 1px solid var(--lua-border); padding-bottom: 4px;">⚡ ADVANCED & CUSTOM LOGIC</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin: 10px 0 20px;">
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔄</span> <span style="font-size: 13px;">Smart Redirects (A/B testing, geo redirect)</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔌</span> <span style="font-size: 13px;">Canary / Honeypot Traps</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">⏰</span> <span style="font-size: 13px;">Maintenance Mode / Scheduled Access</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📊</span> <span style="font-size: 13px;">A/B Testing Traffic Splitting</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔍</span> <span style="font-size: 13px;">Request Mirroring / Debugging</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">📝</span> <span style="font-size: 13px;">Custom Audit Logging</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🛡️</span> <span style="font-size: 13px;">Dynamic IP Reputation Scoring</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔮</span> <span style="font-size: 13px;">Machine Learning Model Integration</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🔐</span> <span style="font-size: 13px;">Zero-Trust Security Policies</span>
+                        </div>
+                        <div style="background: rgba(0,194,168,.04); border: 1px solid var(--lua-border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 20px;">🌐</span> <span style="font-size: 13px;">Multi-Tenant Isolation Rules</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 24px; font-size: 14px; color: var(--lua-muted);">This is just a sample — with CloFix Lua you can build <strong style="color: #fff;">any security logic imaginable</strong> using the full power of a programming language combined with real-time request context and shared state.</p>
+
                 </section>
 
-                <!-- 02 DIRECTORY -->
+                <!-- EXECUTION FLOW -->
+                <section class="lua-section" id="execution-flow">
+                    <h2 class="lua-section__title"><span class="sec-num">02</span> Execution Flow</h2>
+                    <p>Every HTTP request passes through a fixed pipeline before reaching your backend. Understanding this order helps you write efficient, correct scripts.</p>
+
+                    <div class="lua-code">
+                        <div class="lua-code__hdr"><span class="lua-code__lang">pipeline</span></div>
+                        <pre>
+  HTTP Request
+       │
+       ▼
+  ┌─────────────────────────────────────────────┐
+  │  WAF Engine  — IP extraction, GeoIP, TLS    │
+  │  fingerprint (JA3/JA4), bot score,          │
+  │  is_tor / is_vpn / ip_reputation            │
+  └───────────────────┬─────────────────────────┘
+                       │  enriched request object
+                       ▼
+  ┌─────────────────────────────────────────────┐
+  │  Lua Script Pipeline  (per domain)          │
+  │                                             │
+  │  01_fast_checks.lua  ──►  action table      │
+  │       │ allow                               │
+  │  02_attack_detect.lua ──► action table      │
+  │       │ allow                               │
+  │  03_custom_rules.lua  ──► action table      │
+  │                                             │
+  │  First non-allow action WINS — pipeline     │
+  │  stops immediately.                         │
+  └───────────────────┬─────────────────────────┘
+                       │
+              ┌────────┴────────┐
+              │                 │
+           block /          allow
+         rate_limit         │
+              │              ▼
+              │       Backend / Proxy
+              ▼
+        Error Response
+        (403 / 429 / etc)</pre>
+                    </div>
+
+                    <p class="lua-sub">Inside a single script</p>
+                    <div class="lua-code">
+                        <div class="lua-code__hdr"><span class="lua-code__lang">flow</span></div>
+                        <pre>
+  clofix_main(request)
+         │
+         ├── 1. Threat Intel fast-path
+         │        clofix.is_tor() / clofix.ip_reputation()
+         │        → immediate block if malicious
+         │
+         ├── 2. Payload Normalization
+         │        clofix.normalize_payload(request.body)
+         │        multi-pass URL + HTML decode → lowercase
+         │
+         ├── 3. Pattern Matching
+         │        SQL injection / XSS / CMDi patterns
+         │        on normalized surface
+         │
+         ├── 4. Rate Limiting
+         │        clofix.rate_limit_ip(limit, window)
+         │
+         ├── 5. Threat Score Accumulation
+         │        score = score + N  per matched signal
+         │
+         └── 6. Decision
+                  score >= 80  →  block
+                  score >= 50  →  challenge
+                  score >= 20  →  log_only
+                  score  < 20  →  allow</pre>
+                    </div>
+
+                    <p class="lua-sub">Comparison with industry WAFs</p>
+                    <div class="lua-table-wrap">
+                        <table class="lua-table">
+                            <thead><tr><th>Feature</th><th>CloFix Lua</th><th>Cloudflare Workers</th><th>ModSecurity</th><th>AWS WAF</th></tr></thead>
+                            <tbody>
+                                <tr><td>Custom logic</td><td>✓ Full Lua</td><td>✓ JavaScript</td><td>✓ SecRule DSL</td><td>Regex only</td></tr>
+                                <tr><td>Threat scoring</td><td>✓ Built-in</td><td>Manual</td><td>✓ Anomaly score</td><td>–</td></tr>
+                                <tr><td>JA3/JA4 fingerprint</td><td>✓</td><td>✓</td><td>Plugin</td><td>–</td></tr>
+                                <tr><td>Shared state</td><td>✓ clofix.shared.*</td><td>KV Store</td><td>✓ Collections</td><td>–</td></tr>
+                                <tr><td>OWASP Top-10</td><td>✓ All 10</td><td>Managed rules</td><td>✓ CRS</td><td>Managed rules</td></tr>
+                                <tr><td>Execution limit</td><td>50 ms</td><td>50 ms</td><td>None</td><td>–</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- QUICK REFERENCE -->
+                <section class="lua-section" id="quick-ref">
+                    <h2 class="lua-section__title"><span class="sec-num">03</span> Quick Reference</h2>
+                    <p>Everything you need on one page — request fields, return table, and built-in functions. Full details in later sections.</p>
+
+                    <p class="lua-sub">Request Object — all fields at a glance</p>
+                    <div class="lua-code">
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — request fields</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <pre><span class="c">-- ── Core ──────────────────────────────────────────────</span>
+request.ip              <span class="c">-- "203.0.113.5"      client IP</span>
+request.method          <span class="c">-- "GET" / "POST" …</span>
+request.scheme          <span class="c">-- "https"</span>
+request.host            <span class="c">-- "example.com"</span>
+request.port            <span class="c">-- 443</span>
+request.uri             <span class="c">-- "/page?id=1"       full URI</span>
+request.path            <span class="c">-- "/page"            path only</span>
+request.raw_query       <span class="c">-- "id=1&amp;q=test"      unparsed query</span>
+
+<span class="c">-- ── Body ──────────────────────────────────────────────</span>
+request.body            <span class="c">-- raw request body string</span>
+request.raw_body        <span class="c">-- binary-safe body bytes</span>
+request.json_body       <span class="c">-- JSON-encoded body (if Content-Type: application/json)</span>
+
+<span class="c">-- ── Tables ────────────────────────────────────────────</span>
+request.headers         <span class="c">-- { ["user-agent"] = "…", … }  lowercase keys</span>
+request.raw_headers     <span class="c">-- full header block as string</span>
+request.cookies         <span class="c">-- { ["session_id"] = "…", … }</span>
+request.query           <span class="c">-- { ["id"] = "1", … }          parsed query params</span>
+request.form_data       <span class="c">-- { ["username"] = "…", … }    POST form fields</span>
+
+<span class="c">-- ── Client metadata ────────────────────────────────────</span>
+request.user_agent      <span class="c">-- "Mozilla/5.0 …"</span>
+request.referer         <span class="c">-- "https://google.com/…"</span>
+request.content_type    <span class="c">-- "application/json"</span>
+request.content_length  <span class="c">-- 1024  (bytes)</span>
+request.is_tls          <span class="c">-- true / false</span>
+request.tls_version     <span class="c">-- "TLS 1.3"</span>
+
+<span class="c">-- ── GeoIP ──────────────────────────────────────────────</span>
+request.country         <span class="c">-- "US" / "BD" / "CN"  ISO-3166</span>
+request.region          <span class="c">-- "California"</span>
+request.city            <span class="c">-- "San Francisco"</span>
+request.asn             <span class="c">-- "AS15169"</span>
+request.org             <span class="c">-- "Google LLC"</span>
+
+<span class="c">-- ── Security fingerprint ───────────────────────────────</span>
+request.ja3             <span class="c">-- JA3 TLS fingerprint hash</span>
+request.ja4             <span class="c">-- JA4 TLS fingerprint hash</span>
+request.is_tor          <span class="c">-- true if Tor exit node</span>
+request.is_vpn          <span class="c">-- true if VPN / proxy</span>
+request.is_bot          <span class="c">-- true if bot detected by WAF engine</span>
+request.is_headless     <span class="c">-- true if headless browser</span>
+request.bot_score       <span class="c">-- 0–100  (higher = more likely bot)</span>
+request.anomaly_score   <span class="c">-- cumulative WAF anomaly score</span>
+request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"</span></pre>
+                    </div>
+
+                    <p class="lua-sub">Return Table — full structure</p>
+                    <div class="lua-code">
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — return table</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <pre><span class="k">return</span> {
+    <span class="g">action</span>      = <span class="s">"block"</span>,          <span class="c">-- required: allow / block / challenge /</span>
+                                      <span class="c">--          rate_limit / log_only / redirect / captcha</span>
+    <span class="g">status</span>      = <span class="n">403</span>,             <span class="c">-- HTTP status (auto-filled if omitted)</span>
+    <span class="g">message</span>     = <span class="s">"SQL Injection detected"</span>,  <span class="c">-- human-readable reason</span>
+    <span class="g">rule_name</span>   = <span class="s">"SQLI_001"</span>,      <span class="c">-- rule identifier — appears in WAF logs</span>
+    <span class="g">attack_type</span> = <span class="s">"SQL Injection"</span>,  <span class="c">-- attack category</span>
+    <span class="g">score</span>       = <span class="n">80</span>,              <span class="c">-- threat score (used by scoring engine)</span>
+    <span class="g">log</span>         = <span class="k">true</span>,            <span class="c">-- force emit a log entry</span>
+    <span class="g">redirect_to</span> = <span class="s">""</span>,              <span class="c">-- target URL when action == "redirect"</span>
+}</pre>
+                    </div>
+
+                    <p class="lua-sub">Built-in Functions — clofix.*</p>
+                    <div class="lua-code">
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — clofix.* cheatsheet</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <pre><span class="c">-- ── Payload decoding ───────────────────────────────────</span>
+<span class="p">clofix</span>.url_decode(s)          <span class="c">-- URL-decode  (%2F → /)</span>
+<span class="p">clofix</span>.base64_decode(s)       <span class="c">-- Base64 decode (standard + URL-safe)</span>
+<span class="p">clofix</span>.hex_decode(s)          <span class="c">-- Hex decode  (41 → A)</span>
+<span class="p">clofix</span>.html_decode(s)         <span class="c">-- HTML entity decode  (&amp;amp; → &amp;)</span>
+<span class="p">clofix</span>.normalize_payload(s)   <span class="c">-- multi-pass decode + lowercase + collapse whitespace</span>
+                               <span class="c">-- USE THIS before all pattern matching</span>
+
+<span class="c">-- ── Client info ────────────────────────────────────────</span>
+<span class="p">clofix</span>.get_ip()               <span class="c">-- current client IP string</span>
+<span class="p">clofix</span>.get_country()          <span class="c">-- ISO country code</span>
+<span class="p">clofix</span>.get_asn()              <span class="c">-- ASN string</span>
+<span class="p">clofix</span>.get_ja3()              <span class="c">-- JA3 fingerprint hash</span>
+<span class="p">clofix</span>.get_ja4()              <span class="c">-- JA4 fingerprint hash</span>
+<span class="p">clofix</span>.get_bot_score()        <span class="c">-- 0–100 bot confidence score</span>
+
+<span class="c">-- ── Threat intelligence ────────────────────────────────</span>
+<span class="p">clofix</span>.is_tor()               <span class="c">-- boolean — Tor exit node?</span>
+<span class="p">clofix</span>.is_vpn()               <span class="c">-- boolean — VPN / proxy?</span>
+<span class="p">clofix</span>.is_proxy()             <span class="c">-- boolean — proxy headers detected?</span>
+<span class="p">clofix</span>.ip_reputation()        <span class="c">-- "clean" / "suspicious" / "malicious"</span>
+
+<span class="c">-- ── Rate limiting ──────────────────────────────────────</span>
+<span class="p">clofix</span>.rate_limit(key, limit, window_secs)   <span class="c">-- custom key</span>
+<span class="p">clofix</span>.rate_limit_ip(limit, window_secs)     <span class="c">-- per client IP</span>
+<span class="p">clofix</span>.rate_limit_endpoint(limit, window_secs) <span class="c">-- per IP + path</span>
+<span class="c">-- all three return: count, exceeded (boolean)</span>
+
+<span class="c">-- ── Logging ────────────────────────────────────────────</span>
+<span class="p">clofix</span>.log(level, msg)        <span class="c">-- level: "info" / "warn" / "error"</span>
+<span class="p">clofix</span>.log_attack(rule, type, payload?)
+                               <span class="c">-- structured attack log — IP, country, UA,</span>
+                               <span class="c">-- method, URI auto-included</span>
+
+<span class="c">-- ── Shared dict ───────────────────────────────────────</span>
+<span class="p">clofix</span>.shared.ddos_attack     <span class="c">-- access by name (declared in config)</span>
+<span class="p">clofix</span>.shared_dict(<span class="s">"name"</span>)   <span class="c">-- programmatic lookup</span></pre>
+                    </div>
+
+                    <p class="lua-sub">Built-in Functions — utils.*</p>
+                    <div class="lua-code">
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — utils.* cheatsheet</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <pre><span class="p">utils</span>.contains(s, sub)     <span class="c">-- boolean — plain match</span>
+<span class="p">utils</span>.starts_with(s, pfx)  <span class="c">-- boolean</span>
+<span class="p">utils</span>.ends_with(s, sfx)    <span class="c">-- boolean</span>
+<span class="p">utils</span>.to_lower(s)          <span class="c">-- string</span>
+<span class="p">utils</span>.to_upper(s)          <span class="c">-- string</span>
+<span class="p">utils</span>.trim(s)              <span class="c">-- strip whitespace</span>
+<span class="p">utils</span>.split(s, sep)        <span class="c">-- table / array</span>
+<span class="p">utils</span>.url_encode(s)        <span class="c">-- string</span>
+<span class="p">utils</span>.url_decode(s)        <span class="c">-- string, err?</span>
+<span class="p">utils</span>.base64_encode(s)     <span class="c">-- string</span>
+<span class="p">utils</span>.base64_decode(s)     <span class="c">-- string, err?</span>
+<span class="p">utils</span>.json_encode(v)       <span class="c">-- string, err?</span>
+<span class="p">utils</span>.json_decode(s)       <span class="c">-- value, err?</span>
+<span class="p">utils</span>.build_query(t)       <span class="c">-- "k=v&amp;k2=v2"</span>
+<span class="p">utils</span>.log(msg)             <span class="c">-- INFO log shorthand</span>
+<span class="p">utils</span>.now()                <span class="c">-- Unix timestamp (same as os.time())</span></pre>
+                    </div>
+
+                    <p class="lua-sub">Three starter scripts</p>
+                    <div class="lua-table-wrap">
+                        <table class="lua-table">
+                            <thead><tr><th>File</th><th>Purpose</th><th>Shared Dict needed</th></tr></thead>
+                            <tbody>
+                                <tr><td>example_security.lua</td><td>Multi-rule scoring engine covering SQLi, XSS, CMDi, SSRF, rate limit, bad UA, Tor, reputation</td><td>ddos_attack</td></tr>
+                                <tr><td>wordpress_shield.lua</td><td>XML-RPC block, author enum, PHP upload guard, wp-login brute force</td><td>ddos_attack</td></tr>
+                                <tr><td>api_protection.lua</td><td>API key auth + per-key quota + endpoint rate limiting</td><td>rate_limit</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 02 DIRECTORY (renumbered) -->
                 <section class="lua-section" id="directory">
-                    <h2 class="lua-section__title"><span class="sec-num">02</span> Directory Structure</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">04</span> Directory Structure</h2>
                     <p>CloFix creates the domain directory automatically when Lua is enabled. You can also create it manually:</p>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">filesystem</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
@@ -372,13 +1027,13 @@ luac -p ./lua_script/your-domain.com/script.lua</pre>
 
                 <!-- 03 CONFIG -->
                 <section class="lua-section" id="config">
-                    <h2 class="lua-section__title"><span class="sec-num">03</span> Domain Configuration</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">05</span> Domain Configuration</h2>
                     <p>Enable Lua and declare shared dictionaries inside your domain config or via the <strong style="color:#fff;">CloFix Config Manager</strong> dashboard:</p>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">nginx config</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="c"># ./conf/example.com.conf</span>
 domain example.com {
-    backend http://localhost:<span class="n">8080</span>;
+    proxy_pass http://localhost:<span class="n">8080</span>;
 
     lua {
         enabled on;
@@ -392,7 +1047,7 @@ domain example.com {
 
                 <!-- 04 STRUCTURE -->
                 <section class="lua-section" id="structure">
-                    <h2 class="lua-section__title"><span class="sec-num">04</span> Script Structure</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">06</span> Script Structure</h2>
                     <p class="lua-sub">Minimal Script</p>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">lua</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
@@ -437,7 +1092,7 @@ domain example.com {
 
                 <!-- 05 ACTION SYSTEM -->
                 <section class="lua-section" id="actions">
-                    <h2 class="lua-section__title"><span class="sec-num">05</span> Action System</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">07</span> Action System</h2>
                     <p><span class="ic">clofix_main</span> must return a <strong style="color:#fff;">table</strong> with at minimum an <span class="ic">action</span> field. The WAF engine reads all fields to decide how to respond, what to log, and whether to alert.</p>
 
                     <p class="lua-sub">Return Table Fields</p>
@@ -510,7 +1165,7 @@ domain example.com {
 
                 <!-- 06 THREAT SCORING -->
                 <section class="lua-section" id="scoring">
-                    <h2 class="lua-section__title"><span class="sec-num">06</span> Threat Scoring Engine</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">08</span> Threat Scoring Engine</h2>
                     <p>Instead of returning a fixed action, scripts can accumulate a numeric <span class="ic">score</span> across multiple detection checks and let the engine decide the action threshold. This is ideal for multi-rule scripts.</p>
 
                     <div class="score-bar">
@@ -547,7 +1202,7 @@ domain example.com {
 
                 <!-- 07 REQUEST OBJECT -->
                 <section class="lua-section" id="request">
-                    <h2 class="lua-section__title"><span class="sec-num">07</span> Request Object Reference</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">09</span> Request Object Reference</h2>
                     <p>All fields on the <span class="ic">request</span> table are read-only. Always guard against <span class="ic">nil</span> using <span class="ic">or "default"</span>.</p>
 
                     <p class="lua-sub">Core Fields</p>
@@ -661,7 +1316,7 @@ domain example.com {
 
                 <!-- 08 CLOFIX API -->
                 <section class="lua-section" id="clofix-api">
-                    <h2 class="lua-section__title"><span class="sec-num">08</span> clofix.* Helper API</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">10</span> clofix.* Helper API</h2>
                     <p>The <span class="ic">clofix</span> global table is available inside every script. It provides payload decoding, threat intelligence, rate limiting, and logging — all bound to the current request context.</p>
 
                     <p class="lua-sub">Payload Decoding</p>
@@ -771,7 +1426,7 @@ domain example.com {
 
                 <!-- 09 UTILS API -->
                 <section class="lua-section" id="utils-api">
-                    <h2 class="lua-section__title"><span class="sec-num">09</span> utils.* Helper API</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">11</span> utils.* Helper API</h2>
                     <p>The <span class="ic">utils</span> global provides general-purpose string, JSON, and timing utilities available in every script.</p>
 
                     <div class="lua-table-wrap">
@@ -816,7 +1471,7 @@ domain example.com {
 
                 <!-- 10 SHARED DICTS -->
                 <section class="lua-section" id="dicts">
-                    <h2 class="lua-section__title"><span class="sec-num">10</span> Shared Dictionaries</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">12</span> Shared Dictionaries</h2>
                     <p>Shared dictionaries maintain state across requests and scripts for a domain. They are thread-safe and persist for the lifetime of the WAF process.</p>
                     <p class="lua-sub">Access</p>
                     <div class="lua-code">
@@ -851,7 +1506,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- 11 RATE LIMITING -->
                 <section class="lua-section" id="ratelimit">
-                    <h2 class="lua-section__title"><span class="sec-num">11</span> Rate Limiting</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">13</span> Rate Limiting</h2>
                     <p>Two approaches are available: the built-in <span class="ic">clofix.rate_limit*</span> functions (backed by a persistent in-memory store), or manual shared-dict counters for full control.</p>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">lua — clofix rate limit API</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
@@ -885,7 +1540,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- 12 LOGGING -->
                 <section class="lua-section" id="logging">
-                    <h2 class="lua-section__title"><span class="sec-num">12</span> Logging</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">14</span> Logging</h2>
                     <div class="lua-table-wrap">
                         <table class="lua-table">
                             <thead><tr><th>Method</th><th>Level</th><th>Use for</th></tr></thead>
@@ -916,7 +1571,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- 13 EXECUTION LIMITS -->
                 <section class="lua-section" id="limits">
-                    <h2 class="lua-section__title"><span class="sec-num">13</span> Execution Limits</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">15</span> Execution Limits</h2>
                     <p>Each script runs in an isolated Lua state with hard resource limits to prevent runaway scripts from impacting WAF throughput.</p>
                     <div class="lua-table-wrap">
                         <table class="lua-table">
@@ -936,7 +1591,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- EXAMPLES -->
                 <section class="lua-section">
-                    <h2 class="lua-section__title"><span class="sec-num">14</span> Core Examples</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">16</span> Core Examples</h2>
 
                     <!-- RATE LIMITER -->
                     <p class="lua-sub" id="ex-rate">Rate Limiter</p>
@@ -1128,7 +1783,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- ATTACK SCRIPTS -->
                 <section class="lua-section" id="attack-scripts">
-                    <h2 class="lua-section__title"><span class="sec-num">15</span> Attack-Specific Scripts</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">17</span> Attack-Specific Scripts</h2>
 
                     <!-- XSS -->
                     <p class="lua-sub" id="ex-xss">XSS Detection</p>
@@ -1493,7 +2148,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- MORE SCRIPTS -->
                 <section class="lua-section" id="more-scripts">
-                    <h2 class="lua-section__title"><span class="sec-num">16</span> More Useful Scripts</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">18</span> More Useful Scripts</h2>
 
                     <!-- PASSWORD PROTECT -->
                     <p class="lua-sub" id="ex-password">Password Protect Any URL</p>
@@ -1791,7 +2446,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
 
                 <!-- TESTING -->
                 <section class="lua-section" id="testing">
-                    <h2 class="lua-section__title"><span class="sec-num">17</span> Testing</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">19</span> Testing</h2>
                     <p class="lua-sub">Diagnostic Script</p>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">debug_request.lua — remove before production</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
@@ -1830,13 +2485,13 @@ curl <span class="s">'https://your-domain.com/?id=1%20UNION%20SELECT%20*%20FROM%
 <span class="k">for</span> i <span class="k">in</span> $(seq <span class="n">1</span> <span class="n">200</span>); <span class="k">do</span> curl -s -o /dev/null https://your-domain.com/ &amp; done; wait
 
 <span class="c"># Validate syntax</span>
-luac -p /etc/clofix/lua_script/your-domain.com/script.lua</pre>
+luac -p ./lua_script/your-domain.com/script.lua</pre>
                     </div>
                 </section>
 
                 <!-- TROUBLESHOOTING -->
                 <section class="lua-section" id="troubleshooting">
-                    <h2 class="lua-section__title"><span class="sec-num">18</span> Troubleshooting</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">20</span> Troubleshooting</h2>
                     <div class="lua-table-wrap">
                         <table class="lua-table">
                             <thead><tr><th>Error / Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
@@ -1856,7 +2511,7 @@ luac -p /etc/clofix/lua_script/your-domain.com/script.lua</pre>
 
                 <!-- BEST PRACTICES -->
                 <section class="lua-section" id="best">
-                    <h2 class="lua-section__title"><span class="sec-num">19</span> Best Practices</h2>
+                    <h2 class="lua-section__title"><span class="sec-num">21</span> Best Practices</h2>
                     <ol class="lua-ol">
                         <li><strong>One script per concern</strong> — keep <code>rate_limit.lua</code>, <code>bot_detection.lua</code>, <code>sqli.lua</code> separate for clarity and easy toggling</li>
                         <li><strong>Always use clofix.normalize_payload()</strong> before pattern matching — catches multi-encoded bypass attempts automatically</li>
