@@ -141,6 +141,56 @@
 
       <div class="features-flex">
           <!-- AI CATEGORY -->
+          <h2 class="category-heading">Defualt Activeted Protection</h2>
+          
+          <div class="feature-card" data-id="behavior_analysis">
+              <h3>🔍 Behavioral Analysis</h3>
+              <p>Advanced browser vs. bot detection using behavioral patterns and TLS fingerprinting</p>
+          </div>
+          <template id="behavior_analysis">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>Request-1 Blocking:</strong> FastBlocker fires on the very first request — no history needed. Missing Sec-Fetch-*, bare Accept headers, and low header count score instantly before any proxying occurs</li>
+                      <li><strong>JA3 TLS Fingerprinting:</strong> Computed directly from Go's tls.ClientHelloInfo via GetConfigForClient hook — no nginx module required. CipherSuites, SupportedVersions, SupportedCurves, SignatureSchemes, ALPN, and SNI all contribute to the hash</li>
+                      <li><strong>Known Browser Database:</strong> Chrome, Firefox, Safari, Edge, Opera, Brave, and Tor Browser JA3 hashes pre-loaded. Exact match = instant allow with zero behavioral scoring overhead</li>
+                      <li><strong>UA Structure Analysis:</strong> Detects tools by shape, not name — no hardcoded tool strings. Checks Mozilla/ token, platform () grouping, and AppleWebKit/Gecko presence. All three must exist simultaneously</li>
+                      <li><strong>Sec-Fetch Header Detection:</strong> Injected by all browsers since Chrome 76 / Firefox 90 — absent in every HTTP library. Missing all three Sec-Fetch-Site/Mode/Dest headers scores +35pts instantly</li>
+                      <li><strong>Tiered Velocity Scoring:</strong> Three escalating tiers — warn (+20), high (+35), extreme (+50) — scored per JA3 fingerprint over a 5-minute sliding window. IP rotation doesn't help if TLS stack is consistent</li>
+                      <li><strong>Machine Timing Detection:</strong> Coefficient of variation (stddev/mean) of inter-request intervals. CV &lt;0.05 AND mean &lt;2s = machine precision timing (+45pts). Requires only 4 requests to compute</li>
+                      <li><strong>Uniform Response Time Detection:</strong> Tools receive consistent server response times. CV &lt;0.1 across 6+ requests flags automated polling (+20pts)</li>
+                      <li><strong>Shannon Path Entropy:</strong> Entropy &lt;0.6 on normalized paths = scanner repeating same endpoints (+20pts). Entropy &lt;0.3 with 10+ requests = very low entropy (+35pts). Paths normalized: /api/users/123 → /api/users/*</li>
+                      <li><strong>Sequential Enumeration:</strong> Detects /item/1, /item/2, /item/3 numeric crawl patterns. Fires when &gt;30% of consecutive path pairs are sequential (+35pts)</li>
+                      <li><strong>High Path Density:</strong> &gt;90% unique paths in &lt;8 requests = scanner walking endpoints (+25pts). Combined with velocity = strong scanner signal</li>
+                      <li><strong>Zero Static Assets:</strong> Real users load CSS/JS/images — tools never do. 0% static asset ratio after 10+ requests adds +30pts. Checked against 18 file extensions</li>
+                      <li><strong>Method Probing Detection:</strong> 4+ distinct HTTP methods (GET/POST/PUT/DELETE/PATCH/OPTIONS/HEAD) against the same path = method enumeration attack (+30pts)</li>
+                      <li><strong>Error Rate Analysis:</strong> Three tiers — elevated (&gt;25% 4xx → +12pts), high (&gt;50% 4xx/5xx → +25pts), 404-dominant (&gt;50% 404 → +35pts). Distinguishes path probing from application errors</li>
+                      <li><strong>Parameter Fuzzing Detection:</strong> Same endpoint with 10+ unique parameter names across 20+ requests = automated parameter discovery (+30pts)</li>
+                      <li><strong>UA Rotation Detection:</strong> &gt;30% unique User-Agents across 10+ requests = evasion attempt via UA cycling (+25pts)</li>
+                      <li><strong>Burst Pattern Detection:</strong> Zero requests in the prior 9-minute window followed by 20+ in the last minute = attack burst after reconnaissance silence (+30pts)</li>
+                      <li><strong>Path Traversal Scoring:</strong> Double-dot sequences (../, ..\, %2e%2e), null bytes (\x00, %00), CRLF injection (\r, \n) in request paths scored independently in both FastBlocker and BehaviorEngine layers</li>
+                      <li><strong>Query String Injection:</strong> Structural injection patterns in query strings — union+select, &lt;script, onerror=, exec(, base64_decode(, javascript: — scored +50–55pts on first occurrence</li>
+                      <li><strong>Sticky Block System:</strong> Score ≥70 triggers a 15-minute hard block written to the profile. Pre-request IsBlocked() check fires before WAF rules, DDoS engine, or upstream proxy</li>
+                      <li><strong>Block Auto-Expiry:</strong> Block TTL auto-expires on the next request after 15 minutes. Profile demoted to challenge state rather than deleted — retains behavioral history</li>
+                      <li><strong>Session Trust Bonus:</strong> Established sessions older than 10 minutes with score &lt;20 receive a −15pts reduction. Prevents over-blocking legitimate power users</li>
+                      <li><strong>New Profile Penalty:</strong> Profile younger than 10 seconds with 15+ requests scores +20pts — human-impossible volume in that window</li>
+                      <li><strong>Domain Isolation:</strong> Profile store is per-domain. Dashboard locked to r.Host — ?domain= query parameter is completely ignored server-side, preventing cross-tenant data leakage</li>
+                      <li><strong>IP Rate Limiter:</strong> Sliding window 30 req/10s per IP. Fires independently of behavioral scoring — instant 5-minute block regardless of headers or UA</li>
+                      <li><strong>Health Check Bypass:</strong> Silent monitoring probes (no UA, GET /, no body) are whitelisted at FastBlocker level — load balancer checks never accumulate false-positive scores</li>
+                      <li><strong>Learning Mode:</strong> Monitor-only mode records detections and flags profiles without blocking. Safe for baseline establishment. Toggle live via /waf-dashboard/behavior-learning endpoint</li>
+                      <li><strong>Profile Ring Buffer:</strong> Each profile stores the last 100 requests in memory with O(1) eviction. Fixed memory footprint regardless of request volume</li>
+                      <li><strong>Background Sweeper:</strong> Idle profiles evicted every 5 minutes after 30-minute TTL. Prevents unbounded memory growth under sustained scan traffic</li>
+                      <li><strong>2 Layers, 20+ Signals:</strong> Layer 1 (FastBlocker) — 7 instant signals on request 1. Layer 2 (BehaviorEngine) — 13 multi-request signals over sliding 5-minute window. Both run synchronously before upstream proxy. No external dependencies — no Redis, no database, no sidecar</li>
+                  </ul>
+
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> Every request passes through two independent scoring layers. FastBlocker evaluates structural signals immediately - Sec-Fetch headers, Accept quality, header count, UA shape, path anomalies, and IP rate. BehaviorEngine builds a per-fingerprint profile and scores velocity, timing regularity, path entropy, error rates, static asset ratio, burst patterns, and more over a sliding 5-minute window. A fingerprint reaching score ≥70 is sticky-blocked for 15 minutes. JA3 hash from the TLS ClientHello is the primary profile key - IP rotation, VPN hops, and proxy chains don't reset the profile if the TLS fingerprint is consistent. The entire system runs in-process with no external dependencies.</p>
+                  </div>
+              </div>
+          </template>
+
+
+          <!-- AI CATEGORY -->
           <h2 class="category-heading">AI-Powered Protection</h2>
           
           <div class="feature-card" data-id="fingerprint_blocking">
