@@ -828,20 +828,7 @@
                   score  < 20  →  allow</pre>
                     </div>
 
-                    <p class="lua-sub">Comparison with industry WAFs</p>
-                    <div class="lua-table-wrap">
-                        <table class="lua-table">
-                            <thead><tr><th>Feature</th><th>CloFix Lua</th><th>Cloudflare Workers</th><th>ModSecurity</th><th>AWS WAF</th></tr></thead>
-                            <tbody>
-                                <tr><td>Custom logic</td><td>✓ Full Lua</td><td>✓ JavaScript</td><td>✓ SecRule DSL</td><td>Regex only</td></tr>
-                                <tr><td>Threat scoring</td><td>✓ Built-in</td><td>Manual</td><td>✓ Anomaly score</td><td>–</td></tr>
-                                <tr><td>JA3/JA4 fingerprint</td><td>✓</td><td>✓</td><td>Plugin</td><td>–</td></tr>
-                                <tr><td>Shared state</td><td>✓ clofix.shared.*</td><td>KV Store</td><td>✓ Collections</td><td>–</td></tr>
-                                <tr><td>OWASP Top-10</td><td>✓ All 10</td><td>Managed rules</td><td>✓ CRS</td><td>Managed rules</td></tr>
-                                <tr><td>Execution limit</td><td>50 ms</td><td>50 ms</td><td>None</td><td>–</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    
                 </section>
 
                 <!-- QUICK REFERENCE -->
@@ -1013,16 +1000,7 @@ request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"<
                         <strong>Execution Order</strong>
                         Files execute in filesystem (alphabetical) order. Use numeric prefixes like <span class="ic">01_</span>, <span class="ic">02_</span> to control priority. Cheaper checks (block-list lookup) should run before heavy pattern matching.
                     </div>
-                    <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">shell</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
-                        <pre><span class="c"># Create manually if needed</span>
-sudo mkdir -p ./lua_script/your-domain.com
-sudo chown -R clofix:clofix ./lua_script/
-sudo chmod <span class="n">644</span> ./lua_script/your-domain.com/<span class="t">*</span>.lua
-
-<span class="c"># Validate syntax before deploying</span>
-luac -p ./lua_script/your-domain.com/script.lua</pre>
-                    </div>
+                    
                 </section>
 
                 <!-- 03 CONFIG -->
