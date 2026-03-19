@@ -57,18 +57,7 @@
             border-bottom: 1px solid var(--js-border);
         }
         .js-hero .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        .js-hero__badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(247,223,30,.1); border: 1px solid rgba(247,223,30,.35);
-            color: var(--js-yellow); font-size: 11px; font-weight: 700;
-            letter-spacing: 2px; text-transform: uppercase;
-            padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
-        }
-        .js-hero__badge::before {
-            content:''; width:7px; height:7px;
-            background:var(--js-yellow); border-radius:50%;
-            animation: jsPulse 2s infinite;
-        }
+
         @keyframes jsPulse { 0%,100%{opacity:1} 50%{opacity:.25} }
         .js-hero h1 { font-size: clamp(32px,5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-1px; color:#fff; margin:0 0 16px; }
         .js-hero h1 span { color:var(--js-yellow); }
@@ -106,7 +95,7 @@
         .js-section__title { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color:#fff; letter-spacing:-.4px; margin:0 0 8px; padding-bottom:12px; border-bottom:1px solid var(--js-border); }
         .js-section__title .sec-num { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--js-yellow); background:rgba(247,223,30,.1); border:1px solid rgba(247,223,30,.2); padding:2px 8px; border-radius:4px; }
         .js-sub { font-size:16px; font-weight:700; color:var(--js-orange); margin:32px 0 10px; }
-        .js-sub::before { content:'// '; color:var(--js-muted); font-family:var(--js-mono); font-size:13px; }
+        .js-sub::before { content:'1'; color:var(--js-muted); font-family:var(--js-mono); font-size:13px; }
         .js-content p { color:var(--js-text); margin:0 0 16px; }
 
         .js-code { margin:16px 0 24px; border-radius:8px; overflow:hidden; border:1px solid var(--js-border); }
@@ -202,14 +191,13 @@
     </header>
 
     <main>
-        <!-- HERO -->
+                <!-- HERO -->
         <div class="js-hero">
             <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
                 <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
-                    <div class="js-hero__badge">JavaScript SDK</div>
-                    <span class="js-version">v1.0 — clofix(request) API</span>
+                    <span style="background: #132238; border: 1px solid #f7df1e; color: #f7df1e; font-size: 12px; font-weight: bold; padding: 8px 16px; border-radius: 30px;">🔵 JavaScript SDK v1.0</span>
                 </div>
-                <h1>CloFix <span>JavaScript (clofix)</span> Scripting Guide</h1>
+                <h1>CloFix <span style="color:#f7df1e;">JavaScript (clofix)</span> Scripting Guide</h1>
                 <p class="js-hero__lead">
                     Write <strong style="color:#fff;">clofix JavaScript functions</strong> to inspect, filter, and control every HTTP request flowing through
                     <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
@@ -675,7 +663,7 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
                     </div>
                 </section>
 
-                <!-- RATE LIMITING -->
+                
                 <section class="js-section" id="ratelimit">
                     <h2 class="js-section__title"><span class="sec-num">10</span> Rate Limiting</h2>
                     <p>Implement rate limiting using shared dictionaries:</p>
@@ -701,21 +689,40 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
         };
     }
     
-    <span class="js-comment">// Get current minute window</span>
-    <span class="js-keyword">const</span> minuteKey = <span class="js-string">"cnt:"</span> + ip + <span class="js-string">":"</span> + <span class="js-keyword">new</span> <span class="js-function">Date</span>().<span class="js-property">toISOString</span>().<span class="js-property">substring</span>(<span class="js-number">0</span>, <span class="js-number">16</span>);
-    <span class="js-keyword">let</span> count = dict.<span class="js-property">get</span>(minuteKey) || <span class="js-number">0</span>;
-    count = dict.<span class="js-property">incr</span>(minuteKey, <span class="js-number">1</span>);
-    dict.<span class="js-property">set</span>(minuteKey, count, <span class="js-number">70</span>);  <span class="js-comment">// Keep for 70 seconds</span>
+    <span class="js-comment">// FIXED: Use timestamp array for accurate counting</span>
+    <span class="js-keyword">const</span> key = <span class="js-string">"rate:"</span> + ip;
     
-    <span class="js-keyword">if</span> (count > CONFIG.REQUESTS_PER_MINUTE) {
+    <span class="js-comment">// Get existing timestamps</span>
+    <span class="js-keyword">let</span> timestamps = dict.<span class="js-property">get</span>(key);
+    <span class="js-keyword">if</span> (!timestamps) {
+        timestamps = [];
+    } <span class="js-keyword">else</span> {
+        <span class="js-keyword">try</span> {
+            timestamps = <span class="js-built_in">JSON</span>.<span class="js-property">parse</span>(timestamps);
+        } <span class="js-keyword">catch</span> (e) {
+            timestamps = [];
+        }
+    }
+    
+    <span class="js-comment">// Remove timestamps older than 60 seconds</span>
+    <span class="js-keyword">const</span> cutoff = now - <span class="js-number">60</span>;
+    timestamps = timestamps.<span class="js-property">filter</span>(ts => ts > cutoff);
+    
+    <span class="js-comment">// Check if over limit</span>
+    <span class="js-keyword">if</span> (timestamps.<span class="js-property">length</span> >= CONFIG.REQUESTS_PER_MINUTE) {
         <span class="js-comment">// Block for 5 minutes</span>
         dict.<span class="js-property">set</span>(<span class="js-string">"block:"</span> + ip, now + CONFIG.BLOCK_TIME, CONFIG.BLOCK_TIME);
+        dict.<span class="js-property">delete</span>(key);
         <span class="js-keyword">return</span> {
             <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>,
             <span class="js-property">reason</span>: <span class="js-string">"Rate limit exceeded"</span>,
             <span class="js-property">rule_name</span>: <span class="js-string">"RL_001"</span>
         };
     }
+    
+    <span class="js-comment">// Add current timestamp</span>
+    timestamps.<span class="js-property">push</span>(now);
+    dict.<span class="js-property">set</span>(key, <span class="js-built_in">JSON</span>.<span class="js-property">stringify</span>(timestamps), <span class="js-number">70</span>);
     
     <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
 }</pre>
@@ -791,7 +798,7 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
                             <tbody>
                                 <tr><td>Wall-clock timeout</td><td>2 seconds</td><td>Script that takes longer is killed and the request is blocked with 503</td></tr>
                                 <tr><td>Memory</td><td>32 MB</td><td>Memory limit per script execution</td></tr>
-                                <tr><td>File size</td><td>1 MB</td><td>Maximum JavaScript file size processed</td></tr>
+                                <tr><td>File size</td><td>10 MB</td><td>Maximum JavaScript file size processed</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1547,7 +1554,7 @@ curl https://your-domain.com/
 curl <span class="js-string">'https://your-domain.com/?id=1%20UNION%20SELECT%20*%20FROM%20users'</span>
 
 <span class="js-comment"># Test XSS</span>
-curl <span class="js-string">'https://your-domain.com/?q=<script>alert(1)</script>'</span>
+curl <span class="js-string">'https://your-domain.com/?q=&lt;script&gt;alert(1)&lt;/script&gt;'</span>
 
 <span class="js-comment"># Test rate limiting</span>
 <span class="js-keyword">for</span> i <span class="js-keyword">in</span> $(seq <span class="js-number">1</span> <span class="js-number">200</span>); <span class="js-keyword">do</span>
@@ -1648,7 +1655,7 @@ curl -A <span class="js-string">"sqlmap/1.7"</span> https://your-domain.com/</pr
                 </ul>
             </div>
         </div>
-        <div class="container"><p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p></div>
+        <div class="container"><p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p></div>
     </footer>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
