@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="canonical" href="https://clofix.com/clofix-js-script.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CloFix WAF JavaScript (clofix) Scripting Guide — write custom JavaScript functions for rate limiting, bot detection, geo-blocking, and OWASP Top 10 protection.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix WAF | JavaScript (clofix) Scripting Guide">
+    <meta property="og:description" content="Write custom clofix JavaScript functions to control every HTTP request flowing through CloFix WAF. Full reference, shared state, examples, and best practices.">
+    <meta property="og:url" content="https://clofix.com/clofix-js-script.html">
+    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix WAF | JavaScript (clofix) Scripting Guide">
+    <meta name="twitter:description" content="Complete guide for writing clofix JavaScript functions in CloFix WAF — request object, shared state, examples, and troubleshooting.">
+    <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+    <meta name="twitter:site" content="@clofix19">
+    <link rel="icon" type="image/png" href="img/clofix.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>CloFix WAF — JavaScript (clofix) Scripting Guide</title>
+    <style>
+        :root {
+            --js-dark:     #0a0e1a;
+            --js-navy:     #0f1a2e;
+            --js-surface:  #132238;
+            --js-border:   #2a3a56;
+            --js-yellow:   #f7df1e;
+            --js-orange:   #e85d26;
+            --js-blue:     #2e6db4;
+            --js-text:     #d8e0f0;
+            --js-muted:    #6a80a0;
+            --js-code:     #0c1422;
+            --js-mono:     'Space Mono', 'Courier New', monospace;
+            --js-gold:     #e8b84b;
+            --js-purple:   #9b6fd4;
+            --js-green:    #4caf50;
+        }
+
+        .js-page { background: var(--js-dark); color: var(--js-text); line-height: 1.75; }
+        .js-page * { box-sizing: border-box; }
+
+        .js-hero {
+            background:
+                radial-gradient(ellipse at 70% -10%, rgba(247,223,30,.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 110%, rgba(46,109,180,.12) 0%, transparent 55%),
+                var(--js-navy);
+            padding: 80px 0 64px;
+            border-bottom: 1px solid var(--js-border);
+        }
+        .js-hero .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .js-hero__badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(247,223,30,.1); border: 1px solid rgba(247,223,30,.35);
+            color: var(--js-yellow); font-size: 11px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+        }
+        .js-hero__badge::before {
+            content:''; width:7px; height:7px;
+            background:var(--js-yellow); border-radius:50%;
+            animation: jsPulse 2s infinite;
+        }
+        @keyframes jsPulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+        .js-hero h1 { font-size: clamp(32px,5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-1px; color:#fff; margin:0 0 16px; }
+        .js-hero h1 span { color:var(--js-yellow); }
+        .js-hero__lead { font-size:17px; color:var(--js-muted); max-width:620px; margin:0 0 36px; }
+        .js-hero__pills { display:flex; flex-wrap:wrap; gap:10px; }
+        .js-hero__pill { background:rgba(255,255,255,.04); border:1px solid var(--js-border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--js-text); }
+
+        .js-version {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(247,223,30,.08); border: 1px solid rgba(247,223,30,.3);
+            color: var(--js-yellow); font-size: 11px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 4px; margin-left: 12px;
+        }
+
+        .js-body { display:flex; max-width:1100px; margin:0 auto; padding:0 24px; gap:48px; align-items:flex-start; }
+
+        .js-toc {
+            position:sticky; top:24px; width:220px; flex-shrink:0;
+            padding:24px 0; max-height:calc(100vh - 48px);
+            overflow-y:auto; overflow-x:hidden;
+            scrollbar-width:thin; scrollbar-color:var(--js-border) transparent;
+        }
+        .js-toc::-webkit-scrollbar { width:4px; }
+        .js-toc::-webkit-scrollbar-track { background:transparent; }
+        .js-toc::-webkit-scrollbar-thumb { background:var(--js-border); border-radius:4px; }
+        .js-toc::-webkit-scrollbar-thumb:hover { background:var(--js-yellow); }
+        .js-toc__title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--js-muted); margin-bottom:12px; }
+        .js-toc a { display:block; padding:6px 12px; font-size:13px; color:var(--js-muted); text-decoration:none; border-left:2px solid transparent; border-radius:0 4px 4px 0; transition:all .15s; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .js-toc a:hover, .js-toc a.toc-active { color:var(--js-yellow); border-left-color:var(--js-yellow); background:rgba(247,223,30,.06); }
+        .js-toc .toc-group { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--js-border); padding:14px 12px 4px; }
+
+        .js-content { flex:1; min-width:0; padding:48px 0 80px; }
+        .js-section { margin-bottom:72px; }
+        .js-section__title { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color:#fff; letter-spacing:-.4px; margin:0 0 8px; padding-bottom:12px; border-bottom:1px solid var(--js-border); }
+        .js-section__title .sec-num { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--js-yellow); background:rgba(247,223,30,.1); border:1px solid rgba(247,223,30,.2); padding:2px 8px; border-radius:4px; }
+        .js-sub { font-size:16px; font-weight:700; color:var(--js-orange); margin:32px 0 10px; }
+        .js-sub::before { content:'// '; color:var(--js-muted); font-family:var(--js-mono); font-size:13px; }
+        .js-content p { color:var(--js-text); margin:0 0 16px; }
+
+        .js-code { margin:16px 0 24px; border-radius:8px; overflow:hidden; border:1px solid var(--js-border); }
+        .js-code__hdr { display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:#0f1f35; border-bottom:1px solid var(--js-border); }
+        .js-code__lang { font-family:var(--js-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--js-yellow); }
+        .js-copy { font-size:11px; color:var(--js-muted); background:none; border:1px solid var(--js-border); padding:3px 10px; border-radius:4px; cursor:pointer; font-family:inherit; transition:all .15s; }
+        .js-copy:hover { color:var(--js-yellow); border-color:var(--js-yellow); }
+        .js-code pre { background:var(--js-code); padding:18px 20px; overflow-x:auto; font-family:var(--js-mono); font-size:13px; line-height:1.75; color:#b0c8e8; tab-size:4; margin:0; }
+
+        .js-keyword  { color: #ff79c6; }
+        .js-function { color: #50fa7b; }
+        .js-string   { color: #f1fa8c; }
+        .js-comment  { color: #6272a4; font-style: italic; }
+        .js-number   { color: #bd93f9; }
+        .js-operator { color: #ffb86c; }
+        .js-property { color: #8be9fd; }
+        .js-regex    { color: #ffb86c; }
+
+        .js-table-wrap { overflow-x:auto; margin:14px 0 24px; border-radius:8px; border:1px solid var(--js-border); }
+        .js-table { width:100%; border-collapse:collapse; font-size:13.5px; }
+        .js-table thead tr { background:#0f1f35; }
+        .js-table thead th { padding:10px 14px; text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--js-yellow); border-bottom:1px solid var(--js-border); white-space:nowrap; }
+        .js-table tbody tr { border-bottom:1px solid var(--js-border); transition:background .1s; }
+        .js-table tbody tr:last-child { border-bottom:none; }
+        .js-table tbody tr:hover { background:rgba(255,255,255,.03); }
+        .js-table td { padding:9px 14px; vertical-align:top; }
+        .js-table td:first-child { font-family:var(--js-mono); font-size:12.5px; color:var(--js-yellow); white-space:nowrap; }
+        .js-table td code { font-family:var(--js-mono); font-size:12px; color:var(--js-yellow); }
+
+        .js-box { border-left:3px solid var(--js-yellow); background:rgba(247,223,30,.06); border-radius:0 6px 6px 0; padding:14px 18px; margin:16px 0 24px; font-size:14px; }
+        .js-box.warn { border-left-color:var(--js-orange); background:rgba(232,93,38,.06); }
+        .js-box.gold { border-left-color:var(--js-gold); background:rgba(232,184,75,.06); }
+        .js-box.purple { border-left-color:var(--js-purple); background:rgba(155,111,212,.06); }
+        .js-box strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--js-yellow); }
+        .js-box.warn strong { color:var(--js-orange); }
+        .js-box.gold strong { color:var(--js-gold); }
+        .js-box.purple strong { color:var(--js-purple); }
+
+        .action-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(185px,1fr)); gap:12px; margin:14px 0 24px; }
+        .action-card { background:var(--js-surface); border:1px solid var(--js-border); border-radius:8px; padding:14px 16px; }
+        .action-card.block  { border-left:3px solid var(--js-orange); }
+        .action-card.allow  { border-left:3px solid var(--js-green); }
+        .action-card.yellow { border-left:3px solid var(--js-yellow); }
+        .action-card.purple { border-left:3px solid var(--js-purple); }
+        .action-card .ac-name  { font-family:var(--js-mono); font-size:13px; font-weight:700; color:var(--js-yellow); margin-bottom:4px; }
+        .action-card.block  .ac-name { color:var(--js-orange); }
+        .action-card.allow  .ac-name { color:var(--js-green); }
+        .action-card.yellow .ac-name { color:var(--js-gold); }
+        .action-card.purple .ac-name { color:var(--js-purple); }
+        .action-card .ac-desc { font-size:12.5px; color:var(--js-muted); }
+
+        .ic { font-family:var(--js-mono); font-size:12.5px; color:var(--js-yellow); background:var(--js-code); padding:1px 5px; border-radius:3px; }
+
+        @media (max-width:860px) { .js-toc { display:none; } .js-body { padding:0 16px; } }
+        @media (max-width:600px) { .js-hero { padding:48px 0 40px; } .js-hero h1 { font-size:28px; } }
+    </style>
+</head>
+<body class="js-page">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="c-logo">
+                    <a href="index.html"><img src="img/logo.png" alt="Logo" class="c-logo__img" /></a>
+                    <span class="c-logo__text c-logo__text--white"></span>
+                </div>
+                <nav class="c-nav">
+                    <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span class="c-nav__bar"></span><span class="c-nav__bar"></span><span class="c-nav__bar"></span>
+                    </button>
+                    <div class="c-nav__content">
+                        <ul class="c-list c-list--flex">
+                            <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                            <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+                            <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                            <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+                            <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+                            <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+                            <li class="c-list__item c-dropdown">
+                                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">Tools <span class="c-dropdown__chev" aria-hidden="true">▾</span></button>
+                                <ul class="c-dropdown__menu" role="menu">
+                                    <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a></li>
+                                    <li role="none"><a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="faq.html" class="ticket-button"><button class="c-button c-button--small c-button--secondary">FAQ</button></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <div class="js-hero">
+            <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
+                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+                    <div class="js-hero__badge">JavaScript SDK</div>
+                    <span class="js-version">v1.0 — clofix(request) API</span>
+                </div>
+                <h1>CloFix <span>JavaScript (clofix)</span> Scripting Guide</h1>
+                <p class="js-hero__lead">
+                    Write <strong style="color:#fff;">clofix JavaScript functions</strong> to inspect, filter, and control every HTTP request flowing through
+                    <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
+                    shared in-memory state, pattern extraction, and comprehensive OWASP Top 10 protection.
+                </p>
+                <div class="js-hero__pills">
+                    <span class="js-hero__pill">function clofix(request)</span>
+                    <span class="js-hero__pill">Return action object</span>
+                    <span class="js-hero__pill">Shared dictionaries</span>
+                    <span class="js-hero__pill">Pattern extraction</span>
+                    <span class="js-hero__pill">SQLi / XSS / CMDi</span>
+                    <span class="js-hero__pill">Rate limiting</span>
+                    <span class="js-hero__pill">GeoIP blocking</span>
+                    <span class="js-hero__pill">Bot detection</span>
+                    <span class="js-hero__pill">Tor / VPN blocking</span>
+                    <span class="js-hero__pill">OWASP Top 10</span>
+                    <span class="js-hero__pill">2 second timeout</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="js-body">
+
+            <!-- TOC -->
+            <aside class="js-toc">
+                <div class="js-toc__title">Contents</div>
+                <a href="#intro">Introduction</a>
+                <a href="#execution-flow">Execution Flow</a>
+                <a href="#quick-ref">Quick Reference</a>
+                <a href="#directory">Directory Structure</a>
+                <a href="#config">Domain Config</a>
+                <a href="#structure">Script Structure</a>
+                <a href="#actions">Action System</a>
+                <a href="#request">Request Object</a>
+                <a href="#shared">Shared Dictionaries</a>
+                <a href="#ratelimit">Rate Limiting</a>
+                <a href="#patterns">Pattern Extraction</a>
+                <a href="#logging">Logging</a>
+                <a href="#limits">Execution Limits</a>
+                <div class="toc-group">OWASP Top 10 Examples</div>
+                <a href="#ex-sqli">SQL Injection (A03)</a>
+                <a href="#ex-xss">XSS (A03)</a>
+                <a href="#ex-traversal">Path Traversal (A01)</a>
+                <a href="#ex-cmdi">Command Injection (A03)</a>
+                <a href="#ex-ssrf">SSRF (A10)</a>
+                <a href="#ex-csrf">CSRF (A07)</a>
+                <div class="toc-group">Core Examples</div>
+                <a href="#ex-rate">Rate Limiter</a>
+                <a href="#ex-geo">Geo Block</a>
+                <a href="#ex-bot">Bot Detection</a>
+                <a href="#ex-path">Path Protection</a>
+                <a href="#ex-bruteforce">Brute Force Login</a>
+                <a href="#ex-ddos">DDoS Shield</a>
+                <a href="#ex-method">HTTP Method Filter</a>
+                <a href="#ex-size">Request Size Limit</a>
+                <a href="#ex-tor">Tor / VPN Block</a>
+                <a href="#ex-wordpress">WordPress Shield</a>
+                <a href="#ex-scanner">Scanner Detection</a>
+                <div class="toc-group">More Scripts</div>
+                <a href="#ex-password">Password Protect URL</a>
+                <a href="#ex-apikey">API Key Auth</a>
+                <a href="#ex-hotlink">Hotlink Protection</a>
+                <a href="#ex-filetype">File Type Filter</a>
+                <a href="#ex-honeypot">Honeypot Trap</a>
+                <a href="#ex-maintenance">Maintenance Mode</a>
+                <a href="#ex-redirect">Smart Redirects</a>
+                <div class="toc-group">Reference</div>
+                <a href="#testing">Testing</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#best">Best Practices</a>
+            </aside>
+
+            <!-- Content -->
+            <div class="js-content">
+
+                <!-- 01 INTRO -->
+                <section class="js-section" id="intro">
+                    <h2 class="js-section__title"><span class="sec-num">01</span> Introduction</h2>
+                    <p>CloFix WAF executes JavaScript (clofix) scripts on every HTTP request before it reaches your backend. Scripts have read access to a rich <strong style="color:#fff;">request object</strong> and read/write access to <strong style="color:#fff;">shared in-memory dictionaries</strong> for maintaining state across requests.</p>
+
+                    <div class="js-box purple" style="padding:0; overflow:hidden;">
+                        <div style="background: var(--js-surface); padding: 18px 24px; border-bottom: 1px solid var(--js-border);">
+                            <strong style="display:block; margin-bottom:0;">⚙️ CloFix WAF JavaScript Architecture</strong>
+                        </div>
+                        <div style="padding: 24px; background: var(--js-code); text-align: center; font-family: var(--js-mono); font-size: 14px; line-height: 2; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <span style="color: var(--js-muted);">HTTP Request</span>
+                            <span style="color: var(--js-text);">→</span>
+                            <span style="color: var(--js-yellow);">JavaScript VM<br><span style="font-size: 11px; color: var(--js-muted);">(Isolated per script)</span></span>
+                            <span style="color: var(--js-text);">→</span>
+                            <span style="color: var(--js-purple);">Shared Dicts<br><span style="font-size: 11px; color: var(--js-muted);">(State / Rate Limit)</span></span>
+                            <span style="color: var(--js-text);">→</span>
+                            <span style="color: var(--js-orange);">Action / Backend</span>
+                        </div>
+                    </div>
+
+                    <div class="js-box warn">
+                        <strong>Important — Entry Point</strong>
+                        Every executable JavaScript file must export a <span class="ic">function clofix(request)</span> that returns an action object. The WAF will call this function for every request.
+                    </div>
+
+                    <p class="js-sub">Key Concepts</p>
+                    <ul style="padding-left:22px;margin:0 0 16px;color:var(--js-text);">
+                        <li style="margin-bottom:7px">Scripts live in <span class="ic">/etc/clofix/&lt;domain&gt;/js/</span> — one directory per domain</li>
+                        <li style="margin-bottom:7px">All <span class="ic">.js</span> files run in filesystem order; first blocking action wins</li>
+                        <li style="margin-bottom:7px">Every script must export <span class="ic">function clofix(request)</span></li>
+                        <li style="margin-bottom:7px">Scripts return an <strong>object</strong> with an <span class="ic">action</span> property</li>
+                        <li style="margin-bottom:7px">Shared dictionaries provide persistent state across requests using <span class="ic">sharedDict("name")</span></li>
+                        <li style="margin-bottom:7px">Each script runs in an isolated JavaScript VM with a <strong>2 second wall-clock timeout</strong></li>
+                        <li style="margin-bottom:7px">Patterns are automatically extracted from ALL JavaScript files for fast matching</li>
+                    </ul>
+
+                    <!-- OWASP Top 10 Protection List -->
+                    <p class="js-sub" style="margin-top: 32px;">🛡️ OWASP Top 10 Coverage</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 16px 0 24px;">
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A01:2021-Broken Access Control</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Path/IP whitelisting, admin area protection, API key auth</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A02:2021-Cryptographic Failures</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Enforce HTTPS, detect missing security headers</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A03:2021-Injection</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">SQLi, NoSQLi, CMDi, LDAP via regex pattern matching</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A04:2021-Insecure Design</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Rate limiting, brute-force protection, bot mitigation</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A05:2021-Security Misconfiguration</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Block debug paths, .git, .env, directory listing attempts</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A06:2021-Vulnerable Components</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Detect scanner UA (nikto, nuclei) and known exploit paths</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A07:2021-Identification/Auth Failures</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Credential stuffing detection, MFA bypass monitoring</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A08:2021-Software/Data Integrity</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Prevent malicious file uploads, block webshell extensions</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A09:2021-Security Logging/Monitoring</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Structured attack logging with full request context</span>
+                        </div>
+                        <div style="background: var(--js-surface); border: 1px solid var(--js-border); border-radius: 8px; padding: 14px 16px;">
+                            <span style="font-family: var(--js-mono); font-size: 13px; font-weight: 700; color: var(--js-orange);">A10:2021-SSRF</span>
+                            <span style="display: block; font-size: 12.5px; color: var(--js-muted); margin-top: 6px;">Block internal IPs/hostnames in URL parameters</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EXECUTION FLOW -->
+                <section class="js-section" id="execution-flow">
+                    <h2 class="js-section__title"><span class="sec-num">02</span> Execution Flow</h2>
+                    <p>Every HTTP request passes through a fixed pipeline before reaching your backend.</p>
+
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">pipeline</span></div>
+                        <pre>
+  HTTP Request
+       │
+       ▼
+  ┌─────────────────────────────────────────────┐
+  │  WAF Engine  — IP extraction, GeoIP, TLS    │
+  │  fingerprint, bot detection                 │
+  └───────────────────┬─────────────────────────┘
+                       │  enriched request object
+                       ▼
+  ┌─────────────────────────────────────────────┐
+  │  JavaScript Script Pipeline (per domain)    │
+  │                                             │
+  │  01_rate_limit.js   ──►  action object      │
+  │       │ allow                               │
+  │  02_bot_detect.js   ──►  action object      │
+  │       │ allow                               │
+  │  03_sql_injection.js ──► action object      │
+  │                                             │
+  │  First non-allow action WINS — pipeline     │
+  │  stops immediately.                         │
+  └───────────────────┬─────────────────────────┘
+                       │
+              ┌────────┴────────┐
+              │                 │
+           block /          allow
+         rate_limit              │
+              │                  ▼
+              ▼           Backend / Proxy
+        Error Response
+        (403 / 429 / etc)</pre>
+                    </div>
+                </section>
+
+                <!-- QUICK REFERENCE -->
+                <section class="js-section" id="quick-ref">
+                    <h2 class="js-section__title"><span class="sec-num">03</span> Quick Reference</h2>
+
+                    <p class="js-sub">Request Object — all fields</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — request object</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-comment">// ── Core ──────────────────────────────────────────────</span>
+<span class="js-property">request</span>.<span class="js-property">ip</span>              <span class="js-comment">// "203.0.113.5"      client IP</span>
+<span class="js-property">request</span>.<span class="js-property">method</span>          <span class="js-comment">// "GET" / "POST" …</span>
+<span class="js-property">request</span>.<span class="js-property">path</span>            <span class="js-comment">// "/page"            path only</span>
+<span class="js-property">request</span>.<span class="js-property">url</span>             <span class="js-comment">// "/page?id=1"       full URI</span>
+<span class="js-property">request</span>.<span class="js-property">host</span>            <span class="js-comment">// "example.com"</span>
+<span class="js-property">request</span>.<span class="js-property">query</span>           <span class="js-comment">// { id: "1", page: "2" } parsed query</span>
+
+<span class="js-comment">// ── Headers & Body ───────────────────────────────────</span>
+<span class="js-property">request</span>.<span class="js-property">headers</span>         <span class="js-comment">// { "user-agent": "...", "accept": "..." }</span>
+<span class="js-property">request</span>.<span class="js-property">body</span>            <span class="js-comment">// raw request body string</span>
+<span class="js-property">request</span>.<span class="js-property">cookies</span>         <span class="js-comment">// { session_id: "...", csrf: "..." }</span>
+<span class="js-property">request</span>.<span class="js-property">user_agent</span>      <span class="js-comment">// "Mozilla/5.0 …"</span>
+<span class="js-property">request</span>.<span class="js-property">referer</span>         <span class="js-comment">// "https://google.com/…"</span>
+<span class="js-property">request</span>.<span class="js-property">content_type</span>    <span class="js-comment">// "application/json"</span>
+<span class="js-property">request</span>.<span class="js-property">content_length</span>  <span class="js-comment">// 1024  (bytes)</span>
+
+<span class="js-comment">// ── Security signals ───────────────────────────────────</span>
+<span class="js-property">request</span>.<span class="js-property">is_tor</span>          <span class="js-comment">// true if Tor exit node</span>
+<span class="js-property">request</span>.<span class="js-property">timestamp</span>        <span class="js-comment">// 1709123456          Unix timestamp</span></pre>
+                    </div>
+
+                    <p class="js-sub">Return Object — full structure</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — return object</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">return</span> {
+    <span class="js-property">action</span>:      <span class="js-string">"block"</span>,          <span class="js-comment">// required: "allow", "block", "rate_limit", "redirect"</span>
+    <span class="js-property">status</span>:      <span class="js-number">403</span>,             <span class="js-comment">// HTTP status (auto-filled if omitted)</span>
+    <span class="js-property">reason</span>:      <span class="js-string">"SQL Injection detected"</span>,  <span class="js-comment">// human-readable reason</span>
+    <span class="js-property">rule_name</span>:   <span class="js-string">"SQLI_001"</span>,      <span class="js-comment">// rule identifier — appears in WAF logs</span>
+    <span class="js-property">category</span>:    <span class="js-string">"sql_injection"</span>, <span class="js-comment">// attack category</span>
+    <span class="js-property">confidence</span>:  <span class="js-number">95</span>,              <span class="js-comment">// confidence score (0-100)</span>
+    <span class="js-property">severity</span>:    <span class="js-string">"high"</span>,          <span class="js-comment">// "critical", "high", "medium", "low"</span>
+    <span class="js-property">redirect_to</span>: <span class="js-string">""</span>,              <span class="js-comment">// target URL when action == "redirect"</span>
+}</pre>
+                    </div>
+                </section>
+
+                <!-- DIRECTORY -->
+                <section class="js-section" id="directory">
+                    <h2 class="js-section__title"><span class="sec-num">04</span> Directory Structure</h2>
+                    <p>JavaScript files must be placed in the domain-specific JS directory:</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">filesystem</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre>/etc/clofix/
+├── example.com/
+│   └── js/
+│       ├── 01_rate_limit.js
+│       ├── 02_bot_detection.js
+│       ├── 03_sql_injection.js
+│       └── 04_custom_rules.js
+├── api.example.com/
+│   └── js/
+│       └── api_security.js
+└── shop.example.com/
+    └── js/
+        └── geo_block.js</pre>
+                    </div>
+                    <div class="js-box">
+                        <strong>Execution Order</strong>
+                        Files execute in filesystem (alphabetical) order. Use numeric prefixes like <span class="ic">01_</span>, <span class="ic">02_</span> to control priority.
+                    </div>
+                </section>
+
+                <!-- CONFIG -->
+                <section class="js-section" id="config">
+                    <h2 class="js-section__title"><span class="sec-num">05</span> Domain Configuration</h2>
+                    <p>Enable JavaScript scripting in your domain configuration:</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">/etc/clofix/conf/example.com.conf</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre>domain example.com {
+    backend http://localhost:8080;
+    
+    <span class="js-comment"># JavaScript Blocker Configuration</span>
+    js_blocker {
+        enabled on;
+        js_dir /etc/clofix/example.com/js;
+        scan_interval 5m;
+        block_threshold 70;
+        max_file_size 1MB;
+        enable_logging on;
+        enable_execution on;
+        execution_timeout 2s;
+        include_extensions .js,.mjs,.cjs;
+    }
+}</pre>
+                    </div>
+                </section>
+
+                <!-- STRUCTURE -->
+                <section class="js-section" id="structure">
+                    <h2 class="js-section__title"><span class="sec-num">06</span> Script Structure</h2>
+
+                    <p class="js-sub">Minimal Script</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-comment">// Your logic here</span>
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <p class="js-sub">Full Template</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-comment">// Configuration constants</span>
+<span class="js-keyword">const</span> CONFIG = {
+    ENABLED: <span class="js-keyword">true</span>,
+    RATE_LIMIT: <span class="js-number">100</span>,
+    BLOCK_TIME: <span class="js-number">300</span>
+};
+
+<span class="js-comment">// Helper functions</span>
+<span class="js-keyword">function</span> <span class="js-function">isWhitelisted</span>(ip) {
+    <span class="js-keyword">const</span> whitelist = { <span class="js-string">"192.168.1.1"</span>: <span class="js-keyword">true</span> };
+    <span class="js-keyword">return</span> whitelist[ip] === <span class="js-keyword">true</span>;
+}
+
+<span class="js-comment">// Main entry point — must be named clofix</span>
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">if</span> (!CONFIG.ENABLED) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+
+    <span class="js-keyword">const</span> ip = request.ip;
+    <span class="js-keyword">if</span> (isWhitelisted(ip)) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+
+    <span class="js-comment">// ... security logic ...</span>
+
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- ACTION SYSTEM -->
+                <section class="js-section" id="actions">
+                    <h2 class="js-section__title"><span class="sec-num">07</span> Action System</h2>
+                    <p>The <span class="ic">clofix</span> function must return an object with at minimum an <span class="ic">action</span> property.</p>
+
+                    <p class="js-sub">Supported Action Types</p>
+                    <div class="action-grid">
+                        <div class="action-card allow"><div class="ac-name">allow</div><div class="ac-desc">Pass request to backend (status 200)</div></div>
+                        <div class="action-card block"><div class="ac-name">block</div><div class="ac-desc">Reject immediately (status 403)</div></div>
+                        <div class="action-card yellow"><div class="ac-name">rate_limit</div><div class="ac-desc">Rate limit response (status 429)</div></div>
+                        <div class="action-card yellow"><div class="ac-name">redirect</div><div class="ac-desc">HTTP redirect using redirect_to</div></div>
+                    </div>
+
+                    <p class="js-sub">Examples</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — action examples</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-comment">// Block with full metadata</span>
+<span class="js-keyword">return</span> {
+    <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+    <span class="js-property">status</span>: <span class="js-number">403</span>,
+    <span class="js-property">reason</span>: <span class="js-string">"SQL Injection detected"</span>,
+    <span class="js-property">rule_name</span>: <span class="js-string">"SQLI_001"</span>,
+    <span class="js-property">category</span>: <span class="js-string">"sql_injection"</span>,
+    <span class="js-property">confidence</span>: <span class="js-number">95</span>
+};
+
+<span class="js-comment">// Rate limit</span>
+<span class="js-keyword">return</span> {
+    <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>,
+    <span class="js-property">status</span>: <span class="js-number">429</span>,
+    <span class="js-property">reason</span>: <span class="js-string">"Too many requests"</span>,
+    <span class="js-property">rule_name</span>: <span class="js-string">"RL_001"</span>
+};
+
+<span class="js-comment">// Redirect</span>
+<span class="js-keyword">return</span> {
+    <span class="js-property">action</span>: <span class="js-string">"redirect"</span>,
+    <span class="js-property">status</span>: <span class="js-number">301</span>,
+    <span class="js-property">redirect_to</span>: <span class="js-string">"https://example.com/new-path"</span>
+};</pre>
+                    </div>
+                </section>
+
+                <!-- REQUEST OBJECT -->
+                <section class="js-section" id="request">
+                    <h2 class="js-section__title"><span class="sec-num">08</span> Request Object Reference</h2>
+
+                    <div class="js-table-wrap">
+                        <table class="js-table">
+                            <thead><tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+                            <tbody>
+                                <tr><td>ip</td><td>string</td><td>Client IP address</td><td>"203.0.113.5"</td></tr>
+                                <tr><td>method</td><td>string</td><td>HTTP method</td><td>"GET", "POST"</td></tr>
+                                <tr><td>path</td><td>string</td><td>URI path only</td><td>"/api/users"</td></tr>
+                                <tr><td>url</td><td>string</td><td>Full URL with query</td><td>"/api/users?id=1"</td></tr>
+                                <tr><td>host</td><td>string</td><td>Host header</td><td>"example.com"</td></tr>
+                                <tr><td>query</td><td>object</td><td>Parsed query parameters</td><td>{ id: "1", page: "2" }</td></tr>
+                                <tr><td>headers</td><td>object</td><td>All HTTP headers</td><td>{ "user-agent": "..." }</td></tr>
+                                <tr><td>body</td><td>string</td><td>Request body</td><td>"{\"name\":\"test\"}"</td></tr>
+                                <tr><td>cookies</td><td>object</td><td>All cookies</td><td>{ session_id: "abc123" }</td></tr>
+                                <tr><td>user_agent</td><td>string</td><td>User-Agent header</td><td>"Mozilla/5.0 ..."</td></tr>
+                                <tr><td>referer</td><td>string</td><td>Referer header</td><td>"https://google.com"</td></tr>
+                                <tr><td>content_type</td><td>string</td><td>Content-Type header</td><td>"application/json"</td></tr>
+                                <tr><td>content_length</td><td>number</td><td>Content length</td><td>1024</td></tr>
+                                <tr><td>is_tor</td><td>boolean</td><td>Tor exit node</td><td>true/false</td></tr>
+                                <tr><td>timestamp</td><td>number</td><td>Unix timestamp</td><td>1709123456</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SHARED DICTIONARIES -->
+                <section class="js-section" id="shared">
+                    <h2 class="js-section__title"><span class="sec-num">09</span> Shared Dictionaries</h2>
+                    <p>Shared dictionaries maintain state across requests. Access them using the global <span class="ic">sharedDict</span> function.</p>
+
+                    <div class="js-box warn">
+                        <strong>Important: JavaScript Syntax</strong>
+                        In JavaScript/Goja, use <span class="ic">sharedDict.get()</span> and <span class="ic">sharedDict.set()</span> - not <span class="ic">shared.ddos_attack</span> syntax.
+                    </div>
+
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — shared dictionary API</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-comment">// CORRECT SYNTAX - Using sharedDict function</span>
+<span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);  <span class="js-comment">// Get dictionary by name</span>
+
+<span class="js-comment">// Available methods</span>
+dict.<span class="js-property">get</span>(<span class="js-string">"key"</span>)                 <span class="js-comment">// Get value (returns undefined if missing)</span>
+dict.<span class="js-property">set</span>(<span class="js-string">"key"</span>, value)           <span class="js-comment">// Set value (no expiration)</span>
+dict.<span class="js-property">set</span>(<span class="js-string">"key"</span>, value, ttl)       <span class="js-comment">// Set with TTL in seconds</span>
+dict.<span class="js-property">incr</span>(<span class="js-string">"key"</span>, delta)          <span class="js-comment">// Atomically increment a number</span>
+dict.<span class="js-property">delete</span>(<span class="js-string">"key"</span>)               <span class="js-comment">// Remove a key</span>
+dict.<span class="js-property">ttl</span>(<span class="js-string">"key"</span>)                  <span class="js-comment">// Get remaining TTL in seconds</span>
+dict.<span class="js-property">flush_all</span>()                   <span class="js-comment">// Clear all keys</span>
+
+<span class="js-comment">// Example: Rate limiting with TTL</span>
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);
+    <span class="js-keyword">const</span> key = <span class="js-string">"rate:"</span> + request.ip;
+    
+    <span class="js-comment">// Check if currently blocked</span>
+    <span class="js-keyword">const</span> blocked = dict.<span class="js-property">get</span>(<span class="js-string">"block:"</span> + key) || <span class="js-number">0</span>;
+    <span class="js-keyword">const</span> now = Math.<span class="js-property">floor</span>(Date.<span class="js-property">now</span>() / <span class="js-number">1000</span>);
+    
+    <span class="js-keyword">if</span> (blocked > now) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span> };
+    }
+    
+    <span class="js-comment">// Increment counter (expires after 60 seconds)</span>
+    <span class="js-keyword">let</span> count = dict.<span class="js-property">incr</span>(key, <span class="js-number">1</span>);
+    dict.<span class="js-property">set</span>(key, count, <span class="js-number">60</span>);
+    
+    <span class="js-keyword">if</span> (count > <span class="js-number">100</span>) {
+        <span class="js-comment">// Block for 5 minutes</span>
+        dict.<span class="js-property">set</span>(<span class="js-string">"block:"</span> + key, now + <span class="js-number">300</span>, <span class="js-number">300</span>);
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span> };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- RATE LIMITING -->
+                <section class="js-section" id="ratelimit">
+                    <h2 class="js-section__title"><span class="sec-num">10</span> Rate Limiting</h2>
+                    <p>Implement rate limiting using shared dictionaries:</p>
+
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — rate_limit.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    REQUESTS_PER_MINUTE: <span class="js-number">60</span>,
+    BLOCK_TIME: <span class="js-number">300</span>  <span class="js-comment">// 5 minutes</span>
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);
+    <span class="js-keyword">const</span> ip = request.ip;
+    <span class="js-keyword">const</span> now = Math.<span class="js-property">floor</span>(Date.<span class="js-property">now</span>() / <span class="js-number">1000</span>);
+    
+    <span class="js-comment">// Check if currently blocked</span>
+    <span class="js-keyword">const</span> blocked = dict.<span class="js-property">get</span>(<span class="js-string">"block:"</span> + ip) || <span class="js-number">0</span>;
+    <span class="js-keyword">if</span> (blocked > now) {
+        <span class="js-keyword">return</span> {
+            <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>,
+            <span class="js-property">reason</span>: <span class="js-string">"Temporarily blocked due to rate limit"</span>
+        };
+    }
+    
+    <span class="js-comment">// Get current minute window</span>
+    <span class="js-keyword">const</span> minuteKey = <span class="js-string">"cnt:"</span> + ip + <span class="js-string">":"</span> + <span class="js-keyword">new</span> <span class="js-function">Date</span>().<span class="js-property">toISOString</span>().<span class="js-property">substring</span>(<span class="js-number">0</span>, <span class="js-number">16</span>);
+    <span class="js-keyword">let</span> count = dict.<span class="js-property">get</span>(minuteKey) || <span class="js-number">0</span>;
+    count = dict.<span class="js-property">incr</span>(minuteKey, <span class="js-number">1</span>);
+    dict.<span class="js-property">set</span>(minuteKey, count, <span class="js-number">70</span>);  <span class="js-comment">// Keep for 70 seconds</span>
+    
+    <span class="js-keyword">if</span> (count > CONFIG.REQUESTS_PER_MINUTE) {
+        <span class="js-comment">// Block for 5 minutes</span>
+        dict.<span class="js-property">set</span>(<span class="js-string">"block:"</span> + ip, now + CONFIG.BLOCK_TIME, CONFIG.BLOCK_TIME);
+        <span class="js-keyword">return</span> {
+            <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>,
+            <span class="js-property">reason</span>: <span class="js-string">"Rate limit exceeded"</span>,
+            <span class="js-property">rule_name</span>: <span class="js-string">"RL_001"</span>
+        };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- PATTERN EXTRACTION -->
+                <section class="js-section" id="patterns">
+                    <h2 class="js-section__title"><span class="sec-num">11</span> Pattern Extraction</h2>
+                    <p>The system automatically extracts patterns from ALL JavaScript files, not just executable ones. These patterns are used for fast matching without execution.</p>
+
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — patterns.js (auto-extracted)</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-comment">// Strings in this file will be extracted as patterns</span>
+<span class="js-keyword">const</span> maliciousPatterns = [
+    <span class="js-string">"eval(atob("</span>,
+    <span class="js-string">"document.write(String.fromCharCode"</span>,
+    <span class="js-string">"coinhive.min.js"</span>,
+    <span class="js-string">"cryptonight.wasm"</span>
+];
+
+<span class="js-comment">// Regex patterns will also be extracted</span>
+<span class="js-keyword">const</span> sqlPatterns = [
+    <span class="js-regex">/union.*select/i</span>,
+    <span class="js-regex">/select.*from/i</span>,
+    <span class="js-regex">/insert.*into/i</span>
+];
+
+<span class="js-comment">// Function names become patterns too</span>
+<span class="js-keyword">function</span> <span class="js-function">detectSQLInjection</span>(input) {
+    <span class="js-comment">// This function name "detectSQLInjection" becomes a pattern</span>
+    <span class="js-keyword">return</span> sqlPatterns.<span class="js-property">some</span>(p => p.<span class="js-property">test</span>(input));
+}</pre>
+                    </div>
+                    <div class="js-box gold">
+                        <strong>Pattern Matching</strong>
+                        All extracted patterns are checked against every request (URL, headers, body, cookies). If confidence exceeds threshold, the request is blocked.
+                    </div>
+                </section>
+
+                <!-- LOGGING -->
+                <section class="js-section" id="logging">
+                    <h2 class="js-section__title"><span class="sec-num">12</span> Logging</h2>
+                    <p>Use the global <span class="ic">log</span> object for structured logging:</p>
+
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript — logging</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-comment">// Simple log messages</span>
+    log.<span class="js-property">info</span>(<span class="js-string">"Processing request from "</span> + request.ip);
+    log.<span class="js-property">warn</span>(<span class="js-string">"Suspicious activity detected"</span>);
+    log.<span class="js-property">error</span>(<span class="js-string">"Script error occurred"</span>);
+    
+    <span class="js-comment">// Structured attack logging</span>
+    log.<span class="js-property">attack</span>({
+        <span class="js-property">rule_name</span>: <span class="js-string">"SQLI_001"</span>,
+        <span class="js-property">category</span>: <span class="js-string">"sql_injection"</span>,
+        <span class="js-property">confidence</span>: <span class="js-number">95</span>,
+        <span class="js-property">payload</span>: request.<span class="js-property">body</span>.<span class="js-property">substring</span>(<span class="js-number">0</span>, <span class="js-number">100</span>)
+    });
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- EXECUTION LIMITS -->
+                <section class="js-section" id="limits">
+                    <h2 class="js-section__title"><span class="sec-num">13</span> Execution Limits</h2>
+                    <div class="js-table-wrap">
+                        <table class="js-table">
+                            <thead><tr><th>Limit</th><th>Default</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td>Wall-clock timeout</td><td>2 seconds</td><td>Script that takes longer is killed and the request is blocked with 503</td></tr>
+                                <tr><td>Memory</td><td>32 MB</td><td>Memory limit per script execution</td></tr>
+                                <tr><td>File size</td><td>1 MB</td><td>Maximum JavaScript file size processed</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="js-box warn">
+                        <strong>Timeout Behaviour</strong>
+                        If a script exceeds 2 seconds the WAF returns HTTP 503. Keep pattern matching efficient and avoid heavy loops.
+                    </div>
+                </section>
+
+                <!-- OWASP EXAMPLES -->
+                <section class="js-section">
+                    <h2 class="js-section__title"><span class="sec-num">14</span> OWASP Top 10 Examples</h2>
+
+                    <!-- SQL Injection -->
+                    <p class="js-sub" id="ex-sqli">SQL Injection (A03:2021)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">sql_injection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> SQL_PATTERNS = [
+    <span class="js-regex">/union.*select/i</span>,
+    <span class="js-regex">/select.*from/i</span>,
+    <span class="js-regex">/insert.*into/i</span>,
+    <span class="js-regex">/update.*set/i</span>,
+    <span class="js-regex">/delete.*from/i</span>,
+    <span class="js-regex">/drop.*table/i</span>,
+    <span class="js-regex">/--/</span>,
+    <span class="js-regex">/#/</span>,
+    <span class="js-regex">/\/\*/</span>,
+    <span class="js-regex">/or\s+1\s*=\s*1/i</span>,
+    <span class="js-regex">/sleep\s*\(/i</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-comment">// Check URL</span>
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> SQL_PATTERNS) {
+        <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(request.<span class="js-property">url</span>)) {
+            <span class="js-keyword">return</span> {
+                <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                <span class="js-property">reason</span>: <span class="js-string">"SQL Injection detected in URL"</span>,
+                <span class="js-property">category</span>: <span class="js-string">"sql_injection"</span>,
+                <span class="js-property">confidence</span>: <span class="js-number">90</span>
+            };
+        }
+    }
+    
+    <span class="js-comment">// Check query parameters</span>
+    <span class="js-keyword">if</span> (request.<span class="js-property">query</span>) {
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> [key, value] <span class="js-keyword">of</span> Object.<span class="js-property">entries</span>(request.<span class="js-property">query</span>)) {
+            <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> SQL_PATTERNS) {
+                <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(value)) {
+                    <span class="js-keyword">return</span> {
+                        <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                        <span class="js-property">reason</span>: <span class="js-string">`SQL Injection in parameter: </span>${key}<span class="js-string">`</span>,
+                        <span class="js-property">category</span>: <span class="js-string">"sql_injection"</span>,
+                        <span class="js-property">confidence</span>: <span class="js-number">95</span>
+                    };
+                }
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- XSS -->
+                    <p class="js-sub" id="ex-xss">Cross-Site Scripting (XSS) (A03:2021)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">xss_detection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> XSS_PATTERNS = [
+    <span class="js-regex">/&lt;script\b[^&gt;]*&gt;.*?&lt;\/script&gt;/i</span>,
+    <span class="js-regex">/javascript:/i</span>,
+    <span class="js-regex">/onerror\s*=/i</span>,
+    <span class="js-regex">/onload\s*=/i</span>,
+    <span class="js-regex">/onclick\s*=/i</span>,
+    <span class="js-regex">/onmouseover\s*=/i</span>,
+    <span class="js-regex">/alert\s*\(/i</span>,
+    <span class="js-regex">/eval\s*\(/i</span>,
+    <span class="js-regex">/document\.cookie/i</span>,
+    <span class="js-regex">/&lt;iframe\b/i</span>,
+    <span class="js-regex">/&lt;img\b[^&gt;]*onerror/i</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> inputs = [
+        request.<span class="js-property">url</span>,
+        request.<span class="js-property">body</span>,
+        ...Object.<span class="js-property">values</span>(request.<span class="js-property">query</span> || {}),
+        ...Object.<span class="js-property">values</span>(request.<span class="js-property">cookies</span> || {}),
+        ...Object.<span class="js-property">values</span>(request.<span class="js-property">headers</span> || {})
+    ];
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> input <span class="js-keyword">of</span> inputs) {
+        <span class="js-keyword">if</span> (<span class="js-keyword">typeof</span> input !== <span class="js-string">'string'</span>) <span class="js-keyword">continue</span>;
+        
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> XSS_PATTERNS) {
+            <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(input)) {
+                <span class="js-keyword">return</span> {
+                    <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                    <span class="js-property">reason</span>: <span class="js-string">"XSS attack detected"</span>,
+                    <span class="js-property">category</span>: <span class="js-string">"xss"</span>,
+                    <span class="js-property">confidence</span>: <span class="js-number">90</span>
+                };
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Path Traversal -->
+                    <p class="js-sub" id="ex-traversal">Path Traversal (A01:2021)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">path_traversal.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> TRAVERSAL_PATTERNS = [
+    <span class="js-regex">/\.\.\//g</span>,
+    <span class="js-regex">/\.\.\\/g</span>,
+    <span class="js-regex">/\%2e\%2e\%2f/gi</span>,
+    <span class="js-regex">/\%2e\%2e\%5c/gi</span>,
+    <span class="js-regex">/etc\/passwd/i</span>,
+    <span class="js-regex">/etc\/shadow/i</span>,
+    <span class="js-regex">/windows\\system32/i</span>,
+    <span class="js-regex">/boot\.ini/i</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-comment">// Check URL path</span>
+    <span class="js-keyword">if</span> (request.<span class="js-property">path</span>) {
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> TRAVERSAL_PATTERNS) {
+            <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(request.<span class="js-property">path</span>)) {
+                <span class="js-keyword">return</span> {
+                    <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                    <span class="js-property">reason</span>: <span class="js-string">"Path traversal detected"</span>,
+                    <span class="js-property">category</span>: <span class="js-string">"path_traversal"</span>,
+                    <span class="js-property">confidence</span>: <span class="js-number">95</span>
+                };
+            }
+        }
+    }
+    
+    <span class="js-comment">// Check query parameters</span>
+    <span class="js-keyword">if</span> (request.<span class="js-property">query</span>) {
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> [key, value] <span class="js-keyword">of</span> Object.<span class="js-property">entries</span>(request.<span class="js-property">query</span>)) {
+            <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> TRAVERSAL_PATTERNS) {
+                <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(value)) {
+                    <span class="js-keyword">return</span> {
+                        <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                        <span class="js-property">reason</span>: <span class="js-string">`Path traversal in parameter: </span>${key}<span class="js-string">`</span>,
+                        <span class="js-property">category</span>: <span class="js-string">"path_traversal"</span>,
+                        <span class="js-property">confidence</span>: <span class="js-number">95</span>
+                    };
+                }
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Command Injection -->
+                    <p class="js-sub" id="ex-cmdi">Command Injection (A03:2021)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">cmd_injection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CMD_PATTERNS = [
+    <span class="js-regex">/;\s*(ls|dir|cat|echo|rm|del|cp|mv|ps|kill)/i</span>,
+    <span class="js-regex">/\|\s*(ls|dir|cat|echo|grep)/i</span>,
+    <span class="js-regex">/&&\s*(ls|dir|cat|echo)/i</span>,
+    <span class="js-regex">/`.*`/g</span>,
+    <span class="js-regex">/\$\(.*\)/g</span>,
+    <span class="js-regex">/(ping|nslookup|traceroute|tracert)\s+[0-9.-]+/i</span>,
+    <span class="js-regex">/(wget|curl)\s+http/i</span>,
+    <span class="js-regex">/\/bin\/sh/i</span>,
+    <span class="js-regex">/\/bin\/bash/i</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> inputs = [
+        request.<span class="js-property">url</span>,
+        request.<span class="js-property">body</span>,
+        ...Object.<span class="js-property">values</span>(request.<span class="js-property">query</span> || {}),
+        ...Object.<span class="js-property">values</span>(request.<span class="js-property">headers</span> || {})
+    ];
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> input <span class="js-keyword">of</span> inputs) {
+        <span class="js-keyword">if</span> (<span class="js-keyword">typeof</span> input !== <span class="js-string">'string'</span>) <span class="js-keyword">continue</span>;
+        
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> CMD_PATTERNS) {
+            <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(input)) {
+                <span class="js-keyword">return</span> {
+                    <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                    <span class="js-property">reason</span>: <span class="js-string">"Command injection detected"</span>,
+                    <span class="js-property">category</span>: <span class="js-string">"command_injection"</span>,
+                    <span class="js-property">confidence</span>: <span class="js-number">95</span>
+                };
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- SSRF -->
+                    <p class="js-sub" id="ex-ssrf">Server-Side Request Forgery (SSRF) (A10:2021)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">ssrf_protection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> SSRF_PATTERNS = [
+    <span class="js-regex">/(?:https?|ftp|file):\/\/(?:127\.0\.0\.1|localhost|169\.254\.|192\.168\.|10\.|172\.(?:1[6-9]|2[0-9]|3[01]))/i</span>,
+    <span class="js-regex">/(?:https?|ftp|file):\/\/(?:0\.0\.0\.0|::1|metadata\.google\.internal|169\.254\.169\.254)/i</span>,
+    <span class="js-regex">/(?:https?|ftp|file):\/\/(?:.*\.internal|.*\.local|.*\.localhost)/i</span>,
+    <span class="js-regex">/(?:https?|ftp|file):\/\/(?:.*\.amazonaws\.com\/latest\/meta-data)/i</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-comment">// Check URL parameters</span>
+    <span class="js-keyword">if</span> (request.<span class="js-property">query</span>) {
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> [key, value] <span class="js-keyword">of</span> Object.<span class="js-property">entries</span>(request.<span class="js-property">query</span>)) {
+            <span class="js-keyword">if</span> (<span class="js-keyword">typeof</span> value === <span class="js-string">'string'</span>) {
+                <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> SSRF_PATTERNS) {
+                    <span class="js-keyword">if</span> (pattern.<span class="js-property">test</span>(value)) {
+                        <span class="js-keyword">return</span> {
+                            <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                            <span class="js-property">reason</span>: <span class="js-string">`SSRF attack in parameter: </span>${key}<span class="js-string">`</span>,
+                            <span class="js-property">category</span>: <span class="js-string">"ssrf"</span>,
+                            <span class="js-property">confidence</span>: <span class="js-number">95</span>
+                        };
+                    }
+                }
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- CSRF -->
+                    <p class="js-sub" id="ex-csrf">Cross-Site Request Forgery (CSRF) (A07:2021)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">csrf_protection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    ALLOWED_ORIGINS: [<span class="js-string">"https://example.com"</span>, <span class="js-string">"https://www.example.com"</span>],
+    EXEMPT_PATHS: [<span class="js-string">"/api/webhook"</span>, <span class="js-string">"/api/public"</span>]
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> protectedMethods = { <span class="js-string">"POST"</span>: <span class="js-keyword">true</span>, <span class="js-string">"PUT"</span>: <span class="js-keyword">true</span>, <span class="js-string">"DELETE"</span>: <span class="js-keyword">true</span>, <span class="js-string">"PATCH"</span>: <span class="js-keyword">true</span> };
+    <span class="js-keyword">if</span> (!protectedMethods[request.<span class="js-property">method</span>]) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> path <span class="js-keyword">of</span> CONFIG.EXEMPT_PATHS) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span>.<span class="js-property">startsWith</span>(path)) {
+            <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+        }
+    }
+    
+    <span class="js-keyword">const</span> origin = request.<span class="js-property">headers</span>[<span class="js-string">"origin"</span>] || <span class="js-string">""</span>;
+    <span class="js-keyword">if</span> (origin) {
+        <span class="js-keyword">let</span> allowed = <span class="js-keyword">false</span>;
+        <span class="js-keyword">for</span> (<span class="js-keyword">let</span> o <span class="js-keyword">of</span> CONFIG.ALLOWED_ORIGINS) {
+            <span class="js-keyword">if</span> (origin === o) {
+                allowed = <span class="js-keyword">true</span>;
+                <span class="js-keyword">break</span>;
+            }
+        }
+        <span class="js-keyword">if</span> (!allowed) {
+            <span class="js-keyword">return</span> {
+                <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                <span class="js-property">reason</span>: <span class="js-string">"CSRF: Invalid Origin"</span>,
+                <span class="js-property">category</span>: <span class="js-string">"csrf"</span>,
+                <span class="js-property">confidence</span>: <span class="js-number">90</span>
+            };
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- CORE EXAMPLES -->
+                <section class="js-section">
+                    <h2 class="js-section__title"><span class="sec-num">15</span> Core Security Examples</h2>
+
+                    <!-- Geo Block -->
+                    <p class="js-sub" id="ex-geo">GeoIP Country Blocking (requires GeoIP implementation)</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">geo_block.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> BLOCKED_COUNTRIES = {
+    <span class="js-string">"XX"</span>: <span class="js-keyword">true</span>,  <span class="js-comment">// Replace with actual country codes</span>
+    <span class="js-string">"YY"</span>: <span class="js-keyword">true</span>
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">if</span> (request.<span class="js-property">country</span> &amp;&amp; BLOCKED_COUNTRIES[request.<span class="js-property">country</span>]) {
+        <span class="js-keyword">return</span> {
+            <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+            <span class="js-property">reason</span>: <span class="js-string">`Access from </span>${request.country}<span class="js-string"> is not allowed`</span>,
+            <span class="js-property">category</span>: <span class="js-string">"geo_block"</span>,
+            <span class="js-property">confidence</span>: <span class="js-number">100</span>
+        };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Bot Detection -->
+                    <p class="js-sub" id="ex-bot">Bot Detection</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">bot_detection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> BOT_UA_PATTERNS = [
+    <span class="js-string">"bot"</span>, <span class="js-string">"crawler"</span>, <span class="js-string">"spider"</span>, <span class="js-string">"scraper"</span>,
+    <span class="js-string">"wget"</span>, <span class="js-string">"curl"</span>, <span class="js-string">"python"</span>, <span class="js-string">"go-http-client"</span>,
+    <span class="js-string">"headless"</span>, <span class="js-string">"phantomjs"</span>, <span class="js-string">"puppeteer"</span>,
+    <span class="js-string">"selenium"</span>, <span class="js-string">"playwright"</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> ua = (request.<span class="js-property">user_agent</span> || <span class="js-string">""</span>).<span class="js-property">toLowerCase</span>();
+    
+    <span class="js-keyword">if</span> (!ua) {
+        <span class="js-keyword">return</span> {
+            <span class="js-property">action</span>: <span class="js-string">"challenge"</span>,
+            <span class="js-property">reason</span>: <span class="js-string">"Missing User-Agent"</span>,
+            <span class="js-property">category</span>: <span class="js-string">"bot"</span>,
+            <span class="js-property">confidence</span>: <span class="js-number">70</span>
+        };
+    }
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> pattern <span class="js-keyword">of</span> BOT_UA_PATTERNS) {
+        <span class="js-keyword">if</span> (ua.<span class="js-property">includes</span>(pattern)) {
+            <span class="js-keyword">return</span> {
+                <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                <span class="js-property">reason</span>: <span class="js-string">`Bot detected: </span>${pattern}<span class="js-string">`</span>,
+                <span class="js-property">category</span>: <span class="js-string">"bot"</span>,
+                <span class="js-property">confidence</span>: <span class="js-number">85</span>
+            };
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Path Protection -->
+                    <p class="js-sub" id="ex-path">Path-Based IP Whitelist</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">path_protection.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> PROTECTED = { <span class="js-string">"/admin"</span>: <span class="js-keyword">true</span>, <span class="js-string">"/wp-admin"</span>: <span class="js-keyword">true</span> };
+<span class="js-keyword">const</span> ALLOWED = { <span class="js-string">"192.168.1.100"</span>: <span class="js-keyword">true</span>, <span class="js-string">"10.0.0.50"</span>: <span class="js-keyword">true</span> };
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> path <span class="js-keyword">in</span> PROTECTED) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span>.<span class="js-property">startsWith</span>(path)) {
+            <span class="js-keyword">if</span> (!ALLOWED[request.<span class="js-property">ip</span>]) {
+                <span class="js-keyword">return</span> {
+                    <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                    <span class="js-property">reason</span>: <span class="js-string">"Unauthorized access to protected path"</span>,
+                    <span class="js-property">category</span>: <span class="js-string">"access_control"</span>,
+                    <span class="js-property">confidence</span>: <span class="js-number">95</span>
+                };
+            }
+        }
+    }
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Brute Force Protection -->
+                    <p class="js-sub" id="ex-bruteforce">Brute Force Login Protection</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">brute_force.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    LOGIN_PATHS: [<span class="js-string">"/login"</span>, <span class="js-string">"/wp-login.php"</span>, <span class="js-string">"/api/auth"</span>],
+    MAX_ATTEMPTS: <span class="js-number">5</span>,
+    WINDOW: <span class="js-number">300</span>,
+    BAN_TIME: <span class="js-number">1800</span>
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);
+    <span class="js-keyword">const</span> ip = request.<span class="js-property">ip</span>;
+    <span class="js-keyword">const</span> now = Math.<span class="js-property">floor</span>(Date.<span class="js-property">now</span>() / <span class="js-number">1000</span>);
+    
+    <span class="js-keyword">let</span> isLogin = <span class="js-keyword">false</span>;
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> path <span class="js-keyword">of</span> CONFIG.LOGIN_PATHS) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span>.<span class="js-property">startsWith</span>(path)) {
+            isLogin = <span class="js-keyword">true</span>;
+            <span class="js-keyword">break</span>;
+        }
+    }
+    
+    <span class="js-keyword">if</span> (!isLogin) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+    
+    <span class="js-keyword">const</span> banned = dict.<span class="js-property">get</span>(<span class="js-string">"bf_ban:"</span> + ip) || <span class="js-number">0</span>;
+    <span class="js-keyword">if</span> (banned > now) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>, <span class="js-property">reason</span>: <span class="js-string">"Too many failed login attempts"</span> };
+    }
+    
+    <span class="js-keyword">const</span> key = <span class="js-string">"bf_cnt:"</span> + ip;
+    <span class="js-keyword">let</span> count = dict.<span class="js-property">get</span>(key) || <span class="js-number">0</span>;
+    count = dict.<span class="js-property">incr</span>(key, <span class="js-number">1</span>);
+    dict.<span class="js-property">set</span>(key, count, CONFIG.WINDOW);
+    
+    <span class="js-keyword">if</span> (count >= CONFIG.MAX_ATTEMPTS) {
+        dict.<span class="js-property">set</span>(<span class="js-string">"bf_ban:"</span> + ip, now + CONFIG.BAN_TIME, CONFIG.BAN_TIME);
+        dict.<span class="js-property">delete</span>(key);
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>, <span class="js-property">reason</span>: <span class="js-string">"Rate limit exceeded"</span>, <span class="js-property">rule_name</span>: <span class="js-string">"BF_001"</span> };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- DDoS Shield -->
+                    <p class="js-sub" id="ex-ddos">DDoS Protection</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">ddos_shield.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    BURST_LIMIT: <span class="js-number">30</span>,
+    SUSTAINED_LIMIT: <span class="js-number">200</span>,
+    BAN1: <span class="js-number">60</span>,
+    BAN2: <span class="js-number">600</span>,
+    BAN3: <span class="js-number">86400</span>
+};
+
+<span class="js-keyword">function</span> <span class="js-function">escalateBan</span>(ip, now, dict, type) {
+    <span class="js-keyword">const</span> offenseKey = <span class="js-string">"ddos_off:"</span> + ip;
+    <span class="js-keyword">let</span> offense = dict.<span class="js-property">get</span>(offenseKey) || <span class="js-number">0</span>;
+    offense = dict.<span class="js-property">incr</span>(offenseKey, <span class="js-number">1</span>);
+    dict.<span class="js-property">set</span>(offenseKey, offense, <span class="js-number">86400</span>);
+    
+    <span class="js-keyword">let</span> banTime;
+    <span class="js-keyword">if</span> (offense === <span class="js-number">1</span>) banTime = CONFIG.BAN1;
+    <span class="js-keyword">else</span> <span class="js-keyword">if</span> (offense === <span class="js-number">2</span>) banTime = CONFIG.BAN2;
+    <span class="js-keyword">else</span> banTime = CONFIG.BAN3;
+    
+    dict.<span class="js-property">set</span>(<span class="js-string">"ddos_ban:"</span> + ip, now + banTime, banTime);
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span>, <span class="js-property">reason</span>: <span class="js-string">`DDoS </span>${type}<span class="js-string"> detected`</span>, <span class="js-property">rule_name</span>: <span class="js-string">"DDOS_001"</span> };
+}
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);
+    <span class="js-keyword">const</span> ip = request.<span class="js-property">ip</span>;
+    <span class="js-keyword">const</span> now = Math.<span class="js-property">floor</span>(Date.<span class="js-property">now</span>() / <span class="js-number">1000</span>);
+    
+    <span class="js-keyword">const</span> banned = dict.<span class="js-property">get</span>(<span class="js-string">"ddos_ban:"</span> + ip) || <span class="js-number">0</span>;
+    <span class="js-keyword">if</span> (banned > now) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"rate_limit"</span> };
+    }
+    
+    <span class="js-keyword">const</span> burstKey = <span class="js-string">"ddos_burst:"</span> + ip;
+    <span class="js-keyword">let</span> burst = dict.<span class="js-property">get</span>(burstKey) || <span class="js-number">0</span>;
+    burst = dict.<span class="js-property">incr</span>(burstKey, <span class="js-number">1</span>);
+    dict.<span class="js-property">set</span>(burstKey, burst, <span class="js-number">2</span>);
+    
+    <span class="js-keyword">if</span> (burst > CONFIG.BURST_LIMIT) {
+        <span class="js-keyword">return</span> escalateBan(ip, now, dict, <span class="js-string">"burst"</span>);
+    }
+    
+    <span class="js-keyword">const</span> minuteKey = <span class="js-string">"ddos_min:"</span> + ip + <span class="js-string">":"</span> + <span class="js-keyword">new</span> <span class="js-function">Date</span>().<span class="js-property">toISOString</span>().<span class="js-property">substring</span>(<span class="js-number">0</span>, <span class="js-number">16</span>);
+    <span class="js-keyword">let</span> minute = dict.<span class="js-property">get</span>(minuteKey) || <span class="js-number">0</span>;
+    minute = dict.<span class="js-property">incr</span>(minuteKey, <span class="js-number">1</span>);
+    dict.<span class="js-property">set</span>(minuteKey, minute, <span class="js-number">60</span>);
+    
+    <span class="js-keyword">if</span> (minute > CONFIG.SUSTAINED_LIMIT) {
+        <span class="js-keyword">return</span> escalateBan(ip, now, dict, <span class="js-string">"sustained"</span>);
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- HTTP Method Filter -->
+                    <p class="js-sub" id="ex-method">HTTP Method Filter</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">method_filter.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> READ_ONLY_PATHS = [<span class="js-string">"/blog"</span>, <span class="js-string">"/docs"</span>, <span class="js-string">"/static"</span>];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> method = request.<span class="js-property">method</span>.<span class="js-property">toUpperCase</span>();
+    
+    <span class="js-comment">// Block dangerous methods</span>
+    <span class="js-keyword">const</span> dangerous = { <span class="js-string">"TRACE"</span>: <span class="js-keyword">true</span>, <span class="js-string">"TRACK"</span>: <span class="js-keyword">true</span>, <span class="js-string">"CONNECT"</span>: <span class="js-keyword">true</span> };
+    <span class="js-keyword">if</span> (dangerous[method]) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">status</span>: <span class="js-number">405</span>, <span class="js-property">reason</span>: <span class="js-string">"Method not allowed"</span> };
+    }
+    
+    <span class="js-comment">// Read-only paths should only allow GET/HEAD</span>
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> path <span class="js-keyword">of</span> READ_ONLY_PATHS) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span>.<span class="js-property">startsWith</span>(path)) {
+            <span class="js-keyword">if</span> (method !== <span class="js-string">"GET"</span> &amp;&amp; method !== <span class="js-string">"HEAD"</span>) {
+                <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">status</span>: <span class="js-number">405</span>, <span class="js-property">reason</span>: <span class="js-string">"Read-only path"</span> };
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Tor / VPN Block -->
+                    <p class="js-sub" id="ex-tor">Tor / VPN Block</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">tor_vpn_block.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">if</span> (request.<span class="js-property">is_tor</span>) {
+        <span class="js-keyword">return</span> {
+            <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+            <span class="js-property">reason</span>: <span class="js-string">"Tor exit node access denied"</span>,
+            <span class="js-property">category</span>: <span class="js-string">"tor"</span>,
+            <span class="js-property">confidence</span>: <span class="js-number">100</span>
+        };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- MORE SCRIPTS -->
+                <section class="js-section" id="more-scripts">
+                    <h2 class="js-section__title"><span class="sec-num">16</span> More Useful Scripts</h2>
+
+                    <!-- Password Protect -->
+                    <p class="js-sub" id="ex-password">Password Protect Any URL</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">password_protect.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    SECRET: <span class="js-string">"change-me-strong-secret"</span>,
+    PROTECTED_PATHS: [<span class="js-string">"/staging"</span>, <span class="js-string">"/preview"</span>, <span class="js-string">"/beta"</span>],
+    TRUSTED_IPS: { <span class="js-string">"192.168.1.0"</span>: <span class="js-keyword">true</span> }
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">let</span> protected = <span class="js-keyword">false</span>;
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> p <span class="js-keyword">of</span> CONFIG.PROTECTED_PATHS) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span>.<span class="js-property">startsWith</span>(p)) {
+            protected = <span class="js-keyword">true</span>;
+            <span class="js-keyword">break</span>;
+        }
+    }
+    
+    <span class="js-keyword">if</span> (!protected || CONFIG.TRUSTED_IPS[request.<span class="js-property">ip</span>]) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+    
+    <span class="js-keyword">const</span> token = request.<span class="js-property">query</span>[<span class="js-string">"token"</span>];
+    <span class="js-keyword">if</span> (token === CONFIG.SECRET) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">status</span>: <span class="js-number">401</span>, <span class="js-property">reason</span>: <span class="js-string">"Authentication required"</span> };
+}</pre>
+                    </div>
+
+                    <!-- API Key Auth -->
+                    <p class="js-sub" id="ex-apikey">API Key Authentication</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">api_key_auth.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> API_KEYS = {
+    <span class="js-string">"key-client-alpha-1234"</span>: { name: <span class="js-string">"client-alpha"</span>, rate: <span class="js-number">100</span> },
+    <span class="js-string">"key-client-beta-5678"</span>:  { name: <span class="js-string">"client-beta"</span>,  rate: <span class="js-number">500</span> }
+};
+
+<span class="js-keyword">const</span> PROTECTED = [<span class="js-string">"/api/"</span>, <span class="js-string">"/v1/"</span>, <span class="js-string">"/v2/"</span>];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">let</span> needs = <span class="js-keyword">false</span>;
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> p <span class="js-keyword">of</span> PROTECTED) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span>.<span class="js-property">startsWith</span>(p)) {
+            needs = <span class="js-keyword">true</span>;
+            <span class="js-keyword">break</span>;
+        }
+    }
+    
+    <span class="js-keyword">if</span> (!needs) <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    
+    <span class="js-keyword">const</span> key = request.<span class="js-property">headers</span>[<span class="js-string">"x-api-key"</span>] || request.<span class="js-property">query</span>[<span class="js-string">"api_key"</span>];
+    <span class="js-keyword">if</span> (!key) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">status</span>: <span class="js-number">401</span>, <span class="js-property">reason</span>: <span class="js-string">"API key required"</span> };
+    }
+    
+    <span class="js-keyword">if</span> (!API_KEYS[key]) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">status</span>: <span class="js-number">403</span>, <span class="js-property">reason</span>: <span class="js-string">"Invalid API key"</span> };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- File Type Filter -->
+                    <p class="js-sub" id="ex-filetype">Dangerous File Type Filter</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">file_type_filter.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> BLOCKED_EXT = [
+    <span class="js-string">".php"</span>, <span class="js-string">".php3"</span>, <span class="js-string">".php5"</span>, <span class="js-string">".phtml"</span>, <span class="js-string">".asp"</span>, <span class="js-string">".aspx"</span>,
+    <span class="js-string">".jsp"</span>, <span class="js-string">".cgi"</span>, <span class="js-string">".pl"</span>, <span class="js-string">".py"</span>, <span class="js-string">".sh"</span>, <span class="js-string">".exe"</span>, <span class="js-string">".bat"</span>, <span class="js-string">".jar"</span>
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> path = request.<span class="js-property">path</span>.<span class="js-property">toLowerCase</span>();
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> ext <span class="js-keyword">of</span> BLOCKED_EXT) {
+        <span class="js-keyword">if</span> (path.<span class="js-property">endsWith</span>(ext)) {
+            <span class="js-keyword">return</span> {
+                <span class="js-property">action</span>: <span class="js-string">"block"</span>,
+                <span class="js-property">reason</span>: <span class="js-string">`File extension </span>${ext}<span class="js-string"> not allowed`</span>,
+                <span class="js-property">category</span>: <span class="js-string">"file_filter"</span>,
+                <span class="js-property">confidence</span>: <span class="js-number">95</span>
+            };
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Honeypot -->
+                    <p class="js-sub" id="ex-honeypot">Honeypot Bot Trap</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">honeypot.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    BAN_TIME: <span class="js-number">86400</span>,
+    TRAP_PATHS: [<span class="js-string">"/trap-link"</span>, <span class="js-string">"/do-not-visit"</span>, <span class="js-string">"/honeypot"</span>],
+    TRUSTED_AGENTS: [<span class="js-string">"googlebot"</span>, <span class="js-string">"bingbot"</span>]
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);
+    <span class="js-keyword">const</span> ip = request.<span class="js-property">ip</span>;
+    <span class="js-keyword">const</span> now = Math.<span class="js-property">floor</span>(Date.<span class="js-property">now</span>() / <span class="js-number">1000</span>);
+    <span class="js-keyword">const</span> path = request.<span class="js-property">path</span>.<span class="js-property">toLowerCase</span>();
+    <span class="js-keyword">const</span> ua = (request.<span class="js-property">user_agent</span> || <span class="js-string">""</span>).<span class="js-property">toLowerCase</span>();
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> trap <span class="js-keyword">of</span> CONFIG.TRAP_PATHS) {
+        <span class="js-keyword">if</span> (path === trap) {
+            <span class="js-keyword">let</span> trusted = <span class="js-keyword">false</span>;
+            <span class="js-keyword">for</span> (<span class="js-keyword">let</span> a <span class="js-keyword">of</span> CONFIG.TRUSTED_AGENTS) {
+                <span class="js-keyword">if</span> (ua.<span class="js-property">includes</span>(a)) trusted = <span class="js-keyword">true</span>;
+            }
+            <span class="js-keyword">if</span> (!trusted) {
+                dict.<span class="js-property">set</span>(<span class="js-string">"hp_ban:"</span> + ip, now + CONFIG.BAN_TIME, CONFIG.BAN_TIME);
+                <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">reason</span>: <span class="js-string">"Honeypot triggered"</span> };
+            }
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Maintenance Mode -->
+                    <p class="js-sub" id="ex-maintenance">Maintenance Mode</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">maintenance.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> CONFIG = {
+    ENABLED: <span class="js-keyword">true</span>,
+    ALLOWED_IPS: { <span class="js-string">"203.0.113.10"</span>: <span class="js-keyword">true</span> },
+    ALWAYS_ON: [<span class="js-string">"/health"</span>, <span class="js-string">"/ping"</span>, <span class="js-string">"/status"</span>]
+};
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">if</span> (!CONFIG.ENABLED) <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> p <span class="js-keyword">of</span> CONFIG.ALWAYS_ON) {
+        <span class="js-keyword">if</span> (request.<span class="js-property">path</span> === p) <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+    
+    <span class="js-keyword">if</span> (CONFIG.ALLOWED_IPS[request.<span class="js-property">ip</span>]) {
+        <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"block"</span>, <span class="js-property">status</span>: <span class="js-number">503</span>, <span class="js-property">reason</span>: <span class="js-string">"Under maintenance"</span> };
+}</pre>
+                    </div>
+
+                    <!-- Smart Redirects -->
+                    <p class="js-sub" id="ex-redirect">Smart Redirects</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">redirects.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">const</span> EXACT = {
+    <span class="js-string">"/home"</span>: { to: <span class="js-string">"/"</span>, code: <span class="js-number">301</span> },
+    <span class="js-string">"/about-us"</span>: { to: <span class="js-string">"/about"</span>, code: <span class="js-number">301</span> }
+};
+
+<span class="js-keyword">const</span> PREFIX = [
+    { from: <span class="js-string">"/old-blog/"</span>, to: <span class="js-string">"/blog/"</span>, code: <span class="js-number">301</span> }
+];
+
+<span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    <span class="js-keyword">const</span> path = request.<span class="js-property">path</span>;
+    
+    <span class="js-keyword">if</span> (EXACT[path]) {
+        <span class="js-keyword">return</span> {
+            <span class="js-property">action</span>: <span class="js-string">"redirect"</span>,
+            <span class="js-property">status</span>: EXACT[path].code,
+            <span class="js-property">redirect_to</span>: EXACT[path].to
+        };
+    }
+    
+    <span class="js-keyword">for</span> (<span class="js-keyword">let</span> r <span class="js-keyword">of</span> PREFIX) {
+        <span class="js-keyword">if</span> (path.<span class="js-property">startsWith</span>(r.from)) {
+            <span class="js-keyword">const</span> dest = r.to + path.<span class="js-property">substring</span>(r.from.<span class="js-property">length</span>);
+            <span class="js-keyword">return</span> {
+                <span class="js-property">action</span>: <span class="js-string">"redirect"</span>,
+                <span class="js-property">status</span>: r.code,
+                <span class="js-property">redirect_to</span>: dest
+            };
+        }
+    }
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+                </section>
+
+                <!-- TESTING -->
+                <section class="js-section" id="testing">
+                    <h2 class="js-section__title"><span class="sec-num">17</span> Testing</h2>
+
+                    <p class="js-sub">Diagnostic Script</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">debug.js — remove before production</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
+    log.<span class="js-property">info</span>(<span class="js-string">"=== DEBUG ==="</span>);
+    log.<span class="js-property">info</span>(<span class="js-string">"IP: "</span> + request.<span class="js-property">ip</span>);
+    log.<span class="js-property">info</span>(<span class="js-string">"Method: "</span> + request.<span class="js-property">method</span>);
+    log.<span class="js-property">info</span>(<span class="js-string">"Path: "</span> + request.<span class="js-property">path</span>);
+    log.<span class="js-property">info</span>(<span class="js-string">"UA: "</span> + request.<span class="js-property">user_agent</span>);
+    log.<span class="js-property">info</span>(<span class="js-string">"Is Tor: "</span> + request.<span class="js-property">is_tor</span>);
+    
+    <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
+}</pre>
+                    </div>
+
+                    <p class="js-sub">Shell Commands</p>
+                    <div class="js-code">
+                        <div class="js-code__hdr"><span class="js-code__lang">shell</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <pre><span class="js-comment"># Watch WAF logs</span>
+sudo tail -f /var/log/clofix/waf.log | grep -i <span class="js-string">'\[JSBlocker\]'</span>
+
+<span class="js-comment"># Test normal request</span>
+curl https://your-domain.com/
+
+<span class="js-comment"># Test SQL injection</span>
+curl <span class="js-string">'https://your-domain.com/?id=1%20UNION%20SELECT%20*%20FROM%20users'</span>
+
+<span class="js-comment"># Test XSS</span>
+curl <span class="js-string">'https://your-domain.com/?q=<script>alert(1)</script>'</span>
+
+<span class="js-comment"># Test rate limiting</span>
+<span class="js-keyword">for</span> i <span class="js-keyword">in</span> $(seq <span class="js-number">1</span> <span class="js-number">200</span>); <span class="js-keyword">do</span>
+    curl -s -o /dev/null https://your-domain.com/ &amp;
+<span class="js-keyword">done</span>
+wait
+
+<span class="js-comment"># Test scanner detection</span>
+curl -A <span class="js-string">"sqlmap/1.7"</span> https://your-domain.com/</pre>
+                    </div>
+                </section>
+
+                <!-- TROUBLESHOOTING -->
+                <section class="js-section" id="troubleshooting">
+                    <h2 class="js-section__title"><span class="sec-num">18</span> Troubleshooting</h2>
+
+                    <div class="js-table-wrap">
+                        <table class="js-table">
+                            <thead><tr><th>Error / Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+                            <tbody>
+                                <tr><td>function clofix not found</td><td>Function missing or misnamed</td><td>Export exactly <span class="ic">function clofix(request)</span></td></tr>
+                                <tr><td>sharedDict is not defined</td><td>Shared dict not declared in config</td><td>Add <span class="ic">lua_shared_dict &lt;name&gt; &lt;size&gt;m;</span> to config</td></tr>
+                                <tr><td>Cannot read property 'ip' of undefined</td><td>Request object is undefined</td><td>Function signature must be <span class="ic">clofix(request)</span></td></tr>
+                                <tr><td>JavaScript execution timed out</td><td>Script exceeds 2 seconds</td><td>Optimize loops, use shared dict for caching</td></tr>
+                                <tr><td>SyntaxError: Unexpected token</td><td>JavaScript syntax error</td><td>Validate with <span class="ic">node -c script.js</span></td></tr>
+                                <tr><td>Changes not taking effect</td><td>File not saved or scanned</td><td>Check file permissions, trigger rescan via API</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- BEST PRACTICES -->
+                <section class="js-section" id="best">
+                    <h2 class="js-section__title"><span class="sec-num">19</span> Best Practices</h2>
+
+                    <ol class="lua-ol">
+                        <li><strong>One script per concern</strong> — keep <code>rate_limit.js</code>, <code>bot_detection.js</code>, <code>sql_injection.js</code> separate</li>
+                        <li><strong>Always validate inputs</strong> — use <code>if (request.body && typeof request.body === 'string')</code></li>
+                        <li><strong>Return early</strong> — check blocklists first before heavy pattern matching</li>
+                        <li><strong>Use shared dictionaries with TTL</strong> — always set expiration times to prevent memory leaks</li>
+                        <li><strong>Log attacks with context</strong> — use <code>log.attack()</code> for structured logging</li>
+                        <li><strong>Test with diagnostic script first</strong> — deploy debug.js to verify your environment</li>
+                        <li><strong>Numeric prefixes on filenames</strong> — use <code>01_rate_limit.js</code>, <code>02_bot_detect.js</code> to control order</li>
+                        <li><strong>CONFIG objects at the top</strong> — put all tunable values in a CONFIG object for easy adjustments</li>
+                        <li><strong>Remove debug logs in production</strong> — delete or comment out <code>log.info()</code> calls</li>
+                    </ol>
+
+                    <div class="js-box">
+                        <strong>Need Help?</strong>
+                        For CloFix WAF support, configuration questions, or to report JavaScript scripting issues, visit the
+                        <a href="support.html" style="color:var(--js-yellow);">Support</a> section or
+                        <a href="contact.html" style="color:var(--js-yellow);">contact us</a>.
+                    </div>
+                </section>
+
+            </div><!-- .js-content -->
+        </div><!-- .js-body -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+                <ul class="social">
+                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
+                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix/" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"><p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p></div>
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        /* Nav */
+        const navToggle  = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+        const dropdowns  = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns(){ dropdowns.forEach(dd=>{ dd.classList.remove('open'); const b=dd.querySelector('.c-dropdown__toggle'); if(b)b.setAttribute('aria-expanded','false'); }); }
+        if(navToggle&&navContent){
+            navToggle.setAttribute('aria-expanded','false');
+            navToggle.addEventListener('click',()=>{ const o=navContent.classList.toggle('active'); document.body.classList.toggle('nav-open',o); navToggle.setAttribute('aria-expanded',o?'true':'false'); if(!o)closeAllDropdowns(); });
+            navContent.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); }));
+            document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&navContent.classList.contains('active')){ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+            window.addEventListener('resize',()=>{ if(window.innerWidth>768){ document.body.classList.remove('nav-open'); navContent.classList.remove('active'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+        }
+        dropdowns.forEach(dd=>{ const t=dd.querySelector('.c-dropdown__toggle'); if(!t)return; t.addEventListener('click',e=>{ e.preventDefault();e.stopPropagation(); const w=!dd.classList.contains('open'); closeAllDropdowns(); if(w){dd.classList.add('open');t.setAttribute('aria-expanded','true');} }); });
+        document.addEventListener('click',e=>{ if(navContent&&navContent.classList.contains('active'))return; if(!e.target.closest('.c-dropdown'))closeAllDropdowns(); });
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a=>a.addEventListener('click',()=>{ closeAllDropdowns(); if(navContent)navContent.classList.remove('active'); document.body.classList.remove('nav-open'); if(navToggle)navToggle.setAttribute('aria-expanded','false'); }));
+
+        /* Header height */
+        (function(){ const h=document.querySelector('.header'); function s(){ if(h)document.documentElement.style.setProperty('--header-h',h.offsetHeight+'px'); } window.addEventListener('load',s); window.addEventListener('resize',s); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(s); })();
+
+        /* GA4 */
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date()); gtag('config','G-WP02RFXGSE');
+
+        /* Copy button */
+        function jsCopy(btn){
+            const pre=btn.closest('.js-code').querySelector('pre');
+            navigator.clipboard.writeText(pre.innerText).then(()=>{ btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy',1800); });
+        }
+
+        /* TOC active on scroll */
+        const tocLinks = document.querySelectorAll('.js-toc a');
+        const tocEl    = document.querySelector('.js-toc');
+        const sections = document.querySelectorAll('[id]');
+        const obs = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    tocLinks.forEach(l=>l.classList.remove('toc-active'));
+                    const a=document.querySelector('.js-toc a[href="#'+e.target.id+'"]');
+                    if(a){
+                        a.classList.add('toc-active');
+                        if(tocEl){ const tr=tocEl.getBoundingClientRect(),lr=a.getBoundingClientRect(),rt=lr.top-tr.top+tocEl.scrollTop,rb=rt+lr.height; if(rt<tocEl.scrollTop+32)tocEl.scrollTo({top:rt-32,behavior:'smooth'}); else if(rb>tocEl.scrollTop+tocEl.clientHeight-32)tocEl.scrollTo({top:rb-tocEl.clientHeight+32,behavior:'smooth'}); }
+                    }
+                }
+            });
+        },{rootMargin:'-25% 0px -65% 0px'});
+        sections.forEach(s=>obs.observe(s));
+    </script>
+</body>
+</html>
