@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="canonical" href="https://clofix.com/clofix-crs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CloFix CRS (Core Rule Set) — complete OWASP CRS v4 protection with CloFixRule custom directives, bypass management, and comprehensive attack protection.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix WAF | OWASP CRS (Core Rule Set) Guide">
+    <meta property="og:description" content="Complete OWASP CRS v4 implementation with CloFixRule custom rules, intelligent bypass system, and full attack protection coverage.">
+    <meta property="og:url" content="https://clofix.com/clofix-crs.html">
+    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix WAF | OWASP CRS (Core Rule Set) Guide">
+    <meta name="twitter:description" content="Complete OWASP CRS v4 implementation with CloFixRule custom rules, bypass system, and attack protection.">
+    <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+    <link rel="icon" type="image/png" href="img/clofix.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet" />
+    <title>CloFix WAF — OWASP CRS (Core Rule Set) Guide</title>
+    <style>
+        :root {
+            --crs-dark:     #0a0e1a;
+            --crs-navy:     #0f1a2e;
+            --crs-surface:  #132238;
+            --crs-border:   #2a3a56;
+            --crs-gold:     #e8b84b;
+            --crs-orange:   #e85d26;
+            --crs-blue:     #2e6db4;
+            --crs-text:     #d8e0f0;
+            --crs-muted:    #6a80a0;
+            --crs-code:     #0c1422;
+            --crs-mono:     'Space Mono', 'Courier New', monospace;
+            --crs-green:    #4caf50;
+            --crs-red:      #f56565;
+            --crs-purple:   #9b6fd4;
+        }
+
+        .crs-page { background: var(--crs-dark); color: var(--crs-text); line-height: 1.75; }
+        .crs-page * { box-sizing: border-box; }
+
+        .crs-hero {
+            background:
+                radial-gradient(ellipse at 70% -10%, rgba(232,184,75,.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 110%, rgba(46,109,180,.12) 0%, transparent 55%),
+                var(--crs-navy);
+            padding: 80px 0 64px;
+            border-bottom: 1px solid var(--crs-border);
+        }
+        .crs-hero .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        .crs-hero h1 { font-size: clamp(32px,5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-1px; color:#fff; margin:0 0 16px; }
+        .crs-hero h1 span { color:var(--crs-gold); }
+        .crs-hero__lead { font-size:17px; color:var(--crs-muted); max-width:620px; margin:0 0 36px; }
+        .crs-hero__pills { display:flex; flex-wrap:wrap; gap:10px; }
+        .crs-hero__pill { background:rgba(255,255,255,.04); border:1px solid var(--crs-border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--crs-text); }
+
+        .crs-version {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(232,184,75,.08); border: 1px solid rgba(232,184,75,.3);
+            color: var(--crs-gold); font-size: 11px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 4px; margin-left: 12px;
+        }
+
+        .crs-body { display:flex; max-width:1100px; margin:0 auto; padding:0 24px; gap:48px; align-items:flex-start; }
+
+        .crs-toc {
+            position:sticky; top:24px; width:220px; flex-shrink:0;
+            padding:24px 0; max-height:calc(100vh - 48px);
+            overflow-y:auto; overflow-x:hidden;
+            scrollbar-width:thin; scrollbar-color:var(--crs-border) transparent;
+        }
+        .crs-toc::-webkit-scrollbar { width:4px; }
+        .crs-toc__title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crs-muted); margin-bottom:12px; }
+        .crs-toc a { display:block; padding:6px 12px; font-size:13px; color:var(--crs-muted); text-decoration:none; border-left:2px solid transparent; border-radius:0 4px 4px 0; transition:all .15s; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .crs-toc a:hover, .crs-toc a.toc-active { color:var(--crs-gold); border-left-color:var(--crs-gold); background:rgba(232,184,75,.06); }
+        .crs-toc .toc-group { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--crs-border); padding:14px 12px 4px; }
+
+        .crs-content { flex:1; min-width:0; padding:48px 0 80px; }
+        .crs-section { margin-bottom:72px; }
+        .crs-section__title { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color:#fff; letter-spacing:-.4px; margin:0 0 8px; padding-bottom:12px; border-bottom:1px solid var(--crs-border); }
+        .crs-section__title .sec-num { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--crs-gold); background:rgba(232,184,75,.1); border:1px solid rgba(232,184,75,.2); padding:2px 8px; border-radius:4px; }
+        .crs-sub { font-size:16px; font-weight:700; color:var(--crs-orange); margin:32px 0 10px; }
+        .crs-content p { color:var(--crs-text); margin:0 0 16px; }
+
+        .crs-code { margin:16px 0 24px; border-radius:8px; overflow:hidden; border:1px solid var(--crs-border); }
+        .crs-code__hdr { display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:#0f1f35; border-bottom:1px solid var(--crs-border); }
+        .crs-code__lang { font-family:var(--crs-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--crs-gold); }
+        .crs-copy { font-size:11px; color:var(--crs-muted); background:none; border:1px solid var(--crs-border); padding:3px 10px; border-radius:4px; cursor:pointer; font-family:inherit; transition:all .15s; }
+        .crs-copy:hover { color:var(--crs-gold); border-color:var(--crs-gold); }
+        .crs-code pre { background:var(--crs-code); padding:18px 20px; overflow-x:auto; font-family:var(--crs-mono); font-size:13px; line-height:1.75; color:#b0c8e8; margin:0; white-space:pre-wrap; word-break:break-all; }
+
+        .crs-table-wrap { overflow-x:auto; margin:14px 0 24px; border-radius:8px; border:1px solid var(--crs-border); }
+        .crs-table { width:100%; border-collapse:collapse; font-size:13.5px; }
+        .crs-table thead tr { background:#0f1f35; }
+        .crs-table thead th { padding:10px 14px; text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--crs-gold); border-bottom:1px solid var(--crs-border); white-space:nowrap; }
+        .crs-table tbody tr { border-bottom:1px solid var(--crs-border); transition:background .1s; }
+        .crs-table tbody tr:last-child { border-bottom:none; }
+        .crs-table tbody tr:hover { background:rgba(255,255,255,.03); }
+        .crs-table td { padding:9px 14px; vertical-align:top; }
+        .crs-table td:first-child { font-family:var(--crs-mono); font-size:12.5px; color:var(--crs-gold); white-space:nowrap; }
+
+        .crs-box { border-left:3px solid var(--crs-gold); background:rgba(232,184,75,.06); border-radius:0 6px 6px 0; padding:14px 18px; margin:16px 0 24px; font-size:14px; }
+        .crs-box.warn { border-left-color:var(--crs-orange); background:rgba(232,93,38,.06); }
+        .crs-box.gold { border-left-color:var(--crs-gold); background:rgba(232,184,75,.06); }
+        .crs-box.green { border-left-color:var(--crs-green); background:rgba(76,175,80,.06); }
+        .crs-box.red { border-left-color:var(--crs-red); background:rgba(245,101,101,.06); }
+        .crs-box.purple { border-left-color:var(--crs-purple); background:rgba(155,111,212,.06); }
+        .crs-box strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--crs-gold); }
+
+        .badge-crs { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; margin-right:4px; }
+        .badge-critical { background:#f56565; color:white; }
+        .badge-high { background:#ed8936; color:white; }
+        .badge-medium { background:#ecc94b; color:#744210; }
+        .badge-low { background:#48bb78; color:white; }
+
+        .action-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin:14px 0 24px; }
+        .action-card { background:var(--crs-surface); border:1px solid var(--crs-border); border-radius:8px; padding:14px 16px; }
+        .action-card .ac-name { font-family:var(--crs-mono); font-size:13px; font-weight:700; color:var(--crs-gold); margin-bottom:4px; }
+        .action-card .ac-desc { font-size:12.5px; color:var(--crs-muted); }
+
+        .ic { font-family:var(--crs-mono); font-size:12.5px; color:var(--crs-gold); background:var(--crs-code); padding:1px 5px; border-radius:3px; }
+
+        @media (max-width:860px) { .crs-toc { display:none; } .crs-body { padding:0 16px; } }
+        @media (max-width:600px) { .crs-hero { padding:48px 0 40px; } .crs-hero h1 { font-size:28px; } }
+    </style>
+</head>
+<body class="crs-page">
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="c-logo">
+                    <a href="index.html"><img src="img/logo.png" alt="Logo" class="c-logo__img" /></a>
+                    <span class="c-logo__text c-logo__text--white"></span>
+                </div>
+                <nav class="c-nav">
+                    <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span class="c-nav__bar"></span><span class="c-nav__bar"></span><span class="c-nav__bar"></span>
+                    </button>
+                    <div class="c-nav__content">
+                        <ul class="c-list c-list--flex">
+                            <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                            <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+                            <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                            <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+                            <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+                            <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+                            <li class="c-list__item c-dropdown">
+                                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">Tools <span class="c-dropdown__chev" aria-hidden="true">▾</span></button>
+                                <ul class="c-dropdown__menu" role="menu">
+                                    <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a></li>
+                                    <li role="none"><a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="faq.html" class="ticket-button"><button class="c-button c-button--small c-button--secondary">FAQ</button></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="crs-hero">
+            <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
+                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+                    <span style="background: #132238; border: 1px solid #e8b84b; color: #e8b84b; font-size: 12px; font-weight: bold; padding: 8px 16px; border-radius: 30px;">🛡️ OWASP CRS v4</span>
+                </div>
+                <h1>CloFix <span>(CRS)</span> Guide</h1>
+                <p class="crs-hero__lead">
+                    Complete <strong style="color:#fff;">OWASP CRS v4</strong> protection with <strong style="color:#fff;">CloFixRule</strong> custom directives,
+                    intelligent bypass management, and comprehensive coverage of OWASP Top 10 vulnerabilities.
+                </p>
+                <div class="crs-hero__pills">
+                    <span class="crs-hero__pill">25 CRS Rule Files</span>
+                    <span class="crs-hero__pill">SQLi / XSS / LFI / RFI</span>
+                    <span class="crs-hero__pill">Command Injection</span>
+                    <span class="crs-hero__pill">SSRF Protection</span>
+                    <span class="crs-hero__pill">NoSQL Injection</span>
+                    <span class="crs-hero__pill">Bot Detection</span>
+                    <span class="crs-hero__pill">Paranoia Levels 1-4</span>
+                    <span class="crs-hero__pill">Anomaly Scoring</span>
+                    <span class="crs-hero__pill">CloFixRule Directive</span>
+                    <span class="crs-hero__pill">Intelligent Bypass</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="crs-body">
+            <aside class="crs-toc">
+                <div class="crs-toc__title">Contents</div>
+                <a href="#intro">Introduction</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#rule-files">Rule Files</a>
+                <a href="#clofixrule">CloFixRule Syntax</a>
+                <div class="toc-group">Attack Protection</div>
+                <a href="#sqli">SQL Injection (A03)</a>
+                <a href="#xss">XSS (A03)</a>
+                <a href="#lfi">LFI / RFI (A01)</a>
+                <a href="#cmdi">Command Injection (A03)</a>
+                <a href="#ssrf">SSRF (A10)</a>
+                <a href="#nosql">NoSQL Injection</a>
+                <a href="#bot">Bot Detection</a>
+                <div class="toc-group">Bypass System</div>
+                <a href="#bypass-rules">Rule ID Bypass</a>
+                <a href="#bypass-tags">Tag Bypass</a>
+                <a href="#bypass-phases">Phase Bypass</a>
+                <a href="#bypass-paths">Path Bypass</a>
+                <a href="#bypass-ips">IP Bypass</a>
+                <div class="toc-group">Configuration</div>
+                <a href="#paranoia">Paranoia Levels</a>
+                <a href="#anomaly">Anomaly Scoring</a>
+                <a href="#transformations">Transformations</a>
+                <div class="toc-group">Reference</div>
+                <a href="#testing">Testing</a>
+                <a href="#best-practices">Best Practices</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+            </aside>
+
+            <div class="crs-content">
+                <!-- Introduction -->
+                <section class="crs-section" id="intro">
+                    <h2 class="crs-section__title"><span class="sec-num">01</span> Introduction</h2>
+                    <p>The <strong>CloFix OWASP Core Rule Set (CRS)</strong> is a complete implementation of the OWASP CRS v4 — the industry standard for web application firewall rules. It provides comprehensive protection against the OWASP Top 10 vulnerabilities and countless other attack vectors.</p>
+
+                    <div class="crs-box gold">
+                        <strong>🎯 What is OWASP CRS?</strong>
+                        The OWASP Core Rule Set is a set of generic attack detection rules for use with ModSecurity or compatible web application firewalls. CloFix CRS brings this industry-standard protection to your infrastructure with additional CloFixRule custom directives.
+                    </div>
+
+                    <div class="crs-table-wrap">
+                        <table class="crs-table">
+                            <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td>25 Rule Files</td><td>Complete OWASP CRS v4 rule set covering all attack categories</td></tr>
+                                <tr><td>4 Paranoia Levels</td><td>Adjustable protection from low (1) to maximum (4)</td></tr>
+                                <tr><td>Anomaly Scoring</td><td>Threshold-based blocking with configurable scores</td></tr>
+                                <tr><td>CloFixRule Directive</td><td>CRS-style custom rules with CloFix branding</td></tr>
+                                <tr><td>Intelligent Bypass</td><td>Bypass specific rules, tags, phases, paths, or IPs</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Architecture -->
+                <section class="crs-section" id="architecture">
+                    <h2 class="crs-section__title"><span class="sec-num">02</span> Architecture</h2>
+                    <p>The CloFix CRS engine processes every HTTP request through multiple phases, applying rules in sequence.</p>
+
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">pipeline</span></div>
+                        <pre>
+  HTTP Request
+       │
+       ▼
+  ┌─────────────────────────────────────────────┐
+  │  Phase 1: Request Headers                   │
+  │  - Method enforcement, protocol validation  │
+  │  - IP reputation, bot detection             │
+  └───────────────────┬─────────────────────────┘
+                       │
+                       ▼
+  ┌─────────────────────────────────────────────┐
+  │  Phase 2: Request Body                      │
+  │  - SQL injection detection                  │
+  │  - XSS detection, LFI/RFI detection         │
+  │  - Command injection, NoSQL injection       │
+  └───────────────────┬─────────────────────────┘
+                       │
+                       ▼
+  ┌─────────────────────────────────────────────┐
+  │  Phase 3: Response Headers                  │
+  │  - Data leakage detection                   │
+  │  - Security header validation               │
+  └───────────────────┬─────────────────────────┘
+                       │
+                       ▼
+  ┌─────────────────────────────────────────────┐
+  │  Phase 4: Response Body                     │
+  │  - Information disclosure detection         │
+  │  - Error message sanitization               │
+  └───────────────────┬─────────────────────────┘
+                       │
+                       ▼
+                 Backend / Proxy</pre>
+                    </div>
+
+                    <div class="crs-box">
+                        <strong>📁 Rule File Loading Order</strong>
+                        Rules are loaded in OWASP CRS order: initialization → exceptions → IP reputation → protocol enforcement → application attacks → blocking evaluation → response rules.
+                    </div>
+                </section>
+
+                <!-- Rule Files -->
+                <section class="crs-section" id="rule-files">
+                    <h2 class="crs-section__title"><span class="sec-num">03</span> Rule Files</h2>
+                    <p>CloFix CRS loads all 25 standard OWASP CRS rule files in the correct order.</p>
+
+                    <div class="crs-table-wrap">
+                        <table class="crs-table">
+                            <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td>REQUEST-901-INITIALIZATION.conf</td><td>Initial setup, paranoia level, anomaly thresholds</td></tr>
+                                <tr><td>REQUEST-905-COMMON-EXCEPTIONS.conf</td><td>Common false positive exceptions</td></tr>
+                                <tr><td>REQUEST-910-IP-REPUTATION.conf</td><td>IP reputation and blacklist detection</td></tr>
+                                <tr><td>REQUEST-911-METHOD-ENFORCEMENT.conf</td><td>HTTP method restrictions</td></tr>
+                                <tr><td>REQUEST-912-DOS-PROTECTION.conf</td><td>DoS attack detection</td></tr>
+                                <tr><td>REQUEST-913-SCANNER-DETECTION.conf</td><td>Security scanner detection</td></tr>
+                                <tr><td>REQUEST-920-PROTOCOL-ENFORCEMENT.conf</td><td>HTTP protocol validation</td></tr>
+                                <tr><td>REQUEST-921-PROTOCOL-ATTACK.conf</td><td>Protocol-level attacks</td></tr>
+                                <tr><td>REQUEST-930-APPLICATION-ATTACK-LFI.conf</td><td>Local File Inclusion attacks</td></tr>
+                                <tr><td>REQUEST-931-APPLICATION-ATTACK-RFI.conf</td><td>Remote File Inclusion attacks</td></tr>
+                                <tr><td>REQUEST-932-APPLICATION-ATTACK-RCE.conf</td><td>Remote Command Execution</td></tr>
+                                <tr><td>REQUEST-933-APPLICATION-ATTACK-PHP.conf</td><td>PHP injection attacks</td></tr>
+                                <tr><td>REQUEST-934-APPLICATION-ATTACK-GENERIC.conf</td><td>Generic application attacks</td></tr>
+                                <tr><td>REQUEST-941-APPLICATION-ATTACK-XSS.conf</td><td>Cross-Site Scripting (XSS)</td></tr>
+                                <tr><td>REQUEST-942-APPLICATION-ATTACK-SQLI.conf</td><td>SQL Injection (SQLi)</td></tr>
+                                <tr><td>REQUEST-943-APPLICATION-ATTACK-JAVA.conf</td><td>Java injection attacks</td></tr>
+                                <tr><td>REQUEST-949-BLOCKING-EVALUATION.conf</td><td>Blocking decision based on anomaly score</td></tr>
+                                <tr><td>RESPONSE-950-DATA-LEAKAGES.conf</td><td>Data leakage detection</td></tr>
+                                <tr><td>RESPONSE-951-DATA-LEAKAGES-SQL.conf</td><td>SQL data leakage detection</td></tr>
+                                <tr><td>RESPONSE-959-BLOCKING-EVALUATION.conf</td><td>Response blocking evaluation</td></tr>
+                                <tr><td>RESPONSE-980-CORRELATION.conf</td><td>Correlation of multiple rules</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- CloFixRule Syntax -->
+                <section class="crs-section" id="clofixrule">
+                    <h2 class="crs-section__title"><span class="sec-num">04</span> CloFixRule Syntax</h2>
+                    <p>CloFix CRS supports both standard <span class="ic">CloFixRule</span> directives and custom <span class="ic">CloFixRule</span> directives with the same powerful syntax.</p>
+
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">CloFixRule — Custom Directive</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre>CloFixRule [VARIABLES] "[OPERATOR] [PATTERN]" \
+    "id:[RULE_ID],\
+    phase:[1-4],\
+    t:[TRANSFORMATIONS],\
+    name:'[RULE_NAME]',\
+    msg:'[MESSAGE]',\
+    severity:'[CRITICAL|ERROR|WARNING|NOTICE|INFO]',\
+    tag:'[TAGS]',\
+    status:[HTTP_STATUS],\
+    [ACTION]"</pre>
+                    </div>
+
+                    <div class="action-grid">
+                        <div class="action-card"><div class="ac-name">Variables</div><div class="ac-desc">ARGS, REQUEST_HEADERS, REQUEST_URI, REQUEST_METHOD, REQUEST_COOKIES, BODY, RESPONSE_HEADERS</div></div>
+                        <div class="action-card"><div class="ac-name">Operators</div><div class="ac-desc">@rx, @contains, @streq, @pm, @beginsWith, @endsWith</div></div>
+                        <div class="action-card"><div class="ac-name">Transformations</div><div class="ac-desc">t:lowercase, t:urlDecode, t:htmlEntityDecode, t:removeNulls, t:compressWhitespace</div></div>
+                        <div class="action-card"><div class="ac-name">Actions</div><div class="ac-desc">block, pass, allow, log, chain, deny</div></div>
+                    </div>
+
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">Example — SQL Injection Protection</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># CloFixRule custom rule
+CloFixRule ARGS|BODY "@rx (union.*select|insert.*into|drop.*table)" \
+    "id:1000001,\
+    phase:2,\
+    t:lowercase,\
+    t:urlDecode,\
+    name:'SQL Injection Protection',\
+    msg:'SQL injection attempt blocked',\
+    severity:'CRITICAL',\
+    tag:'clofix',\
+    tag:'attack-sqli',\
+    status:403,\
+    block"
+
+# Standard OWASP CloFixRule (also supported)
+CloFixRule ARGS|BODY "@rx <script" \
+    "id:941100,\
+    phase:2,\
+    t:lowercase,\
+    msg:'XSS Attack Detected',\
+    severity:'CRITICAL',\
+    status:403,\
+    block"</pre>
+                    </div>
+                </section>
+
+                <!-- Attack Protection Examples -->
+                <section class="crs-section">
+                    <h2 class="crs-section__title"><span class="sec-num">05</span> Attack Protection</h2>
+                    
+                    <p class="crs-sub" id="sqli">SQL Injection (A03:2021) — Rule 942100-942999</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">sql_injection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># SQL Injection - Union Based Attack
+CloFixRule ARGS|BODY "@rx (union.*select|select.*from|insert.*into|update.*set|delete.*from)" \
+    "id:942100,\
+    phase:2,\
+    t:lowercase,\
+    t:urlDecode,\
+    msg:'SQL Injection Attack Detected via libinjection',\
+    severity:'CRITICAL',\
+    tag:'attack-sqli',\
+    tag:'paranoia-level/1',\
+    status:403,\
+    block"
+
+# SQL Injection - Time Based Blind Attack
+CloFixRule ARGS|BODY "@rx (sleep\(|benchmark\(|waitfor\s+delay|pg_sleep)" \
+    "id:942200,\
+    phase:2,\
+    t:lowercase,\
+    msg:'Time-Based SQL Injection Attack Detected',\
+    severity:'CRITICAL',\
+    tag:'attack-sqli',\
+    status:403,\
+    block"
+
+# SQL Injection - Boolean Based Blind Attack
+CloFixRule ARGS|BODY "@rx (or\s+1=1|and\s+1=1|or\s+1=2|and\s+1=2|or\s+true)" \
+    "id:942300,\
+    phase:2,\
+    t:lowercase,\
+    msg:'Boolean-Based SQL Injection Attack Detected',\
+    severity:'CRITICAL',\
+    tag:'attack-sqli',\
+    status:403,\
+    block"</pre>
+                    </div>
+
+                    <p class="crs-sub" id="xss">Cross-Site Scripting (XSS) (A03:2021) — Rule 941100-941999</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">xss_detection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># XSS - Script Tag Injection
+CloFixRule ARGS|BODY|REQUEST_HEADERS "@rx (&lt;script|&lt;/script|javascript:|vbscript:|onerror=|onload=|onclick=)" \
+    "id:941100,\
+    phase:2,\
+    t:lowercase,\
+    t:urlDecode,\
+    msg:'XSS Attack Detected',\
+    severity:'CRITICAL',\
+    tag:'attack-xss',\
+    status:403,\
+    block"
+
+# XSS - Event Handler Injection
+CloFixRule ARGS|BODY "@rx (onload=|onerror=|onclick=|onmouseover=|onfocus=|onblur=)" \
+    "id:941200,\
+    phase:2,\
+    t:lowercase,\
+    msg:'XSS Attack - Event Handler',\
+    severity:'CRITICAL',\
+    tag:'attack-xss',\
+    status:403,\
+    block"
+
+# XSS - JavaScript Protocol
+CloFixRule ARGS|BODY|REQUEST_URI "@rx (javascript:|vbscript:|data:text/html)" \
+    "id:941300,\
+    phase:2,\
+    t:lowercase,\
+    msg:'XSS Attack - JavaScript Protocol',\
+    severity:'CRITICAL',\
+    tag:'attack-xss',\
+    status:403,\
+    block"</pre>
+                    </div>
+
+                    <p class="crs-sub" id="lfi">Local/Remote File Inclusion (A01:2021) — Rule 930100-931999</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">lfi_rfi.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># LFI - Path Traversal
+CloFixRule ARGS|REQUEST_URI "@rx (\.\./|\.\.\\|\.\.%2f|\.\.%5c|%2e%2e%2f|%2e%2e%5c)" \
+    "id:930100,\
+    phase:2,\
+    t:lowercase,\
+    t:urlDecode,\
+    msg:'Path Traversal Attack Detected',\
+    severity:'CRITICAL',\
+    tag:'attack-lfi',\
+    status:403,\
+    block"
+
+# LFI - Sensitive File Access
+CloFixRule ARGS "@rx (/etc/passwd|/etc/shadow|/etc/hosts|/proc/self/environ|/windows/win.ini)" \
+    "id:930200,\
+    phase:2,\
+    t:lowercase,\
+    msg:'Sensitive File Access Attempt',\
+    severity:'CRITICAL',\
+    tag:'attack-lfi',\
+    status:403,\
+    block"
+
+# RFI - Remote File Inclusion
+CloFixRule ARGS "@rx (https?://|ftp://|php://|file://|expect://|data://)" \
+    "id:931100,\
+    phase:2,\
+    t:lowercase,\
+    msg:'Remote File Inclusion Attempt',\
+    severity:'CRITICAL',\
+    tag:'attack-rfi',\
+    status:403,\
+    block"</pre>
+                    </div>
+
+                    <p class="crs-sub" id="cmdi">Command Injection (A03:2021) — Rule 932100-932999</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">cmd_injection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># Unix Command Injection
+CloFixRule ARGS|BODY "@rx (;|\||\&\&|`|cmd|bash|sh|nc|wget|curl|ping|nslookup|whoami|id|uname|cat|ls|rm)" \
+    "id:932100,\
+    phase:2,\
+    t:lowercase,\
+    t:urlDecode,\
+    msg:'Unix Command Injection Attack',\
+    severity:'CRITICAL',\
+    tag:'attack-rce',\
+    status:403,\
+    block"
+
+# Windows Command Injection
+CloFixRule ARGS|BODY "@rx (cmd\.exe|powershell|regsvr32|wmic|rundll32|net\s+user)" \
+    "id:932200,\
+    phase:2,\
+    t:lowercase,\
+    msg:'Windows Command Injection Attack',\
+    severity:'CRITICAL',\
+    tag:'attack-rce',\
+    status:403,\
+    block"</pre>
+                    </div>
+
+                    <p class="crs-sub" id="ssrf">Server-Side Request Forgery (SSRF) (A10:2021)</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">ssrf_protection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># SSRF - Internal IP Access
+CloFixRule ARGS "@rx (127\.0\.0\.1|localhost|169\.254\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.)" \
+    "id:933100,\
+    phase:2,\
+    t:lowercase,\
+    msg:'SSRF - Internal IP Access Attempt',\
+    severity:'CRITICAL',\
+    tag:'attack-ssrf',\
+    status:403,\
+    block"
+
+# SSRF - Cloud Metadata Service
+CloFixRule ARGS "@rx (169\.254\.169\.254|metadata\.google\.internal|metadata\.aws\.internal)" \
+    "id:933200,\
+    phase:2,\
+    t:lowercase,\
+    msg:'SSRF - Cloud Metadata Service Access',\
+    severity:'CRITICAL',\
+    tag:'attack-ssrf',\
+    status:403,\
+    block"</pre>
+                    </div>
+
+                    <p class="crs-sub" id="nosql">NoSQL Injection Protection</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">nosql_injection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># NoSQL Injection - MongoDB Operators
+CloFixRule ARGS|BODY "@rx (\$ne|\$gt|\$lt|\$or|\$and|\$where|\$regex|\$exists)" \
+    "id:970100,\
+    phase:2,\
+    t:lowercase,\
+    msg:'NoSQL Injection Attack Detected',\
+    severity:'CRITICAL',\
+    tag:'attack-nosql',\
+    status:403,\
+    block"
+
+# NoSQL Injection - JavaScript Injection
+CloFixRule ARGS|BODY "@rx (function\(|return\s+this|db\.|collection\.|find\(|update\()" \
+    "id:970200,\
+    phase:2,\
+    t:lowercase,\
+    msg:'NoSQL Injection - JavaScript Injection',\
+    severity:'CRITICAL',\
+    tag:'attack-nosql',\
+    status:403,\
+    block"</pre>
+                    </div>
+
+                    <p class="crs-sub" id="bot">Bot Detection — Rule 910100-910999</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">bot_detection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># Malicious User Agents
+CloFixRule REQUEST_HEADERS:User-Agent "@rx (sqlmap|nikto|nmap|wpscan|dirbuster|gobuster|burpsuite|acunetix)" \
+    "id:910100,\
+    phase:1,\
+    t:lowercase,\
+    msg:'Malicious Bot Detected',\
+    severity:'WARNING',\
+    tag:'attack-bot',\
+    status:403,\
+    block"
+
+# Headless Browser Detection
+CloFixRule REQUEST_HEADERS:User-Agent "@rx (headless|phantom|puppeteer|playwright|selenium)" \
+    "id:910200,\
+    phase:1,\
+    t:lowercase,\
+    msg:'Headless Browser Detected',\
+    severity:'MEDIUM',\
+    tag:'attack-bot',\
+    status:403,\
+    block"</pre>
+                    </div>
+                </section>
+
+                <!-- Bypass System -->
+                <section class="crs-section" id="bypass">
+                    <h2 class="crs-section__title"><span class="sec-num">06</span> Intelligent Bypass System</h2>
+                    <p>CloFix CRS provides flexible bypass options to handle false positives and legitimate exceptions.</p>
+
+                    <div class="crs-sub" id="bypass-rules">Rule ID Bypass</div>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">bypass_rules.txt</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># Bypass specific rule IDs
+# Lines starting with # are comments
+
+# SQL Injection Rules (false positives on search)
+942100
+942110
+
+# XSS Rules (legitimate HTML content)
+941100
+941110
+
+# LFI Rules (legitimate file access)
+930100</pre>
+                    </div>
+
+                    <div class="crs-sub" id="bypass-tags">Tag Bypass</div>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">go config — tag bypass</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre>config.BypassTags = []string{
+    "attack-sqli",      // Bypass all SQL injection rules
+    "paranoia-level/3", // Bypass paranoia level 3 rules
+    "attack-xss",       // Bypass all XSS rules
+}</pre>
+                    </div>
+
+                    <div class="crs-sub" id="bypass-phases">Phase Bypass</div>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">phase bypass</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre>config.BypassPhases = []int{
+    3,   // Bypass response headers phase
+    4,   // Bypass response body phase (for binary data)
+}</pre>
+                    </div>
+
+                    <div class="crs-sub" id="bypass-paths">Path Bypass</div>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">path bypass</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre>config.BypassPaths = []string{
+    "/health",           // Health check endpoint
+    "/metrics",          // Prometheus metrics
+    "/api/public/*",     // All public API endpoints
+    "/static/*",         // Static files
+    "/webhook/*",        // Webhook receivers
+}</pre>
+                    </div>
+
+                    <div class="crs-sub" id="bypass-ips">IP Bypass</div>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">ip bypass</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre>config.BypassIPs = []string{
+    "127.0.0.1",         // Localhost
+    "192.168.1.*",       // Internal network
+    "10.0.0.*",          // Private network
+    "172.16.*.*",        // Private network
+}</pre>
+                    </div>
+
+                    <div class="crs-box warn">
+                        <strong>📋 Bypass Best Practices</strong>
+                        • Document every bypass with reason<br>
+                        • Use specific rule ID bypass over tag bypass<br>
+                        • Test bypass thoroughly before production<br>
+                        • Monitor bypassed endpoints for abuse<br>
+                        • Review bypasses regularly<br>
+                        • Never bypass critical security rules without justification
+                    </div>
+                </section>
+
+                <!-- Configuration -->
+                <section class="crs-section" id="config">
+                    <h2 class="crs-section__title"><span class="sec-num">07</span> Configuration Reference</h2>
+
+                    <p class="crs-sub" id="paranoia">Paranoia Levels (1-4)</p>
+                    <div class="crs-table-wrap">
+                        <table class="crs-table">
+                            <thead><tr><th>Level</th><th>Description</th><th>Use Case</th> </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Minimal false positives</td><td>Production with high traffic, low risk</td></tr>
+                                <tr><td>2</td><td>Moderate protection (default)</td><td>General production use</td></tr>
+                                <tr><td>3</td><td>High security</td><td>High-risk applications, financial services</td></tr>
+                                <tr><td>4</td><td>Maximum security</td><td>Maximum protection, may have false positives</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="crs-sub" id="anomaly">Anomaly Scoring</p>
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">anomaly scoring</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># Anomaly score thresholds
+SecAction "id:900100,\
+    phase:1,\
+    setvar:tx.inbound_anomaly_score_threshold=5,\
+    setvar:tx.outbound_anomaly_score_threshold=4"
+
+# Severity scoring:
+# CRITICAL = 5 points
+# ERROR    = 4 points
+# WARNING  = 3 points
+# NOTICE   = 2 points
+# INFO     = 1 point</pre>
+                    </div>
+
+                    <p class="crs-sub" id="transformations">Transformations</p>
+                    <div class="crs-table-wrap">
+                        <table class="crs-table">
+                            <thead><tr><th>Transformation</th><th>Description</th><th>Example</th> </thead>
+                            <tbody>
+                                <tr><td>t:lowercase</td><td>Convert to lowercase</td><td>"SCRIPT" → "script"</td></tr>
+                                <tr><td>t:urlDecode</td><td>Decode URL-encoded strings</td><td>"%3C" → "&lt;"</td></tr>
+                                <tr><td>t:htmlEntityDecode</td><td>Decode HTML entities</td><td>"&lt;" → "&lt;"</td></tr>
+                                <tr><td>t:removeNulls</td><td>Remove null bytes</td><td>"\x00script" → "script"</td></tr>
+                                <tr><td>t:compressWhitespace</td><td>Compress multiple spaces</td><td>"a  b" → "a b"</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Testing -->
+                <section class="crs-section" id="testing">
+                    <h2 class="crs-section__title"><span class="sec-num">08</span> Testing</h2>
+
+                    <div class="crs-code">
+                        <div class="crs-code__hdr"><span class="crs-code__lang">test commands</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <pre># Test normal request
+curl https://your-domain.com/
+
+# Test SQL injection (should be blocked)
+curl "https://your-domain.com/?id=1' OR '1'='1"
+
+# Test XSS (should be blocked)
+curl "https://your-domain.com/?q=%3Cscript%3Ealert('xss')%3C/script%3E"
+
+# Test LFI (should be blocked)
+curl "https://your-domain.com/?file=../../../etc/passwd"
+
+# Test command injection (should be blocked)
+curl "https://your-domain.com/?cmd=; cat /etc/passwd"
+
+# Test with malicious user agent (should be blocked)
+curl -A "sqlmap/1.7" https://your-domain.com/
+
+# Watch WAF logs
+sudo tail -f /var/log/clofix/waf.log | grep -i '\[CRS\]'</pre>
+                    </div>
+                </section>
+
+                <!-- Best Practices -->
+                <section class="crs-section" id="best-practices">
+                    <h2 class="crs-section__title"><span class="sec-num">09</span> Best Practices</h2>
+
+                    <ol style="padding-left:20px;margin:16px 0;">
+                        <li><strong>Start with Paranoia Level 1</strong> — Monitor false positives before increasing protection</li>
+                        <li><strong>Use Bypass for False Positives</strong> — Target specific rules, not entire categories</li>
+                        <li><strong>Monitor Anomaly Scores</strong> — Track scores to identify attack patterns</li>
+                        <li><strong>Test with Attack Payloads</strong> — Regularly validate protection with known attack vectors</li>
+                        <li><strong>Update CRS Rules</strong> — Keep OWASP CRS rules updated for emerging threats</li>
+                        <li><strong>Document Bypasses</strong> — Record why each bypass was implemented</li>
+                        <li><strong>Review Bypasses Quarterly</strong> — Remove bypasses that are no longer needed</li>
+                        <li><strong>Enable Structured Logging</strong> — Use JSON logs for SIEM integration</li>
+                    </ol>
+
+                    <div class="crs-box gold">
+                        <strong>🎯 Pro Tip</strong>
+                        When creating custom CloFixRule directives, always use multiple transformations (t:lowercase, t:urlDecode) to defeat evasion techniques. Order matters — apply transformations in sequence for best results.
+                    </div>
+                </section>
+
+                <!-- Troubleshooting -->
+                <section class="crs-section" id="troubleshooting">
+                    <h2 class="crs-section__title"><span class="sec-num">10</span> Troubleshooting</h2>
+
+                    <div class="crs-table-wrap">
+                        <table class="crs-table">
+                            <thead> <th>Issue</th><th>Common Cause</th><th>Solution</th> </thead>
+                            <tbody>
+                                <tr><td>Legitimate traffic blocked</td><td>False positive rule match</td><td>Add rule ID to bypass list; check paranoia level</td></tr>
+                                <tr><td>Attack not blocked</td><td>Rule missing or disabled</td><td>Verify rule is loaded; check paranoia level includes rule</td></tr>
+                                <tr><td>High latency</td><td>Too many rules or transformations</td><td>Reduce paranoia level; optimize patterns</td></tr>
+                                <tr><td>Rules not loading</td><td>Incorrect file path or syntax</td><td>Check file permissions; validate CRS path</td></tr>
+                                <tr><td>Bypass not working</td><td>Incorrect bypass configuration</td><td>Verify rule ID exists; check bypass order</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="crs-box">
+                        <strong>🆘 Need Help?</strong>
+                        For CloFix CRS support, configuration questions, or to report issues, visit the <a href="support.html" style="color:var(--crs-gold);">Support</a> section or <a href="contact.html" style="color:var(--crs-gold);">contact us</a>.
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+                <ul class="social">
+                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
+                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix/" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"><p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p></div>
+    </footer>
+
+    <script>
+        function crsCopy(btn) {
+            const pre = btn.closest('.crs-code').querySelector('pre');
+            if (pre) {
+                navigator.clipboard.writeText(pre.innerText).then(() => {
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = 'Copy', 1800);
+                });
+            }
+        }
+
+        const tocLinks = document.querySelectorAll('.crs-toc a');
+        const sections = document.querySelectorAll('[id]');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    tocLinks.forEach(l => l.classList.remove('toc-active'));
+                    const a = document.querySelector('.crs-toc a[href="#' + e.target.id + '"]');
+                    if (a) a.classList.add('toc-active');
+                }
+            });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+        sections.forEach(s => obs.observe(s));
+    </script>
+</body>
+</html>
