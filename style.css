@@ -5377,3 +5377,417 @@ body.nav-open{ overflow:hidden; }
         grid-template-columns: 1fr;
     }
 }
+
+/* lB*/
+.hero-diagram {
+  text-align: center;
+}
+
+/* main container - modern glassmorphic card */
+.container.hero-diagram {
+  max-width: 1400px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(2px);
+  border-radius: 3rem;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(59,130,246,0.2);
+  transition: all 0.2s;
+  overflow-x: auto;
+}
+
+.heading--1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 50%, #818CF8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.heading--4 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #cbd5e6;
+  line-height: 1.5;
+  max-width: 100%;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  position: relative;
+  padding-left: 0;
+  border-left: none;
+}
+
+/* ===== Diagram - FORCE SINGLE ROW ===== */
+.diagram {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(2, 8, 23, 0.5);
+  border-radius: 2rem;
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(4px);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-width: fit-content;
+}
+
+/* ===== GLOBAL NODE STYLE ===== */
+.node {
+  background: #0f172ad9;
+  backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  border: 1px solid #2d3a5e;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+  min-width: 130px;
+}
+
+/* Column 1: User + Attacker Stack with GAP */
+.entry-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* User and Attacker Node Styles */
+.user-node, .attacker-node {
+  background: #111827;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  min-width: 120px;
+}
+
+/* User Node Specific */
+.user-node {
+  border: 1px solid #22c55e80;
+  box-shadow: 0 0 12px rgba(34,197,94,0.4);
+  background: radial-gradient(ellipse at 30% 40%, #1e2a3a, #0f172a);
+}
+
+/* Attacker Node Specific */
+.attacker-node {
+  border: 1px solid #ef4444b3;
+  box-shadow: 0 0 12px rgba(239,68,68,0.5);
+  background: radial-gradient(ellipse at 30% 40%, #2c1a1f, #0f172a);
+}
+
+/* Arrow Container between Columns */
+.arrow-column {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* WAF Node */
+.waf-node {
+  background: linear-gradient(135deg, #0f212e, #0a1428);
+  border-left: 4px solid #f97316;
+  border-right: 1px solid #f9731640;
+  font-weight: 700;
+  min-width: 160px;
+  position: relative;
+  flex-shrink: 0;
+  transition: box-shadow 0.2s ease, border-color 0.1s;
+}
+
+.waf-node::after {
+  content: "⚡ ACTIVE";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  background: #f9731640;
+  padding: 2px 8px;
+  border-radius: 40px;
+  color: #fb923c;
+  font-weight: 600;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+.waf-node small {
+  display: block;
+  font-size: 9px;
+  color: #94a3b8;
+  margin-top: 5px;
+}
+
+/* Load Balancer Node */
+.lb-node {
+  min-width: 160px;
+  background: #0f172ad9;
+  flex-shrink: 0;
+}
+
+.lb-title {
+  color: #60a5fa;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  background: #0f172a;
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: 40px;
+}
+
+.lb-flow {
+  margin-top: 0.5rem;
+}
+
+.lb-flow div {
+  font-size: 10px;
+  margin: 4px 0;
+  color: #a5f3fc;
+  background: #1e293b70;
+  padding: 3px 6px;
+  border-radius: 20px;
+  font-family: monospace;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Backend Servers Node */
+.backend-node {
+  min-width: 220px;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+.backend-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Server list */
+.server {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172f;
+  margin: 6px 0;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  gap: 10px;
+  border-bottom: 1px solid #1e2a44;
+}
+
+.status {
+  padding: 3px 8px;
+  border-radius: 40px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.healthy {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid #22c55e30;
+}
+
+.unhealthy {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid #ef444430;
+  animation: subtlePulse 1.8s infinite;
+}
+
+/* Backend Stats Footer */
+.backend-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 6px;
+}
+
+.stat-badge {
+  font-size: 9px;
+  background: #0f172a;
+  padding: 3px 6px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1;
+}
+
+.stat-badge.active {
+  color: #86efac;
+}
+
+.stat-badge.failed {
+  color: #f87171;
+}
+
+.stat-badge.health {
+  color: #60a5fa;
+}
+
+/* ===== ARROW STYLES ===== */
+/* Base arrow */
+.arrow {
+  width: 40px;
+  height: 2px;
+  background: #3b82f6;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -5px;
+  border-left: 8px solid #3b82f6;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* Green Arrow (Clean Traffic) */
+.green-arrow {
+  background: #22c55e;
+  width: 40px;
+  height: 2px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.green-arrow::after {
+  border-left: 8px solid #22c55e;
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.green-arrow::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(34,197,94,0) 0%, #86efac 80%, rgba(34,197,94,0) 100%);
+  animation: flowArrow 0.9s linear infinite;
+}
+
+/* Red Arrow (Malicious Traffic) */
+.red-arrow {
+  background: #ef4444;
+  width: 40px;
+  height: 2px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.red-arrow::after {
+  border-left: 8px solid #ef4444;
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.red-arrow::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(239,68,68,0) 0%, #ef4444 50%, rgba(239,68,68,0) 100%);
+  animation: flowArrow 1.2s ease-in infinite;
+}
+
+@keyframes flowArrow {
+  0% { left: -40%; }
+  100% { left: 110%; }
+}
+
+@keyframes subtlePulse {
+  0% { box-shadow: 0 0 0px rgba(239,68,68,0.2); background: rgba(248,113,113,0.1);}
+  50% { box-shadow: 0 0 6px rgba(239,68,68,0.6); background: rgba(248,113,113,0.25);}
+  100% { box-shadow: 0 0 0px rgba(239,68,68,0.2);}
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1100px) {
+  .container.hero-diagram {
+    overflow-x: auto;
+  }
+  
+  .diagram {
+    min-width: 900px;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading--4 {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+  
+  .heading--1 {
+    font-size: 1.8rem;
+  }
+  
+  .diagram {
+    min-width: 850px;
+  }
+  
+  .entry-column {
+    gap: 15px;
+  }
+  
+  .arrow-column {
+    gap: 20px;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.server span {
+  font-family: monospace;
+}
+
+.lb-flow div {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+button.cycle-btn {
+  display: none;
+}
+
+@keyframes blinkGreen {
+  0% { background-color: #22c55e20; border-color: #22c55e40; }
+  100% { background-color: #22c55e40; border-color: #22c55e80; }
+}
+

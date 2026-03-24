@@ -226,15 +226,87 @@
       <div class="c-hero">
 
         <div class="container">
-          <div class="c-hero__content">
-            <h1 class="heading heading--1 heading--light">
-              Built to Automate, Designed to Defend
-            </h1>
-            <h4 class="heading heading--4 heading--blue">
-              Fuel your infrastructure with intelligent automation and uncompromising protection; streamline every
-              deployment, eliminate operational friction, and scale confidently without compromise.
-            </h4>
+          <h1 class="heading--1">Built to Automate, Designed to Defend</h1>
+          <h4 class="heading--4">
+            Fuel your infrastructure with intelligent automation and uncompromising protection; streamline every deployment, eliminate operational friction, and scale confidently without compromise - real-time traffic shaping & active threat mitigation.
+          </h4>
 
+          <div class="diagram">
+            <!-- LEFT COLUMN: USER + ATTACKER -->
+            <div class="entry-column">
+              <div class="node user-node">
+                👤<br><strong>LEGIT USER</strong><br><span style="font-size:10px;">✅ verified</span>
+              </div>
+              <div class="node attacker-node">
+                🧨<br><strong>MALICIOUS ATTACKER</strong><br><span style="font-size:10px;">🚫 SQLi / XSS / BOT</span>
+              </div>
+            </div>
+
+            <!-- ARROW COLUMN: traffic indicators -->
+            <div class="arrow-column">
+              <div class="arrow green-arrow" title="Clean traffic flow"></div>
+              <div class="arrow red-arrow" title="Malicious request blocked / inspected"></div>
+            </div>
+
+            <!-- WAF NODE: intelligent security + load balancing shield -->
+            <div class="node waf-node">
+              🛡️ <strong>CLOFIX WAF</strong><br>
+              <small>AI-powered · L7 Defense · Smart Routing</small>
+            </div>
+
+            <!-- arrow to LB -->
+            <div class="arrow" style="width: 48px;"></div>
+
+            <!-- LOAD BALANCER NODE: dynamic algorithm switcher -->
+            <div class="node" style="min-width: 170px; background: #0f172ad9;">
+              <p class="lb-title" id="lbTitle">ROUND ROBIN</p>
+              <div class="lb-flow" id="lbFlow"></div>
+              <div style="font-size: 9px; color:#5b6e8c; margin-top: 6px;">⚡ real‑time algorithm rotation</div>
+            </div>
+
+            <div class="arrow" style="width: 48px;"></div>
+
+            <!-- BACKEND SERVERS - UPDATED VERSION -->
+            <div class="node" style="min-width: 260px; padding: 1rem;">
+              <p style="font-weight: 700; margin-bottom: 12px; text-align: center; font-size: 1rem;">🗄️ BACKEND SERVERS</p>
+              <div id="backendContainer" style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="server" data-server-id="0" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: #1e293b; border-radius: 10px;">
+                  <span style="font-weight: 500;">🖥️ Server 01</span>
+                  <span class="status healthy" style="padding: 4px 12px; border-radius: 20px; font-size: 12px;">🟢 Healthy</span>
+                </div>
+                <div class="server" data-server-id="1" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: #1e293b; border-radius: 10px;">
+                  <span style="font-weight: 500;">⚠️ Server 02</span>
+                  <span class="status unhealthy" style="padding: 4px 12px; border-radius: 20px; font-size: 12px;">🔴 Unhealthy</span>
+                </div>
+                <div class="server" data-server-id="2" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: #1e293b; border-radius: 10px;">
+                  <span style="font-weight: 500;">🖥️ Server 03</span>
+                  <span class="status healthy" style="padding: 4px 12px; border-radius: 20px; font-size: 12px;">🟢 Healthy</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-top: 12px; gap: 8px;">
+                <div style="font-size: 10px; background: #0f172a; padding: 4px 8px; border-radius: 8px; color: #86efac;">✅ Active: 2</div>
+                <div style="font-size: 10px; background: #0f172a; padding: 4px 8px; border-radius: 8px; color: #f87171;">❌ Failed: 1</div>
+                <div style="font-size: 10px; background: #0f172a; padding: 4px 8px; border-radius: 8px; color: #60a5fa;">🔄 Health checks</div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin-top: 1.8rem; gap: 16px; flex-wrap: wrap;">
+            <div style="background: #0f172a70; border-radius: 40px; padding: 8px 16px; font-size: 12px; color:#93c5fd; display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 14px;">🛡️</span>
+              <span>3.2k threats blocked/min</span>
+            </div>
+            <div style="background: #0f172a70; border-radius: 40px; padding: 8px 16px; font-size: 12px; color:#86efac; display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 14px;">📈</span>
+              <span>99.99% uptime · active LB steering</span>
+            </div>
+            <div style="background: #0f172a70; border-radius: 40px; padding: 8px 16px; font-size: 12px; color:#facc15; display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 14px;">🧠</span>
+              <span>AI anomaly detection · real-time</span>
+            </div>
+            <div style="background: #0f172a70; border-radius: 40px; padding: 8px 16px; font-size: 12px; color:#a78bfa; display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 14px;">⚙️</span>
+              <span>JavaScript · OWASP CRS · Lua</span>
+            </div>
           </div>
         </div>
         <div
@@ -1058,6 +1130,301 @@
 </script>
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="iX2kRqQGvBQ5z1sDASQoQ";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
 
+  window.addEventListener("load", () => {
+    const nodes = document.querySelectorAll(".node");
+
+    nodes.forEach((node, i) => {
+      setTimeout(() => {
+        node.classList.add("active");
+      }, i * 300);
+    });
+  });
+</script>
+<script>
+  (function() {
+    // ---- SMART LOAD BALANCER ANIMATION with intelligent transition ----
+    const lbTitleElem = document.getElementById("lbTitle");
+    const lbFlowDiv = document.getElementById("lbFlow");
+    
+    // list of algorithms with human-readable flows + realistic distribution based on backend health
+    const algorithms = [
+      { name: "ROUND ROBIN", dynamic: false, getFlows: () => ["➡️ Request → Server 1", "➡️ Request → Server 3", "⬅️ (Server 2 skipped - unhealthy)"] },
+      { name: "LEAST CONNECTIONS", dynamic: true, getFlows: () => ["🔁 Active conn: S1(2)  S3(1)", "🎯 S3 selected (lowest load)", "⚖️ Traffic steered to S1 & S3"] },
+      { name: "HEALTH-AWARE", dynamic: true, getFlows: () => ["🩺 Unhealthy S2 excluded", "✅ Forward to S1 (30%) / S3 (70%)", "🚦 Adaptive weighting active"] },
+      { name: "IP HASH (STICKY)", dynamic: false, getFlows: () => ["🔑 Same client → same backend", "Session persistence enabled", "🔄 Consistent hashing"] },
+      { name: "WEIGHTED RESPONSE", dynamic: true, getFlows: () => ["⚖️ S1 weight: 70%", "⚙️ S3 weight: 30%", "📊 Smart distribution based on latency"] }
+    ];
+    
+    let algoIdx = 0;
+    
+    function renderLB() {
+      const algo = algorithms[algoIdx];
+      lbTitleElem.innerText = algo.name;
+      let flowLines = [];
+      if (typeof algo.getFlows === 'function') {
+        flowLines = algo.getFlows();
+      } else {
+        flowLines = ["→ distribute traffic", "⚡ load balancing active"];
+      }
+      lbFlowDiv.innerHTML = "";
+      flowLines.forEach((line, idx) => {
+        const lineDiv = document.createElement("div");
+        lineDiv.innerText = line;
+        lineDiv.style.opacity = "0";
+        lineDiv.style.transform = "translateY(8px)";
+        lbFlowDiv.appendChild(lineDiv);
+        setTimeout(() => {
+          lineDiv.style.opacity = "1";
+          lineDiv.style.transform = "translateY(0)";
+        }, idx * 120);
+      });
+    }
+    
+    // Rotate algorithm every 4.5 seconds, realistic
+    setInterval(() => {
+      algoIdx = (algoIdx + 1) % algorithms.length;
+      renderLB();
+    }, 4500);
+    renderLB();
+    
+    // ----- DYNAMIC BACKEND HEALTH SIMULATION (realistic failure / recovery) -----
+    const serverElements = [
+      { element: document.querySelector('[data-server-id="0"]'), statusSpan: null, healthy: true, id: 0 },
+      { element: document.querySelector('[data-server-id="1"]'), statusSpan: null, healthy: false, id: 1 },
+      { element: document.querySelector('[data-server-id="2"]'), statusSpan: null, healthy: true, id: 2 }
+    ];
+    
+    // init refs
+    serverElements.forEach(srv => {
+      const statusSpan = srv.element.querySelector(".status");
+      srv.statusSpan = statusSpan;
+      srv.healthy = statusSpan.innerText.includes("Healthy") ? true : false;
+      updateServerUI(srv);
+    });
+    
+    function updateServerUI(srv) {
+      if (!srv.statusSpan) return;
+      if (srv.healthy) {
+        srv.statusSpan.innerHTML = "🟢 Healthy";
+        srv.statusSpan.className = "status healthy";
+        srv.element.style.borderLeft = "3px solid #22c55e";
+      } else {
+        srv.statusSpan.innerHTML = "🔴 Unhealthy";
+        srv.statusSpan.className = "status unhealthy";
+        srv.element.style.borderLeft = "3px solid #ef4444";
+      }
+    }
+    
+    // Advanced health simulation: server 2 (unhealthy) can recover, server1/server3 can have intermittent issues but rarely
+    // to mimic realistic infra: every 7 to 12 seconds we change health status based on smart probabilities.
+    function simulateHealthChanges() {
+      // Server 1 (id0): 95% healthy, but 5% chance to become unhealthy for short period (recovery in next cycle)
+      if (serverElements[0].healthy) {
+        if (Math.random() < 0.08) { // small failure simulation
+          serverElements[0].healthy = false;
+          updateServerUI(serverElements[0]);
+          // auto recover after 8 seconds
+          setTimeout(() => {
+            if (!serverElements[0].healthy) {
+              serverElements[0].healthy = true;
+              updateServerUI(serverElements[0]);
+            }
+          }, 8000);
+        }
+      } else {
+        // recovery chance 40% each cycle
+        if (Math.random() < 0.5) {
+          serverElements[0].healthy = true;
+          updateServerUI(serverElements[0]);
+        }
+      }
+      
+      // Server 2 (id1) - initially unhealthy -> high chance to recover after few cycles to show self-healing infra
+      if (!serverElements[1].healthy) {
+        if (Math.random() < 0.35) {  // recovery simulation
+          serverElements[1].healthy = true;
+          updateServerUI(serverElements[1]);
+          // after being healthy, it might degrade again to show realistic load
+          setTimeout(() => {
+            if (serverElements[1].healthy && Math.random() < 0.5) {
+              serverElements[1].healthy = false;
+              updateServerUI(serverElements[1]);
+            }
+          }, 9000);
+        }
+      } else {
+        // if healthy, can become unhealthy with probability
+        if (Math.random() < 0.2) {
+          serverElements[1].healthy = false;
+          updateServerUI(serverElements[1]);
+        }
+      }
+      
+      // Server 3 (id2) - generally stable but sometimes overloaded simulation
+      if (serverElements[2].healthy) {
+        if (Math.random() < 0.05) {
+          serverElements[2].healthy = false;
+          updateServerUI(serverElements[2]);
+          setTimeout(() => {
+            if (!serverElements[2].healthy) {
+              serverElements[2].healthy = true;
+              updateServerUI(serverElements[2]);
+            }
+          }, 7000);
+        }
+      } else {
+        if (Math.random() < 0.7) {
+          serverElements[2].healthy = true;
+          updateServerUI(serverElements[2]);
+        }
+      }
+    }
+    
+    // run health simulation every 6 seconds
+    setInterval(simulateHealthChanges, 6200);
+    
+    // ------ WAF INTELLIGENT THREAT RESPONSE + ATTACKER BLOCK SIMULATION ------
+    const wafNode = document.querySelector(".waf-node");
+    const attackerArrow = document.querySelector(".red-arrow");
+    const userArrow = document.querySelector(".green-arrow");
+    const attackerDiv = document.querySelector(".attacker-node");
+    const userDiv = document.querySelector(".user-node");
+    
+    // WAF dynamic threat blink + security log effect (real-time defence)
+    let attackCycle = 0;
+    setInterval(() => {
+      // Simulate detection of attack patterns: the WAF glows red and blocks malicious actor
+      attackCycle++;
+      // Every 3.2 seconds there's an "attack simulation" that triggers WAF action
+      if (attackCycle % 3 === 0) {
+        // WAF defends: intense pulse red then back to normal
+        wafNode.style.transition = "box-shadow 0.1s ease";
+        wafNode.style.boxShadow = "0 0 28px rgba(239,68,68,0.9), inset 0 0 8px #ff4d4d";
+        wafNode.style.borderColor = "#f97316";
+        
+        // attacker arrow flash + extra effect
+        attackerArrow.style.filter = "drop-shadow(0 0 6px #ef4444)";
+        attackerDiv.style.transform = "scale(1.02)";
+        attackerDiv.style.transition = "0.1s";
+        
+        // show block log inside waf node temporary content (micro interaction)
+        const originalSmall = wafNode.querySelector("small")?.innerHTML;
+        const smallTag = wafNode.querySelector("small");
+        if (smallTag) {
+          const originalText = smallTag.innerHTML;
+          smallTag.innerHTML = "⚠️ BLOCKING SQLi | 403 Forbidden";
+          smallTag.style.color = "#ffb347";
+          setTimeout(() => {
+            if (smallTag) smallTag.innerHTML = originalText || "AI-powered · L7 Defense · Smart Routing";
+            smallTag.style.color = "#94a3b8";
+          }, 1200);
+        }
+        
+        setTimeout(() => {
+          wafNode.style.boxShadow = "0 0 18px rgba(59,130,246,0.5)";
+          wafNode.style.borderColor = "#f9731640";
+          attackerArrow.style.filter = "none";
+          attackerDiv.style.transform = "scale(1)";
+        }, 500);
+      } else {
+        // normal traffic: green arrow active, WAF calm but vigilant
+        wafNode.style.boxShadow = "0 0 15px rgba(59,130,246,0.4)";
+        wafNode.style.borderColor = "#2d3a5e";
+        userArrow.style.filter = "drop-shadow(0 0 2px #22c55e)";
+        setTimeout(() => { userArrow.style.filter = "none"; }, 200);
+      }
+      
+      // Additional: WAF adaptive intelligence - randomize small shield effect
+      if (attackCycle % 7 === 0) {
+        // simulate ml-based anomaly detection on user side is safe but also scanning
+        userDiv.style.boxShadow = "0 0 12px #22c55e80";
+        setTimeout(() => {
+          userDiv.style.boxShadow = "0 0 12px rgba(34,197,94,0.4)";
+        }, 400);
+      }
+    }, 2800);
+    
+    // also arrow pulse to indicate constant data flow
+    function animateArrowFlow() {
+      const arrows = document.querySelectorAll(".arrow:not(.red-arrow):not(.green-arrow)");
+      arrows.forEach((arr, idx) => {
+        setInterval(() => {
+          arr.style.opacity = "0.7";
+          setTimeout(() => { arr.style.opacity = "1"; }, 150);
+        }, 1800 + idx * 400);
+      });
+    }
+    animateArrowFlow();
+    
+    // Load balancer intelligent traffic forwarding based on current health (dynamic visualization in lb)
+    function updateLBDynamicMessagesByHealth() {
+      const healthyServers = serverElements.filter(s => s.healthy).length;
+      const total = serverElements.length;
+      const lbFlowContainer = lbFlowDiv;
+      if (!lbFlowContainer) return;
+      // we won't override animation, but add extra micro info below algorithm name
+      const extraHint = document.querySelector(".lb-flow + div");
+      if (extraHint) {
+        if (healthyServers === 3) extraHint.innerHTML = "✅ all backends healthy · full capacity";
+        else if (healthyServers === 2) extraHint.innerHTML = "⚠️ 1 server unhealthy · failover active";
+        else if (healthyServers === 1) extraHint.innerHTML = "🔴 critical state · only 1 healthy · auto-scaling";
+        else extraHint.innerHTML = "🚨 emergency · all backends degraded · circuit breaker";
+      }
+    }
+    setInterval(updateLBDynamicMessagesByHealth, 3000);
+    updateLBDynamicMessagesByHealth();
+    
+    // Smart WAF telemetry: Attacker gets blocked on every request
+    const attackNodeSpan = attackerDiv.querySelector("span");
+    setInterval(() => {
+      if (attackCycle % 2 === 0) {
+        attackerDiv.style.borderColor = "#ef4444";
+        if (attackNodeSpan) attackNodeSpan.innerHTML = "🚫 BLOCKED BY WAF";
+        setTimeout(() => {
+          if (attackNodeSpan) attackNodeSpan.innerHTML = "🚫 SQLi / XSS / BOT";
+        }, 1800);
+      }
+    }, 4200);
+    
+    // extra real-time performance metric: show request per sec in console but also small badge update
+    const wafSmall = wafNode.querySelector("small");
+    let threatCount = 3240;
+    setInterval(() => {
+      threatCount += Math.floor(Math.random() * 12) + 3;
+      const metricDiv = document.querySelector('.container.hero-diagram div[style*="justify-content: center"] div:first-child');
+      if (metricDiv) metricDiv.innerHTML = `🔒 ${threatCount.toLocaleString()} threats blocked/min`;
+    }, 5700);
+    
+    //  Edge glow for round robin sync with server health
+    function updateLBAlgorithmByHealth() {
+      // optional dynamic switch if health changes dramatically, for realism we can override algorithm index occasionally? not needed but cool
+      const unhealthyExists = serverElements.some(s => !s.healthy);
+      if (unhealthyExists && algorithms[algoIdx].name !== "HEALTH-AWARE" && Math.random() < 0.2) {
+        // force algorithm to show health-aware awareness for 1 cycle (non intrusive)
+        const tempIdx = algorithms.findIndex(a => a.name === "HEALTH-AWARE");
+        if (tempIdx !== -1 && algoIdx !== tempIdx) {
+          // just hint but we don't break user experience, we'll flash message
+          const lbTitle = lbTitleElem;
+          lbTitle.style.animation = "none";
+          lbTitle.offsetHeight;
+          lbTitle.style.transition = "0.1s";
+          lbTitle.style.color = "#facc15";
+          setTimeout(() => { lbTitle.style.color = "#60a5fa"; }, 500);
+        }
+      }
+    }
+    setInterval(updateLBAlgorithmByHealth, 8000);
+    
+    // final style: server status change updates backend container
+    const backendDiv = document.getElementById("backendContainer");
+    const observer = new MutationObserver(() => {
+      updateLBDynamicMessagesByHealth();
+    });
+    observer.observe(backendDiv, { childList: true, subtree: true, attributes: true });
+    
+    // Initial cool render
+    console.log("🔥 Clofix: Intelligent Automation + Active Defense active | Real-time LB, WAF, health simulation");
+  })();
+</script>
 </html>
