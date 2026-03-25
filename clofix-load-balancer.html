@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta -->
+  <meta name="description"
+    content="CloFix Load Balancer - Intelligent traffic distribution with health monitoring, session persistence, and advanced security features for high availability.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CloFix Load Balancer | Intelligent Traffic Distribution">
+  <meta property="og:description"
+    content="Distribute traffic intelligently across multiple backends with health checks, session persistence, and automatic failover.">
+  <meta property="og:url" content="https://clofix.com/docs/load-balancer.html">
+  <meta property="og:image" content="https://clofix.com/img/blogs_og_loadbalancer.png">
+
+  <link rel="icon" type="image/png" href="img/clofix.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  <link href="./blogs.css" rel="stylesheet" />
+
+  <style>
+    /* Additional styles for smart tables and features */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .smart-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .smart-table th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .smart-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #4a5568;
+    }
+
+    .smart-table tr:hover {
+      background: #f7fafc;
+    }
+
+    .smart-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge-algo {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #edf2f7;
+      color: #4a5568;
+    }
+
+    .badge-algo.active {
+      background: #667eea;
+      color: white;
+    }
+
+    .code-inline {
+      background: #f7fafc;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #667eea;
+    }
+
+    .features-grid-smart {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin: 30px 0;
+    }
+
+    .feature-card-smart {
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #e2e8f0;
+    }
+
+    .feature-card-smart:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15);
+      border-color: #667eea;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card-smart h3 {
+      color: #fff;;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #edf2f7;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: #667eea;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .comparison-table {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .comparison-table th {
+      background: #f7fafc;
+      color: #2d3748;
+      font-weight: 600;
+    }
+
+    .check-yes {
+      color: #48bb78;
+      font-weight: bold;
+    }
+
+    .check-no {
+      color: #f56565;
+    }
+  </style>
+
+  <title>CloFix Load Balancer | Intelligent Traffic Distribution</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="CloFix Logo" class="c-logo__img" />
+          </a>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="index.html#section-services" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">CloFix LUA
+                          Script</a>
+                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">CloFix JS
+                          Script</a>
+                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="clofix-load-balancer.html" class="c-dropdown__mega-link">CloFix Load
+                          Balancer</a>
+                      </div>
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">CloFix Pentest</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <a href="faq.html" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">FAQ</button>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container blog-content">
+    <article>
+      <h1>CloFix Load Balancer: Intelligent Traffic Distribution</h1>
+      <p class="blog-meta">Published on CloFix Blog | 10 min read</p>
+
+      <section>
+        <p>In today's digital landscape, ensuring high availability and optimal performance for your web applications is
+          critical. CloFix Load Balancer provides intelligent traffic distribution across multiple backend servers,
+          ensuring your applications remain fast, reliable, and secure.</p>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">99.99%</div>
+            <div class="stat-label">Availability SLA</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">&lt;1ms</div>
+            <div class="stat-label">Latency Overhead</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Load Balancing Algorithms</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">Concurrent Connections</div>
+          </div>
+        </div>
+      </section>
+      <!-- Slack Notification Section - NEW -->
+      <section>
+        <h2>📢 Real-time Slack Notifications</h2>
+        <p>Stay informed about your backend infrastructure with instant Slack notifications. CloFix Load Balancer automatically sends alerts when backends go down or recover, helping you respond quickly to issues.</p>
+
+        <div class="alert-card">
+          <h4>🔴 Backend Down Alert</h4>
+          <pre>🔴 Backend DOWN
+URL: https://clofix.com:443
+Domain: demo.clofix.com
+Time: 2026-03-26 10:30:45
+Status: Unhealthy after 3 consecutive failures</pre>
+        </div>
+
+        <div class="alert-card" style="border-left-color: #48bb78; background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);">
+          <h4 style="color: #2f855a;">🟢 Backend Recovered Alert</h4>
+          <pre>🟢 Backend RECOVERED
+URL: https://clofix.com:443
+Domain: demo.clofix.com
+Time: 2026-03-26 10:32:15
+Status: Health check passed, back in rotation</pre>
+        </div>
+
+        <h3>Configuration Example</h3>
+        <div class="slack-webhook">
+          <p><strong>Enable Slack Notifications in your config:</strong></p>
+          <div class="code-block">
+            <pre>alerts {
+    enabled on;
+    slack_webhook "SLACK_WEBHOOKS_URL";
+}</pre>
+          </div>
+          <p style="margin-top: 12px; font-size: 0.85rem; color: #4a5568;">
+            💡 <strong>Tip:</strong> You can also configure multiple alert channels including <strong>Email, Webhook, and Telegram</strong>.
+          </p>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="smart-table">
+            <thead>
+              <tr>
+                <th>Alert Type</th>
+                <th>Trigger Condition</th>
+                <th>Message Format</th>
+                <th>Action Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-algo" style="background: #fed7d7; color: #c53030;">🔴 DOWN</span></td>
+                <td>Backend fails <code class="code-inline">max_fails</code> consecutive checks</td>
+                <td>URL, Domain, Time, Failure reason</td>
+                <td>Investigate backend server</td>
+              </tr>
+              <tr>
+                <td><span class="badge-algo" style="background: #c6f6d5; color: #2f855a;">🟢 UP</span></td>
+                <td>Backend passes health check after being down</td>
+                <td>URL, Domain, Time, Recovery status</td>
+                <td>Verify service is stable</td>
+              </tr> 
+              <tr>
+                <td><span class="badge-algo" style="background: #feebc8; color: #c05621;">⚠️ WARNING</span></td>
+                <td>Backend latency exceeds threshold</td>
+                <td>URL, Response time, Threshold value</td>
+                <td>Monitor performance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Backend Configuration</h2>
+        <div class="code-block">
+          <pre># Single Backend
+backend https://clofix.com:443;
+backend http://localhost:8080;
+
+# Multiple Backends with Load Balancing
+backends https://clofix.com weight=10 backup=false max_fails=3 fail_timeout=30s, 
+         https://api.clofix.com:8443 weight=5 backup=false max_fails=3 fail_timeout=30s, 
+         http://backup.clofix.com:8080 weight=1 backup=true max_fails=2 fail_timeout=60s;</pre>
+        </div>
+
+        <h3>Backend Options Reference</h3>
+        <div class="table-wrapper">
+          <table class="smart-table">
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Description</th>
+                <th>Default</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code class="code-inline">weight</code></td>
+                <td>Load balancing weight (higher = more traffic)</td>
+                <td>1</td>
+                <td><code class="code-inline">weight=10</code></td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">backup</code></td>
+                <td>Backup server (used only when primaries fail)</td>
+                <td>false</td>
+                <td><code class="code-inline">backup=true</code></td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">max_fails</code></td>
+                <td>Max failures before marking unhealthy</td>
+                <td>3</td>
+                <td><code class="code-inline">max_fails=5</code></td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">fail_timeout</code></td>
+                <td>Time to consider backend down after failures</td>
+                <td>30s</td>
+                <td><code class="code-inline">fail_timeout=60s</code></td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">max_conns</code></td>
+                <td>Max concurrent connections</td>
+                <td>unlimited</td>
+                <td><code class="code-inline">max_conns=100</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Load Balancing Algorithms</h2>
+        <div class="code-block">
+          <pre>load_balancer {
+    algorithm round_robin;   # round_robin | least_conn | ip_hash | random | weighted
+    sticky_session on;
+    sticky_session_cookie clofix_backend;
+    max_retries 3;
+    retry_timeout 5s;
+}</pre>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="smart-table">
+            <thead>
+              <tr>
+                <th>Algorithm</th>
+                <th>Description</th>
+                <th>Best For</th>
+                <th>Sticky Session Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-algo active">round_robin</span></td>
+                <td>Distributes requests sequentially across servers</td>
+                <td>Equal capacity, stateless apps</td>
+                <td class="check-yes">✓ Yes</td>
+              </tr>
+              <tr>
+                <td><span class="badge-algo">least_conn</span></td>
+                <td>Sends to server with fewest active connections</td>
+                <td>Long-lived connections, varying load</td>
+                <td class="check-yes">✓ Yes</td>
+              </tr>
+              <tr>
+                <td><span class="badge-algo">ip_hash</span></td>
+                <td>Same client IP always goes to same backend</td>
+                <td>Session persistence without cookies</td>
+                <td class="check-yes">✓ Built-in</td>
+              </tr>
+              <tr>
+                <td><span class="badge-algo">random</span></td>
+                <td>Random distribution across servers</td>
+                <td>Simple load balancing, testing</td>
+                <td class="check-yes">✓ Yes</td>
+              </tr>
+              <tr>
+                <td><span class="badge-algo">weighted</span></td>
+                <td>Based on server weight configuration</td>
+                <td>Unequal server capacities</td>
+                <td class="check-yes">✓ Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Health Checks & Monitoring</h2>
+        <div class="code-block">
+          <pre>load_balancer {
+    health_check on;
+    health_check_path /health;
+    health_check_interval 10s;
+    health_check_timeout 3s;
+    health_check_expect 200;
+}</pre>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="smart-table">
+            <thead>
+              <tr>
+                <th>Setting</th>
+                <th>Description</th>
+                <th>Recommended Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code class="code-inline">health_check_interval</code></td>
+                <td>How often to check backend health</td>
+                <td>10-30 seconds</td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">health_check_timeout</code></td>
+                <td>Timeout for health check requests</td>
+                <td>3-5 seconds</td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">health_check_path</code></td>
+                <td>Endpoint to check (e.g., /health, /ping)</td>
+                <td>/health or /status</td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">health_check_expect</code></td>
+                <td>Expected HTTP status code</td>
+                <td>200 or 204</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Backend Information Hiding</h2>
+        <div class="code-block">
+          <pre># Headers automatically removed
+Server, X-Powered-By, X-AspNet-Version, X-Backend, X-Upstream, 
+X-Origin, Via, X-Cache, X-Real-IP, X-Forwarded-For
+
+# Response body rewriting
+backend domain: clofix.com → frontend domain: demo.clofix.com</pre>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="smart-table comparison-table">
+            <thead>
+              <tr>
+                <th>Header Type</th>
+                <th>Original</th>
+                <th>After CloFix LB</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Server</td>
+                <td>nginx/1.18.0</td>
+                <td><strong>CloFix-WAF</strong></td>
+              </tr>
+              <tr>
+                <td>X-Powered-By</td>
+                <td>PHP/7.4</td>
+                <td><span class="check-no">Removed</span></td>
+              </tr>
+              <tr>
+                <td>X-Backend-Server</td>
+                <td>10.0.0.25:8080</td>
+                <td><span class="check-no">Removed</span></td>
+              </tr>
+              <tr>
+                <td>Location (redirect)</td>
+                <td>http://clofix.com/page</td>
+                <td>https://demo.clofix.com/page</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Client IP Handling</h2>
+        <div class="table-wrapper">
+          <table class="smart-table">
+            <thead>
+              <tr>
+                <th>Header</th>
+                <th>Description</th>
+                <th>Example</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code class="code-inline">X-Real-IP</code></td>
+                <td>Original client IP</td>
+                <td>103.25.14.5</td>
+                <td>Single client IP for backend</td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">X-Forwarded-For</code></td>
+                <td>Proxy chain</td>
+                <td>103.25.14.5, 10.0.0.1</td>
+                <td>Preserves all proxies in chain</td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">X-Forwarded-Proto</code></td>
+                <td>Original protocol</td>
+                <td>https</td>
+                <td>SSL detection</td>
+              </tr>
+              <tr>
+                <td><code class="code-inline">X-Forwarded-Host</code></td>
+                <td>Original host header</td>
+                <td>demo.clofix.com</td>
+                <td>Host preservation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Key Features Summary</h2>
+        <div class="features-grid-smart">
+          <div class="feature-card-smart">
+            <div class="feature-icon">🎯</div>
+            <h3>Load Balancing Algorithms</h3>
+            <ul class="feature-list">
+              <li>Round Robin - Sequential distribution</li>
+              <li>Least Connections - Active connection based</li>
+              <li>IP Hash - Sticky sessions by client IP</li>
+              <li>Weighted - Capacity-based distribution</li>
+              <li>Random - Simple round-robin alternative</li>
+            </ul>
+          </div>
+
+          <div class="feature-card-smart">
+            <div class="feature-icon">🩺</div>
+            <h3>Health Monitoring</h3>
+            <ul class="feature-list">
+              <li>Active health probes (HTTP/TCP)</li>
+              <li>Passive failure detection</li>
+              <li>Automatic recovery on health restore</li>
+              <li>Configurable intervals and thresholds</li>
+              <li>Real-time alert notifications</li>
+            </ul>
+          </div>
+
+          <div class="feature-card-smart">
+            <div class="feature-icon">🔒</div>
+            <h3>Security Hardening</h3>
+            <ul class="feature-list">
+              <li>Backend server information hiding</li>
+              <li>HTTP header sanitization</li>
+              <li>Response body URL rewriting</li>
+              <li>Client IP preservation with X-Forwarded-For</li>
+              <li>TLS/SSL termination with SNI support</li>
+            </ul>
+          </div>
+
+          <div class="feature-card-smart">
+            <div class="feature-icon">⚡</div>
+            <h3>Performance Optimizations</h3>
+            <ul class="feature-list">
+              <li>Connection pooling & keep-alive</li>
+              <li>Zero-copy data forwarding</li>
+              <li>HTTP/2 multiplexing support</li>
+              <li>Configurable timeouts & buffers</li>
+              <li>Gzip/Brotli compression support</li>
+            </ul>
+          </div>
+
+          <div class="feature-card-smart">
+            <div class="feature-icon">📊</div>
+            <h3>Monitoring & Analytics</h3>
+            <ul class="feature-list">
+              <li>Real-time backend health status</li>
+              <li>Request/response metrics</li>
+              <li>Active connection tracking</li>
+              <li>Failure rate monitoring</li>
+              <li>Prometheus metrics export</li>
+            </ul>
+          </div>
+
+          <div class="feature-card-smart">
+            <div class="feature-icon">🔄</div>
+            <h3>High Availability</h3>
+            <ul class="feature-list">
+              <li>Automatic failover on backend failure</li>
+              <li>Sticky session persistence</li>
+              <li>Graceful degradation on partial failure</li>
+              <li>Retry mechanism with configurable attempts</li>
+              <li>Health-based routing decisions</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Complete Configuration Example</h2>
+        <div class="code-block">
+          <pre>domain demo.clofix.com {
+    https on;
+    redirect_http_to_https on;
+    
+    # Multiple backends with load balancing
+    backends https://clofix.com:443 weight=10 max_fails=3 fail_timeout=30s, 
+             https://api.clofix.com:8443 weight=5 max_fails=3 fail_timeout=30s,
+             http://backup.clofix.com:8080 weight=1 backup=true;
+    
+    load_balancer {
+        algorithm round_robin;
+        sticky_session on;
+        max_retries 3;
+        retry_timeout 5s;
+        health_check on;
+        health_check_path /health;
+        health_check_interval 10s;
+        health_check_timeout 3s;
+        health_check_expect 200;
+    }
+    
+    ssl {
+        ssl_certificate /etc/ssl/certs/demo.clofix.com.crt;
+        ssl_certificate_key /etc/ssl/private/demo.clofix.com.key;
+        ssl_protocols TLSv1.2 TLSv1.3;
+    }
+}</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Conclusion</h2>
+        <p>CloFix Load Balancer provides a robust, secure, and high-performance solution for distributing traffic across
+          your backend infrastructure. With intelligent algorithms, comprehensive health checking, and advanced security
+          features, it ensures your applications remain available and performant under any load.</p>
+        <p><a href="https://clofix.com/contact" class="cta-button">🚀 Deploy CloFix Load Balancer Today</a></p>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="#" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png"
+                alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png"
+                alt="WhatsApp" /></a></li>
+          <li class="social-li">
+            <a href="https://youtube.com/@clofix-infotech" target="_blank">
+              <img src="img/youtube_clofix.png" alt="YouTube" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="about.html">About CloFix</a></li>
+          <li><a href="contact.html">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="support.html">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#">Events</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="partner.html">Become A Partner</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="terms.html">Terms and Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2026 © CloFix – All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+    if (navToggle && navContent) {
+      navToggle.addEventListener('click', () => {
+        navContent.classList.toggle('active');
+      });
+    }
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE');
+
+    (function () {
+      const headerEl = document.querySelector('.header');
+      function syncHeaderHeight() {
+        if (!headerEl) return;
+        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+      }
+      window.addEventListener('load', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeaderHeight);
+      }
+    })();
+  </script>
+</body>
+
+</html>
