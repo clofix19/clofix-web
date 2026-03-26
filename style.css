@@ -5406,7 +5406,6 @@ body.nav-open{ overflow:hidden; }
     background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 50%, #818CF8 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
     letter-spacing: -0.02em;
     margin-bottom: 0.9rem;
     line-height: 1.15;
