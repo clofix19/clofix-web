@@ -112,6 +112,300 @@
   <link href="./style.css" rel="stylesheet" />
 
   <title>CloFix | Cloud Infrastructure, Automation & WAF Security Services</title>
+  <style>
+  
+
+  /* dynamic particle noise overlay */
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-radial-gradient(circle at 20% 30%, rgba(0,255,200,0.02) 0px, rgba(0,255,200,0.02) 2px, transparent 2px, transparent 6px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* animated gradient scanlines */
+  .scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.02) 0px, rgba(0, 255, 255, 0.02) 2px, transparent 2px, transparent 8px);
+    pointer-events: none;
+    z-index: 2;
+    animation: scanMove 12s linear infinite;
+  }
+
+  @keyframes scanMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 30px; }
+  }
+
+  /* main container */
+  .workflow-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    /*max-width: 1400px;
+    background: rgba(5, 10, 18, 0.65);
+    backdrop-filter: blur(3px);
+    border-radius: 2rem;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);*/
+  }
+
+  /* header section - reduced top gap */
+  .header-section {
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 200, 255, 0.08);
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(0,200,255,0.3);
+    backdrop-filter: blur(4px);
+  }
+  .pulse-led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0ff;
+    box-shadow: 0 0 8px #0ff;
+    animation: ledPulse 1.2s infinite;
+  }
+  @keyframes ledPulse {
+    0%,100% { opacity: 1; transform: scale(1);}
+    50% { opacity: 0.4; transform: scale(0.8);}
+  }
+
+  /* pipeline flex container */
+  .pipeline-scroll {
+    overflow-x: auto;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #0cf #1a2a3a;
+  }
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: min-content;
+    position: relative;
+  }
+
+  /* node card design - consistent box size */
+  .node-card {
+    position: relative;
+    width: 115px;
+    height: 115px;
+    background: rgba(12, 20, 35, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 0.6rem 0.3rem;
+    text-align: center;
+    border: 1px solid rgba(0, 200, 255, 0.25);
+    transition: all 0.25s ease;
+    cursor: default;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .node-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 230, 255, 0.7);
+    box-shadow: 0 12px 28px rgba(0,200,255,0.2);
+  }
+
+  .step-marker {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    background: #0a1424;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 0.15rem 0.45rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0,200,255,0.5);
+    color: #0cf;
+    letter-spacing: 1px;
+    backdrop-filter: blur(2px);
+  }
+
+  .icon-lg {
+    font-size: 2rem;
+    margin: 0.2rem 0;
+    display: inline-block;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  .node-title {
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    margin: 0.2rem 0;
+    color: #f0fcff;
+    line-height: 1.2;
+  }
+  .node-desc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: #8db5e0;
+    opacity: 0.9;
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+  }
+
+  /* connector with animated packet */
+  .connector {
+    width: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 -4px;
+    flex-shrink: 0;
+  }
+  .line-path {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0cf, #3f8eff, #0cf);
+    position: relative;
+    opacity: 0.6;
+  }
+  .data-packet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #0ff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #0ff;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    animation: packetFlow 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) infinite;
+  }
+  @keyframes packetFlow {
+    0% { left: 0%; opacity: 0.3; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { left: calc(100% - 8px); opacity: 0; }
+  }
+  /* arrow tip */
+  .arrow-tip {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid #0cf;
+    filter: drop-shadow(0 0 2px cyan);
+  }
+
+  /* color accents per module */
+  .node-behavior { border-top: 3px solid #ff6b2b; }
+  .node-crs { border-top: 3px solid #3a86ff; }
+  .node-js { border-top: 3px solid #00ff9d; }
+  .node-lua { border-top: 3px solid #b94fff; }
+  .node-ai { border-top: 3px solid #ff3eac; }
+  .node-core { border-top: 3px solid #00e5ff; }
+  .node-decision { border-top: 3px solid #ff2d55; }
+  .node-backend { border-top: 3px solid #4a90d9; }
+  .node-user { border-top: 3px solid #6c8eff; }
+
+  /* stats panel */
+  .stats-dashboard {
+    margin-top: 1.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(0, 20, 40, 0.4);
+    border-radius: 60px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0,200,255,0.2);
+  }
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    color: #bbddff;
+  }
+  .stat-led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .stat-led.green { background: #0f6; box-shadow: 0 0 6px #0f6; animation: pulseStat 2s infinite; }
+  .stat-led.orange { background: #ff6b2b; box-shadow: 0 0 6px #ff6b2b; animation: pulseStat 2s infinite 0.3s; }
+  .stat-led.cyan { background: #0cf; box-shadow: 0 0 6px #0cf; animation: pulseStat 2s infinite 0.6s; }
+  @keyframes pulseStat {
+    0%,100% { opacity: 1; transform: scale(1);}
+    50% { opacity: 0.4; transform: scale(0.9);}
+  }
+
+  /* tooltip overlay */
+  [data-tooltip] {
+    position: relative;
+  }
+  [data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #050b14dd;
+    backdrop-filter: blur(8px);
+    color: #ccf4ff;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    border: 1px solid rgba(0,200,255,0.4);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+    letter-spacing: 0.5px;
+  }
+  [data-tooltip]:hover:before {
+    opacity: 1;
+  }
+
+  /* responsiveness */
+  @media (max-width: 980px) {
+    body { overflow-x: auto; align-items: flex-start; padding: 1rem; }
+    .workflow-container { padding: 1rem; }
+    .node-card { width: 100px; height: 100px; padding: 0.4rem 0.2rem; }
+    .icon-lg { font-size: 1.6rem; }
+    .node-title { font-size: 0.65rem; }
+    .node-desc { font-size: 0.5rem; }
+    .connector { width: 30px; }
+    .step-marker { font-size: 0.55rem; top: -6px; left: 6px; padding: 0.1rem 0.35rem; }
+  }
+</style>
 </head>
 
 
@@ -297,7 +591,145 @@
             </div>
          
           </div><!-- /diagram -->
-         
+          
+          <div class="workflow-container">
+            <div class="header-section">
+              <div class="badge-status">
+                <span class="pulse-led"></span>
+                <span>CLOFIX WAF WORKFLOW</span>
+              </div>
+            </div>
+
+            <div class="pipeline-scroll">
+              <div class="pipeline">
+                <!-- NODE 1: USER -->
+                <!-- <div class="node-card node-user" data-tooltip="Incoming HTTP/HTTPS request • TLS fingerprint">
+                  <div class="step-marker">01</div>
+                  <div class="icon-lg">🌐</div>
+                  <div class="node-title">USER AGENT</div>
+                  <div class="node-desc">Origin Request</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div> -->
+
+                <!-- NODE 2: BEHAVIOR ANALYSIS -->
+                <div class="node-card node-behavior" data-tooltip="Rate limiting • GeoIP • Reputation • Request fingerprint">
+                  <div class="step-marker">01</div>
+                  <div class="icon-lg">📈</div>
+                  <div class="node-title">BEHAVIOR ANALYZER</div>
+                  <div class="node-desc">Heuristics &amp; Scoring</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0.15s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <!-- NODE 3: OWASP CRS -->
+                <div class="node-card node-crs" data-tooltip="OWASP Core Rule Set • SQLi • XSS • RFI/LFI detection">
+                  <div class="step-marker">02</div>
+                  <div class="icon-lg">📜</div>
+                  <div class="node-title">CRS ENGINE</div>
+                  <div class="node-desc">Signature Matching</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0.3s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <!-- NODE 4: JS ENGINE -->
+                <div class="node-card node-js" data-tooltip="Dynamic JavaScript sandbox • Payload deobfuscation">
+                  <div class="step-marker">03</div>
+                  <div class="icon-lg">⚙️</div>
+                  <div class="node-title">JS ENGINE</div>
+                  <div class="node-desc">Runtime Analysis</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0.45s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <!-- NODE 5: LUA ENGINE -->
+                <div class="node-card node-lua" data-tooltip="Custom Lua scripts • Advanced business logic filtering">
+                  <div class="step-marker">04</div>
+                  <div class="icon-lg">🔧</div>
+                  <div class="node-title">LUA ENGINE</div>
+                  <div class="node-desc">Custom Logic</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0.6s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <!-- NODE 6: AI ENGINE -->
+                <div class="node-card node-ai" data-tooltip="ML anomaly detection • Behavioral AI • Zero-day prevention">
+                  <div class="step-marker">05</div>
+                  <div class="icon-lg">🧠</div>
+                  <div class="node-title">AI NEURAL</div>
+                  <div class="node-desc">Anomaly Score</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0.75s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <!-- NODE 7: CLOFIX CORE -->
+                <div class="node-card node-core" data-tooltip="Central aggregation • Risk scoring • Contextual correlation">
+                  <div class="step-marker">06</div>
+                  <div class="icon-lg">🛡️</div>
+                  <div class="node-title">CLOFIX CORE</div>
+                  <div class="node-desc">Risk Arbiter</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 0.9s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <!-- NODE 8: DECISION ENGINE -->
+                <div class="node-card node-decision" data-tooltip="Final verdict • ALLOW / BLOCK / CHALLENGE (CAPTCHA)">
+                  <div class="step-marker">07</div>
+                  <div class="icon-lg">⚖️</div>
+                  <div class="node-title">CUSTOM RULES</div>
+                  <div class="node-desc">Verdict</div>
+                </div>
+
+                <div class="connector">
+                  <div class="line-path">
+                    <div class="data-packet" style="animation-delay: 1.05s;"></div>
+                    <div class="arrow-tip"></div>
+                  </div>
+                </div>
+
+                <div class="node-card node-backend" data-tooltip="Origin server • CDN edge • Clean response">
+                  <div class="step-marker">08</div>
+                  <div class="icon-lg">🏢</div>
+                  <div class="node-title">JS INJECTOR</div>
+                  <div class="node-desc">Client Site</div>
+                </div>
+              </div>
+            </div>
           <!-- STAT BADGES -->
           <div class="stats-row">
             <div class="stat-pill" style="color:#93c5fd;" id="threatBadge">🛡️ <span>3,240 threats blocked/min</span></div>
@@ -1263,4 +1695,163 @@
  
 })();
 </script>
+<!-- <script>
+  // Simulate dynamic threat counter & latency variation
+  (function animateMetrics() {
+    let blockedCount = 2847;
+    const threatElement = document.getElementById('threatCounter');
+    const latencyElement = document.getElementById('latencySpan');
+    
+    function updateThreats() {
+      const increment = Math.floor(Math.random() * 3) + 1;
+      blockedCount += increment;
+      threatElement.innerHTML = `THREATS BLOCKED: ${blockedCount.toLocaleString()}`;
+      threatElement.style.textShadow = '0 0 4px #ff6b2b';
+      setTimeout(() => { if(threatElement) threatElement.style.textShadow = ''; }, 300);
+    }
+    
+    function updateLatency() {
+      const latency = (Math.random() * 1.8 + 0.5).toFixed(1);
+      latencyElement.innerHTML = `AVG LATENCY: ${latency} ms`;
+      if (parseFloat(latency) > 1.5) {
+        latencyElement.style.color = '#ffaa66';
+      } else {
+        latencyElement.style.color = '#bbddff';
+      }
+    }
+    
+    setInterval(updateThreats, 3800);
+    setInterval(updateLatency, 2700);
+  })();
+
+  // Interactive packet burst on hover
+  const nodes = document.querySelectorAll('.node-card');
+  nodes.forEach((node, idx) => {
+    node.addEventListener('mouseenter', () => {
+      const parentPipeline = node.closest('.pipeline');
+      const allPackets = parentPipeline ? parentPipeline.querySelectorAll('.data-packet') : [];
+      const packetIndex = Math.min(idx, allPackets.length - 1);
+      if(allPackets[packetIndex]) {
+        const packet = allPackets[packetIndex];
+        packet.style.animation = 'none';
+        packet.offsetHeight;
+        packet.style.animation = 'packetFlow 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards';
+        setTimeout(() => {
+          if(packet) packet.style.animation = '';
+        }, 700);
+      }
+    });
+  });
+
+  // Random packet bursts for liveliness
+  function addRandomBurst() {
+    const packets = document.querySelectorAll('.data-packet');
+    const randomPacket = packets[Math.floor(Math.random() * packets.length)];
+    if(randomPacket) {
+      randomPacket.style.animation = 'none';
+      randomPacket.offsetHeight;
+      randomPacket.style.animation = 'packetFlow 0.5s ease-out forwards';
+      setTimeout(() => {
+        if(randomPacket) randomPacket.style.animation = '';
+      }, 550);
+    }
+  }
+  setInterval(addRandomBurst, 4200);
+
+  // Sequential node highlight animation
+  let step = 0;
+  const allNodes = document.querySelectorAll('.node-card');
+  function highlightNextNode() {
+    allNodes.forEach((node, i) => {
+      node.style.transition = 'box-shadow 0.2s';
+      if(i === step) {
+        node.style.boxShadow = '0 0 0 2px rgba(0,200,255,0.6), 0 0 12px rgba(0,200,255,0.4)';
+      } else {
+        node.style.boxShadow = '';
+      }
+    });
+    step = (step + 1) % allNodes.length;
+  }
+  setInterval(highlightNextNode, 1800);
+
+  // Live request rate simulation
+  const createLiveRate = () => {
+    const container = document.querySelector('.stats-dashboard');
+    if(container && !document.querySelector('.live-rate-stat')) {
+      const extra = document.createElement('div');
+      extra.className = 'stat live-rate-stat';
+      extra.style.gap = '0.5rem';
+      extra.innerHTML = `<div class="stat-led" style="background:#ff44cc; box-shadow:0 0 5px #ff44cc; animation: pulseStat 2s infinite;"></div>
+                         <span>LIVE INSPECTION: <span id="liveRequestSpan">0 req/s</span></span>`;
+      container.appendChild(extra);
+      let reqCount = 0;
+      setInterval(() => {
+        const newRate = Math.floor(Math.random() * 55) + 12;
+        const span = document.getElementById('liveRequestSpan');
+        if(span) span.innerText = `${newRate} req/s`;
+        const pipelineDiv = document.querySelector('.pipeline');
+        if(pipelineDiv) {
+          pipelineDiv.style.transition = 'filter 0.1s';
+          pipelineDiv.style.filter = `drop-shadow(0 0 ${Math.min(3, newRate/30)}px rgba(0,200,255,0.3))`;
+          setTimeout(() => { if(pipelineDiv) pipelineDiv.style.filter = ''; }, 150);
+        }
+      }, 1300);
+    }
+  };
+  createLiveRate();
+
+  // Dynamic tooltip updates for core and AI nodes
+  const coreNode = document.querySelector('.node-core');
+  if(coreNode) {
+    let scoreValue = 0;
+    setInterval(() => {
+      scoreValue = Math.floor(Math.random() * 45) + 5;
+      coreNode.setAttribute('data-tooltip', `CloFix Core • Risk score: ${scoreValue}% • 6-layer verdict`);
+    }, 3400);
+  }
+  
+  const aiNode = document.querySelector('.node-ai');
+  if(aiNode) {
+    setInterval(() => {
+      const anomaly = (Math.random() * 30).toFixed(0);
+      aiNode.setAttribute('data-tooltip', `AI Neural Engine • Anomaly index: ${anomaly}% • ML inference running`);
+    }, 2800);
+  }
+  
+  // Decision Engine verdict simulation
+  const decisionNode = document.querySelector('.node-decision');
+  const verdicts = ['ALLOW ✓', 'BLOCK ✗', 'CHALLENGE ⚠️', 'ALLOW ✓'];
+  let verdictIdx = 0;
+  setInterval(() => {
+    if(decisionNode) {
+      const verdictSpan = decisionNode.querySelector('.node-desc');
+      if(verdictSpan) {
+        verdictSpan.innerText = verdicts[verdictIdx % verdicts.length];
+        verdictIdx++;
+      }
+      decisionNode.setAttribute('data-tooltip', `Final decision: ${verdicts[(verdictIdx-1) % verdicts.length]} • Policy enforcement`);
+    }
+  }, 5000);
+  
+  // Backend response time simulation
+  const backendNode = document.querySelector('.node-backend');
+  if(backendNode) {
+    setInterval(() => {
+      const respTime = (Math.random() * 12 + 4).toFixed(1);
+      backendNode.setAttribute('data-tooltip', `Origin server • Response time: ${respTime}ms • Upstream healthy`);
+    }, 4000);
+  }
+
+  // Stats dashboard hover effect
+  const statsDiv = document.querySelector('.stats-dashboard');
+  if(statsDiv) {
+    statsDiv.addEventListener('mouseenter', () => {
+      statsDiv.style.border = '1px solid rgba(0,230,255,0.5)';
+      statsDiv.style.transition = '0.2s';
+    });
+    statsDiv.addEventListener('mouseleave', () => {
+      statsDiv.style.border = '1px solid rgba(0,200,255,0.2)';
+    });
+  }
+</script> -->
 </html>
