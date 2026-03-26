@@ -140,7 +140,257 @@
       </div>
 
       <div class="features-flex">
-          <!-- AI CATEGORY -->
+          <!-- LB CATEGORY -->
+          <h2 class="category-heading">Load Balancer</h2>
+          <!-- CloFix Load Balancer (LB) -->
+          <div class="feature-card" data-id="load_balancer">
+              <h3>⚖️ CloFix Load Balancer</h3>
+              <p>Intelligent traffic distribution with backend information hiding, health checks, and 99.99% availability SLA</p>
+              <div class="scripting-guideline">
+                  <a href="https://clofix.com/clofix-load-balancer.html" target="_blank" rel="noopener noreferrer">
+                      📘 Load Balancer Configuration Guide →
+                  </a>
+              </div>
+          </div>
+          <template id="load_balancer">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>Backend Information Hiding:</strong> Automatically removes 30+ sensitive headers (Server, X-Powered-By, X-Backend-Server, X-Upstream, Via, X-Real-IP) — prevents attackers from discovering internal infrastructure</li>
+                      <li><strong>Response Body URL Rewriting:</strong> Automatically rewrites backend URLs in HTML, JSON, and XML responses to show only frontend domain — http://clofix.com/page → https://demo.clofix.com/page</li>
+                      <li><strong>Real-time Backend Alerts:</strong> Automatic notifications when backends go down or recover — supports Slack, Email, Webhook, and Telegram with detailed failure information</li>
+                      <li><strong>99.99% Availability SLA:</strong> Enterprise-grade reliability with automatic failover and connection draining — zero-downtime deployments</li>
+                      <li><strong>&lt;1ms Latency Overhead:</strong> Ultra-low latency with zero-copy forwarding and connection pooling — no measurable performance impact</li>
+                      <li><strong>5+ Load Balancing Algorithms:</strong> Round Robin (sequential distribution), Least Connections (send to server with fewest active connections), IP Hash (client IP to same backend), Weighted (capacity-based), Random — choose per workload</li>
+                      <li><strong>Active Health Checks:</strong> Configurable HTTP/HTTPS health checks with custom path, interval (default 10s), timeout (default 3s), and expected status code (default 200) — automatic backend removal on failure</li>
+                      <li><strong>Passive Health Monitoring:</strong> Track real traffic failures (max_fails default 3, fail_timeout 30s) — mark backends unhealthy without extra probe traffic</li>
+                      <li><strong>Session Persistence (Sticky Sessions):</strong> Cookie-based stickiness with configurable cookie name (default clofix_backend) — ensures user sessions stay on the same backend server</li>
+                      <li><strong>Backend Weight Configuration:</strong> Assign weights to servers based on capacity — weight=10 for powerful instances, weight=1 for smaller ones</li>
+                      <li><strong>Backup Servers:</strong> Designate backup backends (backup=true) — used only when all primary servers fail, with separate max_fails/fail_timeout settings</li>
+                      <li><strong>Connection Draining:</strong> Gracefully remove backends from rotation — existing connections complete before server shutdown, zero dropped requests during deployments</li>
+                      <li><strong>Max Retries & Timeout:</strong> Configurable retry logic (max_retries default 3, retry_timeout 5s) — automatically retry failed requests on healthy backends</li>
+                      <li><strong>Concurrent Connection Limits:</strong> max_conns per backend prevents resource exhaustion during traffic spikes — unlimited by default</li>
+                      <li><strong>HTTP/2 & HTTP/3 Support:</strong> Full support for modern HTTP protocols with multiplexing and improved performance</li>
+                      <li><strong>SSL/TLS Termination:</strong> Offload SSL at load balancer with configurable TLSv1.2 and TLSv1.3 protocols — automatic certificate management available</li>
+                      <li><strong>Client IP Preservation:</strong> Original client IP preserved through X-Forwarded-For and PROXY protocol — backends always know real client address</li>
+                      <li><strong>Header Sanitization:</strong> Removes 25+ debugging and server identification headers from responses before reaching clients</li>
+                      <li><strong>Real-time Metrics:</strong> Prometheus-compatible metrics for each backend — request rate, error rate, active connections, health status</li>
+                      <li><strong>Admin API:</strong> REST API for dynamic backend management — add, remove, enable, disable, or rebalance backends without reload</li>
+                      <li><strong>Zero-Downtime Reloads:</strong> Update load balancer configuration without dropping connections — graceful reload with connection draining</li>
+                      <li><strong>Active-Active Clustering:</strong> Multiple load balancer instances with shared state — no single point of failure</li>
+                      <li><strong>WebSocket Support:</strong> Native WebSocket protocol upgrade with connection persistence across backend pools — perfect for real-time applications</li>
+                      <li><strong>gRPC Load Balancing:</strong> Full gRPC support with HTTP/2 multiplexing and health checking protocol integration</li>
+                      <li><strong>Layer 4 (TCP/UDP) Load Balancing:</strong> Transparent TCP/UDP proxy for databases, message queues, and legacy applications — no HTTP required</li>
+                      <li><strong>IPv4/IPv6 Dual Stack:</strong> Listen on both IPv4 and IPv6, connect to backends over IPv4 or IPv6 with configurable preference</li>
+                      <li><strong>Gzip Compression:</strong> Automatic response compression to reduce bandwidth and improve load times</li>
+                      <li><strong>Custom Error Pages:</strong> Serve branded error pages when backends are unavailable — maintain user experience during outages</li>
+                      <li><strong>Maintenance Mode:</strong> Temporarily block traffic to specific backends or routes with custom responses — zero-downtime maintenance windows</li>
+                      <li><strong>Blue/Green Deployments:</strong> Route traffic between backend versions — gradual rollout with instant rollback capability</li>
+                      <li><strong>Canary Deployments:</strong> Send percentage of traffic to new version, monitor error rates, automatically rollback on failure</li>
+                      <li><strong>Geolocation-Based Routing:</strong> Route users to nearest backend based on country or region — reduces latency and improves user experience</li>
+                      <li><strong>PROXY Protocol Support:</strong> Preserve original client IP when using proxy protocols with backend servers that support PROXY v1/v2</li>
+                  </ul>
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> CloFix Load Balancer sits between clients and backend servers, intelligently distributing traffic based on configurable algorithms. Health checks run continuously — unhealthy backends are automatically removed from rotation based on max_fails (default 3) and fail_timeout (default 30s). Backend information hiding automatically strips 30+ sensitive headers from responses, including Server, X-Powered-By, X-Backend-Server, and Via headers. Response body URL rewriting converts internal backend URLs to frontend domain in HTML, JSON, and XML content. Real-time notifications alert via webhook when backends go down or recover. Session persistence (sticky sessions) ensures users stay on the same backend via cookies. Configuration supports weight-based distribution for uneven backend capacities, backup servers for failover, and connection pooling for optimal performance. All this runs with less than 1ms latency overhead.</p>
+                      <p class="guideline-link">📖 <strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer.html" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> — Backend configuration, load balancing algorithms, health checks, and security hardening</p>
+                  </div>
+              </div>
+          </template>
+          <!-- Scripting CATEGORY -->
+          <h2 class="category-heading">Scripting Engine</h2>
+          <!-- CloFix JavaScript Engine (clofix) -->
+          <div class="feature-card" data-id="javascript_engine">
+              <h3>📜 CloFix JavaScript (clofix) Engine</h3>
+              <p>Server-side JavaScript WAF scripting with full HTTP pipeline control and shared in-memory state</p>
+              <div class="scripting-guideline">
+                  <a href="https://clofix.com/clofix-js-script.html" target="_blank" rel="noopener noreferrer">
+                      📘 JavaScript Scripting Guidelines →
+                  </a>
+              </div>
+          </div>
+          <template id="javascript_engine">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>Entry Point:</strong> Every script must export `function clofix(request)` that returns an action object — first non-allow action wins pipeline execution</li>
+                      <li><strong>Request Object:</strong> Full access to `request.ip`, `request.method`, `request.path`, `request.url`, `request.query`, `request.headers`, `request.body`, `request.cookies`, `request.user_agent`, `request.is_tor`, `request.timestamp`</li>
+                      <li><strong>Shared Dictionaries:</strong> Persistent cross-request state via `sharedDict("name")` with `get()`, `set()`, `incr()`, `delete()` methods — perfect for rate limiting and bot tracking</li>
+                      <li><strong>Pattern Extraction:</strong> System auto-extracts patterns from ALL JavaScript files for fast matching — strings and regex patterns become detection signatures</li>
+                      <li><strong>Action Types:</strong> Return `{ action: "allow" }`, `{ action: "block", reason: "..." }`, `{ action: "rate_limit" }`, or `{ action: "redirect", redirect_to: "..." }`</li>
+                      <li><strong>Structured Logging:</strong> `log.info()`, `log.warn()`, `log.error()` for general logs; `log.attack({ rule_name, category, confidence, payload })` for attack detection</li>
+                      <li><strong>Execution Limits:</strong> 2 second wall-clock timeout per script, 32MB memory limit, 10MB max file size — prevents runaway scripts from impacting WAF throughput</li>
+                      <li><strong>SQL Injection Detection:</strong> Pattern-based detection for UNION SELECT, INSERT INTO, DROP TABLE, time-based attacks, and boolean blind injection</li>
+                      <li><strong>XSS Protection:</strong> Script tag injection, event handlers (onerror, onload), JavaScript protocol, and DOM-based XSS pattern detection</li>
+                      <li><strong>Command Injection:</strong> Unix/Linux command chaining (`;`, `|`, `&&`, `` ` ``), Windows cmd.exe patterns, and dangerous command execution detection</li>
+                      <li><strong>Path Traversal/LFI:</strong> `../`, `..\`, URL-encoded traversal, sensitive file access (`/etc/passwd`, `/windows/win.ini`) blocking</li>
+                      <li><strong>SSRF Protection:</strong> Block internal IP ranges (127.0.0.1, 169.254.x.x, 10.x.x.x, 192.168.x.x) and cloud metadata endpoints (169.254.169.254)</li>
+                      <li><strong>Rate Limiting:</strong> Per-IP sliding window with timestamp array storage, burst detection, and graduated blocking (60s, 600s, 86400s escalation)</li>
+                      <li><strong>GeoIP Blocking:</strong> Country-level blocking using `request.country` (requires GeoIP implementation)</li>
+                      <li><strong>Bot Detection:</strong> User-Agent patterns (sqlmap, nikto, wpscan), headless browser detection, and missing UA challenge</li>
+                      <li><strong>Brute Force Protection:</strong> Login path monitoring with 5-attempt windows, 30-minute bans after threshold exceeded</li>
+                      <li><strong>DDoS Shield:</strong> Two-tier protection — burst detection (30 req/2s) and sustained rate (200 req/min) with escalating bans (60s → 600s → 86400s)</li>
+                      <li><strong>CSRF Protection:</strong> Origin header validation for POST/PUT/DELETE/PATCH methods with configurable allowed origins and exempt paths</li>
+                      <li><strong>API Key Authentication:</strong> Validate `X-API-Key` header or `api_key` query parameter against pre-configured key store</li>
+                      <li><strong>File Type Filtering:</strong> Block dangerous extensions (.php, .asp, .jsp, .exe, .sh, .py) before they reach backend</li>
+                      <li><strong>Maintenance Mode:</strong> Temporary blocking with IP allowlisting and health check exemptions</li>
+                      <li><strong>Smart Redirects:</strong> URL rewriting with exact and prefix-based 301/302 redirects</li>
+                      <li><strong>Honeypot Traps:</strong> Special URLs that ban any visiting IP (except whitelisted search engine bots) for 24 hours</li>
+                      <li><strong>Password Protect URLs:</strong> Simple token-based authentication for staging/preview environments</li>
+                      <li><strong>Tor/VPN Blocking:</strong> Native `request.is_tor` detection for blocking Tor exit nodes</li>
+                  </ul>
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> JavaScript scripts execute in isolated V8 isolates with a 2-second timeout. Files execute in alphabetical order — use numeric prefixes like `01_rate_limit.js`, `02_bot_detect.js` to control priority. The first script returning a non-allow action stops pipeline execution. Shared dictionaries (`sharedDict("name")`) provide persistent cross-request storage with TTL support. Pattern extraction automatically scans all JavaScript files for strings and regex patterns, creating fast-matching signatures checked against every request. The system is configured via `js_blocker` block in domain config with `js_dir`, `execution_timeout`, `block_threshold`, and `scan_interval` settings.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-js-script.html" target="_blank" rel="noopener noreferrer">CloFix JavaScript Scripting Guide</a> — Complete API reference with SQL injection, XSS, rate limiting, DDoS protection, and more examples</p>
+                  </div>
+              </div>
+          </template>
+
+          <!-- CloFix OWASP CRS Integration -->
+          <div class="feature-card" data-id="owasp_crs">
+              <h3>⚙️ OWASP CRS Core Rule Set</h3>
+              <p>Industry-standard web attack detection with 25 rule files, 4 paranoia levels, and anomaly scoring</p>
+              <div class="scripting-guideline">
+                  <a href="https://clofix.com/clofix-crs.html" target="_blank" rel="noopener noreferrer">
+                      📘 OWASP CRS Configuration Guide →
+                  </a>
+              </div>
+          </div>
+          <template id="owasp_crs">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>25 Rule Files:</strong> Complete OWASP CRS v4 rule set covering initialization, IP reputation, protocol enforcement, LFI, RFI, RCE, SQLi, XSS, NoSQL, and response leakage detection</li>
+                      <li><strong>Paranoia Levels 1-4:</strong> Level 1 (minimal false positives, general production) to Level 4 (maximum security, high-risk apps) — adjustable per domain or globally</li>
+                      <li><strong>Anomaly Scoring:</strong> Threshold-based blocking with configurable scores (default 5 inbound, 4 outbound). CRITICAL=5pts, ERROR=4pts, WARNING=3pts, NOTICE=2pts, INFO=1pt</li>
+                      <li><strong>CloFixRule Directive:</strong> CRS-style custom rules with variables (ARGS, REQUEST_HEADERS, BODY), operators (@rx, @contains, @streq), and transformations (t:lowercase, t:urlDecode, t:htmlEntityDecode)</li>
+                      <li><strong>SQL Injection (942xxx):</strong> Union-based, time-based sleep/benchmark, boolean blind, error-based, stacked queries — 100+ rules covering all evasion techniques</li>
+                      <li><strong>Cross-Site Scripting (941xxx):</strong> Script tags, event handlers, JavaScript protocol, SVG/iframe injection, and reflected/stored/DOM-based XSS detection</li>
+                      <li><strong>Local/Remote File Inclusion (930xxx, 931xxx):</strong> Path traversal (`../`, `..\`), sensitive file access (/etc/passwd, /windows/win.ini), PHP wrappers (php://), remote includes (http://, ftp://)</li>
+                      <li><strong>Command Injection (932xxx):</strong> Unix command chaining (`;`, `|`, `&&`, `` ` ``), Windows cmd.exe, PowerShell, and dangerous command execution detection</li>
+                      <li><strong>SSRF Protection (933xxx):</strong> Internal IP ranges (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x), cloud metadata endpoints (169.254.169.254, metadata.google.internal)</li>
+                      <li><strong>NoSQL Injection (970xxx):</strong> MongoDB operators (`$ne`, `$gt`, `$or`, `$where`, `$regex`), JavaScript injection in NoSQL queries</li>
+                      <li><strong>Bot Detection (910xxx):</strong> Malicious user agents (sqlmap, nikto, wpscan, gobuster), headless browsers (Puppeteer, Playwright, Selenium), and security scanners</li>
+                      <li><strong>Protocol Enforcement (920xxx):</strong> HTTP method restrictions, protocol violations, header injection, Host header attacks, malformed request detection</li>
+                      <li><strong>IP Reputation (910xxx):</strong> Tor exit nodes, VPN/proxy detection, known malicious IPs, and blacklist integration with hourly updates</li>
+                      <li><strong>DoS Protection (912xxx):</strong> Rate-based DoS detection with configurable thresholds and blocking actions</li>
+                      <li><strong>Response Inspection (950xxx, 951xxx):</strong> Data leakage detection (credit cards, SSNs, API keys), SQL error messages, and information disclosure prevention</li>
+                      <li><strong>Intelligent Bypass System:</strong> Bypass by rule ID, tag (`attack-sqli`, `paranoia-level/3`), phase (1-4), path (`/health`, `/api/public/*`), or IP (`127.0.0.1`, `192.168.1.*`)</li>
+                      <li><strong>Transformations Chain:</strong> Multiple transformations applied in sequence — lowercase, URL decode, HTML entity decode, remove nulls, compress whitespace — defeating evasion techniques</li>
+                      <li><strong>Automatic Rule Updates:</strong> CRS rules update from official OWASP repository every 6 hours — zero-day protection within hours of disclosure</li>
+                      <li><strong>Coraza WAF Engine:</strong> Modern Go-based ModSecurity-compatible engine with Hyperscan regex — 5-10x faster than traditional ModSecurity</li>
+                      <li><strong>Multi-Phase Inspection:</strong> Phase 1 (request headers), Phase 2 (request body), Phase 3 (response headers), Phase 4 (response body) — comprehensive coverage</li>
+                      <li><strong>Virtual Patching:</strong> Create custom CloFixRule directives to patch vulnerable applications without code changes — deploy within minutes of vulnerability disclosure</li>
+                      <li><strong>Compliance Mode:</strong> Pre-configured rule sets for PCI DSS 4.0, HIPAA, and GDPR with audit logging and reporting</li>
+                      <li><strong>False Positive Analysis:</strong> Dashboard showing most triggered rules, false positive rate, and suggested exclusions based on traffic patterns</li>
+                      <li><strong>Rule Testing:</strong> Built-in regression testing with attack payload simulation to validate rule effectiveness before production deployment</li>
+                  </ul>
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> CloFix CRS processes requests through 4 phases with 25 rule files loaded in OWASP order. The anomaly scoring system aggregates weighted points from matched rules — reaching the configured threshold triggers blocking. Paranoia levels allow gradual tuning from minimal false positives (Level 1) to maximum security (Level 4). The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses. All rule processing uses the Coraza engine with Hyperscan regex, handling 100,000+ requests/second. Configuration uses `CloFixRule` directives with variables, operators, transformations, and actions. Rules automatically update from the OWASP CRS repository every 6 hours.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html" target="_blank" rel="noopener noreferrer">CloFix OWASP CRS Guide</a> — Complete reference with 25 rule files, paranoia levels, anomaly scoring, and bypass configuration</p>
+                  </div>
+              </div>
+          </template>
+
+          <!-- CloFix Lua Scripting Engine -->
+          <div class="feature-card" data-id="lua_engine">
+              <h3>🔧 CloFix Lua Scripting Engine</h3>
+              <p>Embedded Lua 5.4 with clofix_main entry point, threat scoring, and shared dictionaries</p>
+              <div class="scripting-guideline">
+                  <a href="https://clofix.com/clofix-lua-script.html" target="_blank" rel="noopener noreferrer">
+                      📘 Lua Scripting Guidelines →
+                  </a>
+              </div>
+          </div>
+          <template id="lua_engine">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>Entry Point:</strong> Every script must define `function clofix_main(request)` returning an action table — `{ action = "allow" }`, `{ action = "block", status = 403, message = "..." }`, or `{ action = "rate_limit", rule_name = "RL_001" }`</li>
+                      <li><strong>Request Object:</strong> Full read-only access to `request.ip`, `request.method`, `request.path`, `request.uri`, `request.headers`, `request.body`, `request.json_body`, `request.cookies`, `request.query`, `request.form_data`, `request.ja3`, `request.ja4`, `request.is_tor`, `request.is_vpn`, `request.bot_score`, `request.ip_reputation`, `request.country`, `request.asn`</li>
+                      <li><strong>Shared Dictionaries:</strong> Persistent state across requests via `clofix.shared.ddos_attack` with `get()`, `set(key, value, ttl?)`, `incr()`, `delete()` — perfect for rate limiting, bot tracking, and DDoS protection</li>
+                      <li><strong>Payload Normalization:</strong> `clofix.normalize_payload(s)` — multi-pass URL decode, HTML decode, lowercase, and whitespace collapse for injection detection</li>
+                      <li><strong>Threat Intelligence:</strong> `clofix.is_tor()`, `clofix.is_vpn()`, `clofix.ip_reputation()` returns "clean"/"suspicious"/"malicious", `clofix.get_bot_score()` (0-100), `clofix.get_ja3()` fingerprint</li>
+                      <li><strong>Rate Limiting API:</strong> `clofix.rate_limit(key, limit, window_secs)` returns (count, exceeded), `clofix.rate_limit_ip(limit, window)`, `clofix.rate_limit_endpoint(limit, window)` for per-IP-path limits</li>
+                      <li><strong>Structured Attack Logging:</strong> `clofix.log_attack(rule, type, payload?)` auto-includes IP, country, UA, method, URI — essential for SIEM integration</li>
+                      <li><strong>Action Types:</strong> `allow`, `block` (403), `challenge` (429 CAPTCHA), `rate_limit` (429), `log_only`, `redirect` (with redirect_to field), `captcha`</li>
+                      <li><strong>Threat Scoring Engine:</strong> Return `{ score = 85 }` instead of action — engine applies thresholds (&lt;20 allow, 20-49 log_only, 50-79 challenge, ≥80 block)</li>
+                      <li><strong>utils.* Helpers:</strong> `utils.contains()`, `utils.starts_with()`, `utils.ends_with()`, `utils.split()`, `utils.to_lower()`, `utils.json_encode()`, `utils.json_decode()`, `utils.url_encode()`, `utils.base64_encode()`, `utils.now()`</li>
+                      <li><strong>SQL Injection Detection:</strong> Patterns for UNION SELECT, INSERT INTO, DROP TABLE, OR 1=1, SLEEP(), BENCHMARK(), information_schema — with payload normalization</li>
+                      <li><strong>XSS Protection:</strong> Script tags, JavaScript protocol, event handlers (onerror, onload), SVG/iframe injection, and DOM-based XSS patterns</li>
+                      <li><strong>Command Injection:</strong> Unix command chaining (`;`, `|`, `&&`, `` ` ``), Windows cmd.exe, PowerShell, and dangerous commands (wget, curl, nc, python -c)</li>
+                      <li><strong>Path Traversal/LFI:</strong> `../`, `..\`, URL-encoded traversal (`%2e%2e%2f`), sensitive file access (`/etc/passwd`, `boot.ini`, `php://`, `file://`)</li>
+                      <li><strong>SSRF Protection:</strong> Internal IP ranges (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x), cloud metadata (169.254.169.254, metadata.google.internal)</li>
+                      <li><strong>Brute Force Protection:</strong> Login path detection with shared dictionary counters, 10 attempts/5min window, 30-minute ban, and configurable thresholds</li>
+                      <li><strong>DDoS Shield:</strong> Two-tier protection — burst detection (30 req/2s) and sustained rate (200 req/min) with escalating bans (60s → 600s → 86400s) using shared dictionaries</li>
+                      <li><strong>Bot Detection:</strong> `request.is_bot`, `request.is_headless`, `request.bot_score`, UA pattern matching (python, curl, wget, sqlmap, nikto, gobuster), and missing UA blocking</li>
+                      <li><strong>GeoIP Blocking:</strong> `request.country` ISO-3166 codes, `request.region`, `request.city`, `request.asn`, `request.org` — block specific countries, ASNs, or regions</li>
+                      <li><strong>JA3/JA4 Fingerprinting:</strong> `request.ja3` and `request.ja4` for TLS stack identification — block known attack tools even with IP rotation</li>
+                      <li><strong>IP Reputation:</strong> `clofix.ip_reputation()` returns "clean"/"suspicious"/"malicious" — block malicious IPs instantly</li>
+                      <li><strong>Path Whitelisting:</strong> Protect admin endpoints (`/admin`, `/wp-admin`) with IP allowlists using shared dictionaries</li>
+                      <li><strong>Execution Limits:</strong> 50ms wall-clock timeout per script, 32MB memory limit, 200 call stack depth — prevents resource exhaustion</li>
+                      <li><strong>Directory Structure:</strong> `./lua_script/<domain>/` with alphabetical execution order — use numeric prefixes (`01_rate_limit.lua`, `02_bot_detection.lua`) for priority</li>
+                      <li><strong>Domain Configuration:</strong> Enable Lua with `lua { enabled on; lua_shared_dict ddos_attack 10m; }` in domain config</li>
+                  </ul>
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> Lua scripts execute in isolated VM instances with 50ms timeout. Files run in alphabetical order — first non-allow action stops pipeline. The `clofix_main(request)` function receives a request object with all HTTP context, GeoIP, JA3 fingerprint, and threat intelligence fields. Shared dictionaries (`clofix.shared.*`) provide thread-safe cross-request storage with TTL. Payload normalization (`clofix.normalize_payload()`) defeats encoding evasion before pattern matching. The scoring engine allows multi-rule accumulation before final action. Structured attack logging (`clofix.log_attack()`) automatically captures full request context for SIEM integration. All functions are C-bound for performance — Lua scripts typically process 80,000 requests/second on modest hardware.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-lua-script.html" target="_blank" rel="noopener noreferrer">CloFix Lua Scripting Guide</a> — Complete API reference with SQL injection, XSS, rate limiting, DDoS protection, shared dictionaries, and 15+ production-ready examples</p>
+                  </div>
+              </div>
+          </template>
+
+          <!-- CloFix Custom Rules & Scripting -->
+          <div class="feature-card" data-id="custom_rules">
+              <h3>🎯 CloFix Custom Rules & Scripting</h3>
+              <p>Unified rule engine combining CloFixRule directives, JavaScript, and Lua with intelligent bypass system</p>
+              <div class="scripting-guideline">
+                  <a href="https://clofix.com/clofix-crs.html#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">
+                      📘 Custom Rules & CloFixRule Guide →
+                  </a>
+              </div>
+          </div>
+          <template id="custom_rules">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>CloFixRule Directive:</strong> CRS-style custom rules with variables (ARGS, REQUEST_HEADERS, REQUEST_URI, BODY), operators (@rx regex, @contains, @streq, @pm, @beginsWith, @endsWith), and transformations (t:lowercase, t:urlDecode, t:htmlEntityDecode, t:removeNulls, t:compressWhitespace)</li>
+                      <li><strong>Multi-Language Support:</strong> Choose between declarative CloFixRule (YAML-like), JavaScript (clofix), or Lua (clofix_main) — mix and match in the same deployment with alphabetical execution order</li>
+                      <li><strong>Intelligent Bypass System:</strong> Bypass rules by rule ID, tag (`attack-sqli`, `paranoia-level/3`), phase (1-4 request/response), path (`/health`, `/api/public/*`), or IP (`127.0.0.1`, `192.168.1.*`, `10.0.0.0/8`)</li>
+                      <li><strong>Anomaly Scoring Engine:</strong> Each rule contributes weighted points to anomaly score (CRITICAL=5, ERROR=4, WARNING=3, NOTICE=2, INFO=1). Threshold-based blocking with configurable inbound/outbound limits</li>
+                      <li><strong>Paranoia Levels 1-4:</strong> Progressive protection from minimal false positives (Level 1) to maximum security (Level 4) — adjust per domain or globally</li>
+                      <li><strong>Pattern Extraction:</strong> JavaScript files automatically scanned for strings and regex patterns — used for fast matching without execution overhead</li>
+                      <li><strong>Shared Dictionaries:</strong> Persistent cross-request state with TTL — `sharedDict("name")` in JavaScript, `clofix.shared.*` in Lua, perfect for rate limiting and bot tracking</li>
+                      <li><strong>Action Types:</strong> `block` (403), `allow`, `rate_limit` (429), `challenge` (CAPTCHA), `redirect`, `log_only`, `captcha` — with custom status codes and messages</li>
+                      <li><strong>Transformation Chains:</strong> Apply multiple transformations sequentially — `t:lowercase,t:urlDecode,t:htmlEntityDecode` defeats encoding evasion techniques</li>
+                      <li><strong>Virtual Patching:</strong> Create custom rules to patch vulnerable applications without code changes — deploy within minutes of vulnerability disclosure</li>
+                      <li><strong>Rule Testing Sandbox:</strong> Interactive playground to test custom rules against historical traffic or custom payloads before production deployment</li>
+                      <li><strong>Pre-built Rule Templates:</strong> 200+ community-contributed templates for WordPress, Drupal, Joomla, Magento, Laravel, Django, and custom applications</li>
+                      <li><strong>API Rate Limiting DSL:</strong> Specialized syntax for API protection — per-endpoint limits, burst handling, graduated response (slow down → challenge → block)</li>
+                      <li><strong>Bot Detection Rules:</strong> Pre-configured bot fingerprints for 500+ known bots (Googlebot, Bingbot, ChatGPT, GPTBot, Anthropic) with custom actions per bot type</li>
+                      <li><strong>Credential Stuffing Protection:</strong> Login endpoint velocity checks, password reuse patterns, and known breached credentials via haveibeenpwned API integration</li>
+                      <li><strong>GraphQL Security Rules:</strong> Introspection blocking, depth limiting (default max depth 10), complexity scoring, and batch query throttling</li>
+                      <li><strong>gRPC Method Filtering:</strong> Whitelist/blacklist specific gRPC methods with regex patterns — block reflection services and internal methods from external callers</li>
+                      <li><strong>JSON Schema Validation:</strong> Enforce JSON schemas on API requests — block malformed payloads before they reach your application logic</li>
+                      <li><strong>XML/SOAP Validation:</strong> Detect XML bombs, XXE attacks, and schema violations in SOAP and REST XML payloads</li>
+                      <li><strong>Custom Response Rules:</strong> Inspect and modify responses — add security headers (CSP, HSTS), remove server signatures, inject monitoring scripts, block responses containing sensitive data</li>
+                      <li><strong>Webhook Actions:</strong> Trigger external webhooks on rule matches — send alerts to Slack, PagerDuty, or custom SIEM solutions with full request context</li>
+                      <li><strong>Delayed Response (Tarpitting):</strong> Slow down attackers with configurable delays — waste attacker resources while maintaining legitimate user experience</li>
+                      <li><strong>Log Sampling:</strong> Sample and log only matching rules at configurable rates — reduce log volume while maintaining security visibility</li>
+                      <li><strong>Rule Groups:</strong> Organize rules into named groups (PCI, HIPAA, WordPress, API) — enable/disable entire groups with a single toggle for multi-tenant environments</li>
+                      <li><strong>Priority Execution:</strong> Assign execution priority (1-1000) — ensure critical rules run first while complex analysis runs later. Pre-optimize based on historical match rates</li>
+                      <li><strong>Rule Metrics Dashboard:</strong> Real-time metrics per rule — match count, false positive rate, execution time, and impact score. Identify rules causing latency or blocking legitimate traffic</li>
+                      <li><strong>Automated Rule Optimization:</strong> ML-powered suggestions to reduce false positives — learn from blocked vs. allowed traffic patterns and suggest threshold adjustments</li>
+                      <li><strong>Rule Export/Import:</strong> Export rule sets as YAML/JSON for backup, version control, or sharing across deployments. Import from other CloFix instances or community repositories</li>
+                      <li><strong>Inline Documentation:</strong> Document rules with markdown descriptions, examples, and remediation steps — built-in documentation viewer for security teams</li>
+                      <li><strong>Rule Scheduling:</strong> Schedule rules for specific maintenance windows or seasonal traffic — automatically enable holiday shopping protection, disable during low-traffic periods</li>
+                  </ul>
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> CloFix Custom Rules engine processes rules in execution priority order across three scripting languages. CloFixRule directives are compiled into optimized decision trees for O(log n) lookup times. JavaScript and Lua scripts execute in isolated VMs with 2-second (JS) or 50ms (Lua) timeouts. Files execute alphabetically — use numeric prefixes like `01_rate_limit.js`, `02_bot_detection.lua`, `03_clofixrule.conf` to control pipeline order. The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses — documented bypasses are essential for production. All rule executions are traced in the audit log with detailed match information for forensics and tuning. Shared dictionaries (`sharedDict` in JS, `clofix.shared` in Lua) maintain cross-request state with TTL support. Pattern extraction from JavaScript files automatically creates fast-matching signatures checked against every request.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">CloFixRule & Custom Rules Guide</a> — Complete syntax reference with variables, operators, transformations, bypass configuration, and 50+ rule examples</p>
+                  </div>
+              </div>
+          </template>
+
+          <!-- Defualt CATEGORY -->
           <h2 class="category-heading">Defualt Activeted Protection</h2>
           
           <div class="feature-card" data-id="behavior_analysis">
