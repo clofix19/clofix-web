@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="CloFix WAF Request Workflow — Complete 10-stage inspection pipeline technical reference. Behavior Analysis, CRS, JS Engine, Lua Engine, AI Neural, CloFix Core, Custom Rules, JS Injector, Load Balancer, Backend."/>
+  <meta name="keywords" content="CloFix WAF, web application firewall, OWASP CRS, security pipeline, DDoS protection, bot detection, AI threat detection"/>
+  <meta name="author" content="CloFix Security Team"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="CloFix WAF Workflow | 10-Stage Request Inspection Pipeline"/>
+  <meta property="og:description" content="Comprehensive technical reference for CloFix WAF's 10-stage request inspection pipeline with detailed descriptions of each stage."/>
+  <meta property="og:url" content="https://clofix.com/docs/clofix-waf-request-workflow.html"/>
+  <meta property="og:image" content="https://clofix.com/img/blogs_og_waf.png"/>
+  <meta property="og:site_name" content="CloFix"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CloFix WAF Workflow | 10-Stage Inspection Pipeline"/>
+  <meta name="twitter:description" content="Complete technical reference for CloFix WAF's security pipeline."/>
+  <link rel="icon" type="image/png" href="img/clofix.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link href="./style.css" rel="stylesheet"/>
+  <link href="./blogs.css" rel="stylesheet"/>
+  <title>CloFix WAF Workflow | 10-Stage Request Inspection Pipeline — Technical Reference</title>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM — CloFix Docs International
+       Tone: Editorial-technical, precision-refined
+       Like: Stripe Docs × Cloudflare Blog × Linear
+    ═══════════════════════════════════════════ */
+    :root {
+      /* Brand */
+      --ink:       #111827;
+      --ink-2:     #1f2937;
+      --ink-3:     #374151;
+      --smoke:     #f8f9fc;
+      --smoke-2:   #f1f3f9;
+      --smoke-3:   #e5e9f2;
+      --mist:      #6b7280;
+      --cf-blue:   #667eea;
+      --cf-violet: #764ba2;
+      --cf-cyan:   #06b6d4;
+      --cf-green:  #10b981;
+      --cf-amber:  #f59e0b;
+      --cf-red:    #ef4444;
+      --cf-grad:   linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --cf-grad-2: linear-gradient(135deg, #06b6d4 0%, #667eea 100%);
+
+      /* Layout */
+      --sidebar-w:   272px;
+      --content-max: 820px;
+      --gap:         2rem;
+
+      /* Type */
+      --font-sans:  'Sora', system-ui, sans-serif;
+      --font-mono:  'JetBrains Mono', 'Courier New', monospace;
+      --font-serif: 'Lora', Georgia, serif;
+
+      /* Radii */
+      --r-sm: 6px;
+      --r-md: 10px;
+      --r-lg: 16px;
+      --r-xl: 22px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-glow: 0 0 0 3px rgba(102,126,234,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      color: #fff;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Reading Progress Bar ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: var(--cf-grad);
+      transition: width 0.1s linear;
+      box-shadow: 0 0 10px rgba(102,126,234,0.5);
+    }
+
+    /* ── Skip Link ── */
+    .skip-link {
+      position: absolute; left: -9999px; top: auto;
+      background: var(--cf-blue); color: #fff;
+      padding: 8px 16px; font-size: 0.875rem; font-weight: 600;
+      border-radius: 0 0 var(--r-sm) var(--r-sm);
+      text-decoration: none; z-index: 10000;
+    }
+    .skip-link:focus { left: 16px; }
+
+    /* ════════════════════════════════
+       DOC LAYOUT
+    ════════════════════════════════ */
+    .doc-wrapper {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 0; /* header handled by style.css */
+    }
+
+    /* ── Left Sidebar ── */
+    .doc-sidebar {
+      grid-row: 1 / -1;
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+      padding: 2rem 0 2rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .doc-sidebar::-webkit-scrollbar { width: 4px; }
+    .doc-sidebar::-webkit-scrollbar-track { background: transparent; }
+    .doc-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+
+    .sidebar-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #f97316;
+      margin-bottom: 0.75rem; padding-left: 2px;
+    }
+
+    .sidebar-meta {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-meta .sm-badge {
+      background: var(--cf-grad); color: #fff;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+      padding: 3px 8px; border-radius: 20px;
+    }
+    .sidebar-meta .sm-ver { font-size: 0.72rem; color: #f97316; font-weight: 500; }
+
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0; }
+
+    .toc-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 10px 6px 10px;
+      font-size: 0.8rem; font-weight: 500; color: #f97316;
+      text-decoration: none; border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+    }
+    .toc-link:hover { color: #fb923c; background: rgba(249,115,22,0.1); }
+    .toc-link.active { color: #fff; border-left-color: #f97316; background: rgba(249,115,22,0.15); font-weight: 600; }
+    .toc-link .tl-num { font-size: 0.65rem; font-weight: 700; color: rgba(249,115,22,0.6); min-width: 20px; font-family: var(--font-mono); }
+    .toc-link.active .tl-num { color: #f97316; }
+
+    .toc-group { margin-bottom: 1.5rem; }
+    .toc-group-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(249,115,22,0.55); margin-bottom: 4px; padding-left: 10px; }
+
+    .sidebar-actions { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-cta {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--cf-grad); color: #fff;
+      padding: 10px 14px; border-radius: var(--r-md);
+      text-decoration: none; font-size: 0.78rem; font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+      margin-bottom: 8px;
+    }
+    .sidebar-cta:hover { opacity: 0.9; transform: translateY(-1px); text-decoration: none; color: #fff; }
+    .sidebar-ghost {
+      display: flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(249,115,22,0.35); color: #f97316;
+      padding: 9px 14px; border-radius: var(--r-md);
+      text-decoration: none; font-size: 0.78rem; font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .sidebar-ghost:hover { border-color: #fb923c; color: #fb923c; text-decoration: none; }
+
+    /* ── Main Content ── */
+    .doc-main {
+      grid-column: 2;
+      min-width: 0;
+      padding: 3rem 2.5rem 6rem;
+      background: transparent;
+      color: #fff;
+    }
+
+    /* ── Article header ── */
+    .doc-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(102,126,234,0.08); border: 1px solid rgba(102,126,234,0.2);
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--cf-blue);
+      margin-bottom: 1.25rem;
+    }
+    .doc-eyebrow .dot { width: 6px; height: 6px; background: var(--cf-blue); border-radius: 50%; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.5;transform:scale(0.7);} }
+
+    .doc-title {
+      font-family: var(--font-sans); 
+      font-weight: 800; color: #fff; line-height: 1.2;
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+
+    .doc-lead {
+      font-family: var(--font-serif); font-size: 1.08rem; color: rgba(255,255,255,0.78);
+      line-height: 1.75; margin-bottom: 2rem; font-weight: 400;
+      max-width: 660px;
+    }
+
+    .doc-meta-bar {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 16px;
+      padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 2.5rem;
+    }
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: rgba(255,255,255,0.5); font-weight: 500; }
+    .meta-item .mi-icon { font-size: 0.9rem; }
+    .meta-tag {
+      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75);
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em;
+    }
+    .meta-tag.blue { background: rgba(102,126,234,0.25); color: #a5b4fc; }
+    .meta-tag.green { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+
+    /* ── Stats row ── */
+    .stats-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.08); border-radius: var(--r-lg);
+      overflow: hidden; margin-bottom: 3rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-cell {
+      background: rgba(255,255,255,0.04); padding: 20px 18px;
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .stat-cell .sc-num {
+      font-size: 1.85rem; font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1;
+      background: var(--cf-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-cell .sc-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); font-weight: 600; margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* ── Section headings ── */
+    .doc-h2 {
+      font-size: 1.5rem; font-weight: 800; color: #fff;
+      letter-spacing: -0.02em; margin: 3.5rem 0 1rem;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .doc-h2:first-of-type { border-top: none; margin-top: 0; }
+    .doc-h3 {
+      font-size: 1.1rem; font-weight: 700; color: #fff;
+      letter-spacing: -0.01em; margin: 2rem 0 0.75rem;
+    }
+
+    /* ── Prose ── */
+    .doc-p {
+      font-size: 0.95rem; color: rgba(255,255,255,0.72); line-height: 1.8;
+      margin-bottom: 1rem; max-width: var(--content-max);
+    }
+    .doc-p a { color: #a5b4fc; text-decoration: none; border-bottom: 1px solid rgba(165,180,252,0.35); transition: border-color 0.15s; }
+    .doc-p a:hover { border-bottom-color: #a5b4fc; }
+
+    /* ── Interactive Pipeline ── */
+    .pipeline-hero {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-xl); padding: 2.5rem; margin: 2rem 0 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .pipeline-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(102,126,234,0.08) 0%, transparent 70%);
+    }
+    .pipeline-hero-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #9ca3af; margin-bottom: 1.5rem; font-family: var(--font-mono);
+    }
+    .pipeline-scroll-outer { overflow-x: auto; padding-bottom: 4px; }
+    .pipeline-rail { display: flex; align-items: center; min-width: max-content; gap: 0; }
+
+    .pn {
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      width: 104px; padding: 14px 6px 12px; cursor: pointer;
+      border-radius: 12px; border: 1px solid rgba(102,126,234,0.18);
+      background: #fff;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      position: relative; flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(102,126,234,0.08);
+    }
+    .pn:hover { background: rgba(102,126,234,0.06); border-color: rgba(102,126,234,0.45); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102,126,234,0.15); }
+    .pn.pn-active { background: rgba(102,126,234,0.1); border-color: var(--cf-blue); box-shadow: 0 0 0 3px rgba(102,126,234,0.12); }
+    .pn-active::after { content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--cf-blue); border-radius: 2px 2px 0 0; }
+    .pn-n { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: #9ca3af; margin-bottom: 7px; letter-spacing: 0.06em; }
+    .pn-icon { font-size: 1.5rem; margin-bottom: 7px; }
+    .pn-title { font-size: 0.6rem; font-weight: 700; color: var(--ink-2); text-align: center; line-height: 1.35; letter-spacing: 0.02em; }
+    .pn-sub { font-size: 0.52rem; color: #9ca3af; margin-top: 4px; text-align: center; }
+
+    .pn-arrow { display: flex; align-items: center; padding: 0 3px; flex-shrink: 0; }
+    .pn-arrow svg { display: block; }
+    .arrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cf-blue); box-shadow: 0 0 6px rgba(102,126,234,0.5); animation: flow 1.8s ease-in-out infinite; }
+    @keyframes flow { 0%{opacity:0;transform:translateX(-5px);} 30%{opacity:1;} 70%{opacity:1;} 100%{opacity:0;transform:translateX(5px);} }
+
+    /* Panel */
+    .pipeline-panel {
+      margin-top: 1.5rem; display: none;
+      background: #fff;
+      border-radius: var(--r-lg); padding: 1.5rem; animation: slideUp 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .pipeline-panel.pp-open { display: block; }
+    @keyframes slideUp { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
+    .pp-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .pp-badge {
+      background: var(--cf-grad); color: #fff;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .pp-title { color: var(--ink); font-size: 1rem; font-weight: 700; }
+    .pp-body { font-size: 0.82rem; color: var(--ink-3); line-height: 1.7; }
+    .pp-body strong { color: var(--ink); font-weight: 600; }
+    .pp-body code { font-family: var(--font-mono); background: var(--smoke-2); padding: 1px 6px; border-radius: 4px; font-size: 0.78rem; color: var(--cf-blue); border: 1px solid var(--smoke-3); }
+    .pp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .pp-tag { padding: 3px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; }
+    .pp-tag.red   { background: rgba(239,68,68,0.08);  color: #dc2626; border: 1px solid rgba(239,68,68,0.18); }
+    .pp-tag.blue  { background: rgba(102,126,234,0.08); color: #4f63d2; border: 1px solid rgba(102,126,234,0.2); }
+    .pp-tag.green { background: rgba(16,185,129,0.08); color: #059669; border: 1px solid rgba(16,185,129,0.18); }
+    .pp-tag.amber { background: rgba(245,158,11,0.08); color: #d97706; border: 1px solid rgba(245,158,11,0.18); }
+    .pp-close { float: right; background: none; border: 1px solid var(--smoke-3); color: var(--mist); padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.15s; }
+    .pp-close:hover { border-color: var(--cf-blue); color: var(--cf-blue); }
+
+    /* score bars in panel */
+    .pp-scores { margin-top: 12px; }
+    .pp-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 0.7rem; color: var(--mist); }
+    .pp-score-label { min-width: 130px; }
+    .pp-score-track { flex: 1; height: 5px; background: var(--smoke-3); border-radius: 3px; overflow: hidden; }
+    .pp-score-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--cf-blue), var(--cf-violet)); }
+    .pp-score-pct { min-width: 34px; text-align: right; color: var(--cf-blue); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; }
+
+    /* formula */
+    .pp-formula { background: var(--smoke-2); border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3); line-height: 1.9; border-left: 3px solid var(--cf-amber); border: 1px solid var(--smoke-3); border-left: 3px solid var(--cf-amber); }
+    .pp-formula .hl { color: #b45309; font-weight: 700; }
+
+    /* thresholds */
+    .pp-thresholds { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .pp-threshold { flex: 1; min-width: 80px; display: flex; flex-direction: column; align-items: center; padding: 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 700; text-align: center; }
+    .pp-threshold.t-allow    { background: rgba(16,185,129,0.08); color: #059669; border: 1px solid rgba(16,185,129,0.2); }
+    .pp-threshold.t-challenge { background: rgba(245,158,11,0.08); color: #d97706; border: 1px solid rgba(245,158,11,0.2); }
+    .pp-threshold.t-block    { background: rgba(239,68,68,0.08);  color: #dc2626; border: 1px solid rgba(239,68,68,0.2); }
+    .pp-threshold .t-num { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; font-family: var(--font-mono); }
+
+    /* ── Stage Detail Cards ── */
+    .stage-section { scroll-margin-top: 100px; }
+
+    .stage-card {
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r-xl);
+      overflow: hidden; margin-bottom: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      backdrop-filter: blur(4px);
+      transition: box-shadow 0.25s, border-color 0.25s;
+    }
+    .stage-card:hover { box-shadow: 0 6px 24px rgba(102,126,234,0.18); border-color: rgba(102,126,234,0.3); }
+
+    .stage-card-header {
+      display: flex; align-items: center; gap: 0;
+      background: rgba(255,255,255,0.05);
+      padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer; user-select: none;
+    }
+    .stage-card-header:hover { background: rgba(255,255,255,0.08); }
+    .sch-num {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--cf-grad); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
+      flex-shrink: 0; margin-right: 14px;
+    }
+    .sch-icon { font-size: 1.4rem; margin-right: 10px; flex-shrink: 0; }
+    .sch-text { flex: 1; }
+    .sch-title { font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.25; }
+    .sch-sub { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 2px; font-weight: 500; }
+    .sch-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+    .sch-badge { font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+    .sch-badge.b-blue  { background: rgba(102,126,234,0.2); color: #a5b4fc; }
+    .sch-badge.b-green { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+    .sch-badge.b-amber { background: rgba(245,158,11,0.18); color: #fcd34d; }
+    .sch-badge.b-red   { background: rgba(239,68,68,0.18); color: #fca5a5; }
+    .sch-badge.b-cyan  { background: rgba(6,182,212,0.18); color: #67e8f9; }
+    .sch-chevron { color: rgba(255,255,255,0.35); transition: transform 0.25s; font-size: 0.85rem; flex-shrink: 0; margin-left: 10px; }
+    .stage-card-header[aria-expanded="true"] .sch-chevron { transform: rotate(180deg); }
+
+    .stage-card-body { display: none; padding: 0; }
+    .stage-card-body.scb-open { display: block; }
+
+    .scb-inner { padding: 24px; }
+    .scb-lead {
+      font-size: 0.93rem; color: rgba(255,255,255,0.7); line-height: 1.8;
+      margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      max-width: 680px;
+    }
+
+    /* Two-col layout inside card body */
+    .scb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 900px) { .scb-grid { grid-template-columns: 1fr; } }
+
+    .scb-col-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 10px; }
+
+    /* Operations list */
+    .ops-list { list-style: none; }
+    .ops-list li {
+      display: flex; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.86rem; line-height: 1.6; color: rgba(255,255,255,0.72);
+    }
+    .ops-list li:last-child { border-bottom: none; }
+    .ops-list .op-dot { width: 18px; height: 18px; border-radius: 5px; background: var(--cf-grad); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .ops-list .op-dot::after { content: ''; width: 5px; height: 5px; background: #fff; border-radius: 50%; }
+    .ops-list strong { color: #fff; font-weight: 600; }
+    .ops-list code { font-family: var(--font-mono); background: rgba(255,255,255,0.1); padding: 1px 5px; border-radius: 4px; font-size: 0.78rem; color: #a5b4fc; border: 1px solid rgba(255,255,255,0.1); }
+
+    /* attack tags */
+    .attack-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .atk-tag { background: rgba(239,68,68,0.18); color: #fca5a5; border: 1px solid rgba(239,68,68,0.28); padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em; }
+    .atk-tag.green { background: rgba(16,185,129,0.18); color: #6ee7b7; border-color: rgba(16,185,129,0.28); }
+    .atk-tag.blue  { background: rgba(102,126,234,0.18); color: #a5b4fc; border-color: rgba(102,126,234,0.28); }
+
+    /* code block — light theme with proper pre-wrap */
+    .code-wrap { position: relative; margin: 14px 0; }
+    .code-block {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 3px solid var(--cf-blue);
+      color: rgba(255,255,255,0.85);
+      padding: 16px 18px;
+      padding-right: 60px; /* room for copy btn */
+      border-radius: var(--r-md);
+      font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.8;
+      overflow-x: auto;
+      white-space: pre;
+      word-break: normal;
+      tab-size: 2;
+    }
+    .code-block .c-comment { color: rgba(255,255,255,0.32); font-style: italic; }
+    .code-block .c-key    { color: #93c5fd; font-weight: 600; }
+    .code-block .c-val    { color: #6ee7b7; }
+    .code-block .c-str    { color: #fde68a; }
+    .code-block .c-num    { color: #f0abfc; }
+    .copy-btn {
+      position: absolute; top: 8px; right: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.5); padding: 4px 10px; border-radius: 5px;
+      font-size: 0.68rem; font-family: var(--font-sans); font-weight: 600;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.25); }
+    .copy-btn.copied { color: #059669; border-color: rgba(16,185,129,0.35); background: rgba(16,185,129,0.06); }
+
+    /* info callout */
+    .callout {
+      display: flex; gap: 12px; padding: 14px 16px;
+      border-radius: var(--r-md); margin: 16px 0;
+      font-size: 0.84rem; line-height: 1.65; color: rgba(255,255,255,0.82);
+    }
+    .callout.info  { background: rgba(102,126,234,0.15); border-left: 3px solid var(--cf-blue); }
+    .callout.warn  { background: rgba(245,158,11,0.13);  border-left: 3px solid var(--cf-amber); }
+    .callout.tip   { background: rgba(16,185,129,0.13);  border-left: 3px solid var(--cf-green); }
+    .callout-icon  { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .callout strong { font-weight: 700; color: #fff; }
+
+    /* risk formula */
+    .risk-formula-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 3px solid var(--cf-amber);
+      border-radius: var(--r-lg); padding: 20px 22px; margin: 16px 0;
+      font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 2;
+    }
+    .rfb-title { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+    .rfb-formula .rfl { color: #fcd34d; font-weight: 700; }
+    .rfb-formula .rfv { color: #a5b4fc; font-weight: 600; }
+    .rfb-formula .rfo { color: rgba(255,255,255,0.6); }
+
+    /* threshold grid */
+    .threshold-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+    .threshold-cell {
+      border-radius: var(--r-md); padding: 14px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .threshold-cell.t-allow { background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.2); }
+    .threshold-cell.t-challenge { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2); }
+    .threshold-cell.t-block { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.2); }
+    .threshold-cell .tc-score { font-size: 1.3rem; font-weight: 800; font-family: var(--font-mono); margin-bottom: 4px; }
+    .t-allow .tc-score    { color: var(--cf-green); }
+    .t-challenge .tc-score { color: var(--cf-amber); }
+    .t-block .tc-score    { color: var(--cf-red); }
+    .threshold-cell .tc-action { font-size: 0.75rem; font-weight: 700; margin-bottom: 3px; }
+    .t-allow .tc-action { color: var(--cf-green); }
+    .t-challenge .tc-action { color: var(--cf-amber); }
+    .t-block .tc-action { color: var(--cf-red); }
+    .threshold-cell .tc-desc { font-size: 0.68rem; color: rgba(255,255,255,0.45); }
+
+    /* doc link */
+    .doc-link-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      color: #a5b4fc; text-decoration: none;
+      font-size: 0.8rem; font-weight: 600;
+      padding: 8px 14px; border: 1px solid rgba(165,180,252,0.3);
+      border-radius: var(--r-md); background: rgba(165,180,252,0.06);
+      transition: all 0.15s; margin-top: 12px;
+    }
+    .doc-link-btn:hover { background: var(--cf-blue); color: #fff; text-decoration: none; border-color: var(--cf-blue); }
+
+    /* ── Feature grid ── */
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; margin: 1.5rem 0; }
+    .feature-tile {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-lg); padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .feature-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(102,126,234,0.35); }
+    .ft-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .ft-title { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .ft-list { list-style: none; }
+    .ft-list li { font-size: 0.82rem; color: rgba(255,255,255,0.7); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; gap: 8px; align-items: flex-start; }
+    .ft-list li:last-child { border-bottom: none; }
+    .ft-list li::before { content: '✓'; color: var(--cf-blue); font-weight: 700; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px; }
+
+    /* ── Comparison table ── */
+    .cmp-table-wrap { overflow-x: auto; margin: 16px 0; border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.1); }
+    .cmp-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; background: transparent; }
+    .cmp-table thead th { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; padding: 12px 16px; font-weight: 700; font-size: 0.8rem; text-align: left; letter-spacing: 0.03em; }
+    .cmp-table tbody td { padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.72); vertical-align: top; }
+    .cmp-table tbody tr:last-child td { border-bottom: none; }
+    .cmp-table tbody tr:hover td { background: rgba(255,255,255,0.04); }
+    .cmp-table .tc-check { color: #6ee7b7; font-weight: 700; }
+    .cmp-table .tc-warn  { color: #fcd34d; font-weight: 700; }
+
+    /* ── Conclusion / CTA ── */
+    .conclusion-cta {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: var(--r-xl); padding: 2.5rem; margin-top: 3rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .conclusion-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,255,255,0.12) 0%, transparent 70%);
+    }
+    .cta-heading { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 10px; position: relative; }
+    .cta-sub { font-size: 0.9rem; color: rgba(255,255,255,0.78); margin-bottom: 1.5rem; position: relative; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--cf-blue);
+      padding: 13px 28px; border-radius: var(--r-lg);
+      font-weight: 700; font-size: 0.9rem; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s; position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .cta-btn:hover { opacity: 0.95; transform: translateY(-2px); text-decoration: none; color: var(--cf-blue); }
+
+    /* ── Back to top ── */
+    .back-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 100;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--cf-grad); color: #fff; border: none;
+      font-size: 1rem; cursor: pointer; box-shadow: var(--shadow-md);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { transform: translateY(-2px); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .doc-wrapper { grid-template-columns: 1fr; }
+      .doc-sidebar { display: none; }
+      .doc-main { padding: 2rem 1.25rem 4rem; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .threshold-grid { grid-template-columns: 1fr; }
+      .pipeline-hero { padding: 1.5rem 1rem; }
+      .pn { width: 86px; }
+      .scb-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Anchor scroll offset for sticky header ── */
+    [id] { scroll-margin-top: 90px; }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
+  <a href="#doc-main-content" class="skip-link">Skip to content</a>
+  <button class="back-top" id="backTop" title="Back to top" aria-label="Back to top">↑</button>
+
+  <!-- ═══ HEADER (CloFix template) ═══ -->
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="index.html"><img src="img/logo.png" alt="CloFix Logo" class="c-logo__img"/></a>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span><span class="c-nav__bar"></span><span class="c-nav__bar"></span>
+          </button>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="index.html#section-services" class="c-link c-link--list">Services</a></li>
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">Others <span class="c-dropdown__chev" aria-hidden="true">▾</span></button>
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">CloFix JS Script</a>
+                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="clofix-load-balancer.html" class="c-dropdown__mega-link">CloFix Load Balancer</a>
+                      </div>
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">CloFix Pentest</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <a href="faq.html" class="ticket-button"><button class="c-button c-button--small c-button--secondary">FAQ</button></a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- ═══ END HEADER ═══ -->
+
+  <div class="doc-wrapper">
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="doc-sidebar" aria-label="Table of Contents">
+      <div class="sidebar-meta">
+        <span class="sm-badge">WAF DOCS</span>
+        <span class="sm-ver">v4.2 · 2026</span>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Overview</div>
+        <ul class="toc-list">
+          <li><a href="#overview" class="toc-link"><span class="tl-num">—</span> Introduction</a></li>
+          <li><a href="#pipeline-visual" class="toc-link"><span class="tl-num">—</span> Pipeline Visualization</a></li>
+          <li><a href="#performance" class="toc-link"><span class="tl-num">—</span> Performance Metrics</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Inspection Stages</div>
+        <ul class="toc-list">
+          <li><a href="#stage-01" class="toc-link"><span class="tl-num">01</span> Behavior Analyzer</a></li>
+          <li><a href="#stage-02" class="toc-link"><span class="tl-num">02</span> CRS Engine</a></li>
+          <li><a href="#stage-03" class="toc-link"><span class="tl-num">03</span> JS Engine</a></li>
+          <li><a href="#stage-04" class="toc-link"><span class="tl-num">04</span> Lua Engine</a></li>
+          <li><a href="#stage-05" class="toc-link"><span class="tl-num">05</span> AI Neural Engine</a></li>
+          <li><a href="#stage-06" class="toc-link"><span class="tl-num">06</span> CloFix Core</a></li>
+          <li><a href="#stage-07" class="toc-link"><span class="tl-num">07</span> Custom Rules</a></li>
+          <li><a href="#stage-08" class="toc-link"><span class="tl-num">08</span> JS Injector</a></li>
+          <li><a href="#stage-09" class="toc-link"><span class="tl-num">09</span> Load Balancer</a></li>
+          <li><a href="#stage-10" class="toc-link"><span class="tl-num">10</span> Backend Server</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Reference</div>
+        <ul class="toc-list">
+          <li><a href="#key-features" class="toc-link"><span class="tl-num">—</span> Key Features</a></li>
+          <li><a href="#detection-matrix" class="toc-link"><span class="tl-num">—</span> Detection Matrix</a></li>
+          <li><a href="#conclusion" class="toc-link"><span class="tl-num">—</span> Summary &amp; Deploy</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-actions">
+        <a href="contact.html" class="sidebar-cta">🚀 Deploy CloFix WAF</a>
+        <a href="features.html" class="sidebar-ghost">📘 Full Feature Docs</a>
+      </div>
+    </aside>
+    <!-- ═══ END SIDEBAR ═══ -->
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="doc-main" id="doc-main-content">
+
+      <!-- ── Article Header ── -->
+      <div id="overview">
+        <div class="doc-eyebrow"><span class="dot"></span> Technical Reference · Security Architecture</div>
+        <h1 class="doc-title">CloFix WAF: 10-Stage Request Inspection Pipeline</h1>
+        <p class="doc-lead">A complete technical reference for how CloFix Web Application Firewall processes every incoming HTTP/HTTPS request through ten sequential security stages — from behavioral heuristics and signature matching to AI-powered anomaly detection, intelligent load balancing, and response sanitization.</p>
+
+        <div class="doc-meta-bar">
+          <span class="meta-item"><span class="mi-icon">📅</span> Updated March 2026</span>
+          <span class="meta-item"><span class="mi-icon">🕐</span> 25 min read</span>
+          <span class="meta-item"><span class="mi-icon">🌐</span> clofix.com</span>
+          <span class="meta-tag blue">WAF Architecture</span>
+          <span class="meta-tag blue">OWASP CRS v4</span>
+          <span class="meta-tag green">Production Ready</span>
+          <span class="meta-tag">v4.2</span>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat-cell"><div class="sc-num">10</div><div class="sc-label">Inspection Stages</div></div>
+          <div class="stat-cell"><div class="sc-num">&lt;2ms</div><div class="sc-label">Avg Latency P99</div></div>
+          <div class="stat-cell"><div class="sc-num">99.97%</div><div class="sc-label">Threat Detection</div></div>
+          <div class="stat-cell"><div class="sc-num">500K+</div><div class="sc-label">Rules &amp; Signatures</div></div>
+        </div>
+
+        <p class="doc-p">CloFix WAF operates as a fully transparent reverse proxy, sitting between your clients and origin servers. Unlike traditional WAFs that apply rules sequentially and stop at the first match, CloFix evaluates all stages in parallel where possible and aggregates a composite risk score before rendering a verdict. This architecture eliminates single-point blind spots and significantly reduces both false positives and false negatives.</p>
+
+        <div class="callout info">
+          <span class="callout-icon">ℹ️</span>
+          <div><strong>How to read this document:</strong> Each stage is documented with its purpose, detailed operations, configuration syntax, and links to related documentation. Use the sidebar Table of Contents to navigate directly to any stage.</div>
+        </div>
+      </div>
+
+      <!-- ── Pipeline Visual ── -->
+      <h2 class="doc-h2" id="pipeline-visual">📊 Interactive Pipeline Visualization</h2>
+      <p class="doc-p">Click any stage node to view an inline summary. The animated dots represent live request packets flowing through the pipeline.</p>
+
+      <div class="pipeline-hero">
+        <div class="pipeline-hero-label">// request flow — click any stage node for details</div>
+        <div class="pipeline-scroll-outer">
+          <div class="pipeline-rail" id="pipelineRail">
+            <div class="pn" data-s="1" role="button" tabindex="0"><div class="pn-n">01</div><div class="pn-icon">📈</div><div class="pn-title">BEHAVIOR ANALYZER</div><div class="pn-sub">Heuristics & Scoring</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:0s"></div></div>
+            <div class="pn" data-s="2" role="button" tabindex="0"><div class="pn-n">02</div><div class="pn-icon">📜</div><div class="pn-title">CRS ENGINE</div><div class="pn-sub">Signature Matching</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.2s"></div></div>
+            <div class="pn" data-s="3" role="button" tabindex="0"><div class="pn-n">03</div><div class="pn-icon">⚙️</div><div class="pn-title">JS ENGINE</div><div class="pn-sub">Runtime Analysis</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.4s"></div></div>
+            <div class="pn" data-s="4" role="button" tabindex="0"><div class="pn-n">04</div><div class="pn-icon">🔧</div><div class="pn-title">LUA ENGINE</div><div class="pn-sub">Custom Logic</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.6s"></div></div>
+            <div class="pn" data-s="5" role="button" tabindex="0"><div class="pn-n">05</div><div class="pn-icon">🧠</div><div class="pn-title">AI NEURAL</div><div class="pn-sub">Anomaly Score</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.8s"></div></div>
+            <div class="pn" data-s="6" role="button" tabindex="0"><div class="pn-n">06</div><div class="pn-icon">🛡️</div><div class="pn-title">CLOFIX CORE</div><div class="pn-sub">Risk Arbiter</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1s"></div></div>
+            <div class="pn" data-s="7" role="button" tabindex="0"><div class="pn-n">07</div><div class="pn-icon">⚖️</div><div class="pn-title">CUSTOM RULES</div><div class="pn-sub">Policy Verdict</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1.2s"></div></div>
+            <div class="pn" data-s="8" role="button" tabindex="0"><div class="pn-n">08</div><div class="pn-icon">💉</div><div class="pn-title">JS INJECTOR</div><div class="pn-sub">Client-side Shield</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1.4s"></div></div>
+            <div class="pn" data-s="9" role="button" tabindex="0"><div class="pn-n">09</div><div class="pn-icon">⚖️</div><div class="pn-title">LOAD BALANCER</div><div class="pn-sub">Traffic Distribution</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1.6s"></div></div>
+            <div class="pn" data-s="10" role="button" tabindex="0"><div class="pn-n">10</div><div class="pn-icon">🏢</div><div class="pn-title">BACKEND SERVER</div><div class="pn-sub">Origin Response</div></div>
+          </div>
+        </div>
+        <div class="pipeline-panel" id="pipelinePanel">
+          <div class="pp-header">
+            <span class="pp-badge" id="ppBadge"></span>
+            <span class="pp-title" id="ppTitle"></span>
+            <button class="pp-close" id="ppClose">✕ Close</button>
+          </div>
+          <div class="pp-body" id="ppBody"></div>
+        </div>
+      </div>
+
+      <!-- ── Performance ── -->
+      <h2 class="doc-h2" id="performance">⚡ Performance Architecture</h2>
+      <p class="doc-p">CloFix is engineered to add less than 2ms of latency at the 99th percentile while processing all 10 stages. This is achieved through a combination of the Coraza engine with Hyperscan SIMD regex acceleration, connection pooling, and parallel stage evaluation where data dependencies allow.</p>
+
+      <div class="cmp-table-wrap">
+        <table class="cmp-table" aria-label="CloFix performance benchmarks">
+          <thead>
+            <tr><th>Metric</th><th>CloFix WAF</th><th>Industry Average</th><th>Status</th> </tr>
+          </thead>
+          <tbody>
+            <tr><td>Average Request Latency (P50)</td><td>&lt;0.8ms</td><td>3–8ms</td><td class="tc-check">✓ 4× faster</td> </tr>
+            <tr><td>P99 Tail Latency</td><td>&lt;2ms</td><td>15–40ms</td><td class="tc-check">✓ Exceptional</td> </tr>
+            <tr><td>Throughput (req/s per node)</td><td>120,000+</td><td>20,000–50,000</td><td class="tc-check">✓ 2.4–6× higher</td> </tr>
+            <tr><td>Threat Detection Rate</td><td>99.97%</td><td>92–96%</td><td class="tc-check">✓ Best-in-class</td> </tr>
+            <tr><td>False Positive Rate (default config)</td><td>&lt;0.02%</td><td>0.5–2%</td><td class="tc-check">✓ 25× lower</td> </tr>
+            <tr><td>Zero-Day Detection (AI stage)</td><td>~89%</td><td>N/A (signature only)</td><td class="tc-check">✓ AI advantage</td> </tr>
+            <tr><td>Rule Evaluation Engine</td><td>Coraza + Hyperscan</td><td>ModSecurity</td><td class="tc-check">✓ 5–10× faster</td> </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ══════════ STAGE 01 ══════════ -->
+      <h2 class="doc-h2" id="stage-01">📈 Stage 01: Behavior Analyzer — Browser vs Tool Detection Engine</h2>
+      <div class="stage-card">
+        <div class="stage-card-header" data-card="s01-body">
+          <div class="sch-num">01</div><div class="sch-text"><div class="sch-title">Behavior Analyzer — Production Heuristics (13-layer)</div><div class="sch-sub">JA3/JA4 TLS, velocity, path entropy, timing CV, error rate, injection patterns, UA rotation, burst detection</div><div class="sch-badges"><span class="sch-badge">JA3 fingerprint DB</span><span class="sch-badge">Rate limiting 60rpm</span><span class="sch-badge">Tool scoring 0-100</span></div></div><span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s01-body">
+          <div class="scb-inner">
+            <p class="scb-lead"><strong>Production-hardened behavioral analysis engine</strong> — implements 13-layer heuristic detection (velocity, entropy, timing consistency, static asset ratio, error rate, sequential enumeration, parameter fuzzing, UA rotation, response time CV, burst patterns). Uses <strong>JA3 TLS fingerprinting</strong> with 85+ browser signature database (Chrome 120+, Firefox 121, Safari 17, Edge, Brave, Tor). Calculates composite tool score (0–100) with configurable thresholds. Blocks ~40% of malicious traffic at near-zero cost.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">🔍 Detection Layers (13+ Signals)</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>JA3 Browser DB:</strong> Chrome 120+, Firefox 121, Safari 17, Edge, Brave — instant allow if matched. Confidence 1.0.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Velocity (Rate Limiting):</strong> >120 req/min = tool. Extreme bursts >480/min add +50pts. Default threshold: 60 req/min with burst 100.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Path Entropy:</strong> <0.5 entropy = low diversity scanner (+20pts). Calculates Shannon entropy over normalized paths.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Timing Coefficient of Variation:</strong> <20% variance = machine timing (+25pts). Humans have 20-40% variance.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Static Asset Ratio:</strong> <8% static assets (CSS/JS/images) = tool (+15pts). Real users load 10-30% assets.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Error Rate (4xx/5xx):</strong> >30% error rate = scanner (+25pts). Legitimate 404s typically 10-15%.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Sequential Enumeration:</strong> /item/1, /item/2 pattern detection = +35pts. Uses extractLastNumber() logic.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Parameter Fuzzing:</strong> >10 unique parameters per path = +30pts. Detects scanner parameter enumeration.</div></li>
+                  <li><div class="op-dot"></div><div><strong>UA Rotation:</strong> >3 distinct User-Agents in 10 requests = evasion attempt (+25pts).</div></li>
+                  <li><div class="op-dot"></div><div><strong>Response Time CV:</strong> <15% uniform timing = automation (+20pts). Tools produce consistent response times.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Burst Detection:</strong> 20+ requests after silence = +30pts. Sudden spikes after idle period.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Injection Pattern Detection:</strong> SQLi/XSS/LFI signatures in query string = +50pts. Patterns: '--, 1=1--, &lt;script, javascript:, union+select, exec(, base64_decode(.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Empty/Minimal UA:</strong> len(UA)=0 → +45pts, len(UA)<20 → +35pts, len(UA)<40 → +15pts.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Path Traversal:</strong> ../, ..\\, %2e%2e patterns = +45pts.</div></li>
+                </ul>
+                <div class="callout"><span class="callout-icon">🎯</span> <strong>Scoring Logic:</strong> Score ≥85 = TOOL (block/challenge). Score 65–84 = monitor (challenge). Score 30–64 = elevated suspicion. Score &lt;30 = ALLOW. Established sessions (>10 min) with clean history reduce suspicion by -15pts. Block duration = 15min.</div>
+              </div>
+              <div>
+                <div class="scb-col-label">⚙️ Configuration (Default BEConfig)</div>
+                <div class="code-block">toolVelocityThreshold   = 120   // req/min
+  toolEntropyThreshold    = 0.5   // path diversity
+  toolTimingCVThreshold   = 0.20  // 20% variance
+  toolErrorThreshold      = 0.30  // 30% error rate
+  toolAssetThreshold      = 0.08  // 8% static assets
+  toolSequentialThreshold = 0.25  // 25% sequential
+  browserScoreThreshold   = 85    // >85 = tool
+  learningScoreThreshold  = 65    // monitor zone
+
+  rate_limit {
+    requests_per_minute 60;
+    burst 100;
+    key $binary_remote_addr;
+    action challenge;
+  }</div>
+                <div class="code-block"><span class="c-comment">// JA3 Browser Database (excerpt)</span>
+  "e7d97a9fb3e5f8c9c2c1b5f8c9c2c1b5": {Name:"Chrome 120+", Family:"Chrome"},
+  "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6": {Name:"Firefox 121", Family:"Firefox"},
+  "e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0": {Name:"Safari 17", Family:"Safari"}</div>
+                <div class="callout"><strong>📌 ProcessRequest Logic:</strong> If JA3 matches browser DB → immediate ALLOW. Otherwise profile key = JA3 hash or IP fallback. Profile tracks last 200 requests, analyzes last 10min window via AnalyzeBehavior(). Tool score computed from 16+ signals. Block duration = 15min with auto-expiry.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 02 -->
+      <div class="stage-card stage-section" id="s02">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s02-body" tabindex="0">
+          <div class="sch-num">02</div>
+          <div class="sch-icon">📜</div>
+          <div class="sch-text">
+            <div class="sch-title">CRS Engine — OWASP Core Rule Set v4</div>
+            <div class="sch-sub">Industry-standard signature-based detection with 25 rule files, paranoia levels 1–4, and anomaly scoring</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-red">SQLi</span><span class="sch-badge b-red">XSS</span><span class="sch-badge b-red">LFI/RFI</span><span class="sch-badge b-red">SSRF</span><span class="sch-badge b-red">Cmd Injection</span><span class="sch-badge b-blue">Anomaly Scoring</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s02-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The CRS Engine implements the complete OWASP Core Rule Set v4 — the industry benchmark for WAF rule coverage. It processes requests through four phases (request headers, request body, response headers, response body) applying over 200 individual rules across 25 rule files. Rather than binary block/allow decisions per rule, it uses anomaly scoring — each matched rule adds points; the total is forwarded to CloFix Core.</p>
+            <div class="attack-row">
+              <span class="atk-tag">SQL Injection (942xxx)</span><span class="atk-tag">XSS (941xxx)</span><span class="atk-tag">LFI (930xxx)</span><span class="atk-tag">RFI (931xxx)</span><span class="atk-tag">Cmd Injection (932xxx)</span><span class="atk-tag">SSRF (933xxx)</span><span class="atk-tag">NoSQL Injection</span><span class="atk-tag">Prototype Pollution</span><span class="atk-tag">XXE</span><span class="atk-tag">SSTI</span>
+            </div>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Rule File Coverage</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>920xxx — Protocol Enforcement:</strong> HTTP method restrictions, header completeness validation, Content-Type enforcement, character encoding validation. Blocks malformed requests that evade downstream parsing.</div></li>
+                  <li><div class="op-dot"></div><div><strong>930xxx — LFI / Path Traversal:</strong> Detects <code>../</code> sequences, null byte injection, URL-encoded traversal (<code>%2e%2e%2f</code>), and double-encoding techniques used to escape the web root.</div></li>
+                  <li><div class="op-dot"></div><div><strong>931xxx — RFI (Remote File Inclusion):</strong> Blocks <code>http://</code> and <code>ftp://</code> in file parameters, PHP wrapper schemes (<code>php://</code>, <code>data://</code>), and cloud metadata endpoint URLs (<code>169.254.169.254</code>).</div></li>
+                  <li><div class="op-dot"></div><div><strong>932xxx — Command Injection:</strong> Unix shell metacharacters (<code>;</code>, <code>|</code>, <code>&amp;&amp;</code>, backtick), Windows command separators, OS command sequences (whoami, passwd, /etc/shadow), and command substitution patterns.</div></li>
+                  <li><div class="op-dot"></div><div><strong>933xxx — PHP Injection:</strong> PHP function calls in user input (<code>eval()</code>, <code>system()</code>, <code>exec()</code>), PHP wrappers, and PHP variable injection patterns.</div></li>
+                  <li><div class="op-dot"></div><div><strong>941xxx — XSS:</strong> HTML event handlers (<code>onerror</code>, <code>onload</code>), JavaScript protocol URIs (<code>javascript:</code>), DOM sinks, and obfuscated script injection using character encoding.</div></li>
+                  <li><div class="op-dot"></div><div><strong>942xxx — SQL Injection:</strong> UNION-based, time-based blind (<code>SLEEP()</code>, <code>WAITFOR DELAY</code>), boolean-based blind, error-based, and stacked queries. Covers MySQL, MSSQL, Oracle, PostgreSQL, and SQLite dialects.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Paranoia Levels Explained</div>
+                <div class="cmp-table-wrap" style="margin:0 0 14px;">
+                  <table class="cmp-table">
+                    <thead> <tr><th>Level</th><th>Description</th><th>Use Case</th></tr> </thead>
+                    <tbody>
+                       <tr><td><strong>1</strong></td><td>Base rules only, very low false positives</td><td>Public-facing marketing sites</td></tr>
+                       <tr><td><strong>2</strong></td><td>Additional rules, low false positive rate</td><td>E-commerce, SaaS platforms</td></tr>
+                       <tr><td><strong>3</strong></td><td>Stricter rules, moderate false positives</td><td>Financial, healthcare APIs</td></tr>
+                       <tr><td><strong>4</strong></td><td>Maximum security, requires tuning</td><td>Government, military, PCI-DSS</td></tr>
+                    </tbody>
+                   </table>
+                </div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-02">Copy</button>
+                  <pre class="code-block" id="code-02"><span class="c-comment"># CRS Engine Configuration</span>
+<span class="c-key">crs</span> {
+  <span class="c-key">enabled</span>            <span class="c-val">on</span>;
+  <span class="c-key">paranoid_level</span>     <span class="c-num">2</span>;
+  <span class="c-key">anomaly_threshold</span>  <span class="c-num">5</span>;
+
+  <span class="c-comment"># Rule-level scoring weights</span>
+  <span class="c-key">score_critical</span>  <span class="c-num">5</span>;
+  <span class="c-key">score_error</span>     <span class="c-num">4</span>;
+  <span class="c-key">score_warning</span>   <span class="c-num">3</span>;
+  <span class="c-key">score_notice</span>    <span class="c-num">2</span>;
+
+  <span class="c-comment"># Exclude specific rule IDs if needed</span>
+  <span class="c-key">rule_exclusions</span> <span class="c-str">"920300,942450"</span>;
+}</pre>
+                </div>
+                <a href="clofix-crs.html" class="doc-link-btn">📘 Complete CRS Documentation →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 03 -->
+      <div class="stage-card stage-section" id="s03">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s03-body" tabindex="0">
+          <div class="sch-num">03</div>
+          <div class="sch-icon">⚙️</div>
+          <div class="sch-text">
+            <div class="sch-title">JS Engine — JavaScript Sandbox</div>
+            <div class="sch-sub">Isolated execution environment for deobfuscation, runtime analysis, and client-side exploit detection</div>
+            <div class="sch-badges"><span class="sch-badge b-red">DOM XSS</span><span class="sch-badge b-red">Prototype Pollution</span><span class="sch-badge b-blue">Deobfuscation</span><span class="sch-badge b-blue">CVE Matching</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s03-body">
+          <div class="scb-inner">
+            <p class="scb-lead">Modern attackers frequently obfuscate malicious JavaScript to evade signature-based detection. The JS Engine executes payloads in a secure V8-based sandbox with a 2-second execution timeout, automatically deobfuscating layered encoding schemes and detecting dangerous code patterns that only emerge at runtime. All JavaScript files served by your application are also pre-scanned on a configurable interval.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Detection Capabilities</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>Multi-layer Payload Deobfuscation:</strong> Automatically decodes Base64 (<code>atob()</code>), hex escape sequences (<code>\x41\x42</code>), Unicode escapes (<code>\u0041</code>), and URL encoding. Handles nested encoding: Base64 inside hex inside URL encoding — the engine iterates until no further decoding is possible or a threat pattern is found.</div></li>
+                  <li><div class="op-dot"></div><div><strong>DOM-based XSS Detection:</strong> Identifies dangerous sinks with user-controlled data flows: <code>document.write()</code>, <code>innerHTML</code>, <code>outerHTML</code>, <code>eval()</code>, <code>setTimeout(string)</code>, <code>setInterval(string)</code>, <code>location.href</code>. Performs taint analysis to trace data from sources (<code>location.search</code>, <code>document.cookie</code>) to sinks.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Prototype Pollution Detection:</strong> Detects attempts to inject properties into <code>Object.prototype</code> via <code>__proto__</code>, <code>constructor.prototype</code>, or <code>Object.setPrototypeOf()</code> with attacker-controlled keys. This can lead to privilege escalation and RCE in Node.js environments.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Pattern Extraction &amp; Caching:</strong> Scans all served JavaScript files every 5 minutes, extracting function signatures, regex patterns, and API endpoint strings. Cached patterns enable zero-latency matching for subsequent requests without full sandbox execution.</div></li>
+                  <li><div class="op-dot"></div><div><strong>CVE Exploit Signature Matching:</strong> Maintains a continuously updated database of JavaScript CVE exploit patterns. Detects exploitation of known library vulnerabilities (jQuery XSS, Lodash Prototype Pollution, Angular Template Injection) by matching characteristic code patterns.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Configuration &amp; Tuning</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-03">Copy</button>
+                  <pre class="code-block" id="code-03"><span class="c-comment"># JS Engine Configuration</span>
+<span class="c-key">js_engine</span> {
+  <span class="c-key">enabled</span>            <span class="c-val">on</span>;
+  <span class="c-key">execution_timeout</span>  <span class="c-str">2s</span>;
+  <span class="c-key">scan_interval</span>      <span class="c-str">5m</span>;
+  <span class="c-key">max_payload_size</span>   <span class="c-str">512kb</span>;
+
+  <span class="c-comment"># File extensions to scan</span>
+  <span class="c-key">include_extensions</span> <span class="c-str">.js .mjs .cjs</span>;
+
+  <span class="c-comment"># Deobfuscation depth (iterations)</span>
+  <span class="c-key">decode_depth</span>      <span class="c-num">8</span>;
+
+  <span class="c-comment"># CVE pattern database</span>
+  <span class="c-key">cve_db</span>            <span class="c-str">auto-update</span>;
+  <span class="c-key">cve_update_interval</span> <span class="c-str">1h</span>;
+}</pre>
+                </div>
+                <div class="callout warn">
+                  <span class="callout-icon">⚠️</span>
+                  <div><strong>Performance note:</strong> Full sandbox execution only runs for requests where the CRS Engine flags a JavaScript-related anomaly score ≥ 2, or for new JavaScript files not yet in the pattern cache. This keeps average overhead below 0.3ms.</div>
+                </div>
+                <a href="clofix-js-script.html" class="doc-link-btn">📘 JavaScript Engine Guide →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 04 -->
+      <div class="stage-card stage-section" id="s04">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s04-body" tabindex="0">
+          <div class="sch-num">04</div>
+          <div class="sch-icon">🔧</div>
+          <div class="sch-text">
+            <div class="sch-title">Lua Engine — Custom Scripting</div>
+            <div class="sch-sub">Full-featured scripting for custom security logic, business rules, threat intelligence, and API protection</div>
+            <div class="sch-badges"><span class="sch-badge b-green">Custom Logic</span><span class="sch-badge b-green">TI Integration</span><span class="sch-badge b-green">Shared State</span><span class="sch-badge b-blue">API Protection</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s04-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The Lua Engine exposes the full power of CloFix's internal API to user-defined scripts, enabling organizations to implement security logic that no off-the-shelf WAF rule can express. Scripts run in an isolated LuaJIT environment with direct access to request context, threat intelligence services, cross-request shared memory dictionaries, and all CloFix security APIs. Scripts are organized per domain in <code>./lua_script/&lt;domain&gt;/</code> and executed in alphabetical order.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Available APIs</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong><code>clofix.request</code> — Full Request Context:</strong> Read IP, all headers, body (raw/parsed), cookies, query parameters, GeoIP data (country, city, ASN), TLS fingerprint (JA3/JA4), HTTP method, URI, protocol version, and all scores from previous stages.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.is_tor(ip)</code> / <code>clofix.is_vpn(ip)</code>:</strong> Real-time queries against continuously updated anonymization databases. Returns a boolean and a confidence score (0–1).</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.ip_reputation(ip)</code>:</strong> Returns a composite reputation object: <code>{ score: 0-100, categories: ["botnet","scanner"], last_seen: timestamp }</code> sourced from multiple threat intelligence feeds.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.rate_limit_ip(key, limit, window)</code>:</strong> Atomic counter-based rate limiting with configurable key (any string), limit, and time window. Uses shared memory for cross-worker consistency. Returns <code>{ allowed: bool, count: n, remaining: n }</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.normalize_payload(input)</code>:</strong> Multi-pass normalization supporting URL decoding, Base64 decoding, HTML entity decoding, hex unescaping, and Unicode normalization. Returns both the decoded string and the encoding types detected.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.log_attack(name, type, payload)</code>:</strong> Structured attack log with automatic capture of full request context, geographic data, TLS fingerprint, and all stage scores. Emits to SIEM, Webhook, and dashboard simultaneously.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Shared Dictionaries:</strong> Cross-request, cross-worker persistent state using Lua shared dictionaries (<code>lua_shared_dict</code>). Used for distributed rate limiting, progressive blocking (track failed auth attempts), and IP reputation caching.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Example: API Key Validation Script</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-04">Copy</button>
+                  <pre class="code-block" id="code-04"><span class="c-comment">-- lua_script/example.com/01_api_auth.lua</span>
+<span class="c-key">local</span> req = clofix.request
+
+<span class="c-comment">-- Only apply to /api/ paths</span>
+<span class="c-key">if not</span> req.uri:match(<span class="c-str">'^/api/'</span>) <span class="c-key">then return end</span>
+
+<span class="c-key">local</span> api_key = req.headers[<span class="c-str">'X-API-Key'</span>]
+
+<span class="c-comment">-- Missing API key</span>
+<span class="c-key">if not</span> api_key <span class="c-key">then</span>
+  clofix.log_attack(<span class="c-str">'MISSING_API_KEY'</span>, <span class="c-str">'auth'</span>, req.uri)
+  <span class="c-key">return</span> clofix.block(<span class="c-num">401</span>, <span class="c-str">'{"error":"API key required"}'</span>)
+<span class="c-key">end</span>
+
+<span class="c-comment">-- Rate limit: 1000 req/hr per API key</span>
+<span class="c-key">local</span> rl = clofix.rate_limit_ip(api_key, <span class="c-num">1000</span>, <span class="c-num">3600</span>)
+<span class="c-key">if not</span> rl.allowed <span class="c-key">then</span>
+  <span class="c-key">return</span> clofix.block(<span class="c-num">429</span>, <span class="c-str">'{"error":"Rate limit exceeded"}'</span>)
+<span class="c-key">end</span>
+
+<span class="c-comment">-- Check IP reputation</span>
+<span class="c-key">local</span> rep = clofix.ip_reputation(req.ip)
+<span class="c-key">if</span> rep.score &gt; <span class="c-num">80</span> <span class="c-key">then</span>
+  clofix.log_attack(<span class="c-str">'HIGH_RISK_IP'</span>, <span class="c-str">'reputation'</span>, req.ip)
+  <span class="c-key">return</span> clofix.challenge()
+<span class="c-key">end</span></pre>
+                </div>
+                <a href="clofix-lua-script.html" class="doc-link-btn">📘 Full Lua Scripting Reference →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 05 -->
+      <div class="stage-card stage-section" id="s05">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s05-body" tabindex="0">
+          <div class="sch-num">05</div>
+          <div class="sch-icon">🧠</div>
+          <div class="sch-text">
+            <div class="sch-title">AI Neural Engine — Machine Learning Detection</div>
+            <div class="sch-sub">Zero-day threat detection using ML classification, behavioral analysis, biometrics, and hardware fingerprinting</div>
+            <div class="sch-badges"><span class="sch-badge b-red">Zero-Day</span><span class="sch-badge b-amber">Biometrics</span><span class="sch-badge b-blue">ML Classification</span><span class="sch-badge b-cyan">Device Fingerprint</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s05-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The AI Neural Engine is CloFix's most sophisticated detection layer — a multi-model machine learning system trained on billions of HTTP requests. Unlike all previous stages which rely on known patterns, the AI Engine detects <em>previously unseen</em> attack patterns by identifying statistical anomalies in request structure, timing, and behavioral signals. It is specifically designed to catch the ~10% of sophisticated attacks that evade all signature-based methods.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">AI Detection Modules</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>AI Attack Detector (ML Classification):</strong> An ensemble of Random Forest, Gradient Boosting, and Transformer models trained on 2B+ labeled requests. Features include 340+ request characteristics — header ordering, value distributions, parameter naming patterns, timing jitter, and content entropy. Outputs a threat probability (0.0–1.0); threshold 0.85 triggers blocking.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Traffic Anomaly Detection:</strong> Longitudinal behavioral baseline built per-domain over 7 days. Detects statistically significant deviations: traffic volume spikes (&gt;3σ), unusual endpoint access patterns, geographic shifts, and time-of-day anomalies. Integrated DDoS detection uses per-second sliding windows with automatic mitigation escalation.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Automation Tool Fingerprinting:</strong> Detects headless browsers (Puppeteer, Playwright, Selenium WebDriver, PhantomJS, Splash) through 60+ JavaScript behavioral signals: <code>navigator.webdriver</code> property, missing browser APIs, Chrome DevTools Protocol artifacts, inconsistent plugin arrays, and anomalous performance timing.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Device Identity Blocking:</strong> Cross-session device fingerprint validation using Canvas API rendering, WebGL renderer strings, AudioContext fingerprinting, and font measurement timing. Detects emulated devices, modified fingerprints, and cross-session impersonation attacks.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Human Biometric Analysis:</strong> When JS Injector is active, analyzes mouse movement velocity and curvature, keyboard inter-key timing (dwell time, flight time), scroll behavior patterns, and touch pressure/area (mobile). These signals are evaluated against a biometric classifier achieving 97.3% human/bot discrimination accuracy.</div></li>
+                  <li><div class="op-dot"></div><div><strong>JavaScript Cryptojacking Detection:</strong> Monitors CPU utilization patterns, WebAssembly execution, and WebWorker spawning for cryptocurrency mining behavioral signatures. Cross-references against known mining pool domains and script hashes.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Model Architecture</div>
+                <div class="cmp-table-wrap" style="margin:0 0 14px;">
+                  <table class="cmp-table">
+                    <thead> <tr><th>Model</th><th>Threat Type</th><th>Accuracy</th></tr> </thead>
+                    <tbody>
+                       <tr><td>Transformer (BERT-variant)</td><td>Request content anomalies</td><td>96.2%</td></tr>
+                       <tr><td>Random Forest</td><td>General threat classification</td><td>94.8%</td></tr>
+                       <tr><td>LSTM</td><td>Session behavior sequences</td><td>93.1%</td></tr>
+                       <tr><td>Biometric Classifier</td><td>Human vs bot verification</td><td>97.3%</td></tr>
+                       <tr><td>Isolation Forest</td><td>Traffic anomaly detection</td><td>91.7%</td></tr>
+                    </tbody>
+                   </table>
+                </div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-05">Copy</button>
+                  <pre class="code-block" id="code-05"><span class="c-comment"># AI Engine Configuration</span>
+<span class="c-key">ai_engine</span> {
+  <span class="c-key">enabled</span>             <span class="c-val">on</span>;
+  <span class="c-key">model_version</span>       <span class="c-str">v3.2</span>;
+  <span class="c-key">anomaly_threshold</span>   <span class="c-num">0.85</span>;
+  <span class="c-key">baseline_window</span>     <span class="c-str">7d</span>;
+
+  <span class="c-key">ai_attack_detector</span> {
+    <span class="c-key">ml_classification</span>  <span class="c-val">on</span>;
+    <span class="c-key">human_biometric</span>    <span class="c-val">on</span>;
+    <span class="c-key">hardware_fp</span>        <span class="c-val">on</span>;
+  }
+
+  <span class="c-key">automation_detection</span> {
+    <span class="c-key">enabled</span>         <span class="c-val">on</span>;
+    <span class="c-key">check_webdriver</span> <span class="c-val">on</span>;
+    <span class="c-key">check_plugins</span>   <span class="c-val">on</span>;
+    <span class="c-key">timing_analysis</span> <span class="c-val">on</span>;
+  }
+}</pre>
+                </div>
+                <a href="features.html#ai-powered-protection" class="doc-link-btn">📘 AI Protection Reference →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 06 -->
+      <div class="stage-card stage-section" id="s06">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s06-body" tabindex="0">
+          <div class="sch-num">06</div>
+          <div class="sch-icon">🛡️</div>
+          <div class="sch-text">
+            <div class="sch-title">CloFix Core — Risk Arbiter &amp; Unified Rules Engine</div>
+            <div class="sch-sub">Central decision engine: aggregates all stage scores, applies weighted formula, renders final verdict</div>
+            <div class="sch-badges"><span class="sch-badge b-blue">Weighted Scoring</span><span class="sch-badge b-green">Virtual Patching</span><span class="sch-badge b-green">Rule Groups</span><span class="sch-badge b-amber">Smart Bypass</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s06-body">
+          <div class="scb-inner">
+            <p class="scb-lead">CloFix Core is the central nervous system of the entire WAF. After all five preceding stages have evaluated the request and contributed their scores, CloFix Core aggregates them through a weighted formula, applies any user-defined CloFixRule directives and bypass conditions, and renders a final verdict: ALLOW, CHALLENGE, or BLOCK. This stage also hosts the unified rule processing engine that supports CloFixRule directives, JavaScript, and Lua rules in the same deployment.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Risk Score Formula</div>
+                <div class="risk-formula-box">
+                  <div class="rfb-title">// composite risk score calculation</div>
+                  <div class="rfb-formula">
+                    <span class="rfl">TotalRisk</span> = (<span class="rfv">BehaviorScore</span> × <span class="rfl">0.20</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">CRSScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.35</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">JSScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.10</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">LuaScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.10</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">AIScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.25</span>)
+                  </div>
+                </div>
+                <div class="threshold-grid">
+                  <div class="threshold-cell t-allow"><div class="tc-score">&lt; 30</div><div class="tc-action">✅ ALLOW</div><div class="tc-desc">Forward to backend normally</div></div>
+                  <div class="threshold-cell t-challenge"><div class="tc-score">30–70</div><div class="tc-action">⚠️ CHALLENGE</div><div class="tc-desc">Serve CAPTCHA or JS challenge</div></div>
+                  <div class="threshold-cell t-block"><div class="tc-score">&gt; 70</div><div class="tc-action">🚫 BLOCK</div><div class="tc-desc">Return 403 with attack record</div></div>
+                </div>
+
+                <div class="scb-col-label" style="margin-top:1.5rem;">Unified Rule Processing</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>CloFixRule Directive:</strong> CRS-style declarative rules with variables (<code>ARGS</code>, <code>REQUEST_HEADERS</code>, <code>REQUEST_BODY</code>, <code>RESPONSE_BODY</code>), operators (<code>@rx</code> regex, <code>@contains</code>, <code>@streq</code>, <code>@pm</code> phrase match), transformations (<code>t:lowercase</code>, <code>t:urlDecode</code>, <code>t:htmlEntityDecode</code>), and actions (<code>block</code>, <code>challenge</code>, <code>log</code>, <code>allow</code>).</div></li>
+                  <li><div class="op-dot"></div><div><strong>Intelligent Bypass System:</strong> Exclude rules from firing by: rule ID, rule tag (<code>attack-sqli</code>, <code>paranoia-level/3</code>), processing phase (1–4), request path (<code>/health</code>, <code>/api/public/*</code>), source IP (<code>127.0.0.1</code>, <code>192.168.0.0/16</code>), or specific header values.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Virtual Patching:</strong> Deploy a CloFixRule targeting a specific vulnerability's request signature within minutes of a CVE being published — no application code change required. This is particularly valuable for zero-day vulnerabilities like Log4Shell (CVE-2021-44228) where a virtual patch can be deployed in under 5 minutes.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Rule Groups &amp; Profiles:</strong> Organize rules into named groups: <code>PCI</code>, <code>HIPAA</code>, <code>WordPress</code>, <code>Laravel</code>, <code>API-Gateway</code>, <code>GraphQL</code>. Enable or disable entire groups with a single toggle. Assign execution priority (1–1000) to control order.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Configuration Reference</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-06a">Copy</button>
+                  <pre class="code-block" id="code-06a"><span class="c-comment"># Anomaly Scoring</span>
+<span class="c-key">anomaly_scoring</span> {
+  <span class="c-key">inbound_threshold</span>   <span class="c-num">5</span>;
+  <span class="c-key">outbound_threshold</span>  <span class="c-num">4</span>;
+  <span class="c-key">blocking_paranoia</span>   <span class="c-num">2</span>;
+}
+
+<span class="c-comment"># Rule Groups</span>
+<span class="c-key">rule_groups</span> {
+  <span class="c-key">group</span> <span class="c-str">"PCI"</span>           <span class="c-val">enabled on</span>;
+  <span class="c-key">group</span> <span class="c-str">"WordPress"</span>     <span class="c-val">enabled on</span>;
+  <span class="c-key">group</span> <span class="c-str">"API-Gateway"</span>   <span class="c-val">enabled on</span>;
+}
+
+<span class="c-comment"># Intelligent Bypass</span>
+<span class="c-key">bypass</span> {
+  <span class="c-key">rule_ids</span>  <span class="c-str">"942100,941100"</span>;
+  <span class="c-key">tags</span>      <span class="c-str">"paranoia-level/4"</span>;
+  <span class="c-key">paths</span>     <span class="c-str">"/health,/metrics,/api/public/*"</span>;
+  <span class="c-key">ips</span>       <span class="c-str">"192.168.1.0/24"</span>;
+}</pre>
+                </div>
+
+                <div class="scb-col-label" style="margin-top:1rem;">Example: Virtual Patch (Log4Shell)</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-06b">Copy</button>
+                  <pre class="code-block" id="code-06b"><span class="c-comment"># Virtual patch for CVE-2021-44228 (Log4Shell)</span>
+<span class="c-key">CloFixRule</span> <span class="c-str">"id:9001,
+  phase:2,
+  deny,
+  t:none,t:urlDecode,t:lowercase,
+  msg:'Log4Shell exploit attempt',
+  tag:'CVE-2021-44228',
+  severity:CRITICAL,
+  chain"</span>
+<span class="c-key">CloFixRule</span> <span class="c-str">"REQUEST_HEADERS|ARGS|REQUEST_BODY
+  @rx \$\{.*j.*n.*d.*i.*:
+  t:none,t:urlDecode,t:lowercase"</span>;</pre>
+                </div>
+                <a href="features.html#custom-rules-scripting" class="doc-link-btn">📘 Custom Rules &amp; Scripting →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 07 -->
+      <div class="stage-card stage-section" id="s07">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s07-body" tabindex="0">
+          <div class="sch-num">07</div>
+          <div class="sch-icon">⚖️</div>
+          <div class="sch-text">
+            <div class="sch-title">Custom Rules — Organization-Specific Policy Layer</div>
+            <div class="sch-sub">Override and supplement automated decisions with business-specific security policies, ACLs, and time-based controls</div>
+            <div class="sch-badges"><span class="sch-badge b-blue">Allowlist/Blocklist</span><span class="sch-badge b-blue">Path Policies</span><span class="sch-badge b-blue">Time-based ACL</span><span class="sch-badge b-amber">Header Validation</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s07-body">
+          <div class="scb-inner">
+            <p class="scb-lead">Custom Rules is the final human-controlled override layer before traffic is processed. It allows security and operations teams to express organization-specific policies that the automated engines cannot infer — such as allowing a trusted partner's IP range to bypass bot detection, blocking entire countries during a DDoS incident, or enforcing API authentication on specific endpoints only during business hours.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Policy Types</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>IP Allowlist / Blocklist:</strong> Permanent and temporary IP-level overrides. Allowlisted IPs bypass all WAF stages (except logging). Blocklisted IPs are rejected immediately at Stage 1. Supports CIDR notation (<code>10.0.0.0/8</code>), individual IPs, and ASN-level blocks. Sync with external threat feeds via API.</div></li>
+                  <li><div class="op-dot"></div><div><strong>GeoIP Exceptions:</strong> Override geographic block policies for specific partner IPs or CIDR ranges. Example: Allow Bangladesh (<code>BD</code>) IPs from a specific ISP for a local payment gateway while keeping the country in the geo-block list for all other traffic.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Path-Specific Security Policies:</strong> Apply elevated security profiles to sensitive endpoints. Enforce mandatory HTTPS, require specific authentication headers, enable additional Lua checks, or apply stricter CRS paranoia levels — all scoped to a specific URI path or pattern.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Time-Based Access Control:</strong> Restrict endpoint access by time of day, day of week, or calendar schedule. Use cases: maintenance windows (block all traffic to <code>/admin</code> outside business hours), scheduled report endpoints (allow only between 2–4 AM UTC), or geographically-aware time restrictions.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Header-Based Token Validation:</strong> Validate custom security headers, API keys, JWT tokens (signature verification, expiry check), and HMAC signatures without custom code. Configure per-endpoint with configurable rejection messages.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Configuration Examples</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-07">Copy</button>
+                  <pre class="code-block" id="code-07"><span class="c-comment"># IP Access Control</span>
+<span class="c-key">allowlist</span> {
+  <span class="c-key">ips</span> <span class="c-str">"192.168.0.0/16,10.0.0.0/8"</span>; <span class="c-comment"># Internal</span>
+  <span class="c-key">ips</span> <span class="c-str">"203.0.113.0/24"</span>;           <span class="c-comment"># Partner</span>
+  <span class="c-key">bypass_waf</span> <span class="c-val">on</span>;
+}
+<span class="c-key">blocklist</span> {
+  <span class="c-key">ips</span> <span class="c-str">"45.33.0.0/16"</span>;
+  <span class="c-key">action</span> <span class="c-str">block</span>;
+  <span class="c-key">log_reason</span> <span class="c-str">"Known attack infrastructure"</span>;
+}
+
+<span class="c-comment"># Admin endpoint — strict policy</span>
+<span class="c-key">path_policy</span> <span class="c-str">"/admin/*"</span> {
+  <span class="c-key">require_header</span>  <span class="c-str">"X-Admin-Token"</span>;
+  <span class="c-key">paranoia_level</span>  <span class="c-num">4</span>;
+  <span class="c-key">geo_allow</span>       <span class="c-str">"BD,US,GB"</span>;
+  <span class="c-key">time_allow</span>      <span class="c-str">"09:00-18:00 Mon-Fri"</span>;
+  <span class="c-key">timezone</span>        <span class="c-str">"Asia/Dhaka"</span>;
+}
+
+<span class="c-comment"># Health check — bypass all WAF</span>
+<span class="c-key">path_policy</span> <span class="c-str">"/health"</span> {
+  <span class="c-key">bypass_waf</span>  <span class="c-val">on</span>;
+  <span class="c-key">allow_ips</span>   <span class="c-str">"10.0.0.0/8"</span>;
+}</pre>
+                </div>
+                <a href="clofix-crs.html#clofixrule-syntax" class="doc-link-btn">📘 CloFixRule Custom Directives →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 08 -->
+      <div class="stage-card stage-section" id="s08">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s08-body" tabindex="0">
+          <div class="sch-num">08</div>
+          <div class="sch-icon">💉</div>
+          <div class="sch-text">
+            <div class="sch-title">JS Injector — Client-Side Security Layer</div>
+            <div class="sch-sub">Dynamic JavaScript injection for browser-side protection, CAPTCHA challenges, and behavioral telemetry collection</div>
+            <div class="sch-badges"><span class="sch-badge b-green">CSRF Tokens</span><span class="sch-badge b-green">CAPTCHA</span><span class="sch-badge b-green">Anti-Tamper</span><span class="sch-badge b-blue">Telemetry</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s08-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The JS Injector operates on the response path — after CloFix has decided to ALLOW or CHALLENGE a request, it inspects the response body and injects JavaScript code into HTML pages. This enables a browser-native layer of security that complements all server-side stages, collecting telemetry that feeds back into the AI Neural Engine for future requests and serving interactive challenges when needed.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Injection Capabilities</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>Anti-CSRF Token Injection:</strong> Automatically inserts hidden CSRF token fields into all HTML forms (<code>&lt;input type="hidden" name="_csrf"&gt;</code>) and injects the same token as a meta tag and into AJAX request headers via a small interceptor script. Tokens are cryptographically bound to the user session and validated server-side.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Bot Detection Telemetry Collection:</strong> Injects a lightweight (~4KB) telemetry script that collects: mouse movement velocity and trajectory, keyboard dwell/flight timing, scroll behavior, touch event patterns, viewport interactions, and browser environment signals. All data is encrypted and sent to the CloFix scoring API, which updates the AI model's confidence in the client's humanity score in real time.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Headless Browser Detection:</strong> Injects a probe script that checks for 60+ headless browser artifacts: <code>navigator.webdriver</code> flag, Chrome DevTools Protocol patterns, unusual <code>window.outerWidth</code> values, missing browser plugin arrays, Permissions API inconsistencies, and inconsistent timing in <code>requestAnimationFrame</code> callbacks.</div></li>
+                  <li><div class="op-dot"></div><div><strong>CAPTCHA Challenge Rendering:</strong> When risk score falls in the CHALLENGE range (30–70), injects a full-page challenge overlay. Supports: CloFix native JS proof-of-work challenge, hCaptcha, reCAPTCHA v3 (invisible), and Turnstile (Cloudflare). On successful completion, issues a signed challenge cookie valid for a configurable TTL (default: 24h).</div></li>
+                  <li><div class="op-dot"></div><div><strong>DOM Integrity Monitoring:</strong> Injects a MutationObserver that monitors the DOM for unauthorized modifications — detecting Magecart-style form-hijacking scripts, injected iframes, and unauthorized script tag insertion. Reports violations to the CloFix SIEM endpoint without affecting user experience.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Session Integrity Binding:</strong> Issues a cryptographically signed session token that binds the browser session to device fingerprint, IP, and user agent. Subsequent requests that don't match the binding are escalated to the CHALLENGE verdict.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Configuration</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-08">Copy</button>
+                  <pre class="code-block" id="code-08"><span class="c-comment"># JS Injector Configuration</span>
+<span class="c-key">js_injector</span> {
+  <span class="c-key">enabled</span>          <span class="c-val">on</span>;
+
+  <span class="c-key">csrf_protection</span> {
+    <span class="c-key">enabled</span>      <span class="c-val">on</span>;
+    <span class="c-key">token_ttl</span>    <span class="c-str">1h</span>;
+    <span class="c-key">same_site</span>    <span class="c-str">Strict</span>;
+  }
+
+  <span class="c-key">bot_telemetry</span> {
+    <span class="c-key">enabled</span>      <span class="c-val">on</span>;
+    <span class="c-key">sample_rate</span>  <span class="c-str">100%</span>;
+  }
+
+  <span class="c-key">captcha</span> {
+    <span class="c-key">provider</span>     <span class="c-str">clofix</span>; <span class="c-comment"># or hcaptcha, recaptcha</span>
+    <span class="c-key">challenge_ttl</span> <span class="c-str">24h</span>;
+    <span class="c-key">difficulty</span>   <span class="c-str">medium</span>;
+  }
+
+  <span class="c-comment"># Skip injection for specific content types</span>
+  <span class="c-key">skip_content_types</span> <span class="c-str">"application/json
+    application/xml text/plain"</span>;
+}</pre>
+                </div>
+                <div class="callout tip">
+                  <span class="callout-icon">💡</span>
+                  <div><strong>Streaming note:</strong> The JS Injector uses a streaming HTML parser — it injects code at the <code>&lt;/head&gt;</code> tag without buffering the entire response, keeping injection latency under 0.1ms even for large pages.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 09 -->
+      <div class="stage-card stage-section" id="s09">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s09-body" tabindex="0">
+          <div class="sch-num">09</div>
+          <div class="sch-icon">⚖️</div>
+          <div class="sch-text">
+            <div class="sch-title">Load Balancer — Intelligent Traffic Distribution</div>
+            <div class="sch-sub">Multi-algorithm load distribution, backend information hiding, health monitoring, and 99.99% availability SLA</div>
+            <div class="sch-badges"><span class="sch-badge b-blue">Header Hiding</span><span class="sch-badge b-blue">URL Rewriting</span><span class="sch-badge b-green">Health Checks</span><span class="sch-badge b-green">Sticky Sessions</span><span class="sch-badge b-cyan">Zero Downtime</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s09-body">
+          <div class="scb-inner">
+            <p class="scb-lead">Once a request has cleared all WAF stages, the Load Balancer selects the optimal backend server and forwards the request. On the response path, it performs critical response sanitization — stripping all headers and response body content that would reveal internal infrastructure topology to potential attackers. This stage enforces a 99.99% availability SLA through active/passive health monitoring, automatic failover, and connection draining.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Load Balancing Algorithms</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>Round Robin:</strong> Distributes requests evenly across all healthy backends in circular order. Ideal for homogeneous server fleets with similar hardware and response times.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Least Connections:</strong> Routes each new request to the backend with the fewest active connections. Best for mixed workloads where request duration varies significantly (short API calls + long file downloads).</div></li>
+                  <li><div class="op-dot"></div><div><strong>IP Hash:</strong> Hashes the client IP to deterministically select a backend. Provides natural session affinity without cookies — ideal for applications that store session state in memory without a shared session store.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Weighted Round Robin:</strong> Assigns traffic proportionally based on configured weights. Route 70% to high-capacity servers and 30% to smaller instances, or gradually shift traffic during canary deployments.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Backend Information Hiding:</strong> Automatically strips 30+ response headers that expose infrastructure details: <code>Server</code>, <code>X-Powered-By</code>, <code>X-Backend-Server</code>, <code>X-Upstream</code>, <code>Via</code>, <code>X-Real-IP</code>, <code>X-Cache</code>, <code>X-Varnish</code>, <code>X-Debug</code>, <code>X-Request-ID</code>. Replaces <code>Server</code> with a configurable value or removes it entirely.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Response Body URL Rewriting:</strong> Parses HTML, JSON, and XML response bodies and rewrites any occurrence of backend domain names or internal IP addresses to the public frontend domain. Protects against SSRF reconnaissance from verbose error messages and API responses.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Health Monitoring &amp; Failover</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>Active Health Checks:</strong> Proactive HTTP/HTTPS health check requests sent directly to each backend on a configurable interval (default: 10s). Checks the configured path, validates response status code and optional body content, and removes failed backends from rotation after a configurable failure threshold.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Passive Health Monitoring:</strong> Observes real traffic for connection failures, timeouts, and 5xx responses. Tracks <code>max_fails</code> (default: 3) within <code>fail_timeout</code> (default: 30s). Less aggressive than active checks — used as a complement to catch transient errors.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Connection Draining:</strong> When a backend is removed from rotation (maintenance or failure), in-flight requests are allowed to complete before the connection pool is drained. New requests are immediately routed to healthy backends. Zero dropped requests during rolling deployments.</div></li>
+                </ul>
+                <div class="code-wrap" style="margin-top:12px;">
+                  <button class="copy-btn" data-code="code-09">Copy</button>
+                  <pre class="code-block" id="code-09"><span class="c-comment"># Load Balancer Configuration</span>
+<span class="c-key">backends</span> {
+  <span class="c-key">server</span> <span class="c-str">https://origin1.example.com:443</span>
+    weight=<span class="c-num">10</span> max_fails=<span class="c-num">3</span> fail_timeout=<span class="c-str">30s</span>;
+  <span class="c-key">server</span> <span class="c-str">https://origin2.example.com:443</span>
+    weight=<span class="c-num">5</span>;
+  <span class="c-key">server</span> <span class="c-str">https://backup.example.com:443</span>
+    weight=<span class="c-num">1</span> backup=<span class="c-val">true</span>;
+}
+
+<span class="c-key">load_balancer</span> {
+  <span class="c-key">algorithm</span>       <span class="c-str">least_conn</span>;
+  <span class="c-key">sticky_session</span>  <span class="c-val">on</span>;
+  <span class="c-key">cookie_name</span>     <span class="c-str">CF_BACKEND</span>;
+
+  <span class="c-key">health_check</span> {
+    <span class="c-key">enabled</span>   <span class="c-val">on</span>;
+    <span class="c-key">path</span>      <span class="c-str">/health</span>;
+    <span class="c-key">interval</span>  <span class="c-str">10s</span>;
+    <span class="c-key">timeout</span>   <span class="c-str">3s</span>;
+    <span class="c-key">status</span>    <span class="c-num">200</span>;
+  }
+
+  <span class="c-key">alerts</span> {
+    <span class="c-key">slack_webhook</span> <span class="c-str">"https://hooks.slack.com/…"</span>;
+    <span class="c-key">email</span>         <span class="c-str">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7916090a391c01181409151c571a1614">[email&#160;protected]</a>"</span>;
+  }
+}</pre>
+                </div>
+                <a href="clofix-load-balancer.html" class="doc-link-btn">📘 Load Balancer Full Reference →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 10 -->
+      <div class="stage-card stage-section" id="s10">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s10-body" tabindex="0">
+          <div class="sch-num">10</div>
+          <div class="sch-icon">🏢</div>
+          <div class="sch-text">
+            <div class="sch-title">Backend Server — Origin Response &amp; Sanitization</div>
+            <div class="sch-sub">Verified requests are forwarded; all responses are scrubbed of infrastructure data before delivery to clients</div>
+            <div class="sch-badges"><span class="sch-badge b-green">Response Sanitization</span><span class="sch-badge b-green">Security Headers</span><span class="sch-badge b-green">Error Masking</span><span class="sch-badge b-blue">Infrastructure Hiding</span></div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s10-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The Backend Server stage is the final destination for verified requests. After all ten stages have been traversed, the sanitized request is forwarded to your origin server. The response travels back through CloFix, where a comprehensive outbound processing pipeline ensures no internal infrastructure information leaks to the client — preserving total confidentiality of your server topology, technology stack, and internal network architecture.</p>
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Outbound Response Processing</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>Complete Header Stripping:</strong> Every backend response header that could reveal infrastructure information is automatically removed: <code>Server</code>, <code>X-Powered-By</code>, <code>X-Backend-Server</code>, <code>X-Upstream</code>, <code>Via</code>, <code>X-Real-IP</code>, <code>X-Forwarded-For</code>, <code>X-Cache</code>, <code>X-Cache-Hit</code>, <code>X-Varnish</code>, <code>X-Debug</code>, <code>X-Request-ID</code>, <code>X-Correlation-ID</code>, <code>X-Runtime</code>, <code>X-Rack-Cache</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Security Header Injection:</strong> If security headers are absent, CloFix injects them: <code>Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</code>, <code>X-Frame-Options: DENY</code>, <code>X-Content-Type-Options: nosniff</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code>, and a configurable Content Security Policy.</div></li>
+                  <li><div class="op-dot"></div><div><strong>URL Rewriting in Response Bodies:</strong> Scans HTML (<code>&lt;a href&gt;</code>, <code>&lt;form action&gt;</code>, <code>&lt;img src&gt;</code>), JSON string values, and XML element content for internal domain names and IP addresses. Rewrites them to the public frontend domain. Uses a streaming parser — no full-body buffering.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Error Page Sanitization:</strong> Intercepts backend 4xx/5xx error responses that contain stack traces, database connection strings, internal hostnames, or file system paths. Replaces them with configurable clean error pages, preventing information disclosure that could assist attackers in targeting your stack.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Client IP Preservation:</strong> The original client IP is passed to the backend via <code>X-Forwarded-For</code>, <code>X-Real-IP</code>, and <code>CF-Connecting-IP</code> headers so your application can use real IP addresses for logging, analytics, and access control — while the client only ever sees CloFix as the server.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Headers Reference</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-10a">Copy</button>
+                  <pre class="code-block" id="code-10a"><span class="c-comment"># Headers stripped from backend responses</span>
+<span class="c-key">strip_headers</span> [
+  <span class="c-str">Server</span>           <span class="c-str">X-Powered-By</span>
+  <span class="c-str">X-Backend-Server</span> <span class="c-str">X-Upstream</span>
+  <span class="c-str">Via</span>              <span class="c-str">X-Real-IP</span>
+  <span class="c-str">X-Forwarded-For</span>  <span class="c-str">X-Cache</span>
+  <span class="c-str">X-Cache-Hit</span>      <span class="c-str">X-Varnish</span>
+  <span class="c-str">X-Debug</span>          <span class="c-str">X-Request-ID</span>
+  <span class="c-str">X-Correlation-ID</span> <span class="c-str">X-Runtime</span>
+  <span class="c-str">X-Rack-Cache</span>     <span class="c-str">X-Generator</span>
+];
+
+<span class="c-comment"># Headers injected if absent</span>
+<span class="c-key">inject_headers</span> {
+  <span class="c-key">Strict-Transport-Security</span>
+    <span class="c-str">"max-age=31536000; includeSubDomains"</span>;
+  <span class="c-key">X-Frame-Options</span>         <span class="c-str">"DENY"</span>;
+  <span class="c-key">X-Content-Type-Options</span>  <span class="c-str">"nosniff"</span>;
+  <span class="c-key">Referrer-Policy</span>
+    <span class="c-str">"strict-origin-when-cross-origin"</span>;
+}</pre>
+                </div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-10b">Copy</button>
+                  <pre class="code-block" id="code-10b"><span class="c-comment"># URL Rewriting Example</span>
+<span class="c-comment"># Backend response contains:</span>
+<span class="c-str">"url": "http://internal-backend.lan/api/v2"</span>
+
+<span class="c-comment"># CloFix rewrites to:</span>
+<span class="c-str">"url": "https://app.clofix.com/api/v2"</span>
+
+<span class="c-comment"># Error page sanitization</span>
+<span class="c-key">error_sanitization</span> {
+  <span class="c-key">enabled</span>      <span class="c-val">on</span>;
+  <span class="c-key">strip_traces</span> <span class="c-val">on</span>;
+  <span class="c-key">custom_pages</span> {
+    <span class="c-key">404</span> <span class="c-str">"./errors/404.html"</span>;
+    <span class="c-key">500</span> <span class="c-str">"./errors/500.html"</span>;
+    <span class="c-key">503</span> <span class="c-str">"./errors/503.html"</span>;
+  }
+}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Key Features ── -->
+      <h2 class="doc-h2" id="key-features">🚀 Key Security Features</h2>
+      <div class="feature-grid">
+        <div class="feature-tile">
+          <div class="ft-icon">🎯</div>
+          <div class="ft-title">Multi-Layer Detection</div>
+          <ul class="ft-list">
+            <li>Behavioral heuristics (Rate, GeoIP, JA3/JA4)</li>
+            <li>OWASP CRS v4 — 25 rule files, 200+ rules</li>
+            <li>AI/ML: Random Forest, LSTM, Transformer</li>
+            <li>Custom Lua/JS scripting (clofix_main, clofix)</li>
+            <li>Composite weighted risk scoring</li>
+          </ul>
+        </div>
+        <div class="feature-tile">
+          <div class="ft-icon">🧠</div>
+          <div class="ft-title">AI-Powered Zero-Day</div>
+          <ul class="ft-list">
+            <li>ML classification — 96.2% accuracy</li>
+            <li>Human biometric analysis (mouse/keystroke)</li>
+            <li>Hardware fingerprinting (GPU, CPU, canvas)</li>
+            <li>Automation tool detection (Puppeteer, Selenium)</li>
+            <li>Behavioral baseline — 7-day learning window</li>
+          </ul>
+        </div>
+        <div class="feature-tile">
+          <div class="ft-icon">⚡</div>
+          <div class="ft-title">Performance-First Design</div>
+          <ul class="ft-list">
+            <li>&lt;2ms P99 average latency</li>
+            <li>Coraza + Hyperscan SIMD acceleration</li>
+            <li>HTTP/2 &amp; HTTP/3 (QUIC) support</li>
+            <li>Connection pooling &amp; zero-copy forwarding</li>
+            <li>120,000+ req/s per node throughput</li>
+          </ul>
+        </div>
+        <div class="feature-tile">
+          <div class="ft-icon">🔒</div>
+          <div class="ft-title">Infrastructure Confidentiality</div>
+          <ul class="ft-list">
+            <li>30+ sensitive headers stripped automatically</li>
+            <li>Response body URL rewriting (HTML/JSON/XML)</li>
+            <li>Backend error page sanitization</li>
+            <li>JS Injector — client-side CSRF &amp; anti-tamper</li>
+            <li>Session binding &amp; integrity verification</li>
+          </ul>
+        </div>
+        <div class="feature-tile">
+          <div class="ft-icon">🏗️</div>
+          <div class="ft-title">Enterprise Reliability</div>
+          <ul class="ft-list">
+            <li>99.99% availability SLA</li>
+            <li>Active + passive health monitoring</li>
+            <li>Zero-downtime connection draining</li>
+            <li>Slack/Email/Webhook/Telegram alerts</li>
+            <li>5 load balancing algorithms</li>
+          </ul>
+        </div>
+        <div class="feature-tile">
+          <div class="ft-icon">🛠️</div>
+          <div class="ft-title">Developer Friendly</div>
+          <ul class="ft-list">
+            <li>Virtual patching — 5-minute CVE response</li>
+            <li>Rule testing sandbox (historical traffic)</li>
+            <li>Multi-language rules (CloFixRule + Lua + JS)</li>
+            <li>Rule metrics &amp; ML optimization suggestions</li>
+            <li>Full REST API for rule management</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FULL 10-STAGE DETECTION MATRIX -->
+      <h2 class="doc-h2" id="detection-matrix">🔬 Complete Threat Detection Matrix (All 10 Stages)</h2>
+      <p class="doc-p">Comprehensive coverage mapping showing which stages detect each threat category. ✓ Primary detection, △ Partial/Supporting, — Not applicable.</p>
+      <div class="cmp-table-wrap">
+        <style>
+          .cmp-table .tc-check { color: #10b981; font-weight: 700; }
+          .cmp-table .tc-check-white { color: #ffffff; font-weight: 700; }
+          .cmp-table .tc-partial { color: #fbbf24; font-weight: 700; }
+          .cmp-table td { color: rgba(255,255,255,0.72); }
+        </style>
+        <table class="cmp-table">
+          <thead>
+            <tr><th>Threat Category</th><th>01<br>Behavior</th><th>02<br>CRS</th><th>03<br>JS</th><th>04<br>Lua</th><th>05<br>AI</th><th>06<br>Core</th><th>07<br>Custom</th><th>08<br>Injector</th><th>09<br>LB</th><th>10<br>Backend</th>  </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>SQL Injection</strong></td><td>—</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>XSS (DOM/Reflected)</strong></td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check-white">CSP</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>DDoS / Rate Abuse</strong></td><td class="tc-check-white">Primary</td><td>—</td><td>—</td><td class="tc-check">✓</td><td class="tc-check-white">Anomaly</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td class="tc-check-white">Conn limit</td><td>—</td></tr>
+            <tr><td><strong>Bot / Automation</strong></td><td class="tc-check-white">JA3/UA</td><td class="tc-partial">△</td><td class="tc-partial">△</td><td class="tc-check">✓</td><td class="tc-check-white">Primary</td><td class="tc-check">✓</td><td class="tc-check-white">Blocklist</td><td class="tc-check-white">Telemetry</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Command Injection</strong></td><td>—</td><td class="tc-check">✓</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>SSRF</strong></td><td>—</td><td class="tc-check">✓</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td class="tc-check-white">URL rewrite</td><td>—</td></tr>
+            <tr><td><strong>Zero-Day Exploits</strong></td><td class="tc-partial">△</td><td class="tc-partial">△</td><td class="tc-partial">△</td><td class="tc-check-white">VPatch</td><td class="tc-check-white">Primary</td><td class="tc-check-white">VPatch</td><td class="tc-check-white">VPatch</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Credential Stuffing</strong></td><td class="tc-check-white">Rate</td><td class="tc-partial">△</td><td>—</td><td class="tc-check-white">rate_limit</td><td class="tc-check-white">Behavior</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Prototype Pollution</strong></td><td>—</td><td class="tc-partial">△</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Path Traversal (LFI)</strong></td><td class="tc-check-white">Pattern</td><td class="tc-check">✓</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Magecart Skimming</strong></td><td>—</td><td>—</td><td class="tc-check-white">Pattern</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td class="tc-check-white">Mutation Observer</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>API Abuse</strong></td><td class="tc-check-white">Rate/Geo</td><td class="tc-check-white">Protocol</td><td>—</td><td class="tc-check">✓</td><td class="tc-check-white">Anomaly</td><td class="tc-check">✓</td><td class="tc-check-white">Path policies</td><td class="tc-check-white">CSRF</td><td class="tc-check-white">LB</td><td>—</td></tr>
+            <tr><td><strong>Information Disclosure</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td class="tc-partial">△</td><td class="tc-check-white">Bypass</td><td>—</td><td>—</td><td class="tc-check-white">Header Strip</td><td class="tc-check-white">Primary</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── Conclusion / CTA ── -->
+      <div id="conclusion" class="conclusion-cta">
+        <div class="cta-heading">Deploy CloFix WAF in Minutes</div>
+        <p class="cta-sub">Enterprise-grade, 10-stage protection for your applications. Start with a free trial — no credit card required.</p>
+        <a href="https://clofix.com/contact.html" class="cta-btn">🚀 Get Started with CloFix</a>
+      </div>
+
+    </main>
+    <!-- ═══ END MAIN ═══ -->
+
+  </div><!-- /doc-wrapper -->
+
+  <!-- ═══ FOOTER (CloFix template) ═══ -->
+  <footer class="footer">
+    <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo"/></a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook"/></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X"/></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn"/></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp"/></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube"/></a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column"><h4 class="c-footer__subtitle">Company</h4><ul class="c-footer__list"><li><a href="about.html">About CloFix</a></li><li><a href="contact.html">Contact CloFix</a></li><li><a href="#">Documentation</a></li></ul></div>
+      <div class="c-footer__column"><h4 class="c-footer__subtitle">Explore</h4><ul class="c-footer__list"><li><a href="#">Events</a></li><li><a href="release.html">Release</a></li><li><a href="partner.html">Become A Partner</a></li><li><a href="blogs.html">Blogs</a></li></ul></div>
+      <div class="c-footer__column"><h4 class="c-footer__subtitle">Legal</h4><ul class="c-footer__list"><li><a href="terms.html">Terms and Conditions</a></li></ul></div>
+    </div>
+    <div class="container"><p class="footer__text">© 2026 CloFix – All Rights Reserved</p></div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ═══════════════════════════════
+     JAVASCRIPT — CloFix Docs
+  ═══════════════════════════════ */
+
+  /* ── Nav Toggle ── */
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+  if (navToggle && navContent) navToggle.addEventListener('click', () => navContent.classList.toggle('active'));
+  (function(){ const h = document.querySelector('.header'); function s(){ if(h) document.documentElement.style.setProperty('--header-h', h.offsetHeight+'px'); } window.addEventListener('load',s); window.addEventListener('resize',s); })();
+
+  /* ── Reading Progress ── */
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (window.scrollY / total * 100) + '%';
+  }, {passive: true});
+
+  /* ── Back to Top ── */
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400), {passive:true});
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  /* ── ToC Active Link ── */
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const sections = [];
+  tocLinks.forEach(l => {
+    const href = l.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const el = document.getElementById(href.slice(1));
+      if (el) sections.push({el, link: l});
+    }
+  });
+  function updateToc() {
+    let current = null;
+    sections.forEach(({el}) => { if (el.getBoundingClientRect().top <= 110) current = el.id; });
+    tocLinks.forEach(l => l.classList.remove('active'));
+    if (current) {
+      const active = Array.from(tocLinks).find(l => l.getAttribute('href') === '#' + current);
+      if (active) active.classList.add('active');
+    }
+  }
+  window.addEventListener('scroll', updateToc, {passive:true});
+  updateToc();
+
+  /* ── Stage Cards Accordion ── */
+  document.querySelectorAll('.stage-card-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const bodyId = btn.dataset.card;
+      const body = document.getElementById(bodyId);
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // close all
+      document.querySelectorAll('.stage-card-header').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('.stage-card-body').forEach(b => b.classList.remove('scb-open'));
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        body.classList.add('scb-open');
+        setTimeout(() => btn.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
+      }
+    });
+    btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
+  });
+
+  /* ── Pipeline Panel Data ── */
+  const STAGE_DATA = {
+    1: { title:'Behavior Analyzer', body:`<strong>Production-hardened behavioral analysis engine</strong> — implements 13-layer heuristic detection (velocity, entropy, timing consistency, static asset ratio, error rate, sequential enumeration, parameter fuzzing, UA rotation, response time CV, burst patterns). Uses <strong>JA3 TLS fingerprinting</strong> with 85+ browser signature database (Chrome 120+, Firefox 121, Safari 17, Edge, Brave, Tor). Calculates composite tool score (0–100) with configurable thresholds. Blocks ~40% of malicious traffic at near-zero cost.<br><br><strong>Detection Layers (13+ Signals):</strong> JA3 Browser DB (instant allow), Velocity/Rate Limiting (>120 req/min = tool), Path Entropy (<0.5 = scanner), Timing Coefficient of Variation (<20% variance = automation), Static Asset Ratio (<8% = tool), Error Rate (>30% = scanner), Sequential Enumeration, Parameter Fuzzing (>10 unique params = +30pts), UA Rotation (>3 distinct UAs = evasion), Response Time CV (<15% uniform = automation), Burst Detection, Injection Pattern Detection (SQLi/XSS/LFI), Empty/Minimal UA detection, Path Traversal patterns.<br><br><strong>Scoring Logic:</strong> Score ≥85 = TOOL (block/challenge). Score 65–84 = monitor (challenge). Score 30–64 = elevated suspicion. Score <30 = ALLOW. Established sessions (>10 min) with clean history reduce suspicion by -15pts. Block duration = 15min, profile TTL = 60min.<div class="pp-tags"><span class="pp-tag blue">JA3/JA4 TLS</span><span class="pp-tag blue">Rate Limiting 60rpm</span><span class="pp-tag blue">Path Entropy</span><span class="pp-tag amber">Tool Scoring 0-100</span><span class="pp-tag blue">13-Layer Heuristics</span><span class="pp-tag green">Browser DB (85+ sigs)</span></div>` },
+    2: { title:'CRS Engine', body:`<strong>OWASP Core Rule Set v4</strong> — the industry benchmark. 25 rule files, 200+ individual rules, four processing phases, configurable paranoia levels (1–4) and anomaly scoring.<br><br>Covers: SQL Injection (942xxx), XSS (941xxx), LFI/RFI (930-931xxx), Command Injection (932xxx), SSRF (933xxx), PHP Injection (933xxx), NoSQL Injection, XXE, SSTI, and HTTP Protocol violations (920xxx).<div class="pp-tags"><span class="pp-tag red">SQLi</span><span class="pp-tag red">XSS</span><span class="pp-tag red">LFI/RFI</span><span class="pp-tag red">Cmd Injection</span><span class="pp-tag red">SSRF</span><span class="pp-tag red">XXE</span></div>` },
+    3: { title:'JS Engine', body:`<strong>V8-based JavaScript sandbox</strong> (2s timeout) for deobfuscating layered payloads and detecting runtime attack patterns invisible to static analysis.<br><br>Multi-pass decoding: Base64, hex, Unicode, URL encoding — up to 8 nesting levels deep. DOM XSS taint analysis, prototype pollution detection, CVE exploit signature matching, pre-cached pattern scanning of all served JS files (5-min interval).<div class="pp-tags"><span class="pp-tag blue">Deobfuscation ×8</span><span class="pp-tag red">DOM XSS Taint</span><span class="pp-tag red">Prototype Pollution</span><span class="pp-tag blue">CVE Match</span></div>` },
+    4: { title:'Lua Engine', body:`<strong>LuaJIT scripting environment</strong> with full access to CloFix's security API — the escape hatch for any security logic that no generic rule can express.<br><br>APIs: <code>clofix.request</code>, <code>clofix.is_tor()</code>, <code>clofix.ip_reputation()</code>, <code>clofix.rate_limit_ip()</code>, <code>clofix.normalize_payload()</code>, <code>clofix.log_attack()</code>, <code>clofix.block()</code>, <code>clofix.challenge()</code>. Cross-worker shared dictionaries for distributed state.<div class="pp-tags"><span class="pp-tag green">Full Request API</span><span class="pp-tag green">TI Integration</span><span class="pp-tag green">Shared State</span><span class="pp-tag green">Custom Logic</span></div>` },
+    5: { title:'AI Neural Engine', body:`<strong>Multi-model ML system</strong> trained on 2B+ labeled requests. The only stage that detects <em>previously unseen</em> attacks through statistical anomaly detection rather than pattern matching.<br><br>Models: Transformer (96.2%), Random Forest (94.8%), LSTM (93.1%), Biometric Classifier (97.3%), Isolation Forest (91.7%). Detects Puppeteer/Playwright/Selenium, device spoofing, cryptojacking, and human biometric signals.<div class="pp-scores"><div class="pp-score-row"><span class="pp-score-label">ML Classification</span><div class="pp-score-track"><div class="pp-score-fill" style="width:96%"></div></div><span class="pp-score-pct">96.2%</span></div><div class="pp-score-row"><span class="pp-score-label">Biometric Accuracy</span><div class="pp-score-track"><div class="pp-score-fill" style="width:97%"></div></div><span class="pp-score-pct">97.3%</span></div><div class="pp-score-row"><span class="pp-score-label">Zero-Day Detection</span><div class="pp-score-track"><div class="pp-score-fill" style="width:89%"></div></div><span class="pp-score-pct">~89%</span></div></div>` },
+    6: { title:'CloFix Core — Risk Arbiter', body:`<strong>The final decision engine.</strong> Aggregates all stage scores through a weighted formula, applies CloFixRule directives + bypass conditions, renders verdict.<br><br><div class="pp-formula"><span class="hl">TotalRisk</span> = (Behavior×<span class="hl">0.20</span>) + (CRS×<span class="hl">0.35</span>) + (JS×<span class="hl">0.10</span>) + (Lua×<span class="hl">0.10</span>) + (AI×<span class="hl">0.25</span>)</div><div class="pp-thresholds"><div class="pp-threshold t-allow"><div class="t-num">&lt;30</div>✅ ALLOW<div style="font-size:.65rem;opacity:.7">Pass to backend</div></div><div class="pp-threshold t-challenge"><div class="t-num">30–70</div>⚠️ CHALLENGE<div style="font-size:.65rem;opacity:.7">CAPTCHA / JS challenge</div></div><div class="pp-threshold t-block"><div class="t-num">&gt;70</div>🚫 BLOCK<div style="font-size:.65rem;opacity:.7">403 + attack log</div></div></div>` },
+    7: { title:'Custom Rules', body:`<strong>Organization-specific policy layer.</strong> Human-controlled overrides expressed as IP allowlists/blocklists, path policies, time-based ACLs, and CloFixRule directives.<br><br>Example uses: Allow internal CIDR to bypass WAF. Block entire ASNs during DDoS. Enforce API key validation on <code>/api/*</code>. Apply paranoia level 4 only on <code>/admin/*</code>. Restrict admin access to business hours in local timezone.<div class="pp-tags"><span class="pp-tag blue">Allowlist/Blocklist</span><span class="pp-tag blue">Path Policies</span><span class="pp-tag amber">Time-based ACL</span><span class="pp-tag blue">Header Validation</span></div>` },
+    8: { title:'JS Injector', body:`<strong>Response-path JavaScript injection</strong> — browser-native security that complements all server-side stages.<br><br>Injects via streaming HTML parser (&lt;0.1ms): Anti-CSRF tokens in all forms, bot telemetry collector (~4KB), headless browser probe (60+ signals), CAPTCHA challenge overlay (when score 30–70), DOM MutationObserver for Magecart detection, session binding cookie.<div class="pp-tags"><span class="pp-tag green">CSRF Auto-Tokens</span><span class="pp-tag green">Telemetry 4KB</span><span class="pp-tag green">60+ Headless Checks</span><span class="pp-tag green">CAPTCHA</span></div>` },
+    9: { title:'Load Balancer', body:`<strong>Intelligent traffic distribution</strong> with backend information hiding, 99.99% SLA, and zero-downtime deployments.<br><br>Algorithms: Round Robin, Least Connections, IP Hash, Weighted, Random. Strips 30+ infrastructure headers. Rewrites internal URLs in HTML/JSON/XML responses. Active health checks (10s interval, 3s timeout). Passive failure tracking (max_fails 3, fail_timeout 30s). Connection draining for zero dropped requests.<div class="pp-tags"><span class="pp-tag blue">30+ Headers Stripped</span><span class="pp-tag blue">URL Rewriting</span><span class="pp-tag green">Active + Passive</span><span class="pp-tag green">Zero Downtime</span></div>` },
+    10: { title:'Backend Server', body:`<strong>Origin delivery &amp; response sanitization.</strong> The final stage — verified requests forwarded to origin, responses scrubbed clean before delivery to client.<br><br>Strips all infrastructure-identifying headers, rewrites backend URLs in response bodies, sanitizes verbose error messages (stack traces, connection strings, file paths), injects security headers (HSTS, CSP, X-Frame-Options) if absent. Original client IP preserved via X-Forwarded-For.<div class="pp-tags"><span class="pp-tag green">Header Stripping</span><span class="pp-tag green">Security Headers</span><span class="pp-tag green">Error Sanitization</span><span class="pp-tag blue">IP Preservation</span></div>` }
+  };
+
+  /* ── Pipeline Node Interaction ── */
+  const pipelineNodes = document.querySelectorAll('.pn');
+  const panel = document.getElementById('pipelinePanel');
+  const ppBadge = document.getElementById('ppBadge');
+  const ppTitle = document.getElementById('ppTitle');
+  const ppBody = document.getElementById('ppBody');
+  let activeNode = null;
+
+  function openPanel(stage) {
+    if (activeNode === stage) { closePanel(); return; }
+    activeNode = stage;
+    const d = STAGE_DATA[stage];
+    ppBadge.textContent = String(stage).padStart(2,'0');
+    ppTitle.textContent = d.title;
+    ppBody.innerHTML = d.body;
+    panel.classList.add('pp-open');
+    pipelineNodes.forEach(n => n.classList.toggle('pn-active', parseInt(n.dataset.s) === stage));
+    panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  function closePanel() {
+    activeNode = null;
+    panel.classList.remove('pp-open');
+    pipelineNodes.forEach(n => n.classList.remove('pn-active'));
+  }
+  pipelineNodes.forEach(n => {
+    n.addEventListener('click', () => openPanel(parseInt(n.dataset.s)));
+    n.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(parseInt(n.dataset.s));} });
+  });
+  document.getElementById('ppClose').addEventListener('click', closePanel);
+
+  /* ── Copy Buttons ── */
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const codeEl = document.getElementById(btn.dataset.code);
+      if (!codeEl) return;
+      const text = codeEl.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ Copied';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    });
+  });
+  </script>
+</body>
+</html>
