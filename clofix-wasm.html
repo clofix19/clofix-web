@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="canonical" href="https://clofix.com/clofix-wasm.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CloFix WAF WebAssembly Guide — write custom WASM modules for rate limiting, bot detection, geo-blocking, and SQL injection protection using any language that compiles to WebAssembly.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix WAF | WebAssembly Module Guide">
+    <meta property="og:description" content="Write custom WebAssembly modules to control every HTTP request flowing through CloFix WAF. Full reference, host functions, examples in Rust, AssemblyScript, and TinyGo.">
+    <meta property="og:url" content="https://clofix.com/clofix-wasm.html">
+    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix WAF | WebAssembly Module Guide">
+    <meta name="twitter:description" content="Complete guide for writing WebAssembly security modules in CloFix WAF — request object, host functions, examples in Rust, AssemblyScript, TinyGo, and troubleshooting.">
+    <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+    <meta name="twitter:site" content="@clofix19">
+    <link rel="icon" type="image/png" href="img/clofix.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>CloFix WAF — WebAssembly Module Guide</title>
+    <style>
+        :root {
+            --wasm-dark:    #0a0f1a;
+            --wasm-navy:    #0d1b2e;
+            --wasm-surface: #0f2138;
+            --wasm-border:  #1a3a56;
+            --wasm-teal:    #00c2a8;
+            --wasm-orange:  #e85d26;
+            --wasm-blue:    #2e6db4;
+            --wasm-text:    #c8d8e8;
+            --wasm-muted:   #5a7088;
+            --wasm-code:    #081422;
+            --wasm-mono:    'Space Mono', 'Courier New', monospace;
+            --wasm-gold:    #e8b84b;
+            --wasm-purple:  #9b6fd4;
+            --wasm-rust:    #ce412b;
+            --wasm-ts:      #3178c6;
+            --wasm-go:      #00add8;
+        }
+
+        .wasm-page { background: var(--wasm-dark); color: var(--wasm-text); line-height: 1.75; }
+        .wasm-page * { box-sizing: border-box; }
+
+        /* ── Hero ─────────────────────────────────────────────── */
+        .wasm-hero {
+            background:
+                radial-gradient(ellipse at 70% -10%, rgba(0,194,168,.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 110%, rgba(46,109,180,.12) 0%, transparent 55%),
+                var(--wasm-navy);
+            padding: 80px 0 64px;
+            border-bottom: 1px solid var(--wasm-border);
+        }
+        .wasm-hero .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .wasm-hero__badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0,194,168,.1); border: 1px solid rgba(0,194,168,.35);
+            color: var(--wasm-teal); font-size: 11px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+        }
+        .wasm-hero__badge::before {
+            content:''; width:7px; height:7px;
+            background:var(--wasm-teal); border-radius:50%;
+            animation: wasmPulse 2s infinite;
+        }
+        @keyframes wasmPulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+        .wasm-hero h1 { font-size: clamp(32px,5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-1px; color:#fff; margin:0 0 16px; }
+        .wasm-hero h1 span { color:var(--wasm-teal); }
+        .wasm-hero__lead { font-size:17px; color:var(--wasm-muted); max-width:620px; margin:0 0 36px; }
+        .wasm-hero__pills { display:flex; flex-wrap:wrap; gap:10px; }
+        .wasm-hero__pill { background:rgba(255,255,255,.04); border:1px solid var(--wasm-border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--wasm-text); }
+
+        /* version badge */
+        .wasm-version {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(232,184,75,.08); border: 1px solid rgba(232,184,75,.3);
+            color: var(--wasm-gold); font-size: 11px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 4px; margin-left: 12px;
+        }
+
+        /* Language badges */
+        .lang-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 3px 10px; border-radius: 4px; font-size: 10px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .lang-rust { background: rgba(206,65,43,.15); border: 1px solid var(--wasm-rust); color: var(--wasm-rust); }
+        .lang-ts { background: rgba(49,120,198,.15); border: 1px solid var(--wasm-ts); color: var(--wasm-ts); }
+        .lang-go { background: rgba(0,173,216,.15); border: 1px solid var(--wasm-go); color: var(--wasm-go); }
+        .lang-c { background: rgba(100,180,220,.15); border: 1px solid #64b4dc; color: #64b4dc; }
+
+        /* ── Layout ───────────────────────────────────────────── */
+        .wasm-body { display:flex; max-width:1100px; margin:0 auto; padding:0 24px; gap:48px; align-items:flex-start; }
+
+        /* ── TOC ──────────────────────────────────────────────── */
+        .wasm-toc {
+            position:sticky; top:24px; width:220px; flex-shrink:0;
+            padding:24px 0; max-height:calc(100vh - 48px);
+            overflow-y:auto; overflow-x:hidden;
+            scrollbar-width:thin; scrollbar-color:var(--wasm-border) transparent;
+        }
+        .wasm-toc::-webkit-scrollbar { width:4px; }
+        .wasm-toc::-webkit-scrollbar-track { background:transparent; }
+        .wasm-toc::-webkit-scrollbar-thumb { background:var(--wasm-border); border-radius:4px; }
+        .wasm-toc::-webkit-scrollbar-thumb:hover { background:var(--wasm-teal); }
+        .wasm-toc__title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--wasm-muted); margin-bottom:12px; }
+        .wasm-toc a { display:block; padding:6px 12px; font-size:13px; color:var(--wasm-muted); text-decoration:none; border-left:2px solid transparent; border-radius:0 4px 4px 0; transition:all .15s; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .wasm-toc a:hover, .wasm-toc a.toc-active { color:var(--wasm-teal); border-left-color:var(--wasm-teal); background:rgba(0,194,168,.06); }
+        .wasm-toc .toc-group { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--wasm-border); padding:14px 12px 4px; }
+
+        /* ── Content ──────────────────────────────────────────── */
+        .wasm-content { flex:1; min-width:0; padding:48px 0 80px; }
+        .wasm-section { margin-bottom:72px; }
+        .wasm-section__title { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color:#fff; letter-spacing:-.4px; margin:0 0 8px; padding-bottom:12px; border-bottom:1px solid var(--wasm-border); }
+        .wasm-section__title .sec-num { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--wasm-teal); background:rgba(0,194,168,.1); border:1px solid rgba(0,194,168,.2); padding:2px 8px; border-radius:4px; }
+        .wasm-sub { font-size:16px; font-weight:700; color:var(--wasm-orange); margin:32px 0 10px; }
+        .wasm-sub::before { content:'// '; color:var(--wasm-muted); font-family:var(--wasm-mono); font-size:13px; }
+        .wasm-content p { color:var(--wasm-text); margin:0 0 16px; }
+
+        /* ── Code blocks ──────────────────────────────────────── */
+        .wasm-code { margin:16px 0 24px; border-radius:8px; overflow:hidden; border:1px solid var(--wasm-border); }
+        .wasm-code__hdr { display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:#0d1f35; border-bottom:1px solid var(--wasm-border); flex-wrap:wrap; gap:8px; }
+        .wasm-code__lang { font-family:var(--wasm-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--wasm-teal); }
+        .wasm-copy { font-size:11px; color:var(--wasm-muted); background:none; border:1px solid var(--wasm-border); padding:3px 10px; border-radius:4px; cursor:pointer; font-family:inherit; transition:all .15s; }
+        .wasm-copy:hover { color:var(--wasm-teal); border-color:var(--wasm-teal); }
+        .wasm-code pre { background:var(--wasm-code); padding:18px 20px; overflow-x:auto; font-family:var(--wasm-mono); font-size:13px; line-height:1.75; color:#9cb8d8; tab-size:4; margin:0; }
+
+        /* syntax highlighting */
+        .k  { color:#e85d26; font-weight:700; }
+        .fn { color:#7ab8f0; }
+        .s  { color:#8ecf70; }
+        .c  { color:#3a5468; font-style:italic; }
+        .n  { color:#e8c060; }
+        .t  { color:#00c2a8; }
+        .p  { color:#9b6fd4; }
+        .g  { color:#e8b84b; }
+        .rs { color:#ce412b; }
+        .ts { color:#3178c6; }
+
+        /* ── Tables ───────────────────────────────────────────── */
+        .wasm-table-wrap { overflow-x:auto; margin:14px 0 24px; border-radius:8px; border:1px solid var(--wasm-border); }
+        .wasm-table { width:100%; border-collapse:collapse; font-size:13.5px; }
+        .wasm-table thead tr { background:#0d1f35; }
+        .wasm-table thead th { padding:10px 14px; text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--wasm-teal); border-bottom:1px solid var(--wasm-border); white-space:nowrap; }
+        .wasm-table tbody tr { border-bottom:1px solid var(--wasm-border); transition:background .1s; }
+        .wasm-table tbody tr:last-child { border-bottom:none; }
+        .wasm-table tbody tr:hover { background:rgba(255,255,255,.03); }
+        .wasm-table td { padding:9px 14px; vertical-align:top; }
+        .wasm-table td:first-child { font-family:var(--wasm-mono); font-size:12.5px; color:#7dd8c0; white-space:nowrap; }
+        .wasm-table td code { font-family:var(--wasm-mono); font-size:12px; color:#7dd8c0; }
+
+        /* ── Info boxes ───────────────────────────────────────── */
+        .wasm-box { border-left:3px solid var(--wasm-teal); background:rgba(0,194,168,.06); border-radius:0 6px 6px 0; padding:14px 18px; margin:16px 0 24px; font-size:14px; }
+        .wasm-box.warn { border-left-color:var(--wasm-orange); background:rgba(232,93,38,.06); }
+        .wasm-box.gold { border-left-color:var(--wasm-gold); background:rgba(232,184,75,.06); }
+        .wasm-box.purple { border-left-color:var(--wasm-purple); background:rgba(155,111,212,.06); }
+        .wasm-box strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--wasm-teal); }
+        .wasm-box.warn strong { color:var(--wasm-orange); }
+        .wasm-box.gold strong { color:var(--wasm-gold); }
+        .wasm-box.purple strong { color:var(--wasm-purple); }
+
+        /* ── Language cards ───────────────────────────────────── */
+        .lang-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:20px 0 30px; }
+        .lang-card { background:var(--wasm-surface); border:1px solid var(--wasm-border); border-radius:12px; padding:18px; transition:all .2s; }
+        .lang-card:hover { transform:translateY(-2px); border-color:var(--wasm-teal); }
+        .lang-card__header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+        .lang-card__icon { font-size:28px; }
+        .lang-card__name { font-size:18px; font-weight:700; color:#fff; }
+        .lang-card__badge { font-size:10px; font-weight:700; padding:2px 8px; border-radius:4px; }
+        .lang-card__desc { font-size:13px; color:var(--wasm-muted); margin-bottom:12px; line-height:1.5; }
+        .lang-card__pros { font-size:12px; color:var(--wasm-teal); margin-bottom:6px; }
+        .lang-card__cons { font-size:12px; color:var(--wasm-orange); }
+
+        /* ── Host functions grid ───────────────────────────────── */
+        .host-functions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 8px;
+            margin: 16px 0;
+        }
+        .host-functions-grid::-webkit-scrollbar { width: 6px; }
+        .host-functions-grid::-webkit-scrollbar-track { background: #1a3b4e; border-radius: 3px; }
+        .host-functions-grid::-webkit-scrollbar-thumb { background: #2c5a73; border-radius: 3px; }
+        .func-card {
+            background: #0e2232;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--wasm-teal);
+            transition: all 0.2s ease;
+        }
+        .func-card:hover { background: #142d42; transform: translateX(2px); }
+        .func-name {
+            font-family: var(--wasm-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--wasm-teal);
+            margin-bottom: 6px;
+        }
+        .func-desc { font-size: 0.75rem; color: var(--wasm-muted); line-height: 1.4; }
+        .func-example {
+            font-size: 0.7rem;
+            color: #5f9ea0;
+            margin-top: 6px;
+            font-family: var(--wasm-mono);
+            background: rgba(16,46,64,0.6);
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+
+        /* ── Module requirements ──────────────────────────────── */
+        .req-list { list-style: none; padding: 0; margin: 16px 0; }
+        .req-list li { padding: 8px 12px; margin-bottom: 8px; background: rgba(16,46,64,.4); border-radius: 6px; font-family: var(--wasm-mono); font-size: 13px; }
+        .req-list li code { color: var(--wasm-teal); }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width:860px) { .wasm-toc { display:none; } .wasm-body { padding:0 16px; } }
+        @media (max-width:600px) { .wasm-hero { padding:48px 0 40px; } .wasm-hero h1 { font-size:28px; } }
+    </style>
+</head>
+<body class="wasm-page">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="c-logo">
+                    <a href="index.html"><img src="img/logo.png" alt="Logo" class="c-logo__img" /></a>
+                    <span class="c-logo__text c-logo__text--white"></span>
+                </div>
+                <nav class="c-nav">
+                    <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span class="c-nav__bar"></span><span class="c-nav__bar"></span><span class="c-nav__bar"></span>
+                    </button>
+                    <div class="c-nav__content">
+                        <ul class="c-list c-list--flex">
+                            <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                            <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+                            <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                            <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+                            <li class="c-list__item"><a href="agents.html" class="c-link c-link--list">CloFix Agent</a></li>
+                            <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+                            <li class="c-list__item c-dropdown">
+                                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">Tools <span class="c-dropdown__chev" aria-hidden="true">▾</span></button>
+                                <ul class="c-dropdown__menu" role="menu">
+                                    <li role="none"><a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a></li>
+                                    <li role="none"><a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="faq.html" class="ticket-button"><button class="c-button c-button--small c-button--secondary">FAQ</button></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <div class="wasm-hero">
+            <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
+                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+                    <div class="wasm-hero__badge">WASM SDK</div>
+                    <span class="wasm-version">v1.0 — WebAssembly Security Modules</span>
+                </div>
+                <h1>CloFix <span>WebAssembly</span> Guide</h1>
+                <p class="wasm-hero__lead">
+                    Write WebAssembly modules to inspect, filter, and control every HTTP request flowing through
+                    <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
+                    threat intelligence, built-in <strong style="color:#fff;">host functions</strong>,
+                    and cross-request state via shared dictionaries. Choose your language: <strong style="color:#ce412b;">Rust</strong>, 
+                    <strong style="color:#3178c6;">AssemblyScript</strong>, <strong style="color:#00add8;">TinyGo</strong>, or <strong style="color:#64b4dc;">C/C++</strong>.
+                </p>
+                <div class="wasm-hero__pills">
+                    <span class="wasm-hero__pill">process_request entry point</span>
+                    <span class="wasm-hero__pill">JSON action returns</span>
+                    <span class="wasm-hero__pill">Threat scoring engine</span>
+                    <span class="wasm-hero__pill">Host function API</span>
+                    <span class="wasm-hero__pill">Rate limiting API</span>
+                    <span class="wasm-hero__pill">JA3 / JA4 fingerprint</span>
+                    <span class="wasm-hero__pill">GeoIP &amp; threat fields</span>
+                    <span class="wasm-hero__pill">Shared dictionaries</span>
+                    <span class="wasm-hero__pill">Multi-language support</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="wasm-body">
+
+            <!-- TOC -->
+            <aside class="wasm-toc">
+                <div class="wasm-toc__title">Contents</div>
+                <a href="#intro">Introduction</a>
+                <a href="#why-wasm">Why WebAssembly?</a>
+                <a href="#languages">Supported Languages</a>
+                <a href="#quick-start">Quick Start</a>
+                <a href="#directory">Directory Structure</a>
+                <a href="#config">Domain Config</a>
+                <a href="#module-req">Module Requirements</a>
+                <a href="#request">Request Object</a>
+                <a href="#response">Response Format</a>
+                <a href="#host-functions">Host Functions</a>
+                <div class="toc-group">Language Examples</div>
+                <a href="#rust-ex">Rust Example</a>
+                <a href="#assemblyscript-ex">AssemblyScript Example</a>
+                <a href="#tinygo-ex">TinyGo Example</a>
+                <div class="toc-group">Security Examples</div>
+                <a href="#ex-rate">Rate Limiter</a>
+                <a href="#ex-geo">Geo Block</a>
+                <a href="#ex-sqli">SQL Injection</a>
+                <a href="#ex-bot">Bot Detection</a>
+                <a href="#ex-admin">Admin Path Block</a>
+                <div class="toc-group">Reference</div>
+                <a href="#testing">Testing</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#best">Best Practices</a>
+            </aside>
+
+            <!-- Content -->
+            <div class="wasm-content">
+
+                <!-- 01 INTRO -->
+                <section class="wasm-section" id="intro">
+                    <h2 class="wasm-section__title"><span class="sec-num">01</span> Introduction</h2>
+                    <p>CloFix WAF executes WebAssembly modules on every HTTP request before it reaches your backend. WASM modules are <strong>sandboxed</strong>, <strong>fast</strong> (near-native performance), and can be written in multiple languages including Rust, AssemblyScript, TinyGo, and C/C++.</p>
+
+                    <div class="wasm-box purple" style="padding:0; overflow:hidden;">
+                        <div style="background: var(--wasm-surface); padding: 18px 24px; border-bottom: 1px solid var(--wasm-border);">
+                            <strong style="display:block; margin-bottom:0;">⚙️ CloFix WAF WebAssembly Architecture</strong>
+                        </div>
+                        <div style="padding: 24px; background: var(--wasm-code); text-align: center; font-family: var(--wasm-mono); font-size: 14px; line-height: 2; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <span style="color: var(--wasm-muted);">HTTP Request</span>
+                            <span style="color: var(--wasm-text);">→</span>
+                            <span style="color: var(--wasm-teal);">WAF Engine<br><span style="font-size: 11px; color: var(--wasm-muted);">(IP, Geo, TLS, Threat Intel)</span></span>
+                            <span style="color: var(--wasm-text);">→</span>
+                            <span style="color: var(--wasm-gold);">WASM VM<br><span style="font-size: 11px; color: var(--wasm-muted);">(Sandboxed per module)</span></span>
+                            <span style="color: var(--wasm-text);">→</span>
+                            <span style="color: var(--wasm-purple);">Shared Dicts<br><span style="font-size: 11px; color: var(--wasm-muted);">(State / Rate Limit)</span></span>
+                            <span style="color: var(--wasm-text);">→</span>
+                            <span style="color: var(--wasm-orange);">Action / Backend</span>
+                        </div>
+                    </div>
+
+                    <div class="wasm-box warn">
+                        <strong>Important</strong>
+                        WASM modules run in a secure sandbox with <strong>memory limits (64MB default)</strong> and <strong>execution timeouts (150ms default)</strong>. Modules that exceed limits are terminated automatically.
+                    </div>
+                </section>
+
+                <!-- 02 WHY WASM -->
+                <section class="wasm-section" id="why-wasm">
+                    <h2 class="wasm-section__title"><span class="sec-num">02</span> Why WebAssembly?</h2>
+                    <div class="lang-grid">
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">⚡</span>
+                                <span class="lang-card__name">Performance</span>
+                            </div>
+                            <div class="lang-card__desc">Near-native execution speed — 10-100x faster than Lua or JavaScript for compute-heavy operations like regex matching and string parsing.</div>
+                        </div>
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">🔒</span>
+                                <span class="lang-card__name">Security</span>
+                            </div>
+                            <div class="lang-card__desc">Memory-safe sandbox with capability-based security. Modules cannot access the filesystem, network, or system resources unless explicitly allowed.</div>
+                        </div>
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">🌍</span>
+                                <span class="lang-card__name">Multi-Language</span>
+                            </div>
+                            <div class="lang-card__desc">Write modules in Rust, AssemblyScript, TinyGo, C/C++, Zig, or any language that compiles to WASM — use your team's preferred language.</div>
+                        </div>
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">🔄</span>
+                                <span class="lang-card__name">Hot Reload</span>
+                            </div>
+                            <div class="lang-card__desc">Update security rules without restarting the WAF. Upload new .wasm files and reload modules instantly via the dashboard.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 03 SUPPORTED LANGUAGES -->
+                <section class="wasm-section" id="languages">
+                    <h2 class="wasm-section__title"><span class="sec-num">03</span> Supported Languages</h2>
+
+                    <div class="lang-grid">
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">🦀</span>
+                                <span class="lang-card__name">Rust</span>
+                                <span class="lang-card__badge lang-rust">RECOMMENDED</span>
+                            </div>
+                            <div class="lang-card__desc">Best performance, memory safety, zero-cost abstractions. Smallest binary size (10-50KB). Production-ready.</div>
+                            <div class="lang-card__pros">✅ Fastest execution | ✅ Memory safe | ✅ Small binary | ✅ Excellent tooling</div>
+                            <div class="lang-card__cons">⚠️ Steep learning curve | ⚠️ Longer compile times</div>
+                        </div>
+
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">📘</span>
+                                <span class="lang-card__name">AssemblyScript</span>
+                                <span class="lang-card__badge lang-ts">TypeScript-like</span>
+                            </div>
+                            <div class="lang-card__desc">Perfect for JavaScript/TypeScript developers. Familiar syntax, good tooling, easy to learn.</div>
+                            <div class="lang-card__pros">✅ Easy to learn | ✅ TypeScript syntax | ✅ Good tooling | ✅ Fast compilation</div>
+                            <div class="lang-card__cons">⚠️ Slower than Rust | ⚠️ Larger binary (100-300KB)</div>
+                        </div>
+
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">🐹</span>
+                                <span class="lang-card__name">TinyGo</span>
+                                <span class="lang-card__badge lang-go">Go-compatible</span>
+                            </div>
+                            <div class="lang-card__desc">Go developers can write WASM modules with familiar syntax. Good performance, easy concurrency.</div>
+                            <div class="lang-card__pros">✅ Familiar for Go devs | ✅ Good concurrency | ✅ Easy deployment</div>
+                            <div class="lang-card__cons">⚠️ Larger binary (500KB-2MB) | ⚠️ Limited standard library</div>
+                        </div>
+
+                        <div class="lang-card">
+                            <div class="lang-card__header">
+                                <span class="lang-card__icon">⚙️</span>
+                                <span class="lang-card__name">C/C++</span>
+                                <span class="lang-card__badge lang-c">Maximum Control</span>
+                            </div>
+                            <div class="lang-card__desc">Traditional systems programming with maximum performance and fine-grained control.</div>
+                            <div class="lang-card__pros">✅ Maximum performance | ✅ Fine-grained control | ✅ Small binary</div>
+                            <div class="lang-card__cons">⚠️ Memory unsafe | ⚠️ Complex build process | ⚠️ Manual memory management</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 04 QUICK START -->
+                <section class="wasm-section" id="quick-start">
+                    <h2 class="wasm-section__title"><span class="sec-num">04</span> Quick Start</h2>
+
+                    <p class="wasm-sub">Step 1: Install Language Toolchain</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">bash</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="c"># Rust (recommended)</span>
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup target add wasm32-unknown-unknown
+
+<span class="c"># AssemblyScript</span>
+npm install -g assemblyscript
+
+<span class="c"># TinyGo</span>
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.30.0/tinygo_0.30.0_amd64.deb
+sudo dpkg -i tinygo_0.30.0_amd64.deb</pre>
+                    </div>
+
+                    <p class="wasm-sub">Step 2: Create Modules Directory</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">bash</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>sudo mkdir -p /etc/clofix/example.com/wasm_modules</pre>
+                    </div>
+
+                    <p class="wasm-sub">Step 3: Write a Simple Module</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust (lib.rs)</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">use</span> serde::{Deserialize, Serialize};
+
+<span class="cp">#[derive(Debug, Deserialize)]</span>
+<span class="k">struct</span> <span class="n">Request</span> {
+    path: <span class="kt">String</span>,
+}
+
+<span class="cp">#[derive(Debug, Serialize)]</span>
+<span class="k">struct</span> <span class="n">Response</span> {
+    allowed: <span class="kt">bool</span>,
+    action: <span class="kt">String</span>,
+}
+
+<span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">process_request</span>(
+    req_ptr: <span class="kt">*const u8</span>,
+    req_len: <span class="kt">usize</span>,
+    resp_ptr: <span class="kt">*mut u8</span>,
+    resp_cap: <span class="kt">usize</span>,
+) -> <span class="kt">usize</span> {
+    <span class="c">// Your logic here</span>
+    <span class="k">let</span> response = Response { allowed: <span class="kc">true</span>, action: <span class="s">"allow"</span>.to_string() };
+    <span class="c">// ... serialize and return</span>
+}</pre>
+                    </div>
+
+                    <p class="wasm-sub">Step 4: Build and Deploy</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">bash</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="c"># Build Rust module</span>
+cargo build --target wasm32-unknown-unknown --release
+cp target/wasm32-unknown-unknown/release/my_module.wasm /etc/clofix/example.com/wasm_modules/
+
+<span class="c"># Reload module</span>
+curl -X POST https://example.com/api/wasm/reload -H <span class="s">"Content-Type: application/json"</span> -d <span class="s">'{"domain":"example.com"}'</span></pre>
+                    </div>
+                </section>
+
+                <!-- 05 DIRECTORY STRUCTURE -->
+                <section class="wasm-section" id="directory">
+                    <h2 class="wasm-section__title"><span class="sec-num">05</span> Directory Structure</h2>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">filesystem</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>/etc/clofix/
+├── example.com/
+│   └── wasm_modules/
+│       ├── rate_limiter.wasm
+│       ├── geo_blocker.wasm
+│       └── sql_injection.wasm
+├── api.example.com/
+│   └── wasm_modules/
+│       └── api_auth.wasm
+└── wasm_global/
+    ├── common_rules.wasm
+    └── threat_intel.wasm</pre>
+                    </div>
+                    <div class="wasm-box">
+                        <strong>Execution Order</strong>
+                        Modules execute in the order they are loaded. Use the dashboard to control module priority. The first module that returns <code>allowed: false</code> stops the pipeline.
+                    </div>
+                </section>
+
+                <!-- 06 DOMAIN CONFIG -->
+                <section class="wasm-section" id="config">
+                    <h2 class="wasm-section__title"><span class="sec-num">06</span> Domain Configuration</h2>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">nginx config</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="c"># /etc/clofix/conf/example.com.conf</span>
+domain example.com {
+    backend https://localhost:8080;
+
+    wasm {
+        enabled on;
+        modules_path /etc/clofix/example.com/wasm_modules;
+        modules rate_limiter.wasm, geo_blocker.wasm;
+        timeout 150ms;
+        max_memory_mb 64;
+        fail_open off;
+        cache_modules on;
+    }
+}</pre>
+                    </div>
+                </section>
+
+                <!-- 07 MODULE REQUIREMENTS -->
+                <section class="wasm-section" id="module-req">
+                    <h2 class="wasm-section__title"><span class="sec-num">07</span> Module Requirements</h2>
+                    <p>A valid WASM module must export three functions:</p>
+                    <ul class="req-list">
+                        <li><code>wasm_alloc(size: usize) -> *mut u8</code> — allocate memory in the WASM linear memory</li>
+                        <li><code>wasm_free(ptr: *mut u8, size: usize)</code> — free allocated memory</li>
+                        <li><code>process_request(req_ptr: *const u8, req_len: usize, resp_ptr: *mut u8, resp_cap: usize) -> usize</code> — main entry point</li>
+                    </ul>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust — memory functions</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">wasm_alloc</span>(size: <span class="kt">usize</span>) -> <span class="kt">*mut u8</span> {
+    <span class="k">let</span> <span class="k">mut</span> buf = <span class="nn">Vec</span>::<span class="n">with_capacity</span>(size);
+    <span class="k">let</span> ptr = buf.<span class="n">as_mut_ptr</span>();
+    <span class="nn">std</span>::<span class="nn">mem</span>::<span class="n">forget</span>(buf);
+    ptr
+}
+
+<span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">wasm_free</span>(ptr: <span class="kt">*mut u8</span>, size: <span class="kt">usize</span>) {
+    <span class="k">unsafe</span> {
+        <span class="k">let</span> _ = <span class="nn">Vec</span>::<span class="n">from_raw_parts</span>(ptr, <span class="n">0</span>, size);
+    }
+}</pre>
+                    </div>
+                </section>
+
+                <!-- 08 REQUEST OBJECT -->
+                <section class="wasm-section" id="request">
+                    <h2 class="wasm-section__title"><span class="sec-num">08</span> Request Object</h2>
+                    <p>The WASM module receives a JSON-serialized request object with the following structure:</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">json</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>{
+  <span class="s">"method"</span>: <span class="s">"GET"</span>,
+  <span class="s">"path"</span>: <span class="s">"/admin"</span>,
+  <span class="s">"query"</span>: <span class="s">"id=1"</span>,
+  <span class="s">"headers"</span>: { <span class="s">"user-agent"</span>: <span class="s">"Mozilla/5.0..."</span> },
+  <span class="s">"cookies"</span>: { <span class="s">"session_id"</span>: <span class="s">"abc123"</span> },
+  <span class="s">"body"</span>: <span class="s">""</span>,
+  <span class="s">"client_ip"</span>: <span class="s">"203.0.113.5"</span>,
+  <span class="s">"user_agent"</span>: <span class="s">"Mozilla/5.0..."</span>,
+  <span class="s">"host"</span>: <span class="s">"example.com"</span>,
+  <span class="s">"country"</span>: <span class="s">"US"</span>,
+  <span class="s">"is_tor"</span>: <span class="kc">false</span>,
+  <span class="s">"is_vpn"</span>: <span class="kc">false</span>,
+  <span class="s">"bot_score"</span>: <span class="mi">25</span>,
+  <span class="s">"ja3"</span>: <span class="s">"..."</span>,
+  <span class="s">"ja4"</span>: <span class="s">"..."</span>,
+  <span class="s">"ip_reputation"</span>: <span class="s">"clean"</span>,
+  <span class="s">"timestamp"</span>: <span class="mi">1709123456</span>
+}</pre>
+                    </div>
+                </section>
+
+                <!-- 09 RESPONSE FORMAT -->
+                <section class="wasm-section" id="response">
+                    <h2 class="wasm-section__title"><span class="sec-num">09</span> Response Format</h2>
+                    <p>Modules must return a JSON-serialized response:</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">json</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>{
+  <span class="s">"allowed"</span>: <span class="kc">false</span>,           <span class="c">// true = allow, false = block</span>
+  <span class="s">"status_code"</span>: <span class="mi">403</span>,          <span class="c">// HTTP status code</span>
+  <span class="s">"action"</span>: <span class="s">"block"</span>,            <span class="c">// allow, block, challenge, redirect, rate_limit</span>
+  <span class="s">"redirect_url"</span>: <span class="s">""</span>,          <span class="c">// URL for redirect action</span>
+  <span class="s">"message"</span>: <span class="s">"Access denied"</span>,   <span class="c">// Human-readable reason</span>
+  <span class="s">"score"</span>: <span class="mi">100</span>,               <span class="c">// Threat score (0-100)</span>
+  <span class="s">"tags"</span>: [<span class="s">"admin_block"</span>]       <span class="c">// Tags for logging</span>
+}</pre>
+                    </div>
+                </section>
+
+                <!-- 10 HOST FUNCTIONS -->
+                <section class="wasm-section" id="host-functions">
+                    <h2 class="wasm-section__title"><span class="sec-num">10</span> Host Functions</h2>
+                    <p>WASM modules can call host functions exposed by the CloFix WAF engine via the <code>clofix</code> namespace.</p>
+
+                    <div class="host-functions-grid">
+                        <div class="func-card">
+                            <div class="func-name">clofix.log(level, msg)</div>
+                            <div class="func-desc">Log a message (level: info, warn, error)</div>
+                            <div class="func-example">clofix.log("info", "Request processed")</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.get_header(name)</div>
+                            <div class="func-desc">Get HTTP request header value</div>
+                            <div class="func-example">let ua = clofix.get_header("User-Agent")</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.get_client_ip()</div>
+                            <div class="func-desc">Get client IP address</div>
+                            <div class="func-example">let ip = clofix.get_client_ip()</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.get_country()</div>
+                            <div class="func-desc">Get country code from client IP</div>
+                            <div class="func-example">let country = clofix.get_country()</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.rate_limit(key, limit, window_secs)</div>
+                            <div class="func-desc">Check rate limit (returns 1 if allowed)</div>
+                            <div class="func-example">if clofix.rate_limit(ip, 100, 60) == 0 { block() }</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.is_tor(ip)</div>
+                            <div class="func-desc">Check if IP is a Tor exit node</div>
+                            <div class="func-example">if clofix.is_tor(client_ip) == 1 { block() }</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.get_reputation(ip)</div>
+                            <div class="func-desc">Get IP reputation score (0-100)</div>
+                            <div class="func-example">let rep = clofix.get_reputation(ip)</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.set_response_header(name, value)</div>
+                            <div class="func-desc">Set response header</div>
+                            <div class="func-example">clofix.set_response_header("X-Custom", "value")</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.sha256(data)</div>
+                            <div class="func-desc">Compute SHA256 hash</div>
+                            <div class="func-example">let hash = clofix.sha256(body)</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.base64_encode(data)</div>
+                            <div class="func-desc">Base64 encode data</div>
+                            <div class="func-example">let b64 = clofix.base64_encode(raw)</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.now()</div>
+                            <div class="func-desc">Get current Unix timestamp</div>
+                            <div class="func-example">let ts = clofix.now()</div>
+                        </div>
+                        <div class="func-card">
+                            <div class="func-name">clofix.url_decode(str)</div>
+                            <div class="func-desc">URL decode a string</div>
+                            <div class="func-example">let decoded = clofix.url_decode(payload)</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 11 RUST EXAMPLE -->
+                <section class="wasm-section" id="rust-ex">
+                    <h2 class="wasm-section__title"><span class="sec-num">11</span> Rust Example — Admin Path Blocker</h2>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust (Cargo.toml)</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>[package]
+name = <span class="s">"admin_blocker"</span>
+version = <span class="s">"0.1.0"</span>
+edition = <span class="s">"2021"</span>
+
+[lib]
+crate-type = [<span class="s">"cdylib"</span>]
+
+[dependencies]
+serde = { version = <span class="s">"1.0"</span>, features = [<span class="s">"derive"</span>] }
+serde_json = <span class="s">"1.0"</span>
+
+[profile.release]
+opt-level = <span class="s">"z"</span>
+lto = <span class="kc">true</span>
+codegen-units = <span class="mi">1</span>
+strip = <span class="kc">true</span></pre>
+                    </div>
+
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust (src/lib.rs)</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">use</span> serde::{Deserialize, Serialize};
+<span class="k">use</span> std::slice;
+
+<span class="cp">#[derive(Debug, Deserialize)]</span>
+<span class="k">struct</span> <span class="n">Request</span> {
+    path: <span class="kt">String</span>,
+    method: <span class="kt">String</span>,
+    client_ip: <span class="kt">String</span>,
+}
+
+<span class="cp">#[derive(Debug, Serialize)]</span>
+<span class="k">struct</span> <span class="n">Response</span> {
+    allowed: <span class="kt">bool</span>,
+    status_code: <span class="kt">u16</span>,
+    action: <span class="kt">String</span>,
+    message: <span class="kt">String</span>,
+    score: <span class="kt">u8</span>,
+    tags: <span class="nb">Vec</span>&lt;<span class="kt">String</span>&gt;,
+}
+
+<span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">wasm_alloc</span>(size: <span class="kt">usize</span>) -> <span class="kt">*mut u8</span> {
+    <span class="k">let</span> <span class="k">mut</span> buf = <span class="nn">Vec</span>::<span class="n">with_capacity</span>(size);
+    <span class="k">let</span> ptr = buf.<span class="n">as_mut_ptr</span>();
+    <span class="nn">std</span>::<span class="nn">mem</span>::<span class="n">forget</span>(buf);
+    ptr
+}
+
+<span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">wasm_free</span>(ptr: <span class="kt">*mut u8</span>, size: <span class="kt">usize</span>) {
+    <span class="k">unsafe</span> {
+        <span class="k">let</span> _ = <span class="nn">Vec</span>::<span class="n">from_raw_parts</span>(ptr, <span class="n">0</span>, size);
+    }
+}
+
+<span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">process_request</span>(
+    req_ptr: <span class="kt">*const u8</span>,
+    req_len: <span class="kt">usize</span>,
+    resp_ptr: <span class="kt">*mut u8</span>,
+    resp_cap: <span class="kt">usize</span>,
+) -> <span class="kt">usize</span> {
+    <span class="c">// Read request JSON</span>
+    <span class="k">let</span> req_data = <span class="k">unsafe</span> { slice::from_raw_parts(req_ptr, req_len) };
+    <span class="k">let</span> request: Request = <span class="nn">serde_json</span>::<span class="n">from_slice</span>(req_data).unwrap();
+
+    <span class="c">// Block /admin-wasm path</span>
+    <span class="k">if</span> request.path == <span class="s">"/admin-wasm"</span> || request.path.<span class="n">starts_with</span>(<span class="s">"/admin-wasm/"</span>) {
+        <span class="k">let</span> response = Response {
+            allowed: <span class="kc">false</span>,
+            status_code: <span class="mi">403</span>,
+            action: <span class="s">"block"</span>.<span class="n">to_string</span>(),
+            message: <span class="s">"Access to /admin-wasm is blocked by WASM module"</span>.<span class="n">to_string</span>(),
+            score: <span class="mi">100</span>,
+            tags: <span class="nb">vec!</span>[<span class="s">"admin_block"</span>.<span class="n">to_string</span>(), <span class="s">"path_block"</span>.<span class="n">to_string</span>()],
+        };
+        <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+    }
+
+    <span class="c">// Block other admin paths</span>
+    <span class="k">let</span> blocked_paths = <span class="nb">vec!</span>[<span class="s">"/admin"</span>, <span class="s">"/wp-admin"</span>, <span class="s">"/administrator"</span>, <span class="s">"/admin.php"</span>];
+    <span class="k">for</span> bp <span class="k">in</span> blocked_paths {
+        <span class="k">if</span> request.path == bp || request.path.<span class="n">starts_with</span>(&format!(<span class="s">"{}/"</span>, bp)) {
+            <span class="k">let</span> response = Response {
+                allowed: <span class="kc">false</span>,
+                status_code: <span class="mi">403</span>,
+                action: <span class="s">"block"</span>.<span class="n">to_string</span>(),
+                message: <span class="nb">format!</span>(<span class="s">"Access to {} is blocked"</span>, bp),
+                score: <span class="mi">90</span>,
+                tags: <span class="nb">vec!</span>[<span class="s">"path_block"</span>.<span class="n">to_string</span>(), <span class="s">"scanner"</span>.<span class="n">to_string</span>()],
+            };
+            <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+        }
+    }
+
+    <span class="c">// Allow all other requests</span>
+    <span class="k">let</span> response = Response {
+        allowed: <span class="kc">true</span>,
+        status_code: <span class="mi">200</span>,
+        action: <span class="s">"allow"</span>.<span class="n">to_string</span>(),
+        message: <span class="s">"Request allowed"</span>.<span class="n">to_string</span>(),
+        score: <span class="mi">0</span>,
+        tags: <span class="nb">vec!</span>[<span class="s">"allowed"</span>.<span class="n">to_string</span>()],
+    };
+    <span class="n">write_response</span>(response, resp_ptr, resp_cap)
+}
+
+<span class="k">fn</span> <span class="nf">write_response</span>(response: Response, resp_ptr: <span class="kt">*mut u8</span>, resp_cap: <span class="kt">usize</span>) -> <span class="kt">usize</span> {
+    <span class="k">let</span> json_data = <span class="nn">serde_json</span>::<span class="n">to_vec</span>(&response).unwrap();
+    <span class="k">if</span> json_data.<span class="n">len</span>() > resp_cap {
+        <span class="k">return</span> <span class="mi">0</span>;
+    }
+    <span class="k">unsafe</span> {
+        <span class="nn">std</span>::<span class="nn">ptr</span>::<span class="n">copy_nonoverlapping</span>(json_data.<span class="n">as_ptr</span>(), resp_ptr, json_data.<span class="n">len</span>());
+    }
+    json_data.<span class="n">len</span>()
+}</pre>
+                    </div>
+                </section>
+
+                <!-- 12 ASSEMBLYSCRIPT EXAMPLE -->
+                <section class="wasm-section" id="assemblyscript-ex">
+                    <h2 class="wasm-section__title"><span class="sec-num">12</span> AssemblyScript Example</h2>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">typescript (admin_blocker.ts)</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="c">// Memory allocation</span>
+<span class="k">export function</span> <span class="nf">wasm_alloc</span>(size: <span class="kt">usize</span>): <span class="kt">usize</span> {
+    <span class="k">return</span> heap.alloc(size);
+}
+
+<span class="k">export function</span> <span class="nf">wasm_free</span>(ptr: <span class="kt">usize</span>, size: <span class="kt">usize</span>): <span class="kt">void</span> {
+    heap.free(ptr);
+}
+
+<span class="c">// Request interface</span>
+<span class="k">interface</span> <span class="kt">Request</span> {
+    path: <span class="kt">string</span>;
+    method: <span class="kt">string</span>;
+    client_ip: <span class="kt">string</span>;
+}
+
+<span class="c">// Response interface</span>
+<span class="k">interface</span> <span class="kt">Response</span> {
+    allowed: <span class="kt">boolean</span>;
+    status_code: <span class="kt">u16</span>;
+    action: <span class="kt">string</span>;
+    message: <span class="kt">string</span>;
+    score: <span class="kt">u8</span>;
+    tags: <span class="kt">string</span>[];
+}
+
+<span class="k">export function</span> <span class="nf">process_request</span>(
+    req_ptr: <span class="kt">usize</span>,
+    req_len: <span class="kt">usize</span>,
+    resp_ptr: <span class="kt">usize</span>,
+    resp_cap: <span class="kt">usize</span>
+): <span class="kt">usize</span> {
+    <span class="c">// Read request</span>
+    <span class="k">const</span> reqData = load&lt;<span class="kt">Uint8Array</span>&gt;(req_ptr, req_len);
+    <span class="k">const</span> reqStr = String.UTF8.decode(reqData);
+    <span class="k">const</span> request = JSON.parse&lt;<span class="kt">Request</span>&gt;(reqStr);
+    
+    <span class="c">// Block /admin-wasm path</span>
+    <span class="k">if</span> (request.path == <span class="s">"/admin-wasm"</span> || request.path.startsWith(<span class="s">"/admin-wasm/"</span>)) {
+        <span class="k">const</span> response: Response = {
+            allowed: <span class="kc">false</span>,
+            status_code: <span class="mi">403</span>,
+            action: <span class="s">"block"</span>,
+            message: <span class="s">"Access to /admin-wasm is blocked"</span>,
+            score: <span class="mi">100</span>,
+            tags: [<span class="s">"admin_block"</span>, <span class="s">"path_block"</span>]
+        };
+        <span class="k">return</span> writeResponse(response, resp_ptr, resp_cap);
+    }
+    
+    <span class="c">// Allow all others</span>
+    <span class="k">const</span> response: Response = {
+        allowed: <span class="kc">true</span>,
+        status_code: <span class="mi">200</span>,
+        action: <span class="s">"allow"</span>,
+        message: <span class="s">"Request allowed"</span>,
+        score: <span class="mi">0</span>,
+        tags: [<span class="s">"allowed"</span>]
+    };
+    <span class="k">return</span> writeResponse(response, resp_ptr, resp_cap);
+}
+
+<span class="k">function</span> <span class="nf">writeResponse</span>(response: Response, resp_ptr: <span class="kt">usize</span>, resp_cap: <span class="kt">usize</span>): <span class="kt">usize</span> {
+    <span class="k">const</span> jsonStr = JSON.stringify(response);
+    <span class="k">const</span> jsonData = String.UTF8.encode(jsonStr);
+    
+    <span class="k">if</span> (jsonData.length > resp_cap) {
+        <span class="k">return</span> <span class="mi">0</span>;
+    }
+    
+    store&lt;<span class="kt">Uint8Array</span>&gt;(resp_ptr, jsonData, jsonData.length);
+    <span class="k">return</span> jsonData.length;
+}</pre>
+                    </div>
+                    <p class="wasm-sub">Build Command</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">bash</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>asc admin_blocker.ts --target release -o admin_blocker.wasm</pre>
+                    </div>
+                </section>
+
+                <!-- 13 TINYGO EXAMPLE -->
+                <section class="wasm-section" id="tinygo-ex">
+                    <h2 class="wasm-section__title"><span class="sec-num">13</span> TinyGo Example</h2>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">go (admin_blocker.go)</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">package</span> main
+
+<span class="k">import</span> (
+    <span class="s">"encoding/json"</span>
+    <span class="s">"strings"</span>
+    <span class="s">"unsafe"</span>
+)
+
+<span class="k">type</span> Request <span class="k">struct</span> {
+    Path     <span class="kt">string</span> <span class="s">`json:"path"`</span>
+    Method   <span class="kt">string</span> <span class="s">`json:"method"`</span>
+    ClientIP <span class="kt">string</span> <span class="s">`json:"client_ip"`</span>
+}
+
+<span class="k">type</span> Response <span class="k">struct</span> {
+    Allowed    <span class="kt">bool</span>     <span class="s">`json:"allowed"`</span>
+    StatusCode <span class="kt">int</span>      <span class="s">`json:"status_code"`</span>
+    Action     <span class="kt">string</span>   <span class="s">`json:"action"`</span>
+    Message    <span class="kt">string</span>   <span class="s">`json:"message"`</span>
+    Score      <span class="kt">int</span>      <span class="s">`json:"score"`</span>
+    Tags       []<span class="kt">string</span> <span class="s">`json:"tags"`</span>
+}
+
+<span class="c">//export wasm_alloc</span>
+<span class="k">func</span> <span class="nf">wasm_alloc</span>(size <span class="kt">uint32</span>) <span class="kt">*byte</span> {
+    buf := make([]<span class="kt">byte</span>, size)
+    <span class="k">return</span> &buf[<span class="mi">0</span>]
+}
+
+<span class="c">//export wasm_free</span>
+<span class="k">func</span> <span class="nf">wasm_free</span>(ptr <span class="kt">*byte</span>, size <span class="kt">uint32</span>) {}
+
+<span class="c">//export process_request</span>
+<span class="k">func</span> <span class="nf">process_request</span>(req_ptr <span class="kt">*byte</span>, req_len <span class="kt">uint32</span>, resp_ptr <span class="kt">*byte</span>, resp_cap <span class="kt">uint32</span>) <span class="kt">uint32</span> {
+    <span class="c">// Read request</span>
+    reqData := make([]<span class="kt">byte</span>, req_len)
+    <span class="k">for</span> i := <span class="kt">uint32</span>(<span class="mi">0</span>); i < req_len; i++ {
+        reqData[i] = *(*<span class="kt">byte</span>)(<span class="kt">unsafe</span>.Pointer(<span class="kt">uintptr</span>(<span class="kt">unsafe</span>.Pointer(req_ptr)) + <span class="kt">uintptr</span>(i)))
+    }
+    
+    <span class="k">var</span> request Request
+    json.Unmarshal(reqData, &request)
+    
+    <span class="c">// Block /admin-wasm path</span>
+    <span class="k">if</span> request.Path == <span class="s">"/admin-wasm"</span> || strings.HasPrefix(request.Path, <span class="s">"/admin-wasm/"</span>) {
+        response := Response{
+            Allowed:    <span class="kc">false</span>,
+            StatusCode: <span class="mi">403</span>,
+            Action:     <span class="s">"block"</span>,
+            Message:    <span class="s">"Access to /admin-wasm is blocked by WASM module"</span>,
+            Score:      <span class="mi">100</span>,
+            Tags:       []<span class="kt">string</span>{<span class="s">"admin_block"</span>, <span class="s">"path_block"</span>},
+        }
+        <span class="k">return</span> writeResponse(response, resp_ptr, resp_cap)
+    }
+    
+    <span class="c">// Allow all others</span>
+    response := Response{
+        Allowed:    <span class="kc">true</span>,
+        StatusCode: <span class="mi">200</span>,
+        Action:     <span class="s">"allow"</span>,
+        Message:    <span class="s">"Request allowed"</span>,
+        Score:      <span class="mi">0</span>,
+        Tags:       []<span class="kt">string</span>{<span class="s">"allowed"</span>},
+    }
+    <span class="k">return</span> writeResponse(response, resp_ptr, resp_cap)
+}
+
+<span class="k">func</span> <span class="nf">writeResponse</span>(response Response, resp_ptr <span class="kt">*byte</span>, resp_cap <span class="kt">uint32</span>) <span class="kt">uint32</span> {
+    respData, _ := json.Marshal(response)
+    <span class="k">if</span> <span class="kt">uint32</span>(len(respData)) > resp_cap {
+        <span class="k">return</span> <span class="mi">0</span>
+    }
+    <span class="k">for</span> i := <span class="mi">0</span>; i < len(respData); i++ {
+        *(*<span class="kt">byte</span>)(<span class="kt">unsafe</span>.Pointer(<span class="kt">uintptr</span>(<span class="kt">unsafe</span>.Pointer(resp_ptr)) + <span class="kt">uintptr</span>(i))) = respData[i]
+    }
+    <span class="k">return</span> <span class="kt">uint32</span>(len(respData))
+}
+
+<span class="k">func</span> <span class="nf">main</span>() {}</pre>
+                    </div>
+                    <p class="wasm-sub">Build Command</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">bash</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre>tinygo build -o admin_blocker.wasm -target wasm ./admin_blocker.go</pre>
+                    </div>
+                </section>
+
+                <!-- 14 SECURITY EXAMPLES -->
+                <section class="wasm-section">
+                    <h2 class="wasm-section__title"><span class="sec-num">14</span> Security Examples</h2>
+
+                    <!-- Rate Limiter -->
+                    <p class="wasm-sub" id="ex-rate">Rate Limiter Module</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">fn</span> <span class="nf">process_request</span>(...) -> <span class="kt">usize</span> {
+    <span class="k">let</span> ip = request.client_ip;
+    
+    <span class="c">// Call host function for rate limiting</span>
+    <span class="k">let</span> allowed = <span class="nn">clofix</span>::<span class="n">rate_limit</span>(ip, <span class="mi">100</span>, <span class="mi">60</span>);
+    
+    <span class="k">if</span> allowed == <span class="mi">0</span> {
+        <span class="k">let</span> response = Response {
+            allowed: <span class="kc">false</span>,
+            status_code: <span class="mi">429</span>,
+            action: <span class="s">"rate_limit"</span>,
+            message: <span class="s">"Too many requests"</span>,
+            score: <span class="mi">50</span>,
+            tags: <span class="nb">vec!</span>[<span class="s">"rate_limit"</span>],
+        };
+        <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+    }
+    
+    <span class="c">// ... rest of logic</span>
+}</pre>
+                    </div>
+
+                    <!-- Geo Block -->
+                    <p class="wasm-sub" id="ex-geo">Geo Block Module</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">fn</span> <span class="nf">process_request</span>(...) -> <span class="kt">usize</span> {
+    <span class="k">let</span> blocked_countries = <span class="nb">vec!</span>[<span class="s">"XX"</span>, <span class="s">"YY"</span>];
+    
+    <span class="k">if</span> blocked_countries.<span class="n">contains</span>(&request.country) {
+        <span class="k">let</span> response = Response {
+            allowed: <span class="kc">false</span>,
+            status_code: <span class="mi">403</span>,
+            action: <span class="s">"block"</span>,
+            message: <span class="nb">format!</span>(<span class="s">"Access from {} is blocked"</span>, request.country),
+            score: <span class="mi">80</span>,
+            tags: <span class="nb">vec!</span>[<span class="s">"geo_block"</span>],
+        };
+        <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+    }
+    
+    <span class="c">// ... rest</span>
+}</pre>
+                    </div>
+
+                    <!-- SQL Injection -->
+                    <p class="wasm-sub" id="ex-sqli">SQL Injection Detector</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">fn</span> <span class="nf">process_request</span>(...) -> <span class="kt">usize</span> {
+    <span class="k">let</span> sql_patterns = <span class="nb">vec!</span>[
+        <span class="s">r"(?i)union.*select"</span>,
+        <span class="s">r"(?i)or\s+1\s*=\s*1"</span>,
+        <span class="s">r"(?i)sleep\s*\("</span>,
+        <span class="s">r"(?i)select.*from.*information_schema"</span>,
+    ];
+    
+    <span class="k">let</span> norm = <span class="nn">clofix</span>::<span class="n">normalize_payload</span>(&request.query);
+    
+    <span class="k">for</span> pattern <span class="k">in</span> sql_patterns {
+        <span class="k">if</span> <span class="nn">regex</span>::<span class="n">is_match</span>(pattern, &norm) {
+            <span class="k">let</span> response = Response {
+                allowed: <span class="kc">false</span>,
+                status_code: <span class="mi">403</span>,
+                action: <span class="s">"block"</span>,
+                message: <span class="s">"SQL injection detected"</span>,
+                score: <span class="mi">100</span>,
+                tags: <span class="nb">vec!</span>[<span class="s">"sql_injection"</span>],
+            };
+            <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+        }
+    }
+    
+    <span class="c">// ... rest</span>
+}</pre>
+                    </div>
+
+                    <!-- Bot Detection -->
+                    <p class="wasm-sub" id="ex-bot">Bot Detection Module</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">fn</span> <span class="nf">process_request</span>(...) -> <span class="kt">usize</span> {
+    <span class="c">// Use pre-computed bot score from WAF</span>
+    <span class="k">if</span> request.bot_score > <span class="mi">80</span> {
+        <span class="k">let</span> response = Response {
+            allowed: <span class="kc">false</span>,
+            status_code: <span class="mi">403</span>,
+            action: <span class="s">"block"</span>,
+            message: <span class="s">"Bot detected"</span>,
+            score: <span class="mi">90</span>,
+            tags: <span class="nb">vec!</span>[<span class="s">"bot"</span>],
+        };
+        <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+    }
+    
+    <span class="c">// Check Tor exit nodes</span>
+    <span class="k">if</span> request.is_tor {
+        <span class="k">let</span> response = Response {
+            allowed: <span class="kc">false</span>,
+            status_code: <span class="mi">403</span>,
+            action: <span class="s">"block"</span>,
+            message: <span class="s">"Tor exit node blocked"</span>,
+            score: <span class="mi">70</span>,
+            tags: <span class="nb">vec!</span>[<span class="s">"tor"</span>],
+        };
+        <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+    }
+    
+    <span class="c">// ... rest</span>
+}</pre>
+                    </div>
+
+                    <!-- Admin Path Block -->
+                    <p class="wasm-sub" id="ex-admin">Admin Path Protection</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="k">fn</span> <span class="nf">process_request</span>(...) -> <span class="kt">usize</span> {
+    <span class="k">let</span> admin_paths = <span class="nb">vec!</span>[
+        <span class="s">"/admin"</span>, <span class="s">"/administrator"</span>, <span class="s">"/wp-admin"</span>,
+        <span class="s">"/admin.php"</span>, <span class="s">"/admin/login"</span>, <span class="s">"/admin-panel"</span>,
+    ];
+    
+    <span class="k">for</span> path <span class="k">in</span> admin_paths {
+        <span class="k">if</span> request.path == path || request.path.<span class="n">starts_with</span>(&<span class="nb">format!</span>(<span class="s">"{}/"</span>, path)) {
+            <span class="k">let</span> allowed_ips = <span class="nb">vec!</span>[<span class="s">"192.168.1.100"</span>, <span class="s">"10.0.0.50"</span>];
+            
+            <span class="k">if</span> !allowed_ips.<span class="n">contains</span>(&request.client_ip) {
+                <span class="k">let</span> response = Response {
+                    allowed: <span class="kc">false</span>,
+                    status_code: <span class="mi">403</span>,
+                    action: <span class="s">"block"</span>,
+                    message: <span class="nb">format!</span>(<span class="s">"Access to {} from {} is not allowed"</span>, path, request.client_ip),
+                    score: <span class="mi">100</span>,
+                    tags: <span class="nb">vec!</span>[<span class="s">"admin_block"</span>, <span class="s">"unauthorized"</span>],
+                };
+                <span class="k">return</span> <span class="n">write_response</span>(response, resp_ptr, resp_cap);
+            }
+        }
+    }
+    
+    <span class="c">// ... rest</span>
+}</pre>
+                    </div>
+                </section>
+
+                <!-- 15 TESTING -->
+                <section class="wasm-section" id="testing">
+                    <h2 class="wasm-section__title"><span class="sec-num">15</span> Testing</h2>
+                    <p class="wasm-sub">Test Commands</p>
+                    <div class="wasm-code">
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">bash</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <pre><span class="c"># Watch WAF logs</span>
+sudo tail -f /var/log/clofix/waf.log | grep -i '\[WASM\]'
+
+<span class="c"># Test normal request (should allow)</span>
+curl https://example.com/
+
+<span class="c"># Test blocked admin path (should return 403)</span>
+curl https://example.com/admin-wasm
+
+<span class="c"># Test with custom header</span>
+curl -H <span class="s">"X-API-Key: test"</span> https://example.com/api/endpoint
+
+<span class="c"># View module stats</span>
+curl https://example.com/api/wasm/stats?domain=example.com
+
+<span class="c"># Reload all modules</span>
+curl -X POST https://example.com/api/wasm/reload -H <span class="s">"Content-Type: application/json"</span> -d <span class="s">'{"domain":"example.com"}'</span>
+
+<span class="c"># Upload new module</span>
+curl -X POST https://example.com/api/wasm/upload \
+  -F <span class="s">"wasm_file=@my_module.wasm"</span> \
+  -F <span class="s">"domain=example.com"</span></pre>
+                    </div>
+                </section>
+
+                <!-- 16 TROUBLESHOOTING -->
+                <section class="wasm-section" id="troubleshooting">
+                    <h2 class="wasm-section__title"><span class="sec-num">16</span> Troubleshooting</h2>
+                    <div class="wasm-table-wrap">
+                        <table class="wasm-table">
+                            <thead><tr><th>Error / Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+                            <tbody>
+                                <tr><td>Module not loading</span></td><td>Missing required exports</td><td>Ensure wasm_alloc, wasm_free, process_request are exported</td></tr>
+                                <tr><td>Memory allocation failed</td><td>Module exceeds memory limit</td><td>Increase max_memory_mb in config or optimize module</td></tr>
+                                <tr><td>Execution timeout (503)</td><td>Module exceeds timeout limit</td><td>Increase timeout or optimize code</td></tr>
+                                <tr><td>JSON parse error</td><td>Invalid response format</td><td>Ensure response follows required JSON schema</td></tr>
+                                <tr><td>Host function not found</td><td>Function not registered</td><td>Check clofix.* function name spelling</td></tr>
+                                <tr><td>Changes not taking effect</td><td>Module not reloaded</td><td>Call /api/wasm/reload endpoint or restart WAF</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 17 BEST PRACTICES -->
+                <section class="wasm-section" id="best">
+                    <h2 class="wasm-section__title"><span class="sec-num">17</span> Best Practices</h2>
+                    <ol class="wasm-ol" style="padding-left:24px;margin:12px 0 24px;">
+                        <li><strong>Keep modules small</strong> — Compile with optimizations (<code>opt-level="z"</code>, LTO, strip) for minimal binary size</li>
+                        <li><strong>Use Rust for production</strong> — Best performance, memory safety, and smallest binary size</li>
+                        <li><strong>Leverage host functions</strong> — Use clofix.rate_limit(), clofix.get_country(), etc. instead of implementing yourself</li>
+                        <li><strong>Return early</strong> — Check block-list lookups first before expensive operations</li>
+                        <li><strong>Set appropriate timeouts</strong> — 150ms default is good for most modules; increase for complex regex operations</li>
+                        <li><strong>Test with curl</strong> — Always test modules with curl before deploying to production</li>
+                        <li><strong>Monitor dashboard</strong> — Use the WASM dashboard to track module execution stats and errors</li>
+                        <li><strong>Hot reload for updates</strong> — Use the reload API to update modules without restarting the WAF</li>
+                        <li><strong>Use shared dictionaries</strong> — For cross-request state like rate limiting counters</li>
+                        <li><strong>Log attacks</strong> — Use clofix.log_attack() for structured attack logging with full request context</li>
+                    </ol>
+
+                    <div class="wasm-box">
+                        <strong>Need Help?</strong>
+                        For CloFix WAF support, WebAssembly module development questions, or to report issues, visit the
+                        <a href="support.html" style="color:var(--wasm-teal);">Support</a> section or
+                        <a href="contact.html" style="color:var(--wasm-teal);">contact us</a>.
+                    </div>
+                </section>
+
+            </div><!-- .wasm-content -->
+        </div><!-- .wasm-body -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+                <ul class="social">
+                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
+                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"><p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p></div>
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        /* Nav toggle */
+        const navToggle  = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+        const dropdowns  = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns(){ dropdowns.forEach(dd=>{ dd.classList.remove('open'); const b=dd.querySelector('.c-dropdown__toggle'); if(b)b.setAttribute('aria-expanded','false'); }); }
+        if(navToggle&&navContent){
+            navToggle.setAttribute('aria-expanded','false');
+            navToggle.addEventListener('click',()=>{ const o=navContent.classList.toggle('active'); document.body.classList.toggle('nav-open',o); navToggle.setAttribute('aria-expanded',o?'true':'false'); if(!o)closeAllDropdowns(); });
+            navContent.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); }));
+            document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&navContent.classList.contains('active')){ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+            window.addEventListener('resize',()=>{ if(window.innerWidth>768){ document.body.classList.remove('nav-open'); navContent.classList.remove('active'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+        }
+        dropdowns.forEach(dd=>{ const t=dd.querySelector('.c-dropdown__toggle'); if(!t)return; t.addEventListener('click',e=>{ e.preventDefault();e.stopPropagation(); const w=!dd.classList.contains('open'); closeAllDropdowns(); if(w){dd.classList.add('open');t.setAttribute('aria-expanded','true');} }); });
+        document.addEventListener('click',e=>{ if(navContent&&navContent.classList.contains('active'))return; if(!e.target.closest('.c-dropdown'))closeAllDropdowns(); });
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a=>a.addEventListener('click',()=>{ closeAllDropdowns(); if(navContent)navContent.classList.remove('active'); document.body.classList.remove('nav-open'); if(navToggle)navToggle.setAttribute('aria-expanded','false'); }));
+
+        /* Header height */
+        (function(){ const h=document.querySelector('.header'); function s(){ if(h)document.documentElement.style.setProperty('--header-h',h.offsetHeight+'px'); } window.addEventListener('load',s); window.addEventListener('resize',s); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(s); })();
+
+        /* GA4 */
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date()); gtag('config','G-WP02RFXGSE');
+
+        /* Copy button */
+        function wasmCopy(btn){
+            const pre=btn.closest('.wasm-code').querySelector('pre');
+            navigator.clipboard.writeText(pre.innerText).then(()=>{ btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy',1800); });
+        }
+
+        /* TOC active on scroll */
+        const tocLinks = document.querySelectorAll('.wasm-toc a');
+        const tocEl    = document.querySelector('.wasm-toc');
+        const sections = document.querySelectorAll('[id]');
+        const obs = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    tocLinks.forEach(l=>l.classList.remove('toc-active'));
+                    const a=document.querySelector('.wasm-toc a[href="#'+e.target.id+'"]');
+                    if(a){
+                        a.classList.add('toc-active');
+                        if(tocEl){ const tr=tocEl.getBoundingClientRect(),lr=a.getBoundingClientRect(),rt=lr.top-tr.top+tocEl.scrollTop,rb=rt+lr.height; if(rt<tocEl.scrollTop+32)tocEl.scrollTo({top:rt-32,behavior:'smooth'}); else if(rb>tocEl.scrollTop+tocEl.clientHeight-32)tocEl.scrollTo({top:rb-tocEl.clientHeight+32,behavior:'smooth'}); }
+                    }
+                }
+            });
+        },{rootMargin:'-25% 0px -65% 0px'});
+        sections.forEach(s=>obs.observe(s));
+    </script>
+</body>
+</html>
