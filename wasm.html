@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="canonical" href="https://clofix.com/agent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <meta name="description"
+        content="CloFix WASM is an AI-powered WebAssembly security module delivering real-time threat scoring, bot protection, and plugin-based extensibility.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix WASM | WebAssembly-Powered Edge Security">
+    <meta property="og:description"
+        content="Lightweight, intelligent, and WASM-native - CloFix WASM delivers sandboxed security plugins, behavioral analysis, and proactive protection.">
+    <meta property="og:url" content="https://clofix.com/agent">
+    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+
+    <!-- LinkedIn -->
+    <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix WASM | WebAssembly-Powered Edge Security">
+    <meta name="twitter:description"
+        content="CloFix WASM delivers real-time behavioral analysis, fingerprinting, and plugin-based security through WebAssembly sandboxes.">
+    <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+    <meta name="twitter:site" content="@clofix19">
+
+    <!-- WhatsApp -->
+    <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
+
+    <link rel="icon" type="image/png" href="img/clofix.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+
+    <!-- Your main stylesheet -->
+    <link href="./style.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <title>CloFix WASM | WebAssembly Security Module</title>
+    
+    <style>
+        /* Additional styles for WASM benefits section */
+        .wasm-benefits {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .benefit-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .benefit-card p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        
+        .plugin-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .plugin-tag {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .sandbox-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+          <div class="header__wrapper">
+            <div class="c-logo">
+              <a href="index.html">
+                <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+              </a>
+              <span class="c-logo__text c-logo__text--white"></span>
+            </div>
+            <nav class="c-nav">
+              <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+                <span class="c-nav__bar"></span>
+              </button>
+
+              <div class="c-nav__content">
+                <ul class="c-list c-list--flex">
+                  <li class="c-list__item">
+                    <a href="pricing.html" class="c-link c-link--list">Pricing</a>
+                  </li>
+                  <li class="c-list__item">
+                    <a href="#section-services" class="c-link c-link--list">Services</a>
+                  </li>
+                  <li class="c-list__item">
+                    <a href="about.html" class="c-link c-link--list">About</a>
+                  </li>
+                  <li class="c-list__item">
+                    <a href="features.html" class="c-link c-link--list">Features</a>
+                  </li>
+                  <li class="c-list__item">
+                      <a href="wasm.html" class="c-link c-link--list">CloFix WASM</a>
+                  </li>
+                  <li class="c-list__item">
+                    <a href="contact.html" class="c-link c-link--list">Contact</a>
+                  </li>
+                  <!-- Others mega dropdown -->
+                  <li class="c-list__item c-dropdown c-dropdown--mega">
+                    <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                      Others
+                      <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                    </button>
+
+                    <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                      <div class="c-dropdown__mega-wrap">
+                        <div class="c-dropdown__mega-grid">
+                          <!-- Documentation -->
+                          <div class="c-dropdown__mega-col">
+                            <h4 class="c-dropdown__mega-title">Documentation</h4>
+                            <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">
+                              CloFix LUA Script
+                            </a>
+                            <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">
+                              CloFix JS Script
+                            </a>
+                            <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">
+                              CloFix CRS Script
+                            </a>
+                            <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">
+                              CloFix WASM
+                            </a>
+                            <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">
+                              CloFix WAF Workflow
+                            </a>
+                          </div>
+
+                          <!-- Tools -->
+                          <div class="c-dropdown__mega-col">
+                            <h4 class="c-dropdown__mega-title">Tools</h4>
+                            <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">
+                              CVE Checker
+                            </a>
+                            <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">
+                              CloFix Pentest
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <a href="faq.html" class="ticket-button">
+                    <button class="c-button c-button--small c-button--secondary">
+                      FAQ
+                    </button>
+                  </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+    <main>
+        <section class="clofix-agent-section">
+            <div class="container clofix-agent-wrapper">
+                <!-- LEFT: Content -->
+                <div class="clofix-agent-content">
+                    <!-- Title -->
+                    <h1 class="agent-title">
+                        <span class="glow-gradient">WASM-Powered Edge Security</span>
+                    </h1>
+                    
+                    <p class="agent-description" style="font-size: 1.1rem; margin-bottom: 1rem;">
+                        ⚡ <strong class="glow-gradient">Ultra-Lightweight · Sandboxed · Extensible</strong>
+                    </p>
+
+                    <!-- Main description - NO Nginx/Apache references -->
+                    <p class="agent-description">
+                        <strong class="glow-gradient">CloFix WASM</strong> is a lightweight, intelligent security
+                        module powered by <strong class="glow-gradient">WebAssembly (WASM)</strong> technology,
+                        designed to integrate seamlessly with the <strong class="glow-gradient">CloFix AI engine</strong> and
+                        <strong class="glow-gradient">API</strong>. This advanced edge security solution monitors and
+                        analyzes every incoming request to your system in real-time using sophisticated techniques like
+                        <strong class="glow-gradient">behavioral analysis</strong>, <strong class="glow-gradient">device
+                            fingerprinting</strong>, <strong class="glow-gradient">IP reputation scoring</strong>, and
+                        <strong class="glow-gradient">machine learning–based threat detection</strong> - all running inside secure WebAssembly sandboxes.
+                    </p>
+
+                    <!-- WASM Sandbox + Plugins + Benefits Section -->
+                    <div class="wasm-benefits">
+                        
+                        
+                        <h2 class="agent-subtitle" style="margin-top: 0; font-size: 1.3rem;">🔒 WebAssembly Sandbox Security</h2>
+                        <p class="agent-description" style="margin-bottom: 1rem;">
+                            Every security module runs inside an isolated WebAssembly sandbox with strict memory boundaries, 
+                            capability-based security, and no direct system access. This ensures that even if a plugin is compromised,
+                            the host system remains completely protected. The sandbox provides:
+                        </p>
+                        <ul class="feature-list" style="margin-bottom: 1.5rem;">
+                            <li><strong>Memory Isolation</strong> - Linear memory separation prevents buffer overflows and memory corruption</li>
+                            <li><strong>Capability-Based Security</strong> - Plugins only access explicitly granted permissions</li>
+                            <li><strong>Resource Limitations</strong> - CPU and memory quotas prevent resource exhaustion attacks</li>
+                            <li><strong>Secure by Default</strong> — No unsafe system calls, filesystem access, or network capabilities without explicit grants</li>
+                        </ul>
+                        
+                        <h2 class="agent-subtitle" style="font-size: 1.3rem;">🔌 Plugin Ecosystem</h2>
+                        <p class="agent-description">
+                            Extend and customize your security posture with our growing plugin marketplace. Write security rules in your preferred language 
+                            (Rust, C/C++, AssemblyScript, TinyGo) and deploy instantly:
+                        </p>
+                        
+                        
+                    </div>
+
+                    <!-- Additional enterprise features - NO Nginx/Apache references -->
+                    <div id="extraContent" class="extra-collapsed" style="margin-top: 1.5rem;">
+                        <h2 class="agent-subtitle">Enterprise-Grade Protection Features</h2>
+                        <ul class="terms__list">
+                            <li><strong>Zero-Day Attack Prevention</strong>: Protects against unknown vulnerabilities and emerging threats</li>
+                            <li><strong>API Security & Rate Limiting</strong>: Advanced protection for REST APIs and microservices</li>
+                            <li><strong>DDoS Mitigation</strong>: Intelligent traffic filtering to prevent distributed denial-of-service attacks</li>
+                            <li><strong>SQL Injection Protection</strong>: Real-time detection and blocking of database attack attempts</li>
+                            <li><strong>Cross-Site Scripting (XSS) Prevention</strong>: Advanced filtering to prevent malicious script injection</li>
+                            <li><strong>Brute Force Protection</strong>: Intelligent login attempt monitoring and blocking</li>
+                            <li><strong>Geographic Blocking</strong>: Country and region-based access control</li>
+                        </ul>
+                        
+                        <h2 class="agent-subtitle">Real-Time Dashboard & Analytics</h2>
+                        <p class="agent-description">
+                            Monitor your security status with comprehensive analytics including threat trends, blocked attacks, traffic
+                            patterns, and performance metrics. Our intuitive dashboard provides actionable insights for security
+                            optimization and compliance reporting.
+                        </p>
+                    </div>
+
+                    <!-- Read more link -->
+                    <a href="https://clofix.com/clofix-wasm.html" id="toggleLink" class="read-more-link" target="_blank" rel="noopener noreferrer">Explore WASM Architecture →</a>
+                </div>
+
+                <!-- RIGHT: Image with WASM labels -->
+                <div class="clofix-agent-image ai-visual">
+                    <img src="img/clofix-agent-new.png" alt="CloFix WASM" />
+                    <!-- Floating labels highlighting WASM ecosystem -->
+                    <div class="floating-label top-right">
+                        <div class="icon-block purple">⚡</div>
+                        <div><strong>CloFix WASM Core Runtime</strong><br /><small>Rust · AssemblyScript · TinyGo · C/C++</small></div>
+                    </div>
+                    <div class="floating-label middle-left">
+                        <div class="icon-block blue">🏖️</div>
+                        <div><strong>Sandboxed Plugins</strong><br /><small>Memory-isolated · Capability-secure</small></div>
+                    </div>
+                    <div class="floating-label bottom-right">
+                        <div class="icon-block green">🔌</div>
+                        <div><strong>Plugin Marketplace</strong><br /><small>Extend · Customize · Deploy</small></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand">
+                    <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+                </a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+                <ul class="social">
+                    <li class="social-li">
+                        <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
+                            <img src="img/facebook_clofix.png" alt="Facebook" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://x.com/clofix19" target="_blank">
+                            <img src="img/X_clofix.png" alt="X" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://www.linkedin.com/company/clofix-infotech" target="_blank">
+                            <img src="img/linkedin_clofix.png" alt="LinkedIn" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://wa.me/8801850603126" target="_blank">
+                            <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
+                        </a>
+                    </li>
+                    <li class="social-li">
+                        <a href="https://youtube.com/@clofix-infotech" target="_blank">
+                          <img src="img/youtube_clofix.png" alt="YouTube" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="about.html">About CloFix</a></li>
+                    <li><a href="contact.html">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="support.html">CloFix WAF Support Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="release.html">Release</a></li>
+                    <li><a href="partner.html">Become A Partner</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                </ul>
+            </div>
+
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="footer__text">© 2025 © Clofix – Copyright All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+
+        // Helpers
+        const dropdowns = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns() {
+            dropdowns.forEach(dd => {
+                dd.classList.remove('open');
+                const btn = dd.querySelector('.c-dropdown__toggle');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        // Mobile nav toggle + body lock + aria-expanded
+        if (navToggle && navContent) {
+            navToggle.setAttribute('aria-expanded', 'false');
+
+            navToggle.addEventListener('click', () => {
+                const open = navContent.classList.toggle('active');
+                document.body.classList.toggle('nav-open', open);
+                navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (!open) closeAllDropdowns();
+            });
+
+            // Close menu when any nav link clicked
+            navContent.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                });
+            });
+
+            // Close menu with ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navContent.classList.contains('active')) {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+
+            // If resized to desktop, ensure body scroll is restored and panel closed
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('nav-open');
+                    navContent.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        // Dropdown toggle (accordion on mobile, click on desktop)
+        dropdowns.forEach(dd => {
+            const toggle = dd.querySelector('.c-dropdown__toggle');
+            if (!toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const willOpen = !dd.classList.contains('open');
+
+                // Close all
+                closeAllDropdowns();
+
+                // Open current if it was closed
+                if (willOpen) {
+                    dd.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+        document.addEventListener('click', (e) => {
+            const panelOpen = navContent && navContent.classList.contains('active');
+            if (panelOpen) return;
+            if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+        });
+
+        // Also close dropdowns explicitly when a dropdown link is clicked
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+            a.addEventListener('click', () => {
+                closeAllDropdowns();
+                if (navContent) navContent.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WP02RFXGSE');
+
+        // Ensure header height sync
+        (function () {
+            const headerEl = document.querySelector('.header');
+            function syncHeaderHeight() {
+                if (!headerEl) return;
+                document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+            }
+            window.addEventListener('load', syncHeaderHeight);
+            window.addEventListener('resize', syncHeaderHeight);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncHeaderHeight);
+            }
+        })();
+        
+        // Keep extra content collapsed but accessible
+        const extraContent = document.getElementById('extraContent');
+        if (extraContent) {
+            extraContent.classList.add('extra-collapsed');
+        }
+        
+        // Handle read more link toggling for extra content (optional expand)
+        const readMoreLink = document.getElementById('toggleLink');
+        if (readMoreLink && readMoreLink.getAttribute('href') === '#') {
+            // If we wanted expand/collapse, but now it's external link, so no action needed
+        }
+    </script>
+</body>
+
+</html>

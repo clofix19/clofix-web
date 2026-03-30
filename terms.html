@@ -52,15 +52,12 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <a class="c-link" href="#">
-          <div class="c-logo">
-            <!-- <img src="img/logo.png" alt="Logo" class="c-logo__img" /> -->
-            <a href="index.html">
-              <img src="img/logo.png" alt="Logo" class="c-logo__img" />
-            </a>
-            <span class="c-logo__text c-logo__text--white"></span>
-          </div>
-        </a>
+        <div class="c-logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="Logo" class="c-logo__img" />
+          </a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
         <nav class="c-nav">
           <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="c-nav__bar"></span>
@@ -74,7 +71,7 @@
                 <a href="pricing.html" class="c-link c-link--list">Pricing</a>
               </li>
               <li class="c-list__item">
-                <a href="index.html#section-services" class="c-link c-link--list">Services</a>
+                <a href="#section-services" class="c-link c-link--list">Services</a>
               </li>
               <li class="c-list__item">
                 <a href="about.html" class="c-link c-link--list">About</a>
@@ -83,32 +80,60 @@
                 <a href="features.html" class="c-link c-link--list">Features</a>
               </li>
               <li class="c-list__item">
-                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+                  <a href="wasm.html" class="c-link c-link--list">CloFix WASM</a>
               </li>
               <li class="c-list__item">
                 <a href="contact.html" class="c-link c-link--list">Contact</a>
               </li>
-              <!-- Tools dropdown -->
-              <li class="c-list__item c-dropdown">
+              <!-- Others mega dropdown -->
+              <li class="c-list__item c-dropdown c-dropdown--mega">
                 <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                  Tools
+                  Others
                   <span class="c-dropdown__chev" aria-hidden="true">▾</span>
                 </button>
-                <ul class="c-dropdown__menu" role="menu">
-                  <li role="none">
-                    <a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a>
-                  </li>
-                </ul>
+
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <!-- Documentation -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">
+                          CloFix LUA Script
+                        </a>
+                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">
+                          CloFix JS Script
+                        </a>
+                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">
+                          CloFix CRS Script
+                        </a>
+                        <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">
+                          CloFix WASM
+                        </a>
+                        <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">
+                          CloFix WAF Workflow
+                        </a>
+                      </div>
+
+                      <!-- Tools -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">
+                          CVE Checker
+                        </a>
+                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">
+                          CloFix Pentest
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
-            </ul>
-            <a href="faq.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">
-                FAQ
-              </button>
-            </a>
+              <a href="faq.html" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">
+                  FAQ
+                </button>
+              </a>
           </div>
         </nav>
       </div>
@@ -295,31 +320,153 @@
 </body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 <script>
-  const navToggle = document.getElementById('navToggle');
-  const navContent = document.querySelector('.c-nav__content');
+        // ===== Your existing nav + dropdown logic (kept intact) =====
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
 
-  navToggle.addEventListener('click', () => {
-    navContent.classList.toggle('active');
-  });
+        const dropdowns = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns() {
+            dropdowns.forEach(dd => {
+                dd.classList.remove('open');
+                const btn = dd.querySelector('.c-dropdown__toggle');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+        if (navToggle && navContent) {
+            navToggle.setAttribute('aria-expanded', 'false');
 
-  gtag('config', 'G-WP02RFXGSE');
+            navToggle.addEventListener('click', () => {
+                const open = navContent.classList.toggle('active');
+                document.body.classList.toggle('nav-open', open);
+                navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (!open) closeAllDropdowns();
+            });
 
-  (function () {
-    const headerEl = document.querySelector('.header');
-    function syncHeaderHeight() {
-      if (!headerEl) return;
-      document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
-    }
-    window.addEventListener('load', syncHeaderHeight);
-    window.addEventListener('resize', syncHeaderHeight);
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(syncHeaderHeight);
-    }
-  })();
-</script>
+            navContent.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navContent.classList.contains('active')) {
+                    navContent.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    document.body.classList.remove('nav-open');
+                    navContent.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        dropdowns.forEach(dd => {
+            const toggle = dd.querySelector('.c-dropdown__toggle');
+            if (!toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const willOpen = !dd.classList.contains('open');
+                closeAllDropdowns();
+                if (willOpen) {
+                    dd.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const panelOpen = navContent && navContent.classList.contains('active');
+            if (panelOpen) return;
+            if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+        });
+
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+            a.addEventListener('click', () => {
+                closeAllDropdowns();
+                if (navContent) navContent.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        (function () {
+            const headerEl = document.querySelector('.header');
+            function syncHeaderHeight() {
+                if (!headerEl) return;
+                document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+            }
+            window.addEventListener('load', syncHeaderHeight);
+            window.addEventListener('resize', syncHeaderHeight);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncHeaderHeight);
+            }
+        })();
+
+        // ===== Optional: smooth scroll for in-page anchor =====
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const id = a.getAttribute('href');
+                if (!id || id === "#") return;
+                const el = document.querySelector(id);
+                if (!el) return;
+                e.preventDefault();
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+
+        // ===== Page micro-interaction: triage flow cycles + badge updates =====
+        (function () {
+            const triage = document.getElementById('odsTriage');
+            const badge = document.getElementById('odsStatusBadge');
+            if (!triage) return;
+
+            const steps = Array.from(triage.querySelectorAll('.ods-step'));
+            if (!steps.length) return;
+
+            const labels = ["On-call: READY", "Triage: IN PROGRESS", "Stabilizing: ACTIVE", "RCA: UNDERWAY", "Optimizing: RUNNING"];
+            let i = 0;
+
+            function apply(idx) {
+                steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+
+                steps.forEach((s, k) => {
+                    const chip = s.querySelector('.ods-chip');
+                    if (!chip) return;
+                    chip.classList.remove('ods-chip--good', 'ods-chip--warn', 'ods-chip--bad');
+
+                    if (k < idx) {
+                        chip.textContent = "OK";
+                        chip.classList.add('ods-chip--good');
+                    } else if (k === idx) {
+                        chip.textContent = "RUN";
+                        chip.classList.add('ods-chip--warn');
+                    } else {
+                        chip.textContent = "Pending";
+                    }
+                });
+
+                if (badge) badge.lastChild.textContent = " " + (labels[idx + 1] || labels[0]);
+            }
+
+            apply(0);
+            setInterval(() => {
+                i = (i + 1) % steps.length;
+                apply(i);
+            }, 2400);
+        })();
+    </script>
 
 </html>

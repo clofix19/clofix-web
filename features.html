@@ -79,32 +79,60 @@
                 <a href="features.html" class="c-link c-link--list">Features</a>
               </li>
               <li class="c-list__item">
-                <a href="agents.html" class="c-link c-link--list">CloFix Agent</a>
+                  <a href="wasm.html" class="c-link c-link--list">CloFix WASM</a>
               </li>
               <li class="c-list__item">
                 <a href="contact.html" class="c-link c-link--list">Contact</a>
               </li>
-              <!-- Tools dropdown -->
-              <li class="c-list__item c-dropdown">
+              <!-- Others mega dropdown -->
+              <li class="c-list__item c-dropdown c-dropdown--mega">
                 <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                  Tools
+                  Others
                   <span class="c-dropdown__chev" aria-hidden="true">▾</span>
                 </button>
-                <ul class="c-dropdown__menu" role="menu">
-                  <li role="none">
-                    <a role="menuitem" href="cve.html" class="c-link c-link--list">CVE Checker</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="pentest.html" class="c-link c-link--list">Clofix Pentest</a>
-                  </li>
-                </ul>
+
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <!-- Documentation -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">
+                          CloFix LUA Script
+                        </a>
+                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">
+                          CloFix JS Script
+                        </a>
+                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">
+                          CloFix CRS Script
+                        </a>
+                        <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">
+                          CloFix WASM
+                        </a>
+                        <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">
+                          CloFix WAF Workflow
+                        </a>
+                      </div>
+
+                      <!-- Tools -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">
+                          CVE Checker
+                        </a>
+                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">
+                          CloFix Pentest
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
-            </ul>
-            <a href="faq.html" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">
-                FAQ
-              </button>
-            </a>
+              <a href="faq.html" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">
+                  FAQ
+                </button>
+              </a>
           </div>
         </nav>
       </div>
