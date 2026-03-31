@@ -637,7 +637,7 @@
                 <a href="features.html" class="c-link c-link--list">Features</a>
               </li>
               <li class="c-list__item">
-                  <a href="agents.html" class="c-link c-link--list">CloFix WASM</a>
+                  <a href="wasm.html" class="c-link c-link--list">CloFix WASM</a>
               </li>
               <li class="c-list__item">
                 <a href="contact.html" class="c-link c-link--list">Contact</a>
@@ -1939,13 +1939,6 @@
   /* ═══════════════════════════════
      JAVASCRIPT — CloFix Docs
   ═══════════════════════════════ */
-
-  /* ── Nav Toggle ── */
-  const navToggle = document.getElementById('navToggle');
-  const navContent = document.querySelector('.c-nav__content');
-  if (navToggle && navContent) navToggle.addEventListener('click', () => navContent.classList.toggle('active'));
-  (function(){ const h = document.querySelector('.header'); function s(){ if(h) document.documentElement.style.setProperty('--header-h', h.offsetHeight+'px'); } window.addEventListener('load',s); window.addEventListener('resize',s); })();
-
   /* ── Reading Progress ── */
   const bar = document.getElementById('progress-bar');
   window.addEventListener('scroll', () => {
@@ -1958,16 +1951,7 @@
   window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400), {passive:true});
   backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-  /* ── ToC Active Link ── */
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const sections = [];
-  tocLinks.forEach(l => {
-    const href = l.getAttribute('href');
-    if (href && href.startsWith('#')) {
-      const el = document.getElementById(href.slice(1));
-      if (el) sections.push({el, link: l});
-    }
-  });
+  
   function updateToc() {
     let current = null;
     sections.forEach(({el}) => { if (el.getBoundingClientRect().top <= 110) current = el.id; });
@@ -2066,6 +2050,56 @@
     });
   });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        /* Nav toggle */
+        const navToggle  = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+        const dropdowns  = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns(){ dropdowns.forEach(dd=>{ dd.classList.remove('open'); const b=dd.querySelector('.c-dropdown__toggle'); if(b)b.setAttribute('aria-expanded','false'); }); }
+        if(navToggle&&navContent){
+            navToggle.setAttribute('aria-expanded','false');
+            navToggle.addEventListener('click',()=>{ const o=navContent.classList.toggle('active'); document.body.classList.toggle('nav-open',o); navToggle.setAttribute('aria-expanded',o?'true':'false'); if(!o)closeAllDropdowns(); });
+            navContent.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); }));
+            document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&navContent.classList.contains('active')){ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+            window.addEventListener('resize',()=>{ if(window.innerWidth>768){ document.body.classList.remove('nav-open'); navContent.classList.remove('active'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+        }
+        dropdowns.forEach(dd=>{ const t=dd.querySelector('.c-dropdown__toggle'); if(!t)return; t.addEventListener('click',e=>{ e.preventDefault();e.stopPropagation(); const w=!dd.classList.contains('open'); closeAllDropdowns(); if(w){dd.classList.add('open');t.setAttribute('aria-expanded','true');} }); });
+        document.addEventListener('click',e=>{ if(navContent&&navContent.classList.contains('active'))return; if(!e.target.closest('.c-dropdown'))closeAllDropdowns(); });
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a=>a.addEventListener('click',()=>{ closeAllDropdowns(); if(navContent)navContent.classList.remove('active'); document.body.classList.remove('nav-open'); if(navToggle)navToggle.setAttribute('aria-expanded','false'); }));
+
+        /* Header height */
+        (function(){ const h=document.querySelector('.header'); function s(){ if(h)document.documentElement.style.setProperty('--header-h',h.offsetHeight+'px'); } window.addEventListener('load',s); window.addEventListener('resize',s); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(s); })();
+
+        /* GA4 */
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date()); gtag('config','G-WP02RFXGSE');
+
+        /* Copy button */
+        function wasmCopy(btn){
+            const pre=btn.closest('.wasm-code').querySelector('pre');
+            navigator.clipboard.writeText(pre.innerText).then(()=>{ btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy',1800); });
+        }
+
+        /* TOC active on scroll */
+        const tocLinks = document.querySelectorAll('.wasm-toc a');
+        const tocEl    = document.querySelector('.wasm-toc');
+        const sections = document.querySelectorAll('[id]');
+        const obs = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    tocLinks.forEach(l=>l.classList.remove('toc-active'));
+                    const a=document.querySelector('.wasm-toc a[href="#'+e.target.id+'"]');
+                    if(a){
+                        a.classList.add('toc-active');
+                        if(tocEl){ const tr=tocEl.getBoundingClientRect(),lr=a.getBoundingClientRect(),rt=lr.top-tr.top+tocEl.scrollTop,rb=rt+lr.height; if(rt<tocEl.scrollTop+32)tocEl.scrollTo({top:rt-32,behavior:'smooth'}); else if(rb>tocEl.scrollTop+tocEl.clientHeight-32)tocEl.scrollTo({top:rb-tocEl.clientHeight+32,behavior:'smooth'}); }
+                    }
+                }
+            });
+        },{rootMargin:'-25% 0px -65% 0px'});
+        sections.forEach(s=>obs.observe(s));
+    </script>
   
 </body>
 </html>
