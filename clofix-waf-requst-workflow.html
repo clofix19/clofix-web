@@ -303,7 +303,7 @@
     .pn-active::after { content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--cf-blue); border-radius: 2px 2px 0 0; }
     .pn-n { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: #9ca3af; margin-bottom: 7px; letter-spacing: 0.06em; }
     .pn-icon { font-size: 1.5rem; margin-bottom: 7px; }
-    .pn-title { font-size: 0.6rem; font-weight: 700; color: var(--ink-2); text-align: center; line-height: 1.35; letter-spacing: 0.02em; }
+    .pn-title { font-size: 0.6rem; font-weight: 700; color: #e7855f; text-align: center; line-height: 1.35; letter-spacing: 0.02em; }
     .pn-sub { font-size: 0.52rem; color: #9ca3af; margin-top: 4px; text-align: center; }
 
     .pn-arrow { display: flex; align-items: center; padding: 0 3px; flex-shrink: 0; }
@@ -719,18 +719,19 @@
       <div class="toc-group">
         <div class="toc-group-label">Inspection Stages</div>
         <ul class="toc-list">
-          <li><a href="#stage-01" class="toc-link"><span class="tl-num">01</span> Behavior Analyzer</a></li>
-          <li><a href="#stage-02" class="toc-link"><span class="tl-num">02</span> CRS Engine</a></li>
-          <li><a href="#stage-03" class="toc-link"><span class="tl-num">03</span> JS Engine</a></li>
-          <li><a href="#stage-04" class="toc-link"><span class="tl-num">04</span> Lua Engine</a></li>
-          <li><a href="#stage-05" class="toc-link"><span class="tl-num">05</span> AI Neural Engine</a></li>
-          <li><a href="#stage-06" class="toc-link"><span class="tl-num">06</span> CloFix Core</a></li>
-          <li><a href="#stage-07" class="toc-link"><span class="tl-num">07</span> Custom Rules</a></li>
-          <li><a href="#stage-08" class="toc-link"><span class="tl-num">08</span> JS Injector</a></li>
-          <li><a href="#stage-09" class="toc-link"><span class="tl-num">09</span> Load Balancer</a></li>
-          <li><a href="#stage-10" class="toc-link"><span class="tl-num">10</span> Backend Server</a></li>
+            <li><a href="#stage-01" class="toc-link"><span class="tl-num">01</span> Behavior Analyzer</a></li>
+            <li><a href="#stage-02" class="toc-link"><span class="tl-num">02</span> WASM Engine</a></li>
+            <li><a href="#stage-03" class="toc-link"><span class="tl-num">03</span> CRS Engine</a></li>
+            <li><a href="#stage-04" class="toc-link"><span class="tl-num">04</span> JS Engine</a></li>
+            <li><a href="#stage-05" class="toc-link"><span class="tl-num">05</span> Lua Engine</a></li>
+            <li><a href="#stage-06" class="toc-link"><span class="tl-num">06</span> AI Neural Engine</a></li>
+            <li><a href="#stage-07" class="toc-link"><span class="tl-num">07</span> CloFix Core</a></li>
+            <li><a href="#stage-08" class="toc-link"><span class="tl-num">08</span> Custom Rules</a></li>
+            <li><a href="#stage-09" class="toc-link"><span class="tl-num">09</span> JS Injector</a></li>
+            <li><a href="#stage-10" class="toc-link"><span class="tl-num">10</span> Load Balancer</a></li>
+            <li><a href="#stage-11" class="toc-link"><span class="tl-num">11</span> Backend Server</a></li>
         </ul>
-      </div>
+    </div>
 
       <div class="toc-group">
         <div class="toc-group-label">Reference</div>
@@ -768,7 +769,7 @@
         </div>
 
         <div class="stats-strip">
-          <div class="stat-cell"><div class="sc-num">10</div><div class="sc-label">Inspection Stages</div></div>
+          <div class="stat-cell"><div class="sc-num">11</div><div class="sc-label">Inspection Stages</div></div>
           <div class="stat-cell"><div class="sc-num">&lt;2ms</div><div class="sc-label">Avg Latency P99</div></div>
           <div class="stat-cell"><div class="sc-num">99.97%</div><div class="sc-label">Threat Detection</div></div>
           <div class="stat-cell"><div class="sc-num">500K+</div><div class="sc-label">Rules &amp; Signatures</div></div>
@@ -792,23 +793,25 @@
           <div class="pipeline-rail" id="pipelineRail">
             <div class="pn" data-s="1" role="button" tabindex="0"><div class="pn-n">01</div><div class="pn-icon">📈</div><div class="pn-title">BEHAVIOR ANALYZER</div><div class="pn-sub">Heuristics & Scoring</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:0s"></div></div>
-            <div class="pn" data-s="2" role="button" tabindex="0"><div class="pn-n">02</div><div class="pn-icon">📜</div><div class="pn-title">CRS ENGINE</div><div class="pn-sub">Signature Matching</div></div>
+            <div class="pn" data-s="2" role="button" tabindex="0"><div class="pn-n">02</div><div class="pn-icon">📜</div><div class="pn-title">WASM ENGINE</div><div class="pn-sub">Custom Logic (8+ langs)</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.2s"></div></div>
-            <div class="pn" data-s="3" role="button" tabindex="0"><div class="pn-n">03</div><div class="pn-icon">⚙️</div><div class="pn-title">JS ENGINE</div><div class="pn-sub">Runtime Analysis</div></div>
+            <div class="pn" data-s="3" role="button" tabindex="0"><div class="pn-n">03</div><div class="pn-icon">📜</div><div class="pn-title">CRS ENGINE</div><div class="pn-sub">Signature Matching</div></div>
+            <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.2s"></div></div>
+            <div class="pn" data-s="4" role="button" tabindex="0"><div class="pn-n">04</div><div class="pn-icon">📜</div><div class="pn-title">JS ENGINE</div><div class="pn-sub">Runtime Analysis</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.4s"></div></div>
-            <div class="pn" data-s="4" role="button" tabindex="0"><div class="pn-n">04</div><div class="pn-icon">🔧</div><div class="pn-title">LUA ENGINE</div><div class="pn-sub">Custom Logic</div></div>
+            <div class="pn" data-s="5" role="button" tabindex="0"><div class="pn-n">05</div><div class="pn-icon">📜</div><div class="pn-title">LUA ENGINE</div><div class="pn-sub">Custom Logic</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.6s"></div></div>
-            <div class="pn" data-s="5" role="button" tabindex="0"><div class="pn-n">05</div><div class="pn-icon">🧠</div><div class="pn-title">AI NEURAL</div><div class="pn-sub">Anomaly Score</div></div>
+            <div class="pn" data-s="6" role="button" tabindex="0"><div class="pn-n">06</div><div class="pn-icon">🧠</div><div class="pn-title">AI NEURAL</div><div class="pn-sub">Anomaly Score</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:.8s"></div></div>
-            <div class="pn" data-s="6" role="button" tabindex="0"><div class="pn-n">06</div><div class="pn-icon">🛡️</div><div class="pn-title">CLOFIX CORE</div><div class="pn-sub">Risk Arbiter</div></div>
+            <div class="pn" data-s="7" role="button" tabindex="0"><div class="pn-n">07</div><div class="pn-icon">🛡️</div><div class="pn-title">CLOFIX CORE</div><div class="pn-sub">Risk Arbiter</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1s"></div></div>
-            <div class="pn" data-s="7" role="button" tabindex="0"><div class="pn-n">07</div><div class="pn-icon">⚖️</div><div class="pn-title">CUSTOM RULES</div><div class="pn-sub">Policy Verdict</div></div>
+            <div class="pn" data-s="8" role="button" tabindex="0"><div class="pn-n">08</div><div class="pn-icon">⚖️</div><div class="pn-title">CUSTOM RULES</div><div class="pn-sub">Policy Verdict</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1.2s"></div></div>
-            <div class="pn" data-s="8" role="button" tabindex="0"><div class="pn-n">08</div><div class="pn-icon">💉</div><div class="pn-title">JS INJECTOR</div><div class="pn-sub">Client-side Shield</div></div>
+            <div class="pn" data-s="9" role="button" tabindex="0"><div class="pn-n">09</div><div class="pn-icon">💉</div><div class="pn-title">JS INJECTOR</div><div class="pn-sub">Client-side Shield</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1.4s"></div></div>
-            <div class="pn" data-s="9" role="button" tabindex="0"><div class="pn-n">09</div><div class="pn-icon">⚖️</div><div class="pn-title">LOAD BALANCER</div><div class="pn-sub">Traffic Distribution</div></div>
+            <div class="pn" data-s="10" role="button" tabindex="0"><div class="pn-n">10</div><div class="pn-icon">⚖️</div><div class="pn-title">LOAD BALANCER</div><div class="pn-sub">Traffic Distribution</div></div>
             <div class="pn-arrow"><div class="arrow-dot" style="animation-delay:1.6s"></div></div>
-            <div class="pn" data-s="10" role="button" tabindex="0"><div class="pn-n">10</div><div class="pn-icon">🏢</div><div class="pn-title">BACKEND SERVER</div><div class="pn-sub">Origin Response</div></div>
+            <div class="pn" data-s="11" role="button" tabindex="0"><div class="pn-n">11</div><div class="pn-icon">🏢</div><div class="pn-title">BACKEND SERVER</div><div class="pn-sub">Origin Response</div></div>
           </div>
         </div>
         <div class="pipeline-panel" id="pipelinePanel">
@@ -842,15 +845,32 @@
         </table>
       </div>
 
-      <!-- ══════════ STAGE 01 ══════════ -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CLOFIX WAF — COMPLETE PIPELINE DOCUMENTATION (11 STAGES)       -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- ══════════ STAGE 01 — BEHAVIOR ANALYZER ══════════ -->
       <h2 class="doc-h2" id="stage-01">📈 Stage 01: Behavior Analyzer — Browser vs Tool Detection Engine</h2>
-      <div class="stage-card">
-        <div class="stage-card-header" data-card="s01-body">
-          <div class="sch-num">01</div><div class="sch-text"><div class="sch-title">Behavior Analyzer — Production Heuristics (13-layer)</div><div class="sch-sub">JA3/JA4 TLS, velocity, path entropy, timing CV, error rate, injection patterns, UA rotation, burst detection</div><div class="sch-badges"><span class="sch-badge">JA3 fingerprint DB</span><span class="sch-badge">Rate limiting 60rpm</span><span class="sch-badge">Tool scoring 0-100</span></div></div><span class="sch-chevron">▼</span>
+      <div class="stage-card" id="s01">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s01-body" tabindex="0">
+          <div class="sch-num">01</div>
+          <div class="sch-icon">📈</div>
+          <div class="sch-text">
+            <div class="sch-title">Behavior Analyzer — Production Heuristics (13-layer)</div>
+            <div class="sch-sub">JA3/JA4 TLS, velocity, path entropy, timing CV, error rate, injection patterns, UA rotation, burst detection</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-blue">JA3 fingerprint DB</span>
+              <span class="sch-badge b-blue">Rate limiting 60rpm</span>
+              <span class="sch-badge b-amber">Tool scoring 0-100</span>
+              <span class="sch-badge b-green">13-Layer Heuristics</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
         </div>
         <div class="stage-card-body" id="s01-body">
           <div class="scb-inner">
             <p class="scb-lead"><strong>Production-hardened behavioral analysis engine</strong> — implements 13-layer heuristic detection (velocity, entropy, timing consistency, static asset ratio, error rate, sequential enumeration, parameter fuzzing, UA rotation, response time CV, burst patterns). Uses <strong>JA3 TLS fingerprinting</strong> with 85+ browser signature database (Chrome 120+, Firefox 121, Safari 17, Edge, Brave, Tor). Calculates composite tool score (0–100) with configurable thresholds. Blocks ~40% of malicious traffic at near-zero cost.</p>
+            
             <div class="scb-grid">
               <div>
                 <div class="scb-col-label">🔍 Detection Layers (13+ Signals)</div>
@@ -866,673 +886,737 @@
                   <li><div class="op-dot"></div><div><strong>UA Rotation:</strong> >3 distinct User-Agents in 10 requests = evasion attempt (+25pts).</div></li>
                   <li><div class="op-dot"></div><div><strong>Response Time CV:</strong> <15% uniform timing = automation (+20pts). Tools produce consistent response times.</div></li>
                   <li><div class="op-dot"></div><div><strong>Burst Detection:</strong> 20+ requests after silence = +30pts. Sudden spikes after idle period.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Injection Pattern Detection:</strong> SQLi/XSS/LFI signatures in query string = +50pts. Patterns: '--, 1=1--, &lt;script, javascript:, union+select, exec(, base64_decode(.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Empty/Minimal UA:</strong> len(UA)=0 → +45pts, len(UA)<20 → +35pts, len(UA)<40 → +15pts.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Path Traversal:</strong> ../, ..\\, %2e%2e patterns = +45pts.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Injection Pattern Detection:</strong> SQLi/XSS/LFI signatures in query string = +50pts.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Empty/Minimal UA:</strong> len(UA)=0 → +45pts, len(UA)<20 → +35pts.</div></li>
                 </ul>
-                <div class="callout"><span class="callout-icon">🎯</span> <strong>Scoring Logic:</strong> Score ≥85 = TOOL (block/challenge). Score 65–84 = monitor (challenge). Score 30–64 = elevated suspicion. Score &lt;30 = ALLOW. Established sessions (>10 min) with clean history reduce suspicion by -15pts. Block duration = 15min.</div>
+                <div class="callout"><span class="callout-icon">🎯</span> <strong>Scoring Logic:</strong> Score ≥85 = TOOL (block/challenge). Score 65–84 = monitor (challenge). Score 30–64 = elevated suspicion. Score &lt;30 = ALLOW. Block duration = 15min.</div>
               </div>
               <div>
-                <div class="scb-col-label">⚙️ Configuration (Default BEConfig)</div>
-                <div class="code-block">toolVelocityThreshold   = 120   // req/min
-  toolEntropyThreshold    = 0.5   // path diversity
-  toolTimingCVThreshold   = 0.20  // 20% variance
-  toolErrorThreshold      = 0.30  // 30% error rate
-  toolAssetThreshold      = 0.08  // 8% static assets
-  toolSequentialThreshold = 0.25  // 25% sequential
-  browserScoreThreshold   = 85    // >85 = tool
-  learningScoreThreshold  = 65    // monitor zone
+                <div class="scb-col-label">⚙️ Configuration (Default)</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-01">Copy</button>
+                  <pre class="code-block" id="code-01"><span class="c-comment"># Behavior Analyzer Configuration</span>
+      <span class="c-key">behavior_analyzer</span> {
+        <span class="c-key">tool_velocity_threshold</span>   <span class="c-num">120</span>;
+        <span class="c-key">tool_entropy_threshold</span>    <span class="c-num">0.5</span>;
+        <span class="c-key">tool_timing_cv_threshold</span>  <span class="c-num">0.20</span>;
+        <span class="c-key">tool_error_threshold</span>      <span class="c-num">0.30</span>;
+        <span class="c-key">tool_asset_threshold</span>      <span class="c-num">0.08</span>;
+        <span class="c-key">browser_score_threshold</span>   <span class="c-num">85</span>;
+        <span class="c-key">learning_score_threshold</span>  <span class="c-num">65</span>;
 
-  rate_limit {
-    requests_per_minute 60;
-    burst 100;
-    key $binary_remote_addr;
-    action challenge;
-  }</div>
-                <div class="code-block"><span class="c-comment">// JA3 Browser Database (excerpt)</span>
-  "e7d97a9fb3e5f8c9c2c1b5f8c9c2c1b5": {Name:"Chrome 120+", Family:"Chrome"},
-  "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6": {Name:"Firefox 121", Family:"Firefox"},
-  "e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0": {Name:"Safari 17", Family:"Safari"}</div>
-                <div class="callout"><strong>📌 ProcessRequest Logic:</strong> If JA3 matches browser DB → immediate ALLOW. Otherwise profile key = JA3 hash or IP fallback. Profile tracks last 200 requests, analyzes last 10min window via AnalyzeBehavior(). Tool score computed from 16+ signals. Block duration = 15min with auto-expiry.</div>
+        <span class="c-key">rate_limit</span> {
+          <span class="c-key">requests_per_minute</span> <span class="c-num">60</span>;
+          <span class="c-key">burst</span>               <span class="c-num">100</span>;
+          <span class="c-key">action</span>              <span class="c-str">challenge</span>;
+        }
+      }</pre>
+                </div>
+                <div class="callout tip">
+                  <span class="callout-icon">💡</span>
+                  <div><strong>ProcessRequest Logic:</strong> If JA3 matches browser DB → immediate ALLOW. Otherwise profile key = JA3 hash or IP fallback. Profile tracks last 200 requests, analyzes last 10min window via AnalyzeBehavior(). Tool score computed from 16+ signals.</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- STAGE 02 -->
-      <div class="stage-card stage-section" id="s02">
+      <!-- ══════════ STAGE 02 — WASM ENGINE ══════════ -->
+      <h2 class="doc-h2" id="stage-02">🦀 Stage 02: WASM Engine — WebAssembly Custom Logic</h2>
+      <div class="stage-card" id="s02">
         <div class="stage-card-header" role="button" aria-expanded="false" data-card="s02-body" tabindex="0">
           <div class="sch-num">02</div>
-          <div class="sch-icon">📜</div>
+          <div class="sch-icon">🦀</div>
           <div class="sch-text">
-            <div class="sch-title">CRS Engine — OWASP Core Rule Set v4</div>
-            <div class="sch-sub">Industry-standard signature-based detection with 25 rule files, paranoia levels 1–4, and anomaly scoring</div>
+            <div class="sch-title">WASM Engine — WebAssembly Custom Logic</div>
+            <div class="sch-sub">High-performance execution sandbox for custom security logic in 8+ languages with memory isolation and timeout protection</div>
             <div class="sch-badges">
-              <span class="sch-badge b-red">SQLi</span><span class="sch-badge b-red">XSS</span><span class="sch-badge b-red">LFI/RFI</span><span class="sch-badge b-red">SSRF</span><span class="sch-badge b-red">Cmd Injection</span><span class="sch-badge b-blue">Anomaly Scoring</span>
+              <span class="sch-badge b-green">8+ Languages</span>
+              <span class="sch-badge b-blue">40+ Host APIs</span>
+              <span class="sch-badge b-red">Memory Isolation</span>
+              <span class="sch-badge b-cyan">85µs Latency</span>
+              <span class="sch-badge b-blue">Hot Reload</span>
+              <span class="sch-badge b-amber">Validator Tool</span>
             </div>
           </div>
           <span class="sch-chevron">▼</span>
         </div>
         <div class="stage-card-body" id="s02-body">
           <div class="scb-inner">
-            <p class="scb-lead">The CRS Engine implements the complete OWASP Core Rule Set v4 — the industry benchmark for WAF rule coverage. It processes requests through four phases (request headers, request body, response headers, response body) applying over 200 individual rules across 25 rule files. Rather than binary block/allow decisions per rule, it uses anomaly scoring — each matched rule adds points; the total is forwarded to CloFix Core.</p>
-            <div class="attack-row">
-              <span class="atk-tag">SQL Injection (942xxx)</span><span class="atk-tag">XSS (941xxx)</span><span class="atk-tag">LFI (930xxx)</span><span class="atk-tag">RFI (931xxx)</span><span class="atk-tag">Cmd Injection (932xxx)</span><span class="atk-tag">SSRF (933xxx)</span><span class="atk-tag">NoSQL Injection</span><span class="atk-tag">Prototype Pollution</span><span class="atk-tag">XXE</span><span class="atk-tag">SSTI</span>
-            </div>
+            <p class="scb-lead"><strong>High-performance WebAssembly execution sandbox</strong> — run custom security logic in 8+ languages with memory isolation, timeout protection, and full access to CloFix's security API. Perfect for implementing organization-specific threat detection, API authentication, bot mitigation, and request transformation logic that no generic WAF rule can express.</p>
+            
             <div class="scb-grid">
               <div>
-                <div class="scb-col-label">Rule File Coverage</div>
+                <div class="scb-col-label">🚀 Supported Languages</div>
                 <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>920xxx — Protocol Enforcement:</strong> HTTP method restrictions, header completeness validation, Content-Type enforcement, character encoding validation. Blocks malformed requests that evade downstream parsing.</div></li>
-                  <li><div class="op-dot"></div><div><strong>930xxx — LFI / Path Traversal:</strong> Detects <code>../</code> sequences, null byte injection, URL-encoded traversal (<code>%2e%2e%2f</code>), and double-encoding techniques used to escape the web root.</div></li>
-                  <li><div class="op-dot"></div><div><strong>931xxx — RFI (Remote File Inclusion):</strong> Blocks <code>http://</code> and <code>ftp://</code> in file parameters, PHP wrapper schemes (<code>php://</code>, <code>data://</code>), and cloud metadata endpoint URLs (<code>169.254.169.254</code>).</div></li>
-                  <li><div class="op-dot"></div><div><strong>932xxx — Command Injection:</strong> Unix shell metacharacters (<code>;</code>, <code>|</code>, <code>&amp;&amp;</code>, backtick), Windows command separators, OS command sequences (whoami, passwd, /etc/shadow), and command substitution patterns.</div></li>
-                  <li><div class="op-dot"></div><div><strong>933xxx — PHP Injection:</strong> PHP function calls in user input (<code>eval()</code>, <code>system()</code>, <code>exec()</code>), PHP wrappers, and PHP variable injection patterns.</div></li>
-                  <li><div class="op-dot"></div><div><strong>941xxx — XSS:</strong> HTML event handlers (<code>onerror</code>, <code>onload</code>), JavaScript protocol URIs (<code>javascript:</code>), DOM sinks, and obfuscated script injection using character encoding.</div></li>
-                  <li><div class="op-dot"></div><div><strong>942xxx — SQL Injection:</strong> UNION-based, time-based blind (<code>SLEEP()</code>, <code>WAITFOR DELAY</code>), boolean-based blind, error-based, and stacked queries. Covers MySQL, MSSQL, Oracle, PostgreSQL, and SQLite dialects.</div></li>
+                  <li><div class="op-dot"></div><div><strong>TinyGo (recommended):</strong> Native WASI support, tiny binary sizes (50-200KB), excellent performance. Compile with <code>tinygo build -target wasi -o module.wasm</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Rust (wasm32-wasi):</strong> Memory-safe, zero-cost abstractions. Compile with <code>cargo build --target wasm32-wasi --release</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong>C/C++ (wasi-sdk):</strong> Maximum performance. Use <code>clang --target=wasm32-wasi -nostdlib -Wl,--no-entry</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong>AssemblyScript:</strong> TypeScript-like syntax compiling directly to WASM.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Zig:</strong> Modern systems language with WASM tier-1 support.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Grain:</strong> Functional language compiling to WASM.</div></li>
+                  <li><div class="op-dot"></div><div><strong>SwiftWASM:</strong> Swift for server-side WASM.</div></li>
                 </ul>
-              </div>
-              <div>
-                <div class="scb-col-label">Paranoia Levels Explained</div>
-                <div class="cmp-table-wrap" style="margin:0 0 14px;">
+
+                <div class="scb-col-label" style="margin-top:1rem;">🛡️ Security Hardening</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot red"></div><div><strong>No filesystem access:</strong> Blocks <code>path_open</code>, <code>fd_read</code>, <code>fd_seek</code> — modules cannot read/write files.</div></li>
+                  <li><div class="op-dot red"></div><div><strong>No network access:</strong> Blocks <code>sock_recv</code>, <code>sock_send</code>, <code>sock_accept</code> — no external connections.</div></li>
+                  <li><div class="op-dot green"></div><div><strong>Memory sandboxing:</strong> Each module has isolated linear memory — no cross-module interference.</div></li>
+                  <li><div class="op-dot green"></div><div><strong>Execution timeouts:</strong> Default 100ms timeout prevents runaway modules.</div></li>
+                  <li><div class="op-dot green"></div><div><strong>Memory limits:</strong> Configurable up to 64MB per module.</div></li>
+                  <li><div class="op-dot blue"></div><div><strong>Import allowlist:</strong> Only <code>env</code> and <code>wasi_snapshot_preview1</code> modules allowed.</div></li>
+                </ul>
+
+                <div class="scb-col-label" style="margin-top:1rem;">📊 Performance Metrics</div>
+                <div class="cmp-table-wrap">
                   <table class="cmp-table">
-                    <thead> <tr><th>Level</th><th>Description</th><th>Use Case</th></tr> </thead>
+                    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
                     <tbody>
-                       <tr><td><strong>1</strong></td><td>Base rules only, very low false positives</td><td>Public-facing marketing sites</td></tr>
-                       <tr><td><strong>2</strong></td><td>Additional rules, low false positive rate</td><td>E-commerce, SaaS platforms</td></tr>
-                       <tr><td><strong>3</strong></td><td>Stricter rules, moderate false positives</td><td>Financial, healthcare APIs</td></tr>
-                       <tr><td><strong>4</strong></td><td>Maximum security, requires tuning</td><td>Government, military, PCI-DSS</td></tr>
+                      <tr><td><strong>Median latency</strong></td><td>85µs per module</td></tr>
+                      <tr><td><strong>P99 latency</strong></td><td>420µs (including JSON)</td></tr>
+                      <tr><td><strong>Memory overhead</strong></td><td>~2MB per module</td></tr>
+                      <tr><td><strong>Concurrent requests</strong></td><td>10,000+ without degradation</td></tr>
+                      <tr><td><strong>Warm instance reuse</strong></td><td>&lt;10µs pool acquisition</td></tr>
+                      <tr><td><strong>Cold start</strong></td><td>&lt;50ms compilation</td></tr>
                     </tbody>
-                   </table>
+                  </table>
                 </div>
+              </div>
+
+              <div>
+                <div class="scb-col-label">📡 Host Functions API (40+)</div>
                 <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-02">Copy</button>
-                  <pre class="code-block" id="code-02"><span class="c-comment"># CRS Engine Configuration</span>
-<span class="c-key">crs</span> {
-  <span class="c-key">enabled</span>            <span class="c-val">on</span>;
-  <span class="c-key">paranoid_level</span>     <span class="c-num">2</span>;
-  <span class="c-key">anomaly_threshold</span>  <span class="c-num">5</span>;
+                  <button class="copy-btn" data-code="code-02-wasm">Copy</button>
+                  <pre class="code-block" id="code-02-wasm"><span class="c-comment">// Request Introspection</span>
+      <span class="c-key">get_method()</span>         <span class="c-str">// GET, POST, etc.</span>
+      <span class="c-key">get_path()</span>           <span class="c-str">// /api/v1/users</span>
+      <span class="c-key">get_header(name)</span>     <span class="c-str">// User-Agent, X-API-Key</span>
+      <span class="c-key">get_cookie(name)</span>     <span class="c-str">// session_id, csrf_token</span>
+      <span class="c-key">get_client_ip()</span>      <span class="c-str">// 203.0.113.45</span>
+      <span class="c-key">get_request_body()</span>   <span class="c-str">// Raw request payload</span>
 
-  <span class="c-comment"># Rule-level scoring weights</span>
-  <span class="c-key">score_critical</span>  <span class="c-num">5</span>;
-  <span class="c-key">score_error</span>     <span class="c-num">4</span>;
-  <span class="c-key">score_warning</span>   <span class="c-num">3</span>;
-  <span class="c-key">score_notice</span>    <span class="c-num">2</span>;
+      <span class="c-comment">// GeoIP Lookup</span>
+      <span class="c-key">get_country()</span>        <span class="c-str">// Bangladesh</span>
+      <span class="c-key">get_country_code()</span>   <span class="c-str">// BD</span>
+      <span class="c-key">get_city()</span>           <span class="c-str">// Dhaka</span>
+      <span class="c-key">get_asn()</span>            <span class="c-str">// AS24378</span>
+      <span class="c-key">get_isp()</span>            <span class="c-str">// Grameenphone</span>
 
-  <span class="c-comment"># Exclude specific rule IDs if needed</span>
-  <span class="c-key">rule_exclusions</span> <span class="c-str">"920300,942450"</span>;
-}</pre>
+      <span class="c-comment">// Threat Intelligence</span>
+      <span class="c-key">is_tor(ip)</span>           <span class="c-str">// 1 if Tor exit node</span>
+      <span class="c-key">is_vpn(ip)</span>           <span class="c-str">// 1 if VPN/proxy</span>
+      <span class="c-key">get_reputation(ip)</span>   <span class="c-str">// Score 0-100</span>
+      <span class="c-key">get_bot_score()</span>      <span class="c-str">// ML-derived bot probability</span>
+
+      <span class="c-comment">// Response Manipulation</span>
+      <span class="c-key">set_response_header(name, value)</span>
+      <span class="c-key">set_cookie(name, value, maxAge, secure, httpOnly)</span>
+      <span class="c-key">redirect(url)</span>        <span class="c-str">// 302 redirect</span>
+      <span class="c-key">block_request()</span>       <span class="c-str">// 403 with message</span>
+
+      <span class="c-comment">// Rate Limiting &amp; Utilities</span>
+      <span class="c-key">rate_limit_check(key, limit, window)</span>
+      <span class="c-key">sha256(data)</span>         <span class="c-str">// Hash output</span>
+      <span class="c-key">base64_encode(data)</span>  <span class="c-str">// Encoded string</span>
+      <span class="c-key">regex_match(str, pattern)</span>
+      <span class="c-key">contains(str, substr)</span>
+      <span class="c-key">to_lower(str)</span> / <span class="c-key">to_upper(str)</span>
+      <span class="c-key">url_encode(str)</span> / <span class="c-key">url_decode(str)</span>
+      <span class="c-key">now()</span>                <span class="c-str">// Unix timestamp</span>
+      <span class="c-key">uuid()</span>               <span class="c-str">// v4 UUID</span>
+      <span class="c-key">log(level, message)</span>  <span class="c-str">// debug, info, warn, error</span></pre>
                 </div>
-                <a href="clofix-crs.html" class="doc-link-btn">📘 Complete CRS Documentation →</a>
+
+                <div class="scb-col-label" style="margin-top:1rem;">🔧 Example: Rate Limiting Module</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-02-example">Copy</button>
+                  <pre class="code-block" id="code-02-example"><span class="c-comment">// TinyGo WASM Module</span>
+      <span class="c-key">package main</span>
+
+      <span class="c-key">import</span> <span class="c-str">"encoding/json"</span>
+
+      <span class="c-key">type</span> Request <span class="c-key">struct</span> {
+          Headers map[string]string <span class="c-str">`json:"headers"`</span>
+      }
+
+      <span class="c-key">type</span> Response <span class="c-key">struct</span> {
+          Allowed bool   <span class="c-str">`json:"allowed"`</span>
+          Message string <span class="c-str">`json:"message"`</span>
+      }
+
+      <span class="c-comment">//export wasm_alloc</span>
+      <span class="c-key">func</span> wasm_alloc(size uint32) *byte
+
+      <span class="c-comment">//export process_request</span>
+      <span class="c-key">func</span> process_request(ptr *byte, size uint32) uint64 {
+          <span class="c-key">var</span> req Request
+          json.Unmarshal(memory[ptr:ptr+size], &req)
+          
+          apiKey := req.Headers[<span class="c-str">"x-api-key"</span>]
+          <span class="c-key">if</span> apiKey == <span class="c-str">""</span> {
+              <span class="c-key">return</span> block(<span class="c-str">"API key required"</span>)
+          }
+          
+          <span class="c-comment">// 100 requests per minute</span>
+          <span class="c-key">if</span> !clofix_rate_limit(apiKey, <span class="c-num">100</span>, <span class="c-num">60</span>) {
+              <span class="c-key">return</span> block(<span class="c-str">"Rate limit exceeded"</span>)
+          }
+          
+          <span class="c-key">return</span> allow()
+      }</pre>
+                </div>
               </div>
             </div>
+
+            <div class="callout" style="margin-top:1rem;">
+              <span class="callout-icon">🛠️</span>
+              <div><strong>Validator Tool:</strong> Comprehensive pre-loading validation — header check, required exports (<code>process_request</code>, <code>wasm_alloc</code>), memory limit validation (64MB), dangerous import detection, compiler detection (8+ compilers), binary pattern analysis, and execution test with timeout.</div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      <!-- STAGE 03 -->
-      <div class="stage-card stage-section" id="s03">
+      <!-- ══════════ STAGE 03 — CRS ENGINE ══════════ -->
+      <h2 class="doc-h2" id="stage-03">📜 Stage 03: CRS Engine — OWASP Core Rule Set v4</h2>
+      <div class="stage-card" id="s03">
         <div class="stage-card-header" role="button" aria-expanded="false" data-card="s03-body" tabindex="0">
           <div class="sch-num">03</div>
-          <div class="sch-icon">⚙️</div>
+          <div class="sch-icon">📜</div>
           <div class="sch-text">
-            <div class="sch-title">JS Engine — JavaScript Sandbox</div>
-            <div class="sch-sub">Isolated execution environment for deobfuscation, runtime analysis, and client-side exploit detection</div>
-            <div class="sch-badges"><span class="sch-badge b-red">DOM XSS</span><span class="sch-badge b-red">Prototype Pollution</span><span class="sch-badge b-blue">Deobfuscation</span><span class="sch-badge b-blue">CVE Matching</span></div>
+            <div class="sch-title">CRS Engine — OWASP Core Rule Set v4</div>
+            <div class="sch-sub">Industry-standard signature-based detection with 25 rule files, paranoia levels 1–4, and anomaly scoring</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-red">SQLi</span>
+              <span class="sch-badge b-red">XSS</span>
+              <span class="sch-badge b-red">LFI/RFI</span>
+              <span class="sch-badge b-red">Cmd Injection</span>
+              <span class="sch-badge b-red">SSRF</span>
+              <span class="sch-badge b-blue">Anomaly Scoring</span>
+            </div>
           </div>
           <span class="sch-chevron">▼</span>
         </div>
         <div class="stage-card-body" id="s03-body">
           <div class="scb-inner">
-            <p class="scb-lead">Modern attackers frequently obfuscate malicious JavaScript to evade signature-based detection. The JS Engine executes payloads in a secure V8-based sandbox with a 2-second execution timeout, automatically deobfuscating layered encoding schemes and detecting dangerous code patterns that only emerge at runtime. All JavaScript files served by your application are also pre-scanned on a configurable interval.</p>
+            <p class="scb-lead">The CRS Engine implements the complete OWASP Core Rule Set v4 — the industry benchmark for WAF rule coverage. It processes requests through four phases (request headers, request body, response headers, response body) applying over 200 individual rules across 25 rule files. Rather than binary block/allow decisions per rule, it uses anomaly scoring — each matched rule adds points; the total is forwarded to CloFix Core.</p>
+            
+            <div class="attack-row">
+              <span class="atk-tag">SQL Injection (942xxx)</span>
+              <span class="atk-tag">XSS (941xxx)</span>
+              <span class="atk-tag">LFI (930xxx)</span>
+              <span class="atk-tag">RFI (931xxx)</span>
+              <span class="atk-tag">Cmd Injection (932xxx)</span>
+              <span class="atk-tag">SSRF (933xxx)</span>
+              <span class="atk-tag">NoSQL Injection</span>
+              <span class="atk-tag">Prototype Pollution</span>
+              <span class="atk-tag">XXE</span>
+              <span class="atk-tag">SSTI</span>
+            </div>
+
             <div class="scb-grid">
               <div>
-                <div class="scb-col-label">Detection Capabilities</div>
+                <div class="scb-col-label">Rule File Coverage</div>
                 <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>Multi-layer Payload Deobfuscation:</strong> Automatically decodes Base64 (<code>atob()</code>), hex escape sequences (<code>\x41\x42</code>), Unicode escapes (<code>\u0041</code>), and URL encoding. Handles nested encoding: Base64 inside hex inside URL encoding — the engine iterates until no further decoding is possible or a threat pattern is found.</div></li>
-                  <li><div class="op-dot"></div><div><strong>DOM-based XSS Detection:</strong> Identifies dangerous sinks with user-controlled data flows: <code>document.write()</code>, <code>innerHTML</code>, <code>outerHTML</code>, <code>eval()</code>, <code>setTimeout(string)</code>, <code>setInterval(string)</code>, <code>location.href</code>. Performs taint analysis to trace data from sources (<code>location.search</code>, <code>document.cookie</code>) to sinks.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Prototype Pollution Detection:</strong> Detects attempts to inject properties into <code>Object.prototype</code> via <code>__proto__</code>, <code>constructor.prototype</code>, or <code>Object.setPrototypeOf()</code> with attacker-controlled keys. This can lead to privilege escalation and RCE in Node.js environments.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Pattern Extraction &amp; Caching:</strong> Scans all served JavaScript files every 5 minutes, extracting function signatures, regex patterns, and API endpoint strings. Cached patterns enable zero-latency matching for subsequent requests without full sandbox execution.</div></li>
-                  <li><div class="op-dot"></div><div><strong>CVE Exploit Signature Matching:</strong> Maintains a continuously updated database of JavaScript CVE exploit patterns. Detects exploitation of known library vulnerabilities (jQuery XSS, Lodash Prototype Pollution, Angular Template Injection) by matching characteristic code patterns.</div></li>
+                  <li><div class="op-dot"></div><div><strong>920xxx — Protocol Enforcement:</strong> HTTP method restrictions, header completeness validation, Content-Type enforcement, character encoding validation.</div></li>
+                  <li><div class="op-dot"></div><div><strong>930xxx — LFI / Path Traversal:</strong> Detects <code>../</code> sequences, null byte injection, URL-encoded traversal, and double-encoding techniques.</div></li>
+                  <li><div class="op-dot"></div><div><strong>931xxx — RFI:</strong> Blocks <code>http://</code> and <code>ftp://</code> in file parameters, PHP wrapper schemes, and cloud metadata endpoint URLs.</div></li>
+                  <li><div class="op-dot"></div><div><strong>932xxx — Command Injection:</strong> Unix shell metacharacters, Windows command separators, OS command sequences.</div></li>
+                  <li><div class="op-dot"></div><div><strong>933xxx — PHP Injection:</strong> PHP function calls in user input (<code>eval()</code>, <code>system()</code>), PHP wrappers, and PHP variable injection.</div></li>
+                  <li><div class="op-dot"></div><div><strong>941xxx — XSS:</strong> HTML event handlers, JavaScript protocol URIs, DOM sinks, and obfuscated script injection.</div></li>
+                  <li><div class="op-dot"></div><div><strong>942xxx — SQL Injection:</strong> UNION-based, time-based blind, boolean-based blind, error-based, and stacked queries across all SQL dialects.</div></li>
                 </ul>
               </div>
               <div>
-                <div class="scb-col-label">Configuration &amp; Tuning</div>
+                <div class="scb-col-label">Paranoia Levels</div>
+                <div class="cmp-table-wrap">
+                  <table class="cmp-table">
+                    <thead><tr><th>Level</th><th>Description</th><th>Use Case</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>1</strong></td><td>Base rules only, very low false positives</td><td>Public-facing marketing sites</td></tr>
+                      <tr><td><strong>2</strong></td><td>Additional rules, low false positive rate</td><td>E-commerce, SaaS platforms</td></tr>
+                      <tr><td><strong>3</strong></td><td>Stricter rules, moderate false positives</td><td>Financial, healthcare APIs</td></tr>
+                      <tr><td><strong>4</strong></td><td>Maximum security, requires tuning</td><td>Government, military, PCI-DSS</td></tr>
+                    </tbody>
+                  </table>
+                </div>
                 <div class="code-wrap">
                   <button class="copy-btn" data-code="code-03">Copy</button>
-                  <pre class="code-block" id="code-03"><span class="c-comment"># JS Engine Configuration</span>
-<span class="c-key">js_engine</span> {
-  <span class="c-key">enabled</span>            <span class="c-val">on</span>;
-  <span class="c-key">execution_timeout</span>  <span class="c-str">2s</span>;
-  <span class="c-key">scan_interval</span>      <span class="c-str">5m</span>;
-  <span class="c-key">max_payload_size</span>   <span class="c-str">512kb</span>;
-
-  <span class="c-comment"># File extensions to scan</span>
-  <span class="c-key">include_extensions</span> <span class="c-str">.js .mjs .cjs</span>;
-
-  <span class="c-comment"># Deobfuscation depth (iterations)</span>
-  <span class="c-key">decode_depth</span>      <span class="c-num">8</span>;
-
-  <span class="c-comment"># CVE pattern database</span>
-  <span class="c-key">cve_db</span>            <span class="c-str">auto-update</span>;
-  <span class="c-key">cve_update_interval</span> <span class="c-str">1h</span>;
-}</pre>
+                  <pre class="code-block" id="code-03"><span class="c-comment"># CRS Engine Configuration</span>
+      <span class="c-key">crs</span> {
+        <span class="c-key">enabled</span>            <span class="c-val">on</span>;
+        <span class="c-key">paranoid_level</span>     <span class="c-num">2</span>;
+        <span class="c-key">anomaly_threshold</span>  <span class="c-num">5</span>;
+        <span class="c-key">score_critical</span>     <span class="c-num">5</span>;
+        <span class="c-key">score_error</span>        <span class="c-num">4</span>;
+        <span class="c-key">score_warning</span>      <span class="c-num">3</span>;
+      }</pre>
                 </div>
-                <div class="callout warn">
-                  <span class="callout-icon">⚠️</span>
-                  <div><strong>Performance note:</strong> Full sandbox execution only runs for requests where the CRS Engine flags a JavaScript-related anomaly score ≥ 2, or for new JavaScript files not yet in the pattern cache. This keeps average overhead below 0.3ms.</div>
-                </div>
-                <a href="clofix-js-script.html" class="doc-link-btn">📘 JavaScript Engine Guide →</a>
               </div>
             </div>
+            <a href="clofix-crs.html" class="doc-link-btn">📘 Complete CRS Documentation →</a>
           </div>
         </div>
       </div>
 
-      <!-- STAGE 04 -->
-      <div class="stage-card stage-section" id="s04">
+      <!-- ══════════ STAGE 04 — JS ENGINE ══════════ -->
+      <h2 class="doc-h2" id="stage-04">⚙️ Stage 04: JS Engine — JavaScript Sandbox</h2>
+      <div class="stage-card" id="s04">
         <div class="stage-card-header" role="button" aria-expanded="false" data-card="s04-body" tabindex="0">
           <div class="sch-num">04</div>
-          <div class="sch-icon">🔧</div>
+          <div class="sch-icon">⚙️</div>
           <div class="sch-text">
-            <div class="sch-title">Lua Engine — Custom Scripting</div>
-            <div class="sch-sub">Full-featured scripting for custom security logic, business rules, threat intelligence, and API protection</div>
-            <div class="sch-badges"><span class="sch-badge b-green">Custom Logic</span><span class="sch-badge b-green">TI Integration</span><span class="sch-badge b-green">Shared State</span><span class="sch-badge b-blue">API Protection</span></div>
+            <div class="sch-title">JS Engine — JavaScript Sandbox</div>
+            <div class="sch-sub">Isolated execution environment for deobfuscation, runtime analysis, and client-side exploit detection</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-red">DOM XSS</span>
+              <span class="sch-badge b-red">Prototype Pollution</span>
+              <span class="sch-badge b-blue">Deobfuscation ×8</span>
+              <span class="sch-badge b-blue">CVE Matching</span>
+            </div>
           </div>
           <span class="sch-chevron">▼</span>
         </div>
         <div class="stage-card-body" id="s04-body">
           <div class="scb-inner">
-            <p class="scb-lead">The Lua Engine exposes the full power of CloFix's internal API to user-defined scripts, enabling organizations to implement security logic that no off-the-shelf WAF rule can express. Scripts run in an isolated LuaJIT environment with direct access to request context, threat intelligence services, cross-request shared memory dictionaries, and all CloFix security APIs. Scripts are organized per domain in <code>./lua_script/&lt;domain&gt;/</code> and executed in alphabetical order.</p>
+            <p class="scb-lead">Modern attackers frequently obfuscate malicious JavaScript to evade signature-based detection. The JS Engine executes payloads in a secure V8-based sandbox with a 2-second execution timeout, automatically deobfuscating layered encoding schemes and detecting dangerous code patterns that only emerge at runtime.</p>
+            
             <div class="scb-grid">
               <div>
-                <div class="scb-col-label">Available APIs</div>
+                <div class="scb-col-label">Detection Capabilities</div>
                 <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong><code>clofix.request</code> — Full Request Context:</strong> Read IP, all headers, body (raw/parsed), cookies, query parameters, GeoIP data (country, city, ASN), TLS fingerprint (JA3/JA4), HTTP method, URI, protocol version, and all scores from previous stages.</div></li>
-                  <li><div class="op-dot"></div><div><strong><code>clofix.is_tor(ip)</code> / <code>clofix.is_vpn(ip)</code>:</strong> Real-time queries against continuously updated anonymization databases. Returns a boolean and a confidence score (0–1).</div></li>
-                  <li><div class="op-dot"></div><div><strong><code>clofix.ip_reputation(ip)</code>:</strong> Returns a composite reputation object: <code>{ score: 0-100, categories: ["botnet","scanner"], last_seen: timestamp }</code> sourced from multiple threat intelligence feeds.</div></li>
-                  <li><div class="op-dot"></div><div><strong><code>clofix.rate_limit_ip(key, limit, window)</code>:</strong> Atomic counter-based rate limiting with configurable key (any string), limit, and time window. Uses shared memory for cross-worker consistency. Returns <code>{ allowed: bool, count: n, remaining: n }</code>.</div></li>
-                  <li><div class="op-dot"></div><div><strong><code>clofix.normalize_payload(input)</code>:</strong> Multi-pass normalization supporting URL decoding, Base64 decoding, HTML entity decoding, hex unescaping, and Unicode normalization. Returns both the decoded string and the encoding types detected.</div></li>
-                  <li><div class="op-dot"></div><div><strong><code>clofix.log_attack(name, type, payload)</code>:</strong> Structured attack log with automatic capture of full request context, geographic data, TLS fingerprint, and all stage scores. Emits to SIEM, Webhook, and dashboard simultaneously.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Shared Dictionaries:</strong> Cross-request, cross-worker persistent state using Lua shared dictionaries (<code>lua_shared_dict</code>). Used for distributed rate limiting, progressive blocking (track failed auth attempts), and IP reputation caching.</div></li>
-                </ul>
-              </div>
-              <div>
-                <div class="scb-col-label">Example: API Key Validation Script</div>
-                <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-04">Copy</button>
-                  <pre class="code-block" id="code-04"><span class="c-comment">-- lua_script/example.com/01_api_auth.lua</span>
-<span class="c-key">local</span> req = clofix.request
-
-<span class="c-comment">-- Only apply to /api/ paths</span>
-<span class="c-key">if not</span> req.uri:match(<span class="c-str">'^/api/'</span>) <span class="c-key">then return end</span>
-
-<span class="c-key">local</span> api_key = req.headers[<span class="c-str">'X-API-Key'</span>]
-
-<span class="c-comment">-- Missing API key</span>
-<span class="c-key">if not</span> api_key <span class="c-key">then</span>
-  clofix.log_attack(<span class="c-str">'MISSING_API_KEY'</span>, <span class="c-str">'auth'</span>, req.uri)
-  <span class="c-key">return</span> clofix.block(<span class="c-num">401</span>, <span class="c-str">'{"error":"API key required"}'</span>)
-<span class="c-key">end</span>
-
-<span class="c-comment">-- Rate limit: 1000 req/hr per API key</span>
-<span class="c-key">local</span> rl = clofix.rate_limit_ip(api_key, <span class="c-num">1000</span>, <span class="c-num">3600</span>)
-<span class="c-key">if not</span> rl.allowed <span class="c-key">then</span>
-  <span class="c-key">return</span> clofix.block(<span class="c-num">429</span>, <span class="c-str">'{"error":"Rate limit exceeded"}'</span>)
-<span class="c-key">end</span>
-
-<span class="c-comment">-- Check IP reputation</span>
-<span class="c-key">local</span> rep = clofix.ip_reputation(req.ip)
-<span class="c-key">if</span> rep.score &gt; <span class="c-num">80</span> <span class="c-key">then</span>
-  clofix.log_attack(<span class="c-str">'HIGH_RISK_IP'</span>, <span class="c-str">'reputation'</span>, req.ip)
-  <span class="c-key">return</span> clofix.challenge()
-<span class="c-key">end</span></pre>
-                </div>
-                <a href="clofix-lua-script.html" class="doc-link-btn">📘 Full Lua Scripting Reference →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 05 -->
-      <div class="stage-card stage-section" id="s05">
-        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s05-body" tabindex="0">
-          <div class="sch-num">05</div>
-          <div class="sch-icon">🧠</div>
-          <div class="sch-text">
-            <div class="sch-title">AI Neural Engine — Machine Learning Detection</div>
-            <div class="sch-sub">Zero-day threat detection using ML classification, behavioral analysis, biometrics, and hardware fingerprinting</div>
-            <div class="sch-badges"><span class="sch-badge b-red">Zero-Day</span><span class="sch-badge b-amber">Biometrics</span><span class="sch-badge b-blue">ML Classification</span><span class="sch-badge b-cyan">Device Fingerprint</span></div>
-          </div>
-          <span class="sch-chevron">▼</span>
-        </div>
-        <div class="stage-card-body" id="s05-body">
-          <div class="scb-inner">
-            <p class="scb-lead">The AI Neural Engine is CloFix's most sophisticated detection layer — a multi-model machine learning system trained on billions of HTTP requests. Unlike all previous stages which rely on known patterns, the AI Engine detects <em>previously unseen</em> attack patterns by identifying statistical anomalies in request structure, timing, and behavioral signals. It is specifically designed to catch the ~10% of sophisticated attacks that evade all signature-based methods.</p>
-            <div class="scb-grid">
-              <div>
-                <div class="scb-col-label">AI Detection Modules</div>
-                <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>AI Attack Detector (ML Classification):</strong> An ensemble of Random Forest, Gradient Boosting, and Transformer models trained on 2B+ labeled requests. Features include 340+ request characteristics — header ordering, value distributions, parameter naming patterns, timing jitter, and content entropy. Outputs a threat probability (0.0–1.0); threshold 0.85 triggers blocking.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Traffic Anomaly Detection:</strong> Longitudinal behavioral baseline built per-domain over 7 days. Detects statistically significant deviations: traffic volume spikes (&gt;3σ), unusual endpoint access patterns, geographic shifts, and time-of-day anomalies. Integrated DDoS detection uses per-second sliding windows with automatic mitigation escalation.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Automation Tool Fingerprinting:</strong> Detects headless browsers (Puppeteer, Playwright, Selenium WebDriver, PhantomJS, Splash) through 60+ JavaScript behavioral signals: <code>navigator.webdriver</code> property, missing browser APIs, Chrome DevTools Protocol artifacts, inconsistent plugin arrays, and anomalous performance timing.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Device Identity Blocking:</strong> Cross-session device fingerprint validation using Canvas API rendering, WebGL renderer strings, AudioContext fingerprinting, and font measurement timing. Detects emulated devices, modified fingerprints, and cross-session impersonation attacks.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Human Biometric Analysis:</strong> When JS Injector is active, analyzes mouse movement velocity and curvature, keyboard inter-key timing (dwell time, flight time), scroll behavior patterns, and touch pressure/area (mobile). These signals are evaluated against a biometric classifier achieving 97.3% human/bot discrimination accuracy.</div></li>
-                  <li><div class="op-dot"></div><div><strong>JavaScript Cryptojacking Detection:</strong> Monitors CPU utilization patterns, WebAssembly execution, and WebWorker spawning for cryptocurrency mining behavioral signatures. Cross-references against known mining pool domains and script hashes.</div></li>
-                </ul>
-              </div>
-              <div>
-                <div class="scb-col-label">Model Architecture</div>
-                <div class="cmp-table-wrap" style="margin:0 0 14px;">
-                  <table class="cmp-table">
-                    <thead> <tr><th>Model</th><th>Threat Type</th><th>Accuracy</th></tr> </thead>
-                    <tbody>
-                       <tr><td>Transformer (BERT-variant)</td><td>Request content anomalies</td><td>96.2%</td></tr>
-                       <tr><td>Random Forest</td><td>General threat classification</td><td>94.8%</td></tr>
-                       <tr><td>LSTM</td><td>Session behavior sequences</td><td>93.1%</td></tr>
-                       <tr><td>Biometric Classifier</td><td>Human vs bot verification</td><td>97.3%</td></tr>
-                       <tr><td>Isolation Forest</td><td>Traffic anomaly detection</td><td>91.7%</td></tr>
-                    </tbody>
-                   </table>
-                </div>
-                <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-05">Copy</button>
-                  <pre class="code-block" id="code-05"><span class="c-comment"># AI Engine Configuration</span>
-<span class="c-key">ai_engine</span> {
-  <span class="c-key">enabled</span>             <span class="c-val">on</span>;
-  <span class="c-key">model_version</span>       <span class="c-str">v3.2</span>;
-  <span class="c-key">anomaly_threshold</span>   <span class="c-num">0.85</span>;
-  <span class="c-key">baseline_window</span>     <span class="c-str">7d</span>;
-
-  <span class="c-key">ai_attack_detector</span> {
-    <span class="c-key">ml_classification</span>  <span class="c-val">on</span>;
-    <span class="c-key">human_biometric</span>    <span class="c-val">on</span>;
-    <span class="c-key">hardware_fp</span>        <span class="c-val">on</span>;
-  }
-
-  <span class="c-key">automation_detection</span> {
-    <span class="c-key">enabled</span>         <span class="c-val">on</span>;
-    <span class="c-key">check_webdriver</span> <span class="c-val">on</span>;
-    <span class="c-key">check_plugins</span>   <span class="c-val">on</span>;
-    <span class="c-key">timing_analysis</span> <span class="c-val">on</span>;
-  }
-}</pre>
-                </div>
-                <a href="features.html#ai-powered-protection" class="doc-link-btn">📘 AI Protection Reference →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 06 -->
-      <div class="stage-card stage-section" id="s06">
-        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s06-body" tabindex="0">
-          <div class="sch-num">06</div>
-          <div class="sch-icon">🛡️</div>
-          <div class="sch-text">
-            <div class="sch-title">CloFix Core — Risk Arbiter &amp; Unified Rules Engine</div>
-            <div class="sch-sub">Central decision engine: aggregates all stage scores, applies weighted formula, renders final verdict</div>
-            <div class="sch-badges"><span class="sch-badge b-blue">Weighted Scoring</span><span class="sch-badge b-green">Virtual Patching</span><span class="sch-badge b-green">Rule Groups</span><span class="sch-badge b-amber">Smart Bypass</span></div>
-          </div>
-          <span class="sch-chevron">▼</span>
-        </div>
-        <div class="stage-card-body" id="s06-body">
-          <div class="scb-inner">
-            <p class="scb-lead">CloFix Core is the central nervous system of the entire WAF. After all five preceding stages have evaluated the request and contributed their scores, CloFix Core aggregates them through a weighted formula, applies any user-defined CloFixRule directives and bypass conditions, and renders a final verdict: ALLOW, CHALLENGE, or BLOCK. This stage also hosts the unified rule processing engine that supports CloFixRule directives, JavaScript, and Lua rules in the same deployment.</p>
-            <div class="scb-grid">
-              <div>
-                <div class="scb-col-label">Risk Score Formula</div>
-                <div class="risk-formula-box">
-                  <div class="rfb-title">// composite risk score calculation</div>
-                  <div class="rfb-formula">
-                    <span class="rfl">TotalRisk</span> = (<span class="rfv">BehaviorScore</span> × <span class="rfl">0.20</span>)<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">CRSScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.35</span>)<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">JSScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.10</span>)<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">LuaScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.10</span>)<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">AIScore</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.25</span>)
-                  </div>
-                </div>
-                <div class="threshold-grid">
-                  <div class="threshold-cell t-allow"><div class="tc-score">&lt; 30</div><div class="tc-action">✅ ALLOW</div><div class="tc-desc">Forward to backend normally</div></div>
-                  <div class="threshold-cell t-challenge"><div class="tc-score">30–70</div><div class="tc-action">⚠️ CHALLENGE</div><div class="tc-desc">Serve CAPTCHA or JS challenge</div></div>
-                  <div class="threshold-cell t-block"><div class="tc-score">&gt; 70</div><div class="tc-action">🚫 BLOCK</div><div class="tc-desc">Return 403 with attack record</div></div>
-                </div>
-
-                <div class="scb-col-label" style="margin-top:1.5rem;">Unified Rule Processing</div>
-                <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>CloFixRule Directive:</strong> CRS-style declarative rules with variables (<code>ARGS</code>, <code>REQUEST_HEADERS</code>, <code>REQUEST_BODY</code>, <code>RESPONSE_BODY</code>), operators (<code>@rx</code> regex, <code>@contains</code>, <code>@streq</code>, <code>@pm</code> phrase match), transformations (<code>t:lowercase</code>, <code>t:urlDecode</code>, <code>t:htmlEntityDecode</code>), and actions (<code>block</code>, <code>challenge</code>, <code>log</code>, <code>allow</code>).</div></li>
-                  <li><div class="op-dot"></div><div><strong>Intelligent Bypass System:</strong> Exclude rules from firing by: rule ID, rule tag (<code>attack-sqli</code>, <code>paranoia-level/3</code>), processing phase (1–4), request path (<code>/health</code>, <code>/api/public/*</code>), source IP (<code>127.0.0.1</code>, <code>192.168.0.0/16</code>), or specific header values.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Virtual Patching:</strong> Deploy a CloFixRule targeting a specific vulnerability's request signature within minutes of a CVE being published — no application code change required. This is particularly valuable for zero-day vulnerabilities like Log4Shell (CVE-2021-44228) where a virtual patch can be deployed in under 5 minutes.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Rule Groups &amp; Profiles:</strong> Organize rules into named groups: <code>PCI</code>, <code>HIPAA</code>, <code>WordPress</code>, <code>Laravel</code>, <code>API-Gateway</code>, <code>GraphQL</code>. Enable or disable entire groups with a single toggle. Assign execution priority (1–1000) to control order.</div></li>
-                </ul>
-              </div>
-              <div>
-                <div class="scb-col-label">Configuration Reference</div>
-                <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-06a">Copy</button>
-                  <pre class="code-block" id="code-06a"><span class="c-comment"># Anomaly Scoring</span>
-<span class="c-key">anomaly_scoring</span> {
-  <span class="c-key">inbound_threshold</span>   <span class="c-num">5</span>;
-  <span class="c-key">outbound_threshold</span>  <span class="c-num">4</span>;
-  <span class="c-key">blocking_paranoia</span>   <span class="c-num">2</span>;
-}
-
-<span class="c-comment"># Rule Groups</span>
-<span class="c-key">rule_groups</span> {
-  <span class="c-key">group</span> <span class="c-str">"PCI"</span>           <span class="c-val">enabled on</span>;
-  <span class="c-key">group</span> <span class="c-str">"WordPress"</span>     <span class="c-val">enabled on</span>;
-  <span class="c-key">group</span> <span class="c-str">"API-Gateway"</span>   <span class="c-val">enabled on</span>;
-}
-
-<span class="c-comment"># Intelligent Bypass</span>
-<span class="c-key">bypass</span> {
-  <span class="c-key">rule_ids</span>  <span class="c-str">"942100,941100"</span>;
-  <span class="c-key">tags</span>      <span class="c-str">"paranoia-level/4"</span>;
-  <span class="c-key">paths</span>     <span class="c-str">"/health,/metrics,/api/public/*"</span>;
-  <span class="c-key">ips</span>       <span class="c-str">"192.168.1.0/24"</span>;
-}</pre>
-                </div>
-
-                <div class="scb-col-label" style="margin-top:1rem;">Example: Virtual Patch (Log4Shell)</div>
-                <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-06b">Copy</button>
-                  <pre class="code-block" id="code-06b"><span class="c-comment"># Virtual patch for CVE-2021-44228 (Log4Shell)</span>
-<span class="c-key">CloFixRule</span> <span class="c-str">"id:9001,
-  phase:2,
-  deny,
-  t:none,t:urlDecode,t:lowercase,
-  msg:'Log4Shell exploit attempt',
-  tag:'CVE-2021-44228',
-  severity:CRITICAL,
-  chain"</span>
-<span class="c-key">CloFixRule</span> <span class="c-str">"REQUEST_HEADERS|ARGS|REQUEST_BODY
-  @rx \$\{.*j.*n.*d.*i.*:
-  t:none,t:urlDecode,t:lowercase"</span>;</pre>
-                </div>
-                <a href="features.html#custom-rules-scripting" class="doc-link-btn">📘 Custom Rules &amp; Scripting →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 07 -->
-      <div class="stage-card stage-section" id="s07">
-        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s07-body" tabindex="0">
-          <div class="sch-num">07</div>
-          <div class="sch-icon">⚖️</div>
-          <div class="sch-text">
-            <div class="sch-title">Custom Rules — Organization-Specific Policy Layer</div>
-            <div class="sch-sub">Override and supplement automated decisions with business-specific security policies, ACLs, and time-based controls</div>
-            <div class="sch-badges"><span class="sch-badge b-blue">Allowlist/Blocklist</span><span class="sch-badge b-blue">Path Policies</span><span class="sch-badge b-blue">Time-based ACL</span><span class="sch-badge b-amber">Header Validation</span></div>
-          </div>
-          <span class="sch-chevron">▼</span>
-        </div>
-        <div class="stage-card-body" id="s07-body">
-          <div class="scb-inner">
-            <p class="scb-lead">Custom Rules is the final human-controlled override layer before traffic is processed. It allows security and operations teams to express organization-specific policies that the automated engines cannot infer — such as allowing a trusted partner's IP range to bypass bot detection, blocking entire countries during a DDoS incident, or enforcing API authentication on specific endpoints only during business hours.</p>
-            <div class="scb-grid">
-              <div>
-                <div class="scb-col-label">Policy Types</div>
-                <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>IP Allowlist / Blocklist:</strong> Permanent and temporary IP-level overrides. Allowlisted IPs bypass all WAF stages (except logging). Blocklisted IPs are rejected immediately at Stage 1. Supports CIDR notation (<code>10.0.0.0/8</code>), individual IPs, and ASN-level blocks. Sync with external threat feeds via API.</div></li>
-                  <li><div class="op-dot"></div><div><strong>GeoIP Exceptions:</strong> Override geographic block policies for specific partner IPs or CIDR ranges. Example: Allow Bangladesh (<code>BD</code>) IPs from a specific ISP for a local payment gateway while keeping the country in the geo-block list for all other traffic.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Path-Specific Security Policies:</strong> Apply elevated security profiles to sensitive endpoints. Enforce mandatory HTTPS, require specific authentication headers, enable additional Lua checks, or apply stricter CRS paranoia levels — all scoped to a specific URI path or pattern.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Time-Based Access Control:</strong> Restrict endpoint access by time of day, day of week, or calendar schedule. Use cases: maintenance windows (block all traffic to <code>/admin</code> outside business hours), scheduled report endpoints (allow only between 2–4 AM UTC), or geographically-aware time restrictions.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Header-Based Token Validation:</strong> Validate custom security headers, API keys, JWT tokens (signature verification, expiry check), and HMAC signatures without custom code. Configure per-endpoint with configurable rejection messages.</div></li>
-                </ul>
-              </div>
-              <div>
-                <div class="scb-col-label">Configuration Examples</div>
-                <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-07">Copy</button>
-                  <pre class="code-block" id="code-07"><span class="c-comment"># IP Access Control</span>
-<span class="c-key">allowlist</span> {
-  <span class="c-key">ips</span> <span class="c-str">"192.168.0.0/16,10.0.0.0/8"</span>; <span class="c-comment"># Internal</span>
-  <span class="c-key">ips</span> <span class="c-str">"203.0.113.0/24"</span>;           <span class="c-comment"># Partner</span>
-  <span class="c-key">bypass_waf</span> <span class="c-val">on</span>;
-}
-<span class="c-key">blocklist</span> {
-  <span class="c-key">ips</span> <span class="c-str">"45.33.0.0/16"</span>;
-  <span class="c-key">action</span> <span class="c-str">block</span>;
-  <span class="c-key">log_reason</span> <span class="c-str">"Known attack infrastructure"</span>;
-}
-
-<span class="c-comment"># Admin endpoint — strict policy</span>
-<span class="c-key">path_policy</span> <span class="c-str">"/admin/*"</span> {
-  <span class="c-key">require_header</span>  <span class="c-str">"X-Admin-Token"</span>;
-  <span class="c-key">paranoia_level</span>  <span class="c-num">4</span>;
-  <span class="c-key">geo_allow</span>       <span class="c-str">"BD,US,GB"</span>;
-  <span class="c-key">time_allow</span>      <span class="c-str">"09:00-18:00 Mon-Fri"</span>;
-  <span class="c-key">timezone</span>        <span class="c-str">"Asia/Dhaka"</span>;
-}
-
-<span class="c-comment"># Health check — bypass all WAF</span>
-<span class="c-key">path_policy</span> <span class="c-str">"/health"</span> {
-  <span class="c-key">bypass_waf</span>  <span class="c-val">on</span>;
-  <span class="c-key">allow_ips</span>   <span class="c-str">"10.0.0.0/8"</span>;
-}</pre>
-                </div>
-                <a href="clofix-crs.html#clofixrule-syntax" class="doc-link-btn">📘 CloFixRule Custom Directives →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 08 -->
-      <div class="stage-card stage-section" id="s08">
-        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s08-body" tabindex="0">
-          <div class="sch-num">08</div>
-          <div class="sch-icon">💉</div>
-          <div class="sch-text">
-            <div class="sch-title">JS Injector — Client-Side Security Layer</div>
-            <div class="sch-sub">Dynamic JavaScript injection for browser-side protection, CAPTCHA challenges, and behavioral telemetry collection</div>
-            <div class="sch-badges"><span class="sch-badge b-green">CSRF Tokens</span><span class="sch-badge b-green">CAPTCHA</span><span class="sch-badge b-green">Anti-Tamper</span><span class="sch-badge b-blue">Telemetry</span></div>
-          </div>
-          <span class="sch-chevron">▼</span>
-        </div>
-        <div class="stage-card-body" id="s08-body">
-          <div class="scb-inner">
-            <p class="scb-lead">The JS Injector operates on the response path — after CloFix has decided to ALLOW or CHALLENGE a request, it inspects the response body and injects JavaScript code into HTML pages. This enables a browser-native layer of security that complements all server-side stages, collecting telemetry that feeds back into the AI Neural Engine for future requests and serving interactive challenges when needed.</p>
-            <div class="scb-grid">
-              <div>
-                <div class="scb-col-label">Injection Capabilities</div>
-                <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>Anti-CSRF Token Injection:</strong> Automatically inserts hidden CSRF token fields into all HTML forms (<code>&lt;input type="hidden" name="_csrf"&gt;</code>) and injects the same token as a meta tag and into AJAX request headers via a small interceptor script. Tokens are cryptographically bound to the user session and validated server-side.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Bot Detection Telemetry Collection:</strong> Injects a lightweight (~4KB) telemetry script that collects: mouse movement velocity and trajectory, keyboard dwell/flight timing, scroll behavior, touch event patterns, viewport interactions, and browser environment signals. All data is encrypted and sent to the CloFix scoring API, which updates the AI model's confidence in the client's humanity score in real time.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Headless Browser Detection:</strong> Injects a probe script that checks for 60+ headless browser artifacts: <code>navigator.webdriver</code> flag, Chrome DevTools Protocol patterns, unusual <code>window.outerWidth</code> values, missing browser plugin arrays, Permissions API inconsistencies, and inconsistent timing in <code>requestAnimationFrame</code> callbacks.</div></li>
-                  <li><div class="op-dot"></div><div><strong>CAPTCHA Challenge Rendering:</strong> When risk score falls in the CHALLENGE range (30–70), injects a full-page challenge overlay. Supports: CloFix native JS proof-of-work challenge, hCaptcha, reCAPTCHA v3 (invisible), and Turnstile (Cloudflare). On successful completion, issues a signed challenge cookie valid for a configurable TTL (default: 24h).</div></li>
-                  <li><div class="op-dot"></div><div><strong>DOM Integrity Monitoring:</strong> Injects a MutationObserver that monitors the DOM for unauthorized modifications — detecting Magecart-style form-hijacking scripts, injected iframes, and unauthorized script tag insertion. Reports violations to the CloFix SIEM endpoint without affecting user experience.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Session Integrity Binding:</strong> Issues a cryptographically signed session token that binds the browser session to device fingerprint, IP, and user agent. Subsequent requests that don't match the binding are escalated to the CHALLENGE verdict.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Multi-layer Payload Deobfuscation:</strong> Automatically decodes Base64, hex escape sequences, Unicode escapes, and URL encoding — up to 8 nesting levels deep.</div></li>
+                  <li><div class="op-dot"></div><div><strong>DOM-based XSS Detection:</strong> Identifies dangerous sinks with user-controlled data flows: <code>document.write()</code>, <code>innerHTML</code>, <code>eval()</code>, <code>location.href</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Prototype Pollution Detection:</strong> Detects attempts to inject properties into <code>Object.prototype</code> via <code>__proto__</code> or <code>constructor.prototype</code>.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Pattern Extraction &amp; Caching:</strong> Scans all served JavaScript files every 5 minutes, extracting function signatures and API endpoint strings.</div></li>
+                  <li><div class="op-dot"></div><div><strong>CVE Exploit Signature Matching:</strong> Maintains a continuously updated database of JavaScript CVE exploit patterns.</div></li>
                 </ul>
               </div>
               <div>
                 <div class="scb-col-label">Configuration</div>
                 <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-08">Copy</button>
-                  <pre class="code-block" id="code-08"><span class="c-comment"># JS Injector Configuration</span>
-<span class="c-key">js_injector</span> {
-  <span class="c-key">enabled</span>          <span class="c-val">on</span>;
-
-  <span class="c-key">csrf_protection</span> {
-    <span class="c-key">enabled</span>      <span class="c-val">on</span>;
-    <span class="c-key">token_ttl</span>    <span class="c-str">1h</span>;
-    <span class="c-key">same_site</span>    <span class="c-str">Strict</span>;
-  }
-
-  <span class="c-key">bot_telemetry</span> {
-    <span class="c-key">enabled</span>      <span class="c-val">on</span>;
-    <span class="c-key">sample_rate</span>  <span class="c-str">100%</span>;
-  }
-
-  <span class="c-key">captcha</span> {
-    <span class="c-key">provider</span>     <span class="c-str">clofix</span>; <span class="c-comment"># or hcaptcha, recaptcha</span>
-    <span class="c-key">challenge_ttl</span> <span class="c-str">24h</span>;
-    <span class="c-key">difficulty</span>   <span class="c-str">medium</span>;
-  }
-
-  <span class="c-comment"># Skip injection for specific content types</span>
-  <span class="c-key">skip_content_types</span> <span class="c-str">"application/json
-    application/xml text/plain"</span>;
-}</pre>
+                  <button class="copy-btn" data-code="code-04">Copy</button>
+                  <pre class="code-block" id="code-04"><span class="c-comment"># JS Engine Configuration</span>
+      <span class="c-key">js_engine</span> {
+        <span class="c-key">enabled</span>            <span class="c-val">on</span>;
+        <span class="c-key">execution_timeout</span>  <span class="c-str">2s</span>;
+        <span class="c-key">scan_interval</span>      <span class="c-str">5m</span>;
+        <span class="c-key">decode_depth</span>       <span class="c-num">8</span>;
+        <span class="c-key">cve_db</span>             <span class="c-str">auto-update</span>;
+      }</pre>
                 </div>
-                <div class="callout tip">
-                  <span class="callout-icon">💡</span>
-                  <div><strong>Streaming note:</strong> The JS Injector uses a streaming HTML parser — it injects code at the <code>&lt;/head&gt;</code> tag without buffering the entire response, keeping injection latency under 0.1ms even for large pages.</div>
+                <div class="callout warn">
+                  <span class="callout-icon">⚠️</span>
+                  <div><strong>Performance note:</strong> Full sandbox execution only runs when CRS Engine flags a JavaScript-related anomaly score ≥ 2, keeping average overhead below 0.3ms.</div>
                 </div>
               </div>
             </div>
+            <a href="clofix-js-script.html" class="doc-link-btn">📘 JavaScript Engine Guide →</a>
           </div>
         </div>
       </div>
 
-      <!-- STAGE 09 -->
-      <div class="stage-card stage-section" id="s09">
-        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s09-body" tabindex="0">
-          <div class="sch-num">09</div>
+      <!-- ══════════ STAGE 05 — LUA ENGINE ══════════ -->
+      <h2 class="doc-h2" id="stage-05">🔧 Stage 05: Lua Engine — Custom Scripting</h2>
+      <div class="stage-card" id="s05">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s05-body" tabindex="0">
+          <div class="sch-num">05</div>
+          <div class="sch-icon">🔧</div>
+          <div class="sch-text">
+            <div class="sch-title">Lua Engine — Custom Scripting</div>
+            <div class="sch-sub">Full-featured scripting for custom security logic, business rules, threat intelligence, and API protection</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-green">Custom Logic</span>
+              <span class="sch-badge b-green">TI Integration</span>
+              <span class="sch-badge b-green">Shared State</span>
+              <span class="sch-badge b-blue">API Protection</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s05-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The Lua Engine exposes the full power of CloFix's internal API to user-defined scripts, enabling organizations to implement security logic that no off-the-shelf WAF rule can express. Scripts run in an isolated LuaJIT environment with direct access to request context, threat intelligence services, cross-request shared memory dictionaries, and all CloFix security APIs.</p>
+            
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Available APIs</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong><code>clofix.request</code> — Full Request Context:</strong> Read IP, all headers, body, cookies, GeoIP data, TLS fingerprint, and all scores.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.is_tor(ip)</code> / <code>clofix.is_vpn(ip)</code>:</strong> Real-time queries against anonymization databases.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.ip_reputation(ip)</code>:</strong> Returns composite reputation score 0-100 with categories.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.rate_limit_ip(key, limit, window)</code>:</strong> Atomic counter-based rate limiting with shared memory.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.normalize_payload(input)</code>:</strong> Multi-pass normalization for URL, Base64, HTML entity, hex, and Unicode.</div></li>
+                  <li><div class="op-dot"></div><div><strong><code>clofix.log_attack(name, type, payload)</code>:</strong> Structured attack logging to SIEM, Webhook, and dashboard.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Example: API Key Validation</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-05">Copy</button>
+                  <pre class="code-block" id="code-05"><span class="c-key">local</span> req = clofix.request
+
+      <span class="c-key">if not</span> req.uri:match(<span class="c-str">'^/api/'</span>) <span class="c-key">then return end</span>
+
+      <span class="c-key">local</span> api_key = req.headers[<span class="c-str">'X-API-Key'</span>]
+      <span class="c-key">if not</span> api_key <span class="c-key">then</span>
+        <span class="c-key">return</span> clofix.block(<span class="c-num">401</span>, <span class="c-str">'API key required'</span>)
+      <span class="c-key">end</span>
+
+      <span class="c-key">local</span> rl = clofix.rate_limit_ip(api_key, <span class="c-num">1000</span>, <span class="c-num">3600</span>)
+      <span class="c-key">if not</span> rl.allowed <span class="c-key">then</span>
+        <span class="c-key">return</span> clofix.block(<span class="c-num">429</span>, <span class="c-str">'Rate limit exceeded'</span>)
+      <span class="c-key">end</span>
+
+      <span class="c-key">local</span> rep = clofix.ip_reputation(req.ip)
+      <span class="c-key">if</span> rep.score &gt; <span class="c-num">80</span> <span class="c-key">then</span>
+        <span class="c-key">return</span> clofix.challenge()
+      <span class="c-key">end</span></pre>
+                </div>
+              </div>
+            </div>
+            <a href="clofix-lua-script.html" class="doc-link-btn">📘 Full Lua Scripting Reference →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ STAGE 06 — AI NEURAL ENGINE ══════════ -->
+      <h2 class="doc-h2" id="stage-06">🧠 Stage 06: AI Neural Engine — Machine Learning Detection</h2>
+      <div class="stage-card" id="s06">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s06-body" tabindex="0">
+          <div class="sch-num">06</div>
+          <div class="sch-icon">🧠</div>
+          <div class="sch-text">
+            <div class="sch-title">AI Neural Engine — Machine Learning Detection</div>
+            <div class="sch-sub">Zero-day threat detection using ML classification, behavioral analysis, biometrics, and hardware fingerprinting</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-red">Zero-Day</span>
+              <span class="sch-badge b-amber">Biometrics 97.3%</span>
+              <span class="sch-badge b-blue">ML 96.2%</span>
+              <span class="sch-badge b-cyan">Device Fingerprint</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s06-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The AI Neural Engine is CloFix's most sophisticated detection layer — a multi-model machine learning system trained on billions of HTTP requests. Unlike all previous stages which rely on known patterns, the AI Engine detects <em>previously unseen</em> attack patterns by identifying statistical anomalies in request structure, timing, and behavioral signals.</p>
+            
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">AI Detection Modules</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>AI Attack Detector:</strong> Ensemble of Random Forest, Gradient Boosting, and Transformer models trained on 2B+ labeled requests. Outputs threat probability (0.0–1.0).</div></li>
+                  <li><div class="op-dot"></div><div><strong>Traffic Anomaly Detection:</strong> Longitudinal behavioral baseline built per-domain over 7 days. Detects statistically significant deviations.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Automation Tool Fingerprinting:</strong> Detects headless browsers through 60+ JavaScript behavioral signals.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Human Biometric Analysis:</strong> Analyzes mouse movement, keyboard timing, scroll behavior, and touch patterns — 97.3% accuracy.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Model Architecture</div>
+                <div class="cmp-table-wrap">
+                  <table class="cmp-table">
+                    <thead><tr><th>Model</th><th>Accuracy</th> </thead>
+                    <tbody>
+                      <tr><td>Transformer (BERT-variant)</td><td>96.2%</td> </tr>
+                      <tr><td>Random Forest</td><td>94.8%</td> </tr>
+                      <tr><td>LSTM</td><td>93.1%</td> </tr>
+                      <tr><td>Biometric Classifier</td><td>97.3%</td> </tr>
+                      <tr><td>Isolation Forest</td><td>91.7%</td> </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-06">Copy</button>
+                  <pre class="code-block" id="code-06"><span class="c-key">ai_engine</span> {
+        <span class="c-key">enabled</span>             <span class="c-val">on</span>;
+        <span class="c-key">anomaly_threshold</span>   <span class="c-num">0.85</span>;
+        <span class="c-key">baseline_window</span>     <span class="c-str">7d</span>;
+      }</pre>
+                </div>
+              </div>
+            </div>
+            <a href="features.html#ai-powered-protection" class="doc-link-btn">📘 AI Protection Reference →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ STAGE 07 — CLOFIX CORE ══════════ -->
+      <h2 class="doc-h2" id="stage-07">🛡️ Stage 07: CloFix Core — Risk Arbiter & Unified Rules Engine</h2>
+      <div class="stage-card" id="s07">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s07-body" tabindex="0">
+          <div class="sch-num">07</div>
+          <div class="sch-icon">🛡️</div>
+          <div class="sch-text">
+            <div class="sch-title">CloFix Core — Risk Arbiter &amp; Unified Rules Engine</div>
+            <div class="sch-sub">Central decision engine: aggregates all stage scores, applies weighted formula, renders final verdict</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-blue">Weighted Scoring</span>
+              <span class="sch-badge b-green">Virtual Patching</span>
+              <span class="sch-badge b-green">Rule Groups</span>
+              <span class="sch-badge b-amber">Smart Bypass</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s07-body">
+          <div class="scb-inner">
+            <p class="scb-lead">CloFix Core is the central nervous system of the entire WAF. After all preceding stages have evaluated the request and contributed their scores, CloFix Core aggregates them through a weighted formula, applies any user-defined CloFixRule directives and bypass conditions, and renders a final verdict: ALLOW, CHALLENGE, or BLOCK.</p>
+            
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Risk Score Formula</div>
+                <div class="risk-formula-box">
+                  <div class="rfb-formula">
+                    <span class="rfl">TotalRisk</span> = (<span class="rfv">Behavior</span> × <span class="rfl">0.20</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">WASM</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.15</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">CRS</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.25</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">JS</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.10</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">Lua</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.10</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + (<span class="rfv">AI</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× <span class="rfl">0.20</span>)
+                  </div>
+                </div>
+                <div class="threshold-grid">
+                  <div class="threshold-cell t-allow"><div class="tc-score">&lt; 30</div><div class="tc-action">✅ ALLOW</div><div class="tc-desc">Forward to backend</div></div>
+                  <div class="threshold-cell t-challenge"><div class="tc-score">30–70</div><div class="tc-action">⚠️ CHALLENGE</div><div class="tc-desc">CAPTCHA / JS challenge</div></div>
+                  <div class="threshold-cell t-block"><div class="tc-score">&gt; 70</div><div class="tc-action">🚫 BLOCK</div><div class="tc-desc">403 + attack log</div></div>
+                </div>
+              </div>
+              <div>
+                <div class="scb-col-label">Configuration</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-07">Copy</button>
+                  <pre class="code-block" id="code-07"><span class="c-key">anomaly_scoring</span> {
+        <span class="c-key">inbound_threshold</span>   <span class="c-num">5</span>;
+        <span class="c-key">blocking_paranoia</span>   <span class="c-num">2</span>;
+      }
+
+      <span class="c-key">bypass</span> {
+        <span class="c-key">paths</span>  <span class="c-str">"/health,/metrics"</span>;
+        <span class="c-key">ips</span>    <span class="c-str">"192.168.1.0/24"</span>;
+      }</pre>
+                </div>
+              </div>
+            </div>
+            <a href="features.html#custom-rules-scripting" class="doc-link-btn">📘 Custom Rules &amp; Scripting →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ STAGE 08 — CUSTOM RULES ══════════ -->
+      <h2 class="doc-h2" id="stage-08">⚖️ Stage 08: Custom Rules — Organization-Specific Policy Layer</h2>
+      <div class="stage-card" id="s08">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s08-body" tabindex="0">
+          <div class="sch-num">08</div>
           <div class="sch-icon">⚖️</div>
           <div class="sch-text">
-            <div class="sch-title">Load Balancer — Intelligent Traffic Distribution</div>
-            <div class="sch-sub">Multi-algorithm load distribution, backend information hiding, health monitoring, and 99.99% availability SLA</div>
-            <div class="sch-badges"><span class="sch-badge b-blue">Header Hiding</span><span class="sch-badge b-blue">URL Rewriting</span><span class="sch-badge b-green">Health Checks</span><span class="sch-badge b-green">Sticky Sessions</span><span class="sch-badge b-cyan">Zero Downtime</span></div>
+            <div class="sch-title">Custom Rules — Organization-Specific Policy Layer</div>
+            <div class="sch-sub">Override and supplement automated decisions with business-specific security policies, ACLs, and time-based controls</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-blue">Allowlist/Blocklist</span>
+              <span class="sch-badge b-blue">Path Policies</span>
+              <span class="sch-badge b-blue">Time-based ACL</span>
+              <span class="sch-badge b-amber">Header Validation</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s08-body">
+          <div class="scb-inner">
+            <p class="scb-lead">Custom Rules is the final human-controlled override layer before traffic is processed. It allows security and operations teams to express organization-specific policies that the automated engines cannot infer — such as allowing a trusted partner's IP range to bypass bot detection or blocking entire countries during a DDoS incident.</p>
+            
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Policy Types</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>IP Allowlist / Blocklist:</strong> Permanent and temporary IP-level overrides. Supports CIDR notation, individual IPs, and ASN-level blocks.</div></li>
+                  <li><div class="op-dot"></div><div><strong>GeoIP Exceptions:</strong> Override geographic block policies for specific partner IPs or CIDR ranges.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Path-Specific Security Policies:</strong> Apply elevated security profiles to sensitive endpoints.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Time-Based Access Control:</strong> Restrict endpoint access by time of day, day of week, or calendar schedule.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Configuration Examples</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-08">Copy</button>
+                  <pre class="code-block" id="code-08"><span class="c-key">allowlist</span> {
+        <span class="c-key">ips</span> <span class="c-str">"192.168.0.0/16,10.0.0.0/8"</span>;
+        <span class="c-key">bypass_waf</span> <span class="c-val">on</span>;
+      }
+
+      <span class="c-key">path_policy</span> <span class="c-str">"/admin/*"</span> {
+        <span class="c-key">paranoia_level</span>  <span class="c-num">4</span>;
+        <span class="c-key">time_allow</span>      <span class="c-str">"09:00-18:00 Mon-Fri"</span>;
+      }</pre>
+                </div>
+              </div>
+            </div>
+            <a href="clofix-crs.html#clofixrule-syntax" class="doc-link-btn">📘 CloFixRule Custom Directives →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ STAGE 09 — JS INJECTOR ══════════ -->
+      <h2 class="doc-h2" id="stage-09">💉 Stage 09: JS Injector — Client-Side Security Layer</h2>
+      <div class="stage-card" id="s09">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s09-body" tabindex="0">
+          <div class="sch-num">09</div>
+          <div class="sch-icon">💉</div>
+          <div class="sch-text">
+            <div class="sch-title">JS Injector — Client-Side Security Layer</div>
+            <div class="sch-sub">Dynamic JavaScript injection for browser-side protection, CAPTCHA challenges, and behavioral telemetry collection</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-green">CSRF Tokens</span>
+              <span class="sch-badge b-green">CAPTCHA</span>
+              <span class="sch-badge b-green">Anti-Tamper</span>
+              <span class="sch-badge b-blue">Telemetry</span>
+            </div>
           </div>
           <span class="sch-chevron">▼</span>
         </div>
         <div class="stage-card-body" id="s09-body">
           <div class="scb-inner">
-            <p class="scb-lead">Once a request has cleared all WAF stages, the Load Balancer selects the optimal backend server and forwards the request. On the response path, it performs critical response sanitization — stripping all headers and response body content that would reveal internal infrastructure topology to potential attackers. This stage enforces a 99.99% availability SLA through active/passive health monitoring, automatic failover, and connection draining.</p>
+            <p class="scb-lead">The JS Injector operates on the response path — after CloFix has decided to ALLOW or CHALLENGE a request, it inspects the response body and injects JavaScript code into HTML pages. This enables a browser-native layer of security that complements all server-side stages.</p>
+            
             <div class="scb-grid">
               <div>
-                <div class="scb-col-label">Load Balancing Algorithms</div>
+                <div class="scb-col-label">Injection Capabilities</div>
                 <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>Round Robin:</strong> Distributes requests evenly across all healthy backends in circular order. Ideal for homogeneous server fleets with similar hardware and response times.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Least Connections:</strong> Routes each new request to the backend with the fewest active connections. Best for mixed workloads where request duration varies significantly (short API calls + long file downloads).</div></li>
-                  <li><div class="op-dot"></div><div><strong>IP Hash:</strong> Hashes the client IP to deterministically select a backend. Provides natural session affinity without cookies — ideal for applications that store session state in memory without a shared session store.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Weighted Round Robin:</strong> Assigns traffic proportionally based on configured weights. Route 70% to high-capacity servers and 30% to smaller instances, or gradually shift traffic during canary deployments.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Backend Information Hiding:</strong> Automatically strips 30+ response headers that expose infrastructure details: <code>Server</code>, <code>X-Powered-By</code>, <code>X-Backend-Server</code>, <code>X-Upstream</code>, <code>Via</code>, <code>X-Real-IP</code>, <code>X-Cache</code>, <code>X-Varnish</code>, <code>X-Debug</code>, <code>X-Request-ID</code>. Replaces <code>Server</code> with a configurable value or removes it entirely.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Response Body URL Rewriting:</strong> Parses HTML, JSON, and XML response bodies and rewrites any occurrence of backend domain names or internal IP addresses to the public frontend domain. Protects against SSRF reconnaissance from verbose error messages and API responses.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Anti-CSRF Token Injection:</strong> Automatically inserts hidden CSRF token fields into all HTML forms.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Bot Detection Telemetry:</strong> Injects lightweight (~4KB) telemetry script collecting mouse movement, keyboard timing, scroll behavior.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Headless Browser Detection:</strong> 60+ checks for headless browser artifacts.</div></li>
+                  <li><div class="op-dot"></div><div><strong>CAPTCHA Challenge Rendering:</strong> When risk score 30–70, injects full-page challenge overlay.</div></li>
                 </ul>
               </div>
               <div>
-                <div class="scb-col-label">Health Monitoring &amp; Failover</div>
-                <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>Active Health Checks:</strong> Proactive HTTP/HTTPS health check requests sent directly to each backend on a configurable interval (default: 10s). Checks the configured path, validates response status code and optional body content, and removes failed backends from rotation after a configurable failure threshold.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Passive Health Monitoring:</strong> Observes real traffic for connection failures, timeouts, and 5xx responses. Tracks <code>max_fails</code> (default: 3) within <code>fail_timeout</code> (default: 30s). Less aggressive than active checks — used as a complement to catch transient errors.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Connection Draining:</strong> When a backend is removed from rotation (maintenance or failure), in-flight requests are allowed to complete before the connection pool is drained. New requests are immediately routed to healthy backends. Zero dropped requests during rolling deployments.</div></li>
-                </ul>
-                <div class="code-wrap" style="margin-top:12px;">
+                <div class="scb-col-label">Configuration</div>
+                <div class="code-wrap">
                   <button class="copy-btn" data-code="code-09">Copy</button>
-                  <pre class="code-block" id="code-09"><span class="c-comment"># Load Balancer Configuration</span>
-<span class="c-key">backends</span> {
-  <span class="c-key">server</span> <span class="c-str">https://origin1.example.com:443</span>
-    weight=<span class="c-num">10</span> max_fails=<span class="c-num">3</span> fail_timeout=<span class="c-str">30s</span>;
-  <span class="c-key">server</span> <span class="c-str">https://origin2.example.com:443</span>
-    weight=<span class="c-num">5</span>;
-  <span class="c-key">server</span> <span class="c-str">https://backup.example.com:443</span>
-    weight=<span class="c-num">1</span> backup=<span class="c-val">true</span>;
-}
-
-<span class="c-key">load_balancer</span> {
-  <span class="c-key">algorithm</span>       <span class="c-str">least_conn</span>;
-  <span class="c-key">sticky_session</span>  <span class="c-val">on</span>;
-  <span class="c-key">cookie_name</span>     <span class="c-str">CF_BACKEND</span>;
-
-  <span class="c-key">health_check</span> {
-    <span class="c-key">enabled</span>   <span class="c-val">on</span>;
-    <span class="c-key">path</span>      <span class="c-str">/health</span>;
-    <span class="c-key">interval</span>  <span class="c-str">10s</span>;
-    <span class="c-key">timeout</span>   <span class="c-str">3s</span>;
-    <span class="c-key">status</span>    <span class="c-num">200</span>;
-  }
-
-  <span class="c-key">alerts</span> {
-    <span class="c-key">slack_webhook</span> <span class="c-str">"https://hooks.slack.com/…"</span>;
-    <span class="c-key">email</span>         <span class="c-str">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7916090a391c01181409151c571a1614">[email&#160;protected]</a>"</span>;
-  }
-}</pre>
+                  <pre class="code-block" id="code-09"><span class="c-key">js_injector</span> {
+        <span class="c-key">csrf_protection</span> { <span class="c-key">enabled</span> <span class="c-val">on</span>; <span class="c-key">token_ttl</span> <span class="c-str">1h</span>; }
+        <span class="c-key">captcha</span> {
+          <span class="c-key">provider</span>     <span class="c-str">clofix</span>;
+          <span class="c-key">challenge_ttl</span> <span class="c-str">24h</span>;
+        }
+      }</pre>
                 </div>
-                <a href="clofix-load-balancer.html" class="doc-link-btn">📘 Load Balancer Full Reference →</a>
+                <div class="callout tip">
+                  <span class="callout-icon">💡</span>
+                  <div><strong>Streaming note:</strong> Uses streaming HTML parser — injection latency &lt;0.1ms even for large pages.</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- STAGE 10 -->
-      <div class="stage-card stage-section" id="s10">
+      <!-- ══════════ STAGE 10 — LOAD BALANCER ══════════ -->
+      <h2 class="doc-h2" id="stage-10">⚖️ Stage 10: Load Balancer — Intelligent Traffic Distribution</h2>
+      <div class="stage-card" id="s10">
         <div class="stage-card-header" role="button" aria-expanded="false" data-card="s10-body" tabindex="0">
           <div class="sch-num">10</div>
-          <div class="sch-icon">🏢</div>
+          <div class="sch-icon">⚖️</div>
           <div class="sch-text">
-            <div class="sch-title">Backend Server — Origin Response &amp; Sanitization</div>
-            <div class="sch-sub">Verified requests are forwarded; all responses are scrubbed of infrastructure data before delivery to clients</div>
-            <div class="sch-badges"><span class="sch-badge b-green">Response Sanitization</span><span class="sch-badge b-green">Security Headers</span><span class="sch-badge b-green">Error Masking</span><span class="sch-badge b-blue">Infrastructure Hiding</span></div>
+            <div class="sch-title">Load Balancer — Intelligent Traffic Distribution</div>
+            <div class="sch-sub">Multi-algorithm load distribution, backend information hiding, health monitoring, and 99.99% availability SLA</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-blue">Header Hiding</span>
+              <span class="sch-badge b-blue">URL Rewriting</span>
+              <span class="sch-badge b-green">Health Checks</span>
+              <span class="sch-badge b-green">Zero Downtime</span>
+            </div>
           </div>
           <span class="sch-chevron">▼</span>
         </div>
         <div class="stage-card-body" id="s10-body">
           <div class="scb-inner">
-            <p class="scb-lead">The Backend Server stage is the final destination for verified requests. After all ten stages have been traversed, the sanitized request is forwarded to your origin server. The response travels back through CloFix, where a comprehensive outbound processing pipeline ensures no internal infrastructure information leaks to the client — preserving total confidentiality of your server topology, technology stack, and internal network architecture.</p>
+            <p class="scb-lead">Once a request has cleared all WAF stages, the Load Balancer selects the optimal backend server and forwards the request. On the response path, it performs critical response sanitization — stripping all headers and response body content that would reveal internal infrastructure topology.</p>
+            
+            <div class="scb-grid">
+              <div>
+                <div class="scb-col-label">Load Balancing Algorithms</div>
+                <ul class="ops-list">
+                  <li><div class="op-dot"></div><div><strong>Round Robin:</strong> Distributes requests evenly across all healthy backends.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Least Connections:</strong> Routes to backend with fewest active connections.</div></li>
+                  <li><div class="op-dot"></div><div><strong>IP Hash:</strong> Deterministically selects backend based on client IP.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Weighted:</strong> Assigns traffic proportionally based on configured weights.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Backend Information Hiding:</strong> Strips 30+ response headers: <code>Server</code>, <code>X-Powered-By</code>, <code>X-Backend-Server</code>, etc.</div></li>
+                </ul>
+              </div>
+              <div>
+                <div class="scb-col-label">Health Monitoring</div>
+                <div class="code-wrap">
+                  <button class="copy-btn" data-code="code-10">Copy</button>
+                  <pre class="code-block" id="code-10"><span class="c-key">backends</span> {
+        <span class="c-key">server</span> <span class="c-str">https://origin1.example.com</span> weight=<span class="c-num">10</span>;
+        <span class="c-key">server</span> <span class="c-str">https://origin2.example.com</span> weight=<span class="c-num">5</span>;
+      }
+
+      <span class="c-key">load_balancer</span> {
+        <span class="c-key">algorithm</span> <span class="c-str">least_conn</span>;
+        <span class="c-key">health_check</span> {
+          <span class="c-key">interval</span> <span class="c-str">10s</span>;
+          <span class="c-key">path</span>     <span class="c-str">/health</span>;
+        }
+      }</pre>
+                </div>
+              </div>
+            </div>
+            <a href="clofix-load-balancer.html" class="doc-link-btn">📘 Load Balancer Full Reference →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ STAGE 11 — BACKEND SERVER ══════════ -->
+      <h2 class="doc-h2" id="stage-11">🏢 Stage 11: Backend Server — Origin Response & Sanitization</h2>
+      <div class="stage-card" id="s11">
+        <div class="stage-card-header" role="button" aria-expanded="false" data-card="s11-body" tabindex="0">
+          <div class="sch-num">11</div>
+          <div class="sch-icon">🏢</div>
+          <div class="sch-text">
+            <div class="sch-title">Backend Server — Origin Response &amp; Sanitization</div>
+            <div class="sch-sub">Verified requests are forwarded; all responses are scrubbed of infrastructure data before delivery to clients</div>
+            <div class="sch-badges">
+              <span class="sch-badge b-green">Response Sanitization</span>
+              <span class="sch-badge b-green">Security Headers</span>
+              <span class="sch-badge b-green">Error Masking</span>
+              <span class="sch-badge b-blue">Infrastructure Hiding</span>
+            </div>
+          </div>
+          <span class="sch-chevron">▼</span>
+        </div>
+        <div class="stage-card-body" id="s11-body">
+          <div class="scb-inner">
+            <p class="scb-lead">The Backend Server stage is the final destination for verified requests. After all stages have been traversed, the sanitized request is forwarded to your origin server. The response travels back through CloFix, where a comprehensive outbound processing pipeline ensures no internal infrastructure information leaks to the client.</p>
+            
             <div class="scb-grid">
               <div>
                 <div class="scb-col-label">Outbound Response Processing</div>
                 <ul class="ops-list">
-                  <li><div class="op-dot"></div><div><strong>Complete Header Stripping:</strong> Every backend response header that could reveal infrastructure information is automatically removed: <code>Server</code>, <code>X-Powered-By</code>, <code>X-Backend-Server</code>, <code>X-Upstream</code>, <code>Via</code>, <code>X-Real-IP</code>, <code>X-Forwarded-For</code>, <code>X-Cache</code>, <code>X-Cache-Hit</code>, <code>X-Varnish</code>, <code>X-Debug</code>, <code>X-Request-ID</code>, <code>X-Correlation-ID</code>, <code>X-Runtime</code>, <code>X-Rack-Cache</code>.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Security Header Injection:</strong> If security headers are absent, CloFix injects them: <code>Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</code>, <code>X-Frame-Options: DENY</code>, <code>X-Content-Type-Options: nosniff</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code>, and a configurable Content Security Policy.</div></li>
-                  <li><div class="op-dot"></div><div><strong>URL Rewriting in Response Bodies:</strong> Scans HTML (<code>&lt;a href&gt;</code>, <code>&lt;form action&gt;</code>, <code>&lt;img src&gt;</code>), JSON string values, and XML element content for internal domain names and IP addresses. Rewrites them to the public frontend domain. Uses a streaming parser — no full-body buffering.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Error Page Sanitization:</strong> Intercepts backend 4xx/5xx error responses that contain stack traces, database connection strings, internal hostnames, or file system paths. Replaces them with configurable clean error pages, preventing information disclosure that could assist attackers in targeting your stack.</div></li>
-                  <li><div class="op-dot"></div><div><strong>Client IP Preservation:</strong> The original client IP is passed to the backend via <code>X-Forwarded-For</code>, <code>X-Real-IP</code>, and <code>CF-Connecting-IP</code> headers so your application can use real IP addresses for logging, analytics, and access control — while the client only ever sees CloFix as the server.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Complete Header Stripping:</strong> Removes <code>Server</code>, <code>X-Powered-By</code>, <code>X-Backend-Server</code>, <code>Via</code>, <code>X-Real-IP</code>, and 25+ others.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Security Header Injection:</strong> Injects HSTS, X-Frame-Options, X-Content-Type-Options if absent.</div></li>
+                  <li><div class="op-dot"></div><div><strong>URL Rewriting in Response Bodies:</strong> Rewrites internal domain names to public frontend domain in HTML, JSON, XML.</div></li>
+                  <li><div class="op-dot"></div><div><strong>Error Page Sanitization:</strong> Replaces stack traces and connection strings with clean error pages.</div></li>
                 </ul>
               </div>
               <div>
                 <div class="scb-col-label">Headers Reference</div>
                 <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-10a">Copy</button>
-                  <pre class="code-block" id="code-10a"><span class="c-comment"># Headers stripped from backend responses</span>
-<span class="c-key">strip_headers</span> [
-  <span class="c-str">Server</span>           <span class="c-str">X-Powered-By</span>
-  <span class="c-str">X-Backend-Server</span> <span class="c-str">X-Upstream</span>
-  <span class="c-str">Via</span>              <span class="c-str">X-Real-IP</span>
-  <span class="c-str">X-Forwarded-For</span>  <span class="c-str">X-Cache</span>
-  <span class="c-str">X-Cache-Hit</span>      <span class="c-str">X-Varnish</span>
-  <span class="c-str">X-Debug</span>          <span class="c-str">X-Request-ID</span>
-  <span class="c-str">X-Correlation-ID</span> <span class="c-str">X-Runtime</span>
-  <span class="c-str">X-Rack-Cache</span>     <span class="c-str">X-Generator</span>
-];
+                  <button class="copy-btn" data-code="code-11">Copy</button>
+                  <pre class="code-block" id="code-11"><span class="c-comment"># Stripped headers</span>
+      <span class="c-key">strip_headers</span> [
+        <span class="c-str">Server</span> <span class="c-str">X-Powered-By</span> <span class="c-str">X-Backend-Server</span>
+        <span class="c-str">Via</span>    <span class="c-str">X-Real-IP</span>      <span class="c-str">X-Forwarded-For</span>
+      ];
 
-<span class="c-comment"># Headers injected if absent</span>
-<span class="c-key">inject_headers</span> {
-  <span class="c-key">Strict-Transport-Security</span>
-    <span class="c-str">"max-age=31536000; includeSubDomains"</span>;
-  <span class="c-key">X-Frame-Options</span>         <span class="c-str">"DENY"</span>;
-  <span class="c-key">X-Content-Type-Options</span>  <span class="c-str">"nosniff"</span>;
-  <span class="c-key">Referrer-Policy</span>
-    <span class="c-str">"strict-origin-when-cross-origin"</span>;
-}</pre>
-                </div>
-                <div class="code-wrap">
-                  <button class="copy-btn" data-code="code-10b">Copy</button>
-                  <pre class="code-block" id="code-10b"><span class="c-comment"># URL Rewriting Example</span>
-<span class="c-comment"># Backend response contains:</span>
-<span class="c-str">"url": "http://internal-backend.lan/api/v2"</span>
-
-<span class="c-comment"># CloFix rewrites to:</span>
-<span class="c-str">"url": "https://app.clofix.com/api/v2"</span>
-
-<span class="c-comment"># Error page sanitization</span>
-<span class="c-key">error_sanitization</span> {
-  <span class="c-key">enabled</span>      <span class="c-val">on</span>;
-  <span class="c-key">strip_traces</span> <span class="c-val">on</span>;
-  <span class="c-key">custom_pages</span> {
-    <span class="c-key">404</span> <span class="c-str">"./errors/404.html"</span>;
-    <span class="c-key">500</span> <span class="c-str">"./errors/500.html"</span>;
-    <span class="c-key">503</span> <span class="c-str">"./errors/503.html"</span>;
-  }
-}</pre>
+      <span class="c-comment"># Injected security headers</span>
+      <span class="c-key">inject_headers</span> {
+        <span class="c-key">Strict-Transport-Security</span> <span class="c-str">"max-age=31536000"</span>;
+        <span class="c-key">X-Frame-Options</span>          <span class="c-str">"DENY"</span>;
+        <span class="c-key">X-Content-Type-Options</span>   <span class="c-str">"nosniff"</span>;
+      }</pre>
                 </div>
               </div>
             </div>
@@ -1540,113 +1624,287 @@
         </div>
       </div>
 
-      <!-- ── Key Features ── -->
-      <h2 class="doc-h2" id="key-features">🚀 Key Security Features</h2>
-      <div class="feature-grid">
-        <div class="feature-tile">
-          <div class="ft-icon">🎯</div>
-          <div class="ft-title">Multi-Layer Detection</div>
-          <ul class="ft-list">
-            <li>Behavioral heuristics (Rate, GeoIP, JA3/JA4)</li>
-            <li>OWASP CRS v4 — 25 rule files, 200+ rules</li>
-            <li>AI/ML: Random Forest, LSTM, Transformer</li>
-            <li>Custom Lua/JS scripting (clofix_main, clofix)</li>
-            <li>Composite weighted risk scoring</li>
-          </ul>
-        </div>
-        <div class="feature-tile">
-          <div class="ft-icon">🧠</div>
-          <div class="ft-title">AI-Powered Zero-Day</div>
-          <ul class="ft-list">
-            <li>ML classification — 96.2% accuracy</li>
-            <li>Human biometric analysis (mouse/keystroke)</li>
-            <li>Hardware fingerprinting (GPU, CPU, canvas)</li>
-            <li>Automation tool detection (Puppeteer, Selenium)</li>
-            <li>Behavioral baseline — 7-day learning window</li>
-          </ul>
-        </div>
-        <div class="feature-tile">
-          <div class="ft-icon">⚡</div>
-          <div class="ft-title">Performance-First Design</div>
-          <ul class="ft-list">
-            <li>&lt;2ms P99 average latency</li>
-            <li>Coraza + Hyperscan SIMD acceleration</li>
-            <li>HTTP/2 &amp; HTTP/3 (QUIC) support</li>
-            <li>Connection pooling &amp; zero-copy forwarding</li>
-            <li>120,000+ req/s per node throughput</li>
-          </ul>
-        </div>
-        <div class="feature-tile">
-          <div class="ft-icon">🔒</div>
-          <div class="ft-title">Infrastructure Confidentiality</div>
-          <ul class="ft-list">
-            <li>30+ sensitive headers stripped automatically</li>
-            <li>Response body URL rewriting (HTML/JSON/XML)</li>
-            <li>Backend error page sanitization</li>
-            <li>JS Injector — client-side CSRF &amp; anti-tamper</li>
-            <li>Session binding &amp; integrity verification</li>
-          </ul>
-        </div>
-        <div class="feature-tile">
-          <div class="ft-icon">🏗️</div>
-          <div class="ft-title">Enterprise Reliability</div>
-          <ul class="ft-list">
-            <li>99.99% availability SLA</li>
-            <li>Active + passive health monitoring</li>
-            <li>Zero-downtime connection draining</li>
-            <li>Slack/Email/Webhook/Telegram alerts</li>
-            <li>5 load balancing algorithms</li>
-          </ul>
-        </div>
-        <div class="feature-tile">
-          <div class="ft-icon">🛠️</div>
-          <div class="ft-title">Developer Friendly</div>
-          <ul class="ft-list">
-            <li>Virtual patching — 5-minute CVE response</li>
-            <li>Rule testing sandbox (historical traffic)</li>
-            <li>Multi-language rules (CloFixRule + Lua + JS)</li>
-            <li>Rule metrics &amp; ML optimization suggestions</li>
-            <li>Full REST API for rule management</li>
-          </ul>
-        </div>
-      </div>
-
       <!-- FULL 10-STAGE DETECTION MATRIX -->
-      <h2 class="doc-h2" id="detection-matrix">🔬 Complete Threat Detection Matrix (All 10 Stages)</h2>
-      <p class="doc-p">Comprehensive coverage mapping showing which stages detect each threat category. ✓ Primary detection, △ Partial/Supporting, — Not applicable.</p>
+      <h2 class="doc-h2" id="detection-matrix">🔬 Complete Threat Detection Matrix (All 11 Stages)</h2>
+      <p class="doc-p">Comprehensive coverage mapping showing which stages detect each threat category. ✓ Primary detection, △ Partial/Supporting, — Not applicable. <strong>Stages 02-05 are fully programmable custom engines.</strong></p>
       <div class="cmp-table-wrap">
         <style>
           .cmp-table .tc-check { color: #10b981; font-weight: 700; }
           .cmp-table .tc-check-white { color: #ffffff; font-weight: 700; }
           .cmp-table .tc-partial { color: #fbbf24; font-weight: 700; }
+          .cmp-table .tc-wasm { color: #60a5fa; font-weight: 700; }
+          .cmp-table .tc-custom { background: rgba(96, 165, 250, 0.15); }
           .cmp-table td { color: rgba(255,255,255,0.72); }
+          .cmp-table th.custom-header { background: rgba(96, 165, 250, 0.3); color: #60a5fa; }
         </style>
         <table class="cmp-table">
           <thead>
-            <tr><th>Threat Category</th><th>01<br>Behavior</th><th>02<br>CRS</th><th>03<br>JS</th><th>04<br>Lua</th><th>05<br>AI</th><th>06<br>Core</th><th>07<br>Custom</th><th>08<br>Injector</th><th>09<br>LB</th><th>10<br>Backend</th>  </tr>
+            <tr>
+              <th>Threat Category</th>
+              <th>01<br>Behavior</th>
+              <th class="custom-header">02<br>WASM<br><span style="font-size:10px;">(Custom)</span></th>
+              <th class="custom-header">03<br>CRS<br><span style="font-size:10px;">(Custom)</span></th>
+              <th class="custom-header">04<br>JS<br><span style="font-size:10px;">(Custom)</span></th>
+              <th class="custom-header">05<br>Lua<br><span style="font-size:10px;">(Custom)</span></th>
+              <th>06<br>AI</th>
+              <th>07<br>Core</th>
+              <th>08<br>Custom<br>Rules</th>
+              <th>09<br>Injector</th>
+              <th>10<br>LB</th>
+              <th>11<br>Backend</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td><strong>SQL Injection</strong></td><td>—</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>XSS (DOM/Reflected)</strong></td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check-white">CSP</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>DDoS / Rate Abuse</strong></td><td class="tc-check-white">Primary</td><td>—</td><td>—</td><td class="tc-check">✓</td><td class="tc-check-white">Anomaly</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td class="tc-check-white">Conn limit</td><td>—</td></tr>
-            <tr><td><strong>Bot / Automation</strong></td><td class="tc-check-white">JA3/UA</td><td class="tc-partial">△</td><td class="tc-partial">△</td><td class="tc-check">✓</td><td class="tc-check-white">Primary</td><td class="tc-check">✓</td><td class="tc-check-white">Blocklist</td><td class="tc-check-white">Telemetry</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>Command Injection</strong></td><td>—</td><td class="tc-check">✓</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>SSRF</strong></td><td>—</td><td class="tc-check">✓</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td class="tc-check-white">URL rewrite</td><td>—</td></tr>
-            <tr><td><strong>Zero-Day Exploits</strong></td><td class="tc-partial">△</td><td class="tc-partial">△</td><td class="tc-partial">△</td><td class="tc-check-white">VPatch</td><td class="tc-check-white">Primary</td><td class="tc-check-white">VPatch</td><td class="tc-check-white">VPatch</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>Credential Stuffing</strong></td><td class="tc-check-white">Rate</td><td class="tc-partial">△</td><td>—</td><td class="tc-check-white">rate_limit</td><td class="tc-check-white">Behavior</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>Prototype Pollution</strong></td><td>—</td><td class="tc-partial">△</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-partial">△</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>Path Traversal (LFI)</strong></td><td class="tc-check-white">Pattern</td><td class="tc-check">✓</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>Magecart Skimming</strong></td><td>—</td><td>—</td><td class="tc-check-white">Pattern</td><td>—</td><td class="tc-check">✓</td><td class="tc-check">✓</td><td>—</td><td class="tc-check-white">Mutation Observer</td><td>—</td><td>—</td></tr>
-            <tr><td><strong>API Abuse</strong></td><td class="tc-check-white">Rate/Geo</td><td class="tc-check-white">Protocol</td><td>—</td><td class="tc-check">✓</td><td class="tc-check-white">Anomaly</td><td class="tc-check">✓</td><td class="tc-check-white">Path policies</td><td class="tc-check-white">CSRF</td><td class="tc-check-white">LB</td><td>—</td></tr>
-            <tr><td><strong>Information Disclosure</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td class="tc-partial">△</td><td class="tc-check-white">Bypass</td><td>—</td><td>—</td><td class="tc-check-white">Header Strip</td><td class="tc-check-white">Primary</td></tr>
+            <!-- SQL Injection -->
+            <tr>
+              <td><strong>SQL Injection</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-check tc-custom">✓ CRS Rules</td>
+              <td class="tc-partial tc-custom">△ Analysis</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- XSS -->
+            <tr>
+              <td><strong>XSS (DOM/Reflected)</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-check tc-custom">✓ CRS Rules</td>
+              <td class="tc-check tc-custom">✓ Runtime</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check-white">CSP</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- DDoS / Rate Abuse -->
+            <tr>
+              <td><strong>DDoS / Rate Abuse</strong></td>
+              <td class="tc-check-white">Primary</td>
+              <td class="tc-wasm tc-custom">✓ rate_limit</td>
+              <td>—</td>
+              <td>—</td>
+              <td class="tc-check tc-custom">✓ rate_limit</td>
+              <td class="tc-check-white">Anomaly</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-partial">△</td>
+              <td class="tc-check-white">Conn limit</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Bot / Automation -->
+            <tr>
+              <td><strong>Bot / Automation</strong></td>
+              <td class="tc-check-white">JA3/UA</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-partial tc-custom">△</td>
+              <td class="tc-partial tc-custom">△ Headless</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check-white">Primary ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check-white">Blocklist</td>
+              <td class="tc-check-white">Telemetry</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Command Injection -->
+            <tr>
+              <td><strong>Command Injection</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-check tc-custom">✓ CRS Rules</td>
+              <td>—</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- SSRF -->
+            <tr>
+              <td><strong>SSRF</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-check tc-custom">✓ CRS Rules</td>
+              <td>—</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td>—</td>
+              <td class="tc-check-white">URL rewrite</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Zero-Day Exploits -->
+            <tr>
+              <td><strong>Zero-Day Exploits</strong></td>
+              <td class="tc-partial">△</td>
+              <td class="tc-wasm tc-custom">✓ Custom VPatch</td>
+              <td class="tc-partial tc-custom">△</td>
+              <td class="tc-partial tc-custom">△</td>
+              <td class="tc-check-white tc-custom">VPatch</td>
+              <td class="tc-check-white">Primary ML</td>
+              <td class="tc-check-white">VPatch</td>
+              <td class="tc-check-white">VPatch</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Credential Stuffing -->
+            <tr>
+              <td><strong>Credential Stuffing</strong></td>
+              <td class="tc-check-white">Rate</td>
+              <td class="tc-wasm tc-custom">✓ rate_limit</td>
+              <td class="tc-partial tc-custom">△</td>
+              <td>—</td>
+              <td class="tc-check-white tc-custom">rate_limit</td>
+              <td class="tc-check-white">Behavior</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-partial">△</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Prototype Pollution -->
+            <tr>
+              <td><strong>Prototype Pollution</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-partial tc-custom">△</td>
+              <td class="tc-check tc-custom">✓ Runtime</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-partial">△</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Path Traversal (LFI) -->
+            <tr>
+              <td><strong>Path Traversal (LFI)</strong></td>
+              <td class="tc-check-white">Pattern</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-check tc-custom">✓ CRS Rules</td>
+              <td>—</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check">✓</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Magecart Skimming -->
+            <tr>
+              <td><strong>Magecart Skimming</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td>—</td>
+              <td class="tc-check-white tc-custom">Pattern</td>
+              <td>—</td>
+              <td class="tc-check">✓ ML</td>
+              <td class="tc-check">✓</td>
+              <td>—</td>
+              <td class="tc-check-white">Mutation Observer</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- API Abuse -->
+            <tr>
+              <td><strong>API Abuse</strong></td>
+              <td class="tc-check-white">Rate/Geo</td>
+              <td class="tc-wasm tc-custom">✓ Custom</td>
+              <td class="tc-check-white tc-custom">Protocol</td>
+              <td>—</td>
+              <td class="tc-check tc-custom">✓ Custom</td>
+              <td class="tc-check-white">Anomaly</td>
+              <td class="tc-check">✓</td>
+              <td class="tc-check-white">Path policies</td>
+              <td class="tc-check-white">CSRF</td>
+              <td class="tc-check-white">LB</td>
+              <td>—</td>
+            </tr>
+            
+            <!-- Information Disclosure -->
+            <tr>
+              <td><strong>Information Disclosure</strong></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td class="tc-partial">△</td>
+              <td class="tc-check-white">Bypass</td>
+              <td>—</td>
+              <td>—</td>
+              <td class="tc-check-white">Header Strip</td>
+              <td class="tc-check-white">Primary</td>
+            </tr>
+            
+            <!-- Custom Business Logic -->
+            <tr>
+              <td><strong>Custom Business Logic</strong></td>
+              <td>—</td>
+              <td class="tc-wasm tc-custom">✓ Primary</td>
+              <td>—</td>
+              <td>—</td>
+              <td class="tc-check-white tc-custom">✓ Primary</td>
+              <td class="tc-partial">△</td>
+              <td class="tc-check-white">Rules</td>
+              <td class="tc-check-white">Primary</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="callout" style="margin-top:1.5rem;">
+        <span class="callout-icon">🦀</span>
+        <div><strong>Custom Engines (Stages 02-05):</strong> Four fully programmable detection engines provide complete flexibility:
+          <ul style="margin: 8px 0 0 20px; color: rgba(255,255,255,0.8);">
+            <li><strong>WASM Engine (02):</strong> Write custom detection in 8+ languages (TinyGo, Rust, C/C++, AssemblyScript, Zig) — 85µs latency, memory isolation, 40+ host APIs</li>
+            <li><strong>CRS Engine (03):</strong> OWASP Core Rule Set v4 — 200+ rules, paranoia levels 1-4, anomaly scoring</li>
+            <li><strong>JS Engine (04):</strong> V8-based sandbox for deobfuscation, runtime analysis, DOM XSS detection, CVE matching</li>
+            <li><strong>Lua Engine (05):</strong> LuaJIT scripting with full CloFix API access — rate limiting, threat intel, custom business logic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="legend" style="margin-top:1rem; display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+        <div><span style="display:inline-block; width:12px; height:12px; background:#60a5fa; border-radius:2px; margin-right:6px;"></span> Custom Engine (Stages 02-05)</div>
+        <div><span style="display:inline-block; width:12px; height:12px; background:#10b981; border-radius:2px; margin-right:6px;"></span> ✓ Primary Detection</div>
+        <div><span style="display:inline-block; width:12px; height:12px; background:#fbbf24; border-radius:2px; margin-right:6px;"></span> △ Partial/Supporting</div>
+        <div><span style="display:inline-block; width:12px; height:12px; background:#ffffff; border-radius:2px; margin-right:6px;"></span> ✓ Specialized Detection</div>
       </div>
 
       <!-- ── Conclusion / CTA ── -->
       <div id="conclusion" class="conclusion-cta">
         <div class="cta-heading">Deploy CloFix WAF in Minutes</div>
-        <p class="cta-sub">Enterprise-grade, 10-stage protection for your applications. Start with a free trial — no credit card required.</p>
+        <p class="cta-sub">Enterprise-grade, 11-stage protection for your applications. Start with CloFix WAF - no credit card required.</p>
         <a href="https://clofix.com/contact.html" class="cta-btn">🚀 Get Started with CloFix</a>
       </div>
 
@@ -1742,16 +2000,27 @@
 
   /* ── Pipeline Panel Data ── */
   const STAGE_DATA = {
-    1: { title:'Behavior Analyzer', body:`<strong>Production-hardened behavioral analysis engine</strong> — implements 13-layer heuristic detection (velocity, entropy, timing consistency, static asset ratio, error rate, sequential enumeration, parameter fuzzing, UA rotation, response time CV, burst patterns). Uses <strong>JA3 TLS fingerprinting</strong> with 85+ browser signature database (Chrome 120+, Firefox 121, Safari 17, Edge, Brave, Tor). Calculates composite tool score (0–100) with configurable thresholds. Blocks ~40% of malicious traffic at near-zero cost.<br><br><strong>Detection Layers (13+ Signals):</strong> JA3 Browser DB (instant allow), Velocity/Rate Limiting (>120 req/min = tool), Path Entropy (<0.5 = scanner), Timing Coefficient of Variation (<20% variance = automation), Static Asset Ratio (<8% = tool), Error Rate (>30% = scanner), Sequential Enumeration, Parameter Fuzzing (>10 unique params = +30pts), UA Rotation (>3 distinct UAs = evasion), Response Time CV (<15% uniform = automation), Burst Detection, Injection Pattern Detection (SQLi/XSS/LFI), Empty/Minimal UA detection, Path Traversal patterns.<br><br><strong>Scoring Logic:</strong> Score ≥85 = TOOL (block/challenge). Score 65–84 = monitor (challenge). Score 30–64 = elevated suspicion. Score <30 = ALLOW. Established sessions (>10 min) with clean history reduce suspicion by -15pts. Block duration = 15min, profile TTL = 60min.<div class="pp-tags"><span class="pp-tag blue">JA3/JA4 TLS</span><span class="pp-tag blue">Rate Limiting 60rpm</span><span class="pp-tag blue">Path Entropy</span><span class="pp-tag amber">Tool Scoring 0-100</span><span class="pp-tag blue">13-Layer Heuristics</span><span class="pp-tag green">Browser DB (85+ sigs)</span></div>` },
-    2: { title:'CRS Engine', body:`<strong>OWASP Core Rule Set v4</strong> — the industry benchmark. 25 rule files, 200+ individual rules, four processing phases, configurable paranoia levels (1–4) and anomaly scoring.<br><br>Covers: SQL Injection (942xxx), XSS (941xxx), LFI/RFI (930-931xxx), Command Injection (932xxx), SSRF (933xxx), PHP Injection (933xxx), NoSQL Injection, XXE, SSTI, and HTTP Protocol violations (920xxx).<div class="pp-tags"><span class="pp-tag red">SQLi</span><span class="pp-tag red">XSS</span><span class="pp-tag red">LFI/RFI</span><span class="pp-tag red">Cmd Injection</span><span class="pp-tag red">SSRF</span><span class="pp-tag red">XXE</span></div>` },
-    3: { title:'JS Engine', body:`<strong>V8-based JavaScript sandbox</strong> (2s timeout) for deobfuscating layered payloads and detecting runtime attack patterns invisible to static analysis.<br><br>Multi-pass decoding: Base64, hex, Unicode, URL encoding — up to 8 nesting levels deep. DOM XSS taint analysis, prototype pollution detection, CVE exploit signature matching, pre-cached pattern scanning of all served JS files (5-min interval).<div class="pp-tags"><span class="pp-tag blue">Deobfuscation ×8</span><span class="pp-tag red">DOM XSS Taint</span><span class="pp-tag red">Prototype Pollution</span><span class="pp-tag blue">CVE Match</span></div>` },
-    4: { title:'Lua Engine', body:`<strong>LuaJIT scripting environment</strong> with full access to CloFix's security API — the escape hatch for any security logic that no generic rule can express.<br><br>APIs: <code>clofix.request</code>, <code>clofix.is_tor()</code>, <code>clofix.ip_reputation()</code>, <code>clofix.rate_limit_ip()</code>, <code>clofix.normalize_payload()</code>, <code>clofix.log_attack()</code>, <code>clofix.block()</code>, <code>clofix.challenge()</code>. Cross-worker shared dictionaries for distributed state.<div class="pp-tags"><span class="pp-tag green">Full Request API</span><span class="pp-tag green">TI Integration</span><span class="pp-tag green">Shared State</span><span class="pp-tag green">Custom Logic</span></div>` },
-    5: { title:'AI Neural Engine', body:`<strong>Multi-model ML system</strong> trained on 2B+ labeled requests. The only stage that detects <em>previously unseen</em> attacks through statistical anomaly detection rather than pattern matching.<br><br>Models: Transformer (96.2%), Random Forest (94.8%), LSTM (93.1%), Biometric Classifier (97.3%), Isolation Forest (91.7%). Detects Puppeteer/Playwright/Selenium, device spoofing, cryptojacking, and human biometric signals.<div class="pp-scores"><div class="pp-score-row"><span class="pp-score-label">ML Classification</span><div class="pp-score-track"><div class="pp-score-fill" style="width:96%"></div></div><span class="pp-score-pct">96.2%</span></div><div class="pp-score-row"><span class="pp-score-label">Biometric Accuracy</span><div class="pp-score-track"><div class="pp-score-fill" style="width:97%"></div></div><span class="pp-score-pct">97.3%</span></div><div class="pp-score-row"><span class="pp-score-label">Zero-Day Detection</span><div class="pp-score-track"><div class="pp-score-fill" style="width:89%"></div></div><span class="pp-score-pct">~89%</span></div></div>` },
-    6: { title:'CloFix Core — Risk Arbiter', body:`<strong>The final decision engine.</strong> Aggregates all stage scores through a weighted formula, applies CloFixRule directives + bypass conditions, renders verdict.<br><br><div class="pp-formula"><span class="hl">TotalRisk</span> = (Behavior×<span class="hl">0.20</span>) + (CRS×<span class="hl">0.35</span>) + (JS×<span class="hl">0.10</span>) + (Lua×<span class="hl">0.10</span>) + (AI×<span class="hl">0.25</span>)</div><div class="pp-thresholds"><div class="pp-threshold t-allow"><div class="t-num">&lt;30</div>✅ ALLOW<div style="font-size:.65rem;opacity:.7">Pass to backend</div></div><div class="pp-threshold t-challenge"><div class="t-num">30–70</div>⚠️ CHALLENGE<div style="font-size:.65rem;opacity:.7">CAPTCHA / JS challenge</div></div><div class="pp-threshold t-block"><div class="t-num">&gt;70</div>🚫 BLOCK<div style="font-size:.65rem;opacity:.7">403 + attack log</div></div></div>` },
-    7: { title:'Custom Rules', body:`<strong>Organization-specific policy layer.</strong> Human-controlled overrides expressed as IP allowlists/blocklists, path policies, time-based ACLs, and CloFixRule directives.<br><br>Example uses: Allow internal CIDR to bypass WAF. Block entire ASNs during DDoS. Enforce API key validation on <code>/api/*</code>. Apply paranoia level 4 only on <code>/admin/*</code>. Restrict admin access to business hours in local timezone.<div class="pp-tags"><span class="pp-tag blue">Allowlist/Blocklist</span><span class="pp-tag blue">Path Policies</span><span class="pp-tag amber">Time-based ACL</span><span class="pp-tag blue">Header Validation</span></div>` },
-    8: { title:'JS Injector', body:`<strong>Response-path JavaScript injection</strong> — browser-native security that complements all server-side stages.<br><br>Injects via streaming HTML parser (&lt;0.1ms): Anti-CSRF tokens in all forms, bot telemetry collector (~4KB), headless browser probe (60+ signals), CAPTCHA challenge overlay (when score 30–70), DOM MutationObserver for Magecart detection, session binding cookie.<div class="pp-tags"><span class="pp-tag green">CSRF Auto-Tokens</span><span class="pp-tag green">Telemetry 4KB</span><span class="pp-tag green">60+ Headless Checks</span><span class="pp-tag green">CAPTCHA</span></div>` },
-    9: { title:'Load Balancer', body:`<strong>Intelligent traffic distribution</strong> with backend information hiding, 99.99% SLA, and zero-downtime deployments.<br><br>Algorithms: Round Robin, Least Connections, IP Hash, Weighted, Random. Strips 30+ infrastructure headers. Rewrites internal URLs in HTML/JSON/XML responses. Active health checks (10s interval, 3s timeout). Passive failure tracking (max_fails 3, fail_timeout 30s). Connection draining for zero dropped requests.<div class="pp-tags"><span class="pp-tag blue">30+ Headers Stripped</span><span class="pp-tag blue">URL Rewriting</span><span class="pp-tag green">Active + Passive</span><span class="pp-tag green">Zero Downtime</span></div>` },
-    10: { title:'Backend Server', body:`<strong>Origin delivery &amp; response sanitization.</strong> The final stage — verified requests forwarded to origin, responses scrubbed clean before delivery to client.<br><br>Strips all infrastructure-identifying headers, rewrites backend URLs in response bodies, sanitizes verbose error messages (stack traces, connection strings, file paths), injects security headers (HSTS, CSP, X-Frame-Options) if absent. Original client IP preserved via X-Forwarded-For.<div class="pp-tags"><span class="pp-tag green">Header Stripping</span><span class="pp-tag green">Security Headers</span><span class="pp-tag green">Error Sanitization</span><span class="pp-tag blue">IP Preservation</span></div>` }
+      1: { title:'Behavior Analyzer', body:`<strong>Production-hardened behavioral analysis engine</strong> — implements 13-layer heuristic detection (velocity, entropy, timing consistency, static asset ratio, error rate, sequential enumeration, parameter fuzzing, UA rotation, response time CV, burst patterns). Uses <strong>JA3 TLS fingerprinting</strong> with 85+ browser signature database (Chrome 120+, Firefox 121, Safari 17, Edge, Brave, Tor). Calculates composite tool score (0–100) with configurable thresholds. Blocks ~40% of malicious traffic at near-zero cost.<br><br><strong>Detection Layers (13+ Signals):</strong> JA3 Browser DB (instant allow), Velocity/Rate Limiting (>120 req/min = tool), Path Entropy (<0.5 = scanner), Timing Coefficient of Variation (<20% variance = automation), Static Asset Ratio (<8% = tool), Error Rate (>30% = scanner), Sequential Enumeration, Parameter Fuzzing (>10 unique params = +30pts), UA Rotation (>3 distinct UAs = evasion), Response Time CV (<15% uniform = automation), Burst Detection, Injection Pattern Detection (SQLi/XSS/LFI), Empty/Minimal UA detection, Path Traversal patterns.<br><br><strong>Scoring Logic:</strong> Score ≥85 = TOOL (block/challenge). Score 65–84 = monitor (challenge). Score 30–64 = elevated suspicion. Score <30 = ALLOW. Established sessions (>10 min) with clean history reduce suspicion by -15pts. Block duration = 15min, profile TTL = 60min.<div class="pp-tags"><span class="pp-tag blue">JA3/JA4 TLS</span><span class="pp-tag blue">Rate Limiting 60rpm</span><span class="pp-tag blue">Path Entropy</span><span class="pp-tag amber">Tool Scoring 0-100</span><span class="pp-tag blue">13-Layer Heuristics</span><span class="pp-tag green">Browser DB (85+ sigs)</span></div>` },
+      
+      2: { title:'WASM Engine', body:`<strong>High-performance WebAssembly execution sandbox</strong> — run custom security logic in 8+ languages with memory isolation, timeout protection, and full access to CloFix's security API.<br><br><strong>Core Capabilities:</strong> Memory isolation with configurable limits (default 64MB), execution timeout protection (default 100ms), pre-warmed instance pooling (zero cold starts), zero-copy memory access (&lt;10µs acquisition), and hot module reload without restart.<br><br><strong>Supported Languages:</strong> TinyGo (recommended), Rust (wasm32-wasi), C/C++ (wasi-sdk), AssemblyScript, Zig, Grain, and SwiftWASM — use your existing skills and codebases.<br><br><strong>Host Functions (40+ APIs):</strong> Request introspection (get_method, get_path, get_header, get_cookie, get_client_ip), GeoIP lookup (get_country, get_city, get_asn, get_isp), Threat intelligence (is_tor, is_vpn, get_reputation, is_proxy), Response manipulation (set_response_header, set_cookie, redirect), Rate limiting (rate_limit_check, rate_limit_ip), Utilities (regex_match, contains, sha256, base64, url_encode), Crypto operations (sha256, base64_encode, base64_decode), String operations (to_lower, to_upper, contains, regex_match).<br><br><strong>WAF ABI Standard:</strong> Required exports: process_request(ptr, len) → packed uint64 (ptr&lt;&lt;32|len) or two-return convention, wasm_alloc(size) → ptr, wasm_free(ptr, size) optional. Memory export required for host access.<br><br><strong>Security Hardening:</strong> No filesystem access (blocks path_open), No network access (blocks sock_recv/send), No arbitrary syscalls (40+ pre-approved functions), Memory sandboxing (isolated linear memory), Execution timeouts (prevents DoS), Import allowlist (only env + wasi_snapshot_preview1), Binary pattern scanning (detects PE/ELF/Mach-O headers), Compiler detection (rejects browser-only WASM).<br><br><strong>Performance Metrics:</strong> Median latency: 85µs per module, P99 latency: 420µs, Memory overhead: ~2MB per module, Concurrent requests: 10,000+ without degradation, Warm instance reuse: &lt;10µs pool acquisition, Cold start: &lt;50ms including compilation.<br><br><strong>Use Cases:</strong> Custom rate limiting per user/API key, Bot mitigation with JA3 fingerprinting, Geo-fencing by country/region, Request validation (JSON schema, parameter types), Response transformation (add security headers, remove sensitive data), A/B testing (route percentage of traffic), Custom WAF rules (SQLi/XSS detection), Session validation (JWT tokens, session cookies).<br><br><strong>Validator Tool:</strong> Comprehensive pre-loading validation — header check (magic + version), required exports verification (process_request, wasm_alloc), memory limit validation (max 64MB), dangerous import detection (blocks filesystem/network), compiler detection (identifies 8+ compilers), binary pattern analysis (PE/ELF/Mach-O), resource limit checks (max functions/imports), and execution test with timeout protection.<div class="pp-tags"><span class="pp-tag green">8+ Languages</span><span class="pp-tag blue">40+ Host APIs</span><span class="pp-tag red">Memory Isolation</span><span class="pp-tag blue">85µs Latency</span><span class="pp-tag green">Hot Reload</span><span class="pp-tag amber">Validator Tool</span></div>` },
+      
+      3: { title:'CRS Engine', body:`<strong>OWASP Core Rule Set v4</strong> — the industry benchmark. 25 rule files, 200+ individual rules, four processing phases, configurable paranoia levels (1–4) and anomaly scoring.<br><br>Covers: SQL Injection (942xxx), XSS (941xxx), LFI/RFI (930-931xxx), Command Injection (932xxx), SSRF (933xxx), PHP Injection (933xxx), NoSQL Injection, XXE, SSTI, and HTTP Protocol violations (920xxx).<div class="pp-tags"><span class="pp-tag red">SQLi</span><span class="pp-tag red">XSS</span><span class="pp-tag red">LFI/RFI</span><span class="pp-tag red">Cmd Injection</span><span class="pp-tag red">SSRF</span><span class="pp-tag red">XXE</span></div>` },
+      
+      4: { title:'JS Engine', body:`<strong>V8-based JavaScript sandbox</strong> (2s timeout) for deobfuscating layered payloads and detecting runtime attack patterns invisible to static analysis.<br><br>Multi-pass decoding: Base64, hex, Unicode, URL encoding — up to 8 nesting levels deep. DOM XSS taint analysis, prototype pollution detection, CVE exploit signature matching, pre-cached pattern scanning of all served JS files (5-min interval).<div class="pp-tags"><span class="pp-tag blue">Deobfuscation ×8</span><span class="pp-tag red">DOM XSS Taint</span><span class="pp-tag red">Prototype Pollution</span><span class="pp-tag blue">CVE Match</span></div>` },
+      
+      5: { title:'Lua Engine', body:`<strong>LuaJIT scripting environment</strong> with full access to CloFix's security API — the escape hatch for any security logic that no generic rule can express.<br><br>APIs: <code>clofix.request</code>, <code>clofix.is_tor()</code>, <code>clofix.ip_reputation()</code>, <code>clofix.rate_limit_ip()</code>, <code>clofix.normalize_payload()</code>, <code>clofix.log_attack()</code>, <code>clofix.block()</code>, <code>clofix.challenge()</code>. Cross-worker shared dictionaries for distributed state.<div class="pp-tags"><span class="pp-tag green">Full Request API</span><span class="pp-tag green">TI Integration</span><span class="pp-tag green">Shared State</span><span class="pp-tag green">Custom Logic</span></div>` },
+      
+      6: { title:'AI Neural Engine', body:`<strong>Multi-model ML system</strong> trained on 2B+ labeled requests. The only stage that detects <em>previously unseen</em> attacks through statistical anomaly detection rather than pattern matching.<br><br>Models: Transformer (96.2%), Random Forest (94.8%), LSTM (93.1%), Biometric Classifier (97.3%), Isolation Forest (91.7%). Detects Puppeteer/Playwright/Selenium, device spoofing, cryptojacking, and human biometric signals.<div class="pp-scores"><div class="pp-score-row"><span class="pp-score-label">ML Classification</span><div class="pp-score-track"><div class="pp-score-fill" style="width:96%"></div></div><span class="pp-score-pct">96.2%</span></div><div class="pp-score-row"><span class="pp-score-label">Biometric Accuracy</span><div class="pp-score-track"><div class="pp-score-fill" style="width:97%"></div></div><span class="pp-score-pct">97.3%</span></div><div class="pp-score-row"><span class="pp-score-label">Zero-Day Detection</span><div class="pp-score-track"><div class="pp-score-fill" style="width:89%"></div></div><span class="pp-score-pct">~89%</span></div></div>` },
+      
+      7: { title:'CloFix Core — Risk Arbiter', body:`<strong>The final decision engine.</strong> Aggregates all stage scores through a weighted formula, applies CloFixRule directives + bypass conditions, renders verdict.<br><br><div class="pp-formula"><span class="hl">TotalRisk</span> = (Behavior×<span class="hl">0.20</span>) + (WASM×<span class="hl">0.15</span>) + (CRS×<span class="hl">0.25</span>) + (JS×<span class="hl">0.10</span>) + (Lua×<span class="hl">0.10</span>) + (AI×<span class="hl">0.20</span>)</div><div class="pp-thresholds"><div class="pp-threshold t-allow"><div class="t-num">&lt;30</div>✅ ALLOW<div style="font-size:.65rem;opacity:.7">Pass to backend</div></div><div class="pp-threshold t-challenge"><div class="t-num">30–70</div>⚠️ CHALLENGE<div style="font-size:.65rem;opacity:.7">CAPTCHA / JS challenge</div></div><div class="pp-threshold t-block"><div class="t-num">&gt;70</div>🚫 BLOCK<div style="font-size:.65rem;opacity:.7">403 + attack log</div></div></div>` },
+      
+      8: { title:'Custom Rules', body:`<strong>Organization-specific policy layer.</strong> Human-controlled overrides expressed as IP allowlists/blocklists, path policies, time-based ACLs, and CloFixRule directives.<br><br>Example uses: Allow internal CIDR to bypass WAF. Block entire ASNs during DDoS. Enforce API key validation on <code>/api/*</code>. Apply paranoia level 4 only on <code>/admin/*</code>. Restrict admin access to business hours in local timezone.<div class="pp-tags"><span class="pp-tag blue">Allowlist/Blocklist</span><span class="pp-tag blue">Path Policies</span><span class="pp-tag amber">Time-based ACL</span><span class="pp-tag blue">Header Validation</span></div>` },
+      
+      9: { title:'JS Injector', body:`<strong>Response-path JavaScript injection</strong> — browser-native security that complements all server-side stages.<br><br>Injects via streaming HTML parser (&lt;0.1ms): Anti-CSRF tokens in all forms, bot telemetry collector (~4KB), headless browser probe (60+ signals), CAPTCHA challenge overlay (when score 30–70), DOM MutationObserver for Magecart detection, session binding cookie.<div class="pp-tags"><span class="pp-tag green">CSRF Auto-Tokens</span><span class="pp-tag green">Telemetry 4KB</span><span class="pp-tag green">60+ Headless Checks</span><span class="pp-tag green">CAPTCHA</span></div>` },
+      
+      10: { title:'Load Balancer', body:`<strong>Intelligent traffic distribution</strong> with backend information hiding, 99.99% SLA, and zero-downtime deployments.<br><br>Algorithms: Round Robin, Least Connections, IP Hash, Weighted, Random. Strips 30+ infrastructure headers. Rewrites internal URLs in HTML/JSON/XML responses. Active health checks (10s interval, 3s timeout). Passive failure tracking (max_fails 3, fail_timeout 30s). Connection draining for zero dropped requests.<div class="pp-tags"><span class="pp-tag blue">30+ Headers Stripped</span><span class="pp-tag blue">URL Rewriting</span><span class="pp-tag green">Active + Passive</span><span class="pp-tag green">Zero Downtime</span></div>` },
+      
+      11: { title:'Backend Server', body:`<strong>Origin delivery &amp; response sanitization.</strong> The final stage — verified requests forwarded to origin, responses scrubbed clean before delivery to client.<br><br>Strips all infrastructure-identifying headers, rewrites backend URLs in response bodies, sanitizes verbose error messages (stack traces, connection strings, file paths), injects security headers (HSTS, CSP, X-Frame-Options) if absent. Original client IP preserved via X-Forwarded-For.<div class="pp-tags"><span class="pp-tag green">Header Stripping</span><span class="pp-tag green">Security Headers</span><span class="pp-tag green">Error Sanitization</span><span class="pp-tag blue">IP Preservation</span></div>` }
   };
 
   /* ── Pipeline Node Interaction ── */
