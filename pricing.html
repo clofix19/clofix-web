@@ -850,13 +850,13 @@
         let yearlyNote = '';
         if (isYearly) {
           const annual = yearlyMonthly * 12;
-          yearlyNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> ${formatPrice(annual)}/year — Save 10%</div>`;
+          yearlyNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> ${formatPrice(annual)}/yearly — Save 10%</div>`;
         }
 
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
-             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /month</span></div>
+             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /monthly</span></div>
              ${yearlyNote}
            </div>
            <div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
