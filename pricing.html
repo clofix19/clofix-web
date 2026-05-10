@@ -1,38 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloFix WAF Pricing</title>
+  <title>CloFix WAF Pricing | BDT / USD</title>
 
-  <!-- Primary Meta Tags -->
   <meta name="title" content="CloFix WAF Pricing">
-  <meta name="description"
-    content="Choose CloFix WAF pricing: Free to Enterprise with advanced security, AI-driven protection, support, and flexible options to secure and scale your business.">
+  <meta name="description" content="Choose CloFix WAF pricing: Starter to Enterprise with advanced security, AI-driven protection, support, and flexible options to secure and scale your business.">
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://clofix.com/pricing">
   <meta property="og:title" content="CloFix WAF Pricing">
-  <meta property="og:description"
-    content="Explore CloFix WAF pricing. Protect your applications with AI-driven security, and enterprise-grade features.">
+  <meta property="og:description" content="Explore CloFix WAF pricing. Protect your applications with AI-driven security, and enterprise-grade features.">
   <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@clofix19">
   <meta name="twitter:url" content="https://clofix.com/pricing">
   <meta name="twitter:title" content="CloFix WAF Pricing">
-  <meta name="twitter:description"
-    content="Flexible CloFix WAF pricing for startups to enterprises. Get unmatched web application security with AI-driven protection.">
+  <meta name="twitter:description" content="Flexible CloFix WAF pricing for startups to enterprises. Get unmatched web application security with AI-driven protection.">
   <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
 
-  <!-- LinkedIn & WhatsApp -->
-  <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
-  <meta property="og:image:alt" content="CloFix WAF Pricing">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -40,375 +28,190 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
-    rel="stylesheet" />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Libraries -->
-  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="./style.css" rel="stylesheet" />
 
   <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #7c3aed;
-      --dark: #1e293b;
-      --gray: #64748b;
-      --ai-color: #8b5cf6;
-      --core-color: #3b82f6;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0a0f1c; color: #e2e8f0; }
+    :root { --primary: #3b82f6; --primary-dark: #2563eb; --secondary: #8b5cf6; --card-bg: #111827; --card-border: #1e293b; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    .header { background: #020617; border-bottom: 1px solid #1e293b; position: sticky; top: 0; z-index: 100; }
+    .header__wrapper { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .c-logo__img { height: 42px; filter: brightness(0) invert(1); }
+    .c-nav__content { display: flex; align-items: center; }
+    .c-list { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+    .c-link--list { color: #cbd5e1; text-decoration: none; font-weight: 500; transition: 0.2s; }
+    .c-link--list:hover { color: var(--primary); }
+    .c-dropdown--mega { position: relative; }
 
-    .pricing-header {
-      text-align: center;
-      margin: 3rem 0 2rem;
-    }
-
-    .pricing-header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-
-    .pricing-header p {
-      font-size: 1.1rem;
-      color: var(--gray);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .calculator-section {
-      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-      border-radius: 24px;
-      padding: 3rem;
-      margin: 3rem 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    }
-
-    .price-heading {
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 2rem;
-      color: var(--dark);
-    }
-
-    .input-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .basic-input {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-
-    /* ✅ Force black input text */
-    /* ✅ White inputs + black text (consistent everywhere) */
-    .basic-input input,
-    .basic-input select {
-      padding: 0.75rem 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 12px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-
-      background: #ffffff;
-      color: #02060a;
-      -webkit-text-fill-color: #02060a;
-      /* fixes Chrome/Safari weirdness */
-      caret-color: #02060a;
-    }
-
-    /* ✅ Dropdown options must also be dark */
-    .basic-input select option {
-      background: #ffffff;
-      color: #02060a;
-    }
-
-    /* Optional: nicer hover/focus */
-    .basic-input input:focus,
-    .basic-input select:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-    }
-
-    .bandwidth-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .support-type {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-
-    .support-label {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-
-    .support-link {
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 400;
-    }
-
-    .support-link:hover {
-      text-decoration: underline;
-    }
-
-    .type-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin: 1rem 0;
-    }
-
-    .optional-features {
-      font-size: 1.5rem;
-      color: var(--dark);
-      margin: 2rem 0 1rem;
-      text-align: center;
-    }
-
-    .optional-feature-wrap {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid #eef2f6;
-      margin: 1rem 0 2rem;
-    }
-
-    .optional-features-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1rem;
-      max-height: 600px;
-      overflow-y: auto;
-      padding: 1rem;
-      justify-items: stretch;
-      align-items: start;
-    }
-
-    .optional-features-list label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      background: #f8fafc;
-      border-radius: 8px;
-      color: #02060a;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: 1px solid #eef2f6;
-      font-size: 0.95rem;
-      width: 100%;
-      justify-self: stretch;
-    }
-
-    .feature-price {
-      margin-left: auto;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .category-header {
-      grid-column: 1 / -1;
-      width: 100%;
-      justify-self: stretch;
-      margin: 2rem 0 1rem 0;
-      padding: 1rem;
-      border-radius: 12px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-      border-left: 6px solid;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
-
-    .category-header.ai-category {
-      border-left-color: var(--ai-color);
-      color: #6d28d9;
-    }
-
-    .category-header.core-category {
-      border-left-color: var(--core-color);
-      color: #1e40af;
-    }
-
-    .category-header .category-count {
-      margin-left: auto;
-      background: rgba(0, 0, 0, 0.05);
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .free-features-section {
-      margin: 2rem 0;
+    .c-dropdown--mega:hover .c-dropdown__menu--mega { opacity: 1; visibility: visible; }
+    .c-dropdown__mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .c-dropdown__mega-link { color: #94a3b8; text-decoration: none; font-size: 0.8rem; display: block; padding: 0.3rem 0; }
+    .c-button--small { background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; padding: 0.5rem 1.2rem; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; }
+    .pricing-header { text-align: center; margin: 2.5rem 0 1.5rem; }
+    .pricing-header h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .pricing-header p { color: #94a3b8; margin-top: 0.5rem; }
+    .pricing-header__sub { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0.5rem 1rem; margin-top: 1rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
+    .ph-tag { max-width: 380px; text-align: left; }
+    .ph-tag strong { color: #e2e8f0; }
+    .ph-saas strong { color: #38bdf8; }
+    .ph-dedicated strong { color: #a78bfa; }
+    .ph-divider { color: #334155; font-size: 1.4rem; align-self: center; }
+    .pricing-header__badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; }
+    .ph-badge { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); color: #93c5fd; font-size: 0.72rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 30px; display: flex; align-items: center; gap: 0.4rem; }
+    .ph-badge i { font-size: 0.65rem; }
+    .currency-switch { display: flex; justify-content: center; gap: 1rem; margin: 0.5rem 0 1rem; }
+    .currency-btn { padding: 0.4rem 1.6rem; border-radius: 40px; font-weight: 600; background: #1e293b; border: 1px solid #334155; cursor: pointer; color: #cbd5e1; transition: 0.2s; font-size: 0.85rem; }
+    .currency-btn.active-currency { background: var(--primary); color: white; border-color: var(--primary); }
+    .model-switch { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0 2rem; }
+    .model-btn { padding: 0.6rem 2rem; border-radius: 40px; font-weight: 700; background: #1e293b; border: 1px solid #334155; cursor: pointer; color: #cbd5e1; transition: 0.2s; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    .model-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 0 12px rgba(59,130,246,0.3); }
+    .plans-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 1.8rem; margin: 2rem 0; }
+    .plan-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
       padding: 1.5rem;
-      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
-      border-radius: 16px;
-      border: 1px solid #86efac;
-    }
-
-    .free-features-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.2rem;
-      color: #166534;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
-    .free-features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 0.75rem;
-    }
-
-    .free-feature-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      background: rgba(134, 239, 172, 0.1);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-    }
-
-    #errorMessage {
-      padding: 1rem;
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      color: #dc2626;
-      margin: 1rem 0;
-      text-align: center;
-    }
-
-    .calculate {
-      display: block;
-      width: 100%;
-      max-width: 300px;
-      margin: 2rem auto;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
+      padding-top: 2rem;
+      flex: 1;
+      min-width: 280px;
+      max-width: 340px;
+      border: 1px solid #1e293b;
       transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
-
-    #result {
-      margin: 3rem 0;
-      padding: 2rem;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    .plan-card .feature-list { flex: 1; }
+    .plan-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 20px 35px -12px rgba(59, 130, 246, 0.25); }
+    .plan-card.enterprise { background: linear-gradient(145deg, #0f172a, #030712); border-color: #3b82f6; }
+    .plan-card.custom-card { background: linear-gradient(135deg, #1e1b4b, #0f172a); border: 2px solid var(--secondary); }
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      right: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      font-weight: 700;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.4);
+      letter-spacing: 0.3px;
+      pointer-events: none;
     }
+    .custom-badge { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
 
-    .pricing-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin: 1.5rem 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
+    .plan-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .price-section { margin: 0.8rem 0; }
+    .price-main { font-size: 1.8rem; font-weight: 800; color: white; }
+    .support-price { font-size: 0.85rem; color: #94a3b8; margin-top: 0.3rem; }
+    .setup-fee { font-size: 0.75rem; color: #f59e0b; background: rgba(245, 158, 11, 0.15); display: inline-block; padding: 0.2rem 0.6rem; border-radius: 20px; margin-top: 0.3rem; }
+    .resource-info { background: rgba(30,41,59,0.6); padding: 0.4rem; border-radius: 12px; margin: 0.8rem 0; font-size: 0.75rem; text-align: center; }
+    .feature-list { list-style: none; margin: 1rem 0; }
+    .feature-list li { padding: 0.4rem 0; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; }
+    .feature-list li i { color: var(--primary); width: 18px; }
+    .deployment-info { background: rgba(59,130,246,0.15); border-radius: 12px; padding: 0.6rem; margin: 0.8rem 0; font-size: 0.7rem; text-align: center; border-left: 3px solid var(--primary); }
+    .btn { display: block; text-align: center; padding: 0.7rem; border-radius: 40px; font-weight: 600; text-decoration: none; margin-top: 1rem; background: var(--primary); color: white; transition: 0.2s; cursor: pointer; border: none; font-family: 'Inter', sans-serif; font-size: 0.9rem; width: 100%; }
+    .btn:hover { background: var(--primary-dark); transform: scale(0.98); }
+    .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: white; }
+    .btn-custom { background: linear-gradient(135deg, var(--secondary), var(--primary)); border: none; }
+    .btn-custom:hover { transform: scale(0.98); opacity: 0.95; }
+    .comparison-section { background: #0f172a; border-radius: 1.5rem; padding: 1.5rem; margin: 2rem 0; overflow-x: auto; border: 1px solid #1e293b; }
+    .comparison-section h3 { margin-bottom: 1rem; color: white; }
+    .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .comparison-table th, .comparison-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+    .comparison-table th { background: #1e293b; color: white; font-weight: 600; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto; }
+    .modal-content { background: #0f172a; max-width: 900px; margin: 2rem auto; padding: 2rem; border-radius: 1.5rem; position: relative; border: 1px solid #334155; }
+    .close-modal { position: absolute; right: 1.5rem; top: 1rem; font-size: 1.8rem; cursor: pointer; color: #94a3b8; }
+    .footer { background: #020617; margin-top: 3rem; padding: 2rem 0; border-top: 1px solid #1e293b; }
+    .c-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+    .social { display: flex; gap: 0.8rem; list-style: none; margin-top: 1rem; }
+    .footer__text { text-align: center; padding-top: 2rem; color: #64748b; font-size: 0.75rem; }
 
-    .pricing-table thead tr {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    .branding-toggle-btn {
+      flex: 1;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
       color: white;
     }
+    .branding-toggle-btn.active-toggle { background: #10b981; }
+    .branding-toggle-btn.inactive-toggle { background: #334155; }
 
-    .pricing-table th {
-      padding: 1rem;
-      font-weight: 600;
-      text-align: left;
-    }
+    @media (max-width: 768px) { .plans-row { flex-direction: column; align-items: stretch; } .c-nav__content { display: none; } .ph-divider { display: none; } .ph-tag { max-width: 100%; text-align: center; } }
 
-    .pricing-table td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #eef2f6;
-    }
+    .agr-modal { max-width: 960px; padding: 0; overflow: hidden; }
+    .agr-header { background: linear-gradient(135deg, #020617, #0f172a); padding: 2rem 2rem 1.5rem; border-bottom: 1px solid #1e293b; }
+    .agr-logo-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .agr-doc-id { font-size: 0.7rem; color: #475569; font-family: monospace; }
+    .agr-title { font-size: 1.5rem; font-weight: 800; color: white; }
+    .agr-subtitle { color: #64748b; font-size: 0.85rem; margin-top: 0.3rem; }
+    .agr-meta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; font-size: 0.75rem; color: #475569; }
+    .agr-meta-row span { display: flex; align-items: center; gap: 0.4rem; }
+    .agr-body { max-height: 72vh; overflow-y: auto; padding: 2rem; scroll-behavior: smooth; }
+    .agr-body::-webkit-scrollbar { width: 6px; }
+    .agr-body::-webkit-scrollbar-track { background: #0f172a; }
+    .agr-body::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
 
-    .pricing-table tfoot tr {
-      background: #f1f5f9;
-      font-weight: 700;
-    }
+    .agr-quickref { background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; padding: 1.2rem; margin-bottom: 1.5rem; }
+    .agr-quickref__title { font-weight: 700; color: #93c5fd; margin-bottom: 0.8rem; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+    .agr-note { font-size: 0.72rem; color: #64748b; margin-top: 0.8rem; display: flex; align-items: center; gap: 0.4rem; }
+    .agr-table-wrap { overflow-x: auto; }
+    .agr-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .agr-table th { background: #1e293b; color: #93c5fd; font-weight: 600; padding: 0.6rem 0.8rem; text-align: left; white-space: nowrap; }
+    .agr-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+    .agr-table tr:last-child td { border-bottom: none; }
+    .agr-table tr:hover td { background: rgba(255,255,255,0.02); }
 
-    .export-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: flex-end;
-      margin-top: 1rem;
-    }
+    .agr-sections { display: flex; flex-direction: column; gap: 1.4rem; }
+    .agr-section { display: flex; gap: 1.2rem; }
+    .agr-section__num { font-size: 2rem; font-weight: 800; color: #1e293b; min-width: 44px; line-height: 1; padding-top: 0.15rem; font-variant-numeric: tabular-nums; }
+    .agr-section__content { flex: 1; }
+    .agr-section__content h3 { font-size: 1rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1e293b; }
+    .agr-section__content p { font-size: 0.82rem; color: #94a3b8; line-height: 1.7; margin-bottom: 0.4rem; }
+    .agr-list { list-style: none; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.35rem; }
+    .agr-list li { font-size: 0.8rem; color: #94a3b8; display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+    .agr-list li i { color: #3b82f6; margin-top: 0.15rem; flex-shrink: 0; width: 14px; }
+    .agr-list li strong { color: #cbd5e1; }
 
-    
-    @media (max-width: 768px) {
-      .calculator-section {
-        padding: 1.5rem;
-      }
+    .agr-deploy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.8rem; }
+    .agr-deploy-card { background: #1e293b; border-radius: 12px; padding: 0.9rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .agr-deploy-card i { color: #3b82f6; font-size: 1.1rem; }
+    .agr-deploy-card strong { color: #e2e8f0; font-size: 0.82rem; }
+    .agr-deploy-card span { font-size: 0.75rem; color: #64748b; line-height: 1.5; }
 
-      .input-grid {
-        grid-template-columns: 1fr;
-      }
+    .agr-sla-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 0.8rem; }
+    .agr-sla-card { border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid #1e293b; }
+    .agr-sla-card.starter  { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3); }
+    .agr-sla-card.business { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); }
+    .agr-sla-card.enterprise { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); }
+    .agr-sla-tier { font-size: 0.75rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.3rem; }
+    .agr-sla-pct { font-size: 1.6rem; font-weight: 800; color: white; }
+    .agr-sla-down { font-size: 0.7rem; color: #64748b; margin-top: 0.2rem; }
+    .agr-sla-credit { font-size: 0.68rem; color: #475569; margin-top: 0.4rem; background: rgba(0,0,0,0.2); border-radius: 6px; padding: 0.2rem 0.4rem; }
 
-      .bandwidth-row {
-        grid-template-columns: 1fr;
-      }
+    .sev { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; }
+    .sev-p1 { background: rgba(239,68,68,0.15); color: #f87171; }
+    .sev-p2 { background: rgba(249,115,22,0.15); color: #fb923c; }
+    .sev-p3 { background: rgba(234,179,8,0.15); color: #facc15; }
+    .sev-p4 { background: rgba(99,102,241,0.15); color: #a5b4fc; }
 
-      .optional-features-list {
-        grid-template-columns: 1fr;
-      }
-
-      .export-buttons {
-        flex-direction: column;
-      }
-
-      .c-button--secondary {
-        width: 100%;
-      }
-    }
+    .agr-signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1e293b; }
+    .agr-sig-block p { font-size: 0.8rem; color: #64748b; margin-top: 0.3rem; }
+    .agr-sig-line { height: 1px; background: #334155; margin-bottom: 0.6rem; }
+    .agr-footer-note { margin-top: 1.5rem; font-size: 0.78rem; color: #475569; text-align: center; padding: 1rem; background: #0f172a; border-radius: 10px; }
+    .agr-footer-note a { color: #3b82f6; text-decoration: none; }
+    @media (max-width: 640px) { .agr-deploy-grid { grid-template-columns: 1fr; } .agr-sla-grid { grid-template-columns: 1fr; } .agr-signatures { grid-template-columns: 1fr; } .agr-section__num { display: none; } }
   </style>
 </head>
 
@@ -506,128 +309,337 @@
 
   <main class="container">
     <div class="pricing-header">
-      <h1>Simple, Transparent Pricing</h1>
-      <p>Choose the perfect plan for your business. All plans include core security features and 24/7 support.</p>
+      <h1>CloFix WAF - Transparent Pricing</h1>
+      <p class="pricing-header__sub">
+        <span class="ph-tag ph-saas"><i class="fas fa-cloud"></i> <strong>SaaS</strong> - Zero-ops agility. Deploy in minutes, no infrastructure overhead, automatic updates, and elastic scaling on demand.</span>
+        <span class="ph-divider">|</span>
+        <span class="ph-tag ph-dedicated"><i class="fas fa-server"></i> <strong>Dedicated</strong> - Maximum control &amp; compliance. Isolated infrastructure, bring-your-own-cloud or our datacenter, full customization, named engineer, and enterprise SLA up to 99.999%.</span>
+      </p>
+      <div class="pricing-header__badges">
+        <span class="ph-badge"><i class="fas fa-shield-alt"></i> OWASP CRS</span>
+        <span class="ph-badge"><i class="fas fa-brain"></i> AI-Powered Detection</span>
+        <span class="ph-badge"><i class="fas fa-globe"></i> 4 Scripting Engine</span>
+        <span class="ph-badge"><i class="fas fa-lock"></i> PCI-DSS / HIPAA / GDPR</span>
+        <span class="ph-badge"><i class="fas fa-bolt"></i> Sub-10ms Latency</span>
+        <span class="ph-badge"><i class="fas fa-headset"></i> 24/7 Support</span>
+      </div>
     </div>
 
-    <section class="calculator-section">
-      <h2 class="price-heading">CloFix WAF - Pricing Calculator</h2>
+    <div class="currency-switch">
+      <button id="currencyBDT" class="currency-btn active-currency">🇧🇩 BDT (৳)</button>
+      <button id="currencyUSD" class="currency-btn">🇺🇸 USD ($)</button>
+    </div>
 
-      <div class="input-grid">
-        <label class="basic-input">
-          Number of Domains:
-          <input type="number" id="domains" min="1" value="1" required />
-        </label>
+    <div class="model-switch">
+      <button class="model-btn active" data-model="saas">☁️ SaaS Plans</button>
+      <button class="model-btn" data-model="dedicated">🏢 Dedicated Hosting</button>
+      <button class="model-btn" data-model="brandingChart">🎨 Branding</button>
+    </div>
 
-        <label class="basic-input">
-          Number of Subdomains:
-          <input type="number" id="subdomains" min="0" value="0" />
-        </label>
+    <div id="plansContainer" class="plans-row"></div>
 
-        <label class="basic-input">
-          Monthly Requests (in millions):
-          <input type="number" id="requests" min="0" value="1000000" />
-        </label>
+    <div id="saasComparison" class="comparison-section">
+      <h3><i class="fas fa-chart-line"></i> SaaS Feature Comparison</h3>
+      <table class="comparison-table" id="saasComparisonTable"></table>
+    </div>
+
+    <div id="dedicatedComparison" class="comparison-section" style="display:none;">
+      <h3><i class="fas fa-server"></i> Dedicated Hosting Feature Comparison</h3>
+      <table class="comparison-table" id="dedicatedComparisonTable"></table>
+      <div style="margin-top:1.5rem; text-align:center;">
+        <button id="viewAgreementBtn" class="btn" style="display:inline-block; width:auto; padding:0.6rem 1.8rem;">
+          <i class="fas fa-file-contract"></i> View Dedicated Hosting Agreement
+        </button>
       </div>
+    </div>
+  </main>
 
-      <div class="bandwidth-row">
-        <label class="basic-input">
-          Bandwidth
-          <input type="number" id="bandwidth" min="1" value="100" required />
-        </label>
+  <div id="agreementModal" class="modal">
+    <div class="modal-content agr-modal">
+      <span class="close-modal">&times;</span>
 
-        <label class="basic-input">
-          Bandwidth Unit
-          <select id="bandwidthUnit">
-            <option value="GB">GB per month</option>
-            <option value="TB">TB per month</option>
-          </select>
-        </label>
-      </div>
-
-      <!-- ✅ Rules input -->
-      <div class="input-grid">
-        <label class="basic-input">
-          Rules (Free Up to 10):
-          <input type="number" id="rules" min="0" value="10" />
-        </label>
-      </div>
-
-      <label class="support-type">
-        Website Type:
-        <select id="siteType">
-          <option value="">Select Type</option>
-          <option value="wordpress">WordPress</option>
-          <option value="api">API Gateway</option>
-          <option value="saas">SaaS Web App</option>
-          <option value="bank">Banking / Finance</option>
-          <option value="ecommerce">E-commerce</option>
-          <option value="streaming">Streaming Service</option>
-        </select>
-      </label>
-
-      <div id="selectedTypes" class="type-chips"></div>
-
-      <label class="support-type">
-        <span class="support-label">
-          CloFix WAF Support Type:
-          <a href="plans.html" class="support-link">View Support Plans</a>
-        </span>
-        <select id="support" required>
-          <option value="email">Free Tier</option>
-          <option value="standard">Standard Support (55 USD/month)</option>
-          <option value="enterprise">Enterprise Support (500 USD/month)</option>
-        </select>
-      </label>
-
-      <label class="basic-input">
-        License Validation:
-        <select id="license" required>
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Yearly (10% Discount)</option>
-        </select>
-      </label>
-
-      <!-- Free features -->
-      <div class="free-features-section" id="freeFeaturesSection"></div>
-
-      <h2 class="optional-features">Security Features by Category</h2>
-      <div class="optional-feature-wrap">
-        <div class="optional-features-list" id="featureList"></div>
-      </div>
-
-      <div id="errorMessage" style="display:none;">
-        ⚠️ Please fill in all required fields: Domains, Bandwidth must be greater than 0.
-      </div>
-
-      <button class="calculate" onclick="calculatePricing()">Calculate Pricing</button>
-
-      <div class="section" id="result" style="display:none;">
-        <h2 class="heading heading--3">Pricing Summary</h2>
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Component</th>
-              <th>Cost (USD)</th>
-            </tr>
-          </thead>
-          <tbody id="pricingTable"></tbody>
-          <tfoot>
-            <tr>
-              <th>Total</th>
-              <th id="totalCost">$0.00</th>
-            </tr>
-          </tfoot>
-        </table>
-
-        <div class="export-buttons">
-          <button class="c-button c-button--secondary" id="exportExcelBtn" style="display:none;">Export as
-            Excel</button>
-          <button class="c-button c-button--secondary" id="exportPDFBtn" style="display:none;">Export as PDF</button>
+      <!-- Header -->
+      <div class="agr-header">
+        <div class="agr-logo-row">
+          <img src="img/logo.png" alt="CloFix" style="height:36px; filter:brightness(0) invert(1);" />
+          <span class="agr-doc-id">Doc ID: CX-DHA-2026-001</span>
+        </div>
+        <h2 class="agr-title">WAF Dedicated Hosting Agreement</h2>
+        <p class="agr-subtitle">CloFix Infotech -; Standard Service Agreement (Global)</p>
+        <div class="agr-meta-row">
+          <span><i class="fas fa-calendar-alt"></i> Effective: January 1, 2026</span>
+          <span><i class="fas fa-globe"></i> Jurisdiction: International</span>
+          <span><i class="fas fa-language"></i> Governing Language: English</span>
         </div>
       </div>
-    </section>
-  </main>
+
+      <div class="agr-body">
+
+        
+
+        <div class="agr-sections">
+
+          <!-- 1 -->
+          <div class="agr-section">
+            <div class="agr-section__num">01</div>
+            <div class="agr-section__content">
+              <h3>Definitions &amp; Parties</h3>
+              <p><strong>"Provider"</strong> means CloFix Infotech, a company registered under applicable law, providing WAF and cybersecurity services globally.</p>
+              <p><strong>"Client"</strong> means the legal entity or individual that executes this Agreement or clicks "Accept" on the online order form.</p>
+              <p><strong>"Service"</strong> means the CloFix WAF Dedicated Hosting package selected by the Client, as described in the applicable Order Form.</p>
+              <p><strong>"Effective Date"</strong> means the date the Client's order is confirmed in writing or electronically by the Provider.</p>
+              <p><strong>"Subscription Term"</strong> means the initial contract period (12 months unless otherwise stated) and any renewal periods.</p>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="agr-section">
+            <div class="agr-section__num">02</div>
+            <div class="agr-section__content">
+              <h3>Scope of Services</h3>
+              <p>Provider shall deliver the following under the selected Dedicated Hosting tier:</p>
+              <ul class="agr-list">
+                <li><i class="fas fa-check"></i> Dedicated WAF reverse-proxy infrastructure (isolated VM or bare-metal, as specified)</li>
+                <li><i class="fas fa-check"></i> CloFix WAF software license for the contracted number of domains</li>
+                <li><i class="fas fa-check"></i> Full OWASP Core Rule Set (CRS) engine with AI-powered behavioral analysis</li>
+                <li><i class="fas fa-check"></i> DDoS mitigation at L3/L4/L7 layers with volumetric, protocol, and application-layer detection</li>
+                <li><i class="fas fa-check"></i> WASM module execution engine (TinyGo / Rust / C / AssemblyScript)</li>
+                <li><i class="fas fa-check"></i> Lua &amp; JavaScript custom scripting engines</li>
+                <li><i class="fas fa-check"></i> JA3/JA4 TLS fingerprinting and device behavioral analysis</li>
+                <li><i class="fas fa-check"></i> ClickHouse-backed analytics, logging, and real-time dashboards</li>
+                <li><i class="fas fa-check"></i> Monthly maintenance: security patches, rule updates, version upgrades</li>
+                <li><i class="fas fa-check"></i> Initial onboarding, DNS migration support, and SSL provisioning</li>
+                <li><i class="fas fa-check"></i> Support access as defined per tier (see §7)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="agr-section">
+            <div class="agr-section__num">03</div>
+            <div class="agr-section__content">
+              <h3>Deployment &amp; Infrastructure</h3>
+              <p>The Client may elect one of the following deployment models, subject to availability and tier eligibility:</p>
+              <div class="agr-deploy-grid">
+                <div class="agr-deploy-card">
+                  <i class="fas fa-cloud"></i>
+                  <strong>Client's Cloud</strong>
+                  <span>AWS, GCP, Azure, DigitalOcean, Linode, Vultr, or any VPS provider. Client retains cloud billing. Provider manages the WAF layer.</span>
+                </div>
+                <div class="agr-deploy-card">
+                  <i class="fas fa-server"></i>
+                  <strong>Provider Datacenter</strong>
+                  <span>Hosted on CloFix-managed servers. Infrastructure costs included in the annual hosting fee. Locations: BD, SG, EU, US (tier-dependent).</span>
+                </div>
+                <div class="agr-deploy-card">
+                  <i class="fas fa-building"></i>
+                  <strong>On-Premise</strong>
+                  <span>Client-owned hardware. Provider delivers remote installation, configuration, and ongoing management. Enterprise tier only.</span>
+                </div>
+                <div class="agr-deploy-card">
+                  <i class="fas fa-network-wired"></i>
+                  <strong>Hybrid</strong>
+                  <span>Primary on Provider datacenter, failover on Client cloud. Available on Business &amp; Enterprise tiers.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="agr-section">
+            <div class="agr-section__num">04</div>
+            <div class="agr-section__content">
+              <h3>Service Level Agreement (SLA)</h3>
+              <div class="agr-sla-grid">
+                <div class="agr-sla-card starter">
+                  <div class="agr-sla-tier">Starter</div>
+                  <div class="agr-sla-pct">99.9%</div>
+                  <div class="agr-sla-down">≤ 8.7 hrs/year downtime</div>
+                  <div class="agr-sla-credit">Credit: 5% per hour beyond SLA</div>
+                </div>
+                <div class="agr-sla-card business">
+                  <div class="agr-sla-tier">Business</div>
+                  <div class="agr-sla-pct">99.99%</div>
+                  <div class="agr-sla-down">≤ 52 mins/year downtime</div>
+                  <div class="agr-sla-credit">Credit: 10% per hour beyond SLA</div>
+                </div>
+                <div class="agr-sla-card enterprise">
+                  <div class="agr-sla-tier">Enterprise</div>
+                  <div class="agr-sla-pct">99.999%</div>
+                  <div class="agr-sla-down">≤ 5.26 mins/year downtime</div>
+                  <div class="agr-sla-credit">Credit: Custom per contract</div>
+                </div>
+              </div>
+              <p style="margin-top:1rem;">Downtime is measured from the time a verified incident ticket is opened to resolution. Scheduled maintenance windows (notified ≥ 48 hours in advance) are excluded from SLA calculations. Service credits are applied as invoice deductions in the following billing cycle and do not entitle the Client to a cash refund.</p>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="agr-section">
+            <div class="agr-section__num">05</div>
+            <div class="agr-section__content">
+              <h3>Payment Terms &amp; Billing</h3>
+              <ul class="agr-list">
+                <li><i class="fas fa-circle"></i> <strong>Annual Hosting &amp; License:</strong> Invoiced annually in advance on the Effective Date anniversary.</li>
+                <li><i class="fas fa-circle"></i> <strong>Monthly Maintenance:</strong> Invoiced on the 1st of each calendar month.</li>
+                <li><i class="fas fa-circle"></i> <strong>Setup Fee:</strong> Invoiced on the Effective Date; due before provisioning begins.</li>
+                <li><i class="fas fa-circle"></i> <strong>Payment Window:</strong> Net-15 days from invoice date.</li>
+                <li><i class="fas fa-circle"></i> <strong>Late Payment:</strong> 1.5% per month (18% per annum) on overdue balances.</li>
+                <li><i class="fas fa-circle"></i> <strong>Currencies Accepted:</strong> BDT (Bangladeshi Taka), USD, EUR, GBP, SGD.</li>
+                <li><i class="fas fa-circle"></i> <strong>Payment Methods:</strong> Bank transfer (SWIFT / local), bKash, Nagad, Payoneer, Wise, Stripe.</li>
+                <li><i class="fas fa-circle"></i> <strong>Taxes:</strong> All fees are exclusive of applicable taxes (VAT, GST, withholding tax). Client is responsible for taxes in their jurisdiction.</li>
+                <li><i class="fas fa-circle"></i> <strong>Price Adjustments:</strong> Provider may adjust pricing with 60 days' written notice prior to renewal. No mid-term price increases.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="agr-section">
+            <div class="agr-section__num">06</div>
+            <div class="agr-section__content">
+              <h3>Term, Renewal &amp; Termination</h3>
+              <ul class="agr-list">
+                <li><i class="fas fa-circle"></i> <strong>Initial Term:</strong> 12 months from the Effective Date, unless a custom term is specified in the Order Form.</li>
+                <li><i class="fas fa-circle"></i> <strong>Auto-Renewal:</strong> Automatically renews for successive 12-month periods unless either party provides written notice of non-renewal at least 30 days before the term end.</li>
+                <li><i class="fas fa-circle"></i> <strong>Early Termination by Client:</strong> Client may terminate with 30 days' written notice. No refund of pre-paid annual fees; monthly maintenance ceases at termination date.</li>
+                <li><i class="fas fa-circle"></i> <strong>Termination for Cause:</strong> Either party may terminate immediately upon material breach uncured within 14 days of notice, insolvency, or illegal use of the Service.</li>
+                <li><i class="fas fa-circle"></i> <strong>Data Return:</strong> Upon termination, Client may export all logs and configuration data within 30 days. Provider will permanently delete Client data within 60 days thereafter.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 7 -->
+          <div class="agr-section">
+            <div class="agr-section__num">07</div>
+            <div class="agr-section__content">
+              <h3>Support Channels &amp; Response Times</h3>
+              <div class="agr-table-wrap">
+                <table class="agr-table">
+                  <thead>
+                    <tr><th>Severity</th><th>Description</th><th>Starter</th><th>Business</th><th>Enterprise</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><span class="sev sev-p1">P1 Critical</span></td><td>Service down / active breach</td><td>8 business hrs</td><td>1 hr (24/7)</td><td>15 min (24/7)</td></tr>
+                    <tr><td><span class="sev sev-p2">P2 High</span></td><td>Major feature impaired</td><td>1 business day</td><td>4 hrs (24/7)</td><td>1 hr (24/7)</td></tr>
+                    <tr><td><span class="sev sev-p3">P3 Medium</span></td><td>Degraded performance</td><td>3 business days</td><td>1 business day</td><td>4 hrs</td></tr>
+                    <tr><td><span class="sev sev-p4">P4 Low</span></td><td>General questions / config help</td><td>5 business days</td><td>2 business days</td><td>1 business day</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin-top:0.8rem;"><strong>Channels:</strong> Starter — Email; Business — Email + WhatsApp; Enterprise — Email + WhatsApp + Phone + Dedicated Slack Channel + Named Engineer.</p>
+            </div>
+          </div>
+
+          <!-- 8 -->
+          <div class="agr-section">
+            <div class="agr-section__num">08</div>
+            <div class="agr-section__content">
+              <h3>Security, Compliance &amp; Data Protection</h3>
+              <ul class="agr-list">
+                <li><i class="fas fa-shield-alt"></i> All Dedicated plans are eligible for <strong>PCI-DSS v4.0, HIPAA, SOC 2 Type II,</strong> and <strong>ISO 27001</strong> compliance assistance. Compliance audit reports available upon request under NDA.</li>
+                <li><i class="fas fa-shield-alt"></i> <strong>GDPR (EU) / PDPA (BD/TH/SG):</strong> Provider acts as a Data Processor. A Data Processing Agreement (DPA) is available and required for EU/UK Clients.</li>
+                <li><i class="fas fa-shield-alt"></i> Data at rest is encrypted using AES-256. Data in transit uses TLS 1.2 minimum (TLS 1.3 preferred).</li>
+                <li><i class="fas fa-shield-alt"></i> Provider undergoes annual third-party penetration testing. Executive summary reports shared with Business &amp; Enterprise Clients.</li>
+                <li><i class="fas fa-shield-alt"></i> Vulnerability disclosure: Provider will notify Client within 72 hours of any confirmed breach affecting Client data.</li>
+                <li><i class="fas fa-shield-alt"></i> Client owns all traffic logs and configuration data. Provider does not use Client data for analytics, model training, or any secondary purpose.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="agr-section">
+            <div class="agr-section__num">09</div>
+            <div class="agr-section__content">
+              <h3>Intellectual Property &amp; License</h3>
+              <p>Provider grants Client a non-exclusive, non-transferable, revocable license to use the CloFix WAF software solely for Client's own internal business operations during the Subscription Term. All source code, algorithms, rule sets, and product documentation remain the exclusive property of CloFix Infotech. Client may not: (a) reverse-engineer the software; (b) sublicense or resell without a valid Reseller Agreement; (c) remove or obscure proprietary notices.</p>
+              <p style="margin-top:0.5rem;">Client retains full ownership of all traffic data, custom rule configurations, and WASM/Lua modules authored by the Client.</p>
+            </div>
+          </div>
+
+          <!-- 10 -->
+          <div class="agr-section">
+            <div class="agr-section__num">10</div>
+            <div class="agr-section__content">
+              <h3>Limitation of Liability &amp; Indemnification</h3>
+              <p>To the maximum extent permitted by applicable law:</p>
+              <ul class="agr-list">
+                <li><i class="fas fa-circle"></i> Provider's total aggregate liability under this Agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim.</li>
+                <li><i class="fas fa-circle"></i> Neither party shall be liable for indirect, incidental, consequential, punitive, or special damages, including loss of profits or data.</li>
+                <li><i class="fas fa-circle"></i> Client shall indemnify Provider against claims arising from: (a) Client's violation of applicable law; (b) content transmitted through the WAF; (c) unauthorized use of the Service.</li>
+                <li><i class="fas fa-circle"></i> Provider shall indemnify Client against third-party IP infringement claims relating to the CloFix WAF software itself.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 11 -->
+          <div class="agr-section">
+            <div class="agr-section__num">11</div>
+            <div class="agr-section__content">
+              <h3>Force Majeure</h3>
+              <p>Neither party shall be liable for delays or failures in performance resulting from causes beyond its reasonable control, including acts of God, war, terrorism, government actions, internet backbone failures, pandemics, or natural disasters. The affected party must notify the other within 5 business days. If the force majeure event continues for more than 30 days, either party may terminate this Agreement without penalty with 7 days' written notice.</p>
+            </div>
+          </div>
+
+          <!-- 12 -->
+          <div class="agr-section">
+            <div class="agr-section__num">12</div>
+            <div class="agr-section__content">
+              <h3>Governing Law &amp; Dispute Resolution</h3>
+              <ul class="agr-list">
+                <li><i class="fas fa-gavel"></i> <strong>Primary Jurisdiction:</strong> The laws of the People's Republic of Bangladesh shall govern this Agreement.</li>
+                <li><i class="fas fa-gavel"></i> <strong>International Clients:</strong> Parties may mutually agree in the Order Form to apply the laws of Singapore, England &amp; Wales, or the State of Delaware (USA) for cross-border engagements.</li>
+                <li><i class="fas fa-gavel"></i> <strong>Dispute Resolution:</strong> Parties shall first attempt good-faith negotiation for 30 days. If unresolved, disputes shall be submitted to binding arbitration under the rules of the International Chamber of Commerce (ICC) or the Bangladesh Council of Arbitration, as applicable.</li>
+                <li><i class="fas fa-gavel"></i> <strong>Language:</strong> All proceedings shall be conducted in English.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 13 -->
+          <div class="agr-section">
+            <div class="agr-section__num">13</div>
+            <div class="agr-section__content">
+              <h3>Confidentiality</h3>
+              <p>Each party agrees to keep confidential all non-public information of the other party designated as confidential, or that a reasonable person would understand to be confidential. Confidentiality obligations survive termination for 3 years. Exclusions apply to information that is: (a) publicly known without breach; (b) already known to the recipient; (c) independently developed; (d) required to be disclosed by law or court order (with prior notice to the disclosing party where legally permissible).</p>
+            </div>
+          </div>
+
+          <!-- 14 -->
+          <div class="agr-section">
+            <div class="agr-section__num">14</div>
+            <div class="agr-section__content">
+              <h3>Acceptable Use Policy (AUP)</h3>
+              <p>Client shall not use the Service to:</p>
+              <ul class="agr-list">
+                <li><i class="fas fa-times-circle" style="color:#f87171;"></i> Launch offensive attacks or penetration tests against third parties without explicit authorization</li>
+                <li><i class="fas fa-times-circle" style="color:#f87171;"></i> Distribute malware, spam, or illegal content</li>
+                <li><i class="fas fa-times-circle" style="color:#f87171;"></i> Engage in cryptocurrency mining or resource-intensive activities unrelated to WAF operations</li>
+                <li><i class="fas fa-times-circle" style="color:#f87171;"></i> Violate any applicable export control laws or sanctions (OFAC, EU, UN)</li>
+                <li><i class="fas fa-times-circle" style="color:#f87171;"></i> Resell or sublicense the Service without a written Reseller Agreement from Provider</li>
+              </ul>
+              <p style="margin-top:0.5rem;">Violation of this AUP may result in immediate suspension with no refund, and may be reported to relevant authorities.</p>
+            </div>
+          </div>
+
+          <!-- 15 -->
+          <div class="agr-section">
+            <div class="agr-section__num">15</div>
+            <div class="agr-section__content">
+              <h3>Amendments &amp; Entire Agreement</h3>
+              <p>This Agreement, together with the applicable Order Form and any addenda (DPA, NDA, Reseller Agreement), constitutes the entire agreement between the parties and supersedes all prior negotiations, representations, or agreements relating to its subject matter. Provider may update these terms with 30 days' notice via email or dashboard notification. Continued use of the Service after the notice period constitutes acceptance. Any modification requires written consent of both parties.</p>
+            </div>
+          </div>
+
+          <div class="agr-footer-note">
+            <i class="fas fa-envelope"></i> Questions? Contact: <a href="mailto:support@clofix.com">support@clofix.com</a> &nbsp;|&nbsp;
+            <i class="fas fa-whatsapp fa-brands"></i> WhatsApp: <a href="https://wa.me/8801850603126">+880 1850-603126</a>
+          </div>
+
+        </div><!-- /agr-sections -->
+      </div><!-- /agr-body -->
+
+    </div>
+  </div>
+
   <footer class="footer">
 
     <div class="stars"></div>
@@ -704,550 +716,337 @@
       <p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p>
     </div>
   </footer>
+
   <script>
-    // -----------------------------
-    // EXPORT STATE
-    // -----------------------------
-    let LAST_EXPORT_ROWS = [];
-    let LAST_EXPORT_TOTAL_TEXT = "";
-    let LAST_EXPORT_META = {};
+    const USD_RATE = 120;
+    let currentCurrency = 'BDT';
+    let currentModel = 'saas';
 
-    const FREE_RULES_LIMIT = 10;
-    const EXTRA_RULE_PRICE = 0.02;
+    let brandingIs6Month = true;
 
-    const features = {
-      // AI Features
-      "Fingerprint-Based Request Blocking": 5,
-      "Malicious Payload Detection & Blocking": 4,
-      "Traffic Anomaly Detection": 4,
-      "IP Reputation Intelligence": 4,
-      "JavaScript Behavior Analysis": 4,
-      "Cookie Integrity Validation": 3,
-      "Device Identity Verification": 4,
-      "Automation Tool & Bot Detection": 3,
-      "Malicious Cloud Provider Detection": 3,
-      "DNS Rebinding Protection": 3,
-      "Credential Stuffing Detection": 4,
-      "Malicious Crawler Detection": 3,
-      "API Abuse Detection": 4,
-      "HTTP Header Injection Protection": 3,
-      "TLS Fingerprint (JA3) Detection": 4,
-      "SSL Man-in-the-Middle Detection": 4,
-      "Open Redirect Protection": 2,
-      "Fake Bot & Search Engine Bot Detection": 3,
-      "AI-Based Intelligent Rate Limiting": 4,
-      "JA3 TLS Fingerprint Validation": 3,
-      "Virtual Machine / Debug Environment Detection": 4,
-      "Canvas Fingerprint Analysis": 3,
-      "Path Traversal Attack Detection": 2,
-      "SQL Injection Detection": 2,
-      "Cross-Site Scripting (XSS) Detection": 2,
-      "Command Injection Detection": 2,
-      "XML External Entity (XXE) Detection": 2,
-      "LDAP Injection Detection": 2,
-      "NoSQL Injection Detection": 2,
-      "Server-Side Template Injection (SSTI) Detection": 2,
-      "CSRF Protection": 2,
-      "Clickjacking Protection": 2,
-      "Vulnerability Scanner Detection": 3,
-      "Unauthorized Terminal Access Detection": 4,
-      "jQuery Exploit Protection": 2,
-      "Advanced Scan Technique Detection": 3,
-      "Malicious Script Execution Detection": 5,
-      "Behavioral Anomaly Detection": 5,
-      "Command & Control (C2) Communication Detection": 5,
-      "Multi-Vector Attack Detection": 5,
-      "AI-Powered Attack Detection Engine": 5,
+    const saasPlansRaw = [
+      { name: "Starter",    priceBDT: 1500,  support: "Support", supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/min", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                          popular: false },
+      { name: "Growth",     priceBDT: 5500,  support: "Support", supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domains", "1 domain", "100K req/min", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                                     popular: false },
+      { name: "Pro",        priceBDT: 16500, support: "Support", supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/min", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
+      { name: "Enterprise", priceBDT: 50000, support: "Support", supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/min", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"],                                                           enterprise: true, popular: false }
+    ];
 
-      // Core Features
-      "Advanced DDoS Protection": 5,
-      "SQL Injection Protection (OWASP A1)": 2,
-      "Sensitive Data Encryption (OWASP A3)": 2,
-      "XML External Entity Protection (OWASP A4)": 2,
-      "Path Traversal Protection (OWASP A5)": 2,
-      "Security Misconfiguration Protection (OWASP A6)": 2,
-      "Cross-Site Scripting Protection (OWASP A7)": 2,
-      "Insecure Deserialization Protection (OWASP A8)": 2,
-      "Logging and Monitoring (OWASP A10)": 2,
-      "Slowloris Attack Protection": 2,
-      "HTTP Flood Protection": 2,
-      "Header Length Validation": 2,
-      "Header Scan Protection": 2,
-      "Malformed Header Blocking": 2,
-      "Cookie Tampering Protection": 3,
-      "Session Cookie Validation": 2,
-      "Client Behavior Analysis": 2,
-      "SSRF Protection": 2,
-      "Command Injection Protection": 2,
-      "Brute Force Protection": 2,
-      "Time-Based Client Verification": 1,
-      "Tor Exit Node Blocking": 3,
-      "Information Leak Detection": 2,
-      "File Extension Protection": 2,
-      "IP Reputation Analysis": 4,
-      "Headless Browser Detection": 3,
-      "Payload Signature Detection": 2,
-      "Video Download Protection": 2,
-      "WAF JavaScript Injection": 2,
-      "IPv6 Security Protection": 2,
-      "Real-time Alert Service (Slack, Google)": 3,
+    const dedicatedPlansRaw = [
+      { name: "Starter Dedicated",    hostingBDT: 270000, licenseBDT: 120000, maintenanceBDT: 12500,  setupBDT: 15000, cpu: "4 vCPU",   ram: "8 GB",   bandwidth: "2 TB",       requests: "50M",       sla: "99.9%",   features: ["Entry-level dedicated WAF", "Up to 10 Domains", "Business hours support", "PCI-DSS / HIPAA / GDPR"], popular: false },
+      { name: "Business Dedicated",   hostingBDT: 486000, licenseBDT: 220000, maintenanceBDT: 18000, setupBDT: 25000, cpu: "8 vCPU",   ram: "16 GB",  bandwidth: "5 TB",       requests: "200M",      sla: "99.99%",  features: ["Mid-tier enhanced capacity", "Up to 20 Domains", "24/7 priority support", "Advanced DDoS"],          popular: true  },
+      { name: "Enterprise Dedicated", hostingBDT: 864000, licenseBDT: 400000, maintenanceBDT: 30000, setupBDT: 35000,  cpu: "16+ vCPU", ram: "32+ GB", bandwidth: "Unlimited*", requests: "Unlimited*", sla: "99.999%", features: ["Full-scale enterprise", "Up to 30 Domains", "Named engineer", "Custom SLA"],                      enterprise: true, popular: false }
+    ];
 
-      // Rules Features
-      "Manage Rules - Path Blocking": 0,
-      "Manage Rules - Query Blocking": 0,
-      "Manage Rules - GeoIP Blocking": 0,
-      "Manage Rules - Bot Fingerprinting": 0,
-      "Manage Rules - IP Blocking": 0,
-      "Manage Rules - ASN Number Blocking": 0,
-      "Manage Rules - Geo Blocking": 0,
-      "Manage Rules - Clofix ID Fingerprint Detection and Block": 0
+    const customEnterprisePlan = {
+      name: "Custom Enterprise",
+      features: ["Fully tailored WAF solution", "Unlimited domains & traffic", "99.999% SLA guarantee", "Dedicated security team", "On-premise or Cloud deployment", "24/7 phone & WhatsApp support", "Custom compliance packages", "Named solution architect"]
     };
 
-    const categories = {
-      aiFeatures: [
-        "Fingerprint-Based Request Blocking",
-        "Malicious Payload Detection & Blocking",
-        "Traffic Anomaly Detection",
-        "IP Reputation Intelligence",
-        "JavaScript Behavior Analysis",
-        "Cookie Integrity Validation",
-        "Device Identity Verification",
-        "Automation Tool & Bot Detection",
-        "Malicious Cloud Provider Detection",
-        "DNS Rebinding Protection",
-        "Credential Stuffing Detection",
-        "Malicious Crawler Detection",
-        "API Abuse Detection",
-        "HTTP Header Injection Protection",
-        "TLS Fingerprint (JA3) Detection",
-        "SSL Man-in-the-Middle Detection",
-        "Open Redirect Protection",
-        "Fake Bot & Search Engine Bot Detection",
-        "AI-Based Intelligent Rate Limiting",
-        "JA3 TLS Fingerprint Validation",
-        "Virtual Machine / Debug Environment Detection",
-        "Canvas Fingerprint Analysis",
-        "Path Traversal Attack Detection",
-        "SQL Injection Detection",
-        "Cross-Site Scripting (XSS) Detection",
-        "Command Injection Detection",
-        "XML External Entity (XXE) Detection",
-        "LDAP Injection Detection",
-        "NoSQL Injection Detection",
-        "Server-Side Template Injection (SSTI) Detection",
-        "CSRF Protection",
-        "Clickjacking Protection",
-        "Vulnerability Scanner Detection",
-        "Unauthorized Terminal Access Detection",
-        "jQuery Exploit Protection",
-        "Advanced Scan Technique Detection",
-        "Malicious Script Execution Detection",
-        "Behavioral Anomaly Detection",
-        "Command & Control (C2) Communication Detection",
-        "Multi-Vector Attack Detection",
-        "AI-Powered Attack Detection Engine"
-      ],
-      coreFeatures: [
-          "Advanced DDoS Protection",
-          "SQL Injection Protection (OWASP A1)",
-          "Sensitive Data Encryption (OWASP A3)",
-          "XML External Entity Protection (OWASP A4)",
-          "Path Traversal Protection (OWASP A5)",
-          "Security Misconfiguration Protection (OWASP A6)",
-          "Cross-Site Scripting Protection (OWASP A7)",
-          "Insecure Deserialization Protection (OWASP A8)",
-          "Logging and Monitoring (OWASP A10)",
-          "Local File Inclusion (LFI) Protection",
-          "Remote File Inclusion (RFI) Protection",
-          "Flooding Attacks Protection",
-          "Slowloris Attack Protection",
-          "HTTP Flood Protection",
-          "Header Length Validation",
-          "Header Scan Protection",
-          "Malformed Header Blocking",
-          "Cookie Tampering Protection",
-          "Session Cookie Validation",
-          "Client Behavior Analysis",
-          "CSRF Protection",
-          "SSRF Protection",
-          "Command Injection Protection",
-          "Brute Force Protection",
-          "DNS Rebinding Protection",
-          "Time-Based Client Verification",
-          "Tor Exit Node Blocking",
-          "Information Leak Detection",
-          "File Extension Protection",
-          "IP Reputation Analysis",
-          "Headless Browser Detection",
-          "Payload Signature Detection",
-          "Video Download Protection",
-          "WAF JavaScript Injection",
-          "IPv6 Security Protection",
-          "Real-time Alert Service (Slack, Google)"
-      ],
-      rulesFeatures: [
-        "Manage Rules - Path Blocking",
-        "Manage Rules - Query Blocking",
-        "Manage Rules - GeoIP Blocking",
-        "Manage Rules - Bot Fingerprinting",
-        "Manage Rules - IP Blocking",
-        "Manage Rules - ASN Number Blocking",
-        "Manage Rules - Geo Blocking",
-        "Manage Rules - Clofix ID Fingerprint Detection and Block"
-      ]
+    const brandingPlanRaw = {
+      price6BDT: 45000,
+      price12BDT: 72000,
+      features: ["Your Company Name branding", "Custom Error Pages (403,404,500)", "Custom JS Challenge Page", "Custom Block Pages", "Priority Support", "Free updates"]
     };
 
-    function cleanFeatureId(feature) {
-      return feature.replace(/[^a-zA-Z0-9]/g, '_');
+    function formatPrice(amountBDT) {
+      if (amountBDT === null) return 'Custom';
+      if (currentCurrency === 'USD') return '$' + (amountBDT / USD_RATE).toFixed(2);
+      return '৳ ' + amountBDT.toLocaleString('en-IN');
     }
 
-    function renderFreeFeatures() {
-      const freeFeaturesSection = document.getElementById("freeFeaturesSection");
-      if (!freeFeaturesSection) return;
+    function createCard(innerHtml, opts = {}) {
+      const card = document.createElement('div');
+      card.className = 'plan-card' + (opts.extraClass ? ' ' + opts.extraClass : '');
+      if (opts.extraStyle) {
+        Object.entries(opts.extraStyle).forEach(([k, v]) => { card.style[k] = v; });
+      }
+      // Set body content first
+      card.innerHTML = innerHtml;
+      // THEN inject badge so it is never clobbered
+      if (opts.badgeText) {
+        const badge = document.createElement('div');
+        badge.className = 'popular-badge' + (opts.badgeExtraClass ? ' ' + opts.badgeExtraClass : '');
+        if (opts.badgeExtraStyle) badge.style.cssText = opts.badgeExtraStyle;
+        badge.textContent = opts.badgeText;
+        card.appendChild(badge);
+      }
+      return card;
+    }
 
-      let html = `
-        <div class="free-features-title">
-          <span>✅</span>
-          <span>Always Included Free Features - Manage Rules (Free Up to ${FREE_RULES_LIMIT})</span>
+    function renderSaasPlans() {
+      const container = document.getElementById('plansContainer');
+      container.innerHTML = '';
+      saasPlansRaw.forEach(plan => {
+        const card = createCard(
+          `<div class="plan-name">${plan.name}</div>
+           <div class="price-section">
+             <span class="price-main">${formatPrice(plan.priceBDT)}</span><span> /month</span>
+           </div>
+           <div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
+             <i class="fas fa-headset"></i> ${plan.support}: <strong>${plan.supporttype}</strong>
+           </div>
+           <ul class="feature-list">
+             ${plan.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
+           </ul>
+           <a href="contact.html" class="btn" style="margin-top:auto;">Start Free Trial</a>`,
+          {
+            extraClass: plan.enterprise ? 'enterprise' : '',
+            badgeText:  plan.popular ? '🔥 Most Popular' : ''
+          }
+        );
+        container.appendChild(card);
+      });
+    }
+
+    function renderDedicatedPlans() {
+      const container = document.getElementById('plansContainer');
+      container.innerHTML = '';
+
+      dedicatedPlansRaw.forEach(plan => {
+        const totalAnnualBDT = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
+        const setupDisplay = plan.setupBDT
+          ? `<div class="setup-fee"><i class="fas fa-wrench"></i> One-time Setup: ${formatPrice(plan.setupBDT)}</div>`
+          : `<div class="setup-fee"><i class="fas fa-star"></i> Custom enterprise pricing available</div>`;
+
+        const card = createCard(
+          `<div class="plan-name">${plan.name}</div>
+           <div class="price-section">
+             <span class="price-main">${formatPrice(totalAnnualBDT)}</span><span> /year (Total Annual)</span>
+           </div>
+           ${setupDisplay}
+           <div class="support-price"><i class="fas fa-chart-line"></i> Feature+Branding: ${formatPrice(plan.hostingBDT)}/year</div>
+           <div class="support-price"><i class="fas fa-key"></i> License: ${formatPrice(plan.licenseBDT)}/year</div>
+           <div class="support-price"><i class="fas fa-tools"></i> Maintenance: ${formatPrice(plan.maintenanceBDT)}/month</div>
+           <div class="deployment-info">
+             <i class="fas fa-cloud-upload-alt"></i> <strong>Flexible Deployment</strong><br>
+             Deploy on your Cloud (AWS, Azure, GCP), VM, or our Secure Datacenter.
+           </div>
+           <div class="resource-info"><i class="fas fa-server"></i> ${plan.cpu} | ${plan.ram} RAM | ${plan.bandwidth} BW | ${plan.requests} req</div>
+           <ul class="feature-list">
+             ${plan.features.map(f => `<li><i class="fas fa-shield-alt"></i> ${f}</li>`).join('')}
+           </ul>
+           <a href="contact.html" class="btn btn-outline" style="margin-top:auto;">Contact Sales</a>`,
+          {
+            extraClass: plan.enterprise ? 'enterprise' : '',
+            badgeText:  plan.popular ? '⭐ Recommended' : ''
+          }
+        );
+        container.appendChild(card);
+      });
+
+      // Custom Enterprise card
+      const customCard = createCard(
+        `<div class="plan-name" style="color:#a78bfa;">${customEnterprisePlan.name}</div>
+         <div class="price-section">
+           <span class="price-main" style="color:#a78bfa;">Custom Pricing</span>
+         </div>
+         <div class="setup-fee" style="background:rgba(139,92,246,0.2); color:#c4b5fd;">
+           <i class="fas fa-star"></i> No fixed setup fee - pay as you grow
+         </div>
+         <div class="deployment-info" style="border-left-color:#8b5cf6;">
+           <i class="fas fa-rocket"></i> <strong>Fully Customizable Solution</strong><br>
+           Tailored infrastructure, dedicated resources, and enterprise-grade security
+         </div>
+         <ul class="feature-list">
+           ${customEnterprisePlan.features.map(f => `<li><i class="fas fa-gem" style="color:#a78bfa;"></i> ${f}</li>`).join('')}
+         </ul>
+         <button class="btn btn-custom" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6); margin-top:auto;" onclick="window.location.href='contact.html'">Contact Enterprise Sales →</button>
+         <p style="font-size:0.65rem; text-align:center; margin-top:0.8rem; color:#94a3b8;">
+           <i class="fas fa-headset"></i> Custom enterprise pricing available - Contact us for tailored solutions
+         </p>`,
+        {
+          extraClass: 'custom-card',
+          extraStyle: { border: '2px solid #8b5cf6' },
+          badgeText: '👑 Tailored for You',
+          badgeExtraStyle: 'background:linear-gradient(135deg,#8b5cf6,#3b82f6);'
+        }
+      );
+      container.appendChild(customCard);
+    }
+
+    function renderBrandingCard() {
+      const container = document.getElementById('plansContainer');
+      container.innerHTML = '';
+
+      const price6  = formatPrice(brandingPlanRaw.price6BDT);
+      const price12 = formatPrice(brandingPlanRaw.price12BDT);
+
+      const innerHtml = `
+        <div class="plan-name" style="color:#10b981; text-align:center;">Custom Branding Package</div>
+        <div style="display:flex; gap:0.5rem; margin:1rem 0;">
+          <button id="branding6moBtn" class="branding-toggle-btn ${brandingIs6Month ? 'active-toggle' : 'inactive-toggle'}">6 Months</button>
+          <button id="branding12moBtn" class="branding-toggle-btn ${brandingIs6Month ? 'inactive-toggle' : 'active-toggle'}">1 Year (Save 20%)</button>
         </div>
-        <div class="free-features-grid">
-      `;
-
-      categories.rulesFeatures.forEach(feature => {
-        html += `
-          <div class="free-feature-item">
-            <span>✓</span>
-            <span>${feature}</span>
+        <div id="brandingPriceDisplay" style="text-align:center;">
+          <div id="price6Block" style="display:${brandingIs6Month ? 'block' : 'none'};">
+            <span class="price-main">${price6}</span><span> /6 months</span>
+            <div style="background:#1e293b; border-radius:12px; margin-top:8px; padding:0.4rem;">
+              <p style="color:#10b981; font-size:0.8rem;">✨ Best for short-term</p>
+            </div>
           </div>
-        `;
-      });
-
-      html += '</div>';
-      freeFeaturesSection.innerHTML = html;
-    }
-
-    function renderOptionalFeatures() {
-      const featureListDiv = document.getElementById("featureList");
-      if (!featureListDiv) return;
-
-      featureListDiv.innerHTML = '';
-
-      const aiHeader = document.createElement('div');
-      aiHeader.className = 'category-header ai-category';
-      aiHeader.innerHTML = `
-        <span>🤖</span>
-        <span>AI-Powered Detection Features (${categories.aiFeatures.length})</span>
-        <span class="category-count">${categories.aiFeatures.length} features</span>
+          <div id="price12Block" style="display:${brandingIs6Month ? 'none' : 'block'};">
+            <span class="price-main">${price12}</span><span> /year</span>
+            <div style="background:#1e293b; border-radius:12px; margin-top:8px; padding:0.4rem;">
+              <p style="color:#f59e0b; font-size:0.8rem;">🔥 Save 20%</p>
+            </div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          ${brandingPlanRaw.features.map(f => `<li><i class="fas fa-paint-brush" style="color:#10b981;"></i> ${f}</li>`).join('')}
+        </ul>
+        <button id="brandingContactBtn" class="btn btn-outline" style="margin-top:0.8rem;">Contact Sales</button>
       `;
-      featureListDiv.appendChild(aiHeader);
 
-      [...categories.aiFeatures].sort().forEach(feature => addFeatureCheckbox(feature, features[feature] || 2));
-
-      const coreHeader = document.createElement('div');
-      coreHeader.className = 'category-header core-category';
-      coreHeader.innerHTML = `
-        <span>🛡️</span>
-        <span>Core Security Features (${categories.coreFeatures.length})</span>
-        <span class="category-count">${categories.coreFeatures.length} features</span>
-      `;
-      featureListDiv.appendChild(coreHeader);
-
-      [...categories.coreFeatures].sort().forEach(feature => addFeatureCheckbox(feature, features[feature] || 2));
-    }
-
-    function addFeatureCheckbox(feature, price) {
-      const featureListDiv = document.getElementById("featureList");
-      if (!featureListDiv) return;
-
-      const wrapper = document.createElement("label");
-      const featureId = cleanFeatureId(feature);
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = feature;
-      checkbox.id = featureId;
-
-      const corePaidFeatures = [
-        "Advanced DDoS Protection",
-        "Advance Fingerprinting Blocking",
-        "OWASP Top 10 Protection",
-        "AI & Agentic Detection, Behavioral Analysis",
-        "Fingerprint Blocking"
-      ];
-
-      if (corePaidFeatures.includes(feature)) {
-        checkbox.checked = true;
-        checkbox.disabled = true;
-      }
-
-      wrapper.appendChild(checkbox);
-
-      const nameSpan = document.createElement("span");
-      nameSpan.textContent = feature;
-      wrapper.appendChild(nameSpan);
-
-      const priceSpan = document.createElement("span");
-      priceSpan.className = "feature-price";
-      priceSpan.textContent = `$${price}/domain`;
-      wrapper.appendChild(priceSpan);
-
-      featureListDiv.appendChild(wrapper);
-    }
-
-    // -----------------------------
-    // EXPORTS
-    // -----------------------------
-    function exportExcel() {
-      if (!LAST_EXPORT_ROWS.length) return;
-
-      const aoa = [
-        ["CloFix WAF Pricing Summary"],
-        [],
-        ["Domains", String(LAST_EXPORT_META.domains)],
-        ["Subdomains", String(LAST_EXPORT_META.subdomains)],
-        ["Monthly Requests (in millions)", String(LAST_EXPORT_META.requests)],
-        ["Bandwidth", `${LAST_EXPORT_META.bandwidth} ${LAST_EXPORT_META.bandwidthUnit}`],
-        ["Rules", String(LAST_EXPORT_META.rules)],
-        ["Support", LAST_EXPORT_META.supportLabel],
-        ["License", LAST_EXPORT_META.licenseLabel],
-        [],
-        ["Component", "Cost (USD)"],
-        ...LAST_EXPORT_ROWS,
-        [],
-        ["Total", LAST_EXPORT_TOTAL_TEXT]
-      ];
-
-      const ws = XLSX.utils.aoa_to_sheet(aoa);
-      ws["!cols"] = [{ wch: 55 }, { wch: 22 }];
-
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Pricing Summary");
-      XLSX.writeFile(wb, "CloFix_WAF_Pricing_Summary.xlsx");
-    }
-
-    function exportPDF() {
-      if (!LAST_EXPORT_ROWS.length) return;
-
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
-      doc.setFontSize(16);
-      doc.text("CloFix WAF Pricing Summary", 14, 16);
-
-      doc.setFontSize(10);
-      const metaLines = [
-        `Domains: ${LAST_EXPORT_META.domains} | Subdomains: ${LAST_EXPORT_META.subdomains} | Rules: ${LAST_EXPORT_META.rules}`,
-        `Requests (in millions): ${LAST_EXPORT_META.requests} | Bandwidth: ${LAST_EXPORT_META.bandwidth} ${LAST_EXPORT_META.bandwidthUnit}`,
-        `Support: ${LAST_EXPORT_META.supportLabel} | License: ${LAST_EXPORT_META.licenseLabel}`
-      ];
-      doc.text(metaLines, 14, 24);
-
-      doc.autoTable({
-        startY: 34,
-        head: [["Component", "Cost (USD)"]],
-        body: LAST_EXPORT_ROWS.map(r => [r[0], r[1]]),
-        styles: { fontSize: 9 },
-        columnStyles: { 0: { cellWidth: 125 }, 1: { cellWidth: 45 } }
+      const card = createCard(innerHtml, {
+        extraStyle: {
+          background: 'linear-gradient(135deg, #1e293b, #0f172a)',
+          border: '2px solid #10b981',
+          maxWidth: '380px',
+          margin: '0 auto'
+        },
+        badgeText: '🎨 White-label Solution',
+        badgeExtraStyle: 'background:#10b981;'
       });
 
-      const y = doc.lastAutoTable.finalY + 10;
-      doc.setFontSize(12);
-      doc.text(`Total: ${LAST_EXPORT_TOTAL_TEXT}`, 14, y);
+      container.appendChild(card);
 
-      doc.save("CloFix_WAF_Pricing_Summary.pdf");
+      // Wire up toggle buttons AFTER the card is in the DOM
+      const btn6  = card.querySelector('#branding6moBtn');
+      const btn12 = card.querySelector('#branding12moBtn');
+      const p6    = card.querySelector('#price6Block');
+      const p12   = card.querySelector('#price12Block');
+      const subBtn = card.querySelector('#brandingSubscribeBtn');
+
+      function setToggle(is6) {
+        brandingIs6Month = is6;          // persist state across currency refreshes
+        p6.style.display  = is6 ? 'block' : 'none';
+        p12.style.display = is6 ? 'none'  : 'block';
+        btn6.className  = 'branding-toggle-btn ' + (is6 ? 'active-toggle' : 'inactive-toggle');
+        btn12.className = 'branding-toggle-btn ' + (is6 ? 'inactive-toggle' : 'active-toggle');
+        subBtn.textContent = 'Subscribe Now - ' + (is6 ? formatPrice(brandingPlanRaw.price6BDT) : formatPrice(brandingPlanRaw.price12BDT));
+      }
+
+      btn6.addEventListener('click',  () => setToggle(true));
+      btn12.addEventListener('click', () => setToggle(false));
+      subBtn.addEventListener('click', () => alert('✅ Custom branding inquiry sent! Our team will contact you.'));
+      card.querySelector('#brandingContactBtn').addEventListener('click', () => { window.location.href = 'contact.html'; });
     }
 
-    // -----------------------------
-    // PRICING
-    // -----------------------------
-    function calculatePricing() {
-      const domainCount = parseInt(document.getElementById("domains").value) || 0;
-      const subdomainCount = parseInt(document.getElementById("subdomains").value) || 0;
-      const requests = parseInt(document.getElementById("requests").value) || 0;
-      const bandwidth = parseFloat(document.getElementById("bandwidth").value) || 0;
-      const rules = parseInt(document.getElementById("rules").value) || 0;
-
-      const support = document.getElementById("support").value;
-      const license = document.getElementById("license").value;
-      const unit = document.getElementById("bandwidthUnit").value;
-
-      if (domainCount <= 0 || bandwidth <= 0) {
-        document.getElementById("errorMessage").style.display = "block";
-        document.getElementById("result").style.display = "none";
-        return;
-      }
-      document.getElementById("errorMessage").style.display = "none";
-
-      let total = 0;
-      const rows = [];
-
-      // Domains
-      const domainCost = domainCount * 4;
-      total += domainCost;
-      rows.push(["Domains (Base Fee)", `$${domainCost.toFixed(2)}`]);
-
-      // Subdomains
-      if (subdomainCount > 0) {
-        const cost = subdomainCount * 2;
-        total += cost;
-        rows.push(["Subdomains", `$${cost.toFixed(2)}`]);
-      }
-
-      // Requests
-      if (requests > 0) {
-        let cost = 0;
-        if (requests > 1 && requests <= 100) cost = 1.25;
-        else if (requests > 100) cost = 1.00;
-        if (cost > 0) {
-          total += cost;
-          rows.push(["Monthly Requests", `$${cost.toFixed(2)}`]);
-        }
-      }
-
-      // Bandwidth
-      let actualBandwidthGB = bandwidth;
-      if (unit === "TB") actualBandwidthGB = bandwidth * 1024;
-
-      if (actualBandwidthGB > 0) {
-        if (actualBandwidthGB > 10) {
-          let cost = 0;
-          const tier1 = Math.min(actualBandwidthGB - 10, 15);
-          const tier2 = Math.min(Math.max(actualBandwidthGB - 25, 0), 25);
-          const tier3 = Math.max(actualBandwidthGB - 50, 0);
-          cost += tier1 * 0.03;
-          cost += tier2 * 0.04;
-          cost += tier3 * 0.02;
-          total += cost;
-          rows.push([`Bandwidth (${actualBandwidthGB.toFixed(2)} GB)`, `$${cost.toFixed(2)}`]);
-        } else {
-          rows.push(["Bandwidth (up to 10 GB)", "Free"]);
-        }
-      }
-
-      // ✅ Rules pricing (only shown inside Free section)
-      const extraRules = Math.max(rules - FREE_RULES_LIMIT, 0);
-      const extraRulesCost = extraRules * EXTRA_RULE_PRICE;
-      total += extraRulesCost;
-
-      // Support
-      let supportCostMonthly = 0;
-      let supportLabel = "Support (Free Tier)";
-      if (support === "standard") { supportCostMonthly = 55; supportLabel = "Standard Support"; }
-      if (support === "enterprise") { supportCostMonthly = 500; supportLabel = "Enterprise Support"; }
-
-      // Selected features
-      let selectedFeaturesTotal = 0;
-
-      categories.aiFeatures.forEach(feature => {
-        const checkbox = document.getElementById(cleanFeatureId(feature));
-        if (checkbox && checkbox.checked) {
-          const price = features[feature] || 2;
-          const cost = price * domainCount;
-          selectedFeaturesTotal += cost;
-          rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
-        }
-      });
-
-      categories.coreFeatures.forEach(feature => {
-        const checkbox = document.getElementById(cleanFeatureId(feature));
-        if (checkbox && checkbox.checked) {
-          const price = features[feature] || 2;
-          const cost = price * domainCount;
-          selectedFeaturesTotal += cost;
-          rows.push([`${feature} (x${domainCount} domains)`, `$${cost.toFixed(2)}`]);
-        }
-      });
-
-      total += selectedFeaturesTotal;
-      if (selectedFeaturesTotal > 0) rows.push(["Total Selected Features", `$${selectedFeaturesTotal.toFixed(2)}`]);
-
-      // ✅ Free Included section + extra rules total inside this section
-      rows.push(["", `--- Free Included Features (Free Up to ${FREE_RULES_LIMIT}) ---`]);
-      categories.rulesFeatures.forEach(feature => rows.push([feature, "Free (Included)"]));
-      if (extraRules > 0) {
-        rows.push([`Extra Rules Cost (${extraRules} rules × $${EXTRA_RULE_PRICE.toFixed(2)})`, `$${extraRulesCost.toFixed(2)}`]);
-      }
-
-      // Render table + license
-      const tbody = document.getElementById("pricingTable");
-      tbody.innerHTML = "";
-
-      let totalText = "";
-      const licenseLabel = (license === "yearly") ? "Yearly (10% Discount Applied)" : "Monthly";
-
-      if (license === "yearly") {
-        const monthlyTotal = total + supportCostMonthly;
-        const yearlyTotal = monthlyTotal * 12;
-        const discounted = yearlyTotal * 0.9;
-        const monthlyAfterDiscount = discounted / 12;
-
-        rows.push([supportLabel, `$${(supportCostMonthly * 12 * 0.9).toFixed(2)} (yearly discounted)`]);
-        rows.push(["Billing Plan", licenseLabel]);
-        rows.push(["Yearly Total", `$${discounted.toFixed(2)}`]);
-        rows.push(["Effective Monthly Cost", `$${monthlyAfterDiscount.toFixed(2)}`]);
-
-        totalText = `$${discounted.toFixed(2)} (yearly)`;
-        document.getElementById("totalCost").innerText = totalText;
-      } else {
-        total += supportCostMonthly;
-        rows.push([supportLabel, `$${supportCostMonthly.toFixed(2)}/month`]);
-        rows.push(["Billing Plan", licenseLabel]);
-
-        totalText = `$${total.toFixed(2)}/month`;
-        document.getElementById("totalCost").innerText = totalText;
-      }
-
-      rows.forEach(([name, price]) => {
-        if (typeof price === "string" && price.startsWith("--- Free Included Features")) {
-          tbody.innerHTML += `
-            <tr style="background-color:#f0fdf4;">
-              <td colspan="2" style="text-align:center;font-weight:bold;color:#166534;">${price}</td>
-            </tr>`;
-        } else {
-          tbody.innerHTML += `<tr><td>${name}</td><td>${price}</td></tr>`;
-        }
-      });
-
-      // ✅ Save export state
-      LAST_EXPORT_ROWS = rows.slice();
-      LAST_EXPORT_TOTAL_TEXT = totalText;
-      LAST_EXPORT_META = {
-        domains: domainCount,
-        subdomains: subdomainCount,
-        requests: requests,
-        bandwidth: bandwidth,
-        bandwidthUnit: unit,
-        rules: rules,
-        supportLabel: supportLabel,
-        licenseLabel: licenseLabel
+    function renderSaasComparison() {
+      const table = document.getElementById('saasComparisonTable');
+      const headers  = saasPlansRaw.map(p => p.name);
+      const features = ["WAF Engine", "AI Protection", "DDoS Mitigation", "Log Retention", "Support", "SLA", "Max Domains", "Rate Limit", "Bandwidth Limit"];
+      const values   = {
+        "Starter":    ["OWASP CRS",      "Basic",        "L3/L4",   "30 days", "Email/Tickets",    "99.5%",  "1",  "30K req/min", "2GB"],
+        "Growth":     ["CRS+Scripting",  "Behavioral",   "L3/L7",   "30 days", "Email/Tickets",    "99.9%",  "3",  "100K req/min", "15GB"],
+        "Pro":        ["Full AI+WASM",   "All AI",       "Advanced","90 days", "Email/Tickets/Chat", "99.9%",  "5",  "200K req/min", "50GB"],
+        "Enterprise": ["Full Enterprise","Trainable AI", "Max",     "90 days",  "Phone/WhatsApp/Tickets/Chat","99.99%", "10", "Unlimited", "Unlimited"]
       };
-
-      document.getElementById("result").style.display = "block";
-      document.getElementById("exportExcelBtn").style.display = "inline-block";
-      document.getElementById("exportPDFBtn").style.display = "inline-block";
+      let html = `<thead><tr><th>Feature</th>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+      features.forEach((f, fi) => {
+        html += `<tr><td style="font-weight:600;">${f}</td>`;
+        headers.forEach(h => { html += `<td>${values[h] ? values[h][fi] : '✓'}</td>`; });
+        html += `</tr>`;
+      });
+      html += `</tbody>`;
+      table.innerHTML = html;
     }
 
-    // Placeholder if you already have chip logic
-    function renderSelectedTypeChips() { }
+    function renderDedicatedComparison() {
+      const table = document.getElementById('dedicatedComparisonTable');
+      const allDedicated = [
+        ...dedicatedPlansRaw,
+        { name: "Custom Enterprise", hostingBDT: null, licenseBDT: null, maintenanceBDT: null, setupBDT: null, cpu: "Custom", ram: "Custom", bandwidth: "Unlimited", requests: "Unlimited", sla: "Custom" }
+      ];
+      const headers  = allDedicated.map(p => p.name);
+      const features = ["Infrastructure", "Total Annual", "Annual Hosting", "Annual License", "Monthly Maint", "Setup Fee", "Bandwidth", "Requests", "SLA"];
+      const customRow = ["Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Unlimited", "Unlimited", "Custom"];
 
-    document.addEventListener('DOMContentLoaded', function () {
-      renderFreeFeatures();
-      renderOptionalFeatures();
-      renderSelectedTypeChips();
+      function getVal(plan, fi) {
+        if (plan.name === "Custom Enterprise") return customRow[fi];
+        const total = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
+        const map = [
+          plan.cpu,
+          formatPrice(total),
+          formatPrice(plan.hostingBDT),
+          formatPrice(plan.licenseBDT),
+          formatPrice(plan.maintenanceBDT),
+          plan.setupBDT ? formatPrice(plan.setupBDT) : 'Custom',
+          plan.bandwidth,
+          plan.requests,
+          plan.sla
+        ];
+        return map[fi];
+      }
 
-      // defaults
-      document.getElementById("domains").value = 1;
-      document.getElementById("subdomains").value = 0;
-      document.getElementById("requests").value = 1000000;
-      document.getElementById("bandwidth").value = 100;
-      document.getElementById("rules").value = 10;
+      let html = `<thead><tr><th>Feature</th>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+      features.forEach((f, fi) => {
+        html += `<tr><td style="font-weight:600;">${f}</td>`;
+        headers.forEach(h => { const plan = allDedicated.find(p => p.name === h); html += `<td>${getVal(plan, fi)}</td>`; });
+        html += `</tr>`;
+      });
+      html += `<tr><td style="font-weight:600;">Compliance</td>${headers.map(() => `<td>✅ PCI-DSS / HIPAA / GDPR</td>`).join('')}</tr>`;
+      html += `<tr><td style="font-weight:600;">Deployment</td>${headers.map(() => `<td><i class="fas fa-check"></i> Cloud / VM / Datacenter / On-Premise</td>`).join('')}</tr>`;
+      html += `</tbody>`;
+      table.innerHTML = html;
+    }
 
-      // export handlers
-      document.getElementById("exportExcelBtn").addEventListener("click", exportExcel);
-      document.getElementById("exportPDFBtn").addEventListener("click", exportPDF);
+    function setModel(model) {
+      currentModel = model;
+      const saasDiv      = document.getElementById('saasComparison');
+      const dedicatedDiv = document.getElementById('dedicatedComparison');
+
+      if (model === 'saas')          { renderSaasPlans();      saasDiv.style.display = 'block'; dedicatedDiv.style.display = 'none';  }
+      else if (model === 'dedicated'){ renderDedicatedPlans(); saasDiv.style.display = 'none';  dedicatedDiv.style.display = 'block'; }
+      else if (model === 'brandingChart') { renderBrandingCard(); saasDiv.style.display = 'none'; dedicatedDiv.style.display = 'none'; }
+
+      document.querySelectorAll('.model-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-model') === model);
+      });
+    }
+
+    function refreshAllByCurrency() {
+      // Re-render active plan section (branding preserves brandingIs6Month state)
+      if      (currentModel === 'saas')          renderSaasPlans();
+      else if (currentModel === 'dedicated')     renderDedicatedPlans();
+      else if (currentModel === 'brandingChart') renderBrandingCard();
+      // Also refresh comparison tables since they show formatted prices
+      renderSaasComparison();
+      renderDedicatedComparison();
+    }
+
+    document.getElementById('currencyBDT').addEventListener('click', () => {
+      if (currentCurrency === 'BDT') return;
+      currentCurrency = 'BDT';
+      document.getElementById('currencyBDT').classList.add('active-currency');
+      document.getElementById('currencyUSD').classList.remove('active-currency');
+      refreshAllByCurrency();
     });
-  </script>
-  <script>
+
+    document.getElementById('currencyUSD').addEventListener('click', () => {
+      if (currentCurrency === 'USD') return;
+      currentCurrency = 'USD';
+      document.getElementById('currencyUSD').classList.add('active-currency');
+      document.getElementById('currencyBDT').classList.remove('active-currency');
+      refreshAllByCurrency();
+    });
+
+    document.querySelectorAll('.model-btn').forEach(btn => {
+      btn.addEventListener('click', () => setModel(btn.getAttribute('data-model')));
+    });
+
+    // Modal
+    const modal     = document.getElementById('agreementModal');
+    const viewBtn   = document.getElementById('viewAgreementBtn');
+    const closeBtn  = document.querySelector('.close-modal');
+    if (viewBtn)  viewBtn.addEventListener('click',  () => { modal.style.display = 'block'; });
+    if (closeBtn) closeBtn.addEventListener('click', () => { modal.style.display = 'none';  });
+    window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+    renderSaasComparison();
+    renderDedicatedComparison();
+    setModel('saas');
+    
     const navToggle = document.getElementById('navToggle');
     const navContent = document.querySelector('.c-nav__content');
 
@@ -1261,7 +1060,6 @@
       });
     }
 
-    // Mobile nav toggle + body lock + aria-expanded
     if (navToggle && navContent) {
       navToggle.setAttribute('aria-expanded', 'false');
 
@@ -1324,7 +1122,6 @@
         }
       });
     });
-
     // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
     document.addEventListener('click', (e) => {
       const panelOpen = navContent && navContent.classList.contains('active');
@@ -1341,44 +1138,6 @@
         if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
       });
     });
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-WP02RFXGSE');
-
-    (function () {
-      const reveals = document.querySelectorAll(
-        '.trust-inner, .trust-card, .why-item, .compliance-card, .badge-pill'
-      );
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('trust-reveal');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      reveals.forEach((el, i) => {
-        el.style.transitionDelay = (0.10 + i * 0.06) + 's';
-        io.observe(el);
-      });
-    })();
-    (function () {
-      const headerEl = document.querySelector('.header');
-      function syncHeaderHeight() {
-        if (!headerEl) return;
-        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
-      }
-      window.addEventListener('load', syncHeaderHeight);
-      window.addEventListener('resize', syncHeaderHeight);
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(syncHeaderHeight);
-      }
-    })();
   </script>
 </body>
-
 </html>
