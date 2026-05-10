@@ -582,7 +582,7 @@
                   </tbody>
                 </table>
               </div>
-              <p style="margin-top:0.8rem;"><strong>Channels:</strong> Starter — Email; Business — Email + WhatsApp; Enterprise — Email + WhatsApp + Phone + Dedicated Slack Channel + Named Engineer.</p>
+              <p style="margin-top:0.8rem;"><strong>Channels:</strong> Starter - Email; Business - Email + WhatsApp; Enterprise - Email + WhatsApp + Phone + Dedicated Slack Channel + Named Engineer.</p>
             </div>
           </div>
 
@@ -850,7 +850,7 @@
         let yearlyNote = '';
         if (isYearly) {
           const annual = yearlyMonthly * 12;
-          yearlyNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> ${formatPrice(annual)}/yearly — Save 10%</div>`;
+          yearlyNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> ${formatPrice(annual)}/yearly - <span style="color: #ffffff; font-weight: 800; background: linear-gradient(135deg, #dc2626, #ef4444); padding: 2px 8px; border-radius: 20px; display: inline-block;">🔥 Save 10%</span></div>`;
         }
 
         const card = createCard(
@@ -892,7 +892,7 @@
           displayTotal = twoYearDiscounted;
           termLabel = '/2 years (Total)';
           const saved = twoYearBase - twoYearDiscounted;
-          savingsNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> Save ${formatPrice(saved)} over 2 years (15% off)</div>`;
+          savingsNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> Save ${formatPrice(saved)} over 2 years - <span style="color: #ffffff; font-weight: 800; background: linear-gradient(135deg, #dc2626, #ef4444); padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.7rem;">🔥 15% off</span></div>`;
         } else {
           displayTotal = annualBase;
           termLabel = '/Yearly (Total Annual)';
