@@ -1031,12 +1031,12 @@
     function renderSaasComparison() {
       const table = document.getElementById('saasComparisonTable');
       const headers  = saasPlansRaw.map(p => p.name);
-      const features = ["WAF Engine", "AI Protection", "DDoS Mitigation", "Log Retention", "Support", "SLA", "Max Domains", "Rate Limit", "Bandwidth Limit"];
+      const features = ["WAF Engine", "AI Protection", "DDoS Mitigation", "Log Retention", "Support", "SLA", "Max Domains", "Rate Limit", "Bandwidth Limit", "WAF Dashboard", "Android App", "User Accounts"];
       const values   = {
-        "Starter":    ["OWASP CRS",      "Basic",        "L3/L4",   "30 days", "Email/Tickets",    "99.5%",  "1",  "30K req/month", "2GB"],
-        "Growth":     ["CRS+Scripting",  "Behavioral",   "L3/L7",   "30 days", "Email/Tickets",    "99.9%",  "3",  "100K req/month", "15GB"],
-        "Pro":        ["Full AI+WASM",   "All AI",       "Advanced","90 days", "Email/Tickets/Chat", "99.9%",  "5",  "200K req/month", "50GB"],
-        "Enterprise": ["Full Enterprise","Trainable AI", "Max",     "90 days",  "Phone/WhatsApp/Tickets/Chat","99.99%", "10", "Unlimited", "Unlimited"]
+        "Starter":    ["OWASP CRS",      "Basic",        "L3/L4",   "30 days", "Email/Tickets",    "99.5%",  "1",  "30K req/month", "2GB", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-user' style='color:#3b82f6;'></i> Unlimited"],
+        "Growth":     ["CRS+Scripting",  "Behavioral",   "L3/L7",   "30 days", "Email/Tickets",    "99.9%",  "3",  "100K req/month", "15GB", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-users' style='color:#3b82f6;'></i> Unlimited"],
+        "Pro":        ["Full AI+WASM",   "All AI",       "Advanced","90 days", "Email/Tickets/Chat", "99.9%",  "5",  "200K req/month", "50GB", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-users' style='color:#3b82f6;'></i> Unlimited"],
+        "Enterprise": ["Full Enterprise","Trainable AI", "Max",     "90 days",  "Phone/WhatsApp/Tickets/Chat","99.99%", "10", "Unlimited", "Unlimited", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-check-circle' style='color:#10b981;'></i> Yes", "<i class='fas fa-users' style='color:#3b82f6;'></i> Unlimited"]
       };
       let html = `<thead><tr><th>Feature</th>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`;
       features.forEach((f, fi) => {
@@ -1057,6 +1057,14 @@
       const headers  = allDedicated.map(p => p.name);
       const features = ["Infrastructure", "Total Annual (1yr)", "Total 2yr (15% off)", "Annual Hosting", "Annual License", "Monthly Maint", "Setup Fee", "Bandwidth", "Requests", "SLA"];
       const customRow = ["Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Unlimited", "Unlimited", "Custom"];
+
+      // প্ল্যান অনুযায়ী ইউজার অ্যাকাউন্ট লিমিট
+      const userAccountsLimit = {
+        "Starter Dedicated": "5 Users",
+        "Business Dedicated": "20 Users",
+        "Enterprise Dedicated": "Unlimited",
+        "Custom Enterprise": "Unlimited"
+      };
 
       function getVal(plan, fi) {
         if (plan.name === "Custom Enterprise") return customRow[fi];
@@ -1083,8 +1091,27 @@
         headers.forEach(h => { const plan = allDedicated.find(p => p.name === h); html += `<td>${getVal(plan, fi)}</td>`; });
         html += `</tr>`;
       });
-      html += `<tr><td style="font-weight:600;">Compliance</td>${headers.map(() => `<td>✅ PCI-DSS / HIPAA / GDPR</td>`).join('')}</tr>`;
-      html += `<tr><td style="font-weight:600;">Deployment</td>${headers.map(() => `<td><i class="fas fa-check"></i> Cloud / VM / Datacenter / On-Premise</td>`).join('')}</tr>`;
+      html += `<tr><td style="font-weight:600;">Compliance</td>${headers.map(() => `<td><i class="fas fa-check-circle" style="color:#10b981;"></i> PCI-DSS / HIPAA / GDPR</td>`).join('')} `;
+      html += `<tr><td style="font-weight:600;">Deployment</td>${headers.map(() => `<td><i class="fas fa-check-circle" style="color:#10b981;"></i> Cloud / VM / Datacenter / On-Premise</td>`).join('')} `;
+      html += `<tr><td style="font-weight:600;"><i class="fas fa-tachometer-alt" style="color:#3b82f6;"></i> WAF Dashboard</td>${headers.map(() => `<td><i class="fas fa-check-circle" style="color:#10b981;"></i> Real-time Analytics & Reports</td>`).join('')} `;
+      html += `<tr><td style="font-weight:600;"><i class="fab fa-android" style="color:#3b82f6;"></i> Android App</td>${headers.map(() => `<td><i class="fas fa-check-circle" style="color:#10b981;"></i> Full Mobile Management</td>`).join('')} `;
+      
+      // ইউজার অ্যাকাউন্ট সারি - Unlimited দেখানোর জন্য
+      html += `<tr><td style="font-weight:600;"><i class="fas fa-users" style="color:#3b82f6;"></i> User Accounts</td>`;
+      headers.forEach(h => {
+        const isUnlimited = (h === "Enterprise Dedicated" || h === "Custom Enterprise");
+        if (isUnlimited) {
+          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
+        } else if (h === "Business Dedicated") {
+          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
+        } else if (h === "Starter Dedicated") {
+          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
+        } else {
+          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
+        }
+      });
+      html += `</tr>`;
+      
       html += `</tbody>`;
       table.innerHTML = html;
     }
