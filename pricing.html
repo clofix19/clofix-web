@@ -844,8 +844,8 @@
         const yearlyMonthly = Math.round(plan.priceBDT * (1 - SAAS_DISCOUNT));
         const displayPrice = isYearly ? yearlyMonthly : monthlyPrice;
 
-        // Strikethrough: show old (crossed) price, then current discounted/regular
-        const oldPriceHtml = `<span class="price-old">${formatPrice(plan.oldPriceBDT)}</span>`;
+        // শুধু monthly হলে old price দেখাবে, yearly হলে দেখাবে না
+        const oldPriceHtml = !isYearly ? `<span class="price-old">${formatPrice(plan.oldPriceBDT)}</span>` : '';
 
         let yearlyNote = '';
         if (isYearly) {
@@ -856,7 +856,7 @@
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
-             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /Monthly</span></div>
+             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /month</span></div>
              ${yearlyNote}
            </div>
            <div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
