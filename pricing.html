@@ -103,6 +103,52 @@
       pointer-events: none;
     }
     .custom-badge { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
+    
+    /* Billing period toggle */
+    .billing-toggle-wrap { display: flex; justify-content: center; margin: 0 0 1.5rem; }
+    .billing-toggle { display: flex; background: #1e293b; border: 1px solid #334155; border-radius: 40px; padding: 4px; gap: 4px; }
+    .billing-toggle-btn { padding: 0.4rem 1.4rem; border-radius: 40px; font-weight: 600; border: none; cursor: pointer; color: #cbd5e1; background: transparent; font-family: 'Inter', sans-serif; font-size: 0.85rem; transition: 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+    .billing-toggle-btn.active-billing { background: var(--primary); color: white; }
+    .save-badge { background: #10b981; color: white; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 20px; }
+
+    .plans-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 1.8rem; margin: 2rem 0; }
+    .plan-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      padding-top: 2rem;
+      flex: 1;
+      min-width: 280px;
+      max-width: 340px;
+      border: 1px solid #1e293b;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .plan-card .feature-list { flex: 1; }
+    .plan-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 20px 35px -12px rgba(59, 130, 246, 0.25); }
+    .plan-card.enterprise { background: linear-gradient(145deg, #0f172a, #030712); border-color: #3b82f6; }
+    .plan-card.custom-card { background: linear-gradient(135deg, #1e1b4b, #0f172a); border: 2px solid var(--secondary); }
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      right: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      font-weight: 700;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.4);
+      letter-spacing: 0.3px;
+      pointer-events: none;
+    }
+    .custom-badge { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
+    .price-old { font-size: 1rem; color: #64748b; text-decoration: line-through; margin-right: 0.4rem; }
+    .price-period { font-size: 0.85rem; color: #94a3b8; }
+    .price-yearly-note { font-size: 0.72rem; color: #10b981; margin-top: 0.3rem; }
 
     .plan-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
     .price-section { margin: 0.8rem 0; }
@@ -334,6 +380,16 @@
       <button class="model-btn active" data-model="saas">☁️ SaaS Plans</button>
       <button class="model-btn" data-model="dedicated">🏢 Dedicated Hosting</button>
       <button class="model-btn" data-model="brandingChart">🎨 Branding</button>
+    </div>
+
+    <!-- Billing period toggle (shown for saas and dedicated) -->
+    <div class="billing-toggle-wrap" id="billingToggleWrap">
+      <div class="billing-toggle">
+        <button class="billing-toggle-btn active-billing" id="billingMonthly">Monthly</button>
+        <button class="billing-toggle-btn" id="billingYearly">
+          Yearly <span class="save-badge" id="billingBadge">Save 10%</span>
+        </button>
+      </div>
     </div>
 
     <div id="plansContainer" class="plans-row"></div>
@@ -721,20 +777,22 @@
     const USD_RATE = 120;
     let currentCurrency = 'BDT';
     let currentModel = 'saas';
-
     let brandingIs6Month = true;
 
+    // SaaS: current (old/crossed) prices & actual prices
+    // oldPriceBDT = the crossed-out price shown; priceBDT = the actual current price
     const saasPlansRaw = [
-      { name: "Starter",    priceBDT: 1500,  support: "Support", supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/month", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                          popular: false },
-      { name: "Growth",     priceBDT: 5500,  support: "Support", supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domain", "100K req/month", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                                     popular: false },
-      { name: "Pro",        priceBDT: 16500, support: "Support", supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/month", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
-      { name: "Enterprise", priceBDT: 50000, support: "Support", supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/month", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"],                                                           enterprise: true, popular: false }
+      { name: "Starter",    oldPriceBDT: 1700,  priceBDT: 1500,  support: "Support", supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/month", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                           popular: false },
+      { name: "Growth",     oldPriceBDT: 6200,  priceBDT: 5500,  support: "Support", supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domain", "100K req/month", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                  popular: false },
+      { name: "Pro",        oldPriceBDT: 18500, priceBDT: 16500, support: "Support", supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/month", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
+      { name: "Enterprise", oldPriceBDT: 55000, priceBDT: 50000, support: "Support", supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/month", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"], enterprise: true, popular: false }
     ];
 
+    // Dedicated: prices are per-year; 2-year gets 15% discount
     const dedicatedPlansRaw = [
       { name: "Starter Dedicated",    hostingBDT: 270000, licenseBDT: 120000, maintenanceBDT: 12500,  setupBDT: 15000, cpu: "4 vCPU",   ram: "8 GB",   bandwidth: "2 TB",       requests: "50M",       sla: "99.9%",   features: ["Entry-level dedicated WAF", "Up to 10 Domains", "Business hours support", "PCI-DSS / HIPAA / GDPR"], popular: false },
-      { name: "Business Dedicated",   hostingBDT: 486000, licenseBDT: 220000, maintenanceBDT: 18000, setupBDT: 25000, cpu: "8 vCPU",   ram: "16 GB",  bandwidth: "5 TB",       requests: "200M",      sla: "99.99%",  features: ["Mid-tier enhanced capacity", "Up to 20 Domains", "24/7 priority support", "Advanced DDoS"],          popular: true  },
-      { name: "Enterprise Dedicated", hostingBDT: 864000, licenseBDT: 400000, maintenanceBDT: 30000, setupBDT: 35000,  cpu: "16+ vCPU", ram: "32+ GB", bandwidth: "Unlimited*", requests: "Unlimited*", sla: "99.999%", features: ["Full-scale enterprise", "Up to 30 Domains", "Named engineer", "Custom SLA"],                      enterprise: true, popular: false }
+      { name: "Business Dedicated",   hostingBDT: 486000, licenseBDT: 220000, maintenanceBDT: 18000,  setupBDT: 25000, cpu: "8 vCPU",   ram: "16 GB",  bandwidth: "5 TB",       requests: "200M",      sla: "99.99%",  features: ["Mid-tier enhanced capacity", "Up to 20 Domains", "24/7 priority support", "Advanced DDoS"],          popular: true  },
+      { name: "Enterprise Dedicated", hostingBDT: 864000, licenseBDT: 400000, maintenanceBDT: 30000,  setupBDT: 35000,  cpu: "16+ vCPU", ram: "32+ GB", bandwidth: "Unlimited*", requests: "Unlimited*", sla: "99.999%", features: ["Full-scale enterprise", "Up to 30 Domains", "Named engineer", "Custom SLA"],                      enterprise: true, popular: false }
     ];
 
     const customEnterprisePlan = {
@@ -748,6 +806,10 @@
       features: ["Your Company Name branding", "Custom Error Pages (403,404,500)", "Custom JS Challenge Page", "Custom Block Pages", "Priority Support", "Free updates"]
     };
 
+    // Billing state
+    let saasBilling = 'monthly';   // 'monthly' | 'yearly'
+    let dedicatedBilling = '1yr';  // '1yr' | '2yr'
+
     function formatPrice(amountBDT) {
       if (amountBDT === null) return 'Custom';
       if (currentCurrency === 'USD') return '$' + (amountBDT / USD_RATE).toFixed(2);
@@ -760,9 +822,7 @@
       if (opts.extraStyle) {
         Object.entries(opts.extraStyle).forEach(([k, v]) => { card.style[k] = v; });
       }
-      // Set body content first
       card.innerHTML = innerHtml;
-      // THEN inject badge so it is never clobbered
       if (opts.badgeText) {
         const badge = document.createElement('div');
         badge.className = 'popular-badge' + (opts.badgeExtraClass ? ' ' + opts.badgeExtraClass : '');
@@ -776,11 +836,28 @@
     function renderSaasPlans() {
       const container = document.getElementById('plansContainer');
       container.innerHTML = '';
+      const isYearly = saasBilling === 'yearly';
+      const SAAS_DISCOUNT = 0.10; // 10% off yearly
+
       saasPlansRaw.forEach(plan => {
+        const monthlyPrice = plan.priceBDT;
+        const yearlyMonthly = Math.round(plan.priceBDT * (1 - SAAS_DISCOUNT));
+        const displayPrice = isYearly ? yearlyMonthly : monthlyPrice;
+
+        // Strikethrough: show old (crossed) price, then current discounted/regular
+        const oldPriceHtml = `<span class="price-old">${formatPrice(plan.oldPriceBDT)}</span>`;
+
+        let yearlyNote = '';
+        if (isYearly) {
+          const annual = yearlyMonthly * 12;
+          yearlyNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> ${formatPrice(annual)}/year — Save 10%</div>`;
+        }
+
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
-             <span class="price-main">${formatPrice(plan.priceBDT)}</span><span> /month</span>
+             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /month</span></div>
+             ${yearlyNote}
            </div>
            <div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
              <i class="fas fa-headset"></i> ${plan.support}: <strong>${plan.supporttype}</strong>
@@ -801,9 +878,26 @@
     function renderDedicatedPlans() {
       const container = document.getElementById('plansContainer');
       container.innerHTML = '';
+      const is2yr = dedicatedBilling === '2yr';
+      const DEDICATED_DISCOUNT = 0.15; // 15% off 2-year
 
       dedicatedPlansRaw.forEach(plan => {
-        const totalAnnualBDT = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
+        // Annual totals (1 year)
+        const annualBase = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
+        let displayTotal, termLabel, savingsNote = '';
+
+        if (is2yr) {
+          const twoYearBase = annualBase * 2;
+          const twoYearDiscounted = Math.round(twoYearBase * (1 - DEDICATED_DISCOUNT));
+          displayTotal = twoYearDiscounted;
+          termLabel = '/2 years (Total)';
+          const saved = twoYearBase - twoYearDiscounted;
+          savingsNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> Save ${formatPrice(saved)} over 2 years (15% off)</div>`;
+        } else {
+          displayTotal = annualBase;
+          termLabel = '/year (Total Annual)';
+        }
+
         const setupDisplay = plan.setupBDT
           ? `<div class="setup-fee"><i class="fas fa-wrench"></i> One-time Setup: ${formatPrice(plan.setupBDT)}</div>`
           : `<div class="setup-fee"><i class="fas fa-star"></i> Custom enterprise pricing available</div>`;
@@ -811,7 +905,8 @@
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
-             <span class="price-main">${formatPrice(totalAnnualBDT)}</span><span> /year (Total Annual)</span>
+             <div><span class="price-main">${formatPrice(displayTotal)}</span><span class="price-period"> ${termLabel}</span></div>
+             ${savingsNote}
            </div>
            ${setupDisplay}
            <div class="support-price"><i class="fas fa-chart-line"></i> Feature+Branding: ${formatPrice(plan.hostingBDT)}/year</div>
@@ -821,7 +916,12 @@
              <i class="fas fa-cloud-upload-alt"></i> <strong>Flexible Deployment</strong><br>
              Deploy on your Cloud (AWS, Azure, GCP), VM, or our Secure Datacenter.
            </div>
-           <div class="resource-info"><i class="fas fa-server"></i> ${plan.cpu} | ${plan.ram} RAM | ${plan.bandwidth} BW | ${plan.requests} req</div>
+           <div class="resource-info">
+              <i class="fas fa-server"></i> <strong>Infrastructure Specs:</strong> ${plan.cpu} | ${plan.ram} RAM | ${plan.bandwidth} BW | ${plan.requests} req
+              <div style="margin-top: 5px; color: #f59e0b; font-size: 0.7rem;">
+                <i class="fas fa-exclamation-triangle"></i> Infrastructure/server cost to be provided by client separately
+              </div>
+            </div>
            <ul class="feature-list">
              ${plan.features.map(f => `<li><i class="fas fa-shield-alt"></i> ${f}</li>`).join('')}
            </ul>
@@ -910,25 +1010,21 @@
 
       container.appendChild(card);
 
-      // Wire up toggle buttons AFTER the card is in the DOM
-      const btn6  = card.querySelector('#branding6moBtn');
-      const btn12 = card.querySelector('#branding12moBtn');
-      const p6    = card.querySelector('#price6Block');
-      const p12   = card.querySelector('#price12Block');
-      const subBtn = card.querySelector('#brandingSubscribeBtn');
+      const btn6   = card.querySelector('#branding6moBtn');
+      const btn12  = card.querySelector('#branding12moBtn');
+      const p6     = card.querySelector('#price6Block');
+      const p12    = card.querySelector('#price12Block');
 
       function setToggle(is6) {
-        brandingIs6Month = is6;          // persist state across currency refreshes
+        brandingIs6Month = is6;
         p6.style.display  = is6 ? 'block' : 'none';
         p12.style.display = is6 ? 'none'  : 'block';
         btn6.className  = 'branding-toggle-btn ' + (is6 ? 'active-toggle' : 'inactive-toggle');
         btn12.className = 'branding-toggle-btn ' + (is6 ? 'inactive-toggle' : 'active-toggle');
-        subBtn.textContent = 'Subscribe Now - ' + (is6 ? formatPrice(brandingPlanRaw.price6BDT) : formatPrice(brandingPlanRaw.price12BDT));
       }
 
       btn6.addEventListener('click',  () => setToggle(true));
       btn12.addEventListener('click', () => setToggle(false));
-      subBtn.addEventListener('click', () => alert('✅ Custom branding inquiry sent! Our team will contact you.'));
       card.querySelector('#brandingContactBtn').addEventListener('click', () => { window.location.href = 'contact.html'; });
     }
 
@@ -959,15 +1055,17 @@
         { name: "Custom Enterprise", hostingBDT: null, licenseBDT: null, maintenanceBDT: null, setupBDT: null, cpu: "Custom", ram: "Custom", bandwidth: "Unlimited", requests: "Unlimited", sla: "Custom" }
       ];
       const headers  = allDedicated.map(p => p.name);
-      const features = ["Infrastructure", "Total Annual", "Annual Hosting", "Annual License", "Monthly Maint", "Setup Fee", "Bandwidth", "Requests", "SLA"];
-      const customRow = ["Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Unlimited", "Unlimited", "Custom"];
+      const features = ["Infrastructure", "Total Annual (1yr)", "Total 2yr (15% off)", "Annual Hosting", "Annual License", "Monthly Maint", "Setup Fee", "Bandwidth", "Requests", "SLA"];
+      const customRow = ["Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Unlimited", "Unlimited", "Custom"];
 
       function getVal(plan, fi) {
         if (plan.name === "Custom Enterprise") return customRow[fi];
-        const total = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
+        const total1yr = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
+        const total2yr = Math.round(total1yr * 2 * 0.85);
         const map = [
           plan.cpu,
-          formatPrice(total),
+          formatPrice(total1yr),
+          formatPrice(total2yr),
           formatPrice(plan.hostingBDT),
           formatPrice(plan.licenseBDT),
           formatPrice(plan.maintenanceBDT),
@@ -991,30 +1089,57 @@
       table.innerHTML = html;
     }
 
+    function updateBillingToggleUI() {
+      const wrap = document.getElementById('billingToggleWrap');
+      const btnMonthly = document.getElementById('billingMonthly');
+      const btnYearly  = document.getElementById('billingYearly');
+      const badge      = document.getElementById('billingBadge');
+
+      if (currentModel === 'brandingChart') {
+        wrap.style.display = 'none';
+        return;
+      }
+
+      wrap.style.display = 'flex';
+
+      if (currentModel === 'saas') {
+        btnMonthly.textContent = 'Monthly';
+        btnYearly.innerHTML = 'Yearly <span class="save-badge">Save 10%</span>';
+        btnMonthly.classList.toggle('active-billing', saasBilling === 'monthly');
+        btnYearly.classList.toggle('active-billing',  saasBilling === 'yearly');
+      } else if (currentModel === 'dedicated') {
+        btnMonthly.textContent = '1 Year';
+        btnYearly.innerHTML = '2 Years <span class="save-badge">Save 15%</span>';
+        btnMonthly.classList.toggle('active-billing', dedicatedBilling === '1yr');
+        btnYearly.classList.toggle('active-billing',  dedicatedBilling === '2yr');
+      }
+    }
+
     function setModel(model) {
       currentModel = model;
       const saasDiv      = document.getElementById('saasComparison');
       const dedicatedDiv = document.getElementById('dedicatedComparison');
 
-      if (model === 'saas')          { renderSaasPlans();      saasDiv.style.display = 'block'; dedicatedDiv.style.display = 'none';  }
-      else if (model === 'dedicated'){ renderDedicatedPlans(); saasDiv.style.display = 'none';  dedicatedDiv.style.display = 'block'; }
-      else if (model === 'brandingChart') { renderBrandingCard(); saasDiv.style.display = 'none'; dedicatedDiv.style.display = 'none'; }
+      if (model === 'saas')               { renderSaasPlans();      saasDiv.style.display = 'block'; dedicatedDiv.style.display = 'none'; }
+      else if (model === 'dedicated')     { renderDedicatedPlans(); saasDiv.style.display = 'none';  dedicatedDiv.style.display = 'block'; }
+      else if (model === 'brandingChart') { renderBrandingCard();   saasDiv.style.display = 'none';  dedicatedDiv.style.display = 'none'; }
 
       document.querySelectorAll('.model-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-model') === model);
       });
+
+      updateBillingToggleUI();
     }
 
     function refreshAllByCurrency() {
-      // Re-render active plan section (branding preserves brandingIs6Month state)
       if      (currentModel === 'saas')          renderSaasPlans();
       else if (currentModel === 'dedicated')     renderDedicatedPlans();
       else if (currentModel === 'brandingChart') renderBrandingCard();
-      // Also refresh comparison tables since they show formatted prices
       renderSaasComparison();
       renderDedicatedComparison();
     }
 
+    // Currency buttons
     document.getElementById('currencyBDT').addEventListener('click', () => {
       if (currentCurrency === 'BDT') return;
       currentCurrency = 'BDT';
@@ -1022,7 +1147,6 @@
       document.getElementById('currencyUSD').classList.remove('active-currency');
       refreshAllByCurrency();
     });
-
     document.getElementById('currencyUSD').addEventListener('click', () => {
       if (currentCurrency === 'USD') return;
       currentCurrency = 'USD';
@@ -1031,27 +1155,53 @@
       refreshAllByCurrency();
     });
 
+    // Model buttons
     document.querySelectorAll('.model-btn').forEach(btn => {
       btn.addEventListener('click', () => setModel(btn.getAttribute('data-model')));
     });
 
+    // Billing toggle buttons
+    document.getElementById('billingMonthly').addEventListener('click', () => {
+      if (currentModel === 'saas') {
+        saasBilling = 'monthly';
+        renderSaasPlans();
+      } else if (currentModel === 'dedicated') {
+        dedicatedBilling = '1yr';
+        renderDedicatedPlans();
+        renderDedicatedComparison();
+      }
+      updateBillingToggleUI();
+    });
+    document.getElementById('billingYearly').addEventListener('click', () => {
+      if (currentModel === 'saas') {
+        saasBilling = 'yearly';
+        renderSaasPlans();
+      } else if (currentModel === 'dedicated') {
+        dedicatedBilling = '2yr';
+        renderDedicatedPlans();
+        renderDedicatedComparison();
+      }
+      updateBillingToggleUI();
+    });
+
     // Modal
-    const modal     = document.getElementById('agreementModal');
-    const viewBtn   = document.getElementById('viewAgreementBtn');
-    const closeBtn  = document.querySelector('.close-modal');
+    const modal    = document.getElementById('agreementModal');
+    const viewBtn  = document.getElementById('viewAgreementBtn');
+    const closeBtn = document.querySelector('.close-modal');
     if (viewBtn)  viewBtn.addEventListener('click',  () => { modal.style.display = 'block'; });
     if (closeBtn) closeBtn.addEventListener('click', () => { modal.style.display = 'none';  });
     window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 
+    // Init
     renderSaasComparison();
     renderDedicatedComparison();
     setModel('saas');
-    
+
+    // Nav toggle
     const navToggle = document.getElementById('navToggle');
     const navContent = document.querySelector('.c-nav__content');
-
-    // Helpers
     const dropdowns = document.querySelectorAll('.c-dropdown');
+
     function closeAllDropdowns() {
       dropdowns.forEach(dd => {
         dd.classList.remove('open');
@@ -1062,15 +1212,12 @@
 
     if (navToggle && navContent) {
       navToggle.setAttribute('aria-expanded', 'false');
-
       navToggle.addEventListener('click', () => {
         const open = navContent.classList.toggle('active');
         document.body.classList.toggle('nav-open', open);
         navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         if (!open) closeAllDropdowns();
       });
-
-      // Close menu when any nav link clicked
       navContent.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
           navContent.classList.remove('active');
@@ -1079,8 +1226,6 @@
           closeAllDropdowns();
         });
       });
-
-      // Close menu with ESC
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navContent.classList.contains('active')) {
           navContent.classList.remove('active');
@@ -1089,8 +1234,6 @@
           closeAllDropdowns();
         }
       });
-
-      // If resized to desktop, ensure body scroll is restored and panel closed
       window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
           document.body.classList.remove('nav-open');
@@ -1101,35 +1244,27 @@
       });
     }
 
-    // Dropdown toggle (accordion on mobile, click on desktop)
     dropdowns.forEach(dd => {
       const toggle = dd.querySelector('.c-dropdown__toggle');
       if (!toggle) return;
-
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-
         const willOpen = !dd.classList.contains('open');
-
-        // Close all
         closeAllDropdowns();
-
-        // Open current if it was closed
         if (willOpen) {
           dd.classList.add('open');
           toggle.setAttribute('aria-expanded', 'true');
         }
       });
     });
-    // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+
     document.addEventListener('click', (e) => {
       const panelOpen = navContent && navContent.classList.contains('active');
-      if (panelOpen) return; // mobile panel manages its own closing
+      if (panelOpen) return;
       if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
     });
 
-    // Also close dropdowns explicitly when a dropdown link is clicked
     document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
       a.addEventListener('click', () => {
         closeAllDropdowns();
