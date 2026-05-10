@@ -725,10 +725,10 @@
     let brandingIs6Month = true;
 
     const saasPlansRaw = [
-      { name: "Starter",    priceBDT: 1500,  support: "Support", supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/min", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                          popular: false },
-      { name: "Growth",     priceBDT: 5500,  support: "Support", supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domain", "100K req/min", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                                     popular: false },
-      { name: "Pro",        priceBDT: 16500, support: "Support", supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/min", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
-      { name: "Enterprise", priceBDT: 50000, support: "Support", supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/min", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"],                                                           enterprise: true, popular: false }
+      { name: "Starter",    priceBDT: 1500,  support: "Support", supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/month", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                          popular: false },
+      { name: "Growth",     priceBDT: 5500,  support: "Support", supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domain", "100K req/month", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                                     popular: false },
+      { name: "Pro",        priceBDT: 16500, support: "Support", supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/month", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
+      { name: "Enterprise", priceBDT: 50000, support: "Support", supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/month", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"],                                                           enterprise: true, popular: false }
     ];
 
     const dedicatedPlansRaw = [
@@ -937,9 +937,9 @@
       const headers  = saasPlansRaw.map(p => p.name);
       const features = ["WAF Engine", "AI Protection", "DDoS Mitigation", "Log Retention", "Support", "SLA", "Max Domains", "Rate Limit", "Bandwidth Limit"];
       const values   = {
-        "Starter":    ["OWASP CRS",      "Basic",        "L3/L4",   "30 days", "Email/Tickets",    "99.5%",  "1",  "30K req/min", "2GB"],
-        "Growth":     ["CRS+Scripting",  "Behavioral",   "L3/L7",   "30 days", "Email/Tickets",    "99.9%",  "3",  "100K req/min", "15GB"],
-        "Pro":        ["Full AI+WASM",   "All AI",       "Advanced","90 days", "Email/Tickets/Chat", "99.9%",  "5",  "200K req/min", "50GB"],
+        "Starter":    ["OWASP CRS",      "Basic",        "L3/L4",   "30 days", "Email/Tickets",    "99.5%",  "1",  "30K req/month", "2GB"],
+        "Growth":     ["CRS+Scripting",  "Behavioral",   "L3/L7",   "30 days", "Email/Tickets",    "99.9%",  "3",  "100K req/month", "15GB"],
+        "Pro":        ["Full AI+WASM",   "All AI",       "Advanced","90 days", "Email/Tickets/Chat", "99.9%",  "5",  "200K req/month", "50GB"],
         "Enterprise": ["Full Enterprise","Trainable AI", "Max",     "90 days",  "Phone/WhatsApp/Tickets/Chat","99.99%", "10", "Unlimited", "Unlimited"]
       };
       let html = `<thead><tr><th>Feature</th>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`;
