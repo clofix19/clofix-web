@@ -856,7 +856,7 @@
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
-             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /month</span></div>
+             <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /Monthly</span></div>
              ${yearlyNote}
            </div>
            <div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
@@ -895,7 +895,7 @@
           savingsNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> Save ${formatPrice(saved)} over 2 years (15% off)</div>`;
         } else {
           displayTotal = annualBase;
-          termLabel = '/year (Total Annual)';
+          termLabel = '/Yearly (Total Annual)';
         }
 
         const setupDisplay = plan.setupBDT
@@ -909,8 +909,8 @@
              ${savingsNote}
            </div>
            ${setupDisplay}
-           <div class="support-price"><i class="fas fa-chart-line"></i> Feature+Branding: ${formatPrice(plan.hostingBDT)}/year</div>
-           <div class="support-price"><i class="fas fa-key"></i> License: ${formatPrice(plan.licenseBDT)}/year</div>
+           <div class="support-price"><i class="fas fa-chart-line"></i> Feature+Branding: ${formatPrice(plan.hostingBDT)}/Yearly</div>
+           <div class="support-price"><i class="fas fa-key"></i> License: ${formatPrice(plan.licenseBDT)}/Yearly</div>
            <div class="support-price"><i class="fas fa-tools"></i> Maintenance: ${formatPrice(plan.maintenanceBDT)}/month</div>
            <div class="deployment-info">
              <i class="fas fa-cloud-upload-alt"></i> <strong>Flexible Deployment</strong><br>
