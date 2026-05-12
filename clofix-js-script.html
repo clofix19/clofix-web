@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="canonical" href="https://clofix.com/clofix-js-script.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CloFix WAF JavaScript (clofix) Scripting Guide — write custom JavaScript functions for rate limiting, bot detection, geo-blocking, and OWASP Top 10 protection.">
+    <meta name="description" content="CloFix WAF JavaScript (clofix) Scripting Guide - write custom JavaScript functions for rate limiting, bot detection, geo-blocking, and OWASP Top 10 protection.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CloFix WAF | JavaScript (clofix) Scripting Guide">
     <meta property="og:description" content="Write custom clofix JavaScript functions to control every HTTP request flowing through CloFix WAF. Full reference, shared state, examples, and best practices.">
@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CloFix WAF | JavaScript (clofix) Scripting Guide">
-    <meta name="twitter:description" content="Complete guide for writing clofix JavaScript functions in CloFix WAF — request object, shared state, examples, and troubleshooting.">
+    <meta name="twitter:description" content="Complete guide for writing clofix JavaScript functions in CloFix WAF - request object, shared state, examples, and troubleshooting.">
     <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
     <meta name="twitter:site" content="@clofix19">
     <link rel="icon" type="image/png" href="img/clofix.png" />
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <title>CloFix WAF — JavaScript (clofix) Scripting Guide</title>
+    <title>CloFix WAF - JavaScript (clofix) Scripting Guide</title>
     <style>
         :root {
             --js-dark:     #0a0e1a;
@@ -257,7 +257,7 @@
                 <h1>CloFix <span style="color:#f7df1e;">JavaScript (clofix)</span> Scripting Guide</h1>
                 <p class="js-hero__lead">
                     Write <strong style="color:#fff;">clofix JavaScript functions</strong> to inspect, filter, and control every HTTP request flowing through
-                    <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
+                    <strong style="color:#fff;">CloFix WAF</strong> - with full access to request context,
                     shared in-memory state, pattern extraction, and comprehensive OWASP Top 10 protection.
                 </p>
                 <div class="js-hero__pills">
@@ -352,13 +352,13 @@
                     </div>
 
                     <div class="js-box warn">
-                        <strong>Important — Entry Point</strong>
+                        <strong>Important - Entry Point</strong>
                         Every executable JavaScript file must export a <span class="ic">function clofix(request)</span> that returns an action object. The WAF will call this function for every request.
                     </div>
 
                     <p class="js-sub">Key Concepts</p>
                     <ul style="padding-left:22px;margin:0 0 16px;color:var(--js-text);">
-                        <li style="margin-bottom:7px">Scripts live in <span class="ic">/etc/clofix/&lt;domain&gt;/js/</span> — one directory per domain</li>
+                        <li style="margin-bottom:7px">Scripts live in <span class="ic">/etc/clofix/&lt;domain&gt;/js/</span> - one directory per domain</li>
                         <li style="margin-bottom:7px">All <span class="ic">.js</span> files run in filesystem order; first blocking action wins</li>
                         <li style="margin-bottom:7px">Every script must export <span class="ic">function clofix(request)</span></li>
                         <li style="margin-bottom:7px">Scripts return an <strong>object</strong> with an <span class="ic">action</span> property</li>
@@ -425,7 +425,7 @@
        │
        ▼
   ┌─────────────────────────────────────────────┐
-  │  WAF Engine  — IP extraction, GeoIP, TLS    │
+  │  WAF Engine  - IP extraction, GeoIP, TLS    │
   │  fingerprint, bot detection                 │
   └───────────────────┬─────────────────────────┘
                        │  enriched request object
@@ -439,7 +439,7 @@
   │       │ allow                               │
   │  03_sql_injection.js ──► action object      │
   │                                             │
-  │  First non-allow action WINS — pipeline     │
+  │  First non-allow action WINS - pipeline     │
   │  stops immediately.                         │
   └───────────────────┬─────────────────────────┘
                        │
@@ -458,9 +458,9 @@
                 <section class="js-section" id="quick-ref">
                     <h2 class="js-section__title"><span class="sec-num">03</span> Quick Reference</h2>
 
-                    <p class="js-sub">Request Object — all fields</p>
+                    <p class="js-sub">Request Object - all fields</p>
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — request object</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - request object</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-comment">// ── Core ──────────────────────────────────────────────</span>
 <span class="js-property">request</span>.<span class="js-property">ip</span>              <span class="js-comment">// "203.0.113.5"      client IP</span>
 <span class="js-property">request</span>.<span class="js-property">method</span>          <span class="js-comment">// "GET" / "POST" …</span>
@@ -483,14 +483,14 @@
 <span class="js-property">request</span>.<span class="js-property">timestamp</span>        <span class="js-comment">// 1709123456          Unix timestamp</span></pre>
                     </div>
 
-                    <p class="js-sub">Return Object — full structure</p>
+                    <p class="js-sub">Return Object - full structure</p>
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — return object</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - return object</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-keyword">return</span> {
     <span class="js-property">action</span>:      <span class="js-string">"block"</span>,          <span class="js-comment">// required: "allow", "block", "rate_limit", "redirect"</span>
     <span class="js-property">status</span>:      <span class="js-number">403</span>,             <span class="js-comment">// HTTP status (auto-filled if omitted)</span>
     <span class="js-property">reason</span>:      <span class="js-string">"SQL Injection detected"</span>,  <span class="js-comment">// human-readable reason</span>
-    <span class="js-property">rule_name</span>:   <span class="js-string">"SQLI_001"</span>,      <span class="js-comment">// rule identifier — appears in WAF logs</span>
+    <span class="js-property">rule_name</span>:   <span class="js-string">"SQLI_001"</span>,      <span class="js-comment">// rule identifier - appears in WAF logs</span>
     <span class="js-property">category</span>:    <span class="js-string">"sql_injection"</span>, <span class="js-comment">// attack category</span>
     <span class="js-property">confidence</span>:  <span class="js-number">95</span>,              <span class="js-comment">// confidence score (0-100)</span>
     <span class="js-property">severity</span>:    <span class="js-string">"high"</span>,          <span class="js-comment">// "critical", "high", "medium", "low"</span>
@@ -579,7 +579,7 @@
     <span class="js-keyword">return</span> whitelist[ip] === <span class="js-keyword">true</span>;
 }
 
-<span class="js-comment">// Main entry point — must be named clofix</span>
+<span class="js-comment">// Main entry point - must be named clofix</span>
 <span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
     <span class="js-keyword">if</span> (!CONFIG.ENABLED) {
         <span class="js-keyword">return</span> { <span class="js-property">action</span>: <span class="js-string">"allow"</span> };
@@ -612,7 +612,7 @@
 
                     <p class="js-sub">Examples</p>
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — action examples</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - action examples</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-comment">// Block with full metadata</span>
 <span class="js-keyword">return</span> {
     <span class="js-property">action</span>: <span class="js-string">"block"</span>,
@@ -679,7 +679,7 @@
                     </div>
 
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — shared dictionary API</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - shared dictionary API</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-comment">// CORRECT SYNTAX - Using sharedDict function</span>
 <span class="js-keyword">const</span> dict = sharedDict(<span class="js-string">"ddos_attack"</span>);  <span class="js-comment">// Get dictionary by name</span>
 
@@ -726,7 +726,7 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
                     <p>Implement rate limiting using shared dictionaries:</p>
 
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — rate_limit.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - rate_limit.js</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-keyword">const</span> CONFIG = {
     REQUESTS_PER_MINUTE: <span class="js-number">60</span>,
     BLOCK_TIME: <span class="js-number">300</span>  <span class="js-comment">// 5 minutes</span>
@@ -792,7 +792,7 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
                     <p>The system automatically extracts patterns from ALL JavaScript files, not just executable ones. These patterns are used for fast matching without execution.</p>
 
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — patterns.js (auto-extracted)</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - patterns.js (auto-extracted)</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-comment">// Strings in this file will be extracted as patterns</span>
 <span class="js-keyword">const</span> maliciousPatterns = [
     <span class="js-string">"eval(atob("</span>,
@@ -826,7 +826,7 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
                     <p>Use the global <span class="ic">log</span> object for structured logging:</p>
 
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">javascript — logging</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">javascript - logging</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
     <span class="js-comment">// Simple log messages</span>
     log.<span class="js-property">info</span>(<span class="js-string">"Processing request from "</span> + request.ip);
@@ -1585,7 +1585,7 @@ dict.<span class="js-property">flush_all</span>()                   <span class=
 
                     <p class="js-sub">Diagnostic Script</p>
                     <div class="js-code">
-                        <div class="js-code__hdr"><span class="js-code__lang">debug.js — remove before production</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
+                        <div class="js-code__hdr"><span class="js-code__lang">debug.js - remove before production</span><button class="js-copy" onclick="jsCopy(this)">Copy</button></div>
                         <pre><span class="js-keyword">function</span> <span class="js-function">clofix</span>(request) {
     log.<span class="js-property">info</span>(<span class="js-string">"=== DEBUG ==="</span>);
     log.<span class="js-property">info</span>(<span class="js-string">"IP: "</span> + request.<span class="js-property">ip</span>);
@@ -1648,15 +1648,15 @@ curl -A <span class="js-string">"sqlmap/1.7"</span> https://your-domain.com/</pr
                     <h2 class="js-section__title"><span class="sec-num">19</span> Best Practices</h2>
 
                     <ol class="lua-ol">
-                        <li><strong>One script per concern</strong> — keep <code>rate_limit.js</code>, <code>bot_detection.js</code>, <code>sql_injection.js</code> separate</li>
-                        <li><strong>Always validate inputs</strong> — use <code>if (request.body && typeof request.body === 'string')</code></li>
-                        <li><strong>Return early</strong> — check blocklists first before heavy pattern matching</li>
-                        <li><strong>Use shared dictionaries with TTL</strong> — always set expiration times to prevent memory leaks</li>
-                        <li><strong>Log attacks with context</strong> — use <code>log.attack()</code> for structured logging</li>
-                        <li><strong>Test with diagnostic script first</strong> — deploy debug.js to verify your environment</li>
-                        <li><strong>Numeric prefixes on filenames</strong> — use <code>01_rate_limit.js</code>, <code>02_bot_detect.js</code> to control order</li>
-                        <li><strong>CONFIG objects at the top</strong> — put all tunable values in a CONFIG object for easy adjustments</li>
-                        <li><strong>Remove debug logs in production</strong> — delete or comment out <code>log.info()</code> calls</li>
+                        <li><strong>One script per concern</strong> - keep <code>rate_limit.js</code>, <code>bot_detection.js</code>, <code>sql_injection.js</code> separate</li>
+                        <li><strong>Always validate inputs</strong> - use <code>if (request.body && typeof request.body === 'string')</code></li>
+                        <li><strong>Return early</strong> - check blocklists first before heavy pattern matching</li>
+                        <li><strong>Use shared dictionaries with TTL</strong> - always set expiration times to prevent memory leaks</li>
+                        <li><strong>Log attacks with context</strong> - use <code>log.attack()</code> for structured logging</li>
+                        <li><strong>Test with diagnostic script first</strong> - deploy debug.js to verify your environment</li>
+                        <li><strong>Numeric prefixes on filenames</strong> - use <code>01_rate_limit.js</code>, <code>02_bot_detect.js</code> to control order</li>
+                        <li><strong>CONFIG objects at the top</strong> - put all tunable values in a CONFIG object for easy adjustments</li>
+                        <li><strong>Remove debug logs in production</strong> - delete or comment out <code>log.info()</code> calls</li>
                     </ol>
 
                     <div class="js-box">

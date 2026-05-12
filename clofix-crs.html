@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="canonical" href="https://clofix.com/clofix-crs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CloFix CRS (Core Rule Set) — complete OWASP CRS v4 protection with CloFixRule custom directives, bypass management, and comprehensive attack protection.">
+    <meta name="description" content="CloFix CRS (Core Rule Set) - complete OWASP CRS v4 protection with CloFixRule custom directives, bypass management, and comprehensive attack protection.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CloFix WAF | OWASP CRS (Core Rule Set) Guide">
     <meta property="og:description" content="Complete OWASP CRS v4 implementation with CloFixRule custom rules, intelligent bypass system, and full attack protection coverage.">
@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="./style.css" rel="stylesheet" />
-    <title>CloFix WAF — OWASP CRS (Core Rule Set) Guide</title>
+    <title>CloFix WAF - OWASP CRS (Core Rule Set) Guide</title>
     <style>
         :root {
             --crs-dark:     #0a0e1a;
@@ -281,7 +281,7 @@
                 <!-- Introduction -->
                 <section class="crs-section" id="intro">
                     <h2 class="crs-section__title"><span class="sec-num">01</span> Introduction</h2>
-                    <p>The <strong>CloFix OWASP Core Rule Set (CRS)</strong> is a complete implementation of the OWASP CRS v4 — the industry standard for web application firewall rules. It provides comprehensive protection against the OWASP Top 10 vulnerabilities and countless other attack vectors.</p>
+                    <p>The <strong>CloFix OWASP Core Rule Set (CRS)</strong> is a complete implementation of the OWASP CRS v4 - the industry standard for web application firewall rules. It provides comprehensive protection against the OWASP Top 10 vulnerabilities and countless other attack vectors.</p>
 
                     <div class="crs-box gold">
                         <strong>🎯 What is OWASP CRS?</strong>
@@ -392,7 +392,7 @@
                     <p>CloFix CRS supports both standard <span class="ic">CloFixRule</span> directives and custom <span class="ic">CloFixRule</span> directives with the same powerful syntax.</p>
 
                     <div class="crs-code">
-                        <div class="crs-code__hdr"><span class="crs-code__lang">CloFixRule — Custom Directive</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <div class="crs-code__hdr"><span class="crs-code__lang">CloFixRule - Custom Directive</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre>CloFixRule [VARIABLES] "[OPERATOR] [PATTERN]" \
     "id:[RULE_ID],\
     phase:[1-4],\
@@ -413,7 +413,7 @@
                     </div>
 
                     <div class="crs-code">
-                        <div class="crs-code__hdr"><span class="crs-code__lang">Example — SQL Injection Protection</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <div class="crs-code__hdr"><span class="crs-code__lang">Example - SQL Injection Protection</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre># CloFixRule custom rule
 CloFixRule ARGS|BODY "@rx (union.*select|insert.*into|drop.*table)" \
     "id:1000001,\
@@ -444,7 +444,7 @@ CloFixRule ARGS|BODY "@rx <script" \
                 <section class="crs-section">
                     <h2 class="crs-section__title"><span class="sec-num">05</span> Attack Protection</h2>
                     
-                    <p class="crs-sub" id="sqli">SQL Injection (A03:2021) — Rule 942100-942999</p>
+                    <p class="crs-sub" id="sqli">SQL Injection (A03:2021) - Rule 942100-942999</p>
                     <div class="crs-code">
                         <div class="crs-code__hdr"><span class="crs-code__lang">sql_injection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre># SQL Injection - Union Based Attack
@@ -483,7 +483,7 @@ CloFixRule ARGS|BODY "@rx (or\s+1=1|and\s+1=1|or\s+1=2|and\s+1=2|or\s+true)" \
     block"</pre>
                     </div>
 
-                    <p class="crs-sub" id="xss">Cross-Site Scripting (XSS) (A03:2021) — Rule 941100-941999</p>
+                    <p class="crs-sub" id="xss">Cross-Site Scripting (XSS) (A03:2021) - Rule 941100-941999</p>
                     <div class="crs-code">
                         <div class="crs-code__hdr"><span class="crs-code__lang">xss_detection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre># XSS - Script Tag Injection
@@ -521,7 +521,7 @@ CloFixRule ARGS|BODY|REQUEST_URI "@rx (javascript:|vbscript:|data:text/html)" \
     block"</pre>
                     </div>
 
-                    <p class="crs-sub" id="lfi">Local/Remote File Inclusion (A01:2021) — Rule 930100-931999</p>
+                    <p class="crs-sub" id="lfi">Local/Remote File Inclusion (A01:2021) - Rule 930100-931999</p>
                     <div class="crs-code">
                         <div class="crs-code__hdr"><span class="crs-code__lang">lfi_rfi.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre># LFI - Path Traversal
@@ -559,7 +559,7 @@ CloFixRule ARGS "@rx (https?://|ftp://|php://|file://|expect://|data://)" \
     block"</pre>
                     </div>
 
-                    <p class="crs-sub" id="cmdi">Command Injection (A03:2021) — Rule 932100-932999</p>
+                    <p class="crs-sub" id="cmdi">Command Injection (A03:2021) - Rule 932100-932999</p>
                     <div class="crs-code">
                         <div class="crs-code__hdr"><span class="crs-code__lang">cmd_injection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre># Unix Command Injection
@@ -638,7 +638,7 @@ CloFixRule ARGS|BODY "@rx (function\(|return\s+this|db\.|collection\.|find\(|upd
     block"</pre>
                     </div>
 
-                    <p class="crs-sub" id="bot">Bot Detection — Rule 910100-910999</p>
+                    <p class="crs-sub" id="bot">Bot Detection - Rule 910100-910999</p>
                     <div class="crs-code">
                         <div class="crs-code__hdr"><span class="crs-code__lang">bot_detection.conf</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre># Malicious User Agents
@@ -690,7 +690,7 @@ CloFixRule REQUEST_HEADERS:User-Agent "@rx (headless|phantom|puppeteer|playwrigh
 
                     <div class="crs-sub" id="bypass-tags">Tag Bypass</div>
                     <div class="crs-code">
-                        <div class="crs-code__hdr"><span class="crs-code__lang">go config — tag bypass</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
+                        <div class="crs-code__hdr"><span class="crs-code__lang">go config - tag bypass</span><button class="crs-copy" onclick="crsCopy(this)">Copy</button></div>
                         <pre>config.BypassTags = []string{
     "attack-sqli",      // Bypass all SQL injection rules
     "paranoia-level/3", // Bypass paranoia level 3 rules
@@ -824,19 +824,19 @@ sudo tail -f /var/log/clofix/waf.log | grep -i '\[CRS\]'</pre>
                     <h2 class="crs-section__title"><span class="sec-num">09</span> Best Practices</h2>
 
                     <ol style="padding-left:20px;margin:16px 0;">
-                        <li><strong>Start with Paranoia Level 1</strong> — Monitor false positives before increasing protection</li>
-                        <li><strong>Use Bypass for False Positives</strong> — Target specific rules, not entire categories</li>
-                        <li><strong>Monitor Anomaly Scores</strong> — Track scores to identify attack patterns</li>
-                        <li><strong>Test with Attack Payloads</strong> — Regularly validate protection with known attack vectors</li>
-                        <li><strong>Update CRS Rules</strong> — Keep OWASP CRS rules updated for emerging threats</li>
-                        <li><strong>Document Bypasses</strong> — Record why each bypass was implemented</li>
-                        <li><strong>Review Bypasses Quarterly</strong> — Remove bypasses that are no longer needed</li>
-                        <li><strong>Enable Structured Logging</strong> — Use JSON logs for SIEM integration</li>
+                        <li><strong>Start with Paranoia Level 1</strong> - Monitor false positives before increasing protection</li>
+                        <li><strong>Use Bypass for False Positives</strong> - Target specific rules, not entire categories</li>
+                        <li><strong>Monitor Anomaly Scores</strong> - Track scores to identify attack patterns</li>
+                        <li><strong>Test with Attack Payloads</strong> - Regularly validate protection with known attack vectors</li>
+                        <li><strong>Update CRS Rules</strong> - Keep OWASP CRS rules updated for emerging threats</li>
+                        <li><strong>Document Bypasses</strong> - Record why each bypass was implemented</li>
+                        <li><strong>Review Bypasses Quarterly</strong> - Remove bypasses that are no longer needed</li>
+                        <li><strong>Enable Structured Logging</strong> - Use JSON logs for SIEM integration</li>
                     </ol>
 
                     <div class="crs-box gold">
                         <strong>🎯 Pro Tip</strong>
-                        When creating custom CloFixRule directives, always use multiple transformations (t:lowercase, t:urlDecode) to defeat evasion techniques. Order matters — apply transformations in sequence for best results.
+                        When creating custom CloFixRule directives, always use multiple transformations (t:lowercase, t:urlDecode) to defeat evasion techniques. Order matters - apply transformations in sequence for best results.
                     </div>
                 </section>
 

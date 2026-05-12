@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="canonical" href="https://clofix.com/clofix-wasm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CloFix WAF WebAssembly Guide — write custom WASM modules for rate limiting, bot detection, geo-blocking, and SQL injection protection using any language that compiles to WebAssembly.">
+    <meta name="description" content="CloFix WAF WebAssembly Guide - write custom WASM modules for rate limiting, bot detection, geo-blocking, and SQL injection protection using any language that compiles to WebAssembly.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CloFix WAF | WebAssembly Module Guide">
     <meta property="og:description" content="Write custom WebAssembly modules to control every HTTP request flowing through CloFix WAF. Full reference, host functions, examples in Rust, AssemblyScript, and TinyGo.">
@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CloFix WAF | WebAssembly Module Guide">
-    <meta name="twitter:description" content="Complete guide for writing WebAssembly security modules in CloFix WAF — request object, host functions, examples in Rust, AssemblyScript, TinyGo, and troubleshooting.">
+    <meta name="twitter:description" content="Complete guide for writing WebAssembly security modules in CloFix WAF - request object, host functions, examples in Rust, AssemblyScript, TinyGo, and troubleshooting.">
     <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
     <meta name="twitter:site" content="@clofix19">
     <link rel="icon" type="image/png" href="img/clofix.png" />
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <title>CloFix WAF — WebAssembly Module Guide</title>
+    <title>CloFix WAF - WebAssembly Module Guide</title>
     <style>
         :root {
             --wasm-dark:    #0a0f1a;
@@ -330,12 +330,12 @@
             <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
                 <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
                     <div class="wasm-hero__badge">WASM SDK</div>
-                    <span class="wasm-version">v1.0 — WebAssembly Security Modules</span>
+                    <span class="wasm-version">v1.0 - WebAssembly Security Modules</span>
                 </div>
                 <h1>CloFix <span>WebAssembly</span> Guide</h1>
                 <p class="wasm-hero__lead">
                     Write WebAssembly modules to inspect, filter, and control every HTTP request flowing through
-                    <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
+                    <strong style="color:#fff;">CloFix WAF</strong> - with full access to request context,
                     threat intelligence, built-in <strong style="color:#fff;">host functions</strong>,
                     and cross-request state via shared dictionaries. Choose your language: <strong style="color:#ce412b;">Rust</strong>, 
                     <strong style="color:#3178c6;">AssemblyScript</strong>, <strong style="color:#00add8;">TinyGo</strong>, or <strong style="color:#64b4dc;">C/C++</strong>.
@@ -426,7 +426,7 @@
                                 <span class="lang-card__icon">⚡</span>
                                 <span class="lang-card__name">Performance</span>
                             </div>
-                            <div class="lang-card__desc">Near-native execution speed — 10-100x faster than Lua or JavaScript for compute-heavy operations like regex matching and string parsing.</div>
+                            <div class="lang-card__desc">Near-native execution speed - 10-100x faster than Lua or JavaScript for compute-heavy operations like regex matching and string parsing.</div>
                         </div>
                         <div class="lang-card">
                             <div class="lang-card__header">
@@ -440,7 +440,7 @@
                                 <span class="lang-card__icon">🌍</span>
                                 <span class="lang-card__name">Multi-Language</span>
                             </div>
-                            <div class="lang-card__desc">Write modules in Rust, AssemblyScript, TinyGo, C/C++, Zig, or any language that compiles to WASM — use your team's preferred language.</div>
+                            <div class="lang-card__desc">Write modules in Rust, AssemblyScript, TinyGo, C/C++, Zig, or any language that compiles to WASM - use your team's preferred language.</div>
                         </div>
                         <div class="lang-card">
                             <div class="lang-card__header">
@@ -620,12 +620,12 @@ domain example.com {
                     <h2 class="wasm-section__title"><span class="sec-num">07</span> Module Requirements</h2>
                     <p>A valid WASM module must export three functions:</p>
                     <ul class="req-list">
-                        <li><code>wasm_alloc(size: usize) -> *mut u8</code> — allocate memory in the WASM linear memory</li>
-                        <li><code>wasm_free(ptr: *mut u8, size: usize)</code> — free allocated memory</li>
-                        <li><code>process_request(req_ptr: *const u8, req_len: usize, resp_ptr: *mut u8, resp_cap: usize) -> usize</code> — main entry point</li>
+                        <li><code>wasm_alloc(size: usize) -> *mut u8</code> - allocate memory in the WASM linear memory</li>
+                        <li><code>wasm_free(ptr: *mut u8, size: usize)</code> - free allocated memory</li>
+                        <li><code>process_request(req_ptr: *const u8, req_len: usize, resp_ptr: *mut u8, resp_cap: usize) -> usize</code> - main entry point</li>
                     </ul>
                     <div class="wasm-code">
-                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust — memory functions</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
+                        <div class="wasm-code__hdr"><span class="wasm-code__lang">rust - memory functions</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
                         <pre><span class="cp">#[no_mangle]</span>
 <span class="k">pub</span> <span class="k">extern</span> <span class="s">"C"</span> <span class="k">fn</span> <span class="nf">wasm_alloc</span>(size: <span class="kt">usize</span>) -> <span class="kt">*mut u8</span> {
     <span class="k">let</span> <span class="k">mut</span> buf = <span class="nn">Vec</span>::<span class="n">with_capacity</span>(size);
@@ -760,7 +760,7 @@ domain example.com {
 
                 <!-- 11 RUST EXAMPLE -->
                 <section class="wasm-section" id="rust-ex">
-                    <h2 class="wasm-section__title"><span class="sec-num">11</span> Rust Example — Admin Path Blocker</h2>
+                    <h2 class="wasm-section__title"><span class="sec-num">11</span> Rust Example - Admin Path Blocker</h2>
                     <div class="wasm-code">
                         <div class="wasm-code__hdr"><span class="wasm-code__lang">rust (Cargo.toml)</span><button class="wasm-copy" onclick="wasmCopy(this)">Copy</button></div>
                         <pre>[package]
@@ -1269,16 +1269,16 @@ curl -X POST https://example.com/api/wasm/upload \
                 <section class="wasm-section" id="best">
                     <h2 class="wasm-section__title"><span class="sec-num">17</span> Best Practices</h2>
                     <ol class="wasm-ol" style="padding-left:24px;margin:12px 0 24px;">
-                        <li><strong>Keep modules small</strong> — Compile with optimizations (<code>opt-level="z"</code>, LTO, strip) for minimal binary size</li>
-                        <li><strong>Use Rust for production</strong> — Best performance, memory safety, and smallest binary size</li>
-                        <li><strong>Leverage host functions</strong> — Use clofix.rate_limit(), clofix.get_country(), etc. instead of implementing yourself</li>
-                        <li><strong>Return early</strong> — Check block-list lookups first before expensive operations</li>
-                        <li><strong>Set appropriate timeouts</strong> — 150ms default is good for most modules; increase for complex regex operations</li>
-                        <li><strong>Test with curl</strong> — Always test modules with curl before deploying to production</li>
-                        <li><strong>Monitor dashboard</strong> — Use the WASM dashboard to track module execution stats and errors</li>
-                        <li><strong>Hot reload for updates</strong> — Use the reload API to update modules without restarting the WAF</li>
-                        <li><strong>Use shared dictionaries</strong> — For cross-request state like rate limiting counters</li>
-                        <li><strong>Log attacks</strong> — Use clofix.log_attack() for structured attack logging with full request context</li>
+                        <li><strong>Keep modules small</strong> - Compile with optimizations (<code>opt-level="z"</code>, LTO, strip) for minimal binary size</li>
+                        <li><strong>Use Rust for production</strong> - Best performance, memory safety, and smallest binary size</li>
+                        <li><strong>Leverage host functions</strong> - Use clofix.rate_limit(), clofix.get_country(), etc. instead of implementing yourself</li>
+                        <li><strong>Return early</strong> - Check block-list lookups first before expensive operations</li>
+                        <li><strong>Set appropriate timeouts</strong> - 150ms default is good for most modules; increase for complex regex operations</li>
+                        <li><strong>Test with curl</strong> - Always test modules with curl before deploying to production</li>
+                        <li><strong>Monitor dashboard</strong> - Use the WASM dashboard to track module execution stats and errors</li>
+                        <li><strong>Hot reload for updates</strong> - Use the reload API to update modules without restarting the WAF</li>
+                        <li><strong>Use shared dictionaries</strong> - For cross-request state like rate limiting counters</li>
+                        <li><strong>Log attacks</strong> - Use clofix.log_attack() for structured attack logging with full request context</li>
                     </ol>
 
                     <div class="wasm-box">

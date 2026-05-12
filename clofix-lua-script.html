@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="canonical" href="https://clofix.com/clofix-lua-script.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CloFix WAF Lua Scripting Guide — write custom Lua scripts for rate limiting, bot detection, geo-blocking, and SQL injection protection.">
+    <meta name="description" content="CloFix WAF Lua Scripting Guide - write custom Lua scripts for rate limiting, bot detection, geo-blocking, and SQL injection protection.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CloFix WAF | Lua Scripting Guide">
     <meta property="og:description" content="Write custom Lua scripts to control every HTTP request flowing through CloFix WAF. Full reference, shared dictionaries, examples, and best practices.">
@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CloFix WAF | Lua Scripting Guide">
-    <meta name="twitter:description" content="Full reference guide for writing Lua scripts in CloFix WAF — request object, shared dicts, examples, and troubleshooting.">
+    <meta name="twitter:description" content="Full reference guide for writing Lua scripts in CloFix WAF - request object, shared dicts, examples, and troubleshooting.">
     <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
     <meta name="twitter:site" content="@clofix19">
     <link rel="icon" type="image/png" href="img/clofix.png" />
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <title>CloFix WAF — Lua Scripting Guide</title>
+    <title>CloFix WAF - Lua Scripting Guide</title>
     <style>
         :root {
             --lua-dark:    #080f1a;
@@ -128,8 +128,8 @@
         .c  { color:#3a5468; font-style:italic; }
         .n  { color:#e8c060; }
         .t  { color:#00c2a8; }
-        .p  { color:#9b6fd4; }  /* purple — new clofix/utils API */
-        .g  { color:#e8b84b; }  /* gold — action keys */
+        .p  { color:#9b6fd4; }  /* purple - new clofix/utils API */
+        .g  { color:#e8b84b; }  /* gold - action keys */
 
         /* ── Tables ───────────────────────────────────────────── */
         .lua-table-wrap { overflow-x:auto; margin:14px 0 24px; border-radius:8px; border:1px solid var(--lua-border); }
@@ -294,12 +294,12 @@
             <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
                 <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
                     <div class="lua-hero__badge">Lua SDK</div>
-                    <span class="lua-version">v2.0 — clofix_main API</span>
+                    <span class="lua-version">v2.0 - clofix_main API</span>
                 </div>
                 <h1>CloFix <span>Lua Scripting</span> Guide</h1>
                 <p class="lua-hero__lead">
                     Write clofix Lua scripts to inspect, filter, and control every HTTP request flowing through
-                    <strong style="color:#fff;">CloFix WAF</strong> — with full access to request context,
+                    <strong style="color:#fff;">CloFix WAF</strong> - with full access to request context,
                     threat intelligence, built-in <strong style="color:#fff;">clofix.*</strong> helpers,
                     and shared cross-request state.
                 </p>
@@ -402,13 +402,13 @@
                     </div>
 
                     <div class="lua-box warn">
-                        <strong>Breaking Change — v2.0</strong>
-                        The entry point is now <span class="ic">clofix_main(request)</span> — not <span class="ic">process_request</span>. Scripts must return a <strong>single action table</strong>, not a boolean pair. See Section 04 &amp; 05 for the new structure.
+                        <strong>Breaking Change - v2.0</strong>
+                        The entry point is now <span class="ic">clofix_main(request)</span> - not <span class="ic">process_request</span>. Scripts must return a <strong>single action table</strong>, not a boolean pair. See Section 04 &amp; 05 for the new structure.
                     </div>
 
                     <p class="lua-sub">Key Concepts</p>
                     <ul style="padding-left:22px;margin:0 0 16px;color:var(--lua-text);">
-                        <li style="margin-bottom:7px">Scripts live in <span class="ic">./lua_script/&lt;domain&gt;/</span> — one directory per domain</li>
+                        <li style="margin-bottom:7px">Scripts live in <span class="ic">./lua_script/&lt;domain&gt;/</span> - one directory per domain</li>
                         <li style="margin-bottom:7px">All <span class="ic">.lua</span> files run in filesystem order; first blocking action wins</li>
                         <li style="margin-bottom:7px">Every script must define <span class="ic">function clofix_main(request)</span></li>
                         <li style="margin-bottom:7px">Scripts return a <strong>table</strong> with an <span class="ic">action</span> field, or a legacy <span class="ic">bool</span> for backwards compatibility</li>
@@ -463,7 +463,7 @@
                     </div>
 
                     <!-- Comprehensive Protection Categories (Beyond OWASP Top 10) -->
-                    <p class="lua-sub" style="margin-top: 32px;">🔒 Comprehensive Protection Matrix — What You Can Build with Lua</p>
+                    <p class="lua-sub" style="margin-top: 32px;">🔒 Comprehensive Protection Matrix - What You Can Build with Lua</p>
                     
                     <!-- Category 1: Injection & Payload Attacks -->
                     <div style="margin: 24px 0 16px;">
@@ -808,7 +808,7 @@
                         </div>
                     </div>
 
-                    <p style="margin-top: 24px; font-size: 14px; color: var(--lua-muted);">This is just a sample — with CloFix Lua you can build <strong style="color: #fff;">any security logic imaginable</strong> using the full power of a programming language combined with real-time request context and shared state.</p>
+                    <p style="margin-top: 24px; font-size: 14px; color: var(--lua-muted);">This is just a sample - with CloFix Lua you can build <strong style="color: #fff;">any security logic imaginable</strong> using the full power of a programming language combined with real-time request context and shared state.</p>
 
                 </section>
 
@@ -824,7 +824,7 @@
        │
        ▼
   ┌─────────────────────────────────────────────┐
-  │  WAF Engine  — IP extraction, GeoIP, TLS    │
+  │  WAF Engine  - IP extraction, GeoIP, TLS    │
   │  fingerprint (JA3/JA4), bot score,          │
   │  is_tor / is_vpn / ip_reputation            │
   └───────────────────┬─────────────────────────┘
@@ -839,7 +839,7 @@
   │       │ allow                               │
   │  03_custom_rules.lua  ──► action table      │
   │                                             │
-  │  First non-allow action WINS — pipeline     │
+  │  First non-allow action WINS - pipeline     │
   │  stops immediately.                         │
   └───────────────────┬─────────────────────────┘
                        │
@@ -891,11 +891,11 @@
                 <!-- QUICK REFERENCE -->
                 <section class="lua-section" id="quick-ref">
                     <h2 class="lua-section__title"><span class="sec-num">03</span> Quick Reference</h2>
-                    <p>Everything you need on one page — request fields, return table, and built-in functions. Full details in later sections.</p>
+                    <p>Everything you need on one page - request fields, return table, and built-in functions. Full details in later sections.</p>
 
-                    <p class="lua-sub">Request Object — all fields at a glance</p>
+                    <p class="lua-sub">Request Object - all fields at a glance</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — request fields</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - request fields</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="c">-- ── Core ──────────────────────────────────────────────</span>
 request.ip              <span class="c">-- "203.0.113.5"      client IP</span>
 request.method          <span class="c">-- "GET" / "POST" …</span>
@@ -945,15 +945,15 @@ request.anomaly_score   <span class="c">-- cumulative WAF anomaly score</span>
 request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"</span></pre>
                     </div>
 
-                    <p class="lua-sub">Return Table — full structure</p>
+                    <p class="lua-sub">Return Table - full structure</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — return table</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - return table</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="k">return</span> {
     <span class="g">action</span>      = <span class="s">"block"</span>,          <span class="c">-- required: allow / block / challenge /</span>
                                       <span class="c">--          rate_limit / log_only / redirect / captcha</span>
     <span class="g">status</span>      = <span class="n">403</span>,             <span class="c">-- HTTP status (auto-filled if omitted)</span>
     <span class="g">message</span>     = <span class="s">"SQL Injection detected"</span>,  <span class="c">-- human-readable reason</span>
-    <span class="g">rule_name</span>   = <span class="s">"SQLI_001"</span>,      <span class="c">-- rule identifier — appears in WAF logs</span>
+    <span class="g">rule_name</span>   = <span class="s">"SQLI_001"</span>,      <span class="c">-- rule identifier - appears in WAF logs</span>
     <span class="g">attack_type</span> = <span class="s">"SQL Injection"</span>,  <span class="c">-- attack category</span>
     <span class="g">score</span>       = <span class="n">80</span>,              <span class="c">-- threat score (used by scoring engine)</span>
     <span class="g">log</span>         = <span class="k">true</span>,            <span class="c">-- force emit a log entry</span>
@@ -961,9 +961,9 @@ request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"<
 }</pre>
                     </div>
 
-                    <p class="lua-sub">Built-in Functions — clofix.*</p>
+                    <p class="lua-sub">Built-in Functions - clofix.*</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — clofix.* cheatsheet</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - clofix.* cheatsheet</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="c">-- ── Payload decoding ───────────────────────────────────</span>
 <span class="p">clofix</span>.url_decode(s)          <span class="c">-- URL-decode  (%2F → /)</span>
 <span class="p">clofix</span>.base64_decode(s)       <span class="c">-- Base64 decode (standard + URL-safe)</span>
@@ -981,9 +981,9 @@ request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"<
 <span class="p">clofix</span>.get_bot_score()        <span class="c">-- 0–100 bot confidence score</span>
 
 <span class="c">-- ── Threat intelligence ────────────────────────────────</span>
-<span class="p">clofix</span>.is_tor()               <span class="c">-- boolean — Tor exit node?</span>
-<span class="p">clofix</span>.is_vpn()               <span class="c">-- boolean — VPN / proxy?</span>
-<span class="p">clofix</span>.is_proxy()             <span class="c">-- boolean — proxy headers detected?</span>
+<span class="p">clofix</span>.is_tor()               <span class="c">-- boolean - Tor exit node?</span>
+<span class="p">clofix</span>.is_vpn()               <span class="c">-- boolean - VPN / proxy?</span>
+<span class="p">clofix</span>.is_proxy()             <span class="c">-- boolean - proxy headers detected?</span>
 <span class="p">clofix</span>.ip_reputation()        <span class="c">-- "clean" / "suspicious" / "malicious"</span>
 
 <span class="c">-- ── Rate limiting ──────────────────────────────────────</span>
@@ -995,7 +995,7 @@ request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"<
 <span class="c">-- ── Logging ────────────────────────────────────────────</span>
 <span class="p">clofix</span>.log(level, msg)        <span class="c">-- level: "info" / "warn" / "error"</span>
 <span class="p">clofix</span>.log_attack(rule, type, payload?)
-                               <span class="c">-- structured attack log — IP, country, UA,</span>
+                               <span class="c">-- structured attack log - IP, country, UA,</span>
                                <span class="c">-- method, URI auto-included</span>
 
 <span class="c">-- ── Shared dict ───────────────────────────────────────</span>
@@ -1003,10 +1003,10 @@ request.ip_reputation   <span class="c">-- "clean" / "suspicious" / "malicious"<
 <span class="p">clofix</span>.shared_dict(<span class="s">"name"</span>)   <span class="c">-- programmatic lookup</span></pre>
                     </div>
 
-                    <p class="lua-sub">Built-in Functions — utils.*</p>
+                    <p class="lua-sub">Built-in Functions - utils.*</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — utils.* cheatsheet</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
-                        <pre><span class="p">utils</span>.contains(s, sub)     <span class="c">-- boolean — plain match</span>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - utils.* cheatsheet</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <pre><span class="p">utils</span>.contains(s, sub)     <span class="c">-- boolean - plain match</span>
 <span class="p">utils</span>.starts_with(s, pfx)  <span class="c">-- boolean</span>
 <span class="p">utils</span>.ends_with(s, sfx)    <span class="c">-- boolean</span>
 <span class="p">utils</span>.to_lower(s)          <span class="c">-- string</span>
@@ -1107,7 +1107,7 @@ domain example.com {
     <span class="k">return</span> wl[ip] == <span class="k">true</span>
 <span class="k">end</span>
 
-<span class="c">-- ③ Entry point — must be named clofix_main</span>
+<span class="c">-- ③ Entry point - must be named clofix_main</span>
 <span class="k">function</span> <span class="fn">clofix_main</span>(request)
     <span class="k">if not</span> CONFIG.ENABLED <span class="k">then</span>
         <span class="k">return</span> { <span class="g">action</span> = <span class="s">"allow"</span>, <span class="g">status</span> = <span class="n">200</span> }
@@ -1136,13 +1136,13 @@ domain example.com {
                             <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                             <tbody>
                                 <tr><td>action</td><td>string</td><td>✓</td><td>One of the action types below</td></tr>
-                                <tr><td>status</td><td>number</td><td>—</td><td>HTTP status code. Auto-filled if omitted (403 for block, 429 for rate_limit, etc.)</td></tr>
-                                <tr><td>message</td><td>string</td><td>—</td><td>Human-readable reason. Logged and included in alerts.</td></tr>
-                                <tr><td>rule_name</td><td>string</td><td>—</td><td>Rule identifier e.g. <span class="ic">SQLI_001</span>. Appears in WAF logs.</td></tr>
-                                <tr><td>attack_type</td><td>string</td><td>—</td><td>Attack category e.g. <span class="ic">SQL Injection</span>.</td></tr>
-                                <tr><td>log</td><td>boolean</td><td>—</td><td>Force-emit a log entry. Automatically true for blocking actions.</td></tr>
-                                <tr><td>redirect_to</td><td>string</td><td>—</td><td>Target URL when action is <span class="ic">redirect</span>.</td></tr>
-                                <tr><td>score</td><td>number</td><td>—</td><td>Used by the scoring engine. If action is omitted, score decides the action.</td></tr>
+                                <tr><td>status</td><td>number</td><td>-</td><td>HTTP status code. Auto-filled if omitted (403 for block, 429 for rate_limit, etc.)</td></tr>
+                                <tr><td>message</td><td>string</td><td>-</td><td>Human-readable reason. Logged and included in alerts.</td></tr>
+                                <tr><td>rule_name</td><td>string</td><td>-</td><td>Rule identifier e.g. <span class="ic">SQLI_001</span>. Appears in WAF logs.</td></tr>
+                                <tr><td>attack_type</td><td>string</td><td>-</td><td>Attack category e.g. <span class="ic">SQL Injection</span>.</td></tr>
+                                <tr><td>log</td><td>boolean</td><td>-</td><td>Force-emit a log entry. Automatically true for blocking actions.</td></tr>
+                                <tr><td>redirect_to</td><td>string</td><td>-</td><td>Target URL when action is <span class="ic">redirect</span>.</td></tr>
+                                <tr><td>score</td><td>number</td><td>-</td><td>Used by the scoring engine. If action is omitted, score decides the action.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1160,7 +1160,7 @@ domain example.com {
 
                     <p class="lua-sub">Examples</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — action examples</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - action examples</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="c">-- Block with full metadata</span>
 <span class="k">return</span> {
     <span class="g">action</span>      = <span class="s">"block"</span>,
@@ -1211,7 +1211,7 @@ domain example.com {
                     </div>
 
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — scoring pattern</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - scoring pattern</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="k">function</span> <span class="fn">clofix_main</span>(request)
     <span class="k">local</span> score = <span class="n">0</span>
 
@@ -1223,7 +1223,7 @@ domain example.com {
     <span class="k">local</span> ua = utils.to_lower(request.user_agent <span class="k">or</span> <span class="s">""</span>)
     <span class="k">if</span> utils.contains(ua, <span class="s">"sqlmap"</span>) <span class="k">then</span> score = score + <span class="n">80</span> <span class="k">end</span>
 
-    <span class="c">-- Return score — engine applies the threshold table above</span>
+    <span class="c">-- Return score - engine applies the threshold table above</span>
     <span class="k">return</span> {
         <span class="g">score</span>       = score,
         <span class="g">rule_name</span>   = <span class="s">"MULTI_001"</span>,
@@ -1277,7 +1277,7 @@ domain example.com {
                         </table>
                     </div>
 
-                    <p class="lua-sub">Table Fields — headers, cookies, query</p>
+                    <p class="lua-sub">Table Fields - headers, cookies, query</p>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">lua</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="c">-- Headers (keys are lowercase)</span>
@@ -1309,7 +1309,7 @@ domain example.com {
                                 <tr><td>origin_header</td><td>string</td><td>Origin header</td></tr>
                                 <tr><td>x_forwarded_for</td><td>string</td><td>X-Forwarded-For header</td></tr>
                                 <tr><td>is_tls</td><td>boolean</td><td>true if HTTPS connection</td></tr>
-                                <tr><td>tls_version</td><td>string</td><td>TLS version string — "TLS 1.3"</td></tr>
+                                <tr><td>tls_version</td><td>string</td><td>TLS version string - "TLS 1.3"</td></tr>
                                 <tr><td>tls_cipher</td><td>string</td><td>TLS cipher suite</td></tr>
                             </tbody>
                         </table>
@@ -1320,10 +1320,10 @@ domain example.com {
                         <table class="lua-table">
                             <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
                             <tbody>
-                                <tr><td>country</td><td>string</td><td>ISO-3166 country code — "US", "BD", "CN"</td></tr>
+                                <tr><td>country</td><td>string</td><td>ISO-3166 country code - "US", "BD", "CN"</td></tr>
                                 <tr><td>region</td><td>string</td><td>Region / state name</td></tr>
                                 <tr><td>city</td><td>string</td><td>City name</td></tr>
-                                <tr><td>asn</td><td>string</td><td>Autonomous System Number — "AS12345"</td></tr>
+                                <tr><td>asn</td><td>string</td><td>Autonomous System Number - "AS12345"</td></tr>
                                 <tr><td>org</td><td>string</td><td>ISP or organisation name</td></tr>
                             </tbody>
                         </table>
@@ -1352,7 +1352,7 @@ domain example.com {
                 <!-- 08 CLOFIX API -->
                 <section class="lua-section" id="clofix-api">
                     <h2 class="lua-section__title"><span class="sec-num">10</span> clofix.* Helper API</h2>
-                    <p>The <span class="ic">clofix</span> global table is available inside every script. It provides payload decoding, threat intelligence, rate limiting, and logging — all bound to the current request context.</p>
+                    <p>The <span class="ic">clofix</span> global table is available inside every script. It provides payload decoding, threat intelligence, rate limiting, and logging - all bound to the current request context.</p>
 
                     <p class="lua-sub">Payload Decoding</p>
                     <div class="lua-table-wrap">
@@ -1430,7 +1430,7 @@ domain example.com {
                     </div>
 
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — clofix.* usage examples</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - clofix.* usage examples</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="k">function</span> <span class="fn">clofix_main</span>(request)
     <span class="c">-- Threat intelligence fast-path</span>
     <span class="k">if</span> <span class="p">clofix</span>.is_tor() <span class="k">then</span>
@@ -1482,14 +1482,14 @@ domain example.com {
                                 <tr><td>utils.to_upper(s)</td><td>string</td><td>Uppercase a string</td></tr>
                                 <tr><td>utils.trim(s)</td><td>string</td><td>Trim leading/trailing whitespace</td></tr>
                                 <tr><td>utils.split(s, sep)</td><td>table</td><td>Split string by separator into array</td></tr>
-                                <tr><td>utils.log(msg)</td><td>—</td><td>Log a message at INFO level</td></tr>
+                                <tr><td>utils.log(msg)</td><td>-</td><td>Log a message at INFO level</td></tr>
                                 <tr><td>utils.now()</td><td>number</td><td>Current Unix timestamp</td></tr>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — utils.* usage</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - utils.* usage</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="k">local</span> ua  = <span class="p">utils</span>.to_lower(request.user_agent <span class="k">or</span> <span class="s">""</span>)
 <span class="k">local</span> bad = <span class="p">utils</span>.contains(ua, <span class="s">"sqlmap"</span>)
 
@@ -1517,7 +1517,7 @@ domain example.com {
 <span class="c">-- Via clofix bridge</span>
 <span class="k">local</span> dict = <span class="p">clofix</span>.shared_dict(<span class="s">"ddos_attack"</span>)
 
-<span class="c">-- Via global functions (no userdata — string-based)</span>
+<span class="c">-- Via global functions (no userdata - string-based)</span>
 shared_dict_set(<span class="s">"ddos_attack"</span>, <span class="s">"key"</span>, <span class="s">"value"</span>)
 shared_dict_get(<span class="s">"ddos_attack"</span>, <span class="s">"key"</span>)
 shared_dict_incr(<span class="s">"ddos_attack"</span>, <span class="s">"counter"</span>, <span class="n">1</span>)
@@ -1529,10 +1529,10 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
                             <thead><tr><th>Method</th><th>Signature</th><th>Returns</th><th>Description</th></tr></thead>
                             <tbody>
                                 <tr><td>get</td><td>dict:get(key)</td><td>value | nil</td><td>Read value; nil if missing or expired</td></tr>
-                                <tr><td>set</td><td>dict:set(key, value, ttl?)</td><td>—</td><td>Store value with optional TTL in seconds</td></tr>
+                                <tr><td>set</td><td>dict:set(key, value, ttl?)</td><td>-</td><td>Store value with optional TTL in seconds</td></tr>
                                 <tr><td>incr</td><td>dict:incr(key, delta)</td><td>new number</td><td>Atomically increment a numeric counter</td></tr>
-                                <tr><td>delete</td><td>dict:delete(key)</td><td>—</td><td>Remove a key immediately</td></tr>
-                                <tr><td>flush_all</td><td>dict:flush_all()</td><td>—</td><td>Clear all keys in the dictionary</td></tr>
+                                <tr><td>delete</td><td>dict:delete(key)</td><td>-</td><td>Remove a key immediately</td></tr>
+                                <tr><td>flush_all</td><td>dict:flush_all()</td><td>-</td><td>Clear all keys in the dictionary</td></tr>
                                 <tr><td>ttl</td><td>dict:ttl(key)</td><td>seconds</td><td>Remaining TTL (0 if no expiry set)</td></tr>
                             </tbody>
                         </table>
@@ -1544,7 +1544,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
                     <h2 class="lua-section__title"><span class="sec-num">13</span> Rate Limiting</h2>
                     <p>Two approaches are available: the built-in <span class="ic">clofix.rate_limit*</span> functions (backed by a persistent in-memory store), or manual shared-dict counters for full control.</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">lua — clofix rate limit API</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">lua - clofix rate limit API</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="k">function</span> <span class="fn">clofix_main</span>(request)
     <span class="c">-- Per-IP: 60 requests per minute</span>
     <span class="k">local</span> cnt, exceeded = <span class="p">clofix</span>.rate_limit_ip(<span class="n">60</span>, <span class="n">60</span>)
@@ -1590,7 +1590,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
                     </div>
                     <div class="lua-code">
                         <div class="lua-code__hdr"><span class="lua-code__lang">lua</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
-                        <pre><span class="c">-- Structured attack log — IP, country, UA, method, URI auto-included</span>
+                        <pre><span class="c">-- Structured attack log - IP, country, UA, method, URI auto-included</span>
 <span class="p">clofix</span>.log_attack(<span class="s">"SQLI_001"</span>, <span class="s">"SQL Injection"</span>, request.raw_query)
 
 <span class="c">-- General log</span>
@@ -2484,7 +2484,7 @@ shared_dict_set_ttl(<span class="s">"ddos_attack"</span>, <span class="s">"key"<
                     <h2 class="lua-section__title"><span class="sec-num">19</span> Testing</h2>
                     <p class="lua-sub">Diagnostic Script</p>
                     <div class="lua-code">
-                        <div class="lua-code__hdr"><span class="lua-code__lang">debug_request.lua — remove before production</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
+                        <div class="lua-code__hdr"><span class="lua-code__lang">debug_request.lua - remove before production</span><button class="lua-copy" onclick="luaCopy(this)">Copy</button></div>
                         <pre><span class="k">function</span> <span class="fn">clofix_main</span>(request)
     <span class="p">clofix</span>.log(<span class="s">"info"</span>, <span class="s">"=== DEBUG ==="</span>)
     <span class="p">clofix</span>.log(<span class="s">"info"</span>, <span class="s">"IP:         "</span> .. tostring(request.ip))
@@ -2548,18 +2548,18 @@ luac -p ./lua_script/your-domain.com/script.lua</pre>
                 <section class="lua-section" id="best">
                     <h2 class="lua-section__title"><span class="sec-num">21</span> Best Practices</h2>
                     <ol class="lua-ol">
-                        <li><strong>One script per concern</strong> — keep <code>rate_limit.lua</code>, <code>bot_detection.lua</code>, <code>sqli.lua</code> separate for clarity and easy toggling</li>
-                        <li><strong>Always use clofix.normalize_payload()</strong> before pattern matching — catches multi-encoded bypass attempts automatically</li>
-                        <li><strong>Guard every field</strong> — use <code>local x = field or default</code> before using any request value</li>
-                        <li><strong>Return early</strong> — check block-list lookups first before heavy pattern scanning</li>
-                        <li><strong>Use clofix.log_attack()</strong> instead of manual log strings — it auto-includes IP, country, UA, method, and URI</li>
-                        <li><strong>Set TTLs on all shared-dict keys</strong> — prevents unbounded memory growth</li>
-                        <li><strong>Use the scoring engine</strong> for multi-signal rules — return <code>score</code> instead of hard-coded action when combining multiple weak signals</li>
-                        <li><strong>Validate with luac -p</strong> before deploying — catches syntax errors before they reach production</li>
-                        <li><strong>CONFIG tables at the top</strong> — put all tuneable values in a local CONFIG table so operators can adjust without touching logic</li>
-                        <li><strong>Start minimal</strong> — deploy a working allow-all script first, then layer rules one at a time</li>
-                        <li><strong>Remove debug logs in production</strong> — delete <code>clofix.log("info", …)</code> calls to avoid log flooding</li>
-                        <li><strong>Numeric prefixes on filenames</strong> — use <code>01_fast.lua</code>, <code>02_heavy.lua</code> to control execution order</li>
+                        <li><strong>One script per concern</strong> - keep <code>rate_limit.lua</code>, <code>bot_detection.lua</code>, <code>sqli.lua</code> separate for clarity and easy toggling</li>
+                        <li><strong>Always use clofix.normalize_payload()</strong> before pattern matching - catches multi-encoded bypass attempts automatically</li>
+                        <li><strong>Guard every field</strong> - use <code>local x = field or default</code> before using any request value</li>
+                        <li><strong>Return early</strong> - check block-list lookups first before heavy pattern scanning</li>
+                        <li><strong>Use clofix.log_attack()</strong> instead of manual log strings - it auto-includes IP, country, UA, method, and URI</li>
+                        <li><strong>Set TTLs on all shared-dict keys</strong> - prevents unbounded memory growth</li>
+                        <li><strong>Use the scoring engine</strong> for multi-signal rules - return <code>score</code> instead of hard-coded action when combining multiple weak signals</li>
+                        <li><strong>Validate with luac -p</strong> before deploying - catches syntax errors before they reach production</li>
+                        <li><strong>CONFIG tables at the top</strong> - put all tuneable values in a local CONFIG table so operators can adjust without touching logic</li>
+                        <li><strong>Start minimal</strong> - deploy a working allow-all script first, then layer rules one at a time</li>
+                        <li><strong>Remove debug logs in production</strong> - delete <code>clofix.log("info", …)</code> calls to avoid log flooding</li>
+                        <li><strong>Numeric prefixes on filenames</strong> - use <code>01_fast.lua</code>, <code>02_heavy.lua</code> to control execution order</li>
                     </ol>
 
                     <div class="lua-box">
