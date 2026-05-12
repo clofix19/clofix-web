@@ -46,7 +46,434 @@
    
   <title>CloFix WAF Features</title>
 </head>
+<style>
+  .secure-hero-container {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    position: relative;
+  }
 
+  /* Decorative background elements */
+  .secure-hero-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(102,126,234,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .secure-hero-container::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(118,75,162,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* Image Section */
+  .secure-hero {
+    flex: 1;
+    min-width: 280px;
+    position: relative;
+  }
+
+  .secure-hero-image-wrapper {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+  }
+
+  .secure-hero-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+  }
+
+  .secure-hero-image:hover {
+    transform: scale(1.02);
+  }
+
+  /* Glow effect behind image */
+  .secure-hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(ellipse, rgba(102,126,234,0.3), transparent);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 1;
+  }
+
+  /* Floating badges on image */
+  .secure-hero-floating-badge {
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 40px;
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 3;
+    white-space: nowrap;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .secure-hero-floating-badge:nth-child(2) {
+    top: 10%;
+    left: -10%;
+    animation-delay: 0s;
+  }
+
+  .secure-hero-floating-badge:nth-child(3) {
+    bottom: 15%;
+    right: -5%;
+    animation-delay: 1.5s;
+  }
+
+  .secure-hero-floating-badge:nth-child(4) {
+    top: 30%;
+    right: -15%;
+    animation-delay: 0.8s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Content Section */
+  .secure-hero-content {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  /* Badge */
+  .secure-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(102, 126, 234, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #a5b4fc;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .secure-hero-badge:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
+    transform: translateX(5px);
+  }
+
+  .secure-hero-badge-led {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 8px rgba(16,185,129,0.5);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* Title */
+  .secure-hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .secure-hero-title span {
+    background: linear-gradient(135deg, #667eea, #764ba2, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+  }
+
+  .secure-hero-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #38bdf8);
+    border-radius: 3px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .secure-hero-title:hover span::after {
+    transform: scaleX(1);
+  }
+
+  /* Description */
+  .secure-hero-desc {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Features Grid */
+  .secure-hero-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .secure-hero-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+
+  .secure-hero-feature-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(5px);
+  }
+
+  .secure-hero-feature-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px;
+    font-size: 0.7rem;
+  }
+
+  .secure-hero-feature-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke: white;
+  }
+
+  /* CTA Button */
+  .secure-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+
+  .secure-hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .secure-hero-cta:hover::before {
+    left: 100%;
+  }
+
+  .secure-hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .secure-hero-cta svg {
+    transition: transform 0.3s ease;
+  }
+
+  .secure-hero-cta:hover svg {
+    transform: translateX(5px);
+  }
+
+  /* Stats Section */
+  .secure-hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .secure-hero-stat {
+    text-align: left;
+    position: relative;
+  }
+
+  .secure-hero-stat::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea, transparent);
+    border-radius: 2px;
+  }
+
+  .secure-hero-stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .secure-hero-stat-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Trusted by section */
+  .secure-hero-trusted {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .secure-hero-trusted p {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .secure-hero-trusted-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .secure-hero-trusted-icons span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .secure-hero-trusted-icons span:hover {
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .secure-hero-container {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .secure-hero-title {
+      font-size: 2rem;
+    }
+
+    .secure-hero-features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .secure-hero-feature-item {
+      justify-content: center;
+    }
+
+    .secure-hero-stats {
+      justify-content: center;
+    }
+
+    .secure-hero-stat {
+      text-align: center;
+    }
+
+    .secure-hero-stat::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .secure-hero-floating-badge {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .secure-hero-title {
+      font-size: 1.5rem;
+    }
+
+    .secure-hero-stats {
+      gap: 1.5rem;
+    }
+
+    .secure-hero-stat-number {
+      font-size: 1.3rem;
+    }
+  }
+</style>
 <body>
   <header class="header">
     <div class="container">
@@ -142,29 +569,90 @@
   <main class="container section">
     <section class="section">
       <div class="secure-hero-container">
-        <div class="section__title-wrapper">
-          <h1 class="features-title">CloFix WAF Security – Key Features</h1>
-          <h2 class="heading heading--3">
-            Secure Your Applications. Scale with Confidence
-          </h2>
-
-          <p>
-            <span class="highlight">CloFix WAF</span> is a next-generation, <span class="highlight">AI-enhanced Web
-              Application Firewall</span> designed specifically for cloud-based applications. It offers <span
-              class="highlight">enterprise-grade protection</span>, <span class="highlight">real-time monitoring</span>,
-            and <span class="highlight">affordable scalability</span> - perfect for startups, SMEs, and DevOps-driven
-            teams.
-          </p>
-
-        </div>
         <div class="secure-hero">
-          <img class="secure-hero-image" src="img/clofix-wf.png" alt="CloFix WAF" />
-          <div class="secure-hero-wrapper">
+          <div class="secure-hero-image-wrapper">
+            <div class="secure-hero-glow"></div>
+            <img class="secure-hero-image" src="img/clofix-wf.png" alt="CloFix WAF" />
+            <!-- Floating badges -->
+   
           </div>
         </div>
-        <!-- <div class="c-card__content">
-          <p>Easy Way to Point with CloFix WAF</p>
-        </div> -->
+        <div class="secure-hero-content">
+          <div class="secure-hero-badge">
+            <span class="secure-hero-badge-led"></span>
+            AI-Powered Protection
+            <span style="font-size: 0.65rem;">✦ v4.2</span>
+          </div>
+          <h1 class="secure-hero-title">
+            CloFix <span>WAF Security</span>
+          </h1>
+          <p class="secure-hero-desc">
+            Enterprise-grade AI-enhanced Web Application Firewall designed specifically for cloud-based applications. 
+            Real-time monitoring, advanced threat protection, and scalable security for startups, SMEs, and DevOps teams.
+          </p>
+          
+          <div class="secure-hero-features-grid">
+            <div class="secure-hero-feature-item">
+              <div class="secure-hero-feature-icon">🧠</div>
+              <span>AI-Powered Threat Detection</span>
+            </div>
+            <div class="secure-hero-feature-item">
+              <div class="secure-hero-feature-icon">🛡️</div>
+              <span>SQLi, XSS, SSRF, LFI, RFI</span>
+            </div>
+            <div class="secure-hero-feature-item">
+              <div class="secure-hero-feature-icon">🤖</div>
+              <span>Advanced Bot Mitigation</span>
+            </div>
+            <div class="secure-hero-feature-item">
+              <div class="secure-hero-feature-icon">⚖️</div>
+              <span>Intelligent Load Balancing</span>
+            </div>
+            <div class="secure-hero-feature-item">
+              <div class="secure-hero-feature-icon">📜</div>
+              <span>WASM, JS & Lua Scripting</span>
+            </div>
+            <div class="secure-hero-feature-item">
+              <div class="secure-hero-feature-icon">📊</div>
+              <span>Real-time Analytics</span>
+            </div>
+          </div>
+
+          <a href="#features" class="secure-hero-cta">
+            Explore All Features
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <div class="secure-hero-stats">
+            <div class="secure-hero-stat">
+              <span class="secure-hero-stat-number">99.97%</span>
+              <span class="secure-hero-stat-label">Threat Detection</span>
+            </div>
+            <div class="secure-hero-stat">
+              <span class="secure-hero-stat-number">&lt;2ms</span>
+              <span class="secure-hero-stat-label">Avg Latency</span>
+            </div>
+            <div class="secure-hero-stat">
+              <span class="secure-hero-stat-number">500K+</span>
+              <span class="secure-hero-stat-label">Rules & Signatures</span>
+            </div>
+          </div>
+
+          <div class="secure-hero-trusted">
+            <p>TRUSTED BY SECURITY TEAMS WORLDWIDE</p>
+            <div class="secure-hero-trusted-icons">
+              <span>Startups</span>
+              <span>✦</span>
+              <span>SaaS Platforms</span>
+              <span>✦</span>
+              <span>E-commerce</span>
+              <span>✦</span>
+              <span>Enterprise</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="features-flex">
@@ -184,43 +672,43 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>Backend Information Hiding:</strong> Automatically removes 30+ sensitive headers (Server, X-Powered-By, X-Backend-Server, X-Upstream, Via, X-Real-IP) — prevents attackers from discovering internal infrastructure</li>
-                      <li><strong>Response Body URL Rewriting:</strong> Automatically rewrites backend URLs in HTML, JSON, and XML responses to show only frontend domain — http://clofix.com/page → https://demo.clofix.com/page</li>
-                      <li><strong>Real-time Backend Alerts:</strong> Automatic notifications when backends go down or recover — supports Slack, Email, Webhook, and Telegram with detailed failure information</li>
-                      <li><strong>99.99% Availability SLA:</strong> Enterprise-grade reliability with automatic failover and connection draining — zero-downtime deployments</li>
-                      <li><strong>&lt;1ms Latency Overhead:</strong> Ultra-low latency with zero-copy forwarding and connection pooling — no measurable performance impact</li>
-                      <li><strong>5+ Load Balancing Algorithms:</strong> Round Robin (sequential distribution), Least Connections (send to server with fewest active connections), IP Hash (client IP to same backend), Weighted (capacity-based), Random — choose per workload</li>
-                      <li><strong>Active Health Checks:</strong> Configurable HTTP/HTTPS health checks with custom path, interval (default 10s), timeout (default 3s), and expected status code (default 200) — automatic backend removal on failure</li>
-                      <li><strong>Passive Health Monitoring:</strong> Track real traffic failures (max_fails default 3, fail_timeout 30s) — mark backends unhealthy without extra probe traffic</li>
-                      <li><strong>Session Persistence (Sticky Sessions):</strong> Cookie-based stickiness with configurable cookie name (default clofix_backend) — ensures user sessions stay on the same backend server</li>
-                      <li><strong>Backend Weight Configuration:</strong> Assign weights to servers based on capacity — weight=10 for powerful instances, weight=1 for smaller ones</li>
-                      <li><strong>Backup Servers:</strong> Designate backup backends (backup=true) — used only when all primary servers fail, with separate max_fails/fail_timeout settings</li>
-                      <li><strong>Connection Draining:</strong> Gracefully remove backends from rotation — existing connections complete before server shutdown, zero dropped requests during deployments</li>
-                      <li><strong>Max Retries & Timeout:</strong> Configurable retry logic (max_retries default 3, retry_timeout 5s) — automatically retry failed requests on healthy backends</li>
-                      <li><strong>Concurrent Connection Limits:</strong> max_conns per backend prevents resource exhaustion during traffic spikes — unlimited by default</li>
+                      <li><strong>Backend Information Hiding:</strong> Automatically removes 30+ sensitive headers (Server, X-Powered-By, X-Backend-Server, X-Upstream, Via, X-Real-IP) - prevents attackers from discovering internal infrastructure</li>
+                      <li><strong>Response Body URL Rewriting:</strong> Automatically rewrites backend URLs in HTML, JSON, and XML responses to show only frontend domain - http://clofix.com/page → https://demo.clofix.com/page</li>
+                      <li><strong>Real-time Backend Alerts:</strong> Automatic notifications when backends go down or recover - supports Slack, Email, Webhook, and Telegram with detailed failure information</li>
+                      <li><strong>99.99% Availability SLA:</strong> Enterprise-grade reliability with automatic failover and connection draining - zero-downtime deployments</li>
+                      <li><strong>&lt;1ms Latency Overhead:</strong> Ultra-low latency with zero-copy forwarding and connection pooling - no measurable performance impact</li>
+                      <li><strong>5+ Load Balancing Algorithms:</strong> Round Robin (sequential distribution), Least Connections (send to server with fewest active connections), IP Hash (client IP to same backend), Weighted (capacity-based), Random - choose per workload</li>
+                      <li><strong>Active Health Checks:</strong> Configurable HTTP/HTTPS health checks with custom path, interval (default 10s), timeout (default 3s), and expected status code (default 200) - automatic backend removal on failure</li>
+                      <li><strong>Passive Health Monitoring:</strong> Track real traffic failures (max_fails default 3, fail_timeout 30s) - mark backends unhealthy without extra probe traffic</li>
+                      <li><strong>Session Persistence (Sticky Sessions):</strong> Cookie-based stickiness with configurable cookie name (default clofix_backend) - ensures user sessions stay on the same backend server</li>
+                      <li><strong>Backend Weight Configuration:</strong> Assign weights to servers based on capacity - weight=10 for powerful instances, weight=1 for smaller ones</li>
+                      <li><strong>Backup Servers:</strong> Designate backup backends (backup=true) - used only when all primary servers fail, with separate max_fails/fail_timeout settings</li>
+                      <li><strong>Connection Draining:</strong> Gracefully remove backends from rotation - existing connections complete before server shutdown, zero dropped requests during deployments</li>
+                      <li><strong>Max Retries & Timeout:</strong> Configurable retry logic (max_retries default 3, retry_timeout 5s) - automatically retry failed requests on healthy backends</li>
+                      <li><strong>Concurrent Connection Limits:</strong> max_conns per backend prevents resource exhaustion during traffic spikes - unlimited by default</li>
                       <li><strong>HTTP/2 & HTTP/3 Support:</strong> Full support for modern HTTP protocols with multiplexing and improved performance</li>
-                      <li><strong>SSL/TLS Termination:</strong> Offload SSL at load balancer with configurable TLSv1.2 and TLSv1.3 protocols — automatic certificate management available</li>
-                      <li><strong>Client IP Preservation:</strong> Original client IP preserved through X-Forwarded-For and PROXY protocol — backends always know real client address</li>
+                      <li><strong>SSL/TLS Termination:</strong> Offload SSL at load balancer with configurable TLSv1.2 and TLSv1.3 protocols - automatic certificate management available</li>
+                      <li><strong>Client IP Preservation:</strong> Original client IP preserved through X-Forwarded-For and PROXY protocol - backends always know real client address</li>
                       <li><strong>Header Sanitization:</strong> Removes 25+ debugging and server identification headers from responses before reaching clients</li>
-                      <li><strong>Real-time Metrics:</strong> Prometheus-compatible metrics for each backend — request rate, error rate, active connections, health status</li>
-                      <li><strong>Admin API:</strong> REST API for dynamic backend management — add, remove, enable, disable, or rebalance backends without reload</li>
-                      <li><strong>Zero-Downtime Reloads:</strong> Update load balancer configuration without dropping connections — graceful reload with connection draining</li>
-                      <li><strong>Active-Active Clustering:</strong> Multiple load balancer instances with shared state — no single point of failure</li>
-                      <li><strong>WebSocket Support:</strong> Native WebSocket protocol upgrade with connection persistence across backend pools — perfect for real-time applications</li>
+                      <li><strong>Real-time Metrics:</strong> Prometheus-compatible metrics for each backend - request rate, error rate, active connections, health status</li>
+                      <li><strong>Admin API:</strong> REST API for dynamic backend management - add, remove, enable, disable, or rebalance backends without reload</li>
+                      <li><strong>Zero-Downtime Reloads:</strong> Update load balancer configuration without dropping connections - graceful reload with connection draining</li>
+                      <li><strong>Active-Active Clustering:</strong> Multiple load balancer instances with shared state - no single point of failure</li>
+                      <li><strong>WebSocket Support:</strong> Native WebSocket protocol upgrade with connection persistence across backend pools - perfect for real-time applications</li>
                       <li><strong>gRPC Load Balancing:</strong> Full gRPC support with HTTP/2 multiplexing and health checking protocol integration</li>
-                      <li><strong>Layer 4 (TCP/UDP) Load Balancing:</strong> Transparent TCP/UDP proxy for databases, message queues, and legacy applications — no HTTP required</li>
+                      <li><strong>Layer 4 (TCP/UDP) Load Balancing:</strong> Transparent TCP/UDP proxy for databases, message queues, and legacy applications - no HTTP required</li>
                       <li><strong>IPv4/IPv6 Dual Stack:</strong> Listen on both IPv4 and IPv6, connect to backends over IPv4 or IPv6 with configurable preference</li>
                       <li><strong>Gzip Compression:</strong> Automatic response compression to reduce bandwidth and improve load times</li>
-                      <li><strong>Custom Error Pages:</strong> Serve branded error pages when backends are unavailable — maintain user experience during outages</li>
-                      <li><strong>Maintenance Mode:</strong> Temporarily block traffic to specific backends or routes with custom responses — zero-downtime maintenance windows</li>
-                      <li><strong>Blue/Green Deployments:</strong> Route traffic between backend versions — gradual rollout with instant rollback capability</li>
+                      <li><strong>Custom Error Pages:</strong> Serve branded error pages when backends are unavailable - maintain user experience during outages</li>
+                      <li><strong>Maintenance Mode:</strong> Temporarily block traffic to specific backends or routes with custom responses - zero-downtime maintenance windows</li>
+                      <li><strong>Blue/Green Deployments:</strong> Route traffic between backend versions - gradual rollout with instant rollback capability</li>
                       <li><strong>Canary Deployments:</strong> Send percentage of traffic to new version, monitor error rates, automatically rollback on failure</li>
-                      <li><strong>Geolocation-Based Routing:</strong> Route users to nearest backend based on country or region — reduces latency and improves user experience</li>
+                      <li><strong>Geolocation-Based Routing:</strong> Route users to nearest backend based on country or region - reduces latency and improves user experience</li>
                       <li><strong>PROXY Protocol Support:</strong> Preserve original client IP when using proxy protocols with backend servers that support PROXY v1/v2</li>
                   </ul>
                   <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> CloFix Load Balancer sits between clients and backend servers, intelligently distributing traffic based on configurable algorithms. Health checks run continuously — unhealthy backends are automatically removed from rotation based on max_fails (default 3) and fail_timeout (default 30s). Backend information hiding automatically strips 30+ sensitive headers from responses, including Server, X-Powered-By, X-Backend-Server, and Via headers. Response body URL rewriting converts internal backend URLs to frontend domain in HTML, JSON, and XML content. Real-time notifications alert via webhook when backends go down or recover. Session persistence (sticky sessions) ensures users stay on the same backend via cookies. Configuration supports weight-based distribution for uneven backend capacities, backup servers for failover, and connection pooling for optimal performance. All this runs with less than 1ms latency overhead.</p>
-                      <p class="guideline-link">📖 <strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer.html" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> — Backend configuration, load balancing algorithms, health checks, and security hardening</p>
+                      <p>💡 <strong>How it works:</strong> CloFix Load Balancer sits between clients and backend servers, intelligently distributing traffic based on configurable algorithms. Health checks run continuously - unhealthy backends are automatically removed from rotation based on max_fails (default 3) and fail_timeout (default 30s). Backend information hiding automatically strips 30+ sensitive headers from responses, including Server, X-Powered-By, X-Backend-Server, and Via headers. Response body URL rewriting converts internal backend URLs to frontend domain in HTML, JSON, and XML content. Real-time notifications alert via webhook when backends go down or recover. Session persistence (sticky sessions) ensures users stay on the same backend via cookies. Configuration supports weight-based distribution for uneven backend capacities, backup servers for failover, and connection pooling for optimal performance. All this runs with less than 1ms latency overhead.</p>
+                      <p class="guideline-link">📖 <strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer.html" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> - Backend configuration, load balancing algorithms, health checks, and security hardening</p>
                   </div>
               </div>
           </template>
@@ -240,50 +728,50 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>Memory Isolation & Security:</strong> Each WASM module runs in its own sandbox with configurable memory limits (default 64MB) — prevents memory corruption and protects host system from malicious modules</li>
-                      <li><strong>Execution Timeout Protection:</strong> Configurable timeouts per module (default 100ms) — automatically terminates runaway modules, prevents DoS attacks, and ensures predictable WAF performance</li>
-                      <li><strong>Instance Pooling:</strong> Pre-warmed module instances with configurable pool size (default 8) — eliminates cold starts, reduces latency by 70-90%, and handles sudden traffic spikes</li>
-                      <li><strong>Host Function API (40+ Functions):</strong> Rich request/response manipulation, geoIP lookup, threat intelligence, crypto utilities, rate limiting, and string operations — build complex WAF logic without writing custom C extensions</li>
-                      <li><strong>Zero-Copy Memory Access:</strong> Direct memory mapping between host and WASM — minimizes data copying overhead, achieves sub-millisecond request processing latency</li>
-                      <li><strong>Multiple Language Support:</strong> Write modules in 8+ languages — TinyGo (strongly recommended), Rust (wasm32-wasi), C/C++ (wasi-sdk), AssemblyScript, Zig, and more — use your existing skills</li>
-                      <li><strong>Automatic Module Reload:</strong> Hot reload modules without restarting the WAF — zero-downtime rule updates, instant security policy changes, and A/B testing of new rules</li>
-                      <li><strong>Comprehensive Request Data:</strong> 80+ request fields available — headers, cookies, geo location (country/city/ASN), TLS fingerprint (JA3/JA4), bot detection scores, anomaly scores, and client reputation</li>
-                      <li><strong>Built-in Rate Limiting:</strong> Token bucket algorithm with configurable limits per key — protect APIs and endpoints without external Redis or database dependencies</li>
-                      <li><strong>Threat Intelligence Integration:</strong> Real-time IP reputation, Tor exit node detection, VPN/proxy detection, datacenter IP identification — block malicious traffic before it reaches your applications</li>
-                      <li><strong>Geolocation Processing:</strong> Country, city, region, postal code, latitude/longitude, ASN, ISP — implement geo-fencing, localize responses, or route traffic based on client location</li>
-                      <li><strong>Response Manipulation:</strong> Add/remove headers, set cookies with secure/httpOnly flags, redirect requests, customize status codes — modify responses without changing backend code</li>
-                      <li><strong>Advanced String Utilities:</strong> Regex matching, substring search, case conversion, URL encoding/decoding — complex pattern matching without performance penalties</li>
-                      <li><strong>Crypto Operations:</strong> SHA256 hashing, Base64 encoding/decoding — verify signatures, decode tokens, or transform data without external libraries</li>
-                      <li><strong>JSON Processing:</strong> Parse and manipulate JSON request/response bodies — inspect form data, validate JSON schemas, or extract specific fields for analysis</li>
-                      <li><strong>Real-time Statistics:</strong> Per-module metrics — execution count, error rate, timeout rate, block rate, average latency — identify performance bottlenecks and security threats</li>
-                      <li><strong>Timeline Analytics:</strong> Hourly request/block tracking — visualize traffic patterns, detect attack spikes, and monitor rule effectiveness over time</li>
-                      <li><strong>Top Blocked IPs:</strong> Automatic tracking of most frequently blocked IPs — identify attackers, implement additional protections, or report to threat feeds</li>
-                      <li><strong>Structured JSON Logging:</strong> Color-coded console output with severity levels (INFO, WARN, ERROR, CRITICAL) — integrate with your existing logging pipeline</li>
-                      <li><strong>Validator Tool Included:</strong> Comprehensive WASM validator checks — header validation, import allowlist/blocklist, required exports verification, memory limit checks, and binary pattern analysis</li>
-                      <li><strong>Compiler Detection:</strong> Automatic detection of 8+ compilers — identifies browser-only WASM (rejected) vs WAF-compatible modules (accepted) with clear error messages and remediation steps</li>
-                      <li><strong>Dangerous Import Blocking:</strong> Hard blocks filesystem access (path_open), network I/O (sock_recv/send), process manipulation (proc_raise), and blocking operations (poll_oneoff) — prevents malicious modules</li>
-                      <li><strong>Configurable Validation Modes:</strong> Strict (fail on any ERROR), Standard (fail only on CRITICAL), Permissive (report only) — adapt to your security requirements</li>
-                      <li><strong>ABI Standard Compliance:</strong> process_request(ptr, len) → packed uint64 (ptr&lt;&lt;32|len) or two-return convention — TinyGo and Rust compatible out of the box</li>
-                      <li><strong>JSON Output Support:</strong> Machine-readable validation results for CI/CD pipelines — automate module testing before deployment</li>
-                      <li><strong>Fail-open Architecture:</strong> Configurable fail-open mode — if a module crashes or times out, requests continue processing (default) or can be configured to fail-closed for high-security environments</li>
-                      <li><strong>Concurrent Request Handling:</strong> Thread-safe design with sync.Pool and atomic counters — handles thousands of concurrent requests without lock contention</li>
-                      <li><strong>WASI Preview1 Support:</strong> Full WASI system interface implementation — modules can use random_get, clock_time_get, fd_write for logging, and memory_grow for dynamic allocation</li>
-                      <li><strong>Module Preloading:</strong> Load all modules from directory at startup — warm all pools, verify module integrity, and ensure zero errors before accepting traffic</li>
-                      <li><strong>Memory Limit Enforcement:</strong> Hard limits per module (configurable up to 64MB) — prevents memory exhaustion attacks, protects other modules, and ensures fair resource allocation</li>
-                      <li><strong>Per-Request Context:</strong> Isolated request context passed to host functions — no cross-request contamination, thread-safe header/body access, and deterministic processing</li>
-                      <li><strong>Binary Pattern Detection:</strong> Scans for embedded PE/MZ/ELF/Mach-O headers, x86 NOP sleds, and nested WASM modules — detects injection attacks and malicious payloads</li>
-                      <li><strong>SHA256 Integrity Checks:</strong> Automatic hashing of all loaded modules — audit which version is running, detect unauthorized changes, and ensure supply chain security</li>
-                      <li><strong>Multi-domain Support:</strong> Different module chains per domain — per-customer WAF rules, white-label deployments, or testing new rules on specific domains</li>
-                      <li><strong>Session Persistence:</strong> WASM modules can read/set session cookies and values — implement custom session validation, user tracking, or fraud detection logic</li>
-                      <li><strong>Bot Detection Scores:</strong> Pre-calculated bot scores based on User-Agent, header completeness, and behavioral patterns — module can block, challenge, or log suspicious requests</li>
-                      <li><strong>Anomaly Scoring:</strong> Request anomaly detection based on method, path length, query parameters, and header patterns — flag unusual requests for additional inspection</li>
-                      <li><strong>Risk Scoring Framework:</strong> Weighted risk scoring (INFO=1, WARN=5, ERROR=20, CRITICAL=35) with 0-100 scale — automated pass/fail decisions with CLEAN/LOW/MEDIUM/HIGH/CRITICAL labels</li>
+                      <li><strong>Memory Isolation & Security:</strong> Each WASM module runs in its own sandbox with configurable memory limits (default 64MB) - prevents memory corruption and protects host system from malicious modules</li>
+                      <li><strong>Execution Timeout Protection:</strong> Configurable timeouts per module (default 100ms) - automatically terminates runaway modules, prevents DoS attacks, and ensures predictable WAF performance</li>
+                      <li><strong>Instance Pooling:</strong> Pre-warmed module instances with configurable pool size (default 8) - eliminates cold starts, reduces latency by 70-90%, and handles sudden traffic spikes</li>
+                      <li><strong>Host Function API (40+ Functions):</strong> Rich request/response manipulation, geoIP lookup, threat intelligence, crypto utilities, rate limiting, and string operations - build complex WAF logic without writing custom C extensions</li>
+                      <li><strong>Zero-Copy Memory Access:</strong> Direct memory mapping between host and WASM - minimizes data copying overhead, achieves sub-millisecond request processing latency</li>
+                      <li><strong>Multiple Language Support:</strong> Write modules in 8+ languages - TinyGo (strongly recommended), Rust (wasm32-wasi), C/C++ (wasi-sdk), AssemblyScript, Zig, and more - use your existing skills</li>
+                      <li><strong>Automatic Module Reload:</strong> Hot reload modules without restarting the WAF - zero-downtime rule updates, instant security policy changes, and A/B testing of new rules</li>
+                      <li><strong>Comprehensive Request Data:</strong> 80+ request fields available - headers, cookies, geo location (country/city/ASN), TLS fingerprint (JA3/JA4), bot detection scores, anomaly scores, and client reputation</li>
+                      <li><strong>Built-in Rate Limiting:</strong> Token bucket algorithm with configurable limits per key - protect APIs and endpoints without external Redis or database dependencies</li>
+                      <li><strong>Threat Intelligence Integration:</strong> Real-time IP reputation, Tor exit node detection, VPN/proxy detection, datacenter IP identification - block malicious traffic before it reaches your applications</li>
+                      <li><strong>Geolocation Processing:</strong> Country, city, region, postal code, latitude/longitude, ASN, ISP - implement geo-fencing, localize responses, or route traffic based on client location</li>
+                      <li><strong>Response Manipulation:</strong> Add/remove headers, set cookies with secure/httpOnly flags, redirect requests, customize status codes - modify responses without changing backend code</li>
+                      <li><strong>Advanced String Utilities:</strong> Regex matching, substring search, case conversion, URL encoding/decoding - complex pattern matching without performance penalties</li>
+                      <li><strong>Crypto Operations:</strong> SHA256 hashing, Base64 encoding/decoding - verify signatures, decode tokens, or transform data without external libraries</li>
+                      <li><strong>JSON Processing:</strong> Parse and manipulate JSON request/response bodies - inspect form data, validate JSON schemas, or extract specific fields for analysis</li>
+                      <li><strong>Real-time Statistics:</strong> Per-module metrics - execution count, error rate, timeout rate, block rate, average latency - identify performance bottlenecks and security threats</li>
+                      <li><strong>Timeline Analytics:</strong> Hourly request/block tracking - visualize traffic patterns, detect attack spikes, and monitor rule effectiveness over time</li>
+                      <li><strong>Top Blocked IPs:</strong> Automatic tracking of most frequently blocked IPs - identify attackers, implement additional protections, or report to threat feeds</li>
+                      <li><strong>Structured JSON Logging:</strong> Color-coded console output with severity levels (INFO, WARN, ERROR, CRITICAL) - integrate with your existing logging pipeline</li>
+                      <li><strong>Validator Tool Included:</strong> Comprehensive WASM validator checks - header validation, import allowlist/blocklist, required exports verification, memory limit checks, and binary pattern analysis</li>
+                      <li><strong>Compiler Detection:</strong> Automatic detection of 8+ compilers - identifies browser-only WASM (rejected) vs WAF-compatible modules (accepted) with clear error messages and remediation steps</li>
+                      <li><strong>Dangerous Import Blocking:</strong> Hard blocks filesystem access (path_open), network I/O (sock_recv/send), process manipulation (proc_raise), and blocking operations (poll_oneoff) - prevents malicious modules</li>
+                      <li><strong>Configurable Validation Modes:</strong> Strict (fail on any ERROR), Standard (fail only on CRITICAL), Permissive (report only) - adapt to your security requirements</li>
+                      <li><strong>ABI Standard Compliance:</strong> process_request(ptr, len) → packed uint64 (ptr&lt;&lt;32|len) or two-return convention - TinyGo and Rust compatible out of the box</li>
+                      <li><strong>JSON Output Support:</strong> Machine-readable validation results for CI/CD pipelines - automate module testing before deployment</li>
+                      <li><strong>Fail-open Architecture:</strong> Configurable fail-open mode - if a module crashes or times out, requests continue processing (default) or can be configured to fail-closed for high-security environments</li>
+                      <li><strong>Concurrent Request Handling:</strong> Thread-safe design with sync.Pool and atomic counters - handles thousands of concurrent requests without lock contention</li>
+                      <li><strong>WASI Preview1 Support:</strong> Full WASI system interface implementation - modules can use random_get, clock_time_get, fd_write for logging, and memory_grow for dynamic allocation</li>
+                      <li><strong>Module Preloading:</strong> Load all modules from directory at startup - warm all pools, verify module integrity, and ensure zero errors before accepting traffic</li>
+                      <li><strong>Memory Limit Enforcement:</strong> Hard limits per module (configurable up to 64MB) - prevents memory exhaustion attacks, protects other modules, and ensures fair resource allocation</li>
+                      <li><strong>Per-Request Context:</strong> Isolated request context passed to host functions - no cross-request contamination, thread-safe header/body access, and deterministic processing</li>
+                      <li><strong>Binary Pattern Detection:</strong> Scans for embedded PE/MZ/ELF/Mach-O headers, x86 NOP sleds, and nested WASM modules - detects injection attacks and malicious payloads</li>
+                      <li><strong>SHA256 Integrity Checks:</strong> Automatic hashing of all loaded modules - audit which version is running, detect unauthorized changes, and ensure supply chain security</li>
+                      <li><strong>Multi-domain Support:</strong> Different module chains per domain - per-customer WAF rules, white-label deployments, or testing new rules on specific domains</li>
+                      <li><strong>Session Persistence:</strong> WASM modules can read/set session cookies and values - implement custom session validation, user tracking, or fraud detection logic</li>
+                      <li><strong>Bot Detection Scores:</strong> Pre-calculated bot scores based on User-Agent, header completeness, and behavioral patterns - module can block, challenge, or log suspicious requests</li>
+                      <li><strong>Anomaly Scoring:</strong> Request anomaly detection based on method, path length, query parameters, and header patterns - flag unusual requests for additional inspection</li>
+                      <li><strong>Risk Scoring Framework:</strong> Weighted risk scoring (INFO=1, WARN=5, ERROR=20, CRITICAL=35) with 0-100 scale - automated pass/fail decisions with CLEAN/LOW/MEDIUM/HIGH/CRITICAL labels</li>
                   </ul>
                   
                   <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> CloFix WASM Engine embeds the wazero WebAssembly runtime (zero dependencies, pure Go). When a request arrives, the engine builds a rich WASMRequest structure with 80+ fields including HTTP details, geo location, threat intel, and bot scores. The engine acquires a pre-warmed module instance from the pool, calls wasm_alloc to allocate memory for the request JSON, writes the data to linear memory, then calls process_request. The module processes the request using 40+ host functions (get_header, set_cookie, rate_limit, is_tor, etc.), returns a decision (allow/block/challenge/redirect) with optional headers/cookies. The engine parses the response, applies any modifications (headers, cookies, redirects), and returns the final decision to the proxy layer. Execution timeouts (default 100ms) prevent runaway modules — if a module times out, the engine marks it as failed and continues to the next module. Instance pooling eliminates cold starts — modules are loaded once and reused across requests. All host functions are pre-registered and validated — modules can only access safe, WAF-specific operations. The included validator tool checks modules before loading — verifies required exports (process_request, wasm_alloc), validates imports (only env/wasi_snapshot_preview1), enforces memory limits, scans for dangerous patterns, and detects incompatible compilers (Rust wasm-bindgen, Go syscall/js). This ensures only safe, compatible modules run in production.</p>
+                      <p>💡 <strong>How it works:</strong> CloFix WASM Engine embeds the wazero WebAssembly runtime (zero dependencies, pure Go). When a request arrives, the engine builds a rich WASMRequest structure with 80+ fields including HTTP details, geo location, threat intel, and bot scores. The engine acquires a pre-warmed module instance from the pool, calls wasm_alloc to allocate memory for the request JSON, writes the data to linear memory, then calls process_request. The module processes the request using 40+ host functions (get_header, set_cookie, rate_limit, is_tor, etc.), returns a decision (allow/block/challenge/redirect) with optional headers/cookies. The engine parses the response, applies any modifications (headers, cookies, redirects), and returns the final decision to the proxy layer. Execution timeouts (default 100ms) prevent runaway modules - if a module times out, the engine marks it as failed and continues to the next module. Instance pooling eliminates cold starts - modules are loaded once and reused across requests. All host functions are pre-registered and validated - modules can only access safe, WAF-specific operations. The included validator tool checks modules before loading - verifies required exports (process_request, wasm_alloc), validates imports (only env/wasi_snapshot_preview1), enforces memory limits, scans for dangerous patterns, and detects incompatible compilers (Rust wasm-bindgen, Go syscall/js). This ensures only safe, compatible modules run in production.</p>
                       
-                      <p>📖 <strong>Documentation:</strong> <a href="https://clofix.com/clofix-wasm.html" target="_blank" rel="noopener noreferrer">CloFix WASM Engine Guide</a> — Module development, host API reference, validator usage, deployment patterns, and performance tuning</p>
+                      <p>📖 <strong>Documentation:</strong> <a href="https://clofix.com/clofix-wasm.html" target="_blank" rel="noopener noreferrer">CloFix WASM Engine Guide</a> - Module development, host API reference, validator usage, deployment patterns, and performance tuning</p>
                       
                       <p>📊 <strong>Performance Metrics:</strong></p>
                       <ul>
@@ -297,27 +785,27 @@
                       
                       <p>🔒 <strong>Security Hardening:</strong></p>
                       <ul>
-                          <li>No filesystem access — modules cannot read/write files</li>
-                          <li>No network access — modules cannot make external requests</li>
-                          <li>No arbitrary syscalls — only pre-approved host functions</li>
-                          <li>Memory sandboxing — each module has isolated linear memory</li>
-                          <li>Execution timeouts — modules cannot run indefinitely</li>
-                          <li>Memory limits — configurable up to 64MB prevents DoS</li>
-                          <li>Import allowlist — only env and wasi_snapshot_preview1 allowed</li>
-                          <li>Binary scanning — detects embedded malicious payloads</li>
-                          <li>Compiler detection — rejects browser-only WASM modules</li>
+                          <li>No filesystem access - modules cannot read/write files</li>
+                          <li>No network access - modules cannot make external requests</li>
+                          <li>No arbitrary syscalls - only pre-approved host functions</li>
+                          <li>Memory sandboxing - each module has isolated linear memory</li>
+                          <li>Execution timeouts - modules cannot run indefinitely</li>
+                          <li>Memory limits - configurable up to 64MB prevents DoS</li>
+                          <li>Import allowlist - only env and wasi_snapshot_preview1 allowed</li>
+                          <li>Binary scanning - detects embedded malicious payloads</li>
+                          <li>Compiler detection - rejects browser-only WASM modules</li>
                       </ul>
                       
                       <p>🚀 <strong>Deployment Examples:</strong></p>
                       <ul>
                           <li><strong>Rate Limiting API:</strong> WASM module implements custom rate limiting per user, API key, or endpoint with token bucket algorithm</li>
-                          <li><strong>Bot Mitigation:</strong> Module checks bot scores, JA3 fingerprints, and behavior patterns — challenges or blocks headless browsers and scrapers</li>
-                          <li><strong>Geo-Fencing:</strong> Module blocks requests from restricted countries based on geoIP lookup — protects content licensing agreements</li>
-                          <li><strong>Custom Authentication:</strong> Module validates JWT tokens, checks session cookies, or calls internal auth service via cache — implements custom auth logic</li>
+                          <li><strong>Bot Mitigation:</strong> Module checks bot scores, JA3 fingerprints, and behavior patterns - challenges or blocks headless browsers and scrapers</li>
+                          <li><strong>Geo-Fencing:</strong> Module blocks requests from restricted countries based on geoIP lookup - protects content licensing agreements</li>
+                          <li><strong>Custom Authentication:</strong> Module validates JWT tokens, checks session cookies, or calls internal auth service via cache - implements custom auth logic</li>
                           <li><strong>Request Validation:</strong> Module validates JSON schema, checks parameter types, and enforces business rules before forwarding to backend</li>
                           <li><strong>Response Transformation:</strong> Module modifies response bodies, adds security headers, or removes sensitive data before sending to client</li>
-                          <li><strong>A/B Testing:</strong> Module routes percentage of traffic to different backends based on user ID or cookie — test new features safely</li>
-                          <li><strong>WAF Rule Engine:</strong> Module implements custom WAF rules — SQL injection detection, XSS filtering, path traversal prevention</li>
+                          <li><strong>A/B Testing:</strong> Module routes percentage of traffic to different backends based on user ID or cookie - test new features safely</li>
+                          <li><strong>WAF Rule Engine:</strong> Module implements custom WAF rules - SQL injection detection, XSS filtering, path traversal prevention</li>
                       </ul>
                   </div>
               </div>
@@ -336,13 +824,13 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>Entry Point:</strong> Every script must export `function clofix(request)` that returns an action object — first non-allow action wins pipeline execution</li>
+                      <li><strong>Entry Point:</strong> Every script must export `function clofix(request)` that returns an action object - first non-allow action wins pipeline execution</li>
                       <li><strong>Request Object:</strong> Full access to `request.ip`, `request.method`, `request.path`, `request.url`, `request.query`, `request.headers`, `request.body`, `request.cookies`, `request.user_agent`, `request.is_tor`, `request.timestamp`</li>
-                      <li><strong>Shared Dictionaries:</strong> Persistent cross-request state via `sharedDict("name")` with `get()`, `set()`, `incr()`, `delete()` methods — perfect for rate limiting and bot tracking</li>
-                      <li><strong>Pattern Extraction:</strong> System auto-extracts patterns from ALL JavaScript files for fast matching — strings and regex patterns become detection signatures</li>
+                      <li><strong>Shared Dictionaries:</strong> Persistent cross-request state via `sharedDict("name")` with `get()`, `set()`, `incr()`, `delete()` methods - perfect for rate limiting and bot tracking</li>
+                      <li><strong>Pattern Extraction:</strong> System auto-extracts patterns from ALL JavaScript files for fast matching - strings and regex patterns become detection signatures</li>
                       <li><strong>Action Types:</strong> Return `{ action: "allow" }`, `{ action: "block", reason: "..." }`, `{ action: "rate_limit" }`, or `{ action: "redirect", redirect_to: "..." }`</li>
                       <li><strong>Structured Logging:</strong> `log.info()`, `log.warn()`, `log.error()` for general logs; `log.attack({ rule_name, category, confidence, payload })` for attack detection</li>
-                      <li><strong>Execution Limits:</strong> 2 second wall-clock timeout per script, 32MB memory limit, 10MB max file size — prevents runaway scripts from impacting WAF throughput</li>
+                      <li><strong>Execution Limits:</strong> 2 second wall-clock timeout per script, 32MB memory limit, 10MB max file size - prevents runaway scripts from impacting WAF throughput</li>
                       <li><strong>SQL Injection Detection:</strong> Pattern-based detection for UNION SELECT, INSERT INTO, DROP TABLE, time-based attacks, and boolean blind injection</li>
                       <li><strong>XSS Protection:</strong> Script tag injection, event handlers (onerror, onload), JavaScript protocol, and DOM-based XSS pattern detection</li>
                       <li><strong>Command Injection:</strong> Unix/Linux command chaining (`;`, `|`, `&&`, `` ` ``), Windows cmd.exe patterns, and dangerous command execution detection</li>
@@ -352,7 +840,7 @@
                       <li><strong>GeoIP Blocking:</strong> Country-level blocking using `request.country` (requires GeoIP implementation)</li>
                       <li><strong>Bot Detection:</strong> User-Agent patterns (sqlmap, nikto, wpscan), headless browser detection, and missing UA challenge</li>
                       <li><strong>Brute Force Protection:</strong> Login path monitoring with 5-attempt windows, 30-minute bans after threshold exceeded</li>
-                      <li><strong>DDoS Shield:</strong> Two-tier protection — burst detection (30 req/2s) and sustained rate (200 req/min) with escalating bans (60s → 600s → 86400s)</li>
+                      <li><strong>DDoS Shield:</strong> Two-tier protection - burst detection (30 req/2s) and sustained rate (200 req/min) with escalating bans (60s → 600s → 86400s)</li>
                       <li><strong>CSRF Protection:</strong> Origin header validation for POST/PUT/DELETE/PATCH methods with configurable allowed origins and exempt paths</li>
                       <li><strong>API Key Authentication:</strong> Validate `X-API-Key` header or `api_key` query parameter against pre-configured key store</li>
                       <li><strong>File Type Filtering:</strong> Block dangerous extensions (.php, .asp, .jsp, .exe, .sh, .py) before they reach backend</li>
@@ -363,8 +851,8 @@
                       <li><strong>Tor/VPN Blocking:</strong> Native `request.is_tor` detection for blocking Tor exit nodes</li>
                   </ul>
                   <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> JavaScript scripts execute in isolated V8 isolates with a 2-second timeout. Files execute in alphabetical order — use numeric prefixes like `01_rate_limit.js`, `02_bot_detect.js` to control priority. The first script returning a non-allow action stops pipeline execution. Shared dictionaries (`sharedDict("name")`) provide persistent cross-request storage with TTL support. Pattern extraction automatically scans all JavaScript files for strings and regex patterns, creating fast-matching signatures checked against every request. The system is configured via `js_blocker` block in domain config with `js_dir`, `execution_timeout`, `block_threshold`, and `scan_interval` settings.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-js-script.html" target="_blank" rel="noopener noreferrer">CloFix JavaScript Scripting Guide</a> — Complete API reference with SQL injection, XSS, rate limiting, DDoS protection, and more examples</p>
+                      <p>💡 <strong>How it works:</strong> JavaScript scripts execute in isolated V8 isolates with a 2-second timeout. Files execute in alphabetical order - use numeric prefixes like `01_rate_limit.js`, `02_bot_detect.js` to control priority. The first script returning a non-allow action stops pipeline execution. Shared dictionaries (`sharedDict("name")`) provide persistent cross-request storage with TTL support. Pattern extraction automatically scans all JavaScript files for strings and regex patterns, creating fast-matching signatures checked against every request. The system is configured via `js_blocker` block in domain config with `js_dir`, `execution_timeout`, `block_threshold`, and `scan_interval` settings.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-js-script.html" target="_blank" rel="noopener noreferrer">CloFix JavaScript Scripting Guide</a> - Complete API reference with SQL injection, XSS, rate limiting, DDoS protection, and more examples</p>
                   </div>
               </div>
           </template>
@@ -384,10 +872,10 @@
                   <h4>Key Benefits</h4>
                   <ul>
                       <li><strong>25 Rule Files:</strong> Complete OWASP CRS v4 rule set covering initialization, IP reputation, protocol enforcement, LFI, RFI, RCE, SQLi, XSS, NoSQL, and response leakage detection</li>
-                      <li><strong>Paranoia Levels 1-4:</strong> Level 1 (minimal false positives, general production) to Level 4 (maximum security, high-risk apps) — adjustable per domain or globally</li>
+                      <li><strong>Paranoia Levels 1-4:</strong> Level 1 (minimal false positives, general production) to Level 4 (maximum security, high-risk apps) - adjustable per domain or globally</li>
                       <li><strong>Anomaly Scoring:</strong> Threshold-based blocking with configurable scores (default 5 inbound, 4 outbound). CRITICAL=5pts, ERROR=4pts, WARNING=3pts, NOTICE=2pts, INFO=1pt</li>
                       <li><strong>CloFixRule Directive:</strong> CRS-style custom rules with variables (ARGS, REQUEST_HEADERS, BODY), operators (@rx, @contains, @streq), and transformations (t:lowercase, t:urlDecode, t:htmlEntityDecode)</li>
-                      <li><strong>SQL Injection (942xxx):</strong> Union-based, time-based sleep/benchmark, boolean blind, error-based, stacked queries — 100+ rules covering all evasion techniques</li>
+                      <li><strong>SQL Injection (942xxx):</strong> Union-based, time-based sleep/benchmark, boolean blind, error-based, stacked queries - 100+ rules covering all evasion techniques</li>
                       <li><strong>Cross-Site Scripting (941xxx):</strong> Script tags, event handlers, JavaScript protocol, SVG/iframe injection, and reflected/stored/DOM-based XSS detection</li>
                       <li><strong>Local/Remote File Inclusion (930xxx, 931xxx):</strong> Path traversal (`../`, `..\`), sensitive file access (/etc/passwd, /windows/win.ini), PHP wrappers (php://), remote includes (http://, ftp://)</li>
                       <li><strong>Command Injection (932xxx):</strong> Unix command chaining (`;`, `|`, `&&`, `` ` ``), Windows cmd.exe, PowerShell, and dangerous command execution detection</li>
@@ -399,18 +887,18 @@
                       <li><strong>DoS Protection (912xxx):</strong> Rate-based DoS detection with configurable thresholds and blocking actions</li>
                       <li><strong>Response Inspection (950xxx, 951xxx):</strong> Data leakage detection (credit cards, SSNs, API keys), SQL error messages, and information disclosure prevention</li>
                       <li><strong>Intelligent Bypass System:</strong> Bypass by rule ID, tag (`attack-sqli`, `paranoia-level/3`), phase (1-4), path (`/health`, `/api/public/*`), or IP (`127.0.0.1`, `192.168.1.*`)</li>
-                      <li><strong>Transformations Chain:</strong> Multiple transformations applied in sequence — lowercase, URL decode, HTML entity decode, remove nulls, compress whitespace — defeating evasion techniques</li>
-                      <li><strong>Automatic Rule Updates:</strong> CRS rules update from official OWASP repository every 6 hours — zero-day protection within hours of disclosure</li>
-                      <li><strong>Coraza WAF Engine:</strong> Modern Go-based ModSecurity-compatible engine with Hyperscan regex — 5-10x faster than traditional ModSecurity</li>
-                      <li><strong>Multi-Phase Inspection:</strong> Phase 1 (request headers), Phase 2 (request body), Phase 3 (response headers), Phase 4 (response body) — comprehensive coverage</li>
-                      <li><strong>Virtual Patching:</strong> Create custom CloFixRule directives to patch vulnerable applications without code changes — deploy within minutes of vulnerability disclosure</li>
+                      <li><strong>Transformations Chain:</strong> Multiple transformations applied in sequence - lowercase, URL decode, HTML entity decode, remove nulls, compress whitespace - defeating evasion techniques</li>
+                      <li><strong>Automatic Rule Updates:</strong> CRS rules update from official OWASP repository every 6 hours - zero-day protection within hours of disclosure</li>
+                      <li><strong>Coraza WAF Engine:</strong> Modern Go-based ModSecurity-compatible engine with Hyperscan regex - 5-10x faster than traditional ModSecurity</li>
+                      <li><strong>Multi-Phase Inspection:</strong> Phase 1 (request headers), Phase 2 (request body), Phase 3 (response headers), Phase 4 (response body) - comprehensive coverage</li>
+                      <li><strong>Virtual Patching:</strong> Create custom CloFixRule directives to patch vulnerable applications without code changes - deploy within minutes of vulnerability disclosure</li>
                       <li><strong>Compliance Mode:</strong> Pre-configured rule sets for PCI DSS 4.0, HIPAA, and GDPR with audit logging and reporting</li>
                       <li><strong>False Positive Analysis:</strong> Dashboard showing most triggered rules, false positive rate, and suggested exclusions based on traffic patterns</li>
                       <li><strong>Rule Testing:</strong> Built-in regression testing with attack payload simulation to validate rule effectiveness before production deployment</li>
                   </ul>
                   <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> CloFix CRS processes requests through 4 phases with 25 rule files loaded in OWASP order. The anomaly scoring system aggregates weighted points from matched rules — reaching the configured threshold triggers blocking. Paranoia levels allow gradual tuning from minimal false positives (Level 1) to maximum security (Level 4). The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses. All rule processing uses the Coraza engine with Hyperscan regex, handling 100,000+ requests/second. Configuration uses `CloFixRule` directives with variables, operators, transformations, and actions. Rules automatically update from the OWASP CRS repository every 6 hours.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html" target="_blank" rel="noopener noreferrer">CloFix OWASP CRS Guide</a> — Complete reference with 25 rule files, paranoia levels, anomaly scoring, and bypass configuration</p>
+                      <p>💡 <strong>How it works:</strong> CloFix CRS processes requests through 4 phases with 25 rule files loaded in OWASP order. The anomaly scoring system aggregates weighted points from matched rules - reaching the configured threshold triggers blocking. Paranoia levels allow gradual tuning from minimal false positives (Level 1) to maximum security (Level 4). The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses. All rule processing uses the Coraza engine with Hyperscan regex, handling 100,000+ requests/second. Configuration uses `CloFixRule` directives with variables, operators, transformations, and actions. Rules automatically update from the OWASP CRS repository every 6 hours.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html" target="_blank" rel="noopener noreferrer">CloFix OWASP CRS Guide</a> - Complete reference with 25 rule files, paranoia levels, anomaly scoring, and bypass configuration</p>
                   </div>
               </div>
           </template>
@@ -429,35 +917,35 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>Entry Point:</strong> Every script must define `function clofix_main(request)` returning an action table — `{ action = "allow" }`, `{ action = "block", status = 403, message = "..." }`, or `{ action = "rate_limit", rule_name = "RL_001" }`</li>
+                      <li><strong>Entry Point:</strong> Every script must define `function clofix_main(request)` returning an action table - `{ action = "allow" }`, `{ action = "block", status = 403, message = "..." }`, or `{ action = "rate_limit", rule_name = "RL_001" }`</li>
                       <li><strong>Request Object:</strong> Full read-only access to `request.ip`, `request.method`, `request.path`, `request.uri`, `request.headers`, `request.body`, `request.json_body`, `request.cookies`, `request.query`, `request.form_data`, `request.ja3`, `request.ja4`, `request.is_tor`, `request.is_vpn`, `request.bot_score`, `request.ip_reputation`, `request.country`, `request.asn`</li>
-                      <li><strong>Shared Dictionaries:</strong> Persistent state across requests via `clofix.shared.ddos_attack` with `get()`, `set(key, value, ttl?)`, `incr()`, `delete()` — perfect for rate limiting, bot tracking, and DDoS protection</li>
-                      <li><strong>Payload Normalization:</strong> `clofix.normalize_payload(s)` — multi-pass URL decode, HTML decode, lowercase, and whitespace collapse for injection detection</li>
+                      <li><strong>Shared Dictionaries:</strong> Persistent state across requests via `clofix.shared.ddos_attack` with `get()`, `set(key, value, ttl?)`, `incr()`, `delete()` - perfect for rate limiting, bot tracking, and DDoS protection</li>
+                      <li><strong>Payload Normalization:</strong> `clofix.normalize_payload(s)` - multi-pass URL decode, HTML decode, lowercase, and whitespace collapse for injection detection</li>
                       <li><strong>Threat Intelligence:</strong> `clofix.is_tor()`, `clofix.is_vpn()`, `clofix.ip_reputation()` returns "clean"/"suspicious"/"malicious", `clofix.get_bot_score()` (0-100), `clofix.get_ja3()` fingerprint</li>
                       <li><strong>Rate Limiting API:</strong> `clofix.rate_limit(key, limit, window_secs)` returns (count, exceeded), `clofix.rate_limit_ip(limit, window)`, `clofix.rate_limit_endpoint(limit, window)` for per-IP-path limits</li>
-                      <li><strong>Structured Attack Logging:</strong> `clofix.log_attack(rule, type, payload?)` auto-includes IP, country, UA, method, URI — essential for SIEM integration</li>
+                      <li><strong>Structured Attack Logging:</strong> `clofix.log_attack(rule, type, payload?)` auto-includes IP, country, UA, method, URI - essential for SIEM integration</li>
                       <li><strong>Action Types:</strong> `allow`, `block` (403), `challenge` (429 CAPTCHA), `rate_limit` (429), `log_only`, `redirect` (with redirect_to field), `captcha`</li>
-                      <li><strong>Threat Scoring Engine:</strong> Return `{ score = 85 }` instead of action — engine applies thresholds (&lt;20 allow, 20-49 log_only, 50-79 challenge, ≥80 block)</li>
+                      <li><strong>Threat Scoring Engine:</strong> Return `{ score = 85 }` instead of action - engine applies thresholds (&lt;20 allow, 20-49 log_only, 50-79 challenge, ≥80 block)</li>
                       <li><strong>utils.* Helpers:</strong> `utils.contains()`, `utils.starts_with()`, `utils.ends_with()`, `utils.split()`, `utils.to_lower()`, `utils.json_encode()`, `utils.json_decode()`, `utils.url_encode()`, `utils.base64_encode()`, `utils.now()`</li>
-                      <li><strong>SQL Injection Detection:</strong> Patterns for UNION SELECT, INSERT INTO, DROP TABLE, OR 1=1, SLEEP(), BENCHMARK(), information_schema — with payload normalization</li>
+                      <li><strong>SQL Injection Detection:</strong> Patterns for UNION SELECT, INSERT INTO, DROP TABLE, OR 1=1, SLEEP(), BENCHMARK(), information_schema - with payload normalization</li>
                       <li><strong>XSS Protection:</strong> Script tags, JavaScript protocol, event handlers (onerror, onload), SVG/iframe injection, and DOM-based XSS patterns</li>
                       <li><strong>Command Injection:</strong> Unix command chaining (`;`, `|`, `&&`, `` ` ``), Windows cmd.exe, PowerShell, and dangerous commands (wget, curl, nc, python -c)</li>
                       <li><strong>Path Traversal/LFI:</strong> `../`, `..\`, URL-encoded traversal (`%2e%2e%2f`), sensitive file access (`/etc/passwd`, `boot.ini`, `php://`, `file://`)</li>
                       <li><strong>SSRF Protection:</strong> Internal IP ranges (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x), cloud metadata (169.254.169.254, metadata.google.internal)</li>
                       <li><strong>Brute Force Protection:</strong> Login path detection with shared dictionary counters, 10 attempts/5min window, 30-minute ban, and configurable thresholds</li>
-                      <li><strong>DDoS Shield:</strong> Two-tier protection — burst detection (30 req/2s) and sustained rate (200 req/min) with escalating bans (60s → 600s → 86400s) using shared dictionaries</li>
+                      <li><strong>DDoS Shield:</strong> Two-tier protection - burst detection (30 req/2s) and sustained rate (200 req/min) with escalating bans (60s → 600s → 86400s) using shared dictionaries</li>
                       <li><strong>Bot Detection:</strong> `request.is_bot`, `request.is_headless`, `request.bot_score`, UA pattern matching (python, curl, wget, sqlmap, nikto, gobuster), and missing UA blocking</li>
-                      <li><strong>GeoIP Blocking:</strong> `request.country` ISO-3166 codes, `request.region`, `request.city`, `request.asn`, `request.org` — block specific countries, ASNs, or regions</li>
-                      <li><strong>JA3/JA4 Fingerprinting:</strong> `request.ja3` and `request.ja4` for TLS stack identification — block known attack tools even with IP rotation</li>
-                      <li><strong>IP Reputation:</strong> `clofix.ip_reputation()` returns "clean"/"suspicious"/"malicious" — block malicious IPs instantly</li>
+                      <li><strong>GeoIP Blocking:</strong> `request.country` ISO-3166 codes, `request.region`, `request.city`, `request.asn`, `request.org` - block specific countries, ASNs, or regions</li>
+                      <li><strong>JA3/JA4 Fingerprinting:</strong> `request.ja3` and `request.ja4` for TLS stack identification - block known attack tools even with IP rotation</li>
+                      <li><strong>IP Reputation:</strong> `clofix.ip_reputation()` returns "clean"/"suspicious"/"malicious" - block malicious IPs instantly</li>
                       <li><strong>Path Whitelisting:</strong> Protect admin endpoints (`/admin`, `/wp-admin`) with IP allowlists using shared dictionaries</li>
-                      <li><strong>Execution Limits:</strong> 50ms wall-clock timeout per script, 32MB memory limit, 200 call stack depth — prevents resource exhaustion</li>
-                      <li><strong>Directory Structure:</strong> `./lua_script/<domain>/` with alphabetical execution order — use numeric prefixes (`01_rate_limit.lua`, `02_bot_detection.lua`) for priority</li>
+                      <li><strong>Execution Limits:</strong> 50ms wall-clock timeout per script, 32MB memory limit, 200 call stack depth - prevents resource exhaustion</li>
+                      <li><strong>Directory Structure:</strong> `./lua_script/<domain>/` with alphabetical execution order - use numeric prefixes (`01_rate_limit.lua`, `02_bot_detection.lua`) for priority</li>
                       <li><strong>Domain Configuration:</strong> Enable Lua with `lua { enabled on; lua_shared_dict ddos_attack 10m; }` in domain config</li>
                   </ul>
                   <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> Lua scripts execute in isolated VM instances with 50ms timeout. Files run in alphabetical order — first non-allow action stops pipeline. The `clofix_main(request)` function receives a request object with all HTTP context, GeoIP, JA3 fingerprint, and threat intelligence fields. Shared dictionaries (`clofix.shared.*`) provide thread-safe cross-request storage with TTL. Payload normalization (`clofix.normalize_payload()`) defeats encoding evasion before pattern matching. The scoring engine allows multi-rule accumulation before final action. Structured attack logging (`clofix.log_attack()`) automatically captures full request context for SIEM integration. All functions are C-bound for performance — Lua scripts typically process 80,000 requests/second on modest hardware.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-lua-script.html" target="_blank" rel="noopener noreferrer">CloFix Lua Scripting Guide</a> — Complete API reference with SQL injection, XSS, rate limiting, DDoS protection, shared dictionaries, and 15+ production-ready examples</p>
+                      <p>💡 <strong>How it works:</strong> Lua scripts execute in isolated VM instances with 50ms timeout. Files run in alphabetical order - first non-allow action stops pipeline. The `clofix_main(request)` function receives a request object with all HTTP context, GeoIP, JA3 fingerprint, and threat intelligence fields. Shared dictionaries (`clofix.shared.*`) provide thread-safe cross-request storage with TTL. Payload normalization (`clofix.normalize_payload()`) defeats encoding evasion before pattern matching. The scoring engine allows multi-rule accumulation before final action. Structured attack logging (`clofix.log_attack()`) automatically captures full request context for SIEM integration. All functions are C-bound for performance - Lua scripts typically process 80,000 requests/second on modest hardware.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-lua-script.html" target="_blank" rel="noopener noreferrer">CloFix Lua Scripting Guide</a> - Complete API reference with SQL injection, XSS, rate limiting, DDoS protection, shared dictionaries, and 15+ production-ready examples</p>
                   </div>
               </div>
           </template>
@@ -477,45 +965,45 @@
                   <h4>Key Benefits</h4>
                   <ul>
                       <li><strong>CloFixRule Directive:</strong> CRS-style custom rules with variables (ARGS, REQUEST_HEADERS, REQUEST_URI, BODY), operators (@rx regex, @contains, @streq, @pm, @beginsWith, @endsWith), and transformations (t:lowercase, t:urlDecode, t:htmlEntityDecode, t:removeNulls, t:compressWhitespace)</li>
-                      <li><strong>Multi-Language Support:</strong> Choose between declarative CloFixRule (YAML-like), JavaScript (clofix), or Lua (clofix_main) — mix and match in the same deployment with alphabetical execution order</li>
+                      <li><strong>Multi-Language Support:</strong> Choose between declarative CloFixRule (YAML-like), JavaScript (clofix), or Lua (clofix_main) - mix and match in the same deployment with alphabetical execution order</li>
                       <li><strong>Intelligent Bypass System:</strong> Bypass rules by rule ID, tag (`attack-sqli`, `paranoia-level/3`), phase (1-4 request/response), path (`/health`, `/api/public/*`), or IP (`127.0.0.1`, `192.168.1.*`, `10.0.0.0/8`)</li>
                       <li><strong>Anomaly Scoring Engine:</strong> Each rule contributes weighted points to anomaly score (CRITICAL=5, ERROR=4, WARNING=3, NOTICE=2, INFO=1). Threshold-based blocking with configurable inbound/outbound limits</li>
-                      <li><strong>Paranoia Levels 1-4:</strong> Progressive protection from minimal false positives (Level 1) to maximum security (Level 4) — adjust per domain or globally</li>
-                      <li><strong>Pattern Extraction:</strong> JavaScript files automatically scanned for strings and regex patterns — used for fast matching without execution overhead</li>
-                      <li><strong>Shared Dictionaries:</strong> Persistent cross-request state with TTL — `sharedDict("name")` in JavaScript, `clofix.shared.*` in Lua, perfect for rate limiting and bot tracking</li>
-                      <li><strong>Action Types:</strong> `block` (403), `allow`, `rate_limit` (429), `challenge` (CAPTCHA), `redirect`, `log_only`, `captcha` — with custom status codes and messages</li>
-                      <li><strong>Transformation Chains:</strong> Apply multiple transformations sequentially — `t:lowercase,t:urlDecode,t:htmlEntityDecode` defeats encoding evasion techniques</li>
-                      <li><strong>Virtual Patching:</strong> Create custom rules to patch vulnerable applications without code changes — deploy within minutes of vulnerability disclosure</li>
+                      <li><strong>Paranoia Levels 1-4:</strong> Progressive protection from minimal false positives (Level 1) to maximum security (Level 4) - adjust per domain or globally</li>
+                      <li><strong>Pattern Extraction:</strong> JavaScript files automatically scanned for strings and regex patterns - used for fast matching without execution overhead</li>
+                      <li><strong>Shared Dictionaries:</strong> Persistent cross-request state with TTL - `sharedDict("name")` in JavaScript, `clofix.shared.*` in Lua, perfect for rate limiting and bot tracking</li>
+                      <li><strong>Action Types:</strong> `block` (403), `allow`, `rate_limit` (429), `challenge` (CAPTCHA), `redirect`, `log_only`, `captcha` - with custom status codes and messages</li>
+                      <li><strong>Transformation Chains:</strong> Apply multiple transformations sequentially - `t:lowercase,t:urlDecode,t:htmlEntityDecode` defeats encoding evasion techniques</li>
+                      <li><strong>Virtual Patching:</strong> Create custom rules to patch vulnerable applications without code changes - deploy within minutes of vulnerability disclosure</li>
                       <li><strong>Rule Testing Sandbox:</strong> Interactive playground to test custom rules against historical traffic or custom payloads before production deployment</li>
                       <li><strong>Pre-built Rule Templates:</strong> 200+ community-contributed templates for WordPress, Drupal, Joomla, Magento, Laravel, Django, and custom applications</li>
-                      <li><strong>API Rate Limiting DSL:</strong> Specialized syntax for API protection — per-endpoint limits, burst handling, graduated response (slow down → challenge → block)</li>
+                      <li><strong>API Rate Limiting DSL:</strong> Specialized syntax for API protection - per-endpoint limits, burst handling, graduated response (slow down → challenge → block)</li>
                       <li><strong>Bot Detection Rules:</strong> Pre-configured bot fingerprints for 500+ known bots (Googlebot, Bingbot, ChatGPT, GPTBot, Anthropic) with custom actions per bot type</li>
                       <li><strong>Credential Stuffing Protection:</strong> Login endpoint velocity checks, password reuse patterns, and known breached credentials via haveibeenpwned API integration</li>
                       <li><strong>GraphQL Security Rules:</strong> Introspection blocking, depth limiting (default max depth 10), complexity scoring, and batch query throttling</li>
-                      <li><strong>gRPC Method Filtering:</strong> Whitelist/blacklist specific gRPC methods with regex patterns — block reflection services and internal methods from external callers</li>
-                      <li><strong>JSON Schema Validation:</strong> Enforce JSON schemas on API requests — block malformed payloads before they reach your application logic</li>
+                      <li><strong>gRPC Method Filtering:</strong> Whitelist/blacklist specific gRPC methods with regex patterns - block reflection services and internal methods from external callers</li>
+                      <li><strong>JSON Schema Validation:</strong> Enforce JSON schemas on API requests - block malformed payloads before they reach your application logic</li>
                       <li><strong>XML/SOAP Validation:</strong> Detect XML bombs, XXE attacks, and schema violations in SOAP and REST XML payloads</li>
-                      <li><strong>Custom Response Rules:</strong> Inspect and modify responses — add security headers (CSP, HSTS), remove server signatures, inject monitoring scripts, block responses containing sensitive data</li>
-                      <li><strong>Webhook Actions:</strong> Trigger external webhooks on rule matches — send alerts to Slack, PagerDuty, or custom SIEM solutions with full request context</li>
-                      <li><strong>Delayed Response (Tarpitting):</strong> Slow down attackers with configurable delays — waste attacker resources while maintaining legitimate user experience</li>
-                      <li><strong>Log Sampling:</strong> Sample and log only matching rules at configurable rates — reduce log volume while maintaining security visibility</li>
-                      <li><strong>Rule Groups:</strong> Organize rules into named groups (PCI, HIPAA, WordPress, API) — enable/disable entire groups with a single toggle for multi-tenant environments</li>
-                      <li><strong>Priority Execution:</strong> Assign execution priority (1-1000) — ensure critical rules run first while complex analysis runs later. Pre-optimize based on historical match rates</li>
-                      <li><strong>Rule Metrics Dashboard:</strong> Real-time metrics per rule — match count, false positive rate, execution time, and impact score. Identify rules causing latency or blocking legitimate traffic</li>
-                      <li><strong>Automated Rule Optimization:</strong> ML-powered suggestions to reduce false positives — learn from blocked vs. allowed traffic patterns and suggest threshold adjustments</li>
+                      <li><strong>Custom Response Rules:</strong> Inspect and modify responses - add security headers (CSP, HSTS), remove server signatures, inject monitoring scripts, block responses containing sensitive data</li>
+                      <li><strong>Webhook Actions:</strong> Trigger external webhooks on rule matches - send alerts to Slack, PagerDuty, or custom SIEM solutions with full request context</li>
+                      <li><strong>Delayed Response (Tarpitting):</strong> Slow down attackers with configurable delays - waste attacker resources while maintaining legitimate user experience</li>
+                      <li><strong>Log Sampling:</strong> Sample and log only matching rules at configurable rates - reduce log volume while maintaining security visibility</li>
+                      <li><strong>Rule Groups:</strong> Organize rules into named groups (PCI, HIPAA, WordPress, API) - enable/disable entire groups with a single toggle for multi-tenant environments</li>
+                      <li><strong>Priority Execution:</strong> Assign execution priority (1-1000) - ensure critical rules run first while complex analysis runs later. Pre-optimize based on historical match rates</li>
+                      <li><strong>Rule Metrics Dashboard:</strong> Real-time metrics per rule - match count, false positive rate, execution time, and impact score. Identify rules causing latency or blocking legitimate traffic</li>
+                      <li><strong>Automated Rule Optimization:</strong> ML-powered suggestions to reduce false positives - learn from blocked vs. allowed traffic patterns and suggest threshold adjustments</li>
                       <li><strong>Rule Export/Import:</strong> Export rule sets as YAML/JSON for backup, version control, or sharing across deployments. Import from other CloFix instances or community repositories</li>
-                      <li><strong>Inline Documentation:</strong> Document rules with markdown descriptions, examples, and remediation steps — built-in documentation viewer for security teams</li>
-                      <li><strong>Rule Scheduling:</strong> Schedule rules for specific maintenance windows or seasonal traffic — automatically enable holiday shopping protection, disable during low-traffic periods</li>
+                      <li><strong>Inline Documentation:</strong> Document rules with markdown descriptions, examples, and remediation steps - built-in documentation viewer for security teams</li>
+                      <li><strong>Rule Scheduling:</strong> Schedule rules for specific maintenance windows or seasonal traffic - automatically enable holiday shopping protection, disable during low-traffic periods</li>
                   </ul>
                   <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> CloFix Custom Rules engine processes rules in execution priority order across three scripting languages. CloFixRule directives are compiled into optimized decision trees for O(log n) lookup times. JavaScript and Lua scripts execute in isolated VMs with 2-second (JS) or 50ms (Lua) timeouts. Files execute alphabetically — use numeric prefixes like `01_rate_limit.js`, `02_bot_detection.lua`, `03_clofixrule.conf` to control pipeline order. The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses — documented bypasses are essential for production. All rule executions are traced in the audit log with detailed match information for forensics and tuning. Shared dictionaries (`sharedDict` in JS, `clofix.shared` in Lua) maintain cross-request state with TTL support. Pattern extraction from JavaScript files automatically creates fast-matching signatures checked against every request.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">CloFixRule & Custom Rules Guide</a> — Complete syntax reference with variables, operators, transformations, bypass configuration, and 50+ rule examples</p>
+                      <p>💡 <strong>How it works:</strong> CloFix Custom Rules engine processes rules in execution priority order across three scripting languages. CloFixRule directives are compiled into optimized decision trees for O(log n) lookup times. JavaScript and Lua scripts execute in isolated VMs with 2-second (JS) or 50ms (Lua) timeouts. Files execute alphabetically - use numeric prefixes like `01_rate_limit.js`, `02_bot_detection.lua`, `03_clofixrule.conf` to control pipeline order. The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses - documented bypasses are essential for production. All rule executions are traced in the audit log with detailed match information for forensics and tuning. Shared dictionaries (`sharedDict` in JS, `clofix.shared` in Lua) maintain cross-request state with TTL support. Pattern extraction from JavaScript files automatically creates fast-matching signatures checked against every request.</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">CloFixRule & Custom Rules Guide</a> - Complete syntax reference with variables, operators, transformations, bypass configuration, and 50+ rule examples</p>
                   </div>
               </div>
           </template>
 
           <!-- Defualt CATEGORY -->
-          <h2 class="category-heading">Defualt Activeted Protection</h2>
+          <h2 class="category-heading">Defualt Protection</h2>
           
           <div class="feature-card" data-id="behavior_analysis">
               <h3>🔍 Behavioral Analysis</h3>
@@ -525,36 +1013,36 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>Request-1 Blocking:</strong> FastBlocker fires on the very first request — no history needed. Missing Sec-Fetch-*, bare Accept headers, and low header count score instantly before any proxying occurs</li>
-                      <li><strong>JA3 TLS Fingerprinting:</strong> Computed directly from Go's tls.ClientHelloInfo via GetConfigForClient hook — no nginx module required. CipherSuites, SupportedVersions, SupportedCurves, SignatureSchemes, ALPN, and SNI all contribute to the hash</li>
+                      <li><strong>Request-1 Blocking:</strong> FastBlocker fires on the very first request - no history needed. Missing Sec-Fetch-*, bare Accept headers, and low header count score instantly before any proxying occurs</li>
+                      <li><strong>JA3 TLS Fingerprinting:</strong> Computed directly from Go's tls.ClientHelloInfo via GetConfigForClient hook - no nginx module required. CipherSuites, SupportedVersions, SupportedCurves, SignatureSchemes, ALPN, and SNI all contribute to the hash</li>
                       <li><strong>Known Browser Database:</strong> Chrome, Firefox, Safari, Edge, Opera, Brave, and Tor Browser JA3 hashes pre-loaded. Exact match = instant allow with zero behavioral scoring overhead</li>
-                      <li><strong>UA Structure Analysis:</strong> Detects tools by shape, not name — no hardcoded tool strings. Checks Mozilla/ token, platform () grouping, and AppleWebKit/Gecko presence. All three must exist simultaneously</li>
-                      <li><strong>Sec-Fetch Header Detection:</strong> Injected by all browsers since Chrome 76 / Firefox 90 — absent in every HTTP library. Missing all three Sec-Fetch-Site/Mode/Dest headers scores +35pts instantly</li>
-                      <li><strong>Tiered Velocity Scoring:</strong> Three escalating tiers — warn (+20), high (+35), extreme (+50) — scored per JA3 fingerprint over a 5-minute sliding window. IP rotation doesn't help if TLS stack is consistent</li>
+                      <li><strong>UA Structure Analysis:</strong> Detects tools by shape, not name - no hardcoded tool strings. Checks Mozilla/ token, platform () grouping, and AppleWebKit/Gecko presence. All three must exist simultaneously</li>
+                      <li><strong>Sec-Fetch Header Detection:</strong> Injected by all browsers since Chrome 76 / Firefox 90 - absent in every HTTP library. Missing all three Sec-Fetch-Site/Mode/Dest headers scores +35pts instantly</li>
+                      <li><strong>Tiered Velocity Scoring:</strong> Three escalating tiers - warn (+20), high (+35), extreme (+50) - scored per JA3 fingerprint over a 5-minute sliding window. IP rotation doesn't help if TLS stack is consistent</li>
                       <li><strong>Machine Timing Detection:</strong> Coefficient of variation (stddev/mean) of inter-request intervals. CV &lt;0.05 AND mean &lt;2s = machine precision timing (+45pts). Requires only 4 requests to compute</li>
                       <li><strong>Uniform Response Time Detection:</strong> Tools receive consistent server response times. CV &lt;0.1 across 6+ requests flags automated polling (+20pts)</li>
                       <li><strong>Shannon Path Entropy:</strong> Entropy &lt;0.6 on normalized paths = scanner repeating same endpoints (+20pts). Entropy &lt;0.3 with 10+ requests = very low entropy (+35pts). Paths normalized: /api/users/123 → /api/users/*</li>
                       <li><strong>Sequential Enumeration:</strong> Detects /item/1, /item/2, /item/3 numeric crawl patterns. Fires when &gt;30% of consecutive path pairs are sequential (+35pts)</li>
                       <li><strong>High Path Density:</strong> &gt;90% unique paths in &lt;8 requests = scanner walking endpoints (+25pts). Combined with velocity = strong scanner signal</li>
-                      <li><strong>Zero Static Assets:</strong> Real users load CSS/JS/images — tools never do. 0% static asset ratio after 10+ requests adds +30pts. Checked against 18 file extensions</li>
+                      <li><strong>Zero Static Assets:</strong> Real users load CSS/JS/images - tools never do. 0% static asset ratio after 10+ requests adds +30pts. Checked against 18 file extensions</li>
                       <li><strong>Method Probing Detection:</strong> 4+ distinct HTTP methods (GET/POST/PUT/DELETE/PATCH/OPTIONS/HEAD) against the same path = method enumeration attack (+30pts)</li>
-                      <li><strong>Error Rate Analysis:</strong> Three tiers — elevated (&gt;25% 4xx → +12pts), high (&gt;50% 4xx/5xx → +25pts), 404-dominant (&gt;50% 404 → +35pts). Distinguishes path probing from application errors</li>
+                      <li><strong>Error Rate Analysis:</strong> Three tiers - elevated (&gt;25% 4xx → +12pts), high (&gt;50% 4xx/5xx → +25pts), 404-dominant (&gt;50% 404 → +35pts). Distinguishes path probing from application errors</li>
                       <li><strong>Parameter Fuzzing Detection:</strong> Same endpoint with 10+ unique parameter names across 20+ requests = automated parameter discovery (+30pts)</li>
                       <li><strong>UA Rotation Detection:</strong> &gt;30% unique User-Agents across 10+ requests = evasion attempt via UA cycling (+25pts)</li>
                       <li><strong>Burst Pattern Detection:</strong> Zero requests in the prior 9-minute window followed by 20+ in the last minute = attack burst after reconnaissance silence (+30pts)</li>
                       <li><strong>Path Traversal Scoring:</strong> Double-dot sequences (../, ..\, %2e%2e), null bytes (\x00, %00), CRLF injection (\r, \n) in request paths scored independently in both FastBlocker and BehaviorEngine layers</li>
-                      <li><strong>Query String Injection:</strong> Structural injection patterns in query strings — union+select, &lt;script, onerror=, exec(, base64_decode(, javascript: — scored +50–55pts on first occurrence</li>
+                      <li><strong>Query String Injection:</strong> Structural injection patterns in query strings - union+select, &lt;script, onerror=, exec(, base64_decode(, javascript: - scored +50–55pts on first occurrence</li>
                       <li><strong>Sticky Block System:</strong> Score ≥70 triggers a 15-minute hard block written to the profile. Pre-request IsBlocked() check fires before WAF rules, DDoS engine, or upstream proxy</li>
-                      <li><strong>Block Auto-Expiry:</strong> Block TTL auto-expires on the next request after 15 minutes. Profile demoted to challenge state rather than deleted — retains behavioral history</li>
+                      <li><strong>Block Auto-Expiry:</strong> Block TTL auto-expires on the next request after 15 minutes. Profile demoted to challenge state rather than deleted - retains behavioral history</li>
                       <li><strong>Session Trust Bonus:</strong> Established sessions older than 10 minutes with score &lt;20 receive a −15pts reduction. Prevents over-blocking legitimate power users</li>
-                      <li><strong>New Profile Penalty:</strong> Profile younger than 10 seconds with 15+ requests scores +20pts — human-impossible volume in that window</li>
-                      <li><strong>Domain Isolation:</strong> Profile store is per-domain. Dashboard locked to r.Host — ?domain= query parameter is completely ignored server-side, preventing cross-tenant data leakage</li>
-                      <li><strong>IP Rate Limiter:</strong> Sliding window 30 req/10s per IP. Fires independently of behavioral scoring — instant 5-minute block regardless of headers or UA</li>
-                      <li><strong>Health Check Bypass:</strong> Silent monitoring probes (no UA, GET /, no body) are whitelisted at FastBlocker level — load balancer checks never accumulate false-positive scores</li>
+                      <li><strong>New Profile Penalty:</strong> Profile younger than 10 seconds with 15+ requests scores +20pts - human-impossible volume in that window</li>
+                      <li><strong>Domain Isolation:</strong> Profile store is per-domain. Dashboard locked to r.Host - ?domain= query parameter is completely ignored server-side, preventing cross-tenant data leakage</li>
+                      <li><strong>IP Rate Limiter:</strong> Sliding window 30 req/10s per IP. Fires independently of behavioral scoring - instant 5-minute block regardless of headers or UA</li>
+                      <li><strong>Health Check Bypass:</strong> Silent monitoring probes (no UA, GET /, no body) are whitelisted at FastBlocker level - load balancer checks never accumulate false-positive scores</li>
                       <li><strong>Learning Mode:</strong> Monitor-only mode records detections and flags profiles without blocking. Safe for baseline establishment. Toggle live via /waf-dashboard/behavior-learning endpoint</li>
                       <li><strong>Profile Ring Buffer:</strong> Each profile stores the last 100 requests in memory with O(1) eviction. Fixed memory footprint regardless of request volume</li>
                       <li><strong>Background Sweeper:</strong> Idle profiles evicted every 5 minutes after 30-minute TTL. Prevents unbounded memory growth under sustained scan traffic</li>
-                      <li><strong>2 Layers, 20+ Signals:</strong> Layer 1 (FastBlocker) — 7 instant signals on request 1. Layer 2 (BehaviorEngine) — 13 multi-request signals over sliding 5-minute window. Both run synchronously before upstream proxy. No external dependencies — no Redis, no database, no sidecar</li>
+                      <li><strong>2 Layers, 20+ Signals:</strong> Layer 1 (FastBlocker) - 7 instant signals on request 1. Layer 2 (BehaviorEngine) - 13 multi-request signals over sliding 5-minute window. Both run synchronously before upstream proxy. No external dependencies - no Redis, no database, no sidecar</li>
                   </ul>
 
                   <div class="feature-note">
@@ -563,7 +1051,89 @@
               </div>
           </template>
 
+          <div class="feature-card" data-id="noip_behavioral_protection">
+            <h3>🆔 No-IP Device Behavioral Protection</h3>
+            <p>Advanced device fingerprinting that tracks malicious actors across IP changes, VPNs, proxies, and Tor. Uses behavioral biometrics (keystrokes, mouse movements, scrolling patterns), canvas/webGL fingerprints, TLS JA3 hashing, and velocity analysis to identify and block automated threats even when they rotate IP addresses</p>
+          </div>
 
+          <template id="noip_behavioral_protection">
+            <div class="feature-benefits">
+              <h4>Key Benefits</h4>
+              <ul>
+                <li><strong>IP-Agnostic Fingerprinting:</strong> Generates persistent device IDs using browser fingerprints, canvas/WebGL hashes, audio context, fonts, screen resolution, hardware concurrency, and OS detection - tracks devices even when they change IP addresses via VPN, proxy, or Tor</li>
+                <li><strong>Browser & OS Detection:</strong> Identifies browser (Chrome, Firefox, Safari, Edge, Opera, Brave), browser engine (Blink, WebKit, Gecko), OS (Windows, macOS, iOS, Android, Linux), OS version, and architecture (x86_64, ARM64) - detects spoofing attempts</li>
+                <li><strong>Canvas Fingerprinting:</strong> Generates unique canvas hashes from rendered text, shapes, and colors - persistent across sessions and IP changes. Detects canvas hash changes within consistency window as indication of emulation or spoofing</li>
+                <li><strong>WebGL Fingerprinting:</strong> Extracts WebGL renderer and vendor information (Mali, Adreno, Apple GPU, NVIDIA, Intel) via WEBGL_debug_renderer_info extension - detects emulated GPU environments</li>
+                <li><strong>Audio Context Fingerprinting:</strong> Analyzes oscillator waveform rendering differences across browsers and devices - each device produces unique audio hashes based on hardware</li>
+                <li><strong>Font Fingerprinting:</strong> Detects installed system fonts via flash of invisible text (FOIT) measurement - 100+ font families tested for device uniqueness</li>
+                <li><strong>Hardware Fingerprinting:</strong> Collects screen resolution, color depth, pixel ratio, hardware concurrency (CPU cores), device memory, and max touch points - creates comprehensive device signature</li>
+                <li><strong>Headless Browser Detection:</strong> Scores headless probability (0.0-1.0) based on User-Agent patterns (HeadlessChrome, PhantomJS, Puppeteer, Playwright) and behavioral anomalies - blocks scores above 0.5 with 0.9 confidence</li>
+                <li><strong>Automation Detection:</strong> Identifies automation tools (Selenium, Puppeteer, Playwright, Python-Requests, curl, wget, Go-http, Postman, Insomnia) with weighted scoring - blocks with 0.7+ score</li>
+                <li><strong>Behavioral Biometrics - Keystroke Dynamics:</strong> Tracks key press timing (inter-key latency) and key hold duration - calculates average typing speed, rhythm hash, and standard deviation. Standard deviation &lt;2ms indicates robotic typing (+20% risk)</li>
+                <li><strong>Behavioral Biometrics - Mouse Movements:</strong> Records mouse coordinates, calculates speed, acceleration, and curvature. Sustained near-zero curvature indicates robotic movement +15% risk. Generates mouse movement hash from last 20 points</li>
+                <li><strong>Behavioral Biometrics - Click Patterns:</strong> Tracks click coordinates and target elements, calculates average click position, detects exact click repetition (>80% same pixel = robotic +15% risk)</li>
+                <li><strong>Behavioral Biometrics - Scroll Patterns:</strong> Records scroll position, speed, and direction - calculates average scroll speed and dominant direction (up/down/both)</li>
+                <li><strong>Request Velocity Tracking:</strong> Rolling windows (1-minute, 5-minute, 1-hour) track request density - thresholds: 300 req/min, 1400 req/5min, 30 req/sec burst detection triggers +35% risk score</li>
+                <li><strong>IP Hopping Detection:</strong> Tracks unique IPs per device in 1-hour window. 3+ unique IPs flags IP hopping +30% risk - blocks VPN/proxy rotation attacks</li>
+                <li><strong>Geo-Impossible Travel Detection:</strong> Calculates speed between geographic locations (requires GeoIP). Speed >900 km/h triggers geo-impossible travel +35% risk - detects VPN hopping across continents</li>
+                <li><strong>Canvas Consistency Monitoring:</strong> Tracks canvas hash changes within 15-minute window on same User-Agent. Hash changes indicate emulation/anti-fingerprinting +25% risk</li>
+                <li><strong>TLS JA3 Fingerprinting:</strong> Cross-references JA3 hash from CloudFlare or proxy headers - tracks TLS stack even when IP changes. Self-signed certificates bypass JA3 checks to avoid false positives</li>
+                <li><strong>Login Brute Force Detection:</strong> 5-minute rolling window tracks failed login attempts - 5+ failures in 5m = +30% risk, 15+ in 1h = +25% risk. Persistent threat memory stores total failed logins across sessions</li>
+                <li><strong>Sensitive Path Probing:</strong> Detects enumeration of /wp-admin, /admin, /phpmyadmin, /.env, /.git, /backup, /config - +15% risk per probe</li>
+                <li><strong>Path Scanning Detection:</strong> 50+ unique paths per device flags directory brute-forcing +20% risk</li>
+                <li><strong>Rapid Request Detection:</strong> Inter-request intervals &lt;50ms flag automation +10% risk</li>
+                <li><strong>Header Completeness Analysis:</strong> Detects missing Accept, Accept-Language, Accept-Encoding headers - common in tools (+15% risk each). Chrome missing Connection header is normal (HTTP/2)</li>
+                <li><strong>User-Agent Structure Validation:</strong> Validates Mozilla signature, parentheses structure, version numbers. Empty UA +40pts, missing Mozilla +20pts, no parentheses +10pts</li>
+                <li><strong>Accept Header Analysis:</strong> */* without quality values flags generic accept +15% risk for non-browser clients</li>
+                <li><strong>Cookie Handling Detection:</strong> Missing cookies +10% risk for authenticated paths (tools often don't handle cookies)</li>
+                <li><strong>Referer Validation:</strong> Missing referer on non-root paths +10% risk</li>
+                <li><strong>Persistent Threat Memory:</strong> Tracks total blocks, failed logins, attack types, and suspicion score across sessions - survives block expiry, increases risk weighting by 30% for repeat offenders</li>
+                <li><strong>Risk Score Calculation:</strong> Weighted aggregation (IP hopping 0.30, geo travel 0.35, burst 0.35, velocity 0.15-0.20, brute force 0.25-0.30, headless 0.35, automation 0.25, robotic typing 0.20, canvas inconsistency 0.25). Threshold 0.70 = malicious, 0.40-0.70 triggers challenge</li>
+                <li><strong>Confidence Scoring:</strong> Based on data points (requests, keystrokes, mouse moves) - max 1.0 at 500+ points, prevents false positives on limited data</li>
+                <li><strong>Auto-Blocking:</strong> Risk ≥0.70 triggers 15-minute block (configurable), threat memory records each block and elevates suspicion score</li>
+                <li><strong>Challenge System:</strong> Risk 0.40-0.70 issues proof-of-work CAPTCHA challenges. Successful challenges reduce risk by -0.20, failed challenges +0.10 risk</li>
+                <li><strong>Automatic Session Cleanup:</strong> 1-hour background sweeper removes fingerprints idle >30 days, auto-unblocks devices after BlockDuration</li>
+                <li><strong>Memory Efficient:</strong> Ring buffers for request history (last 200 requests), keystroke/mouse data (last 1000 points), IP history (last 100 entries) - prevents unbounded memory growth</li>
+                <li><strong>API Endpoints:</strong> /api/behavioral/device (fingerprint), /api/behavioral/keystroke (typing patterns), /api/behavioral/mouse (mouse movements), /api/behavioral/click (click patterns), /api/behavioral/scroll (scroll behavior), /api/behavioral/challenge (CAPTCHA), /debug/noip-stats (statistics)</li>
+                <li><strong>Client-Side Collector:</strong> 8KB JavaScript automatically injects into HTML pages - collects canvas hash, WebGL, audio fingerprint, keystrokes, mouse movements, clicks, scrolls. sendBeacon API ensures delivery without blocking navigation</li>
+                <li><strong>Zero External Dependencies:</strong> No Redis, No database - all fingerprint data stored in memory with automatic cleanup. 10,000 fingerprints consume ~200MB RAM</li>
+                <li><strong>Performance Impact:</strong> &lt;50µs per request for fingerprint lookup, &lt;500KB memory per active fingerprint, FIFO eviction prevents leaks</li>
+              </ul>
+              
+              <div class="feature-note">
+                <p>💡 <strong>How it works:</strong> The No-IP Behavioral Protection system generates a persistent device ID using browser fingerprints that survive IP changes. When a request arrives, the system extracts device identity from User-Agent, OS, browser engine, and hardware signals. Canvas/WebGL/Audio fingerprints create a hardware-level signature. The client-side JavaScript collects behavioral biometrics (keystroke timing, mouse movement curves, click patterns, scroll velocity) and sends them via sendBeacon API. The server tracks velocity in rolling windows (1m/5m/1h), detects IP hopping via history analysis, and calculates geographic speed using GeoIP (if available). Each violation adds weighted risk points - reaching 0.70 triggers a 15-minute IP-agnostic block based on device ID. The threat memory persists across block expiry, so repeat offenders face stricter scrutiny. All fingerprint data stays in memory with automatic TTL-based cleanup (30 days idle). No external dependencies required - the entire system runs in-process with sub-50µs overhead.</p>
+                
+                <p>📊 <strong>Detection Metrics:</strong></p>
+                <ul>
+                  <li>IP-hopping detection: 3+ unique IPs/1h = +30% risk</li>
+                  <li>Geo-impossible travel: Speed >900 km/h = +35% risk</li>
+                  <li>Login brute force: 5 failures/5m = +30% risk</li>
+                  <li>Canvas inconsistency: Hash changes within 15m = +25% risk</li>
+                  <li>Headless detection: 0.5+ score = +35% risk</li>
+                  <li>Automation detection: 0.7+ score = +25% risk</li>
+                  <li>Robotic typing: Std Dev &lt;2ms = +20% risk</li>
+                  <li>Burst attack: 30+ req/sec = +35% risk</li>
+                  <li>High velocity: 300+ req/min = +20% risk</li>
+                  <li>Path scanning: 50+ unique paths = +20% risk</li>
+                </ul>
+                
+                <p>🔒 <strong>Detected Threat Types:</strong></p>
+                <ul>
+                  <li><strong>VPN/Proxy Rotation:</strong> IP hopping detection tracks IP changes regardless of anonymization service</li>
+                  <li><strong>Tor Network:</strong> Geo-impossible travel flags rapid international movement</li>
+                  <li><strong>Headless Browsers:</strong> HeadlessChrome, PhantomJS, Puppeteer, Playwright detection via UA + behavioral analysis</li>
+                  <li><strong>Automation Tools:</strong> Selenium WebDriver, Python-Requests, curl, wget, Go-http, Postman, Insomnia</li>
+                  <li><strong>Credential Stuffing:</strong> Login velocity tracking (5m/1h windows) with persistent failure memory</li>
+                  <li><strong>Brute Force:</strong> Combined IP-hopping + login velocity + path scanning detection</li>
+                  <li><strong>DDoS Botnets:</strong> Velocity thresholds (300 req/min, 30 req/sec) with burst detection</li>
+                  <li><strong>Scrapers/Crawlers:</strong> Missing browser headers, no cookies, robotic mouse movements, exact click repetition</li>
+                  <li><strong>Directory Brute-Forcing:</strong> Path diversity detection (50+ unique paths) + sensitive path probing</li>
+                  <li><strong>Anti-Fingerprinting Tools:</strong> Canvas hash drifting within consistency window flags emulation</li>
+                </ul>
+  
+              </div>
+            </div>
+          </template>
           <!-- AI CATEGORY -->
           <h2 class="category-heading">AI-Powered Protection</h2>
           
@@ -1862,6 +2432,83 @@
                   <li>HTTP headers</li>
                   <li>File uploads (indirect RFI)</li>
               </ul>
+          </template>
+
+          <div class="feature-card" data-id="wordpress_protection">
+            <h3>🛡️ WordPress Hardening & Protection</h3>
+            <p>Comprehensive security for WordPress sites - blocks XML-RPC attacks, login brute force, user enumeration, REST API abuse, vulnerability scanners, and zero-day exploit patterns</p>
+          </div>
+
+          <template id="wordpress_protection">
+            <div class="feature-benefits">
+              <h4>Key Benefits</h4>
+              <ul>
+                <li><strong>XML-RPC Attack Prevention:</strong> Blocks xmlrpc.php completely with multicall brute force detection - identifies large POST bodies (8KB+) used for credential stuffing. Add 60 threat points instantly</li>
+                <li><strong>Login Brute Force Protection:</strong> 5-attempt window triggers temporary ban (default 30 minutes). Configurable attempt limits and ban duration. Threat score adds 60 points on ban</li>
+                <li><strong>User Enumeration Blocking:</strong> Blocks ?author=N scans and /author/ archive enumeration - prevents attackers from discovering usernames for brute force attacks. Adds 20 threat points</li>
+                <li><strong>REST API Security:</strong> Blocks /wp-json/wp/v2/users enumeration, rate-limits REST API (60 req/min), protects unauthenticated write endpoints (POST/PUT/DELETE). Adds 30 threat points for enumeration attempts</li>
+                <li><strong>Sensitive File Protection:</strong> Blocks access to .env, .git/config, .htaccess, .htpasswd, wp-config.php, backup files (.zip, .tar.gz, .sql), and 25+ other sensitive patterns</li>
+                <li><strong>Exploit Path Blocking:</strong> Pre-configured detection for 25+ known vulnerability paths including RevSlider RCE, TimThumb, File Manager, Duplicator installer, Adminer, and Elementor exploits. Adds 50 threat points</li>
+                <li><strong>PHP Execution in Uploads:</strong> Blocks any .php, .php5, .phtml, .phar execution from /wp-content/uploads/ directory - prevents uploaded shell access. Adds 70 threat points</li>
+                <li><strong>SQL Injection Protection:</strong> Regex patterns detecting UNION SELECT, INSERT INTO, DROP TABLE, OR 1=1, time-based attacks (SLEEP/BENCHMARK), information_schema access. Adds 50 threat points</li>
+                <li><strong>XSS Attack Prevention:</strong> Detects script tags, JavaScript protocol, event handlers (onload/onerror), iframe/frame injection, expression() CSS exploits, encoded entities. Adds 40 threat points</li>
+                <li><strong>Path Traversal Detection:</strong> Blocks ../, ..\, URL-encoded (%2e%2e%2f) and double-encoded (%252e%252e%252f) traversal attempts - prevents sensitive file reads. Adds 40 threat points</li>
+                <li><strong>Null Byte Injection Prevention:</strong> Detects \x00, %00, \0 sequences in URI and query strings - prevents file inclusion bypass techniques. Adds 30 threat points</li>
+                <li><strong>Scanner User-Agent Blocking:</strong> Identifies 20+ security scanners (WPScan, Nuclei, Nikto, Dirbuster, Masscan) and blocks instantly. Adds 50 threat points</li>
+                <li><strong>Bad Bot Prevention:</strong> Blocks 15+ malicious bots (MJ12bot, Semrush, Ahrefs, Dotbot, Petalbot, BleXbot, Yisou, Sogou, Baiduspider, 360spider)</li>
+                <li><strong>Threat Score Accumulation:</strong> Each blocked attempt adds configurable points. Reaching threshold (default 100) triggers 30-minute IP ban. Prevents distributed attacks</li>
+                <li><strong>wp-cron.php External Blocking:</strong> Only allows execution from localhost - prevents external trigger abuse and DoS via cron endpoint</li>
+                <li><strong>Debug Log Protection:</strong> Blocks /wp-content/debug.log access - prevents information leakage of PHP errors, database queries, and backtraces</li>
+                <li><strong>Installer File Protection:</strong> Blocks /wp-admin/install.php, upgrade.php, setup-config.php after initial setup - prevents site takeover via reinstallation</li>
+                <li><strong>TimThumb Vulnerability Block:</strong> Detects timthumb.php patterns in URI or query strings - prevents famous 0-day RCE exploit. Adds 50 threat points</li>
+                <li><strong>Directory Browsing Prevention:</strong> Blocks directory listings in /wp-content/ and /wp-includes/ - prevents asset enumeration and version fingerprinting</li>
+                <li><strong>Hotlink Protection:</strong> Prevents external sites from hotlinking your images, CSS, or static assets - saves bandwidth and prevents DDOS via image requests</li>
+                <li><strong>Admin CSRF Protection:</strong> Validates Referer header on wp-admin POST requests - prevents cross-site request forgery attacks. Adds 30 threat points on failure</li>
+                <li><strong>Strict HTTP Methods:</strong> Only allows GET, POST, HEAD methods on wp-admin - blocks DELETE, PUT, PATCH, OPTIONS, TRACE methods. Returns 405 Method Not Allowed</li>
+                <li><strong>Admin IP Allowlisting:</strong> Restrict /wp-admin and /wp-login.php to specific IP ranges - perfect for corporate environments or jump hosts</li>
+                <li><strong>Rate Limiting (Per-IP):</strong> Configurable request limits (default 300 requests/60 seconds) - prevents scraping, DoS, and crawling attacks</li>
+                <li><strong>REST API Rate Limiting:</strong> Separate rate limits for REST endpoints (default 60 req/min) - prevents API abuse while allowing normal plugin operations</li>
+                <li><strong>Version Fingerprint Removal:</strong> Strips <meta name="generator"> tag, removes ?ver=x.x.x from assets (CSS/JS/images), sanitizes Link header with wp-json - hides WordPress version</li>
+                <li><strong>Emoji Script Removal:</strong> Removes wp-emoji-release.min.js - hides version leak and reduces DOM size. Saves ~15KB per page load</li>
+                <li><strong>Feed Discovery Removal:</strong> Strips RSS/Atom feed links from HTML headers - prevents content scraping and reduces attack surface</li>
+                <li><strong>Theme & Plugin Info Blocking:</strong> Blocks access to /wp-content/themes/*/readme.txt, style.css, license.txt - prevents version fingerprinting and vulnerability matching</li>
+                <li><strong>Generator JSON-LD Stripping:</strong> Removes "generator": "WordPress x.x.x" from JSON-LD structured data - complete version hiding across all content types</li>
+                <li><strong>XML-RPC Multicall Detection:</strong> Identifies brute force attempts via system.multicall with 8KB+ payloads - blocks 90% of credential stuffing attacks. Adds 60 threat points</li>
+                <li><strong>Dangerous Upload Detection:</strong> Scans async-upload.php Content-Type for PHP/MIME types - blocks malicious file uploads. Adds 80 threat points</li>
+                <li><strong>Custom Login IP Blocklist:</strong> Multi-IP allowlist support for admin areas - CIDR notation not yet supported, explicit IPs only (configurable via LoginIPBlocklist array)</li>
+                <li><strong>Response Header Hardening:</strong> Injects X-Content-Type-Options: nosniff, X-Frame-Options: SAMEORIGIN, Referrer-Policy: strict-origin-when-cross-origin, X-XSS-Protection: 1; mode=block</li>
+                <li><strong>Threat Score Per Attack Type:</strong> XMLRPC brute +60, Login brute +60, SQLi +50, XSS +40, Path traversal +40, Null byte +30, Scanner UA +50, Exploit path +50, PHP upload +70 - cumulative scoring enables smart blocking</li>
+                <li><strong>Auto-Ban on Threshold:</strong> Configurable threat score threshold (default 100) triggers 30-minute IP ban - stops attacks before they succeed without permanent blocking</li>
+                <li><strong>Logging & Forensics:</strong> Comprehensive logging includes timestamp, IP, method, URI, and reason. Optional LogAllBlocks for full audit trail - SIEM compatible</li>
+                <li><strong>Low Performance Impact:</strong> All regex patterns pre-compiled, concurrent-safe maps with mutex locking, async threat score cleanup (30-min TTL) - handles 10K+ req/sec</li>
+              </ul>
+              
+              <div class="feature-note">
+                <p>💡 <strong>How it works:</strong> The WordPress protection engine intercepts requests before they reach your WordPress installation. It applies 35+ security checks in sequence - from early detection (scanner UAs, SQLi patterns, null bytes) to application-specific rules (XML-RPC blocking, login brute force, REST API rate limiting). Each violation adds threat points; reaching configurable threshold triggers temporary IP ban (default 30 minutes). Threat scores decay naturally after 30 minutes of clean behavior. The response path strips version fingerprints, emoji scripts, and feed links from HTML output. All regex patterns are pre-compiled at startup - performance impact under 1ms per request even on high-traffic WordPress sites.</p>
+                
+                <p>📊 <strong>Protection Metrics:</strong></p>
+                <ul>
+                  <li>XML-RPC attacks blocked: 100% (when enabled)</li>
+                  <li>Login brute force prevention: 5 attempts → 30-min ban</li>
+                  <li>User enumeration blocked: 100% for ?author=N and /author/ URLs</li>
+                  <li>SQLi detection: 15+ regex patterns covering all major vectors</li>
+                  <li>XSS detection: 12+ patterns including modern evasion techniques</li>
+                  <li>Known exploit paths: 25+ signatures updated from WPScan DB</li>
+                  <li>False positive rate: &lt;0.1% with proper configuration</li>
+                </ul>
+                
+                <p>🔒 <strong>Attack Vectors Covered:</strong></p>
+                <ul>
+                  <li><strong>Authentication:</strong> Brute force, credential stuffing, XML-RPC multicall, user enumeration, author scans</li>
+                  <li><strong>Injection:</strong> SQL injection, XSS, NoSQL (via REST), command injection, LDAP injection</li>
+                  <li><strong>File-Based:</strong> LFI/RFI, path traversal, null byte injection, PHP execution in uploads, timthumb exploitation</li>
+                  <li><strong>Information Disclosure:</strong> Version fingerprinting, directory browsing, debug logs, config files, backup exposure, theme/plugin enumeration</li>
+                  <li><strong>Application Logic:</strong> Installer access after setup, wp-cron external triggers, CSRF, method override abuse</li>
+                  <li><strong>DoS/DDoS:</strong> REST API flooding, login request storms, XML-RPC amplification, hotlink overload</li>
+                  <li><strong>Scanning:</strong> Vulnerability scanners, bad bots, content scrapers, directory brute forcing</li>
+                </ul>
+              </div>
+            </div>
           </template>
 
           <!-- OTHERS CATEGORY -->
