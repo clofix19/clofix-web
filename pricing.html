@@ -783,17 +783,17 @@
     // SaaS: current (old/crossed) prices & actual prices
     // oldPriceBDT = the crossed-out price shown; priceBDT = the actual current price
     const saasPlansRaw = [
-      { name: "Starter",    oldPriceBDT: 1700,  priceBDT: 1500,  support: "Support", supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/month", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                           popular: false },
-      { name: "Growth",     oldPriceBDT: 6200,  priceBDT: 5500,  support: "Support", supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domain", "100K req/month", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                  popular: false },
-      { name: "Pro",        oldPriceBDT: 18500, priceBDT: 16500, support: "Support", supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/month", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
-      { name: "Enterprise", oldPriceBDT: 55000, priceBDT: 50000, support: "Support", supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/month", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"], enterprise: true, popular: false }
+      { name: "Starter",    oldPriceBDT: 1700,  priceBDT: 1500,  support: "Support", supportLink: "support.html", supportHighlight: true, supporttype: "Email Only",           features: ["Basic WAF (OWASP CRS + 5 rules)", "1 domain", "30K req/month", "2GB Bandwidth", "Custom rules: 5", "30-day logs"],                                                                                           popular: false },
+      { name: "Growth",     oldPriceBDT: 6200,  priceBDT: 5500,  support: "Support", supportLink: "support.html", supportHighlight: true, supporttype: "Email Only",           features: ["Full Starter+", "JS/Lua scripting  + 5 rules", "Behavioral analysis", "DDoS L3/L4", "3 domain", "100K req/month", "15GB Bandwidth", "Custom rules: 10", "Extended logging"],                                  popular: false },
+      { name: "Pro",        oldPriceBDT: 18500, priceBDT: 16500, support: "Support", supportLink: "support.html", supportHighlight: true, supporttype: "Email + WhatsApp",     features: ["Full Starter+Growth+", "All AI-powered modules", "WASM engine  + 5 rules", "No-IP Device Fingerprinting", "API security", "5 domains", "200K req/month", "50GB Bandwidth", "Custom rules: 20", "Priority support", "Advanced analytics"], popular: true  },
+      { name: "Enterprise", oldPriceBDT: 55000, priceBDT: 50000, support: "Support", supportLink: "support.html", supportHighlight: true, supporttype: "Email+WhatsApp+Phone", features: ["Full SaaS feature set", "CRS/JS/Lua/WASM scripting  + 10 rules", "SLA 99.9%", "10 domains", "Unlimited req/month", "Unlimited Bandwidth", "Custom rules: 50", "Phone support", "Dedicated account manager"], enterprise: true, popular: false }
     ];
 
     // Dedicated: prices are per-year; 2-year gets 15% discount
     const dedicatedPlansRaw = [
-      { name: "Starter Dedicated",    hostingBDT: 270000, licenseBDT: 120000, maintenanceBDT: 12500,  setupBDT: 15000, cpu: "4 vCPU",   ram: "8 GB",   bandwidth: "2 TB",       requests: "50M",       sla: "99.9%",   features: ["Entry-level dedicated WAF", "Up to 10 Domains", "Business hours support", "PCI-DSS / HIPAA / GDPR"], popular: false },
-      { name: "Business Dedicated",   hostingBDT: 486000, licenseBDT: 220000, maintenanceBDT: 18000,  setupBDT: 25000, cpu: "8 vCPU",   ram: "16 GB",  bandwidth: "5 TB",       requests: "200M",      sla: "99.99%",  features: ["Mid-tier enhanced capacity", "Up to 20 Domains", "24/7 priority support", "Advanced DDoS"],          popular: true  },
-      { name: "Enterprise Dedicated", hostingBDT: 864000, licenseBDT: 400000, maintenanceBDT: 30000,  setupBDT: 35000,  cpu: "16+ vCPU", ram: "32+ GB", bandwidth: "Unlimited*", requests: "Unlimited*", sla: "99.999%", features: ["Full-scale enterprise", "Up to 30 Domains", "Named engineer", "Custom SLA"],                      enterprise: true, popular: false }
+      { name: "Starter Dedicated",    hostingBDT: 270000, licenseBDT: 120000, maintenanceBDT: 12500,  setupBDT: 15000, cpu: "4 vCPU",   ram: "8 GB",   bandwidth: "2 TB",       requests: "50M",       sla: "99.9%",   support: "Support", supportLink: "support.html", supportHighlight: true, features: ["Entry-level dedicated WAF", "Up to 10 Domains", "Business hours support", "PCI-DSS / HIPAA / GDPR"], popular: false },
+      { name: "Business Dedicated",   hostingBDT: 486000, licenseBDT: 220000, maintenanceBDT: 18000,  setupBDT: 25000, cpu: "8 vCPU",   ram: "16 GB",  bandwidth: "5 TB",       requests: "200M",      sla: "99.99%",  support: "Support", supportLink: "support.html", supportHighlight: true, features: ["Mid-tier enhanced capacity", "Up to 20 Domains", "24/7 priority support", "Advanced DDoS"],          popular: true  },
+      { name: "Enterprise Dedicated", hostingBDT: 864000, licenseBDT: 400000, maintenanceBDT: 30000,  setupBDT: 35000,  cpu: "16+ vCPU", ram: "32+ GB", bandwidth: "Unlimited*", requests: "Unlimited*", sla: "99.999%", support: "Support", supportLink: "support.html", supportHighlight: true, features: ["Full-scale enterprise", "Up to 30 Domains", "Named engineer", "Custom SLA"],                      enterprise: true, popular: false }
     ];
 
     const customEnterprisePlan = {
@@ -845,7 +845,6 @@
         const yearlyMonthly = Math.round(plan.priceBDT * (1 - SAAS_DISCOUNT));
         const displayPrice = isYearly ? yearlyMonthly : monthlyPrice;
 
-        // শুধু monthly হলে old price দেখাবে, yearly হলে দেখাবে না
         const oldPriceHtml = !isYearly ? `<span class="price-old">${formatPrice(plan.oldPriceBDT)}</span>` : '';
 
         let yearlyNote = '';
@@ -854,15 +853,25 @@
           yearlyNote = `<div class="price-yearly-note"><i class="fas fa-tag"></i> ${formatPrice(annual)}/yearly - <span style="color: #ffffff; font-weight: 800; background: linear-gradient(135deg, #dc2626, #ef4444); padding: 2px 8px; border-radius: 20px; display: inline-block;">🔥 Save 10%</span></div>`;
         }
 
+        // Create support HTML with link and highlight
+        const supportHtml = plan.supportHighlight 
+          ? `<a href="${plan.supportLink}" style="text-decoration: none; color: inherit;">
+               <div style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2)); border-radius: 10px; padding: 0.4rem; margin: 0.5rem 0; text-align: center; font-size: 0.75rem; border: 1px solid rgba(59,130,246,0.4); transition: all 0.3s ease; cursor: pointer;">
+                 <i class="fas fa-headset" style="color: #3b82f6;"></i> ${plan.support}: <strong style="color: #8b5cf6;">${plan.supporttype}</strong>
+                 <span style="display: inline-block; margin-left: 8px; font-size: 0.7rem; color: #3b82f6;"><i class="fas fa-arrow-right"></i> View Support</span>
+               </div>
+             </a>`
+          : `<div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
+               <i class="fas fa-headset"></i> ${plan.support}: <strong>${plan.supporttype}</strong>
+             </div>`;
+
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
              <div>${oldPriceHtml}<span class="price-main">${formatPrice(displayPrice)}</span><span class="price-period"> /monthly</span></div>
              ${yearlyNote}
            </div>
-           <div style="background:rgba(59,130,246,0.15); border-radius:10px; padding:0.4rem; margin:0.5rem 0; text-align:center; font-size:0.75rem;">
-             <i class="fas fa-headset"></i> ${plan.support}: <strong>${plan.supporttype}</strong>
-           </div>
+           ${supportHtml}
            <ul class="feature-list">
              ${plan.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
            </ul>
@@ -883,7 +892,6 @@
       const DEDICATED_DISCOUNT = 0.15; // 15% off 2-year
 
       dedicatedPlansRaw.forEach(plan => {
-        // Annual totals (1 year)
         const annualBase = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
         let displayTotal, termLabel, savingsNote = '';
 
@@ -903,6 +911,17 @@
           ? `<div class="setup-fee"><i class="fas fa-wrench"></i> One-time Setup: ${formatPrice(plan.setupBDT)}</div>`
           : `<div class="setup-fee"><i class="fas fa-star"></i> Custom enterprise pricing available</div>`;
 
+        // Create support HTML with link and highlight
+        const supportHtml = plan.supportHighlight
+          ? `<a href="${plan.supportLink}" style="text-decoration: none; color: inherit;">
+               <div style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2)); border-radius: 10px; padding: 0.5rem; margin: 0.8rem 0; text-align: center; border: 1px solid rgba(59,130,246,0.4); transition: all 0.3s ease; cursor: pointer;">
+                 <i class="fas fa-headset" style="color: #3b82f6; font-size: 1rem;"></i>
+                 <strong style="color: #8b5cf6; display: block; margin-top: 4px;">${plan.support}</strong>
+                 <span style="font-size: 0.7rem; color: #3b82f6; margin-top: 4px; display: inline-block;"><i class="fas fa-external-link-alt"></i> View Support Details →</span>
+               </div>
+             </a>`
+          : `<div class="support-price"><i class="fas fa-headset"></i> ${plan.support}: Standard Support</div>`;
+
         const card = createCard(
           `<div class="plan-name">${plan.name}</div>
            <div class="price-section">
@@ -913,6 +932,7 @@
            <div class="support-price"><i class="fas fa-chart-line"></i> Feature+Branding: ${formatPrice(plan.hostingBDT)}/Yearly</div>
            <div class="support-price"><i class="fas fa-key"></i> License: ${formatPrice(plan.licenseBDT)}/Yearly</div>
            <div class="support-price"><i class="fas fa-tools"></i> Maintenance: ${formatPrice(plan.maintenanceBDT)}/month</div>
+           ${supportHtml}
            <div class="deployment-info">
              <i class="fas fa-cloud-upload-alt"></i> <strong>Flexible Deployment</strong><br>
              Deploy on your Cloud (AWS, Azure, GCP), VM, or our Secure Datacenter.

@@ -4,36 +4,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Standard SEO Meta -->
-    <!-- <meta name="description"
-        content="Explore CloFix WAF support plans: Free, Standard, and Enterprise tiers. Get email, WhatsApp, Slack, Zoom support with SLA options, proactive monitoring, and expert consultancy to ensure your web applications stay secure and optimized."> -->
-    <meta name="description"
-        content="CloFix WAF support: Free, Standard, Enterprise tiers with email, WhatsApp, Slack, Zoom, SLAs, robust monitoring, and expert help to keep apps secure, optimized.">
-
+    <meta name="description" content="CloFix WAF support: Free, Standard, Enterprise tiers with email, WhatsApp, Slack, Zoom, SLAs, robust monitoring, and expert help to keep apps secure, optimized.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="CloFix WAF Support Plans | Free, Standard & Enterprise">
-    <meta property="og:description"
-        content="Choose the perfect CloFix WAF support plan. Free, Standard, and Enterprise tiers offer responsive support, proactive monitoring, and expert guidance to keep your applications secure and running smoothly.">
+    <meta property="og:description" content="Choose the perfect CloFix WAF support plan. Free, Standard, and Enterprise tiers offer responsive support, proactive monitoring, and expert guidance to keep your applications secure and running smoothly.">
     <meta property="og:url" content="https://clofix.com/support-plans">
     <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
-
-    <!-- LinkedIn -->
-    <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CloFix WAF Support Plans | Free, Standard & Enterprise">
-    <meta name="twitter:description"
-        content="Explore CloFix WAF support tiers: Free, Standard, and Enterprise. Receive email, WhatsApp, and live support with proactive monitoring and expert guidance.">
+    <meta name="twitter:description" content="Explore CloFix WAF support tiers: Free, Standard, and Enterprise. Receive email, WhatsApp, and live support with proactive monitoring and expert guidance.">
     <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
     <meta name="twitter:site" content="@clofix19">
 
-    <!-- WhatsApp -->
-    <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
-
-    <!-- <link rel="icon" type="image/png" href="img/clofix.png" /> -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -41,14 +27,420 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
 
-    <title>CloFix Support Details</title>
+    <title>CloFix Support Plans</title>
+
+    <style>
+        /* ── Support page local styles ─────────────────────────────── */
+        :root {
+            --sp-accent:    #3b82f6;
+            --sp-accent-lt: rgba(59,130,246,.15);
+            --sp-green:     #22c55e;
+            --sp-green-lt:  rgba(34,197,94,.15);
+            --sp-muted:     #94a3b8;
+            --sp-border:    rgba(255,255,255,.09);
+            --sp-card-bg:   #0f2044;
+            --sp-page-bg:   #071530;
+            --sp-text:      #e2e8f0;
+            --sp-radius:    12px;
+        }
+
+        /* ── Hero ─────────────────────────────────────────────── */
+        .sp-hero {
+            background: linear-gradient(160deg, #030d1f 0%, #071530 45%, #0c2a5e 100%);
+            padding: 90px 0 72px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .sp-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(99,179,237,.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .sp-hero__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            background: rgba(147,197,253,.12);
+            border: 1px solid rgba(147,197,253,.25);
+            border-radius: 100px;
+            padding: 5px 14px;
+            margin-bottom: 22px;
+        }
+        .sp-hero h1 {
+            font-family: 'Hind', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .sp-hero p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.05rem;
+            color: #bfdbfe;
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
+        }
+        .sp-hero__badges {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .sp-hero__badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: #e0f2fe;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .sp-hero__badge svg { flex-shrink: 0; }
+
+        /* ── Section wrapper ──────────────────────────────────── */
+        .sp-section { padding: 72px 0 0; }
+        .sp-section:last-of-type { padding-bottom: 80px; }
+
+        .sp-section__header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .sp-section__left { flex: 1; min-width: 240px; }
+        .sp-section__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            color: var(--sp-accent);
+            background: var(--sp-accent-lt);
+            border-radius: 100px;
+            padding: 4px 12px;
+            margin-bottom: 10px;
+        }
+        .sp-section__title {
+            font-family: 'Hind', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+        }
+        .sp-section__desc {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .93rem;
+            color: var(--sp-muted);
+            line-height: 1.65;
+            max-width: 580px;
+        }
+        .sp-billing-note {
+            font-size: 12px;
+            color: #94a3b8;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 8px;
+            padding: 6px 14px;
+            white-space: nowrap;
+            align-self: flex-start;
+        }
+
+        /* ── Divider ──────────────────────────────────────────── */
+        .sp-divider {
+            border: none;
+            border-top: 1px solid var(--sp-border);
+            margin: 0 0 40px;
+        }
+
+        /* ── Card grid ────────────────────────────────────────── */
+        .sp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 900px) { .sp-grid { grid-template-columns: 1fr; } }
+
+        .sp-card {
+            background: var(--sp-card-bg);
+            border: 1px solid var(--sp-border);
+            border-radius: var(--sp-radius);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            transition: box-shadow .2s;
+        }
+        .sp-card:hover { box-shadow: 0 4px 32px rgba(0,0,0,.35); }
+        .sp-card.featured {
+            border: 2px solid var(--sp-accent);
+        }
+        .sp-badge-pop {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--sp-accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .06em;
+            padding: 4px 14px;
+            border-radius: 100px;
+            white-space: nowrap;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .sp-card__tier {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--sp-muted);
+            font-family: 'Open Sans', sans-serif;
+        }
+        .sp-card__name {
+            font-family: 'Hind', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-top: 2px;
+        }
+        .sp-card__price {
+            font-family: 'Hind', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .sp-card__price span {
+            font-size: .9rem;
+            font-weight: 400;
+            color: var(--sp-muted);
+        }
+        .sp-card__desc {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .875rem;
+            color: var(--sp-muted);
+            line-height: 1.6;
+            border-top: 1px solid var(--sp-border);
+            padding-top: 14px;
+        }
+        .sp-card__features {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            flex: 1;
+        }
+        .sp-feat {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .85rem;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+        .sp-feat__icon {
+            flex-shrink: 0;
+            margin-top: 1px;
+            width: 16px;
+            height: 16px;
+        }
+        .sp-feat__icon--check { color: var(--sp-green); }
+        .sp-feat__icon--na    { color: #334155; }
+
+        .sp-cta {
+            display: block;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .875rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity .15s, background .15s;
+            border: 1px solid rgba(255,255,255,.15);
+            color: #e2e8f0;
+            background: rgba(255,255,255,.06);
+        }
+        .sp-cta:hover { background: rgba(255,255,255,.11); }
+        .sp-cta.primary {
+            background: var(--sp-accent);
+            color: #fff;
+            border-color: transparent;
+        }
+        .sp-cta.primary:hover { opacity: .88; }
+
+        .sp-foot-note {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 11.5px;
+            color: #9ca3af;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* ── "Why" description strip ──────────────────────────── */
+        .sp-why {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: var(--sp-radius);
+            padding: 2rem 2rem 1.5rem;
+            margin-bottom: 0;
+        }
+        .sp-why__title {
+            font-family: 'Hind', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 14px;
+        }
+        .sp-why__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .sp-why__item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .sp-why__icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(59,130,246,.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+        .sp-why__icon svg { color: var(--sp-accent); }
+        .sp-why__item-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .85rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 3px;
+        }
+        .sp-why__item-desc {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .8rem;
+            color: var(--sp-muted);
+            line-height: 1.55;
+        }
+
+        /* ── Comparison table ─────────────────────────────────── */
+        .sp-table-wrap { overflow-x: auto; margin-top: 40px; }
+        .sp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .875rem;
+        }
+        .sp-table th {
+            text-align: left;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #64748b;
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            background: rgba(255,255,255,.04);
+        }
+        .sp-table th:first-child { border-radius: 8px 0 0 0; }
+        .sp-table th:last-child  { border-radius: 0 8px 0 0; }
+        .sp-table td {
+            padding: 11px 16px;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+            color: #cbd5e1;
+            vertical-align: top;
+        }
+        .sp-table tr:last-child td { border-bottom: none; }
+        .sp-table tr:nth-child(even) td { background: rgba(255,255,255,.03); }
+        .sp-table td:first-child { font-weight: 600; color: #94a3b8; }
+
+        /* ── CTA Banner ───────────────────────────────────────── */
+        .sp-banner {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            border-radius: var(--sp-radius);
+            padding: 2.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 60px 0 0;
+            flex-wrap: wrap;
+        }
+        .sp-banner__text h3 {
+            font-family: 'Hind', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .sp-banner__text p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .9rem;
+            color: #bfdbfe;
+            line-height: 1.55;
+        }
+        .sp-banner__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .sp-banner__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .875rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity .15s;
+        }
+        .sp-banner__btn--white { background: #fff; color: var(--sp-accent); }
+        .sp-banner__btn--outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+        .sp-banner__btn:hover { opacity: .88; }
+
+        /* ── Page background ──────────────────────────────────── */
+        main { background: var(--sp-page-bg); }
+
+        /* ── Container override ───────────────────────────────── */
+        .sp-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- ══════════ HEADER ══════════ -->
     <header class="header">
         <div class="container">
           <div class="header__wrapper">
@@ -64,208 +456,564 @@
                 <span class="c-nav__bar"></span>
                 <span class="c-nav__bar"></span>
               </button>
-
               <div class="c-nav__content">
                 <ul class="c-list c-list--flex">
-                  <li class="c-list__item">
-                    <a href="pricing.html" class="c-link c-link--list">Pricing</a>
-                  </li>
-                  <li class="c-list__item">
-                    <a href="#section-services" class="c-link c-link--list">Services</a>
-                  </li>
-                  <li class="c-list__item">
-                    <a href="about.html" class="c-link c-link--list">About</a>
-                  </li>
-                  <li class="c-list__item">
-                    <a href="features.html" class="c-link c-link--list">Features</a>
-                  </li>
-                  <li class="c-list__item">
-                      <a href="wasm.html" class="c-link c-link--list">CloFix WASM</a>
-                  </li>
-                  <li class="c-list__item">
-                    <a href="contact.html" class="c-link c-link--list">Contact</a>
-                  </li>
-                  <!-- Others mega dropdown -->
+                  <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+                  <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+                  <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+                  <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+                  <li class="c-list__item"><a href="wasm.html" class="c-link c-link--list">CloFix WASM</a></li>
+                  <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
                   <li class="c-list__item c-dropdown c-dropdown--mega">
                     <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                      Others
-                      <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                      Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
                     </button>
-
                     <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
                       <div class="c-dropdown__mega-wrap">
                         <div class="c-dropdown__mega-grid">
-                          <!-- Documentation -->
                           <div class="c-dropdown__mega-col">
                             <h4 class="c-dropdown__mega-title">Documentation</h4>
-                            <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">
-                              CloFix LUA Script
-                            </a>
-                            <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">
-                              CloFix JS Script
-                            </a>
-                            <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">
-                              CloFix CRS Script
-                            </a>
-                            <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">
-                              CloFix WASM
-                            </a>
-                            <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">
-                              CloFix WAF Workflow
-                            </a>
+                            <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                            <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">CloFix JS Script</a>
+                            <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                            <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">CloFix WASM</a>
+                            <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
                           </div>
-
-                          <!-- Tools -->
                           <div class="c-dropdown__mega-col">
                             <h4 class="c-dropdown__mega-title">Tools</h4>
-                            <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">
-                              CVE Checker
-                            </a>
-                            <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">
-                              CloFix Pentest
-                            </a>
+                            <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">CVE Checker</a>
+                            <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">CloFix Pentest</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </li>
                   <a href="faq.html" class="ticket-button">
-                    <button class="c-button c-button--small c-button--secondary">
-                      FAQ
-                    </button>
+                    <button class="c-button c-button--small c-button--secondary">FAQ</button>
                   </a>
+                </ul>
               </div>
             </nav>
           </div>
         </div>
-      </header>
+    </header>
 
     <main>
-        <section class="support-table-section">
-            <h1 class="heading--2">CloFix Support Plans</h1>
-            <!-- <button class="toggle-headers-button" onclick="toggleMobileHeaders()">Toggle Plan Labels</button> -->
 
-            <div class="support-table-container">
-                <table class="support-table-modern">
-                    <thead>
-                        <tr>
-                            <th>Plans</th>
-                            <th>Free Tier</th>
-                            <th>Standard Support</th>
-                            <th>Enterprise Support</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Plans">Recommended For</td>
-                            <td data-label="Free Support">Ideal for individuals or small teams starting with CloFix who
-                                need only basic assistance.</td>
-                            <td data-label="Standard Support">Perfect for growing businesses with active production
-                                workloads that need faster, reliable help.</td>
-                            <td data-label="Enterprise Support">Tailored for organizations running mission‑critical
-                                workloads that demand priority response and custom solutions.</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Case Severity / Response Times*</td>
-                            <td data-label="Free Support">General questions: No SLA (best effort)</td>
-                            <td data-label="Standard Support">General guidance: &lt; 6 hrs<br>System issues: &lt; 6 hrs
-                            </td>
-                            <td data-label="Enterprise Support">General guidance: &lt; 1 hr<br>System issues: &lt; 1
-                                hr<br>Mission‑critical: &lt; 15 mins</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Support Channels</td>
-                            <td data-label="Free Support">Email only</td>
-                            <td data-label="Standard Support">Email, WhatsApp</td>
-                            <td data-label="Enterprise Support">Any preferred platform (Email, WhatsApp, Slack, Zoom,
-                                Teams, etc.)</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Account Management</td>
-                            <td data-label="Free Support">Not included</td>
-                            <td data-label="Standard Support">Shared support team</td>
-                            <td data-label="Enterprise Support">Dedicated Account Manager</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Custom Features</td>
-                            <td data-label="Free Support">Not available</td>
-                            <td data-label="Standard Support">Limited integration guidance</td>
-                            <td data-label="Enterprise Support">Full custom development</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Proactive Guidance</td>
-                            <td data-label="Free Support">FAQs & Docs</td>
-                            <td data-label="Standard Support">Setup & best practices</td>
-                            <td data-label="Enterprise Support">Quarterly reviews, security checks</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Priority Handling</td>
-                            <td data-label="Free Support">No prioritization</td>
-                            <td data-label="Standard Support">Faster handling</td>
-                            <td data-label="Enterprise Support">Top priority & instant escalation</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Third‑Party Help</td>
-                            <td data-label="Free Support">None</td>
-                            <td data-label="Standard Support">Basic connection help</td>
-                            <td data-label="Enterprise Support">Full integration & API support</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Plans">Extras</td>
-                            <td data-label="Free Support">–</td>
-                            <td data-label="Standard Support">–</td>
-                            <td data-label="Enterprise Support">Early access, workshops, onboarding</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- ══════════ HERO ══════════ -->
+        <section class="sp-hero">
+            <div class="sp-container">
+                <div class="sp-hero__eyebrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Support &amp; Plans
+                </div>
+                <h1>Expert support,<br>every step of the way</h1>
+                <p>From getting started to mission-critical deployments - CloFix offers responsive support and hands-on Infrastructure Security consulting tailored to your team's needs.</p>
+                <div class="sp-hero__badges">
+                    <span class="sp-hero__badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        SLA-backed response times
+                    </span>
+                    <span class="sp-hero__badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        Dedicated account managers
+                    </span>
+                    <span class="sp-hero__badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        Proactive monitoring
+                    </span>
+                    <span class="sp-hero__badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Multi-channel access
+                    </span>
+                </div>
             </div>
         </section>
+
+        <!-- ══════════ WAF SUPPORT ══════════ -->
+        <section class="sp-section">
+            <div class="sp-container">
+
+                <div class="sp-section__header">
+                    <div class="sp-section__left">
+                        <div class="sp-section__tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            WAF Support
+                        </div>
+                        <h2 class="sp-section__title">CloFix WAF support plans</h2>
+                        <p class="sp-section__desc">Get the right level of protection and guidance for your web application firewall. Whether you're a solo developer or running mission-critical infrastructure, our support tiers are designed to match your operational demands - with guaranteed response times, proactive security reviews, and direct access to WAF engineers.</p>
+                    </div>
+                    <div class="sp-billing-note">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Annual billing
+                    </div>
+                </div>
+                <hr class="sp-divider">
+
+                <!-- Cards -->
+                <div class="sp-grid">
+
+                    <!-- Free -->
+                    <div class="sp-card">
+                        <div>
+                            <div class="sp-card__tier">Tier 1</div>
+                            <div class="sp-card__name">Free</div>
+                        </div>
+                        <div class="sp-card__price">৳0 <span>/ year</span></div>
+                        <p class="sp-card__desc">Ideal for individuals or small teams exploring CloFix WAF. Access documentation, community resources, and basic email support at no cost.</p>
+                        <div class="sp-card__features">
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Initial Setup only.
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Email/Tickets support (best effort, no SLA)
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                FAQs &amp; documentation access
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Community resources
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No SLA guarantee
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No account manager
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No custom features
+                            </div>
+                        </div>
+                        <a href="mailto:support@clofix.com" class="sp-cta">Get started free</a>
+                    </div>
+
+                    <!-- Standard -->
+                    <div class="sp-card featured">
+                        <span class="sp-badge-pop">Most popular</span>
+                        <div>
+                            <div class="sp-card__tier">Tier 2</div>
+                            <div class="sp-card__name">Standard</div>
+                        </div>
+                        <div class="sp-card__price">৳60,000 <span>/ year</span></div>
+                        <div style="font-size:11.5px;color:#64748b;font-family:'Open Sans',sans-serif;margin-top:-10px;">≈ ৳5,000 / month</div>
+                        <p class="sp-card__desc">Perfect for growing businesses with active production workloads. Get faster response times via Email and WhatsApp, with a shared team ready to guide your setup and integrations.</p>
+                        <div class="sp-card__features">
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Email + Tickets + WhatsApp support
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Response &lt; 6 hrs (general &amp; system issues)
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Shared security support team
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Setup &amp; best practices guidance
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Basic third-party integration help
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No dedicated account manager
+                            </div>
+                        </div>
+                        <a href="contact.html" class="sp-cta primary">Contact us</a>
+                    </div>
+
+                    <!-- Enterprise -->
+                    <div class="sp-card">
+                        <div>
+                            <div class="sp-card__tier">Tier 3</div>
+                            <div class="sp-card__name">Enterprise</div>
+                        </div>
+                        <div class="sp-card__price">৳7,20,000 <span>/ year</span></div>
+                        <div style="font-size:11.5px;color:#64748b;font-family:'Open Sans',sans-serif;margin-top:-10px;">≈ ৳60,000 / month</div>
+                        <p class="sp-card__desc">Tailored for organizations running mission-critical workloads. Get a dedicated account manager, custom SLAs, instant escalation paths, and full access to WAF engineering for bespoke feature development.</p>
+                        <div class="sp-card__features">
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Any channel (Slack, WhatsApp, Zoom, Teams, etc.)
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Response &lt; 1 hr · critical &lt; 15 min
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Dedicated account manager
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Full custom feature development
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Quarterly reviews &amp; security checks
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Early access, workshops &amp; onboarding
+                            </div>
+                        </div>
+                        <a href="contact.html" class="sp-cta">Contact us</a>
+                    </div>
+
+                </div>
+                <p class="sp-foot-note">* Response times apply during business hours. Mission-critical SLA is available 24/7 on Enterprise plans.</p>
+
+                <!-- WAF Why section -->
+                <div class="sp-why" style="margin-top: 32px;">
+                    <div class="sp-why__title">What CloFix WAF support covers</div>
+                    <div class="sp-why__grid">
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Rule &amp; policy tuning</div>
+                                <div class="sp-why__item-desc">Help with CRS rules, Lua scripts, custom WAF policies, and OWASP Top 10 coverage.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Incident response</div>
+                                <div class="sp-why__item-desc">Rapid triage and guidance during active DDoS attacks, breaches, or traffic anomalies.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Performance optimization</div>
+                                <div class="sp-why__item-desc">Query tuning, cache layer, reverse proxy config, load balancer optimization, and throughput improvements.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Dashboard &amp; analytics</div>
+                                <div class="sp-why__item-desc">Guidance on traffic analytics, security dashboards, log management, and alerting setups.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">New feature implementation</div>
+                                <div class="sp-why__item-desc">Custom WAF feature development based on your requirements - new detection modules, rule sets, integrations, or business logic tailored to your stack.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Version upgrades &amp; migrations</div>
+                                <div class="sp-why__item-desc">Assisted upgrades to new CloFix WAF versions, configuration migrations, compatibility testing, and zero-downtime rollout planning.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WAF Comparison Table -->
+                <div class="sp-table-wrap">
+                    <table class="sp-table">
+                        <thead>
+                            <tr>
+                                <th style="width:28%">Feature</th>
+                                <th>Free</th>
+                                <th>Standard</th>
+                                <th>Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Support channels</td><td>Email only</td><td>Email, WhatsApp</td><td>Email, WhatsApp, Slack, Zoom, Teams</td></tr>
+                            <tr><td>Response time</td><td>Best effort</td><td>&lt; 6 hrs</td><td>&lt; 1 hr · critical &lt; 15 min</td></tr>
+                            <tr><td>Account management</td><td>-</td><td>Shared team</td><td>Dedicated manager</td></tr>
+                            <tr><td>Custom features</td><td>-</td><td>Limited guidance</td><td>Full development</td></tr>
+                            <tr><td>Third-party integrations</td><td>-</td><td>Basic help</td><td>Full API &amp; integration support</td></tr>
+                            <tr><td>Proactive guidance</td><td>FAQs &amp; docs</td><td>Setup &amp; best practices</td><td>Quarterly reviews, security checks</td></tr>
+                            <tr><td>Priority handling</td><td>None</td><td>Faster handling</td><td>Top priority &amp; instant escalation</td></tr>
+                            <tr><td>Extras</td><td>-</td><td>-</td><td>Early access, workshops, onboarding</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════ DEVOPS SUPPORT ══════════ -->
+        <!-- <section class="sp-section">
+            <div class="sp-container">
+
+                <div class="sp-section__header">
+                    <div class="sp-section__left">
+                        <div class="sp-section__tag" style="background:rgba(34,197,94,.15); color:#22c55e;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                            DevOps Consulting
+                        </div>
+                        <h2 class="sp-section__title">DevOps consulting plans</h2>
+                        <p class="sp-section__desc">Accelerate your infrastructure with hands-on DevOps expertise. From cloud architecture advisory to fully embedded engineering support, our consulting plans are scoped to your team size and operational complexity. We handle Kubernetes, CI/CD, IaC, monitoring, and security so your team can focus on building product.</p>
+                    </div>
+                    <div class="sp-billing-note">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Annual billing
+                    </div>
+                </div>
+                <hr class="sp-divider">
+
+                <div class="sp-grid">
+
+                    <div class="sp-card">
+                        <div>
+                            <div class="sp-card__tier">Tier 1</div>
+                            <div class="sp-card__name">Starter</div>
+                        </div>
+                        <div class="sp-card__price">৳80,000 <span>/ year</span></div>
+                        <div style="font-size:11.5px;color:#64748b;font-family:'Open Sans',sans-serif;margin-top:-10px;">≈ ৳6,667 / month · VAT excl.</div>
+                        <p class="sp-card__desc">Advisory-level DevOps support for small teams building their cloud foundations. Ideal for startups setting up their first CI/CD pipelines and cloud environments.</p>
+                        <div class="sp-card__features">
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Email support
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Cloud infrastructure advisory
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Cloud cost optimisation advisory
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                CI/CD pipeline guidance
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Monthly check-in call
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No hands-on implementation
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No 24/7 on-call coverage
+                            </div>
+                        </div>
+                        <a href="contact.html" class="sp-cta">Contact us</a>
+                    </div>
+
+                    <div class="sp-card featured">
+                        <span class="sp-badge-pop">Recommended</span>
+                        <div>
+                            <div class="sp-card__tier">Tier 2</div>
+                            <div class="sp-card__name">Professional</div>
+                        </div>
+                        <div class="sp-card__price">Contact us</div>
+                        <p class="sp-card__desc">Full-service DevOps consulting for scaling teams. We go beyond advice - hands-on implementation of Kubernetes clusters, monitoring stacks, security hardening, and automated deployments.</p>
+                        <div class="sp-card__features">
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Email, WhatsApp &amp; Slack
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Hands-on implementation
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Kubernetes, Docker &amp; cloud setup
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Cloud cost optimisation &amp; right-sizing
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Security hardening &amp; monitoring
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Bi-weekly review calls
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--na" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                No 24/7 on-call coverage
+                            </div>
+                        </div>
+                        <a href="contact.html" class="sp-cta primary">Contact us</a>
+                    </div>
+
+                    <div class="sp-card">
+                        <div>
+                            <div class="sp-card__tier">Tier 3</div>
+                            <div class="sp-card__name">Enterprise DevOps</div>
+                        </div>
+                        <div class="sp-card__price">Contact us</div>
+                        <p class="sp-card__desc">A dedicated DevOps engineer embedded in your operations with full coverage. Custom SLAs, 24/7 on-call, incident response, RCA reporting, and complete Infrastructure-as-Code management.</p>
+                        <div class="sp-card__features">
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Any preferred channel
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                24/7 on-call coverage
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Dedicated DevOps engineer
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Full IaC (Terraform, Ansible)
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Continuous cloud cost optimisation
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Incident response &amp; RCA reports
+                            </div>
+                            <div class="sp-feat">
+                                <svg class="sp-feat__icon sp-feat__icon--check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Custom SLA &amp; escalation paths
+                            </div>
+                        </div>
+                        <a href="contact.html" class="sp-cta">Contact us</a>
+                    </div>
+
+                </div>
+                <p class="sp-foot-note">All DevOps plans billed annually. Scope and hours agreed per engagement.</p>
+
+                <div class="sp-why" style="margin-top: 32px;">
+                    <div class="sp-why__title">What CloFix DevOps consulting covers</div>
+                    <div class="sp-why__grid">
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon" style="background:rgba(34,197,94,.15);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Cloud &amp; infrastructure</div>
+                                <div class="sp-why__item-desc">AWS, GCP, Azure architecture design, VPC and networking setup, and environment provisioning.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon" style="background:rgba(34,197,94,.15);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">CI/CD pipelines</div>
+                                <div class="sp-why__item-desc">GitHub Actions, GitLab CI, Jenkins - automated build, test, and deploy pipelines.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon" style="background:rgba(34,197,94,.15);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Kubernetes &amp; containers</div>
+                                <div class="sp-why__item-desc">Cluster setup, Helm charts, resource limits, autoscaling, and production-grade namespacing.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon" style="background:rgba(34,197,94,.15);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Security &amp; compliance</div>
+                                <div class="sp-why__item-desc">Hardening, secret management, RBAC, network policies, and compliance reviews.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon" style="background:rgba(34,197,94,.15);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Cloud cost optimisation</div>
+                                <div class="sp-why__item-desc">Right-sizing instances, reserved capacity planning, unused resource cleanup, and monthly spend reporting to cut cloud bills.</div>
+                            </div>
+                        </div>
+                        <div class="sp-why__item">
+                            <div class="sp-why__icon" style="background:rgba(34,197,94,.15);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </div>
+                            <div>
+                                <div class="sp-why__item-title">Infrastructure &amp; project security</div>
+                                <div class="sp-why__item-desc">End-to-end security posture review for your infra and application stack - vulnerability scanning, access control audits, secrets hygiene, and secure pipeline design.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section> -->
+
+        <!-- ══════════ CTA BANNER ══════════ -->
+        <section style="padding: 0 0 80px;">
+            <div class="sp-container">
+                <div class="sp-banner">
+                    <div class="sp-banner__text">
+                        <h3>Not sure which plan is right for you?</h3>
+                        <p>Talk to our team - we'll recommend the right WAF or Security support tier based on your workload, team size, and security requirements.</p>
+                    </div>
+                    <div class="sp-banner__actions">
+                        <a href="contact.html" class="sp-banner__btn sp-banner__btn--white">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            Talk to sales
+                        </a>
+                        <a href="faq.html" class="sp-banner__btn sp-banner__btn--outline">
+                            Read FAQ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- ══════════ FOOTER ══════════ -->
     <footer class="footer">
-
         <div class="stars"></div>
         <div class="stars2"></div>
         <div class="stars3"></div>
-
         <div class="container c-footer">
             <div class="c-footer__column c-footer__logo-column">
                 <a href="#" class="c-footer__brand">
                     <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
                 </a>
-                <p class="c-footer__text">
-                    <strong>Secure. Automate. Scale</strong>
-                </p>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
                 <ul class="social">
-                    <li class="social-li">
-                        <a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank">
-                            <img src="img/facebook_clofix.png" alt="Facebook" />
-                        </a>
-                    </li>
-                    <li class="social-li">
-                        <a href="https://x.com/clofix19" target="_blank">
-                            <img src="img/X_clofix.png" alt="X" />
-                        </a>
-                    </li>
-                    <li class="social-li">
-                        <a href="https://www.linkedin.com/company/clofix-infotech" target="_blank">
-                            <img src="img/linkedin_clofix.png" alt="LinkedIn" />
-                        </a>
-                    </li>
-                    <li class="social-li">
-                        <a href="https://wa.me/8801850603126" target="_blank">
-                            <img src="img/whatsapp_clofix.png" alt="WhatsApp" />
-                        </a>
-                    </li>
-                    <li class="social-li">
-                        <a href="https://youtube.com/@clofix-infotech" target="_blank">
-                          <img src="img/youtube_clofix.png" alt="YouTube" />
-                        </a>
-                      </li>
+                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
+                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
                 </ul>
-
             </div>
-
             <div class="c-footer__column">
                 <h4 class="c-footer__subtitle">Company</h4>
                 <ul class="c-footer__list c-footer__list--check">
@@ -275,7 +1023,6 @@
                     <li><a href="support.html">CloFix WAF Support Overview</a></li>
                 </ul>
             </div>
-
             <div class="c-footer__column">
                 <h4 class="c-footer__subtitle">Explore</h4>
                 <ul class="c-footer__list c-footer__list--check">
@@ -285,7 +1032,6 @@
                     <li><a href="blogs.html">Blogs</a></li>
                 </ul>
             </div>
-
             <div class="c-footer__column">
                 <h4 class="c-footer__subtitle">Legal</h4>
                 <ul class="c-footer__list c-footer__list--check">
@@ -293,19 +1039,17 @@
                 </ul>
             </div>
         </div>
-
         <div class="container">
             <p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p>
         </div>
     </footer>
-</body>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-<script>
-        // ===== Your existing nav + dropdown logic (kept intact) =====
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
         const navToggle = document.getElementById('navToggle');
         const navContent = document.querySelector('.c-nav__content');
-
         const dropdowns = document.querySelectorAll('.c-dropdown');
+
         function closeAllDropdowns() {
             dropdowns.forEach(dd => {
                 dd.classList.remove('open');
@@ -316,14 +1060,12 @@
 
         if (navToggle && navContent) {
             navToggle.setAttribute('aria-expanded', 'false');
-
             navToggle.addEventListener('click', () => {
                 const open = navContent.classList.toggle('active');
                 document.body.classList.toggle('nav-open', open);
                 navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
                 if (!open) closeAllDropdowns();
             });
-
             navContent.querySelectorAll('a').forEach(a => {
                 a.addEventListener('click', () => {
                     navContent.classList.remove('active');
@@ -332,7 +1074,6 @@
                     closeAllDropdowns();
                 });
             });
-
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && navContent.classList.contains('active')) {
                     navContent.classList.remove('active');
@@ -341,7 +1082,6 @@
                     closeAllDropdowns();
                 }
             });
-
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 768) {
                     document.body.classList.remove('nav-open');
@@ -355,7 +1095,6 @@
         dropdowns.forEach(dd => {
             const toggle = dd.querySelector('.c-dropdown__toggle');
             if (!toggle) return;
-
             toggle.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -391,12 +1130,9 @@
             }
             window.addEventListener('load', syncHeaderHeight);
             window.addEventListener('resize', syncHeaderHeight);
-            if (document.fonts && document.fonts.ready) {
-                document.fonts.ready.then(syncHeaderHeight);
-            }
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeaderHeight);
         })();
 
-        // ===== Optional: smooth scroll for in-page anchor =====
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', (e) => {
                 const id = a.getAttribute('href');
@@ -407,47 +1143,6 @@
                 el.scrollIntoView({ behavior: "smooth", block: "start" });
             });
         });
-
-        // ===== Page micro-interaction: triage flow cycles + badge updates =====
-        (function () {
-            const triage = document.getElementById('odsTriage');
-            const badge = document.getElementById('odsStatusBadge');
-            if (!triage) return;
-
-            const steps = Array.from(triage.querySelectorAll('.ods-step'));
-            if (!steps.length) return;
-
-            const labels = ["On-call: READY", "Triage: IN PROGRESS", "Stabilizing: ACTIVE", "RCA: UNDERWAY", "Optimizing: RUNNING"];
-            let i = 0;
-
-            function apply(idx) {
-                steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
-
-                steps.forEach((s, k) => {
-                    const chip = s.querySelector('.ods-chip');
-                    if (!chip) return;
-                    chip.classList.remove('ods-chip--good', 'ods-chip--warn', 'ods-chip--bad');
-
-                    if (k < idx) {
-                        chip.textContent = "OK";
-                        chip.classList.add('ods-chip--good');
-                    } else if (k === idx) {
-                        chip.textContent = "RUN";
-                        chip.classList.add('ods-chip--warn');
-                    } else {
-                        chip.textContent = "Pending";
-                    }
-                });
-
-                if (badge) badge.lastChild.textContent = " " + (labels[idx + 1] || labels[0]);
-            }
-
-            apply(0);
-            setInterval(() => {
-                i = (i + 1) % steps.length;
-                apply(i);
-            }, 2400);
-        })();
     </script>
-
+</body>
 </html>
