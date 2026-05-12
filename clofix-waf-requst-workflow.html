@@ -286,8 +286,18 @@
       font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
       color: #9ca3af; margin-bottom: 1.5rem; font-family: var(--font-mono);
     }
-    .pipeline-scroll-outer { overflow-x: auto; padding-bottom: 4px; }
-    .pipeline-rail { display: flex; align-items: center; min-width: max-content; gap: 0; }
+    .pipeline-scroll-outer { 
+      overflow-x: auto; 
+      padding-bottom: 12px;  /* Was: 4px */
+      scroll-behavior: smooth; /* Add this */
+    }
+    .pipeline-rail { 
+      display: flex; 
+      align-items: center; 
+      min-width: max-content; 
+      gap: 0;
+      padding: 8px 0; /* Add this */
+    }
 
     .pn {
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
@@ -608,6 +618,52 @@
 
     /* ── Anchor scroll offset for sticky header ── */
     [id] { scroll-margin-top: 90px; }
+
+    .pipeline-scroll-outer {
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-behavior: smooth;
+      cursor: grab;
+      user-select: none; /* Prevents text selection while dragging */
+    }
+
+    .pipeline-scroll-outer:active {
+      cursor: grabbing;
+    }
+
+    /* Optional: Add a subtle gradient fade on edges to indicate scrollability */
+    .pipeline-scroll-outer {
+      position: relative;
+    }
+
+    .pipeline-scroll-outer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.3));
+      pointer-events: none;
+      display: none;
+    }
+
+    .pipeline-scroll-outer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      background: linear-gradient(to left, transparent, rgba(0,0,0,0.3));
+      pointer-events: none;
+      display: none;
+    }
+
+    /* Show edge gradients only if content overflows */
+    .pipeline-scroll-outer {
+      overflow-x: auto;
+    }
   </style>
 </head>
 
@@ -2171,6 +2227,66 @@
         },{rootMargin:'-25% 0px -65% 0px'});
         sections.forEach(s=>obs.observe(s));
     </script>
-  
+    <script>
+      /* ── Click and Drag to Scroll Pipeline ── */
+      (function() {
+        const scrollContainer = document.querySelector('.pipeline-scroll-outer');
+        if (!scrollContainer) return;
+        
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        // Mouse/Touch down event
+        scrollContainer.addEventListener('mousedown', (e) => {
+          isDown = true;
+          startX = e.pageX - scrollContainer.offsetLeft;
+          scrollLeft = scrollContainer.scrollLeft;
+          scrollContainer.style.cursor = 'grabbing';
+        });
+        
+        // Mouse/Touch leave event
+        scrollContainer.addEventListener('mouseleave', () => {
+          isDown = false;
+          scrollContainer.style.cursor = 'grab';
+        });
+        
+        // Mouse/Touch up event
+        scrollContainer.addEventListener('mouseup', () => {
+          isDown = false;
+          scrollContainer.style.cursor = 'grab';
+        });
+        
+        // Mouse move event
+        scrollContainer.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - scrollContainer.offsetLeft;
+          const walk = (x - startX) * 1.5; // scroll speed multiplier
+          scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Touch events for mobile
+        scrollContainer.addEventListener('touchstart', (e) => {
+          isDown = true;
+          startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+          scrollLeft = scrollContainer.scrollLeft;
+        });
+        
+        scrollContainer.addEventListener('touchmove', (e) => {
+          if (!isDown) return;
+          const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+          const walk = (x - startX) * 1.5;
+          scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+        
+        scrollContainer.addEventListener('touchend', () => {
+          isDown = false;
+        });
+        
+        // Set initial cursor
+        scrollContainer.style.cursor = 'grab';
+      })();
+    </script>
 </body>
 </html>
