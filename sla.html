@@ -821,7 +821,7 @@
                                 <div class="sl-defs__term">Agreement / SLA</div>
                                 <div class="sl-defs__def">This Service Level Agreement document, including all schedules and annexes.</div>
                                 <div class="sl-defs__term">CloFix / Provider</div>
-                                <div class="sl-defs__def">Clofix Infotech Ltd., the entity providing CloFix WAF software and support services.</div>
+                                <div class="sl-defs__def">Clofix Infotech Ltd, the entity providing CloFix WAF software and support services.</div>
                                 <div class="sl-defs__term">Customer</div>
                                 <div class="sl-defs__def">Any individual or organisation that holds an active CloFix WAF licence or support subscription.</div>
                                 <div class="sl-defs__term">Service</div>
@@ -880,21 +880,18 @@
                             <div class="sl-uptime-grid">
                                 <div class="sl-uptime-card">
                                     <div class="sl-uptime-card__tier">Free Tier</div>
-                                    <div class="sl-uptime-card__value sl-uptime-card__value--free">99.0%</div>
+                                    <div class="sl-uptime-card__value sl-uptime-card__value--free">95%</div>
                                     <div class="sl-uptime-card__label">Monthly uptime</div>
-                                    <div class="sl-uptime-card__downtime">≤ 7h 18m downtime / month</div>
                                 </div>
                                 <div class="sl-uptime-card">
                                     <div class="sl-uptime-card__tier">Standard</div>
-                                    <div class="sl-uptime-card__value sl-uptime-card__value--standard">99.5%</div>
+                                    <div class="sl-uptime-card__value sl-uptime-card__value--standard">98%</div>
                                     <div class="sl-uptime-card__label">Monthly uptime · SLA-backed</div>
-                                    <div class="sl-uptime-card__downtime">≤ 3h 39m downtime / month</div>
                                 </div>
                                 <div class="sl-uptime-card">
                                     <div class="sl-uptime-card__tier">Enterprise</div>
-                                    <div class="sl-uptime-card__value sl-uptime-card__value--enterprise">99.9%</div>
+                                    <div class="sl-uptime-card__value sl-uptime-card__value--enterprise">99%</div>
                                     <div class="sl-uptime-card__label">Monthly uptime · SLA-backed</div>
-                                    <div class="sl-uptime-card__downtime">≤ 43m 48s downtime / month</div>
                                 </div>
                             </div>
                             <p class="sl-p">Uptime is measured continuously using CloFix's internal health-check probes and validated by a mutually agreed third-party monitoring service where applicable. Measurement intervals are 60 seconds. Three consecutive failed checks constitute confirmed downtime.</p>
@@ -994,7 +991,7 @@
                                         <tr>
                                             <td><span class="sl-sev sl-sev--p2">P2 - High</span></td>
                                             <td>Best effort</td>
-                                            <td><strong style="color:#e2e8f0">&lt; 6 hours</strong></td>
+                                            <td><strong style="color:#e2e8f0">&lt; 8 hours</strong></td>
                                             <td><strong style="color:#e2e8f0">&lt; 1 hour</strong> (24/7)</td>
                                         </tr>
                                         <tr>
@@ -1076,56 +1073,9 @@
                             <ul class="sl-list">
                                 <li><strong>1. Detection &amp; logging</strong> - Incident detected via Customer report, automated monitoring, or internal alert. Ticket created with timestamp and assigned severity.</li>
                                 <li><strong>2. Acknowledgement</strong> - Engineer confirms receipt, validates severity classification, and assigns ownership. Response time SLA clock starts at ticket creation, not acknowledgement.</li>
-                                <li><strong>3. Investigation &amp; triage</strong> - Root cause analysis begins. Customer receives status update within 30 minutes of acknowledgement for P1/P2.</li>
-                                <li><strong>4. Mitigation</strong> - Interim workaround or hotfix deployed to restore service. Customer notified immediately upon mitigation.</li>
-                                <li><strong>5. Resolution &amp; verification</strong> - Permanent fix implemented and verified. Customer confirms restoration before ticket is closed.</li>
-                                <li><strong>6. Post-incident review (PIR)</strong> - For P1 incidents on Enterprise plans, a written Root Cause Analysis (RCA) report is delivered within 5 business days of resolution.</li>
-                            </ul>
-                            <div class="sl-sub">Escalation path</div>
-                            <ul class="sl-list">
-                                <li>If a P1 incident is not resolved within 2 hours on Enterprise, the incident is automatically escalated to CloFix senior engineering leadership.</li>
-                                <li>Customers may request manual escalation at any time by contacting their dedicated account manager or emailing <a href="mailto:escalate@clofix.com" style="color:#60a5fa">escalate@clofix.com</a>.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- §7 Service credits -->
-                    <div class="sl-block" id="s7">
-                        <div class="sl-block__head">
-                            <div class="sl-block__icon sl-block__icon--green">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            </div>
-                            <div>
-                                <div class="sl-block__num">Section 7</div>
-                                <div class="sl-block__title">Service credits</div>
-                            </div>
-                        </div>
-                        <div class="sl-block__body">
-                            <p class="sl-p">When CloFix fails to meet the uptime commitments in §3 for Standard or Enterprise plan Customers, the Customer is entitled to a Service Credit calculated as a percentage of their <strong>monthly subscription fee</strong> for the affected calendar month.</p>
-                            <div class="sl-credit-grid">
-                                <div class="sl-credit-card">
-                                    <div class="sl-credit-card__range">99.0% – &lt; 99.5%</div>
-                                    <div class="sl-credit-card__pct">10%</div>
-                                    <div class="sl-credit-card__label">credit of monthly fee</div>
-                                </div>
-                                <div class="sl-credit-card">
-                                    <div class="sl-credit-card__range">95.0% – &lt; 99.0%</div>
-                                    <div class="sl-credit-card__pct">25%</div>
-                                    <div class="sl-credit-card__label">credit of monthly fee</div>
-                                </div>
-                                <div class="sl-credit-card">
-                                    <div class="sl-credit-card__range">&lt; 95.0%</div>
-                                    <div class="sl-credit-card__pct">50%</div>
-                                    <div class="sl-credit-card__label">credit of monthly fee</div>
-                                </div>
-                            </div>
-                            <div class="sl-sub">Credit claim procedure</div>
-                            <ul class="sl-list">
-                                <li>Claims must be submitted within <strong>15 calendar days</strong> of the end of the affected month by emailing <a href="mailto:sla-claims@clofix.com" style="color:#60a5fa">sla-claims@clofix.com</a> with subject line <em>"SLA Credit Claim - [Account ID] - [Month/Year]"</em>.</li>
-                                <li>CloFix will review and respond to credit claims within 10 business days.</li>
-                                <li>Approved credits are applied to the Customer's next invoice. Credits are non-transferable and have no cash value.</li>
-                                <li>Total credits in any calendar month shall not exceed 50% of the monthly fee for that month.</li>
-                                <li>Service credits are the Customer's sole and exclusive remedy for SLA breaches.</li>
+                                <li><strong>3. Mitigation</strong> - Interim workaround or hotfix deployed to restore service. Customer notified immediately upon mitigation.</li>
+                                <li><strong>4. Resolution &amp; verification</strong> - Permanent fix implemented and verified. Customer confirms restoration before ticket is closed.</li>
+                                <li><strong>5. Post-incident review (PIR)</strong> - For P1 incidents on Enterprise plans, a written Root Cause Analysis (RCA) report is delivered within 5 business days of resolution.</li>
                             </ul>
                         </div>
                     </div>
@@ -1137,76 +1087,161 @@
                                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
                             </div>
                             <div>
-                                <div class="sl-block__num">Section 8</div>
+                                <div class="sl-block__num">Section 7</div>
                                 <div class="sl-block__title">SLA exclusions</div>
                             </div>
                         </div>
                         <div class="sl-block__body">
-                            <p class="sl-p">The uptime commitment and service credit provisions in this SLA do <strong>not</strong> apply to downtime or degradation caused by any of the following Excluded Events.</p>
+                            <p class="sl-p">
+                                The uptime commitment and service credit provisions in this SLA do <strong>not</strong> apply to downtime or degradation caused by any of the following Excluded Events.
+                            </p>
+
                             <div class="sl-excl-list">
+
                                 <div class="sl-excl-item">
                                     <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
                                     </div>
                                     <div class="sl-excl-text">
                                         <strong>Customer-caused issues</strong>
-                                        <span>Outages or degradation resulting from the Customer's own actions, misconfigurations, or third-party software not supplied by CloFix.</span>
+                                        <span>Outages or degradation resulting from the Customer's actions, misconfigurations, insecure integrations, compromised credentials, malware, or third-party software not supplied by CloFix.</span>
                                     </div>
                                 </div>
+
                                 <div class="sl-excl-item">
                                     <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
                                     </div>
                                     <div class="sl-excl-text">
-                                        <strong>Planned maintenance</strong>
-                                        <span>Scheduled downtime notified at least 48 hours in advance (see §9). Notified windows are fully excluded from uptime calculations.</span>
+                                        <strong>Customer-side internet or device issues</strong>
+                                        <span>Performance issues caused by local networks, ISP outages, browser problems, device limitations, or internal firewall restrictions are excluded from uptime calculations.</span>
                                     </div>
                                 </div>
+
                                 <div class="sl-excl-item">
                                     <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Unsupported configurations</strong>
+                                        <span>Issues arising from unsupported operating systems, outdated browsers, modified environments, or unapproved custom integrations.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Emergency maintenance</strong>
+                                        <span>Urgent maintenance for security vulnerabilities, active incidents, or infrastructure risks may occur without notice and is excluded from uptime calculations.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Domain, SSL, or customer-managed services</strong>
+                                        <span>Failures caused by expired domains, expired SSL certificates, incorrect DNS records, or customer-managed infrastructure components.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Data synchronization delays</strong>
+                                        <span>Delays in backups, replication, analytics, reporting, or asynchronous processing systems that do not affect core service availability.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Excessive resource consumption</strong>
+                                        <span>Degradation caused by workloads exceeding usage limits, quotas, API thresholds, or fair-use allocations.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Regional internet disruptions</strong>
+                                        <span>Country-wide ISP restrictions, submarine cable failures, government-imposed blocks, or regional routing issues.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sl-excl-text">
+                                        <strong>Suspension for policy violations</strong>
+                                        <span>Service interruptions resulting from violations of Terms of Service, Acceptable Use Policy, or security policies.</span>
+                                    </div>
+                                </div>
+
+                                <div class="sl-excl-item">
+                                    <div class="sl-excl-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
                                     </div>
                                     <div class="sl-excl-text">
                                         <strong>Force majeure</strong>
-                                        <span>Events beyond CloFix's reasonable control - natural disasters, acts of war, government actions, major internet backbone failures, or widespread power outages.</span>
+                                        <span>Events beyond CloFix’s reasonable control, including natural disasters, war, terrorism, government actions, pandemics, or major internet backbone failures.</span>
                                     </div>
                                 </div>
+
                                 <div class="sl-excl-item">
                                     <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
                                     </div>
                                     <div class="sl-excl-text">
                                         <strong>Third-party infrastructure</strong>
-                                        <span>Failures in upstream hosting providers, DNS registrars, CDN networks, or internet exchange points outside CloFix's direct control.</span>
+                                        <span>Failures in upstream hosting providers, DNS registrars, CDN networks, or external services outside CloFix’s control.</span>
                                     </div>
                                 </div>
+
                                 <div class="sl-excl-item">
                                     <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
                                     </div>
                                     <div class="sl-excl-text">
-                                        <strong>Beta &amp; experimental features</strong>
-                                        <span>Any features explicitly marked as beta, preview, or experimental in the product UI or documentation are excluded from all SLA commitments.</span>
+                                        <strong>Beta & experimental features</strong>
+                                        <span>Features marked as beta, preview, or experimental are excluded from SLA commitments.</span>
                                     </div>
                                 </div>
-                                <div class="sl-excl-item">
-                                    <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                    </div>
-                                    <div class="sl-excl-text">
-                                        <strong>Overdue invoices</strong>
-                                        <span>Accounts with outstanding invoices more than 30 days past due are ineligible to claim service credits until the account balance is settled in full.</span>
-                                    </div>
-                                </div>
-                                <div class="sl-excl-item">
-                                    <div class="sl-excl-icon">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                    </div>
-                                    <div class="sl-excl-text">
-                                        <strong>Free Tier accounts</strong>
-                                        <span>Service credits and uptime guarantees are not available to Free Tier users under any circumstances. Support remains best-effort only.</span>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -1356,10 +1391,6 @@
                                 <div class="sl-defs__def"><a href="mailto:enterprise@clofix.com" style="color:#60a5fa">enterprise@clofix.com</a> - Dedicated Enterprise channel</div>
                                 <div class="sl-defs__term">P1 emergency</div>
                                 <div class="sl-defs__def"><a href="https://wa.me/8801850603126" style="color:#60a5fa">WhatsApp: +880 1850-603126</a> - Available 24/7 for Enterprise P1</div>
-                                <div class="sl-defs__term">SLA credit claims</div>
-                                <div class="sl-defs__def"><a href="mailto:sla-claims@clofix.com" style="color:#60a5fa">sla-claims@clofix.com</a> - Include account ID &amp; affected month</div>
-                                <div class="sl-defs__term">Escalation</div>
-                                <div class="sl-defs__def"><a href="mailto:escalate@clofix.com" style="color:#60a5fa">escalate@clofix.com</a> - Senior engineering escalation</div>
                             </div>
                         </div>
                     </div>
