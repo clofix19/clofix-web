@@ -6,23 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <!-- SEO -->
-  <title>Partner with CloFix</title>
-  <meta name="description"
-    content="Partner with CloFix to grow revenue. Become a Solution or Sales Partner to resell CloFix WAF, DevOps, and Cloud Automation with full technical support and co-marketing.">
+  <title>Partner with CloFix | Solution &amp; Sales Partnerships</title>
+  <meta name="description" content="Partner with CloFix to grow revenue. Become a Solution or Sales Partner to resell CloFix WAF, DevOps, and Cloud Automation with full technical support and co-marketing.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Partner with CloFix | Solution & Technology Partnerships">
-  <meta property="og:description"
-    content="Join CloFix as a Solution or Sales Partner. Resell WAF, DevOps, and Cloud Automation services with expert delivery, support, and shared growth." />
-  <meta property="og:url" content="https://clofix.com/partner">
+  <meta property="og:description" content="Join CloFix as a Solution or Sales Partner. Resell WAF, DevOps, and Cloud Automation services with expert delivery, support, and shared growth.">
+  <meta property="og:url" content="https://clofix.com/partner.html">
   <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Partner with CloFix | Solution & Technology Partnerships">
-  <meta name="twitter:description"
-    content="Become a CloFix Partner and earn with WAF, DevOps & Cloud services. Co-marketing + full technical support." />
+  <meta name="twitter:description" content="Become a CloFix Partner and earn with WAF, DevOps & Cloud services. Co-marketing + full technical support.">
   <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
   <meta name="twitter:site" content="@clofix19">
 
@@ -35,15 +32,653 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Your existing stylesheet (keep it) -->
+  <!-- Existing stylesheet -->
   <link href="./style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --p-accent:      #3b82f6;
+      --p-accent-lt:   rgba(59,130,246,.14);
+      --p-accent-glow: rgba(59,130,246,.25);
+      --p-green:       #22c55e;
+      --p-green-lt:    rgba(34,197,94,.13);
+      --p-amber:       #f59e0b;
+      --p-amber-lt:    rgba(245,158,11,.12);
+      --p-border:      rgba(255,255,255,.08);
+      --p-card:        #0f2044;
+      --p-card-hi:     #112348;
+      --p-page:        #071530;
+      --p-text:        #e2e8f0;
+      --p-muted:       #94a3b8;
+      --p-radius:      14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { background: var(--p-page); }
+    main { background: var(--p-page); }
+
+    /* ── Container ──────────────────────────────────────────── */
+    .pt-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ══════ HERO ═══════════════════════════════════════════ */
+    .pt-hero {
+      position: relative;
+      background: linear-gradient(160deg, #030d1f 0%, #071530 45%, #0c2a5e 100%);
+      padding: 100px 0 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    /* animated mesh glow */
+    .pt-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,130,246,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(34,197,94,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 85% 85%, rgba(99,102,241,.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    /* subtle grid overlay */
+    .pt-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .pt-hero__inner { position: relative; z-index: 1; }
+
+    .pt-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(147,197,253,.1);
+      border: 1px solid rgba(147,197,253,.22);
+      border-radius: 100px;
+      padding: 6px 16px;
+      margin-bottom: 24px;
+      animation: fadeUp .55s ease both;
+    }
+
+    .pt-hero h1 {
+      font-family: 'Hind', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      animation: fadeUp .6s .08s ease both;
+    }
+    .pt-hero__grad {
+      background: linear-gradient(90deg, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pt-hero__sub {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.05rem;
+      color: #bfdbfe;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      animation: fadeUp .65s .14s ease both;
+    }
+
+    .pt-hero__btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .pt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 24px;
+      border-radius: 9px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .15s, transform .15s;
+    }
+    .pt-btn:hover { opacity: .88; transform: translateY(-1px); }
+    .pt-btn--primary { background: var(--p-accent); color: #fff; }
+    .pt-btn--outline { background: transparent; color: #e2e8f0; border: 1.5px solid rgba(255,255,255,.22); }
+
+    .pt-hero__stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 52px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      animation: fadeUp .8s .28s ease both;
+    }
+    .pt-stat {
+      text-align: center;
+    }
+    .pt-stat__value {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+    }
+    .pt-stat__label {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 4px;
+      letter-spacing: .04em;
+    }
+    .pt-stat__sep {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,.1);
+    }
+
+    /* ══════ HOW IT WORKS STRIP ══════════════════════════════ */
+    .pt-how {
+      background: rgba(255,255,255,.025);
+      border-top: 1px solid var(--p-border);
+      border-bottom: 1px solid var(--p-border);
+      padding: 32px 0;
+    }
+    .pt-how__inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .pt-how__step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 28px;
+      flex: 1;
+      min-width: 180px;
+      max-width: 260px;
+      position: relative;
+    }
+    .pt-how__step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 40px;
+      background: var(--p-border);
+    }
+    .pt-how__num {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--p-accent-lt);
+      border: 1px solid rgba(59,130,246,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Hind', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #60a5fa;
+      flex-shrink: 0;
+    }
+    .pt-how__text strong {
+      display: block;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 3px;
+    }
+    .pt-how__text span {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .78rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* ══════ PARTNER CARDS SECTION ═══════════════════════════ */
+    .pt-section {
+      padding: 80px 0 0;
+    }
+
+    .pt-section__head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .pt-section__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--p-accent);
+      background: var(--p-accent-lt);
+      border-radius: 100px;
+      padding: 4px 14px;
+      margin-bottom: 14px;
+    }
+    .pt-section__title {
+      font-family: 'Hind', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 10px;
+    }
+    .pt-section__desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .95rem;
+      color: var(--p-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── Main partner cards ────────────────────────────────── */
+    .pt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 860px) { .pt-grid { grid-template-columns: 1fr; } }
+
+    .pt-card {
+      background: var(--p-card);
+      border: 1px solid var(--p-border);
+      border-radius: var(--p-radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: box-shadow .25s, border-color .25s, transform .25s;
+    }
+    .pt-card:hover {
+      border-color: rgba(59,130,246,.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(59,130,246,.1);
+      transform: translateY(-3px);
+    }
+    .pt-card--solution { --card-accent: #3b82f6; --card-accent-lt: rgba(59,130,246,.13); }
+    .pt-card--sales    { --card-accent: #22c55e; --card-accent-lt: rgba(34,197,94,.11); }
+    .pt-card--sales:hover { border-color: rgba(34,197,94,.3); box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(34,197,94,.1); }
+
+    /* glow accent line at top */
+    .pt-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .pt-card:hover::before { opacity: 1; }
+
+    /* card image banner */
+    .pt-card__banner {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #0a1a38 0%, #0e274d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pt-card__banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, var(--p-card) 100%);
+    }
+    .pt-card__banner-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: var(--card-accent-lt);
+      border: 1.5px solid rgba(255,255,255,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--card-accent);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 40px var(--card-accent-lt);
+    }
+
+    .pt-card__body {
+      padding: 24px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 16px;
+    }
+
+    .pt-card__type {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--card-accent);
+      background: var(--card-accent-lt);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+    .pt-card__title {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      line-height: 1.2;
+    }
+    .pt-card__desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .875rem;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    /* benefits list */
+    .pt-card__benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      padding-top: 4px;
+      border-top: 1px solid var(--p-border);
+    }
+    .pt-card__benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .84rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .pt-card__benefit-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      background: var(--card-accent-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      color: var(--card-accent);
+    }
+    .pt-card__benefit strong { color: #cbd5e1; }
+
+    .pt-card__actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+    .pt-card__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .15s, transform .15s;
+      flex: 1;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    .pt-card__btn:hover { opacity: .88; transform: translateY(-1px); }
+    .pt-card__btn--primary {
+      background: var(--card-accent);
+      color: #fff;
+    }
+    .pt-card__btn--outline {
+      background: rgba(255,255,255,.05);
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    /* ══════ BENEFITS STRIP ══════════════════════════════════ */
+    .pt-benefits {
+      margin-top: 64px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--p-border);
+      border-radius: var(--p-radius);
+      padding: 36px 32px;
+    }
+    .pt-benefits__title {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pt-benefits__title svg { color: var(--p-accent); }
+    .pt-benefits__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .pt-benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+    .pt-benefit-item__icon {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--p-accent-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--p-accent);
+      margin-top: 2px;
+    }
+    .pt-benefit-item__title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .875rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+    .pt-benefit-item__desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .8rem;
+      color: #64748b;
+      line-height: 1.55;
+    }
+
+    /* ══════ COMPARISON TABLE ════════════════════════════════ */
+    .pt-compare {
+      margin-top: 64px;
+    }
+    .pt-compare__title {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 20px;
+    }
+    .pt-compare-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--p-border); }
+    .pt-compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .855rem;
+      min-width: 520px;
+    }
+    .pt-compare-table th {
+      padding: 12px 18px;
+      background: rgba(255,255,255,.04);
+      text-align: left;
+      font-size: .77rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: #475569;
+      border-bottom: 1px solid var(--p-border);
+    }
+    .pt-compare-table th:nth-child(2) { color: #60a5fa; }
+    .pt-compare-table th:nth-child(3) { color: #34d399; }
+    .pt-compare-table td {
+      padding: 11px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      color: #94a3b8;
+      vertical-align: middle;
+    }
+    .pt-compare-table tr:last-child td { border-bottom: none; }
+    .pt-compare-table tr:hover td { background: rgba(255,255,255,.025); }
+    .pt-compare-table td:first-child { font-weight: 600; color: #64748b; }
+    .pt-chk {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+    }
+    .pt-chk--yes { background: rgba(34,197,94,.13); color: #22c55e; }
+    .pt-chk--no  { background: rgba(255,255,255,.04); color: #334155; }
+    .pt-chk--partial { background: rgba(245,158,11,.12); color: #f59e0b; }
+
+    /* ══════ CTA BANNER ═════════════════════════════════════ */
+    .pt-cta-banner {
+      margin: 64px 0 80px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%);
+      border-radius: var(--p-radius);
+      padding: 48px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .pt-cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      pointer-events: none;
+    }
+    .pt-cta-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 30%;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      pointer-events: none;
+    }
+    .pt-cta-banner__text { position: relative; z-index: 1; }
+    .pt-cta-banner__text h3 {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .pt-cta-banner__text p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .9rem;
+      color: #bfdbfe;
+      line-height: 1.6;
+      max-width: 460px;
+    }
+    .pt-cta-banner__btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .pt-cta-banner__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 24px;
+      border-radius: 9px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .15s, transform .15s;
+    }
+    .pt-cta-banner__btn:hover { opacity: .88; transform: translateY(-1px); }
+    .pt-cta-banner__btn--white { background: #fff; color: #1d4ed8; }
+    .pt-cta-banner__btn--outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+
+    /* ══════ ANIMATIONS ═════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal:nth-child(2) { transition-delay: .1s; }
+  </style>
 </head>
 
 <body>
-  <!-- ===== Header / Nav (unchanged) ===== -->
+
+  <!-- ══════════ HEADER ══════════ -->
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
@@ -59,200 +694,451 @@
             <span class="c-nav__bar"></span>
             <span class="c-nav__bar"></span>
           </button>
-
           <div class="c-nav__content">
             <ul class="c-list c-list--flex">
-              <li class="c-list__item">
-                <a href="pricing.html" class="c-link c-link--list">Pricing</a>
-              </li>
-              <li class="c-list__item">
-                <a href="#section-services" class="c-link c-link--list">Services</a>
-              </li>
-              <li class="c-list__item">
-                <a href="about.html" class="c-link c-link--list">About</a>
-              </li>
-              <li class="c-list__item">
-                <a href="features.html" class="c-link c-link--list">Features</a>
-              </li>
-              <li class="c-list__item">
-                  <a href="wasm.html" class="c-link c-link--list">CloFix WASM</a>
-              </li>
-              <li class="c-list__item">
-                <a href="contact.html" class="c-link c-link--list">Contact</a>
-              </li>
-              <!-- Others mega dropdown -->
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="wasm.html" class="c-link c-link--list">CloFix WASM</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
               <li class="c-list__item c-dropdown c-dropdown--mega">
                 <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                  Others
-                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                  Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
                 </button>
-
                 <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
                   <div class="c-dropdown__mega-wrap">
                     <div class="c-dropdown__mega-grid">
-                      <!-- Documentation -->
                       <div class="c-dropdown__mega-col">
                         <h4 class="c-dropdown__mega-title">Documentation</h4>
-                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">
-                          CloFix LUA Script
-                        </a>
-                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">
-                          CloFix JS Script
-                        </a>
-                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">
-                          CloFix CRS Script
-                        </a>
-                        <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">
-                          CloFix WASM
-                        </a>
-                        <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">
-                          CloFix WAF Workflow
-                        </a>
+                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">CloFix JS Script</a>
+                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">CloFix WASM</a>
+                        <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
                       </div>
-
-                      <!-- Tools -->
                       <div class="c-dropdown__mega-col">
                         <h4 class="c-dropdown__mega-title">Tools</h4>
-                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">
-                          CVE Checker
-                        </a>
-                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">
-                          CloFix Pentest
-                        </a>
+                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">CloFix Pentest</a>
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
               <a href="faq.html" class="ticket-button">
-                <button class="c-button c-button--small c-button--secondary">
-                  FAQ
-                </button>
+                <button class="c-button c-button--small c-button--secondary">FAQ</button>
               </a>
+            </ul>
           </div>
         </nav>
       </div>
     </div>
   </header>
 
-  <!-- ===== NEXT-GEN PARALLAX HERO ===== -->
-  <section class="nx-hero" aria-label="Partner with CloFix">
-    <div class="nx-stage" data-nx-stage>
-      <!-- depth layers -->
-      <div class="nx-layer nx-back" data-depth="0.06"></div>
-      <canvas class="nx-stars" data-nx-stars aria-hidden="true"></canvas>
-      <div class="nx-layer nx-nebula" data-depth="0.12"></div>
-      <div class="nx-layer nx-grid" data-depth="0.18"></div>
+  <main>
 
-      <svg class="nx-layer nx-shards" data-depth="0.28" viewBox="0 0 800 400" preserveAspectRatio="none"
-        aria-hidden="true">
-        <polygon class="shard" points="60,120 120,80 140,150" />
-        <polygon class="shard" points="300,60 360,40 340,110" />
-        <polygon class="shard" points="520,220 590,190 560,260" />
-        <polygon class="shard" points="680,120 740,90 710,150" />
-      </svg>
+    <!-- ══════════ HERO ══════════ -->
+    <section class="pt-hero" aria-label="Partner with CloFix">
+      <div class="pt-wrap pt-hero__inner">
 
-      <svg class="nx-layer nx-foreground" data-depth="0.45" viewBox="0 0 1440 320" preserveAspectRatio="none"
-        aria-hidden="true">
-        <path
-          d="M0,256L60,229.3C120,203,240,149,360,122.7C480,96,600,96,720,128C840,160,960,224,1080,229.3C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
-        </path>
-      </svg>
+        <div class="pt-hero__eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          CloFix Partner Program
+        </div>
 
-      <!-- content plane -->
-      <div class="nx-layer nx-content" data-depth="0.02">
-        <div class="nx-inner container">
-          <p class="nx-pill">CloFix Partnerships</p>
-          <h1 class="nx-title">Partner with <span class="nx-gradient">CloFix</span></h1>
-          <p class="nx-sub">Choose your path to success with CloFix - become a partner, grow your brand, and earn
-            rewards by securing the digital world together.</p>
-          <div class="nx-cta">
-            <a class="c-button c-button--primary" href="#partners">Explore Programs</a>
-            <a class="c-button c-button--secondary" href="contact.html">Talk to Us</a>
+        <h1>
+          Grow together with<br>
+          <span class="pt-hero__grad">CloFix</span>
+        </h1>
+
+        <p class="pt-hero__sub">
+          Join our partner ecosystem - resell or refer WAF, and AWS activity monitor. Build a recurring revenue stream while we handle technical delivery and support.
+        </p>
+
+        <div class="pt-hero__btns">
+          <a class="pt-btn pt-btn--primary" href="#programs">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            View Partner Programs
+          </a>
+          <a class="pt-btn pt-btn--outline" href="contact.html">
+            Talk to Partnership Team
+          </a>
+        </div>
+
+        <div class="pt-hero__stats">
+          <div class="pt-stat">
+            <div class="pt-stat__value">2</div>
+            <div class="pt-stat__label">Partner tiers</div>
+          </div>
+          <div class="pt-stat__sep"></div>
+          <div class="pt-stat">
+            <div class="pt-stat__value">2+</div>
+            <div class="pt-stat__label">Service categories</div>
+          </div>
+          <div class="pt-stat__sep"></div>
+          <div class="pt-stat">
+            <div class="pt-stat__value">∞</div>
+            <div class="pt-stat__label">Recurring commissions</div>
+          </div>
+          <div class="pt-stat__sep"></div>
+          <div class="pt-stat">
+            <div class="pt-stat__value">0৳</div>
+            <div class="pt-stat__label">Upfront investment</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════ HOW IT WORKS STRIP ══════════ -->
+    <div class="pt-how">
+      <div class="pt-wrap">
+        <div class="pt-how__inner">
+          <div class="pt-how__step">
+            <div class="pt-how__num">1</div>
+            <div class="pt-how__text">
+              <strong>Choose your tier</strong>
+              <span>Pick Solution or Sales partner based on your capacity</span>
+            </div>
+          </div>
+          <div class="pt-how__step">
+            <div class="pt-how__num">2</div>
+            <div class="pt-how__text">
+              <strong>Sign the agreement</strong>
+              <span>Download and sign our partnership agreement</span>
+            </div>
+          </div>
+          <div class="pt-how__step">
+            <div class="pt-how__num">3</div>
+            <div class="pt-how__text">
+              <strong>Refer or resell</strong>
+              <span>Start bringing in clients - we'll handle the rest</span>
+            </div>
+          </div>
+          <div class="pt-how__step">
+            <div class="pt-how__num">4</div>
+            <div class="pt-how__text">
+              <strong>Earn recurring income</strong>
+              <span>Get paid every month your clients stay active</span>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- spark particles -->
-      <ul class="nx-sparks" aria-hidden="true">
-        <li style="--x:8%; --y:22%; --d:7s"></li>
-        <li style="--x:82%; --y:18%; --d:6.2s"></li>
-        <li style="--x:14%; --y:74%; --d:7.8s"></li>
-        <li style="--x:56%; --y:42%; --d:8.4s"></li>
-        <li style="--x:72%; --y:66%; --d:6.6s"></li>
-        <li style="--x:34%; --y:84%; --d:9.1s"></li>
-      </ul>
     </div>
-  </section>
 
-  <!-- ===== EXISTING PARTNER CONTENT (kept) ===== -->
-  <main class="partner-main container" id="partners">
+    <!-- ══════════ PARTNER PROGRAMS ══════════ -->
+    <section class="pt-section" id="programs">
+      <div class="pt-wrap">
 
-    <div class="partner-grid">
-      <div class="partner-card reveal">
-        <img src="img/solution_partner.png" alt="Solution Partner" class="partner-img" />
-        <h2>Become a Solution Partner</h2>
-        <p>
-          As a Solution Partner, your company can resell <strong>CloFix’s WAF</strong>, <strong>DevOps</strong>, and
-          <strong>Cloud Automation services</strong>. We handle the technical delivery while you focus on sales. You'll
-          benefit from partner pricing, revenue sharing, and full technical support.
-        </p>
-        <div class="partner-buttons">
-          <a href="https://drive.google.com/file/d/1EQHPOVURVzcZR9ODHlM79oK6OeFD_e6O/view?usp=drive_link"
-            target="_blank" rel="noopener" class="c-button c-button--primary">English</a>
-          <a href="#" class="c-button c-button--secondary c-button-bangla" aria-disabled="true">বাংলা</a>
+        <div class="pt-section__head">
+          <div class="pt-section__tag">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Partner programs
+          </div>
+          <h2 class="pt-section__title">Two ways to partner with us</h2>
+          <p class="pt-section__desc">Whether you want to deliver services or simply refer clients, we have a partnership model built for you.</p>
         </div>
-      </div>
 
-      <div class="partner-card reveal">
-        <img src="img/sales_partner.png" alt="Sales Partner" class="partner-img" />
-        <h2>Become a Sales Partner</h2>
-        <p>
-          Join as a Sales Partner and earn monthly commissions by referring <strong>clients to CloFix</strong>. When
-          your referred clients use our <strong>WAF</strong>, <strong>DevOps</strong>, or <strong>Cloud Automation
-            services</strong>, you receive a share of their monthly billing, for as long as they stay with us. It's a
-          zero-investment, recurring income opportunity.
-        </p>
-        <div class="partner-buttons">
-          <a href="https://drive.google.com/file/d/1uJkedu-VUbT6aV2NeDXJn8SAzJbSadYg/view?usp=drive_link"
-            target="_blank" rel="noopener" class="c-button c-button--primary">English</a>
-          <a href="https://drive.google.com/file/d/1XEiuAQDD0zEIHLvsJ6KJgTaCXt3KY_nw/view?usp=drive_link"
-            target="_blank" rel="noopener" class="c-button c-button--secondary">বাংলা</a>
+        <div class="pt-grid" id="partners">
+
+          <!-- ── Solution Partner ── -->
+          <div class="pt-card pt-card--solution reveal">
+            <div class="pt-card__banner">
+              <!-- subtle bg pattern -->
+              <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(59,130,246,.12) 0%,transparent 70%)"></div>
+              
+              <!-- Partner Badge -->
+              <div style="position:absolute;top:12px;right:12px;z-index:10;">
+                <img src="img/partner_badge.png" alt="CloFix Partner Badge" style="height:98px;width:auto;border-radius:8px;">
+              </div>
+              
+              <div class="pt-card__banner-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="pt-card__body">
+              <div>
+                <div class="pt-card__type">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Solution Partner
+                </div>
+                <h2 class="pt-card__title" style="margin-top:10px;">Become a<br>Solution Partner</h2>
+              </div>
+
+              <p class="pt-card__desc">
+                As a Solution Partner, your company resells <strong style="color:#cbd5e1">CloFix WAF</strong>, and <strong style="color:#cbd5e1">AWS Activity Monitor</strong> services under your brand. We handle all technical delivery while you focus on client relationships and growth.
+              </p>
+
+              <div class="pt-card__benefits">
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Partner pricing</strong> - discounted rates to protect your margin</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Revenue sharing</strong> - competitive split on every deal you close</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Full technical support</strong> - our engineers support your clients</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Co-marketing</strong> - joint promotion and CloFix partner badge</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Sales enablement</strong> - proposal templates, case studies &amp; training</span>
+                </div>
+              </div>
+
+              <div class="pt-card__actions">
+                <a href="https://drive.google.com/file/d/1EQHPOVURVzcZR9ODHlM79oK6OeFD_e6O/view?usp=drive_link"
+                   target="_blank" rel="noopener" class="pt-card__btn pt-card__btn--primary">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Agreement (English)
+                </a>
+                <a href="#" class="pt-card__btn pt-card__btn--outline" aria-disabled="true">
+                  চুক্তি (বাংলা) - শীঘ্রই
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Sales Partner ── -->
+          <div class="pt-card pt-card--sales reveal">
+            <div class="pt-card__banner">
+              <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(34,197,94,.1) 0%,transparent 70%)"></div>
+              <div class="pt-card__banner-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="pt-card__body">
+              <div>
+                <div class="pt-card__type" style="color:var(--p-green);background:var(--p-green-lt);">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  Sales Partner
+                </div>
+                <h2 class="pt-card__title" style="margin-top:10px;">Become a<br>Sales Partner</h2>
+              </div>
+
+              <p class="pt-card__desc">
+                Earn <strong style="color:#cbd5e1">monthly recurring commissions</strong> simply by referring clients to CloFix. When your referrals use our <strong style="color:#cbd5e1">WAF</strong>,and <strong style="color:#cbd5e1">AWS Activity Monitor</strong> services, you earn a share for as long as they stay - zero investment required.
+              </p>
+
+              <div class="pt-card__benefits">
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon" style="background:var(--p-green-lt);color:var(--p-green);">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Zero upfront investment</strong> - no cost to join or maintain</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon" style="background:var(--p-green-lt);color:var(--p-green);">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Recurring monthly income</strong> - earn as long as the client stays</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon" style="background:var(--p-green-lt);color:var(--p-green);">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>No technical delivery</strong> - we handle everything after referral</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon" style="background:var(--p-green-lt);color:var(--p-green);">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Referral dashboard</strong> - track earnings and client status</span>
+                </div>
+                <div class="pt-card__benefit">
+                  <div class="pt-card__benefit-icon" style="background:var(--p-green-lt);color:var(--p-green);">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span><strong>Open to all</strong> - freelancers, agencies, consultants, sales persons, and students welcome</span>
+                </div>
+              </div>
+
+              <div class="pt-card__actions">
+                <a href="https://drive.google.com/file/d/1uJkedu-VUbT6aV2NeDXJn8SAzJbSadYg/view?usp=drive_link"
+                   target="_blank" rel="noopener" class="pt-card__btn pt-card__btn--primary" style="background:var(--p-green);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Agreement (English)
+                </a>
+                <a href="https://drive.google.com/file/d/1XEiuAQDD0zEIHLvsJ6KJgTaCXt3KY_nw/view?usp=drive_link"
+                   target="_blank" rel="noopener" class="pt-card__btn pt-card__btn--outline">
+                  চুক্তি (বাংলা)
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.pt-grid -->
+
+        <!-- ══ Partner benefits strip ══ -->
+        <div class="pt-benefits reveal">
+          <div class="pt-benefits__title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            What all partners receive
+          </div>
+          <div class="pt-benefits__grid">
+            <div class="pt-benefit-item">
+              <div class="pt-benefit-item__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="pt-benefit-item__title">CloFix partner badge</div>
+                <div class="pt-benefit-item__desc">Official badge for your website, proposals, and marketing materials.</div>
+              </div>
+            </div>
+            <div class="pt-benefit-item">
+              <div class="pt-benefit-item__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="pt-benefit-item__title">Dedicated partner contact</div>
+                <div class="pt-benefit-item__desc">Direct line to CloFix's partnership team for escalations and support.</div>
+              </div>
+            </div>
+            <div class="pt-benefit-item">
+              <div class="pt-benefit-item__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="pt-benefit-item__title">Product training</div>
+                <div class="pt-benefit-item__desc">Access to walkthroughs, demo scripts, and technical documentation.</div>
+              </div>
+            </div>
+            <div class="pt-benefit-item">
+              <div class="pt-benefit-item__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div>
+                <div class="pt-benefit-item__title">Earnings transparency</div>
+                <div class="pt-benefit-item__desc">Monthly commission reports with clear billing breakdowns per client.</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+
+        <!-- ══ Comparison table ══ -->
+        <div class="pt-compare reveal">
+          <div class="pt-compare__title">Program comparison</div>
+          <div class="pt-compare-wrap">
+            <table class="pt-compare-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Solution Partner</th>
+                  <th>Sales Partner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Upfront investment</td>
+                  <td><span style="color:#cbd5e1">None</span></td>
+                  <td><span style="color:#cbd5e1">None</span></td>
+                </tr>
+                <tr>
+                  <td>Revenue model</td>
+                  <td>Revenue share + partner pricing</td>
+                  <td>Monthly referral commission</td>
+                </tr>
+                <tr>
+                  <td>Technical delivery</td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                  <td><span class="pt-chk pt-chk--no"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+                </tr>
+                <tr>
+                  <td>Recurring income</td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                </tr>
+                <tr>
+                  <td>Partner pricing access</td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                  <td><span class="pt-chk pt-chk--no"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+                </tr>
+                <tr>
+                  <td>Co-marketing</td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                  <td><span class="pt-chk pt-chk--partial"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg></span></td>
+                </tr>
+                <tr>
+                  <td>Technical training</td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                  <td><span class="pt-chk pt-chk--yes"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                </tr>
+                <tr>
+                  <td>Best suited for</td>
+                  <td>Agencies, IT companies, MSPs</td>
+                  <td>Freelancers, consultants, influencers</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ══ CTA Banner ══ -->
+        <div class="pt-cta-banner reveal">
+          <div class="pt-cta-banner__text">
+            <h3>Ready to become a partner?</h3>
+            <p>Download the agreement for your preferred tier, sign it, and send it back to us - we'll get you onboarded within 48 hours.</p>
+          </div>
+          <div class="pt-cta-banner__btns">
+            <a href="contact.html" class="pt-cta-banner__btn pt-cta-banner__btn--white">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Contact partnership team
+            </a>
+            <a href="support.html" class="pt-cta-banner__btn pt-cta-banner__btn--outline">
+              View support plans
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /.pt-wrap -->
+    </section>
+
   </main>
 
-  <!-- ===== Footer (kept) ===== -->
+  <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
     <div class="stars"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
-
     <div class="container c-footer">
       <div class="c-footer__column c-footer__logo-column">
         <a href="index.html" class="c-footer__brand">
           <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
         </a>
         <p class="c-footer__text"><strong>Secure. Automate. Scale.</strong></p>
-
         <ul class="social">
-          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img
-                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
-          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img
-                src="img/X_clofix.png" alt="X" /></a></li>
-          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img
-                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
-          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img
-                src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
-          <li class="social-li">
-            <a href="https://youtube.com/@clofix-infotech" target="_blank">
-              <img src="img/youtube_clofix.png" alt="YouTube" />
-            </a>
-          </li>
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png" alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
         </ul>
       </div>
-
       <div class="c-footer__column">
         <h4 class="c-footer__subtitle">Company</h4>
         <ul class="c-footer__list c-footer__list--check">
@@ -262,7 +1148,6 @@
           <li><a href="support.html">CloFix WAF Support Overview</a></li>
         </ul>
       </div>
-
       <div class="c-footer__column">
         <h4 class="c-footer__subtitle">Explore</h4>
         <ul class="c-footer__list c-footer__list--check">
@@ -272,7 +1157,6 @@
           <li><a href="blogs.html">Blogs</a></li>
         </ul>
       </div>
-
       <div class="c-footer__column">
         <h4 class="c-footer__subtitle">Legal</h4>
         <ul class="c-footer__list c-footer__list--check">
@@ -281,9 +1165,8 @@
         </ul>
       </div>
     </div>
-
     <div class="container">
-      <p class="footer__text">© 2025 CloFix – All Rights Reserved</p>
+      <p class="footer__text">© 2026 CloFix – All Rights Reserved</p>
     </div>
   </footer>
 
@@ -295,123 +1178,97 @@
   </script>
 
   <script>
-    (function () {
-      const navToggle = document.getElementById('navToggle');
-      const navMenu = document.getElementById('navMenu');
-      if (!navToggle || !navMenu) return;
-      navToggle.addEventListener('click', () => {
-        const open = navMenu.classList.toggle('active');
-        document.body.classList.toggle('nav-open', open);
-        navToggle.setAttribute('aria-expanded', String(open));
+    /* ── Nav ── */
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+    const dropdowns = document.querySelectorAll('.c-dropdown');
+
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
       });
-    })();
+    }
 
-    (function () {
-      const headerEl = document.querySelector('.header');
-      function syncHeaderHeight() {
-        if (!headerEl) return;
-        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
-      }
-      window.addEventListener('load', syncHeaderHeight);
-      window.addEventListener('resize', syncHeaderHeight);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeaderHeight);
-      syncHeaderHeight();
-    })();
-
-    (function () {
-      const stage = document.querySelector('[data-nx-stage]');
-      if (!stage) return;
-
-      const layers = Array.from(stage.querySelectorAll('[data-depth]'));
-      const starsCanvas = stage.querySelector('[data-nx-stars]');
-      const ctx = starsCanvas?.getContext('2d');
-
-      function fitCanvas() {
-        if (!starsCanvas) return;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const rect = stage.getBoundingClientRect();
-        starsCanvas.width = Math.floor(rect.width * dpr);
-        starsCanvas.height = Math.floor(rect.height * dpr);
-        starsCanvas.style.width = rect.width + 'px';
-        starsCanvas.style.height = rect.height + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        drawStars();
-      }
-
-      let starCache = [];
-      function drawStars() {
-        if (!ctx) return;
-        const w = starsCanvas.clientWidth;
-        const h = starsCanvas.clientHeight;
-        const count = Math.floor((w * h) / 8000);
-        if (!starCache.length) {
-          for (let i = 0; i < count; i++) {
-            starCache.push({
-              x: Math.random() * w,
-              y: Math.random() * h,
-              r: Math.random() * 1.6 + 0.2,
-              a: 0.6 + Math.random() * 0.4
-            });
-          }
+    if (navToggle && navContent) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
+      });
+      navContent.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      }));
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
         }
-        ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = 'rgba(203, 213, 225, 0.9)';
-        starCache.forEach(s => {
-          ctx.globalAlpha = s.a;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fill();
-        });
-        ctx.globalAlpha = 1;
-      }
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
+          navContent.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+    }
 
-      let scrollY = window.scrollY || 0;
-      let targetTiltX = 0, targetTiltY = 0;
-      let tiltX = 0, tiltY = 0;
-      const stiffness = 0.12;
-      const damping = 0.85;
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const willOpen = !dd.classList.contains('open');
+        closeAllDropdowns();
+        if (willOpen) { dd.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+      });
+    });
 
-      function onMouseMove(e) {
-        const rect = stage.getBoundingClientRect();
-        const nx = (e.clientX - rect.left) / rect.width - 0.5;
-        const ny = (e.clientY - rect.top) / rect.height - 0.5;
-        targetTiltX = nx * 10;
-        targetTiltY = ny * 8;
-      }
-      function onLeave() { targetTiltX = 0; targetTiltY = 0; }
+    document.addEventListener('click', e => {
+      if (navContent && navContent.classList.contains('active')) return;
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
 
-      window.addEventListener('scroll', () => { scrollY = window.scrollY || 0; }, { passive: true });
-      stage.addEventListener('mousemove', onMouseMove, { passive: true });
-      stage.addEventListener('mouseleave', onLeave, { passive: true });
-      stage.addEventListener('touchstart', onLeave, { passive: true });
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => a.addEventListener('click', () => {
+      closeAllDropdowns();
+      if (navContent) navContent.classList.remove('active');
+      document.body.classList.remove('nav-open');
+      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    }));
 
-      function render() {
-        const vx = (targetTiltX - tiltX) * stiffness;
-        const vy = (targetTiltY - tiltY) * stiffness;
-        tiltX += vx; tiltY += vy;
-        tiltX *= damping; tiltY *= damping;
-
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        layers.forEach(el => {
-          const depth = parseFloat(el.getAttribute('data-depth')) || 0.2;
-          const y = scrollY * depth * 0.5;
-          const mx = tiltX * depth * (reduce ? 0 : 1);
-          const my = tiltY * depth * (reduce ? 0 : 1);
-          const scale = 1 + depth * 0.06;
-          el.style.transform = `translate3d(${mx}px, ${y + my}px, 0) scale(${scale})`;
-        });
-
-        requestAnimationFrame(render);
-      }
-
-      const ro = new ResizeObserver(fitCanvas);
-      ro.observe(stage);
-      window.addEventListener('orientationchange', fitCanvas);
-      fitCanvas();
-      render();
+    /* ── Header height ── */
+    (function () {
+      const h = document.querySelector('.header');
+      function sync() { if (h) document.documentElement.style.setProperty('--header-h', h.offsetHeight + 'px'); }
+      window.addEventListener('load', sync);
+      window.addEventListener('resize', sync);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+      sync();
     })();
 
+    /* ── Smooth scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* ── Reveal on scroll ── */
     (function () {
       const items = document.querySelectorAll('.reveal');
       if (!items.length) return;
@@ -419,166 +1276,14 @@
         items.forEach(el => el.classList.add('show'));
         return;
       }
-      const io = new IntersectionObserver((entries) => {
+      const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('show');
-            io.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.12 });
       items.forEach(el => io.observe(el));
     })();
   </script>
-  <script>
-        // ===== Your existing nav + dropdown logic (kept intact) =====
-        const navToggle = document.getElementById('navToggle');
-        const navContent = document.querySelector('.c-nav__content');
 
-        const dropdowns = document.querySelectorAll('.c-dropdown');
-        function closeAllDropdowns() {
-            dropdowns.forEach(dd => {
-                dd.classList.remove('open');
-                const btn = dd.querySelector('.c-dropdown__toggle');
-                if (btn) btn.setAttribute('aria-expanded', 'false');
-            });
-        }
-
-        if (navToggle && navContent) {
-            navToggle.setAttribute('aria-expanded', 'false');
-
-            navToggle.addEventListener('click', () => {
-                const open = navContent.classList.toggle('active');
-                document.body.classList.toggle('nav-open', open);
-                navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                if (!open) closeAllDropdowns();
-            });
-
-            navContent.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    navContent.classList.remove('active');
-                    document.body.classList.remove('nav-open');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                    closeAllDropdowns();
-                });
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navContent.classList.contains('active')) {
-                    navContent.classList.remove('active');
-                    document.body.classList.remove('nav-open');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                    closeAllDropdowns();
-                }
-            });
-
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 768) {
-                    document.body.classList.remove('nav-open');
-                    navContent.classList.remove('active');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                    closeAllDropdowns();
-                }
-            });
-        }
-
-        dropdowns.forEach(dd => {
-            const toggle = dd.querySelector('.c-dropdown__toggle');
-            if (!toggle) return;
-
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const willOpen = !dd.classList.contains('open');
-                closeAllDropdowns();
-                if (willOpen) {
-                    dd.classList.add('open');
-                    toggle.setAttribute('aria-expanded', 'true');
-                }
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            const panelOpen = navContent && navContent.classList.contains('active');
-            if (panelOpen) return;
-            if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
-        });
-
-        document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
-            a.addEventListener('click', () => {
-                closeAllDropdowns();
-                if (navContent) navContent.classList.remove('active');
-                document.body.classList.remove('nav-open');
-                if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        (function () {
-            const headerEl = document.querySelector('.header');
-            function syncHeaderHeight() {
-                if (!headerEl) return;
-                document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
-            }
-            window.addEventListener('load', syncHeaderHeight);
-            window.addEventListener('resize', syncHeaderHeight);
-            if (document.fonts && document.fonts.ready) {
-                document.fonts.ready.then(syncHeaderHeight);
-            }
-        })();
-
-        // ===== Optional: smooth scroll for in-page anchor =====
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', (e) => {
-                const id = a.getAttribute('href');
-                if (!id || id === "#") return;
-                const el = document.querySelector(id);
-                if (!el) return;
-                e.preventDefault();
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
-        });
-
-        // ===== Page micro-interaction: triage flow cycles + badge updates =====
-        (function () {
-            const triage = document.getElementById('odsTriage');
-            const badge = document.getElementById('odsStatusBadge');
-            if (!triage) return;
-
-            const steps = Array.from(triage.querySelectorAll('.ods-step'));
-            if (!steps.length) return;
-
-            const labels = ["On-call: READY", "Triage: IN PROGRESS", "Stabilizing: ACTIVE", "RCA: UNDERWAY", "Optimizing: RUNNING"];
-            let i = 0;
-
-            function apply(idx) {
-                steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
-
-                steps.forEach((s, k) => {
-                    const chip = s.querySelector('.ods-chip');
-                    if (!chip) return;
-                    chip.classList.remove('ods-chip--good', 'ods-chip--warn', 'ods-chip--bad');
-
-                    if (k < idx) {
-                        chip.textContent = "OK";
-                        chip.classList.add('ods-chip--good');
-                    } else if (k === idx) {
-                        chip.textContent = "RUN";
-                        chip.classList.add('ods-chip--warn');
-                    } else {
-                        chip.textContent = "Pending";
-                    }
-                });
-
-                if (badge) badge.lastChild.textContent = " " + (labels[idx + 1] || labels[0]);
-            }
-
-            apply(0);
-            setInterval(() => {
-                i = (i + 1) % steps.length;
-                apply(i);
-            }, 2400);
-        })();
-    </script>
 </body>
-
 </html>
