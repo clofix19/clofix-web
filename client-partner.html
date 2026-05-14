@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Clients &amp; Partners | CloFix WAF</title>
+  <meta name="description" content="Trusted by businesses and partners across Bangladesh and beyond. See who builds with CloFix WAF, DevOps, and Cloud Automation.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Clients & Partners | CloFix WAF">
+  <meta property="og:description" content="Trusted by businesses and partners across Bangladesh. See who secures their infrastructure with CloFix.">
+  <meta property="og:url" content="https://clofix.com/client-partner">
+  <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Clients & Partners | CloFix WAF">
+  <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+  <meta name="twitter:site" content="@clofix19">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════════════════
+       CLIENT-PARTNER PAGE - dark navy system (refreshed tags, clean logo-less cards)
+    ══════════════════════════════════════════════════════ */
+    :root {
+      --cp-accent:    #3b82f6;
+      --cp-accent-lt: rgba(59,130,246,.12);
+      --cp-green:     #22c55e;
+      --cp-green-lt:  rgba(34,197,94,.1);
+      --cp-amber:     #f59e0b;
+      --cp-amber-lt:  rgba(245,158,11,.1);
+      --cp-purple:    #a78bfa;
+      --cp-purple-lt: rgba(167,139,250,.1);
+      --cp-border:    rgba(255,255,255,.07);
+      --cp-card:      #0f2044;
+      --cp-page:      #071530;
+      --cp-text:      #e2e8f0;
+      --cp-muted:     #94a3b8;
+      --cp-radius:    14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body  { background: var(--cp-page); }
+    main  { background: var(--cp-page); }
+
+    .cp-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ══ HERO ══════════════════════════════════════════════ */
+    .cp-hero {
+      position: relative;
+      background: linear-gradient(160deg, #030d1f 0%, #071530 45%, #0c2a5e 100%);
+      padding: 96px 0 76px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cp-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 75% 55% at 50% -5%, rgba(59,130,246,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 35% at 10% 85%, rgba(34,197,94,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 35% at 90% 80%, rgba(167,139,250,.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cp-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .cp-hero__inner { position: relative; z-index: 1; }
+
+    .cp-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(147,197,253,.08);
+      border: 1px solid rgba(147,197,253,.2);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(2px);
+      animation: cpFadeUp .5s ease both;
+    }
+    .cp-hero h1 {
+      font-family: 'Hind', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.13;
+      margin-bottom: 16px;
+      animation: cpFadeUp .55s .07s ease both;
+    }
+    .cp-hero__grad {
+      background: linear-gradient(90deg, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cp-hero__sub {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      color: #bfdbfe;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      animation: cpFadeUp .6s .13s ease both;
+    }
+
+    /* trust counter row */
+    .cp-hero__counters {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      animation: cpFadeUp .65s .2s ease both;
+    }
+    .cp-counter { text-align: center; }
+    .cp-counter__val {
+      font-family: 'Hind', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+    }
+    .cp-counter__lbl {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11.5px;
+      color: #64748b;
+      margin-top: 5px;
+    }
+    .cp-counter__sep {
+      width: 1px; height: 36px;
+      background: rgba(255,255,255,.08);
+    }
+
+    /* ══ SECTION SHARED (refreshed tag styles) ═══════════ */
+    .cp-section { padding: 76px 0 0; }
+    .cp-section:last-of-type { padding-bottom: 80px; }
+
+    .cp-section__head {
+      margin-bottom: 44px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cp-section__left { flex: 1; min-width: 220px; }
+    .cp-section__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cp-accent);
+      background: var(--cp-accent-lt);
+      border-radius: 40px;
+      padding: 5px 16px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(59,130,246,.2);
+      backdrop-filter: blur(2px);
+      transition: all .2s;
+    }
+    .cp-section__tag--green { color: var(--cp-green); background: var(--cp-green-lt); border-color: rgba(34,197,94,.2); }
+    .cp-section__tag--purple { color: var(--cp-purple); background: var(--cp-purple-lt); border-color: rgba(167,139,250,.2); }
+    .cp-section__title {
+      font-family: 'Hind', sans-serif;
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+    .cp-section__desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .9rem;
+      color: var(--cp-muted);
+      line-height: 1.65;
+      max-width: 480px;
+    }
+    .cp-count-badge {
+      flex-shrink: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748b;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--cp-border);
+      border-radius: 40px;
+      padding: 6px 16px;
+      white-space: nowrap;
+      align-self: flex-start;
+      backdrop-filter: blur(2px);
+    }
+
+    /* ══ CLIENT GRID - LARGER LOGOS ═══════════════════════ */
+    .cp-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 18px;
+    }
+    .cp-logo-card {
+      background: var(--cp-card);
+      border: 1px solid var(--cp-border);
+      border-radius: var(--cp-radius);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-height: 160px;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s ease;
+      cursor: default;
+      text-align: center;
+    }
+    .cp-logo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--lc, #3b82f6), transparent);
+      opacity: 0;
+      transition: opacity .22s;
+    }
+    .cp-logo-card:hover {
+      border-color: rgba(59,130,246,.35);
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+      transform: translateY(-4px);
+      background: #11264f;
+    }
+    .cp-logo-card:hover::before { opacity: 1; }
+
+    /* LARGER AVATAR/LOGO CONTAINER */
+
+    .cp-logo-card__avatar-img img {
+      width: 96px;
+      height: 56px;
+      object-fit: contain;
+      opacity: 0.85;
+      transition: opacity .2s;
+    }
+    .cp-logo-card:hover .cp-logo-card__avatar-img img { opacity: 1; }
+    
+    .cp-logo-card__monogram {
+      font-family: 'Hind', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #e2e8f0, #94a3b8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .cp-logo-card__name {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #cbd5e6;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .cp-logo-card__industry {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      color: #5f7f9e;
+      text-align: center;
+      background: rgba(255,255,255,.04);
+      padding: 4px 12px;
+      border-radius: 40px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    /* ══ PARTNER GRID - LARGER CARDS with social links ═══════════ */
+    .cp-partner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .cp-partner-card {
+      background: var(--cp-card);
+      border: 1px solid var(--cp-border);
+      border-radius: var(--cp-radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s ease;
+    }
+    .cp-partner-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pc, #22c55e), transparent);
+      opacity: 0;
+      transition: opacity .22s;
+    }
+    .cp-partner-card:hover {
+      border-color: rgba(34,197,94,.35);
+      box-shadow: 0 10px 32px rgba(0,0,0,.3);
+      transform: translateY(-3px);
+      background: #11264f;
+    }
+    .cp-partner-card:hover::before { opacity: 1; }
+
+    /* Partner header row */
+    .cp-partner-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cp-partner-card__logo-img img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+
+      opacity: 0.9;
+    }
+    .cp-partner-card__logo {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #0a2a44, #071530);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cp-partner-card__logo span {
+      font-family: 'Hind', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #cbd5e6, #7f8ea3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .cp-partner-info {
+      flex: 1;
+    }
+    .cp-partner-card__name {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+    .cp-partner-card__type {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+    .cp-partner-card__type--solution {
+      background: rgba(59,130,246,.15);
+      color: #7ca5f0;
+    }
+    .cp-partner-card__type--sales {
+      background: rgba(34,197,94,.12);
+      color: #4ade80;
+    }
+    
+    /* Partner description */
+    .cp-partner-desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .8rem;
+      color: #7f8ea3;
+      line-height: 1.5;
+      padding: 8px 0 4px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    
+    /* Social links row */
+    .cp-partner-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .cp-partner-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .cp-partner-social a:hover {
+      background: var(--cp-accent);
+      transform: translateY(-2px);
+    }
+    .cp-partner-social a svg {
+      width: 16px;
+      height: 16px;
+      stroke: #94a3b8;
+      stroke-width: 1.6;
+      fill: none;
+    }
+    .cp-partner-social a:hover svg {
+      stroke: #fff;
+    }
+    
+    .cp-partner-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+    }
+    .cp-partner-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0.7;
+      transition: all .2s;
+    }
+    .cp-partner-card:hover .cp-partner-badge img {
+      opacity: 1;
+      transform: scale(1.05) rotate(-3deg);
+    }
+
+    /* ══ TESTIMONIALS ═══════════════════════════════════════ */
+    .cp-testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 900px) { .cp-testi-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .cp-testi-grid { grid-template-columns: 1fr; } }
+
+    .cp-testi {
+      background: var(--cp-card);
+      border: 1px solid var(--cp-border);
+      border-radius: var(--cp-radius);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      transition: all .22s;
+    }
+    .cp-testi:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.12);
+    }
+    .cp-testi::before {
+      content: '\201C';
+      position: absolute;
+      top: -8px; right: 20px;
+      font-size: 6rem;
+      line-height: 1;
+      color: rgba(255,255,255,.03);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .cp-testi__stars { display: flex; gap: 4px; }
+    .cp-testi__star { color: var(--cp-amber); font-size: 14px; }
+    .cp-testi__quote {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .875rem;
+      color: #94a3b8;
+      line-height: 1.7;
+      flex: 1;
+      z-index: 1;
+    }
+    .cp-testi__quote strong { color: #e2e8f0; }
+    .cp-testi__person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--cp-border);
+    }
+    .cp-testi__avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Hind', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      color: #fff;
+    }
+    .cp-testi__name { font-weight: 600; color: #e2e8f0; font-size: .85rem; }
+    .cp-testi__role { font-size: .7rem; color: #5f7f9e; margin-top: 2px; }
+    .cp-testi__service-tag {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 30px;
+    }
+    .cp-testi__service-tag--waf    { background: var(--cp-accent-lt); color: #7ca5f0; }
+    .cp-testi__service-tag--devops { background: var(--cp-green-lt);  color: #4ade80; }
+    .cp-testi__service-tag--cloud  { background: var(--cp-purple-lt); color: #b794f4; }
+
+    /* ══ TRUST BAND + CTA ═══════════════════════════════════ */
+    .cp-trust {
+      margin-top: 72px;
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--cp-border);
+      border-radius: var(--cp-radius);
+      padding: 38px 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 28px;
+      text-align: center;
+    }
+    .cp-trust__val {
+      font-family: 'Hind', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .cp-trust__val span { color: var(--cp-accent); }
+    .cp-trust__lbl {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .78rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+    .cp-cta {
+      margin-top: 64px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 70%, #2563eb 100%);
+      border-radius: var(--cp-radius);
+      padding: 48px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .cp-cta::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+    .cp-cta::after {
+      content: '';
+      position: absolute; bottom: -80px; left: 25%;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+    .cp-cta__text { position: relative; z-index: 1; }
+    .cp-cta__text h3 {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .cp-cta__text p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: .9rem;
+      color: #bfdbfe;
+      line-height: 1.6;
+      max-width: 440px;
+    }
+    .cp-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .cp-cta__btn--white   { background: #fff; color: #1d4ed8; }
+    .cp-cta__btn--outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+    .cp-cta__btn:hover { transform: translateY(-2px); opacity: .9; }
+
+    /* ══ REVEAL & MARQUEE ═════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .55s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform .55s ease;
+    }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    .cp-marquee-wrap {
+      overflow: hidden;
+      padding: 20px 0;
+      mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    }
+    .cp-marquee {
+      display: flex;
+      gap: 18px;
+      width: max-content;
+      animation: cpMarquee 30s linear infinite;
+    }
+    .cp-marquee:hover { animation-play-state: paused; }
+    @keyframes cpMarquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .cp-marquee__chip {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--cp-border);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .8rem;
+      color: #7f8ea3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cp-marquee__dot { width: 8px; height: 8px; border-radius: 50%; }
+    @media (max-width: 640px) {
+      .cp-logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .cp-partner-grid { grid-template-columns: 1fr; }
+      .cp-cta { padding: 32px 24px; }
+    }
+
+    /* Modal Styles */
+    .cp-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s, opacity 0.3s;
+    }
+    .cp-modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .cp-modal__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+    }
+    .cp-modal__container {
+      position: relative;
+      background: linear-gradient(145deg, #0f2044, #0a1835);
+      border-radius: 24px;
+      width: 90%;
+      max-width: 520px;
+      max-height: 85vh;
+      overflow-y: auto;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      animation: modalSlideUp 0.3s ease;
+    }
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .cp-modal__close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      font-size: 24px;
+      color: #94a3b8;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+    .cp-modal__close:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      transform: scale(1.05);
+    }
+    .cp-modal__content {
+      padding: 32px 28px;
+    }
+    .cp-modal__header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cp-modal__logo img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+    .cp-modal__logo span {
+      font-family: 'Hind', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .cp-modal__name {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
+    .cp-modal__type {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+    .cp-modal__type.solution {
+      background: rgba(59, 130, 246, 0.15);
+      color: #7ca5f0;
+    }
+    .cp-modal__type.sales {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+    }
+    .cp-modal__desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .cp-modal__details {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cp-modal__detail-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      color: #cbd5e6;
+    }
+    .cp-modal__detail-item svg {
+      flex-shrink: 0;
+      stroke: #5f7f9e;
+    }
+    .cp-modal__social {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-top: 8px;
+    }
+    .cp-modal__social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .cp-modal__social a:hover {
+      background: var(--cp-accent, #3b82f6);
+      transform: translateY(-3px);
+    }
+    .cp-modal__social a svg {
+      width: 20px;
+      height: 20px;
+      stroke: #94a3b8;
+      stroke-width: 1.6;
+    }
+    .cp-modal__social a:hover svg {
+      stroke: #fff;
+    }
+    .cp-modal__footer {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cp-modal__btn {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .cp-modal__btn--primary {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      border: none;
+    }
+    .cp-modal__btn--primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+    .cp-modal__btn--secondary {
+      background: transparent;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .cp-modal__btn--secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 480px) {
+      .cp-modal__content { padding: 24px 20px; }
+      .cp-modal__name { font-size: 1.25rem; }
+      .cp-modal__logo { width: 55px; height: 55px; }
+      .cp-modal__logo img { width: 38px; height: 38px; }
+      .cp-modal__footer { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="index.html"><img src="img/logo.png" alt="Logo" class="c-logo__img" /></a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item"><a href="pricing.html" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+              <li class="c-list__item"><a href="about.html" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="features.html" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="wasm.html" class="c-link c-link--list">CloFix WASM</a></li>
+              <li class="c-list__item"><a href="contact.html" class="c-link c-link--list">Contact</a></li>
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="clofix-lua-script.html" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                        <a role="menuitem" href="clofix-js-script.html" class="c-dropdown__mega-link">CloFix JS Script</a>
+                        <a role="menuitem" href="clofix-crs.html" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="clofix-wasm.html" class="c-dropdown__mega-link">CloFix WASM</a>
+                        <a role="menuitem" href="clofix-waf-requst-workflow.html" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
+                      </div>
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="cve.html" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="pentest.html" class="c-dropdown__mega-link">CloFix Pentest</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <a href="faq.html" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">FAQ</button>
+              </a>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+    <main>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="cp-hero">
+      <div class="cp-wrap cp-hero__inner">
+        <div class="cp-hero__eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Clients &amp; Partners
+        </div>
+        <h1>Trusted by businesses<br>across <span class="cp-hero__grad">Bangladesh &amp; beyond</span></h1>
+        <p class="cp-hero__sub">From startups to enterprises - see the organisations that rely on CloFix WAF, DevOps, and Cloud Automation to keep their infrastructure secure and running.</p>
+
+        <div class="cp-hero__counters">
+          <div class="cp-counter"><div class="cp-counter__val">30+</div><div class="cp-counter__lbl">Active clients</div></div>
+          <div class="cp-counter__sep"></div>
+          <div class="cp-counter"><div class="cp-counter__val">12+</div><div class="cp-counter__lbl">Certified partners</div></div>
+          <div class="cp-counter__sep"></div>
+          <div class="cp-counter"><div class="cp-counter__val">99.9%</div><div class="cp-counter__lbl">Enterprise uptime</div></div>
+          <div class="cp-counter__sep"></div>
+          <div class="cp-counter"><div class="cp-counter__val">5+</div><div class="cp-counter__lbl">Industries served</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ MARQUEE ══════════ -->
+    <div style="background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
+      <div class="cp-marquee-wrap">
+        <div class="cp-marquee" id="marquee">
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#3b82f6"></span>E-Commerce</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#22c55e"></span>FinTech</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#a78bfa"></span>Healthcare</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#f59e0b"></span>SaaS &amp; Tech</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#ec4899"></span>Education</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#14b8a6"></span>Logistics</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#f97316"></span>Media &amp; Publishing</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#6366f1"></span>Government</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#3b82f6"></span>Real Estate</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#22c55e"></span>NGO &amp; Non-profit</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#3b82f6"></span>E-Commerce</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#22c55e"></span>FinTech</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#a78bfa"></span>Healthcare</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#f59e0b"></span>SaaS &amp; Tech</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#ec4899"></span>Education</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#14b8a6"></span>Logistics</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#f97316"></span>Media &amp; Publishing</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#6366f1"></span>Government</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#3b82f6"></span>Real Estate</div>
+          <div class="cp-marquee__chip"><span class="cp-marquee__dot" style="background:#22c55e"></span>NGO &amp; Non-profit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CLIENTS - LARGER LOGOS ══════════ -->
+    <section class="cp-section">
+      <div class="cp-wrap">
+        <div class="cp-section__head reveal">
+          <div class="cp-section__left">
+            <div class="cp-section__tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Our Clients</div>
+            <h2 class="cp-section__title">Businesses that trust CloFix</h2>
+            <p class="cp-section__desc">Companies across multiple industries rely on CloFix to secure, automate, and scale their digital infrastructure.</p>
+          </div>
+          <div class="cp-count-badge">30+ active clients</div>
+        </div>
+
+        <div class="cp-logo-grid reveal">
+          <!-- ShopHive BD with logo image -->
+          <div class="cp-logo-card" style="--lc:#3b82f6">
+            <div class="cp-logo-card__avatar-img"><img src="..img/logo.png" alt="ShopHive BD logo" /></div>
+            <div class="cp-logo-card__name">ShopHive BD</div>
+            <div class="cp-logo-card__industry">E‑Commerce</div>
+          </div>
+          
+          <div class="cp-logo-card" style="--lc:#3b82f6">
+            <div class="cp-logo-card__avatar-img"><img src="..img/cloudly-infotech-logo.webp" alt="ShopHive BD logo" /></div>
+            <div class="cp-logo-card__name">Cloudly Infotech Ltd</div>
+            <div class="cp-logo-card__industry">Software Company</div>
+          </div>
+
+          <div class="cp-logo-card" style="--lc:#334155;border-style:dashed;"><div class="cp-logo-card__monogram" style="color:#5f6c84; background:none; -webkit-text-fill-color:#5f6c84;">+</div><div class="cp-logo-card__name" style="color:#5f6c84">Your company</div><div class="cp-logo-card__industry">Get started today</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PARTNERS - LARGER CARDS with social links & description ══════════ -->
+    <section class="cp-section">
+      <div class="cp-wrap">
+        <div class="cp-section__head reveal">
+          <div class="cp-section__left">
+            <div class="cp-section__tag cp-section__tag--green"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Certified Partners</div>
+            <h2 class="cp-section__title">Our partner network</h2>
+            <p class="cp-section__desc">Solution &amp; Sales partners growing alongside CloFix - reselling, referring, and delivering services.</p>
+          </div>
+          <div class="cp-count-badge">12+ active partners</div>
+        </div>
+
+        <div class="cp-partner-grid reveal">
+          
+          <!-- TechCraft Solutions with logo image + social links -->
+          <div class="cp-partner-card" style="--pc:#3b82f6">
+            <div class="cp-partner-header">
+              <div class="cp-partner-card__logo-img"><img src="..img/cloudly.jpeg" alt="logo" /></div>
+              <div class="cp-partner-info">
+                <div class="cp-partner-card__name">Cloudly Infotech Ltd</div>
+                <div class="cp-partner-card__type cp-partner-card__type--solution">Solution Partner</div>
+              </div>
+              <div class="cp-partner-badge"><img src="img/partner_badge.png" alt="badge"></div>
+            </div>
+            <div class="cp-partner-desc">Trusted IT solution provider delivering enterprise-grade WAF, DevOps automation, and cloud consulting across Bangladesh.</div>
+            <div class="cp-partner-social">
+              <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+              <a href="#" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="#" target="_blank" aria-label="Twitter/X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Become a partner card -->
+          <div class="cp-partner-card" style="--pc:#a78bfa;border-style:dashed;">
+            <div class="cp-partner-header">
+              <div class="cp-partner-card__logo"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5f6c84" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+              <div class="cp-partner-info">
+                <div class="cp-partner-card__name" style="color:#5f6c84">Become a partner</div>
+              </div>
+            </div>
+            <div class="cp-partner-desc" style="color:#5f6c84">Join our growing ecosystem. Zero onboarding cost, dedicated support, and attractive commissions.</div>
+            <div style="margin-top: 8px;"><a href="partner.html" style="color:#3b82f6; text-decoration:none; font-size:12px; font-weight:600;">Apply now →</a></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ TESTIMONIALS ══════════ -->
+    <section class="cp-section">
+      <div class="cp-wrap">
+        <div class="cp-section__head reveal">
+          <div class="cp-section__left">
+            <div class="cp-section__tag cp-section__tag--purple"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</div>
+            <h2 class="cp-section__title">What our clients &amp; partners say</h2>
+            <p class="cp-section__desc">Real feedback from the teams who rely on CloFix every day to protect and scale their platforms.</p>
+          </div>
+        </div>
+
+        <div class="cp-testi-grid">
+          <div class="cp-testi reveal">
+            <div class="cp-testi__stars">★★★★★</div>
+            <p class="cp-testi__quote">"Since switching to CloFix WAF, our <strong>DDoS incidents dropped to zero</strong>. The dashboard gives us complete visibility and the team responds incredibly fast."</p>
+            <div class="cp-testi__person"><div class="cp-testi__avatar" style="background:linear-gradient(135deg,#1e40af,#3b82f6)">RK</div><div><div class="cp-testi__name">Rafiqul Karim</div><div class="cp-testi__role">CTO, ShopHive BD</div></div><span class="cp-testi__service-tag cp-testi__service-tag--waf">WAF</span></div>
+          </div>
+        </div>
+
+        <!-- Trust stats band -->
+        <div class="cp-trust reveal">
+          <div class="cp-trust__item"><div class="cp-trust__val">99<span>%</span></div><div class="cp-trust__lbl">Client satisfaction<br>rate</div></div>
+          <div class="cp-trust__item"><div class="cp-trust__val">0<span>৳</span></div><div class="cp-trust__lbl">Partner onboarding<br>cost</div></div>
+          <div class="cp-trust__item"><div class="cp-trust__val">&lt;6<span>hr</span></div><div class="cp-trust__lbl">Standard support<br>response time</div></div>
+          <div class="cp-trust__item"><div class="cp-trust__val">24<span>/7</span></div><div class="cp-trust__lbl">Enterprise monitoring<br>coverage</div></div>
+          <div class="cp-trust__item"><div class="cp-trust__val">5<span>+</span></div><div class="cp-trust__lbl">Industries<br>protected</div></div>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="cp-cta reveal">
+          <div class="cp-cta__text"><h3>Join our growing community</h3><p>Become a CloFix client or partner and get the security, automation, and support your business deserves - backed by a team that answers in minutes, not days.</p></div>
+          <div class="cp-cta__btns"><a href="partner.html" class="cp-cta__btn cp-cta__btn--white">Become a partner</a><a href="contact.html" class="cp-cta__btn cp-cta__btn--outline">Talk to sales</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add this Modal HTML just before the closing </body> tag -->
+    <div id="partnerModal" class="cp-modal">
+      <div class="cp-modal__overlay"></div>
+      <div class="cp-modal__container">
+        <button class="cp-modal__close" aria-label="Close modal">&times;</button>
+        <div class="cp-modal__content">
+          <div class="cp-modal__header">
+            <div class="cp-modal__logo" id="modalLogo"></div>
+            <div>
+              <h3 id="modalName" class="cp-modal__name"></h3>
+              <span id="modalType" class="cp-modal__type"></span>
+            </div>
+          </div>
+          <div class="cp-modal__body">
+            <p id="modalDesc" class="cp-modal__desc"></p>
+            <div class="cp-modal__details">
+              <div class="cp-modal__detail-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span id="modalPartnerSince"></span>
+              </div>
+              <div class="cp-modal__detail-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                <span id="modalSpecialty"></span>
+              </div>
+              <div class="cp-modal__detail-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                <span id="modalProjects"></span>
+              </div>
+            </div>
+            <div class="cp-modal__social" id="modalSocial"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="index.html" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale.</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png" alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="about.html">About CloFix</a></li>
+          <li><a href="contact.html">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="support.html">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#">Events</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="partner.html">Become A Partner</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="terms.html">Terms and Conditions</a></li>
+          <li><a href="sla.html">Service Level Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <p class="footer__text">© 2026 CloFix – All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date()); gtag('config', 'G-WP02RFXGSE');
+  </script>
+
+  <script>
+    /* ── Nav ── */
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+    const dropdowns  = document.querySelectorAll('.c-dropdown');
+
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+    if (navToggle && navContent) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
+      });
+      navContent.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      }));
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
+          navContent.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+    }
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const willOpen = !dd.classList.contains('open');
+        closeAllDropdowns();
+        if (willOpen) { dd.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+    document.addEventListener('click', e => {
+      if (navContent && navContent.classList.contains('active')) return;
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => a.addEventListener('click', () => {
+      closeAllDropdowns();
+      if (navContent) navContent.classList.remove('active');
+      document.body.classList.remove('nav-open');
+      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    /* ── Header height ── */
+    (function () {
+      const h = document.querySelector('.header');
+      function sync() { if (h) document.documentElement.style.setProperty('--header-h', h.offsetHeight + 'px'); }
+      window.addEventListener('load', sync);
+      window.addEventListener('resize', sync);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+      sync();
+    })();
+
+    /* ── Smooth scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* ── Reveal on scroll ── */
+    (function () {
+      const items = document.querySelectorAll('.reveal');
+      if (!items.length) return;
+      if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('show')); return; }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      items.forEach(el => io.observe(el));
+    })();
+
+    /* ── Pause marquee on reduced motion ── */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const m = document.getElementById('marquee');
+      if (m) m.style.animationPlayState = 'paused';
+    }
+  </script>
+  <script>
+  // Partner Badge Modal Data
+  const partnersData = {
+    "Cloudly Infotech Ltd": {
+      logo: "img/cloudly.jpeg",
+      isImage: true,
+      type: "solution",
+      desc: "Trusted IT solution provider delivering enterprise-grade WAF, DevOps automation, and cloud consulting across Bangladesh. With over 8 years of experience, Cloudly Infotech has successfully transformed digital infrastructure for 50+ enterprises.",
+      since: "Partner since: January 2024",
+      specialty: "Specialty: WAF, Cloud Migration, DevOps",
+      projects: "Completed: 35+ joint projects",
+      social: { linkedin: "#", facebook: "#", twitter: "#" }
+    },
+    "DevXpert Agency": {
+      logo: "DX",
+      isImage: false,
+      type: "solution",
+      desc: "Specialized in CI/CD pipelines, Kubernetes orchestration, and infrastructure as code for modern enterprises. DevXpert brings deep expertise in automating development workflows and scaling cloud-native applications.",
+      since: "Partner since: March 2024",
+      specialty: "Specialty: CI/CD, Kubernetes, IaC",
+      projects: "Completed: 28+ joint projects",
+      social: { linkedin: "#", facebook: "#", twitter: "#" }
+    },
+    "NetBridge IT": {
+      logo: "NB",
+      isImage: false,
+      type: "sales",
+      desc: "Strategic sales partner connecting businesses with cutting-edge security solutions across South Asia. NetBridge IT has a vast network of enterprise clients and government organizations.",
+      since: "Partner since: June 2023",
+      specialty: "Specialty: Enterprise Sales, Channel Management",
+      projects: "Completed: 42+ successful referrals",
+      social: { linkedin: "#", facebook: "#", twitter: null }
+    },
+    "CloudLink BD": {
+      logo: "CL",
+      isImage: false,
+      type: "solution",
+      desc: "Cloud-native transformation experts helping organizations migrate and optimize on AWS, Azure, and GCP. CloudLink BD brings certified cloud architects and proven migration frameworks.",
+      since: "Partner since: February 2024",
+      specialty: "Specialty: AWS, Azure, GCP, Cloud Optimization",
+      projects: "Completed: 22+ joint projects",
+      social: { linkedin: "#", facebook: "#", twitter: "#" }
+    },
+    "SkillBridge Tech": {
+      logo: "SB",
+      isImage: false,
+      type: "sales",
+      desc: "Empowering businesses through technology sales and strategic advisory for digital transformation. SkillBridge Tech specializes in matching enterprises with the right security solutions.",
+      since: "Partner since: August 2024",
+      specialty: "Specialty: Tech Sales, Strategic Advisory",
+      projects: "Completed: 18+ successful deals",
+      social: { linkedin: "#", facebook: "#", twitter: null }
+    },
+    "SecureITBD": {
+      logo: "SI",
+      isImage: false,
+      type: "solution",
+      desc: "Cybersecurity specialists delivering end-to-end security assessments and WAF implementations. SecureITBD is a certified security partner with expertise in compliance and threat management.",
+      since: "Partner since: November 2023",
+      specialty: "Specialty: Security Audits, WAF, Compliance",
+      projects: "Completed: 31+ security implementations",
+      social: { linkedin: "#", facebook: "#", twitter: "#" }
+    },
+    "OpsCloud Systems": {
+      logo: "OS",
+      isImage: false,
+      type: "sales",
+      desc: "Leading sales channel for cloud infrastructure and DevOps automation tools in emerging markets. OpsCloud Systems has a strong presence in the enterprise sector.",
+      since: "Partner since: April 2024",
+      specialty: "Specialty: Cloud Sales, DevOps Tools",
+      projects: "Completed: 25+ enterprise deals",
+      social: { linkedin: "#", facebook: "#", twitter: null }
+    }
+  };
+
+  // Get all partner badges and add click handlers
+  document.querySelectorAll('.cp-partner-card').forEach(card => {
+    const badge = card.querySelector('.cp-partner-badge');
+    if (!badge) return;
+    
+    // Find partner name
+    let partnerName = '';
+    const nameEl = card.querySelector('.cp-partner-card__name');
+    if (nameEl) partnerName = nameEl.innerText.trim();
+    
+    // Skip "Become a partner" card
+    if (partnerName === 'Become a partner') return;
+    
+    badge.style.cursor = 'pointer';
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const partnerData = partnersData[partnerName];
+      if (!partnerData) return;
+      
+      // Populate modal
+      const modal = document.getElementById('partnerModal');
+      const modalLogo = document.getElementById('modalLogo');
+      const modalName = document.getElementById('modalName');
+      const modalType = document.getElementById('modalType');
+      const modalDesc = document.getElementById('modalDesc');
+      const modalPartnerSince = document.getElementById('modalPartnerSince');
+      const modalSpecialty = document.getElementById('modalSpecialty');
+      const modalProjects = document.getElementById('modalProjects');
+      const modalSocial = document.getElementById('modalSocial');
+      
+      modalName.innerText = partnerName;
+      modalDesc.innerText = partnerData.desc;
+      modalPartnerSince.innerText = partnerData.since;
+      modalSpecialty.innerText = partnerData.specialty;
+      modalProjects.innerText = partnerData.projects;
+      
+      // Set logo
+      modalLogo.innerHTML = '';
+      if (partnerData.isImage && partnerData.logo) {
+        const img = document.createElement('img');
+        img.src = partnerData.logo;
+        img.alt = partnerName;
+        img.onerror = () => {
+          modalLogo.innerHTML = `<span>${partnerData.logo === 'img/cloudly.jpeg' ? 'CL' : partnerData.logo}</span>`;
+        };
+        modalLogo.appendChild(img);
+      } else {
+        const span = document.createElement('span');
+        span.innerText = partnerData.logo;
+        modalLogo.appendChild(span);
+      }
+      
+      // Set type badge class
+      modalType.className = 'cp-modal__type';
+      modalType.classList.add(partnerData.type === 'solution' ? 'solution' : 'sales');
+      modalType.innerText = partnerData.type === 'solution' ? '✓ Solution Partner' : '★ Sales Partner';
+      
+      // Build social links
+      modalSocial.innerHTML = '';
+      if (partnerData.social.linkedin) {
+        modalSocial.innerHTML += `<a href="${partnerData.social.linkedin}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>`;
+      }
+      if (partnerData.social.facebook) {
+        modalSocial.innerHTML += `<a href="${partnerData.social.facebook}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>`;
+      }
+      if (partnerData.social.twitter) {
+        modalSocial.innerHTML += `<a href="${partnerData.social.twitter}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>`;
+      }
+      
+      // Show modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Modal close functionality
+  const modal = document.getElementById('partnerModal');
+  const closeModal = () => {
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+  if (modal) {
+    modal.querySelector('.cp-modal__close')?.addEventListener('click', closeModal);
+    modal.querySelector('.cp-modal__overlay')?.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+  }
+  </script>
+</body>
+</html>
