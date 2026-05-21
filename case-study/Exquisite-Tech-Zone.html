@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Case study: How Exquisite Tech Zone eliminated DDoS attacks and strengthened security with CloFix WAF and Standard Support Plan. CloFix WAF in Bangladesh."> 
+    <meta name="keywords" content="CloFix WAF, DDoS protection, Web Application Firewall, Exquisite Tech Zone, case study, Bangladesh, WAF support, cybersecurity, pricing">
+    <meta name="author" content="CloFix">
+    <meta name="robots" content="index, follow">
+    <title>Case Study: Exquisite Tech Zone | CloFix WAF Protection & Support</title>
+    <!-- Google Fonts & Simple Reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f9;
+            color: #0a2540;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .case-study-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(125deg, #071b2b 0%, #123e5e 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 80%;
+            margin-bottom: 2rem;
+        }
+
+        .meta-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Content Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            padding: 2.5rem;
+        }
+
+        @media (max-width: 800px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero-subtitle {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+            .meta-grid {
+                gap: 1rem;
+            }
+        }
+
+        /* Main Content */
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f3b5c;
+            border-left: 4px solid #2d9cdb;
+            padding-left: 1rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #2c3e4e;
+        }
+
+        .insight-box {
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .insight-box strong {
+            color: #1e6f9f;
+        }
+
+        .stats-highlight {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e9edf2;
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f3b5c;
+        }
+
+        /* Sidebar */
+        .sidebar-card {
+            background: #fef9e8;
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #ffecb3;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .testimonial-mini {
+            background: #ffffffd9;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            border-left: 3px solid #ffb74d;
+        }
+
+        .support-tier, .pricing-tier {
+            background: #fff;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            border-left: 4px solid #2d9cdb;
+            font-size: 0.85rem;
+        }
+        .pricing-tier strong {
+            color: #0f3b5c;
+        }
+        .price {
+            font-weight: 800;
+            color: #1e6f9f;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid #2d9cdb;
+            border-radius: 40px;
+            color: #2d9cdb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #2d9cdb;
+            color: white;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: none;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        footer {
+            background: #f1f5f9;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        /* Why CloFix WAF grid */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .why-item {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #eef2ff;
+            text-align: center;
+        }
+        .why-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 480px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .sidebar-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="case-study-container">
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">📄 CASE STUDY - PARTNER SUCCESS & WAF DEPLOYMENT</div>
+        <h1>Exquisite Tech Zone<br>Eliminates DDoS Attacks & Strengthens Security with CloFix WAF</h1>
+        <div class="hero-subtitle">
+            How a leading software & security solutions provider secured their infrastructure, stopped application-layer DDoS, and gained enterprise-grade support - starting with 1 site protected.
+        </div>
+        <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Industry</span><span class="meta-value">Software & Security Solutions / SaaS</span></div>
+            <div class="meta-item"><span class="meta-label">Solution</span><span class="meta-value">CloFix WAF · DDoS Protection · Standard Support Plan</span></div>
+            <div class="meta-item"><span class="meta-label">Partner type</span><span class="meta-value">Solution Partner (reselling & internal security)</span></div>
+        </div>
+    </div>
+
+    <!-- Main 2-col layout -->
+    <div class="content-grid">
+        <!-- Left column -->
+        <div>
+            <div class="section">
+                <h2>📍 About Exquisite Tech Zone</h2>
+                <p><strong>Exquisite Tech Zone (etechz.com)</strong> is a fast-growing software and security solutions company based in Bangladesh. Specializing in innovative digital products, custom development, and secure IT systems, they empower businesses with scalable, modern technology - from enterprise software to cybersecurity infrastructure.</p>
+                <p>As a certified <strong>Solution Partner of CloFix</strong>, Exquisite Tech Zone not only resells and deploys CloFix WAF for clients but also relies on the same advanced Web Application Firewall to secure its own digital assets, internal tools, and client-facing portals.</p>
+            </div>
+
+            <div class="section">
+                <h2>⚡ Key pain points: DDoS attacks & unprotected surface</h2>
+                <p>Before partnering with CloFix, Exquisite Tech Zone faced escalating cybersecurity challenges that threatened business continuity:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: #2c3e4e;">
+                    <li><strong>Repeated DDoS attacks</strong> - Frequent layer 7 HTTP floods and volumetric attacks causing service degradation and downtime during peak business hours.</li>
+                    <li><strong>SQL injection & XSS attempts</strong> - Daily exploit probes targeting customer portals and admin panels.</li>
+                    <li><strong>Legacy firewall limitations</strong> - No real-time visibility, manual rule updates, and zero bot management capabilities.</li>
+                    <li><strong>Slow incident response</strong> - Alert fatigue and delayed mitigation without a dedicated support SLA.</li>
+                    <li><strong>Partner demo environment risk</strong> - Needed enterprise-grade security without complexity or upfront cost.</li>
+                </ul>
+                <div class="insight-box">
+                    <strong>🔍 Impact of DDoS attacks:</strong><br>
+                    • Website unavailable for hours at a time → lost revenue & client trust.<br>
+                    • Origin server overloaded → degraded performance for legitimate users.<br>
+                    • Manual mitigation efforts drained engineering resources.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🛡️ Solution: CloFix WAF + Standard Support Plan</h2>
+                <p>Exquisite Tech Zone leveraged the CloFix partner program benefit: <strong>“1 website - CloFix WAF under protection”</strong>. Their primary website was hosted and secured at zero cost, while additional properties were onboarded via the <strong>Standard Support Plan (৳60,000/year)</strong> - ideal for their growing production workloads.</p>
+                <p><strong>Deployment highlights:</strong> DNS-based onboarding completed in <strong>under 4 hours</strong> with zero code changes. Enabled advanced WAF policies, bot blocking, geo-fencing, and virtual patching.</p>
+                
+                <h3 style="font-size: 1.2rem; margin: 1rem 0 0.5rem 0;">✅ How CloFix Support addressed their needs:</h3>
+                <div class="insight-box" style="background: #eef2ff;">
+                    <strong>📞 Standard Support Plan (active)</strong><br>
+                    • <strong>Response time:</strong> < 6 hours for general & system issues via Email + WhatsApp<br>
+                    • <strong>Shared security support team</strong> - rapid triage during DDoS attacks<br>
+                    • <strong>Setup & best practices guidance</strong> - rule tuning & performance optimization<br>
+                    • <strong>Basic third-party integration help</strong> - seamless with existing stack<br>
+                    • <strong>No dedicated account manager</strong> (upgradable to Enterprise for 24/7 mission-critical needs)
+                </div>
+                <p>For critical incident response during active DDoS attacks, the CloFix team provided rapid guidance, traffic analysis, and automatic edge filtering - stopping malicious requests before reaching origin.</p>
+            </div>
+            
+            <div class="section">
+                <h2>🔒 Why CloFix WAF?</h2>
+                <p>CloFix WAF is trusted by businesses across Bangladesh and beyond. Here’s why Exquisite Tech Zone chose CloFix over alternatives:</p>
+                <div class="why-grid">
+                    <div class="why-item"><span class="why-icon">⚡</span> <strong>Real-time DDoS Mitigation</strong><br>L3/L7 protection with automatic edge filtering.</div>
+                    <div class="why-item"><span class="why-icon">🛡️</span> <strong>OWASP CRS & AI Detection</strong><br>Protection against SQLi, XSS, and zero-day exploits.</div>
+                    <div class="why-item"><span class="why-icon">📊</span> <strong>Centralized Dashboard & Android App</strong><br>Complete visibility from anywhere.</div>
+                    <div class="why-item"><span class="why-icon">🤝</span> <strong>SLA-Backed Support</strong><br>Response <6hrs (Standard) or <1hr (Enterprise).</div>
+                    <div class="why-item"><span class="why-icon">🚀</span> <strong>Zero Code Change</strong><br>DNS-based deployment with sub-10ms latency.</div>
+                    <div class="why-item"><span class="why-icon">💰</span> <strong>Partner Friendly</strong><br>0৳ onboarding, 1 site free, attractive commissions.</div>
+                </div>
+                <div class="insight-box">
+                    ✅ 99.9% enterprise uptime • 24/7 monitoring • Trusted by 1+ clients across 5+ industries in Bangladesh.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📈 Results & measurable impact</h2>
+                <p>Within 30 days of activating CloFix WAF + Standard Support, Exquisite Tech Zone documented dramatic improvements:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: #2c3e4e;">
+                    <li><strong>DDoS attacks blocked 100%</strong> - Automatic mitigation at the edge; zero successful volumetric or layer 7 attacks reached origin.</li>
+                    <li><strong>98% malicious requests filtered</strong> - SQLi, XSS, and exploit scanners neutralized.</li>
+                    <li><strong>Uptime improved to 99.95%</strong> - No unplanned downtime since deployment.</li>
+                    <li><strong>Page load speed improved by 28%</strong> - Smart caching & request minification.</li>
+                    <li><strong>Partner sales cycle shortened by 40%</strong> - Using CloFix demo environment with live analytics.</li>
+                    <li><strong>Support response consistently < 4 hours</strong> - Beating the 6-hour SLA.</li>
+                </ul>
+                <div class="insight-box">
+                    ✅ “We host our own website under CloFix WAF - it’s under constant protection. DDoS attacks dropped to zero, and the dashboard gives us complete visibility. The support team responds incredibly fast, usually within hours.” - <strong>Effety Hassan, Founder & CEO</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right column -->
+        <div>
+            <div class="sidebar-card">
+                <h3>📊 <span>Key outcomes</span></h3>
+                <div class="stat-card" style="background: #fff4e0; margin-bottom: 0.8rem;">
+                    <div class="stat-number" style="font-size: 2.4rem;">100%</div>
+                    <div>DDoS attacks blocked</div>
+                </div>
+                <div class="stat-card" style="background: #fff4e0; margin-bottom: 0.8rem;">
+                    <div class="stat-number" style="font-size: 2.4rem;">99.95%</div>
+                    <div>Uptime achieved</div>
+                </div>
+                <div class="stat-card" style="background: #fff4e0; margin-bottom: 0.8rem;">
+                    <div class="stat-number" style="font-size: 2.4rem;">< 4h</div>
+                    <div>Avg support response</div>
+                </div>
+                <div class="testimonial-mini">
+                    ★★★★★ “The dashboard gives us complete visibility. CloFix WAF made our website much safer. DDoS attacks dropped a lot, everything is clearly visible in the WAF dashboard.”
+                </div>
+                <a href="https://clofix.com/client-partner.html" class="btn-outline" target="_blank">🔗 View official partner listing →</a>
+            </div>
+
+            <div class="sidebar-card" style="background: #eef2ff; border-color: #cbdff2;">
+                <h3>🤝 Partner ecosystem: Zero friction</h3>
+                <p><strong>Exquisite Tech Zone</strong> joined with <strong>0৳ onboarding cost</strong>, dedicated support, and attractive commissions. They leverage:</p>
+                <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                    <li>White-glove technical training</li>
+                    <li>Co-marketing & proposal templates</li>
+                    <li>Partner-only WAF demo environment</li>
+                    <li>24/7 monitoring escalation path</li>
+                </ul>
+                <hr>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Partner benefit:</strong> 1 site free - CloFix WAF under protection. Exquisite Tech Zone’s own domain is hosted and secured by CloFix, reinforcing their commitment to eating their own dogfood.</p>
+            </div>
+
+            <div class="sidebar-card" style="background: #e6f7ec;">
+                <h3>💰 CloFix WAF Pricing Plans (SaaS)</h3>
+                <div class="pricing-tier"><strong>Starter</strong> - <span class="price">৳1,500/month</span><br>1 domain, 30K req, OWASP CRS, Email support</div>
+                <div class="pricing-tier"><strong>Growth</strong> - <span class="price">৳5,500/month</span><br>3 domains, DDoS L3/L4, JS/Lua scripting</div>
+                <div class="pricing-tier"><strong>Pro</strong> - <span class="price">৳16,500/month</span> 🔥 Most Popular<br>5 domains, AI-powered, API security, WhatsApp support</div>
+                <div class="pricing-tier"><strong>Enterprise</strong> - <span class="price">৳50,000/month</span><br>10+ domains, unlimited requests, 99.99% SLA, dedicated manager</div>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">🔹 <strong>All plans include:</strong> WAF dashboard, Android app, unlimited user accounts. Enterprise adds AWS monitoring tool.</p>
+                <a href="https://clofix.com/pricing.html" class="btn-outline" style="margin-top: 0.5rem;" target="_blank">📊 View all pricing details →</a>
+            </div>
+
+            <div class="sidebar-card" style="background: #f0f9ff; border-color: #cfe7ff;">
+                <h3>📌 CloFix Support Plans at a glance</h3>
+                <div class="support-tier"><strong>🆓 Free</strong> - ৳0/yr: Email tickets (best effort), docs & community.</div>
+                <div class="support-tier"><strong>⭐ Standard (Active)</strong> - ৳60,000/yr: Email + WhatsApp, response < 6 hrs, shared security team, best practices guidance.</div>
+                <div class="support-tier"><strong>🏢 Enterprise</strong> - ৳7,20,000/yr: Any channel, < 1 hr response (<15 min critical), dedicated account manager, custom features, quarterly reviews.</div>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">🔹 <strong>What support covers:</strong> Rule tuning, incident response (including DDoS attacks), performance optimization, dashboard analytics, custom feature dev, version upgrades.</p>
+                <a href="https://clofix.com/support.html" class="btn-outline" style="margin-top: 0.5rem;" target="_blank">📞 View all support plans →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Exquisite Tech Zone & CloFix - Case Study based on real partner deployment. CloFix WAF protects businesses across Bangladesh & beyond with SLA-backed support.</p>
+        <p style="margin-top: 0.5rem;">🔐 Become a partner: <strong>Zero onboarding cost, dedicated support</strong> - <a href="https://clofix.com/client-partner.html" target="_blank" style="color:#1e6f9f;">Join CloFix partner network</a> | <a href="https://clofix.com/support.html" target="_blank" style="color:#1e6f9f;">Explore support plans</a> | <a href="https://clofix.com/pricing.html" target="_blank" style="color:#1e6f9f;">View pricing</a></p>
+    </footer>
+</div>
+</body>
+</html>
