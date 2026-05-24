@@ -8,12 +8,8 @@
   <!-- Canonical (pick ONE main URL to be indexed) -->
   <link rel="canonical" href="https://clofix.com/contact.html" />
 
-  <!-- Standard SEO Meta -->
-  <!-- <meta name="description"
-    content="Get in touch with CloFix. Contact our team for inquiries about cloud security, Web Application Firewall (WAF), AI-driven automation, DevOps support, and enterprise solutions."> -->
   <meta name="description"
     content="Contact CloFix for cloud security, WAF, AI automation, and DevOps support. Talk with our team about enterprise solutions, pricing, and deployment options today.">
-
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -48,6 +44,20 @@
   <link href="./style.css" rel="stylesheet" />
 
   <title>Contact Us</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE');
+  </script>
+
 </head>
 
 <body>
@@ -302,7 +312,6 @@
     </div>
   </footer>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
   <script>
     const navToggle = document.getElementById('navToggle');
     const navContent = document.querySelector('.c-nav__content');

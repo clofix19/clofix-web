@@ -22,6 +22,19 @@
     rel="stylesheet" />
   <link href="./style.css" rel="stylesheet" />
   <link href="./blogs.css" rel="stylesheet" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE');
+  </script>
 
   <style>
     .table-wrapper {
@@ -650,10 +663,7 @@ backends https://clofix.com weight=10 backup=false max_fails=3 fail_timeout=30s,
       <li><a href="sla.html">Service Level Agreement</a></li></ul></div>
     </div>
     <div class="container"><p class="footer__text">© 2026 © CloFix – All Rights Reserved</p></div>
-  </footer>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-  
+  </footer>  
   <script>
     const navToggle = document.getElementById('navToggle');
     const navContent = document.querySelector('.c-nav__content');

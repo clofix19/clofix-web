@@ -20,6 +20,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="./style.css" rel="stylesheet" />
     <title>CloFix WAF - OWASP CRS (Core Rule Set) Guide</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag(){
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+      gtag('config', 'G-WP02RFXGSE');
+    </script>
+
     <style>
         :root {
             --crs-dark:     #0a0e1a;
@@ -1063,6 +1077,5 @@ sudo tail -f /var/log/clofix/waf.log | grep -i '\[CRS\]'</pre>
       }
     })();
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
 </body>
 </html>
