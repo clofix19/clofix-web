@@ -2532,6 +2532,727 @@
               </div>
             </div>
           </template>
+          <!-- ============================================= -->
+          <!-- 1. Prototype Pollution Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="prototype_pollution">
+              <h3>🔬 Prototype Pollution Protection</h3>
+              <p>Prevents JavaScript prototype pollution attacks targeting object prototypes in Node.js and browser environments</p>
+          </div>
+
+          <template id="prototype_pollution">
+              <p>Advanced protection against prototype pollution attacks that attempt to modify JavaScript object prototypes, leading to RCE, property injection, or DoS.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li><code>__proto__</code> Property Injection</li>
+                  <li><code>constructor.prototype</code> Manipulation</li>
+                  <li>JSON-based Prototype Pollution</li>
+                  <li>Query String Prototype Injection</li>
+                  <li>Form Parameter Prototype Attacks</li>
+                  <li>Header-based Prototype Pollution</li>
+                  <li>Nested Object Injection</li>
+                  <li>Array Prototype Manipulation</li>
+                  <li>Function Prototype Override</li>
+                  <li>Object.prototype Pollution via <code>Object.assign</code></li>
+              </ul>
+
+              <h4>🛡️ Detection Methods</h4>
+              <ul>
+                  <li>Recursive Object Key Scanning</li>
+                  <li>Pattern-based Payload Detection</li>
+                  <li>JSON Payload Validation</li>
+                  <li>Parameter Pollution Correlation</li>
+                  <li>Context-Aware Filtering</li>
+                  <li>Whitelist-based Property Validation</li>
+              </ul>
+
+              <h4>🎯 Protected Environments</h4>
+              <ul>
+                  <li>Node.js Applications</li>
+                  <li>Browser-based JavaScript Apps</li>
+                  <li>MongoDB (prototype pollution to RCE)</li>
+                  <li>Express.js / Nest.js / Next.js</li>
+                  <li>React / Vue.js / Angular</li>
+                  <li>Serverless Functions</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 2. Open Redirect Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="open_redirect">
+              <h3>🔄 Open Redirect Protection</h3>
+              <p>Blocks unvalidated redirects and forwards that could be used for phishing attacks</p>
+          </div>
+
+          <template id="open_redirect">
+              <p>Prevents attackers from redirecting users to malicious external sites using unvalidated redirect parameters.</p>
+
+              <h4>🎯 Attack Patterns Blocked</h4>
+              <ul>
+                  <li>External Domain Redirects</li>
+                  <li>JavaScript Protocol Redirects (<code>javascript:</code>)</li>
+                  <li>Data URI Redirects (<code>data:text/html</code>)</li>
+                  <li>URL Encoding Bypasses</li>
+                  <li>Double Encoding Tricks</li>
+                  <li>Unicode Homograph Domains</li>
+                  <li>Subdomain Takeover Redirects</li>
+                  <li>Open Proxy Abuse</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>Whitelist-based Domain Validation</li>
+                  <li>Protocol Restriction (HTTP/HTTPS only)</li>
+                  <li>URL Canonicalization</li>
+                  <li>Redirect Parameter Detection</li>
+                  <li>Referrer Validation</li>
+                  <li>Same-Origin Enforcement</li>
+                  <li>Pattern-based URL Sanitization</li>
+              </ul>
+
+              <h4>📋 Common Redirect Parameters Protected</h4>
+              <ul>
+                  <li><code>redirect</code>, <code>redirect_uri</code>, <code>redirect_url</code></li>
+                  <li><code>return</code>, <code>return_to</code>, <code>next</code></li>
+                  <li><code>goto</code>, <code>url</code>, <code>dest</code>, <code>destination</code></li>
+                  <li><code>callback</code>, <code>continue</code>, <code>forward</code></li>
+                  <li><code>to</code>, <code>target</code>, <code>relay_state</code></li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 3. GraphQL Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="graphql_protection">
+              <h3>📊 GraphQL Security Protection</h3>
+              <p>Comprehensive security for GraphQL APIs against introspection, depth bombs, and batch attacks</p>
+          </div>
+
+          <template id="graphql_protection">
+              <p>Specialized protection layer for GraphQL endpoints preventing DoS, data extraction, and abuse attacks.</p>
+
+              <h4>🎯 Attack Types Blocked</h4>
+              <ul>
+                  <li>GraphQL Depth Bomb (Nested Queries)</li>
+                  <li>GraphQL Introspection Probing</li>
+                  <li>Batch Query Abuse (Alias Bomb)</li>
+                  <li>Circular Fragment Attacks</li>
+                  <li>Resource Intensive Queries</li>
+                  <li>Field Duplication Attacks</li>
+                  <li>Cost Analysis Bypass</li>
+                  <li>Persisted Query Abuse</li>
+              </ul>
+
+              <h4>🛡️ Protection Features</h4>
+              <ul>
+                  <li>Query Depth Limiting (configurable)</li>
+                  <li>Alias Count Limiting</li>
+                  <li>Query Cost Analysis</li>
+                  <li>Introspection Blocking (production)</li>
+                  <li>Persisted Query Whitelisting</li>
+                  <li>Rate Limiting per Query Type</li>
+                  <li>Field Usage Analytics</li>
+                  <li>Batch Request Throttling</li>
+              </ul>
+
+              <h4>⚙️ Configuration Options</h4>
+              <ul>
+                  <li>Max Query Depth: 10 (default)</li>
+                  <li>Max Aliases: 50 (default)</li>
+                  <li>Introspection: Blocked in production</li>
+                  <li>Query Cost Limit: configurable</li>
+                  <li>Batch Limit: 20 per request</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 4. File Upload Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="file_upload">
+              <h3>📁 Secure File Upload Protection</h3>
+              <p>Blocks malicious file uploads including webshells, malware, and double-extension attacks</p>
+          </div>
+
+          <template id="file_upload">
+              <p>Prevents attackers from uploading malicious files that could lead to RCE, XSS, or server compromise.</p>
+
+              <h4>🚫 Blocked File Types</h4>
+              <ul>
+                  <li>PHP Files (<code>.php</code>, <code>.php3</code>, <code>.php4</code>, <code>.phtml</code>)</li>
+                  <li>ASP / ASPX Files (<code>.asp</code>, <code>.aspx</code>, <code>.ashx</code>)</li>
+                  <li>JSP Files (<code>.jsp</code>, <code>.jspx</code>)</li>
+                  <li>Executables (<code>.exe</code>, <code>.dll</code>, <code>.msi</code>)</li>
+                  <li>Shell Scripts (<code>.sh</code>, <code>.bash</code>, <code>.zsh</code>)</li>
+                  <li>JavaScript HTML (<code>.html</code>, <code>.htm</code> containing scripts)</li>
+              </ul>
+
+              <h4>🛡️ Detection Techniques</h4>
+              <ul>
+                  <li>MIME Type Validation (content-based)</li>
+                  <li>Extension Whitelist/Blacklist</li>
+                  <li>Double-Extension Detection (shell.jpg.php)</li>
+                  <li>Null Byte Poisoning Prevention (<code>.php\x00.jpg</code>)</li>
+                  <li>Magic Number Verification</li>
+                  <li>Content Inspection for Malware</li>
+                  <li>Image Resampling (re-compress uploads)</li>
+              </ul>
+
+              <h4>⚙️ Security Actions</h4>
+              <ul>
+                  <li>Reject dangerous file types</li>
+                  <li>Sanitize filenames</li>
+                  <li>Generate random filenames</li>
+                  <li>Scan with antivirus</li>
+                  <li>Store outside webroot</li>
+                  <li>Apply restrictive permissions</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 5. Request Smuggling Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="request_smuggling">
+              <h3>📨 HTTP Request Smuggling Protection</h3>
+              <p>Blocks CL.TE, TE.CL, and TE.TE request smuggling attacks against proxies and load balancers</p>
+          </div>
+
+          <template id="request_smuggling">
+              <p>Prevents attackers from bypassing security controls by sending ambiguous HTTP requests to front-end and back-end servers.</p>
+
+              <h4>🎯 Attack Variants Blocked</h4>
+              <ul>
+                  <li>CL.TE (Content-Length vs Transfer-Encoding)</li>
+                  <li>TE.CL (Transfer-Encoding vs Content-Length)</li>
+                  <li>TE.TE (Obfuscated Transfer-Encoding)</li>
+                  <li>Duplicate Content-Length Headers</li>
+                  <li>Chunked Encoding Smuggling</li>
+                  <li>Header Folding Attacks</li>
+                  <li>HTTP/2 to HTTP/1.1 Smuggling</li>
+              </ul>
+
+              <h4>🛡️ Detection Methods</h4>
+              <ul>
+                  <li>Normalize ambiguous headers</li>
+                  <li>Validate Content-Length values</li>
+                  <li>Reject conflicting headers</li>
+                  <li>Parse chunked encoding strictly</li>
+                  <li>Drop malformed requests</li>
+                  <li>Log smuggling attempts</li>
+                  <li>IP blocking for repeat offenders</li>
+              </ul>
+
+              <h4>🔄 Protected Components</h4>
+              <ul>
+                  <li>Reverse Proxies (Nginx, HAProxy, Envoy)</li>
+                  <li>Load Balancers (AWS ALB, F5, Citrix)</li>
+                  <li>Application Servers (Tomcat, IIS, Apache)</li>
+                  <li>API Gateways (Kong, Traefik, Ambassador)</li>
+                  <li>CDN Edge Servers (Cloudflare, Fastly, Akamai)</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 6. Template Injection Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="template_injection">
+              <h3>🎨 Server-Side Template Injection Protection</h3>
+              <p>Prevents SSTI attacks that could lead to RCE in templating engines</p>
+          </div>
+
+          <template id="template_injection">
+              <p>Blocks template injection attacks targeting Jinja2, Twig, Freemarker, Velocity, ERB, and other templating engines.</p>
+
+              <h4>🎯 Protected Template Engines</h4>
+              <ul>
+                  <li>Jinja2 / Django (Python)</li>
+                  <li>Twig / Smarty (PHP)</li>
+                  <li>Freemarker / Velocity (Java)</li>
+                  <li>ERB (Ruby)</li>
+                  <li>Handlebars / Mustache (JavaScript)</li>
+                  <li>Pug / Jade (Node.js)</li>
+                  <li>Go Templates</li>
+              </ul>
+
+              <h4>🔍 Detected Attack Patterns</h4>
+              <ul>
+                  <li><code>{{ config.items() }}</code> - Config Access</li>
+                  <li><code>{{ self.__class__ }}</code> - Object Traversal</li>
+                  <li><code>${7*7}</code> - Expression Evaluation</li>
+                  <li><code>&#123;&#123;7*7&#125;&#125;</code> - Encoded Expression</li>
+                  <li><code>&lt;%= system('id') %&gt;</code> - Code Execution</li>
+                  <li><code>{php}system('id');{/php}</code> - PHP Injection</li>
+              </ul>
+
+              <h4>🛡️ Protection Techniques</h4>
+              <ul>
+                  <li>Sandboxed Template Rendering</li>
+                  <li>Disable Dangerous Functions</li>
+                  <li>Input Sanitization</li>
+                  <li>Context-Aware Escaping</li>
+                  <li>Template Whitelisting</li>
+                  <li>Expression Depth Limiting</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 7. CORS Abuse Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="cors_abuse">
+              <h3>🌐 CORS Abuse Protection</h3>
+              <p>Prevents Cross-Origin Resource Sharing misconfigurations and abuse attacks</p>
+          </div>
+
+          <template id="cors_abuse">
+              <p>Blocks malicious cross-origin requests exploiting permissive CORS policies and credential leakage.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>Wildcard Origin with Credentials (<code>Access-Control-Allow-Origin: *</code> with credentials)</li>
+                  <li>Null Origin Abuse (<code>Origin: null</code>)</li>
+                  <li>Reflected Origin Headers</li>
+                  <li>Private IP Origin Attacks</li>
+                  <li>Subdomain Origin Spoofing</li>
+                  <li>Preflight Cache Poisoning</li>
+                  <li>CORS Misconfiguration Exploitation</li>
+              </ul>
+
+              <h4>🛡️ Protection Features</h4>
+              <ul>
+                  <li>Origin Whitelist Validation</li>
+                  <li>Block Credentials with Wildcard Origin</li>
+                  <li>Reject Null Origin</li>
+                  <li>Validate Preflight Requests</li>
+                  <li>Restrict Dangerous Methods</li>
+                  <li>Limit Exposed Headers</li>
+                  <li>Cache Control for Preflight</li>
+              </ul>
+
+              <h4>⚙️ Security Headers Applied</h4>
+              <ul>
+                  <li><code>Access-Control-Allow-Origin</code> (restrictive)</li>
+                  <li><code>Access-Control-Allow-Credentials</code> (conditional)</li>
+                  <li><code>Access-Control-Allow-Methods</code> (limited)</li>
+                  <li><code>Access-Control-Allow-Headers</code> (whitelist)</li>
+                  <li><code>Access-Control-Max-Age</code> (capped)</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 8. ClickJacking Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="clickjacking">
+              <h3>🖱️ ClickJacking Protection</h3>
+              <p>Prevents UI redress attacks that trick users into clicking hidden elements</p>
+          </div>
+
+          <template id="clickjacking">
+              <p>Blocks clickjacking attempts by enforcing frame-busting headers and detecting framing attacks.</p>
+
+              <h4>🛡️ Protection Headers Applied</h4>
+              <ul>
+                  <li><code>X-Frame-Options: SAMEORIGIN</code> or <code>DENY</code></li>
+                  <li><code>Content-Security-Policy: frame-ancestors 'self'</code></li>
+                  <li><code>Frame-Options</code> for legacy browsers</li>
+              </ul>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>Invisible IFrame Overlays</li>
+                  <li>Cursor Jacking</li>
+                  <li>Drag-and-Drop Jacking</li>
+                  <li>Touch Screen Jacking (Mobile)</li>
+                  <li>Form Grabbing</li>
+                  <li>Token Extraction via Frames</li>
+                  <li>Session Riding</li>
+              </ul>
+
+              <h4>🔍 Detection Capabilities</h4>
+              <ul>
+                  <li>Frame-Busting Detection</li>
+                  <li>Cross-Origin Frame Detection</li>
+                  <li>Referrer Analysis</li>
+                  <li>User-Agent Context Analysis</li>
+                  <li>Mobile Viewport Analysis</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 9. WebSocket Abuse Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="websocket_abuse">
+              <h3>🔌 WebSocket Abuse Protection</h3>
+              <p>Secures WebSocket connections against abuse, flooding, and cross-origin attacks</p>
+          </div>
+
+          <template id="websocket_abuse">
+              <p>Protects WebSocket endpoints from connection flooding, cross-origin hijacking, and protocol abuse.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>Cross-Origin WebSocket Connections</li>
+                  <li>WebSocket Connection Flooding</li>
+                  <li>Message Flooding (DoS)</li>
+                  <li>Oversized Frame Attacks</li>
+                  <li>Invalid Frame Type Injection</li>
+                  <li>Protocol Downgrade Attacks</li>
+                  <li>WebSocket Tunnel Abuse</li>
+              </ul>
+
+              <h4>🛡️ Protection Features</h4>
+              <ul>
+                  <li>Origin Validation</li>
+                  <li>Connection Rate Limiting</li>
+                  <li>Message Rate Limiting</li>
+                  <li>Frame Size Limits</li>
+                  <li>Protocol Whitelisting</li>
+                  <li>Authentication Required</li>
+                  <li>Automatic Connection Cleanup</li>
+              </ul>
+
+              <h4>⚙️ Rate Limits (configurable)</h4>
+              <ul>
+                  <li>Max Connections per IP: 10</li>
+                  <li>Max Messages per Second: 100</li>
+                  <li>Max Frame Size: 64KB</li>
+                  <li>Idle Timeout: 60 seconds</li>
+                  <li>Handshake Timeout: 5 seconds</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 10. API Abuse Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="api_abuse">
+              <h3>🔐 API Abuse Protection</h3>
+              <p>Comprehensive API security including rate limiting, schema validation, and abuse detection</p>
+          </div>
+
+          <template id="api_abuse">
+              <p>Protects REST and GraphQL APIs from abuse, scraping, brute force, and business logic attacks.</p>
+
+              <h4>🎯 Protected API Types</h4>
+              <ul>
+                  <li>REST APIs (JSON, XML, Form)</li>
+                  <li>GraphQL APIs</li>
+                  <li>SOAP Web Services</li>
+                  <li>gRPC endpoints</li>
+                  <li>Webhook endpoints</li>
+                  <li>OAuth/OIDC endpoints</li>
+              </ul>
+
+              <h4>🛡️ Protection Features</h4>
+              <ul>
+                  <li>Rate Limiting (per IP, per API key, per endpoint)</li>
+                  <li>API Key Validation</li>
+                  <li>JWT Token Validation</li>
+                  <li>Request Schema Validation</li>
+                  <li>Response Schema Validation</li>
+                  <li>SQL Injection for APIs</li>
+                  <li>XXE Protection for XML APIs</li>
+                  <li>Parameter Pollution Detection</li>
+                  <li>Payload Size Limits</li>
+                  <li>Request Throttling</li>
+              </ul>
+
+              <h4>⚙️ Rate Limit Configuration</h4>
+              <ul>
+                  <li>Public endpoints: 60 req/min</li>
+                  <li>Authenticated endpoints: 600 req/min</li>
+                  <li>Admin endpoints: 600 req/min</li>
+                  <li>Login endpoint: 10 req/min</li>
+                  <li>OTP endpoint: 5 req/min</li>
+                  <li>File upload: 10 req/hour</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 11. Method Spoofing Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="method_spoofing">
+              <h3>🔧 HTTP Method Spoofing Protection</h3>
+              <p>Blocks HTTP method override attacks that bypass security controls</p>
+          </div>
+
+          <template id="method_spoofing">
+              <p>Prevents attackers from using HTTP method override headers to bypass security restrictions.</p>
+
+              <h4>🎯 Blocked Headers</h4>
+              <ul>
+                  <li><code>X-HTTP-Method-Override</code></li>
+                  <li><code>X-HTTP-Method</code></li>
+                  <li><code>X-Method-Override</code></li>
+                  <li><code>X-Original-Method</code></li>
+                  <li><code>_method</code> (query parameter)</li>
+              </ul>
+
+              <h4>🎯 Blocked Spoofing Attempts</h4>
+              <ul>
+                  <li>GET to POST (circumventing CSRF)</li>
+                  <li>GET to DELETE (data deletion)</li>
+                  <li>GET to PUT (data modification)</li>
+                  <li>POST to DELETE (auth bypass)</li>
+                  <li>Invalid HTTP Methods</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 12. Host Header Injection Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="host_injection">
+              <h3>🏠 Host Header Injection Protection</h3>
+              <p>Prevents host header attacks including cache poisoning, password reset poisoning, and SSRF</p>
+          </div>
+
+          <template id="host_injection">
+              <p>Blocks attackers from manipulating the Host header to poison caches, bypass virtual host routing, or launch password reset poisoning attacks.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>Cache Poisoning via Host Header</li>
+                  <li>Password Reset Poisoning</li>
+                  <li>Virtual Host Bypass</li>
+                  <li>Web Cache Deception</li>
+                  <li>DNS Rebinding via Host</li>
+                  <li>XSS via Host Reflection</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>Host Whitelist Validation</li>
+                  <li>Duplicate Host Header Blocking</li>
+                  <li>Localhost/Private IP Blocking</li>
+                  <li>CRLF Injection Prevention</li>
+                  <li>Port Stripping & Validation</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 13. Response Splitting Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="response_splitting">
+              <h3>📝 HTTP Response Splitting Protection</h3>
+              <p>Prevents CRLF injection attacks that split HTTP responses and enable XSS</p>
+          </div>
+
+          <template id="response_splitting">
+              <p>Blocks CRLF (Carriage Return Line Feed) injection attacks that split HTTP response headers and enable cross-site scripting.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>CRLF Injection (<code>\r\n</code>)</li>
+                  <li>LF Injection (<code>\n</code>)</li>
+                  <li>URL Encoded CRLF (<code>%0d%0a</code>)</li>
+                  <li>Double Encoding (<code>%250d%250a</code>)</li>
+                  <li>Set-Cookie Injection</li>
+                  <li>Redirect Splitting</li>
+              </ul>
+
+              <h4>🛡️ Protected Headers</h4>
+              <ul>
+                  <li><code>Referer</code>, <code>User-Agent</code></li>
+                  <li><code>Location</code>, <code>Cookie</code></li>
+                  <li><code>X-Forwarded-For</code></li>
+                  <li><code>Origin</code>, <code>Host</code></li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 14. MIME Sniffing Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="mime_sniffing">
+              <h3>🎯 MIME Sniffing Protection</h3>
+              <p>Prevents browsers from interpreting files as executable content types</p>
+          </div>
+
+          <template id="mime_sniffing">
+              <p>Forces browsers to respect declared MIME types, preventing XSS via MIME type confusion attacks.</p>
+
+              <h4>🛡️ Protection Applied</h4>
+              <ul>
+                  <li><code>X-Content-Type-Options: nosniff</code> header</li>
+                  <li>Content-Type validation on uploads</li>
+                  <li>MIME mismatch detection (image/ HTML content)</li>
+                  <li>Executable content blocking in text contexts</li>
+              </ul>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>HTML disguised as images</li>
+                  <li>CSS disguised as text/plain</li>
+                  <li>JSON with HTML injection</li>
+                  <li>SVG with script execution</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 15. Content-Type Enforcement -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="content_type_enforcement">
+              <h3>📋 Content-Type Enforcement</h3>
+              <p>Enforces strict Content-Type headers for API endpoints</p>
+          </div>
+
+          <template id="content_type_enforcement">
+              <p>Ensures API endpoints receive expected Content-Type headers, preventing confusion attacks.</p>
+
+              <h4>🎯 Enforced Types</h4>
+              <ul>
+                  <li>JSON APIs → <code>application/json</code></li>
+                  <li>XML APIs → <code>application/xml</code> or <code>text/xml</code></li>
+                  <li>Form APIs → <code>application/x-www-form-urlencoded</code></li>
+                  <li>File Upload → <code>multipart/form-data</code></li>
+              </ul>
+
+              <h4>🔍 Charset Validation</h4>
+              <ul>
+                  <li>Only UTF-8, ISO-8859-1, Windows-1252 allowed</li>
+                  <li>Block UTF-7, UTF-16, UTF-32 (encoding attacks)</li>
+                  <li>Charset normalization</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 16. Unicode Homograph Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="unicode_homograph">
+              <h3>✍️ Unicode Homograph Protection</h3>
+              <p>Prevents IDN homograph attacks that use visually similar Unicode characters</p>
+          </div>
+
+          <template id="unicode_homograph">
+              <p>Blocks attackers from using visually identical Unicode characters to create phishing domains and URLs.</p>
+
+              <h4>🎯 Blocked Character Sets</h4>
+              <ul>
+                  <li>Cyrillic (looks like Latin)</li>
+                  <li>Greek characters</li>
+                  <li>Fullwidth characters</li>
+                  <li>Superscript/Subscript numbers</li>
+                  <li>Letter-like symbols</li>
+                  <li>Combining characters</li>
+              </ul>
+
+              <h4>🔍 Detection Examples</h4>
+              <ul>
+                  <li><code>аpple.com</code> (Cyrillic 'а') vs <code>apple.com</code></li>
+                  <li><code>gοοgle.com</code> (Greek 'ο') vs <code>google.com</code></li>
+                  <li><code>paypaI.com</code> (Fullwidth 'I') vs <code>paypal.com</code></li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 17. Cache Poisoning Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="cache_poisoning">
+              <h3>💾 Cache Poisoning Protection</h3>
+              <p>Prevents attackers from injecting malicious content into CDN and application caches</p>
+          </div>
+
+          <template id="cache_poisoning">
+              <p>Blocks cache poisoning attacks that inject malicious responses into shared caches.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li>X-Forwarded-Host Poisoning</li>
+                  <li>Cache Key Manipulation</li>
+                  <li>Unkeyed Header Injection</li>
+                  <li>Vary Header Abuse</li>
+                  <li>Cache Deception</li>
+                  <li>Request Smuggling for Caches</li>
+              </ul>
+
+              <h4>🛡️ Protection Features</h4>
+              <ul>
+                  <li>Normalize cache keys</li>
+                  <li>Remove redundant headers</li>
+                  <li>Validate X-Forwarded headers</li>
+                  <li>Rate limit purges</li>
+                  <li>Cache response validation</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 18. HTTP Verb Tampering Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="verb_tampering">
+              <h3>🔨 HTTP Verb Tampering Protection</h3>
+              <p>Blocks dangerous HTTP methods and tampering attempts</p>
+          </div>
+
+          <template id="verb_tampering">
+              <p>Blocks dangerous and unauthorized HTTP methods that could compromise security.</p>
+
+              <h4>🚫 Blocked Methods</h4>
+              <ul>
+                  <li><code>TRACE</code> (XST attacks)</li>
+                  <li><code>CONNECT</code> (proxy abuse)</li>
+                  <li><code>HEAD</code> (information disclosure)</li>
+                  <li><code>OPTIONS</code> (method enumeration)</li>
+                  <li><code>PATCH</code> (unauthorized modifications)</li>
+              </ul>
+
+              <h4>🛡️ Protection Actions</h4>
+              <ul>
+                  <li>Block TRACE, CONNECT methods</li>
+                  <li>Log OPTIONS requests</li>
+                  <li>Validate allowed methods per endpoint</li>
+                  <li>Custom method whitelisting</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 19. API Schema Validation -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="api_schema">
+              <h3>📐 API Schema Validation</h3>
+              <p>Validates API requests against OpenAPI/JSON Schema definitions</p>
+          </div>
+
+          <template id="api_schema">
+              <p>Ensures API requests conform to declared schemas, preventing malformed and attack payloads.</p>
+
+              <h4>✅ Validation Types</h4>
+              <ul>
+                  <li>JSON Schema Validation (required fields, types, formats)</li>
+                  <li>OpenAPI/Swagger compliance</li>
+                  <li>Parameter validation (query, path, header)</li>
+                  <li>Request body validation</li>
+                  <li>Response schema validation</li>
+              </ul>
+
+              <h4>🔍 Schema Enforcement</h4>
+              <ul>
+                  <li>Required field checking</li>
+                  <li>Data type validation (string, number, boolean, array, object)</li>
+                  <li>String pattern validation (email, uuid, date, regex)</li>
+                  <li>Number range validation (minimum, maximum)</li>
+                  <li>Array length validation (minItems, maxItems, uniqueItems)</li>
+                  <li>Enum value validation</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 20. Host Header Protection (Additional) -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="host_header">
+              <h3>🏷️ Host Header Validation</h3>
+              <p>Validates Host header against allowed domains and blocks injections</p>
+          </div>
+
+          <template id="host_header">
+              <p>Strictly validates the Host header against configured allowed domains.</p>
+
+              <h4>✅ Validation Rules</h4>
+              <ul>
+                  <li>Host must match configured domains</li>
+                  <li>Block localhost and private IPs in Host header</li>
+                  <li>Block suspicious characters (%00, \r, \n, ../)</li>
+                  <li>Reject multiple Host headers</li>
+                  <li>Normalize port stripping</li>
+              </ul>
+          </template>
 
           <!-- OTHERS CATEGORY -->
           <h2 class="category-heading">Additional Security Features</h2>
