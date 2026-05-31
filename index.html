@@ -5,6 +5,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="canonical" href="https://clofix.com/" />
+
+  <!-- SEO Keywords -->
+  <meta name="keywords" content="Web Application Firewall, WAF Security, Cloud Security Services, Cybersecurity Solutions, Network Security, AI-driven WAF, OWASP Top 10 Protection, ISO 27001 Compliance, Data Breach Prevention, Cloud Infrastructure Automation, Next-Gen Security, Best WAF in Bangladesh, First WAF Company in Bangladesh">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CloFix | Web Application Firewall & Cloud Security Services">
+  <meta property="og:description"
+    content="CloFix delivers AI-driven WAF, cloud infrastructure automation, and cybersecurity solutions aligned with global standards like OWASP and ISO 27001. Recognized among the best WAF providers in Bangladesh.">
+  <meta property="og:url" content="https://clofix.com/">
+  <meta property="og:image" content="/img/facebook_clofix.png">
+
+  <!-- LinkedIn -->
+  <meta property="og:image" content="/img/linkedin_clofix.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CloFix | Best WAF in Bangladesh & Cloud Security">
+  <meta name="twitter:description"
+    content="CloFix provides next-gen WAF security, cloud automation, and compliance with OWASP Top 10 & ISO 27001. First WAF company in Bangladesh to align with global standards.">
+  <meta name="twitter:image" content="/img/X_clofix.png">
+  <meta name="twitter:site" content="@clofix">
+
+  <!-- WhatsApp -->
+  <meta property="og:image" content="/img/whatsapp_clofix.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Local Fonts -->
+  <link href="./fonts/fonts.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+
+  <title>CloFix | Best WAF in Bangladesh & Cloud Security Services</title>
+
   <script src="./assets/clofix-orbit-logo.js" defer></script>
   <script src="./assets/clofix-anime-devops-logo.js" defer></script>
   <script src="./assets/clofix-anime-automation-logo.js" defer></script>
@@ -102,42 +142,6 @@
     ]
   }
   </script>
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="CloFix | Cloud Infrastructure, Automation & WAF Security Services">
-  <meta property="og:description"
-    content="CloFix provides cloud infrastructure, automation, and AI-driven WAF protection to help businesses deploy securely and scale confidently.">
-  <meta property="og:url" content="https://clofix.com/">
-  <meta property="og:image" content="/img/facebook_clofix.png">
-
-  <!-- LinkedIn -->
-  <meta property="og:image" content="/img/linkedin_clofix.png">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CloFix | Cloud Infrastructure, Automation & WAF Security Services">
-  <meta name="twitter:description"
-    content="CloFix delivers next-generation cloud automation and AI-driven WAF security to protect and scale your infrastructure.">
-  <meta name="twitter:image" content="/img/X_clofix.png">
-  <meta name="twitter:site" content="@clofix">
-
-  <!-- WhatsApp -->
-  <meta property="og:image" content="/img/whatsapp_clofix.png">
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Local Fonts -->
-  <link href="./fonts/fonts.css" rel="stylesheet" />
-  <link href="./style.css" rel="stylesheet" />
-
-  <title>CloFix | Cloud Infrastructure, Automation & WAF Security Services</title>
   <style>
   
 
@@ -1752,163 +1756,4 @@
  
 })();
 </script>
-<!-- <script>
-  // Simulate dynamic threat counter & latency variation
-  (function animateMetrics() {
-    let blockedCount = 2847;
-    const threatElement = document.getElementById('threatCounter');
-    const latencyElement = document.getElementById('latencySpan');
-    
-    function updateThreats() {
-      const increment = Math.floor(Math.random() * 3) + 1;
-      blockedCount += increment;
-      threatElement.innerHTML = `THREATS BLOCKED: ${blockedCount.toLocaleString()}`;
-      threatElement.style.textShadow = '0 0 4px #ff6b2b';
-      setTimeout(() => { if(threatElement) threatElement.style.textShadow = ''; }, 300);
-    }
-    
-    function updateLatency() {
-      const latency = (Math.random() * 1.8 + 0.5).toFixed(1);
-      latencyElement.innerHTML = `AVG LATENCY: ${latency} ms`;
-      if (parseFloat(latency) > 1.5) {
-        latencyElement.style.color = '#ffaa66';
-      } else {
-        latencyElement.style.color = '#bbddff';
-      }
-    }
-    
-    setInterval(updateThreats, 3800);
-    setInterval(updateLatency, 2700);
-  })();
-
-  // Interactive packet burst on hover
-  const nodes = document.querySelectorAll('.node-card');
-  nodes.forEach((node, idx) => {
-    node.addEventListener('mouseenter', () => {
-      const parentPipeline = node.closest('.pipeline');
-      const allPackets = parentPipeline ? parentPipeline.querySelectorAll('.data-packet') : [];
-      const packetIndex = Math.min(idx, allPackets.length - 1);
-      if(allPackets[packetIndex]) {
-        const packet = allPackets[packetIndex];
-        packet.style.animation = 'none';
-        packet.offsetHeight;
-        packet.style.animation = 'packetFlow 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards';
-        setTimeout(() => {
-          if(packet) packet.style.animation = '';
-        }, 700);
-      }
-    });
-  });
-
-  // Random packet bursts for liveliness
-  function addRandomBurst() {
-    const packets = document.querySelectorAll('.data-packet');
-    const randomPacket = packets[Math.floor(Math.random() * packets.length)];
-    if(randomPacket) {
-      randomPacket.style.animation = 'none';
-      randomPacket.offsetHeight;
-      randomPacket.style.animation = 'packetFlow 0.5s ease-out forwards';
-      setTimeout(() => {
-        if(randomPacket) randomPacket.style.animation = '';
-      }, 550);
-    }
-  }
-  setInterval(addRandomBurst, 4200);
-
-  // Sequential node highlight animation
-  let step = 0;
-  const allNodes = document.querySelectorAll('.node-card');
-  function highlightNextNode() {
-    allNodes.forEach((node, i) => {
-      node.style.transition = 'box-shadow 0.2s';
-      if(i === step) {
-        node.style.boxShadow = '0 0 0 2px rgba(0,200,255,0.6), 0 0 12px rgba(0,200,255,0.4)';
-      } else {
-        node.style.boxShadow = '';
-      }
-    });
-    step = (step + 1) % allNodes.length;
-  }
-  setInterval(highlightNextNode, 1800);
-
-  // Live request rate simulation
-  const createLiveRate = () => {
-    const container = document.querySelector('.stats-dashboard');
-    if(container && !document.querySelector('.live-rate-stat')) {
-      const extra = document.createElement('div');
-      extra.className = 'stat live-rate-stat';
-      extra.style.gap = '0.5rem';
-      extra.innerHTML = `<div class="stat-led" style="background:#ff44cc; box-shadow:0 0 5px #ff44cc; animation: pulseStat 2s infinite;"></div>
-                         <span>LIVE INSPECTION: <span id="liveRequestSpan">0 req/s</span></span>`;
-      container.appendChild(extra);
-      let reqCount = 0;
-      setInterval(() => {
-        const newRate = Math.floor(Math.random() * 55) + 12;
-        const span = document.getElementById('liveRequestSpan');
-        if(span) span.innerText = `${newRate} req/s`;
-        const pipelineDiv = document.querySelector('.pipeline');
-        if(pipelineDiv) {
-          pipelineDiv.style.transition = 'filter 0.1s';
-          pipelineDiv.style.filter = `drop-shadow(0 0 ${Math.min(3, newRate/30)}px rgba(0,200,255,0.3))`;
-          setTimeout(() => { if(pipelineDiv) pipelineDiv.style.filter = ''; }, 150);
-        }
-      }, 1300);
-    }
-  };
-  createLiveRate();
-
-  // Dynamic tooltip updates for core and AI nodes
-  const coreNode = document.querySelector('.node-core');
-  if(coreNode) {
-    let scoreValue = 0;
-    setInterval(() => {
-      scoreValue = Math.floor(Math.random() * 45) + 5;
-      coreNode.setAttribute('data-tooltip', `CloFix Core • Risk score: ${scoreValue}% • 6-layer verdict`);
-    }, 3400);
-  }
-  
-  const aiNode = document.querySelector('.node-ai');
-  if(aiNode) {
-    setInterval(() => {
-      const anomaly = (Math.random() * 30).toFixed(0);
-      aiNode.setAttribute('data-tooltip', `AI Neural Engine • Anomaly index: ${anomaly}% • ML inference running`);
-    }, 2800);
-  }
-  
-  // Decision Engine verdict simulation
-  const decisionNode = document.querySelector('.node-decision');
-  const verdicts = ['ALLOW ✓', 'BLOCK ✗', 'CHALLENGE ⚠️', 'ALLOW ✓'];
-  let verdictIdx = 0;
-  setInterval(() => {
-    if(decisionNode) {
-      const verdictSpan = decisionNode.querySelector('.node-desc');
-      if(verdictSpan) {
-        verdictSpan.innerText = verdicts[verdictIdx % verdicts.length];
-        verdictIdx++;
-      }
-      decisionNode.setAttribute('data-tooltip', `Final decision: ${verdicts[(verdictIdx-1) % verdicts.length]} • Policy enforcement`);
-    }
-  }, 5000);
-  
-  // Backend response time simulation
-  const backendNode = document.querySelector('.node-backend');
-  if(backendNode) {
-    setInterval(() => {
-      const respTime = (Math.random() * 12 + 4).toFixed(1);
-      backendNode.setAttribute('data-tooltip', `Origin server • Response time: ${respTime}ms • Upstream healthy`);
-    }, 4000);
-  }
-
-  // Stats dashboard hover effect
-  const statsDiv = document.querySelector('.stats-dashboard');
-  if(statsDiv) {
-    statsDiv.addEventListener('mouseenter', () => {
-      statsDiv.style.border = '1px solid rgba(0,230,255,0.5)';
-      statsDiv.style.transition = '0.2s';
-    });
-    statsDiv.addEventListener('mouseleave', () => {
-      statsDiv.style.border = '1px solid rgba(0,200,255,0.2)';
-    });
-  }
-</script> -->
 </html>
