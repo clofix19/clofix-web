@@ -17,8 +17,8 @@
   <!-- SEO Keywords -->
   <meta name="keywords" content="CloFix About, Cloud Security Company in bangladesh, WAF in Bagladesh, First WAF in Bagladesh, WAF Provider, DevOps Solutions, AI-driven Automation, Multi-Cloud Security, Hybrid Cloud, On-Demand Engineering, Enterprise WAF, Cloud Infrastructure, Cybersecurity Company, Best WAF Provider, Cloud Automation Services, Client Case Studies, CloFix Case Studies, Success Stories" />
 
-  <!-- Standard SEO Meta -->
-  <meta name="description" content="CloFix delivers enterprise-grade WAF, AI-driven automation, and DevOps solutions to secure and scale workloads across multi-cloud and hybrid environments. Explore our client success stories and case studies." />
+  <!-- Standard SEO Meta - Fixed length (under 160 characters) -->
+  <meta name="description" content="CloFix delivers enterprise-grade WAF, AI-driven automation, and DevOps solutions. Explore our client success stories and measurable business outcomes." />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -52,32 +52,19 @@
   <!-- Styles -->
   <link href="./style.css" rel="stylesheet" />
   
-  <title>CloFix Case Study - Client Summary</title>
+  <!-- SINGLE Title Tag (removed duplicate) -->
+  <title>CloFix Client Case Studies | Enterprise WAF & Cloud Security Success Stories</title>
   
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag(){
-      window.dataLayer.push(arguments);
-    }
-
-    // Initialize GA4
+    function gtag(){ window.dataLayer.push(arguments); }
     gtag('js', new Date());
-
-    // Config (production-ready)
-    gtag('config', 'G-WP02RFXGSE', {
-      send_page_view: true,
-      anonymize_ip: true
-    });
-
-    // Optional: track initial page load event
-    gtag('event', 'page_view', {
-      page_title: document.title,
-      page_location: window.location.href
-    });
+    gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
+    gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
   </script>
+
   <!-- Additional Case Study Dashboard Styles -->
   <style>
     /* Case Study Dashboard - Additional Styles matching CloFix aesthetic */
@@ -226,18 +213,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-
-  <title>CloFix Client Case Studies | Enterprise WAF & Cloud Security Success Stories</title>
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ window.dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
-    gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
-  </script>
 </head>
 
 <body>
@@ -331,14 +306,17 @@
   </header>
 
   <main>
+    <!-- H1 Tag Added for SEO (missing h1 issue fixed) -->
+    <div class="container" style="padding-top: 2rem;">
+      <h1 style="font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); background-clip: text; -webkit-background-clip: text; color: transparent; text-align: center; margin-bottom: 0.5rem;">
+        CloFix Client Success Stories
+      </h1>
+      <p style="text-align: center; color: #4a627a; max-width: 700px; margin: 0 auto 1rem auto;">Real-world transformations powered by enterprise-grade security and automation</p>
+    </div>
+    
     <!-- Client Case Study Dashboard Section -->
     <div class="container case-studies-section" id="caseStudyApp">
       <!-- Case Study List View -->
-      <div id="clientsListView">
-        <div class="case-header-title">
-          <h2>Explore Client Transformations</h2>
-          <p>Click any client name to view in-depth case study - challenges, solutions, and breakthrough results</p>
-        </div>
         <div class="clients-case-grid" id="clientsGridContainer">
           <!-- dynamic client cards will appear here -->
         </div>
@@ -460,7 +438,7 @@
           <div class="client-avatar-case">
             <img 
               src="${escapeHtml(client.logoPath)}" 
- alt="${escapeHtml(client.name)} logo" 
+              alt="${escapeHtml(client.name)} logo" 
               class="client-logo-img"
               onerror="this.onerror=null; this.parentElement.classList.add('fallback'); this.parentElement.style.background='linear-gradient(145deg, #eef7f0, #e0f0e6)'; this.parentElement.style.fontSize='1.8rem'; this.parentElement.style.fontWeight='700'; this.parentElement.style.color='#1f6e43'; this.parentElement.innerHTML='${escapeHtml(client.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase())}';"
             />
