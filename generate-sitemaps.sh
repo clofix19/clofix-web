@@ -43,7 +43,7 @@ for file in *.html; do
     [ "$file" = "index.html" ] && continue
 
     name="${file%.html}"
-    generate_sitemap "$file" "$name.html" "$name"
+    generate_sitemap "$file" "$name" "$name"
 done
 
 # =========================
