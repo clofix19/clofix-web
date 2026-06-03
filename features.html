@@ -1175,6 +1175,443 @@
               </div>
             </div>
           </template>
+
+          <!-- ============================================ -->
+          <!-- CADRE ENGINE - COMPLETE SECTION              -->
+          <!-- ============================================ -->
+
+          <!-- CADRE CATEGORY HEADING -->
+          <h2 class="category-heading">CADRE Engine</h2>
+
+          <!-- CADRE Engine Main Feature Card -->
+          <div class="feature-card" data-id="cadre_engine">
+              <h3>⚡ CADRE Engine - Context-Aware Dynamic Rule Engine</h3>
+              <p>High-performance WAF engine with 100+ attack type modules, 10,000+ rules, multi-layer behavioral analysis, No-IP device fingerprinting, and network-level blocking - all loaded in memory for sub-millisecond response times</p>
+          </div>
+
+          <template id="cadre_engine">
+              <div class="feature-benefits">
+                  <h4>Key Benefits</h4>
+                  <ul>
+                      <li><strong>Memory-First Architecture:</strong> All 100+ modules pre-loaded into RAM at startup - zero disk I/O during request processing, 1000x faster than traditional WAF</li>
+                      <li><strong>100+ Attack Type Modules:</strong> SQLi, XSS, LFI, RFI, SSRF, XXE, Log4Shell, Slowloris, GraphQL, NoSQLi, CMDi, LDAPi, SSTI, and 90+ more</li>
+                      <li><strong>10,000+ Rules:</strong> Single-line and multi-line rule support with regex caching - compile once, use forever</li>
+                      <li><strong>Hot Reload:</strong> Update rules without restarting - zero downtime security updates</li>
+                      <li><strong>Sub-millisecond Latency:</strong> 0.5-2ms per request even with 10,000 rules loaded</li>
+                      <li><strong>Network-Level Blocking:</strong> iptables/nftables integration for kernel-level IP blocking</li>
+                      <li><strong>Attack Type = Folder Name:</strong> Intuitive organization - just add files to /etc/clofix/cadre_modules/</li>
+                      <li><strong>Multi-Line Rule Support:</strong> Group related patterns in single files with comments</li>
+                      <li><strong>50+ Scripting Languages Blocked:</strong> Go, Python, Node.js, PHP, Ruby, Perl, Bash, PowerShell, Lua, R, Julia, Tcl</li>
+                  </ul>
+
+                  <h4>Performance Metrics</h4>
+                  <ul>
+                      <li>Load Time (10,000 rules): 2-5 seconds</li>
+                      <li>Per Request Latency: 0.5-2ms</li>
+                      <li>Memory Usage: 500MB - 2GB</li>
+                      <li>CPU Usage: 5-10%</li>
+                      <li>Throughput: 50,000+ req/sec</li>
+                      <li>False Positive Rate: &lt;0.1%</li>
+                  </ul>
+              </div>
+          </template>
+
+          <!-- ============================================ -->
+          <!-- BEHAVIORAL ANALYSIS LAYER                    -->
+          <!-- ============================================ -->
+
+          <div class="feature-card" data-id="cadre_behavioral_analysis">
+              <h3>🔍 CADRE Behavioral Analysis</h3>
+              <p>Two-layer behavioral detection with FastBlocker (instant) and BehaviorEngine (5-min sliding window) - 20+ signals including JA3 TLS fingerprinting, Sec-Fetch headers, machine timing, path entropy, and sequential enumeration</p>
+          </div>
+
+          <template id="cadre_behavioral_analysis">
+              <div class="feature-benefits">
+                  <h4>Layer 1: FastBlocker (Instant Detection)</h4>
+                  <ul>
+                      <li><strong>Missing Sec-Fetch Headers:</strong> Injected by all browsers since Chrome 76 - absent in all HTTP libraries. Missing all three = +35pts instantly</li>
+                      <li><strong>Bare Accept Header:</strong> */* without quality values = +20pts for non-browser clients</li>
+                      <li><strong>Low Header Count:</strong> &lt;8 total headers = +10pts (minimal HTTP clients)</li>
+                      <li><strong>UA Structure Analysis:</strong> Validates Mozilla token, platform grouping, AppleWebKit/Gecko presence</li>
+                      <li><strong>Path Traversal Scoring:</strong> Double-dot sequences, null bytes, CRLF injection = +50pts on first occurrence</li>
+                      <li><strong>Query String Injection:</strong> union+select, &lt;script, onerror=, exec(, base64_decode( = +55pts</li>
+                      <li><strong>IP Rate Limiter:</strong> Sliding window 30 req/10s per IP = instant 5-minute block</li>
+                  </ul>
+
+                  <h4>Layer 2: BehaviorEngine (5-Minute Sliding Window)</h4>
+                  <ul>
+                      <li><strong>JA3 TLS Fingerprinting:</strong> Computed from Go's tls.ClientHelloInfo - CipherSuites, SupportedVersions, Curves, SignatureSchemes, ALPN, SNI</li>
+                      <li><strong>Known Browser Database:</strong> Chrome, Firefox, Safari, Edge, Opera, Brave, Tor Browser JA3 hashes pre-loaded = instant allow</li>
+                      <li><strong>Tiered Velocity Scoring:</strong> Warn (+20), High (+35), Extreme (+50) - per JA3 fingerprint over 5 minutes</li>
+                      <li><strong>Machine Timing Detection:</strong> Coefficient of variation &lt;0.05 AND mean &lt;2s = machine precision timing (+45pts)</li>
+                      <li><strong>Uniform Response Time:</strong> CV &lt;0.1 across 6+ requests = automated polling (+20pts)</li>
+                      <li><strong>Shannon Path Entropy:</strong> Entropy &lt;0.6 = scanner repeating endpoints (+20pts). Entropy &lt;0.3 with 10+ requests = very low entropy (+35pts)</li>
+                      <li><strong>Sequential Enumeration:</strong> &gt;30% consecutive numeric paths = /item/1,/item/2,/item/3 pattern (+35pts)</li>
+                      <li><strong>High Path Density:</strong> &gt;90% unique paths in &lt;8 requests = scanner walking endpoints (+25pts)</li>
+                      <li><strong>Zero Static Assets:</strong> 0% static asset ratio after 10+ requests = tools never load CSS/JS/images (+30pts)</li>
+                      <li><strong>Method Probing:</strong> 4+ distinct HTTP methods against same path = method enumeration attack (+30pts)</li>
+                      <li><strong>Error Rate Analysis:</strong> &gt;25% 4xx = +12pts, &gt;50% 4xx/5xx = +25pts, &gt;50% 404 = +35pts</li>
+                      <li><strong>Parameter Fuzzing:</strong> Same endpoint with 10+ unique parameter names across 20+ requests = automated discovery (+30pts)</li>
+                      <li><strong>UA Rotation:</strong> &gt;30% unique User-Agents across 10+ requests = evasion attempt (+25pts)</li>
+                      <li><strong>Burst Pattern:</strong> Zero requests in prior 9-minute window followed by 20+ in last minute = attack burst (+30pts)</li>
+                  </ul>
+
+                  <h4>Sticky Block System</h4>
+                  <ul>
+                      <li><strong>Score ≥70:</strong> 15-minute hard block written to profile</li>
+                      <li><strong>Block Auto-Expiry:</strong> Block TTL auto-expires after 15 minutes - profile demoted to challenge state</li>
+                      <li><strong>Session Trust Bonus:</strong> Established sessions older than 10 minutes with score &lt;20 receive −15pts reduction</li>
+                      <li><strong>New Profile Penalty:</strong> Profile younger than 10 seconds with 15+ requests scores +20pts</li>
+                      <li><strong>Domain Isolation:</strong> Profile store per-domain - prevents cross-tenant data leakage</li>
+                      <li><strong>Health Check Bypass:</strong> Silent monitoring probes whitelisted - never accumulate false-positive scores</li>
+                      <li><strong>Learning Mode:</strong> Monitor-only mode records detections without blocking - safe for baseline establishment</li>
+                      <li><strong>Profile Ring Buffer:</strong> Last 100 requests stored per profile - O(1) eviction, fixed memory footprint</li>
+                      <li><strong>Background Sweeper:</strong> Idle profiles evicted every 5 minutes after 30-minute TTL</li>
+                  </ul>
+
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> Every request passes through two independent scoring layers. FastBlocker evaluates structural signals immediately - Sec-Fetch headers, Accept quality, header count, UA shape, path anomalies, and IP rate. BehaviorEngine builds a per-fingerprint profile and scores velocity, timing regularity, path entropy, error rates, static asset ratio, burst patterns, and more over a sliding 5-minute window. A fingerprint reaching score ≥70 is sticky-blocked for 15 minutes. JA3 hash from the TLS ClientHello is the primary profile key - IP rotation, VPN hops, and proxy chains don't reset the profile if the TLS fingerprint is consistent. The entire system runs in-process with no external dependencies.</p>
+                  </div>
+              </div>
+          </template>
+
+          <!-- ============================================ -->
+          <!-- NO-IP DEVICE BEHAVIORAL PROTECTION           -->
+          <!-- ============================================ -->
+
+          <div class="feature-card" data-id="cadre_noip_protection">
+              <h3>🆔 CADRE No-IP Device Behavioral Protection</h3>
+              <p>Advanced device fingerprinting that tracks malicious actors across IP changes, VPNs, proxies, and Tor. Uses behavioral biometrics (keystrokes, mouse movements, scrolling patterns), canvas/WebGL fingerprints, TLS JA3 hashing, and velocity analysis to identify and block automated threats even when they rotate IP addresses</p>
+          </div>
+
+          <template id="cadre_noip_protection">
+              <div class="feature-benefits">
+                  <h4>Device Fingerprinting</h4>
+                  <ul>
+                      <li><strong>IP-Agnostic Fingerprinting:</strong> Generates persistent device IDs using browser fingerprints, canvas/WebGL hashes, audio context, fonts, screen resolution, hardware concurrency, and OS detection - tracks devices even when they change IP addresses via VPN, proxy, or Tor</li>
+                      <li><strong>Browser & OS Detection:</strong> Identifies browser (Chrome, Firefox, Safari, Edge, Opera, Brave), browser engine (Blink, WebKit, Gecko), OS (Windows, macOS, iOS, Android, Linux), OS version, and architecture (x86_64, ARM64) - detects spoofing attempts</li>
+                      <li><strong>Canvas Fingerprinting:</strong> Generates unique canvas hashes from rendered text, shapes, and colors - persistent across sessions and IP changes. Detects canvas hash changes within consistency window as indication of emulation or spoofing</li>
+                      <li><strong>WebGL Fingerprinting:</strong> Extracts WebGL renderer and vendor information (Mali, Adreno, Apple GPU, NVIDIA, Intel) via WEBGL_debug_renderer_info extension - detects emulated GPU environments</li>
+                      <li><strong>Audio Context Fingerprinting:</strong> Analyzes oscillator waveform rendering differences across browsers and devices - each device produces unique audio hashes based on hardware</li>
+                      <li><strong>Font Fingerprinting:</strong> Detects installed system fonts via flash of invisible text (FOIT) measurement - 100+ font families tested for device uniqueness</li>
+                      <li><strong>Hardware Fingerprinting:</strong> Collects screen resolution, color depth, pixel ratio, hardware concurrency (CPU cores), device memory, and max touch points - creates comprehensive device signature</li>
+                  </ul>
+
+                  <h4>Behavioral Biometrics</h4>
+                  <ul>
+                      <li><strong>Keystroke Dynamics:</strong> Tracks key press timing (inter-key latency) and key hold duration - calculates average typing speed, rhythm hash, and standard deviation. Standard deviation &lt;2ms indicates robotic typing (+20% risk)</li>
+                      <li><strong>Mouse Movements:</strong> Records mouse coordinates, calculates speed, acceleration, and curvature. Sustained near-zero curvature indicates robotic movement +15% risk. Generates mouse movement hash from last 20 points</li>
+                      <li><strong>Click Patterns:</strong> Tracks click coordinates and target elements, calculates average click position, detects exact click repetition (&gt;80% same pixel = robotic +15% risk)</li>
+                      <li><strong>Scroll Patterns:</strong> Records scroll position, speed, and direction - calculates average scroll speed and dominant direction (up/down/both)</li>
+                  </ul>
+
+                  <h4>Threat Detection</h4>
+                  <ul>
+                      <li><strong>Headless Browser Detection:</strong> Scores headless probability (0.0-1.0) based on User-Agent patterns (HeadlessChrome, PhantomJS, Puppeteer, Playwright) and behavioral anomalies - blocks scores above 0.5 with 0.9 confidence</li>
+                      <li><strong>Automation Detection:</strong> Identifies automation tools (Selenium, Puppeteer, Playwright, Python-Requests, curl, wget, Go-http, Postman, Insomnia) with weighted scoring - blocks with 0.7+ score</li>
+                      <li><strong>IP Hopping Detection:</strong> Tracks unique IPs per device in 1-hour window. 3+ unique IPs flags IP hopping +30% risk - blocks VPN/proxy rotation attacks</li>
+                      <li><strong>Geo-Impossible Travel Detection:</strong> Calculates speed between geographic locations (requires GeoIP). Speed &gt;900 km/h triggers geo-impossible travel +35% risk - detects VPN hopping across continents</li>
+                      <li><strong>Login Brute Force Detection:</strong> 5-minute rolling window tracks failed login attempts - 5+ failures in 5m = +30% risk, 15+ in 1h = +25% risk</li>
+                      <li><strong>Canvas Consistency Monitoring:</strong> Tracks canvas hash changes within 15-minute window on same User-Agent. Hash changes indicate emulation/anti-fingerprinting +25% risk</li>
+                      <li><strong>Request Velocity Tracking:</strong> Rolling windows (1-minute, 5-minute, 1-hour) track request density - thresholds: 300 req/min, 1400 req/5min, 30 req/sec burst detection triggers +35% risk score</li>
+                      <li><strong>Sensitive Path Probing:</strong> Detects enumeration of /wp-admin, /admin, /phpmyadmin, /.env, /.git, /backup, /config - +15% risk per probe</li>
+                      <li><strong>Path Scanning Detection:</strong> 50+ unique paths per device flags directory brute-forcing +20% risk</li>
+                  </ul>
+
+                  <h4>Risk Scoring & Response</h4>
+                  <ul>
+                      <li><strong>Risk Score Calculation:</strong> Weighted aggregation (IP hopping 0.30, geo travel 0.35, burst 0.35, velocity 0.15-0.20, brute force 0.25-0.30, headless 0.35, automation 0.25, robotic typing 0.20, canvas inconsistency 0.25). Threshold 0.70 = malicious, 0.40-0.70 triggers challenge</li>
+                      <li><strong>Persistent Threat Memory:</strong> Tracks total blocks, failed logins, attack types, and suspicion score across sessions - survives block expiry, increases risk weighting by 30% for repeat offenders</li>
+                      <li><strong>Auto-Blocking:</strong> Risk ≥0.70 triggers 15-minute block (configurable), threat memory records each block and elevates suspicion score</li>
+                      <li><strong>Challenge System:</strong> Risk 0.40-0.70 issues proof-of-work CAPTCHA challenges. Successful challenges reduce risk by -0.20, failed challenges +0.10 risk</li>
+                      <li><strong>Confidence Scoring:</strong> Based on data points (requests, keystrokes, mouse moves) - max 1.0 at 500+ points, prevents false positives on limited data</li>
+                  </ul>
+
+                  <h4>API Endpoints</h4>
+                  <ul>
+                      <li><code>/api/cadre/noip/device</code> - Device fingerprint information</li>
+                      <li><code>/api/cadre/noip/keystroke</code> - Keystroke dynamics patterns</li>
+                      <li><code>/api/cadre/noip/mouse</code> - Mouse movement tracking</li>
+                      <li><code>/api/cadre/noip/click</code> - Click pattern analysis</li>
+                      <li><code>/api/cadre/noip/scroll</code> - Scroll behavior analysis</li>
+                      <li><code>/api/cadre/noip/challenge</code> - CAPTCHA challenge issuance</li>
+                      <li><code>/api/cadre/noip/stats</code> - No-IP protection statistics</li>
+                  </ul>
+
+                  <div class="feature-note">
+                      <p>💡 <strong>How it works:</strong> The No-IP Behavioral Protection system generates a persistent device ID using browser fingerprints that survive IP changes. When a request arrives, the system extracts device identity from User-Agent, OS, browser engine, and hardware signals. Canvas/WebGL/Audio fingerprints create a hardware-level signature. The client-side JavaScript collects behavioral biometrics (keystroke timing, mouse movement curves, click patterns, scroll velocity) and sends them via sendBeacon API. The server tracks velocity in rolling windows (1m/5m/1h), detects IP hopping via history analysis, and calculates geographic speed using GeoIP (if available). Each violation adds weighted risk points - reaching 0.70 triggers a 15-minute IP-agnostic block based on device ID. The threat memory persists across block expiry, so repeat offenders face stricter scrutiny. All fingerprint data stays in memory with automatic TTL-based cleanup (30 days idle). No external dependencies required - the entire system runs in-process with sub-50µs overhead.</p>
+                      
+                      <p>📊 <strong>Detection Metrics:</strong></p>
+                      <ul>
+                          <li>IP-hopping detection: 3+ unique IPs/1h = +30% risk</li>
+                          <li>Geo-impossible travel: Speed &gt;900 km/h = +35% risk</li>
+                          <li>Login brute force: 5 failures/5m = +30% risk</li>
+                          <li>Canvas inconsistency: Hash changes within 15m = +25% risk</li>
+                          <li>Headless detection: 0.5+ score = +35% risk</li>
+                          <li>Automation detection: 0.7+ score = +25% risk</li>
+                          <li>Robotic typing: Std Dev &lt;2ms = +20% risk</li>
+                          <li>Burst attack: 30+ req/sec = +35% risk</li>
+                          <li>High velocity: 300+ req/min = +20% risk</li>
+                          <li>Path scanning: 50+ unique paths = +20% risk</li>
+                      </ul>
+                      
+                      <p>🔒 <strong>Detected Threat Types:</strong></p>
+                      <ul>
+                          <li><strong>VPN/Proxy Rotation:</strong> IP hopping detection tracks IP changes regardless of anonymization service</li>
+                          <li><strong>Tor Network:</strong> Geo-impossible travel flags rapid international movement</li>
+                          <li><strong>Headless Browsers:</strong> HeadlessChrome, PhantomJS, Puppeteer, Playwright detection via UA + behavioral analysis</li>
+                          <li><strong>Automation Tools:</strong> Selenium WebDriver, Python-Requests, curl, wget, Go-http, Postman, Insomnia</li>
+                          <li><strong>Credential Stuffing:</strong> Login velocity tracking (5m/1h windows) with persistent failure memory</li>
+                          <li><strong>Brute Force:</strong> Combined IP-hopping + login velocity + path scanning detection</li>
+                          <li><strong>DDoS Botnets:</strong> Velocity thresholds (300 req/min, 30 req/sec) with burst detection</li>
+                          <li><strong>Scrapers/Crawlers:</strong> Missing browser headers, no cookies, robotic mouse movements, exact click repetition</li>
+                          <li><strong>Directory Brute-Forcing:</strong> Path diversity detection (50+ unique paths) + sensitive path probing</li>
+                          <li><strong>Anti-Fingerprinting Tools:</strong> Canvas hash drifting within consistency window flags emulation</li>
+                      </ul>
+                  </div>
+              </div>
+          </template>
+
+          <!-- ============================================ -->
+          <!-- ATTACK TYPE MODULES - COMPLETE LIST         -->
+          <!-- ============================================ -->
+
+          <div class="feature-card" data-id="cadre_attack_modules">
+              <h3>📦 CADRE Attack Type Modules (100+)</h3>
+              <p>100+ attack type modules with 10,000+ pre-configured rules - SQLi, XSS, LFI, RFI, SSRF, XXE, Log4Shell, Slowloris, GraphQL, NoSQLi, CMDi, LDAPi, SSTI, and 90+ more</p>
+          </div>
+
+          <template id="cadre_attack_modules">
+              <div class="feature-benefits">
+                  <h4>Location-Based Attacks (8 modules)</h4>
+                  <ul>
+                      <li><strong>header/</strong> - HTTP Header attacks: SQLi, XSS, Command Injection, User-Agent spoofing, Cookie poisoning</li>
+                      <li><strong>body/</strong> - HTTP Body attacks: POST payloads, XXE, JSON/XML injection</li>
+                      <li><strong>url/</strong> - URL/Path attacks: Path traversal, LFI, RFI, Directory indexing</li>
+                      <li><strong>cookie/</strong> - Cookie-based attacks: Session fixation, Cookie tampering, Manipulation</li>
+                      <li><strong>parameter/</strong> - Parameter attacks: Parameter pollution, Blind SQLi, Tampering, Type juggling</li>
+                      <li><strong>json/</strong> - JSON attacks: JSON injection, XSS in JSON, NoSQL injection, JWT attacks</li>
+                      <li><strong>xml/</strong> - XML attacks: XXE, XPath injection, XML bombs, DTD injection</li>
+                      <li><strong>multipart/</strong> - Multipart attacks: File upload bypass, MIME spoofing, Boundary injection</li>
+                  </ul>
+
+                  <h4>Injection Attacks (10 modules)</h4>
+                  <ul>
+                      <li><strong>sqli/</strong> - SQL Injection: UNION-based, OR injection, Time-blind, Error-based, Stacked queries</li>
+                      <li><strong>nosqli/</strong> - NoSQL Injection: Operator injection ($ne, $gt, $regex, $where), Array injection</li>
+                      <li><strong>ldapi/</strong> - LDAP Injection: LDAP injection, Auth bypass patterns</li>
+                      <li><strong>cmdi/</strong> - Command Injection: rm -rf, curl/wget, Reverse shells</li>
+                      <li><strong>xpathi/</strong> - XPath Injection: OR injection patterns</li>
+                      <li><strong>code_injection/</strong> - Code Injection: eval(), assert() injection</li>
+                      <li><strong>ssti/</strong> - SSTI: Jinja2, Freemarker template injection</li>
+                      <li><strong>el_injection/</strong> - EL Injection: Expression Language injection, ClassLoader access</li>
+                  </ul>
+
+                  <h4>XSS Attacks (6 modules)</h4>
+                  <ul>
+                      <li><strong>xss_reflected/</strong> - Reflected XSS: Script tags, Event handlers, JavaScript protocol</li>
+                      <li><strong>xss_stored/</strong> - Stored XSS: IMG onerror, SVG onload, IFRAME injection</li>
+                      <li><strong>xss_dom/</strong> - DOM-based XSS: DOM manipulation, Cookie/location access</li>
+                      <li><strong>xss_blind/</strong> - Blind XSS: Image src callbacks, Fetch API</li>
+                      <li><strong>html_injection/</strong> - HTML Injection: IFRAME, OBJECT, EMBED injection</li>
+                      <li><strong>js_injection/</strong> - JavaScript Injection: Alert functions, setTimeout/setInterval abuse</li>
+                  </ul>
+
+                  <h4>File-Based Attacks (5 modules)</h4>
+                  <ul>
+                      <li><strong>lfi/</strong> - Local File Inclusion: /etc/passwd, PHP wrappers, Null byte injection</li>
+                      <li><strong>rfi/</strong> - Remote File Inclusion: HTTP/HTTPS/FTP includes, Data wrappers</li>
+                      <li><strong>path_traversal/</strong> - Path Traversal: Encoded traversal, Double encoding</li>
+                      <li><strong>file_upload/</strong> - File Upload: Dangerous extensions, Double extensions</li>
+                      <li><strong>webshell/</strong> - WebShell: PHP webshells, Common shells (c99, r57, b374k)</li>
+                  </ul>
+
+                  <h4>Server-Side Attacks (6 modules)</h4>
+                  <ul>
+                      <li><strong>ssrf/</strong> - SSRF: Localhost, Metadata endpoints, Internal IPs</li>
+                      <li><strong>xxe/</strong> - XXE: DOCTYPE entity, Parameter entity, XXE with SSRF</li>
+                      <li><strong>ssi/</strong> - SSI: Server-side includes directives</li>
+                      <li><strong>java_deserialization/</strong> - Java Deserialization: Magic bytes detection</li>
+                      <li><strong>php_deserialization/</strong> - PHP Deserialization: Object injection patterns</li>
+                      <li><strong>python_deserialization/</strong> - Python Deserialization: Pickle/YAML injection</li>
+                  </ul>
+
+                  <h4>Auth & Session Attacks (5 modules)</h4>
+                  <ul>
+                      <li><strong>session_fixation/</strong> - Session Fixation: Session cookie patterns</li>
+                      <li><strong>csrf/</strong> - CSRF: Missing headers detection</li>
+                      <li><strong>jwt_attack/</strong> - JWT Attack: None algorithm, Signature bypass</li>
+                      <li><strong>cookie_tampering/</strong> - Cookie Tampering: Admin cookie patterns</li>
+                      <li><strong>oauth_attack/</strong> - OAuth Attack: Redirect URI manipulation</li>
+                  </ul>
+
+                  <h4>API Attacks (6 modules)</h4>
+                  <ul>
+                      <li><strong>graphql_introspection/</strong> - GraphQL Introspection: __schema, __type queries</li>
+                      <li><strong>graphql_depth/</strong> - GraphQL Depth: Deep nested queries</li>
+                      <li><strong>graphql_batching/</strong> - GraphQL Batching: Alias bombing, Batch attacks</li>
+                      <li><strong>api_auth_bypass/</strong> - API Auth Bypass: URL override, Method override</li>
+                      <li><strong>api_mass_assignment/</strong> - API Mass Assignment: Admin field injection</li>
+                      <li><strong>api_rate_limit_bypass/</strong> - API Rate Limit Bypass: IP spoofing detection</li>
+                  </ul>
+
+                  <h4>DoS/Protocol Attacks (6 modules)</h4>
+                  <ul>
+                      <li><strong>slowloris/</strong> - Slowloris: Incomplete headers, Slow read attacks</li>
+                      <li><strong>redos/</strong> - ReDoS: Nested quantifiers, Evil regex patterns</li>
+                      <li><strong>xml_bomb/</strong> - XML Bomb: Billion laughs, Entity expansion</li>
+                      <li><strong>json_bomb/</strong> - JSON Bomb: Deep nesting attacks</li>
+                      <li><strong>http_smuggling/</strong> - HTTP Smuggling: CL.TE, TE.CL, Duplicate headers</li>
+                      <li><strong>host_header_injection/</strong> - Host Header Injection: Duplicate host, CRLF injection</li>
+                  </ul>
+
+                  <h4>Scanner Detection (6 modules)</h4>
+                  <ul>
+                      <li><strong>sqlmap/</strong> - SQLMap detection</li>
+                      <li><strong>nmap/</strong> - Nmap detection</li>
+                      <li><strong>nikto/</strong> - Nikto detection</li>
+                      <li><strong>burp_suite/</strong> - Burp Suite detection</li>
+                      <li><strong>dirbuster/</strong> - DirBuster detection</li>
+                      <li><strong>wpscan/</strong> - WPScan detection</li>
+                  </ul>
+
+                  <h4>Modern Vulnerabilities (4 modules)</h4>
+                  <ul>
+                      <li><strong>log4shell/</strong> - Log4Shell: JNDI injection patterns, Obfuscated bypasses</li>
+                      <li><strong>spring4shell/</strong> - Spring4Shell: ClassLoader access patterns</li>
+                      <li><strong>shellshock/</strong> - ShellShock: Function definition patterns</li>
+                      <li><strong>struts2/</strong> - Struts2: OGNL injection patterns</li>
+                  </ul>
+
+                  <h4>Cloud Attacks (4 modules)</h4>
+                  <ul>
+                      <li><strong>aws_metadata/</strong> - AWS Metadata: 169.254.169.254 access</li>
+                      <li><strong>gcp_metadata/</strong> - GCP Metadata: metadata.google.internal access</li>
+                      <li><strong>azure_metadata/</strong> - Azure Metadata: 169.254.169.254/metadata access</li>
+                      <li><strong>s3_bucket/</strong> - S3 Bucket Attacks: Bucket enumeration, Access patterns</li>
+                  </ul>
+
+                  <h4>Script Blocking (50+ Languages & Tools)</h4>
+                  <ul>
+                      <li><strong>go_block/</strong> - Go: go-http-client, os.Exec, exec.Command, net.Dial, Reverse shells</li>
+                      <li><strong>python_block/</strong> - Python: python-requests, python -c, exec(), eval(), subprocess, os.system, pickle, cpickle, __import__, reverse shells</li>
+                      <li><strong>node_block/</strong> - Node.js: node-fetch, axios, superagent, child_process.exec, require('net'), vm.runInNewContext, reverse shells</li>
+                      <li><strong>php_block/</strong> - PHP: system(), exec(), shell_exec(), passthru(), popen(), proc_open(), eval(), assert(), create_function(), webshells (c99, r57, b374k)</li>
+                      <li><strong>ruby_block/</strong> - Ruby: system(), exec(), IO.popen, TCPSocket, UNIXSocket, Kernel.exec, reverse shells</li>
+                      <li><strong>perl_block/</strong> - Perl: system(), exec(), backticks (`), qx//, open(), IO::Socket, reverse shells</li>
+                      <li><strong>bash_block/</strong> - Bash/Shell: bash -c, sh -c, zsh -c, dash -c, reverse shells (bash -i, nc -e), command substitution ($(), ``), pipe to sh</li>
+                      <li><strong>powershell_block/</strong> - PowerShell: Invoke-Expression, IEX, -EncodedCommand, -e, DownloadFile, Invoke-WebRequest, wget, Net.WebClient, AMSI bypass patterns</li>
+                      <li><strong>java_block/</strong> - Java: Runtime.exec(), ProcessBuilder, JNDI injection (Log4Shell), Java deserialization, JDBC connection strings</li>
+                      <li><strong>javascript_block/</strong> - JavaScript (Browser): eval(), Function(), setTimeout(), setInterval(), document.write(), location.replace(), fetch()</li>
+                      <li><strong>lua_block/</strong> - Lua: os.execute(), io.popen(), loadfile(), dofile(), require() with dangerous modules</li>
+                      <li><strong>rust_block/</strong> - Rust: std::process::Command, std::net::TcpStream, reverse shell patterns, unsafe code execution</li>
+                      <li><strong>csharp_block/</strong> - C#/.NET: Process.Start(), WebClient.DownloadString(), Assembly.Load(), reflection invocation, PowerShell assembly loading</li>
+                      <li><strong>r_block/</strong> - R: system(), shell(), source(), eval(), parse(), unserialize()</li>
+                      <li><strong>julia_block/</strong> - Julia: run(), eval(), include(), exec()</li>
+                      <li><strong>swift_block/</strong> - Swift: Process(), shell() from Foundation, NSTask</li>
+                      <li><strong>kotlin_block/</strong> - Kotlin: Runtime.exec(), ProcessBuilder, eval() in scripting mode</li>
+                      <li><strong>scala_block/</strong> - Scala: scala.sys.process, Runtime.exec(), ProcessBuilder</li>
+                      <li><strong>groovy_block/</strong> - Groovy: execute(), Runtime.exec(), GroovyShell.evaluate()</li>
+                      <li><strong>tcl_block/</strong> - Tcl: exec(), open |, source, eval</li>
+                      <li><strong>elixir_block/</strong> - Elixir: System.cmd(), :os.cmd(), eval()</li>
+                      <li><strong>erlang_block/</strong> - Erlang: os:cmd(), rpc:call()</li>
+                      <li><strong>haskell_block/</strong> - Haskell: System.Process.callCommand, System.Cmd.system, unsafePerformIO</li>
+                      <li><strong>clojure_block/</strong> - Clojure: (clojure.java.shell/sh), (eval), (load-string), Runtime.exec() interop</li>
+                      <li><strong>dart_block/</strong> - Dart: Process.run(), Process.start(), Isolate.spawnUri()</li>
+                      <li><strong>objectivec_block/</strong> - Objective-C: system(), popen(), NSTask</li>
+                      <li><strong>vbscript_block/</strong> - VBScript: CreateObject("WScript.Shell").Run, Execute, Eval</li>
+                      <li><strong>matlab_block/</strong> - MATLAB: system(), eval(), run(), load() with malicious .mat</li>
+                      <li><strong>sql_script_block/</strong> - SQL Scripts: xp_cmdshell, sp_configure, exec master..xp_cmdshell, MySQL INTO OUTFILE, PostgreSQL COPY PROGRAM</li>
+                      <li><strong>typescript_block/</strong> - TypeScript (compiled to JS): child_process.exec, eval(), fetch(), axios (same patterns as Node.js)</li>
+                      <li><strong>zig_block/</strong> - Zig: std.os.system, std.ChildProcess, execve patterns</li>
+                      <li><strong>nim_block/</strong> - Nim: exec(), gorge(), staticExec(), osproc.startProcess()</li>
+                      <li><strong>crystal_block/</strong> - Crystal: system(), Process.run(), eval()</li>
+                      <li><strong>fsharp_block/</strong> - F#: System.Diagnostics.Process.Start, System.IO.File.WriteAllText (for webshells)</li>
+                      <li><strong>ocaml_block/</strong> - OCaml: Sys.command(), Unix.open_process, eval()</li>
+                      <li><strong>racket_block/</strong> - Racket: system(), process, eval, dynamic-require</li>
+                      <li><strong>common_lisp_block/</strong> - Common Lisp: run-program, shell, eval, load</li>
+                      <li><strong>fortran_block/</strong> - Fortran: CALL SYSTEM(), EXECUTE_COMMAND_LINE()</li>
+                      <li><strong>cobol_block/</strong> - COBOL: CALL 'SYSTEM', DISPLAY UPON CONSOLE (command injection)</li>
+                      <li><strong>delphi_block/</strong> - Delphi: ShellExecute(), WinExec(), CreateProcess()</li>
+                      <li><strong>ada_block/</strong> - Ada: Ada.Command_Line, System.Address_Image (information disclosure)</li>
+                      <li><strong>prolog_block/</strong> - Prolog: shell(), open/3 with pipe, exec/1</li>
+                      <li><strong>smalltalk_block/</strong> - Smalltalk: system: 'command', perform: #value:</li>
+                      <li><strong>scheme_block/</strong> - Scheme: system, open-input-pipe, eval</li>
+                      <li><strong>vba_block/</strong> - VBA (MS Office): Shell(), CreateObject("WScript.Shell").Run, Application.Run</li>
+                      <li><strong>autoit_block/</strong> - AutoIt: Run(), ShellExecute(), RunAs()</li>
+                      <li><strong>autohotkey_block/</strong> - AutoHotkey: Run, RunWait, ComObjCreate("WScript.Shell")</li>
+                      <li><strong>batch_block/</strong> - Windows Batch: cmd.exe /c, powershell.exe -c, certutil -urlcache, regsvr32.exe</li>
+                      <li><strong>curl_block/</strong> - cURL: curl command, wget, aria2, axel downloaders, data exfiltration patterns</li>
+                      <li><strong>ftp_client_block/</strong> - FTP Clients: ftp, sftp, lftp commands with credential exfiltration</li>
+                      <li><strong>ssh_client_block/</strong> - SSH Clients: ssh commands, scp, rsync for tunneling or exfiltration</li>
+                      <li><strong>database_client_block/</strong> - DB Clients: mysql, psql, sqlcmd, mssql-cli for data extraction</li>
+                      <li><strong>redis_cli_block/</strong> - Redis CLI: redis-cli with FLUSHALL, CONFIG SET, EVAL lua scripts</li>
+                      <li><strong>mongodb_client_block/</strong> - MongoDB Client: mongo, mongosh with db.adminCommand(), eval()</li>
+                  </ul>
+
+                  <h4>Additional Attacks (6 modules)</h4>
+                  <ul>
+                      <li><strong>open_redirect/</strong> - Open Redirect: External redirect detection</li>
+                      <li><strong>cache_poisoning/</strong> - Cache Poisoning: Cache header manipulation</li>
+                      <li><strong>subdomain_takeover/</strong> - Subdomain Takeover: Dangling CNAME detection</li>
+                      <li><strong>mass_assignment/</strong> - Mass Assignment: Sensitive field injection</li>
+                      <li><strong>prototype_pollution/</strong> - Prototype Pollution: __proto__, constructor.prototype</li>
+                      <li><strong>unicode_spoofing/</strong> - Unicode Spoofing: Homograph attacks</li>
+                  </ul>
+
+                  <div class="feature-note">
+                      
+                      <p>📁 <strong>Rule File Formats:</strong></p>
+                      <ul>
+                          <li><code>.block</code> - Block the request immediately</li>
+                          <li><code>.sanitize</code> - Remove malicious content and continue</li>
+                          <li><code>.deceive</code> - Return fake error message to attacker</li>
+                          <li><code>.log</code> - Log but don't block (monitoring mode)</li>
+                      </ul>
+                      
+                  </div>
+              </div>
+          </template>
+
+          <!-- ============================================ -->
+          <!-- NETWORK BLOCKING                             -->
+          <!-- ============================================ -->
+
+          <div class="feature-card" data-id="cadre_network_blocking">
+              <h3>🔒 CADRE Network-Level Blocking</h3>
+              <p>Kernel-level IP blocking with iptables/nftables integration - automatic ban escalation, offense tracking, and auto-unban with configurable timeouts</p>
+          </div>
+
+          <template id="cadre_network_blocking">
+              <div class="feature-benefits">
+                  <h4>Network Blocking Features</h4>
+                  <ul>
+                      <li><strong>Auto Ban:</strong> Automatic IP blocking after threshold exceeded</li>
+                      <li><strong>Escalating Bans:</strong> First offense: 5min, Repeat offense: 30min, Persistent: 1hour+</li>
+                      <li><strong>Auto Unban:</strong> Automatic release after ban time expires</li>
+                      <li><strong>Whitelist Support:</strong> Exclude trusted IPs/CIDR ranges</li>
+                      <li><strong>Per-IP Offense Tracking:</strong> Track violation history per IP</li>
+                      <li><strong>IPv4 & IPv6 Support:</strong> Block both address families</li>
+                  </ul>
+
+                  <h4>Configuration Options</h4>
+                  <ul>
+                      <li><strong>Window Time:</strong> Time window for counting offenses (default: 60s)</li>
+                      <li><strong>Allow Attempts:</strong> Number of attempts before blocking (default: 5)</li>
+                      <li><strong>First Offense Ban Time:</strong> Initial block duration (default: 5min)</li>
+                      <li><strong>Repeat Offense Ban Time:</strong> Escalated block duration (default: 30min)</li>
+                      <li><strong>Whitelist IPs:</strong> List of IPs/CIDRs that never get blocked</li>
+                  </ul>
+
+                  <h4>Integration with Behavioral Analysis</h4>
+                  <ul>
+                      <li><strong>JA3 Fingerprint Blocking:</strong> Network block by TLS fingerprint</li>
+                      <li><strong>Device ID Blocking:</strong> Block device across IP changes</li>
+                      <li><strong>Risk Score Escalation:</strong> Higher risk = longer blocks</li>
+                      <li><strong>Persistent Block Memory:</strong> Track repeat offenders across sessions</li>
+                  </ul>
+              </div>
+          </template>
           <!-- AI CATEGORY -->
           <h2 class="category-heading">AI-Powered Protection</h2>
           
