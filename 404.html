@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="canonical" href="https://clofix.com/404" />
+  
   <!-- SEO -->
   <title>404 - Page Not Found | CloFix</title>
-  <meta name="description" content="The page you are looking for could not be found on CloFix.">
+  <meta name="description" content="The page you are looking for could not be found on CloFix. Return to homepage or contact our support team.">
+  <meta name="robots" content="noindex, follow">
   <meta name="status" content="404">
   <meta name="page-type" content="error-404">
+  
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="404 – Page Not Found | CloFix">
@@ -36,26 +39,65 @@
 
     .trust-inner {
       position: relative;
-      z-index: 5; /* make sure text is on top */
+      z-index: 5;
       color: #ffffff;
-      text-align: center; /* optional, center text */
+      text-align: center;
     }
 
     .trust-title,
     .trust-sub {
-      color: #ffffff !important;   /* force white text */
-      opacity: 1 !important;       /* ensure text is fully visible */
-      visibility: visible !important; /* make sure nothing hides it */
+      color: #ffffff !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     .trust-particles,
     .trust-waves {
-      z-index: 1; /* behind the text */
+      z-index: 1;
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+    }
+    
+    /* Suggested links styling */
+    .suggested-links {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .suggested-links h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    .suggested-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .suggested-card {
+      background: rgba(255,255,255,0.1);
+      padding: 15px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .suggested-card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    
+    .suggested-card i {
+      margin-right: 8px;
     }
   </style>
 </head>
@@ -141,6 +183,21 @@
                         <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">
                           CloFix Pentest
                         </a>
+                        <!-- ADDED: Link to 404 checker tool -->
+                        <a role="menuitem" href="/404" class="c-dropdown__mega-link">
+                          Broken Link Checker
+                        </a>
+                      </div>
+                      
+                      <!-- ADDED NEW SECTION: Support -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Support</h4>
+                        <a role="menuitem" href="/404" class="c-dropdown__mega-link">
+                          Report Broken Page
+                        </a>
+                        <a role="menuitem" href="/contact" class="c-dropdown__mega-link">
+                          Contact Support
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -178,10 +235,31 @@
           Contact Support
         </a>
       </div>
+      
+      <!-- ADDED: Suggested popular pages -->
+      <div class="suggested-links">
+        <h3>🔍 You might be looking for:</h3>
+        <div class="suggested-grid">
+          <a href="/pricing" class="suggested-card">
+            <i class="fas fa-tag"></i> Pricing
+          </a>
+          <a href="/features" class="suggested-card">
+            <i class="fas fa-star"></i> Features
+          </a>
+          <a href="/about" class="suggested-card">
+            <i class="fas fa-info-circle"></i> About Us
+          </a>
+          <a href="/blogs" class="suggested-card">
+            <i class="fas fa-blog"></i> Blogs
+          </a>
+          <a href="/cve" class="suggested-card">
+            <i class="fas fa-shield-alt"></i> CVE Checker
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
-
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -214,6 +292,8 @@
           <li><a href="/contact">Contact CloFix</a></li>
           <li><a href="#">Documentation</a></li>
           <li><a href="/support">CloFix WAF Support Overview</a></li>
+          <!-- ADDED: 404 page link -->
+          <li><a href="/404">Report Broken Link</a></li>
         </ul>
       </div>
 
@@ -223,6 +303,8 @@
           <li><a href="/case-study">Case Study</a></li>
           <li><a href="/partner">Become A Partner</a></li>
           <li><a href="/blogs">Blogs</a></li>
+          <!-- ADDED: Tools link to 404 -->
+          <li><a href="/404">Page Not Found? Report</a></li>
         </ul>
       </div>
 
@@ -230,6 +312,8 @@
         <h4 class="c-footer__subtitle">Legal</h4>
         <ul class="c-footer__list c-footer__list--check">
           <li><a href="/terms">Terms and Conditions</a></li>
+          <!-- ADDED: Error reporting -->
+          <li><a href="/404">Error Reporting</a></li>
         </ul>
       </div>
     </div>
@@ -251,6 +335,9 @@
     });
   }
 </script>
+
+<!-- ADDED: Font Awesome for icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 </body>
 </html>
