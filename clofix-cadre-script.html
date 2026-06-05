@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://clofix.com/clofix-cadre-script">
+
+    <!-- Robots Meta -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="CloFix CADRE Script Engine: Complete guide with 100+ attack types, full metadata reference, English-like syntax, rate limiting, geo-blocking, and enterprise WAF automation.">
+    <meta name="keywords" content="CloFix CADRE, CADRE Script, WAF Scripting, 100+ Attack Types, SQL Injection, XSS, Bot Detection, Rate Limiting, Geo Blocking, Metadata, Security Automation, Web Application Firewall">
+    <meta name="author" content="CloFix InfoTech">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix CADRE Script | 100+ Attack Types | Complete WAF Engine">
+    <meta property="og:description" content="Master CloFix CADRE Script with full metadata, 100+ attack detection modules, rate limiting, geo-blocking, and enterprise-grade security automation.">
+    <meta property="og:url" content="https://clofix.com/clofix-cadre-script">
+    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+    <meta property="og:image:alt" content="CloFix CADRE Script Engine - Complete Documentation">
+    <meta property="og:site_name" content="CloFix InfoTech">
+    <meta property="og:locale" content="en_US">
+
+    <!-- LinkedIn -->
+    <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
+    <meta property="og:image:alt" content="CloFix CADRE Script - Enterprise WAF Scripting">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix CADRE Script | 100+ Attack Types | WAF Engine">
+    <meta name="twitter:description" content="Complete CloFix CADRE Script documentation. 100+ attack modules, full metadata reference, rate limiting, geo-blocking, and deployment guides.">
+    <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+    <meta name="twitter:image:alt" content="CloFix CADRE Script Engine">
+    <meta name="twitter:site" content="@clofix19">
+
+    <!-- WhatsApp / Generic Sharing -->
+    <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="./style.css" rel="stylesheet">
+
+    <title>CloFix CADRE Script | 100+ Attack Types | Complete WAF Engine Documentation</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
+    </script>
+
+    <style>
+        :root {
+            --cadre-dark:    #0a0f1a;
+            --cadre-navy:    #0d1b2e;
+            --cadre-surface: #0f2138;
+            --cadre-border:  #1a3a56;
+            --cadre-teal:    #00c2a8;
+            --cadre-orange:  #e85d26;
+            --cadre-blue:    #2e6db4;
+            --cadre-text:    #c8d8e8;
+            --cadre-muted:   #5a7088;
+            --cadre-code:    #081422;
+            --cadre-mono:    'Space Mono', 'Courier New', monospace;
+            --cadre-gold:    #e8b84b;
+            --cadre-purple:  #9b6fd4;
+        }
+        .cadre-page { background: var(--cadre-dark); color: var(--cadre-text); line-height: 1.75; }
+        .cadre-page * { box-sizing: border-box; }
+        .cadre-hero {
+            background: radial-gradient(ellipse at 70% -10%, rgba(0,194,168,.18) 0%, transparent 55%),
+                        radial-gradient(ellipse at 20% 110%, rgba(46,109,180,.12) 0%, transparent 55%),
+                        var(--cadre-navy);
+            padding: 80px 0 64px;
+            border-bottom: 1px solid var(--cadre-border);
+        }
+        .cadre-hero .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .cadre-hero__badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0,194,168,.1); border: 1px solid rgba(0,194,168,.35);
+            color: var(--cadre-teal); font-size: 11px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+        }
+        .cadre-hero__badge::before { content:''; width:7px; height:7px; background:var(--cadre-teal); border-radius:50%; animation: cadrePulse 2s infinite; }
+        @keyframes cadrePulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+        .cadre-hero h1 { font-size: clamp(32px,5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-1px; color:#fff; margin:0 0 16px; }
+        .cadre-hero h1 span { color:var(--cadre-teal); }
+        .cadre-hero__lead { font-size:17px; color:var(--cadre-muted); max-width:620px; margin:0 0 36px; }
+        .cadre-hero__pills { display:flex; flex-wrap:wrap; gap:10px; }
+        .cadre-hero__pill { background:rgba(255,255,255,.04); border:1px solid var(--cadre-border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--cadre-text); }
+        .cadre-body { display:flex; max-width:1100px; margin:0 auto; padding:0 24px; gap:48px; align-items:flex-start; }
+        .cadre-toc {
+            position:sticky; top:24px; width:220px; flex-shrink:0;
+            padding:24px 0; max-height:calc(100vh - 48px);
+            overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--cadre-border) transparent;
+        }
+        .cadre-toc::-webkit-scrollbar { width:4px; }
+        .cadre-toc__title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--cadre-muted); margin-bottom:12px; }
+        .cadre-toc a { display:block; padding:6px 12px; font-size:13px; color:var(--cadre-muted); text-decoration:none; border-left:2px solid transparent; transition:all .15s; }
+        .cadre-toc a:hover, .cadre-toc a.toc-active { color:var(--cadre-teal); border-left-color:var(--cadre-teal); background:rgba(0,194,168,.06); }
+        .cadre-toc .toc-group { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--cadre-border); padding:14px 12px 4px; }
+        .cadre-content { flex:1; min-width:0; padding:48px 0 80px; }
+        .cadre-section { margin-bottom:72px; }
+        .cadre-section__title { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color:#fff; margin:0 0 8px; padding-bottom:12px; border-bottom:1px solid var(--cadre-border); }
+        .cadre-section__title .sec-num { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--cadre-teal); background:rgba(0,194,168,.1); border:1px solid rgba(0,194,168,.2); padding:2px 8px; border-radius:4px; }
+        .cadre-sub { font-size:16px; font-weight:700; color:var(--cadre-orange); margin:32px 0 10px; }
+        .cadre-sub::before { content:'// '; color:var(--cadre-muted); font-family:var(--cadre-mono); font-size:13px; }
+        .cadre-code { margin:16px 0 24px; border-radius:8px; overflow:hidden; border:1px solid var(--cadre-border); }
+        .cadre-code__hdr { display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:#0d1f35; border-bottom:1px solid var(--cadre-border); flex-wrap:wrap; gap:8px; }
+        .cadre-code__lang { font-family:var(--cadre-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--cadre-teal); }
+        .cadre-copy { font-size:11px; color:var(--cadre-muted); background:none; border:1px solid var(--cadre-border); padding:3px 10px; border-radius:4px; cursor:pointer; }
+        .cadre-copy:hover { color:var(--cadre-teal); border-color:var(--cadre-teal); }
+        .cadre-code pre { background:var(--cadre-code); padding:18px 20px; overflow-x:auto; font-family:var(--cadre-mono); font-size:13px; line-height:1.75; color:#9cb8d8; margin:0; }
+        .cadre-table-wrap { overflow-x:auto; margin:14px 0 24px; border-radius:8px; border:1px solid var(--cadre-border); }
+        .cadre-table { width:100%; border-collapse:collapse; font-size:13.5px; }
+        .cadre-table thead tr { background:#0d1f35; }
+        .cadre-table thead th { padding:10px 14px; text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--cadre-teal); border-bottom:1px solid var(--cadre-border); white-space:nowrap; }
+        .cadre-table tbody tr { border-bottom:1px solid var(--cadre-border); }
+        .cadre-table tbody tr:last-child { border-bottom:none; }
+        .cadre-table td { padding:9px 14px; }
+        .cadre-table td code { font-family:var(--cadre-mono); font-size:12px; color:#7dd8c0; }
+        .cadre-box { border-left:3px solid var(--cadre-teal); background:rgba(0,194,168,.06); border-radius:0 6px 6px 0; padding:14px 18px; margin:16px 0 24px; font-size:14px; }
+        .cadre-box.warn { border-left-color:var(--cadre-orange); background:rgba(232,93,38,.06); }
+        .cadre-box.gold { border-left-color:var(--cadre-gold); background:rgba(232,184,75,.06); }
+        .cadre-box strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--cadre-teal); }
+        .feature-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:20px 0 30px; }
+        .feature-card { background:var(--cadre-surface); border:1px solid var(--cadre-border); border-radius:12px; padding:18px; transition:all .2s; }
+        .feature-card:hover { transform:translateY(-2px); border-color:var(--cadre-teal); }
+        .feature-card__header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+        .feature-card__icon { font-size:28px; }
+        .feature-card__name { font-size:18px; font-weight:700; color:#fff; }
+        .feature-card__desc { font-size:13px; color:var(--cadre-muted); line-height:1.5; }
+        .attack-badge { display:inline-block; background:var(--cadre-teal); color:var(--cadre-dark); font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; margin-right:6px; }
+        @media (max-width:860px) { .cadre-toc { display:none; } .cadre-body { padding:0 16px; } }
+        @media (max-width:600px) { .cadre-hero { padding:48px 0 40px; } .cadre-hero h1 { font-size:28px; } }
+    </style>
+</head>
+<body class="cadre-page">
+
+    <!-- ══════════ HEADER ══════════ -->
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="/"><img src="img/logo.png" alt="Logo" class="c-logo__img" /></a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="/" class="c-link c-link--list">Home</a>
+              </li>
+              <li class="c-list__item"><a href="/pricing" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item"><a href="#section-services" class="c-link c-link--list">Services</a></li>
+              <li class="c-list__item"><a href="/about" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="/features" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
+              <li class="c-list__item"><a href="/contact" class="c-link c-link--list">Contact</a></li>
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">CloFix JS Script</a>
+                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">CloFix WASM</a>
+                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
+                      </div>
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">CloFix Pentest</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <a href="/faq" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">FAQ</button>
+              </a>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="cadre-hero">
+            <div class="container">
+                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+                    <div class="cadre-hero__badge">CADRE SCRIPT v2.0</div>
+                    <span class="cadre-version" style="display:inline-flex;align-items:center;gap:6px;background:rgba(232,184,75,.08);border:1px solid rgba(232,184,75,.3);color:var(--cadre-gold);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:4px;">100+ Attack Types | Enterprise WAF</span>
+                </div>
+                <h1>CloFix <span>CADRE Script</span> Engine</h1>
+                <p class="cadre-hero__lead">Write powerful security rules using <strong>English-like syntax</strong>. <strong>100+ attack Types detection modules</strong>, full metadata control, built-in rate limiting, geo-blocking, and hot reload. Just save a file - no compilation, no restart.</p>
+                <div class="cadre-hero__pills">
+                    <span class="cadre-hero__pill">.clofix files</span> <span class="cadre-hero__pill">if/else conditions</span> <span class="cadre-hero__pill">rate() function</span> <span class="cadre-hero__pill">contains / matches</span>
+                    <span class="cadre-hero__pill">Shared dictionaries</span> <span class="cadre-hero__pill">Hot reload</span> <span class="cadre-hero__pill">Domain restrictions</span> <span class="cadre-hero__pill">Expiry support</span> <span class="cadre-hero__pill">100+ Attack Types</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="cadre-body">
+            <aside class="cadre-toc">
+                <div class="cadre-toc__title">Contents</div>
+                <a href="#intro">Introduction</a> <a href="#why-cadre">Why CADRE Script?</a> <a href="#syntax">Syntax & Structure</a>
+                <a href="#metadata">Complete Metadata Reference</a> <a href="#variables">Variables</a> <a href="#functions">Built-in Functions</a>
+                <a href="#actions">Actions</a> <div class="toc-group">Attack Types (100+)</div>
+                <a href="#attack-injection">Injection Attacks (10)</a> <a href="#attack-xss">XSS Attacks (8)</a> <a href="#attack-file">File Attacks (7)</a>
+                <a href="#attack-server">Server Attacks (6)</a> <a href="#attack-auth">Auth Attacks (5)</a> <a href="#attack-api">API Attacks (6)</a>
+                <a href="#attack-dos">DoS/Protocol (6)</a> <a href="#attack-scanner">Scanner Detection (6)</a> <a href="#attack-modern">Modern Vulns (4)</a>
+                <a href="#attack-cloud">Cloud Attacks (4)</a> <a href="#attack-script">Script Blocking (50+)</a>
+                <a href="#examples">Complete Examples</a> <a href="#deployment">Deployment</a> <a href="#best-practices">Best Practices</a>
+            </aside>
+
+            <div class="cadre-content">
+                <!-- ==================== INTRODUCTION ==================== -->
+                <section class="cadre-section" id="intro">
+                    <h2 class="cadre-section__title"><span class="sec-num">01</span> Introduction</h2>
+                    <p><strong>CloFix CADRE Script</strong> is a lightweight, English‑like scripting language designed for WAF rules. It combines simplicity with enterprise-grade power - no compilation, no restart, no complex DSL. Just write a <code>.clofix</code> file and place it in the correct module folder; the CADRE engine loads it instantly into memory.</p>
+                    <div class="cadre-box"><strong>⚡ Key Capabilities</strong><ul style="margin-top:8px;margin-left:20px;"><li><strong>100+ built‑in attack patterns</strong> - SQLi, XSS, LFI, SSRF, Log4Shell, GraphQL, NoSQLi, CMDi, and 90+ more</li><li><strong>Simple conditions</strong> - <code>if ua contains "python" { block }</code></li><li><strong>Powerful functions</strong> - <code>rate(ip, "60s")</code>, <code>matches()</code>, <code>contains()</code>, <code>starts()</code>, <code>ends()</code></li><li><strong>Rich metadata</strong> - expiry dates, domain restrictions, IP/country filtering, rate limiting and logging</li><li><strong>Hot reload</strong> - update rules without restarting the WAF</li><li><strong>50,000+ req/sec throughput</strong> - sub-millisecond latency</li></ul></div>
+                </section>
+
+                <!-- ==================== WHY CADRE SCRIPT ==================== -->
+                <section class="cadre-section" id="why-cadre">
+                    <h2 class="cadre-section__title"><span class="sec-num">02</span> Why CADRE Script?</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⚡</span><span class="feature-card__name">1000x Faster</span></div><div class="feature-card__desc">Memory-first architecture - all rules pre-loaded at startup. Zero disk I/O during request processing. 0.5-2ms latency even with 10,000+ rules.</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📝</span><span class="feature-card__name">English-like Syntax</span></div><div class="feature-card__desc"><code>if path contains "/admin" { block }</code>. Anyone on your security team can write rules within 10 minutes. No programming experience required.</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">Hot Reload</span></div><div class="feature-card__desc">Add, modify or delete rules while the WAF is running. Call <code>/api/cadre/reload</code> - changes apply immediately with zero downtime.</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔐</span><span class="feature-card__name">100+ Attack Types</span></div><div class="feature-card__desc">SQLi, XSS, LFI, RFI, SSRF, XXE, Log4Shell, GraphQL, NoSQLi, CMDi, LDAPi, SSTI, and 90+ more. Industry-leading coverage.</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📊</span><span class="feature-card__name">Enterprise Performance</span></div><div class="feature-card__desc">50,000+ requests/second throughput. 5-10% CPU usage. 500MB-2GB memory. 99.97% threat detection rate.</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">Network-Level Blocking</span></div><div class="feature-card__desc">iptables/nftables integration for kernel-level IP blocking. Automatic ban escalation for repeat offenders.</div></div>
+                    </div>
+                </section>
+
+                <!-- ==================== SYNTAX & STRUCTURE ==================== -->
+                <section class="cadre-section" id="syntax">
+                    <h2 class="cadre-section__title"><span class="sec-num">03</span> Syntax & Structure</h2>
+                    <p>A CADRE script file consists of <strong>optional metadata headers</strong> followed by any number of conditional blocks. If no block matches, the default <code>allow</code> action is applied. Comments start with <code>#</code>.</p>
+                    <div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">clofix (full structure)</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div>
+                    <pre># ============================================
+# MODULE: SQL Injection Detection
+# RULE ID: SQL-001
+# VERSION: 1.0.0
+# CREATOR-NAME: Security Team
+# CREATOR-EMAIL: security@clofix.com
+# CREATOR-ORGANIZATION: CloFix Security Inc.
+# CREATOR-PARTNER-ID: PARTNER-001
+# CREATOR-TIER: platinum
+# CREATOR-WEBSITE: https://clofix.com
+# REGISTRATION-ID: REG-2024-00123
+# REGISTRATION-HASH: sha256:abc123...
+# REGISTRATION-DATE: 2024-12-01T10:00:00Z
+# LICENSE-TYPE: enterprise
+# LICENSE-KEY: XXXX-XXXX-XXXX-XXXX
+# LICENSE-VALID-FROM: 2024-12-01T10:00:00Z
+# LICENSE-VALID-TO: 2025-12-01T10:00:00Z
+# SEVERITY: critical
+# SCORE: 95
+# ANOMALY-SCORE: 85
+# PARANOIA-LEVEL: 2
+# CONFIDENCE: 0.98
+# DESCRIPTION: Detects UNION and Boolean SQL injection
+# CREATED: 2024-12-01T10:00:00Z
+# UPDATED: 2024-12-15T14:30:00Z
+# EXPIRES: 2025-12-01T10:00:00Z
+# EXPIRY-DAYS: 365
+# EXPIRY-WARNING: 30
+# GRACE-PERIOD: 7
+# AUTO-RENEW: true
+# RENEWAL-PRICE: $99/month
+# DOMAINS: example.com, api.example.com
+# DOMAIN-PATTERNS: *.example.org
+# EXCLUDE-DOMAINS: test.example.com
+# ALLOWED-IPS: 192.168.1.0/24, 10.0.0.0/8
+# BLOCKED-IPS: 1.2.3.4, 5.6.7.8
+# ALLOWED-ASN: AS15169, AS16509
+# ALLOWED-COUNTRIES: US, GB, CA
+# BLOCKED-COUNTRIES: RU, CN, KP
+# ALLOWED-CONTINENTS: NA, EU
+# BLOCKED-CONTINENTS: AS, AF
+# TIME-WINDOW: 09:00-17:00
+# TIME-ZONE: America/New_York
+# DAYS: Monday,Tuesday,Wednesday,Thursday,Friday
+# DATE-RANGE-START: 2024-01-01
+# DATE-RANGE-END: 2024-12-31
+# BUSINESS-HOURS-ONLY: true
+# RATE-LIMIT: 100
+# RATE-WINDOW: 60s
+# RATE-ACTION: block
+# RATE-BLOCK-DURATION: 300s
+# RATE-BURST: 20
+# ACTION: block
+# BLOCK-STATUS: 403
+# BLOCK-MESSAGE: Access denied by security policy
+# BLOCK-URL: https://clofix.com/blocked
+# REDIRECT-URL: https://captcha.example.com
+# LOG-LEVEL: INFO
+# LOG-SAMPLE: 10
+# ALERT-ENABLED: true
+# ALERT-WEBHOOK: https://hooks.slack.com/xxx
+# ALERT-EMAIL: security@clofix.com
+# ALERT-SEVERITY: critical
+# AUDIT-LOG: true
+# REQUIRES-MODULES: core, base_sqli
+# REQUIRES-ALL: false
+# CONFLICTS-WITH: legacy_sqli
+# PRIORITY: 1
+# STAGE: main
+# TAGS: owasp, sqli, critical, injection
+# CATEGORY: SQL Injection
+# SUB-CATEGORY: Union-based
+# CVE: CVE-2024-12345
+# OWASP: A03:2021-Injection
+# PCI: 6.5.1
+# HIPAA: 164.306
+# GDPR: Article 32
+# REFERENCE: https://owasp.org/sqli
+# EXAMPLES: ' OR '1'='1 | UNION SELECT 1,2,3
+# FIX: Use parameterized queries
+# FALSE-POSITIVE-RATE: low
+# TESTED-ENVIRONMENTS: nginx, apache, cloudflare
+# BRAND-NAME: CloFix Security
+# BRAND-LOGO: https://clofix.com/logo.png
+# BRAND-URL: https://clofix.com
+# BRAND-SUPPORT: support@clofix.com
+# BRAND-HEADER-ENABLED: true
+# BRAND-LOGO-IN-BLOCK: true
+# BRAND-SUPPORT-LINK: true
+# BRAND-FOOTER: © 2024 CloFix Inc.
+# BRAND-BLOCK-PAGE: https://clofix.com/block.html
+# SIGNATURE: MEUCIQD...
+# SIGNING-KEY-ID: key-12345
+# HASH-ALGORITHM: sha256
+# ENCRYPTION: aes-256-gcm
+# INTEGRITY-CHECK: true
+# TRACK-HITS: true
+# TRACK-LATENCY: true
+# EXPORT-METRICS: true
+# METRICS-PREFIX: waf_custom
+# MIN-CADRE-VERSION: 4.0.0
+# MAX-CADRE-VERSION: 5.0.0
+# COMPATIBLE-WITH: cloudflare, aws_waf
+# DEPRECATED-IN: 4.5.0
+# REMOVED-IN: 5.0.0
+# ============================================
+
+if body matches "union.*select" {
+    log attack "SQLI" "union select pattern"
+    block "SQL injection detected"
+}
+
+if param.id contains "or 1=1" {
+    block "Boolean SQL injection"
+}
+
+allow
+                </pre></div>
+                </section>
+
+                <!-- ==================== COMPLETE METADATA REFERENCE ==================== -->
+                <section class="cadre-section" id="metadata">
+                    <h2 class="cadre-section__title"><span class="sec-num">04</span> Complete Metadata Reference</h2>
+                    
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Core Module Information</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Required</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Module</code></td><td>Module name/description</td><td>✅ Yes</td><td>SQL Injection Detection</td></tr>
+                            <tr><td><code>Rule ID</code></td><td>Unique rule identifier</td><td>✅ Yes</td><td>SQL-001</td></tr>
+                            <tr><td><code>Version</code></td><td>Semantic version</td><td>✅ Yes</td><td>1.0.0, 2.1.3</td></tr>
+                            <tr><td><code>Severity</code></td><td>Threat level</td><td>✅ Yes</td><td>critical, high, medium, low, info</td></tr>
+                            <tr><td><code>Description</code></td><td>What the rule does</td><td>❌ No</td><td>Detects UNION-based SQL injection</td></tr>
+                            <tr><td><code>Created</code></td><td>Creation timestamp</td><td>❌ No</td><td>2024-12-01T10:00:00Z</td></tr>
+                            <tr><td><code>Updated</code></td><td>Last update timestamp</td><td>❌ No</td><td>2024-12-15T14:30:00Z</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Creator & Ownership</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Required</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Creator-Name</code></td><td>Creator's full name</td><td>✅ Yes</td><td>Security Team</td></tr>
+                            <tr><td><code>Creator-Email</code></td><td>Creator's email for support</td><td>❌ No</td><td>security@clofix.com</td></tr>
+                            <tr><td><code>Creator-Organization</code></td><td>Organization name</td><td>❌ No</td><td>CloFix Security Inc.</td></tr>
+                            <tr><td><code>Creator-Partner-ID</code></td><td>Partner identification</td><td>❌ No</td><td>PARTNER-001</td></tr>
+                            <tr><td><code>Creator-Tier</code></td><td>Creator subscription tier</td><td>❌ No</td><td>bronze, silver, gold, platinum</td></tr>
+                            <tr><td><code>Creator-Website</code></td><td>Creator's website</td><td>❌ No</td><td>https://clofix.com</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Registration & Licensing</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Required</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Registration-ID</code></td><td>Unique registration identifier</td><td>❌ No</td><td>REG-2024-00123</td></tr>
+                            <tr><td><code>Registration-Hash</code></td><td>Cryptographic registration hash</td><td>❌ No</td><td>sha256:abc123...</td></tr>
+                            <tr><td><code>Registration-Date</code></td><td>When module was registered</td><td>❌ No</td><td>2024-12-01T10:00:00Z</td></tr>
+                            <tr><td><code>License-Type</code></td><td>License type</td><td>❌ No</td><td>free, pro, enterprise, custom</td></tr>
+                            <tr><td><code>License-Key</code></td><td>License key for validation</td><td>❌ No</td><td>XXXX-XXXX-XXXX-XXXX</td></tr>
+                            <tr><td><code>License-Valid-From</code></td><td>License start date</td><td>❌ No</td><td>2024-12-01T10:00:00Z</td></tr>
+                            <tr><td><code>License-Valid-To</code></td><td>License expiration</td><td>❌ No</td><td>2025-12-01T10:00:00Z</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Expiry Configuration</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Behavior</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Expires</code></td><td>Expiration date/time</td><td>If NOT set → NEVER expires</td><td>2025-12-01T10:00:00Z</td></tr>
+                            <tr><td><code>Expiry-Days</code></td><td>Total validity days</td><td>Default: 365</td><td>365</td></tr>
+                            <tr><td><code>Expiry-Warning</code></td><td>Days before warning</td><td>Default: 30</td><td>30</td></tr>
+                            <tr><td><code>Grace-Period</code></td><td>Days after expiry to allow</td><td>Default: 7</td><td>7</td></tr>
+                            <tr><td><code>Auto-Renew</code></td><td>Auto-renew subscription</td><td>Default: false</td><td>true</td></tr>
+                            <tr><td><code>Renewal-Price</code></td><td>Price for renewal</td><td>Optional</td><td>$99/month</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Domain & IP Restriction</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Behavior</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Domains</code></td><td>Allowed domains (exact)</td><td>If NOT set → ALL domains</td><td>example.com, api.example.com</td></tr>
+                            <tr><td><code>Domain-Patterns</code></td><td>Wildcard domain patterns</td><td>Optional</td><td>*.example.com</td></tr>
+                            <tr><td><code>Exclude-Domains</code></td><td>Blocked domains</td><td>Optional</td><td>test.example.com</td></tr>
+                            <tr><td><code>Allowed-IPs</code></td><td>Allowed IPs/CIDRs</td><td>If NOT set → ALL IPs</td><td>192.168.1.0/24, 10.0.0.0/8</td></tr>
+                            <tr><td><code>Blocked-IPs</code></td><td>Exclude these IPs</td><td>Optional</td><td>1.2.3.4, 5.6.7.8</td></tr>
+                            <tr><td><code>Allowed-ASN</code></td><td>Allowed ASN numbers</td><td>Optional</td><td>AS15169, AS16509</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">GeoIP Restriction</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Behavior</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Allowed-Countries</code></td><td>Allowed country codes</td><td>If NOT set → ALL countries</td><td>US, GB, CA, AU</td></tr>
+                            <tr><td><code>Blocked-Countries</code></td><td>Exclude these countries</td><td>Optional</td><td>RU, CN, KP, IR</td></tr>
+                            <tr><td><code>Allowed-Continents</code></td><td>Allowed continents</td><td>Optional</td><td>NA, EU, AS</td></tr>
+                            <tr><td><code>Blocked-Continents</code></td><td>Exclude these continents</td><td>Optional</td><td>SA, AF</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Time Restriction</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Behavior</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Time-Window</code></td><td>Active time window</td><td>If NOT set → 24/7</td><td>09:00-17:00</td></tr>
+                            <tr><td><code>Time-Zone</code></td><td>Timezone for window</td><td>Default: UTC</td><td>America/New_York</td></tr>
+                            <tr><td><code>Days</code></td><td>Active days of week</td><td>If NOT set → ALL days</td><td>Monday,Tuesday,Wednesday</td></tr>
+                            <tr><td><code>Date-Range-Start</code></td><td>Start date for validity</td><td>Optional</td><td>2024-01-01</td></tr>
+                            <tr><td><code>Date-Range-End</code></td><td>End date for validity</td><td>Optional</td><td>2024-12-31</td></tr>
+                            <tr><td><code>Business-Hours-Only</code></td><td>Only during business hours</td><td>Default: false</td><td>true</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Rate Limiting</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Rate-Limit</code></td><td>Max requests per window</td><td>Not set</td><td>100</td></tr>
+                            <tr><td><code>Rate-Window</code></td><td>Time window duration</td><td>60s</td><td>60s, 5m, 1h</td></tr>
+                            <tr><td><code>Rate-Action</code></td><td>Action on limit exceeded</td><td>block</td><td>block, challenge, log</td></tr>
+                            <tr><td><code>Rate-Block-Duration</code></td><td>Block duration after limit</td><td>300s</td><td>300s, 10m, 1h</td></tr>
+                            <tr><td><code>Rate-Burst</code></td><td>Burst allowance</td><td>0</td><td>20</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Scoring & Confidence</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Score</code></td><td>Severity score (0-100)</td><td>50</td><td>85</td></tr>
+                            <tr><td><code>Anomaly-Score</code></td><td>Anomaly detection score</td><td>None</td><td>75</td></tr>
+                            <tr><td><code>Paranoia-Level</code></td><td>Aggressiveness (1-4)</td><td>None</td><td>2</td></tr>
+                            <tr><td><code>Confidence</code></td><td>Detection confidence (0-1)</td><td>None</td><td>0.95</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Response Action</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Action</code></td><td>What to do when matched</td><td>block</td><td>block, sanitize, deceive, log, pass</td></tr>
+                            <tr><td><code>Block-Status</code></td><td>HTTP status code</td><td>403</td><td>403, 404, 429</td></tr>
+                            <tr><td><code>Block-Message</code></td><td>Custom block message</td><td>None</td><td>Access denied by security policy</td></tr>
+                            <tr><td><code>Block-URL</code></td><td>URL to redirect blocked requests</td><td>None</td><td>https://clofix.com/blocked</td></tr>
+                            <tr><td><code>Redirect-URL</code></td><td>URL for redirect action</td><td>None</td><td>https://captcha.example.com</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Logging & Alerts</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Log-Level</code></td><td>Logging detail level</td><td>INFO</td><td>DEBUG, INFO, WARN, ERROR</td></tr>
+                            <tr><td><code>Log-Sample</code></td><td>Sample rate for logs (1 in N)</td><td>None</td><td>10</td></tr>
+                            <tr><td><code>Alert-Enabled</code></td><td>Enable alerts</td><td>false</td><td>true</td></tr>
+                            <tr><td><code>Alert-Webhook</code></td><td>Slack/Discord webhook</td><td>None</td><td>https://hooks.slack.com/xxx</td></tr>
+                            <tr><td><code>Alert-Email</code></td><td>Email for alerts</td><td>Creator email</td><td>security@clofix.com</td></tr>
+                            <tr><td><code>Alert-Severity</code></td><td>Minimum severity for alerts</td><td>None</td><td>critical, high, medium, low</td></tr>
+                            <tr><td><code>Audit-Log</code></td><td>Enable audit logging</td><td>false</td><td>true</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Dependencies</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Requires-Modules</code></td><td>Modules that must be active</td><td>None</td><td>core, base_sqli</td></tr>
+                            <tr><td><code>Requires-All</code></td><td>Require ALL dependencies</td><td>false</td><td>true, false</td></tr>
+                            <tr><td><code>Conflicts-With</code></td><td>Incompatible modules</td><td>None</td><td>legacy_sqli</td></tr>
+                            <tr><td><code>Priority</code></td><td>Execution priority (lower=higher)</td><td>5</td><td>1, 5, 10</td></tr>
+                            <tr><td><code>Stage</code></td><td>When to run this module</td><td>None</td><td>pre, main, post</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Tags & Classification</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Tags</code></td><td>Searchable tags</td><td>owasp, sqli, critical, injection</td></tr>
+                            <tr><td><code>Category</code></td><td>Main category</td><td>SQL Injection</td></tr>
+                            <tr><td><code>Sub-Category</code></td><td>Specific sub-category</td><td>Union-based</td></tr>
+                            <tr><td><code>CVE</code></td><td>Related CVE</td><td>CVE-2024-12345</td></tr>
+                            <tr><td><code>OWASP</code></td><td>OWASP category</td><td>A03:2021-Injection</td></tr>
+                            <tr><td><code>PCI</code></td><td>PCI DSS requirement</td><td>6.5.1</td></tr>
+                            <tr><td><code>HIPAA</code></td><td>HIPAA section</td><td>164.306</td></tr>
+                            <tr><td><code>GDPR</code></td><td>GDPR article</td><td>Article 32</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Documentation</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Reference</code></td><td>External documentation URL</td><td>https://owasp.org/sqli</td></tr>
+                            <tr><td><code>Examples</code></td><td>Attack examples (pipe-separated)</td><td>' OR '1'='1 | UNION SELECT 1,2,3</td></tr>
+                            <tr><td><code>Fix</code></td><td>How to fix the vulnerability</td><td>Use parameterized queries</td></tr>
+                            <tr><td><code>False-Positive-Rate</code></td><td>Expected FP rate</td><td>low, medium, high</td></tr>
+                            <tr><td><code>Tested-Environments</code></td><td>Where it's tested</td><td>nginx, apache, cloudflare</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">CloFix Brand Integration</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Brand-Name</code></td><td>Brand name for block page</td><td>CloFix Security</td><td>Enterprise WAF</td></tr>
+                            <tr><td><code>Brand-Logo</code></td><td>Logo URL for block page</td><td>None</td><td>https://clofix.com/logo.png</td></tr>
+                            <tr><td><code>Brand-URL</code></td><td>Brand website URL</td><td>https://clofix.com</td><td>https://security.com</td></tr>
+                            <tr><td><code>Brand-Support</code></td><td>Support contact info</td><td>None</td><td>support@clofix.com</td></tr>
+                            <tr><td><code>Brand-Header-Enabled</code></td><td>Add X-CloFix-* headers</td><td>true</td><td>true, false</td></tr>
+                            <tr><td><code>Brand-Logo-In-Block</code></td><td>Show logo on block page</td><td>true</td><td>true, false</td></tr>
+                            <tr><td><code>Brand-Support-Link</code></td><td>Show support link</td><td>true</td><td>true, false</td></tr>
+                            <tr><td><code>Brand-Footer</code></td><td>Custom footer text</td><td>None</td><td>© 2024 CloFix Inc.</td></tr>
+                            <tr><td><code>Brand-Block-Page</code></td><td>Custom block page URL</td><td>None</td><td>https://custom.com/block.html</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Security & Validation</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Signature</code></td><td>Digital signature of module</td><td>MEUCIQD...</td></tr>
+                            <tr><td><code>Signing-Key-ID</code></td><td>Key identifier for verification</td><td>key-12345</td></tr>
+                            <tr><td><code>Hash-Algorithm</code></td><td>Hash algorithm for integrity</td><td>sha256, sha512</td></tr>
+                            <tr><td><code>Encryption</code></td><td>Encryption method</td><td>aes-256-gcm</td></tr>
+                            <tr><td><code>Integrity-Check</code></td><td>Verify module integrity</td><td>true, false</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Analytics & Metrics</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Default</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Track-Hits</code></td><td>Count rule matches</td><td>false</td><td>true</td></tr>
+                            <tr><td><code>Track-Latency</code></td><td>Measure processing time</td><td>false</td><td>true</td></tr>
+                            <tr><td><code>Export-Metrics</code></td><td>Export to Prometheus</td><td>false</td><td>true</td></tr>
+                            <tr><td><code>Metrics-Prefix</code></td><td>Custom metrics prefix</td><td>cadre</td><td>waf_custom</td></tr>
+                        </tbody>
+                    </table></div>
+
+                    <h3 style="color:var(--cadre-teal); margin:20px 0 10px;">Compatibility</h3>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Field</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Min-CADRE-Version</code></td><td>Minimum engine version</td><td>4.0.0</td></tr>
+                            <tr><td><code>Max-CADRE-Version</code></td><td>Maximum engine version</td><td>5.0.0</td></tr>
+                            <tr><td><code>Compatible-With</code></td><td>Compatible platforms</td><td>cloudflare, aws_waf</td></tr>
+                            <tr><td><code>Deprecated-In</code></td><td>Deprecation version</td><td>4.5.0</td></tr>
+                            <tr><td><code>Removed-In</code></td><td>Removal version</td><td>5.0.0</td></tr>
+                        </tbody>
+                    </table></div>
+                </section>
+
+                <!-- ==================== VARIABLES ==================== -->
+                <section class="cadre-section" id="variables">
+                    <h2 class="cadre-section__title"><span class="sec-num">05</span> Variables</h2>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>ip</code></td><td>Client IP address</td><td><code>if ip == "1.2.3.4"</code></td></tr>
+                            <tr><td><code>method</code></td><td>HTTP method</td><td><code>if method == "POST"</code></td></tr>
+                            <tr><td><code>path</code></td><td>URL path</td><td><code>if path starts "/admin"</code></td></tr>
+                            <tr><td><code>ua</code></td><td>User-Agent header</td><td><code>if ua contains "python"</code></td></tr>
+                            <tr><td><code>body</code></td><td>Request body</td><td><code>if body matches "union.*select"</code></td></tr>
+                            <tr><td><code>country</code></td><td>Country code (GeoIP)</td><td><code>if country == "RU"</code></td></tr>
+                            <tr><td><code>is_tor</code></td><td>Tor exit node flag</td><td><code>if is_tor</code></td></tr>
+                            <tr><td><code>score</code></td><td>Threat score (0-100)</td><td><code>if score > 80</code></td></tr>
+                            <tr><td><code>param.name</code></td><td>Query parameter</td><td><code>if param.id == "1"</code></td></tr>
+                            <tr><td><code>form.name</code></td><td>POST form field</td><td><code>if form.username == "admin"</code></td></tr>
+                        </tbody>
+                    </table></div>
+                </section>
+
+                <!-- ==================== BUILT-IN FUNCTIONS ==================== -->
+                <section class="cadre-section" id="functions">
+                    <h2 class="cadre-section__title"><span class="sec-num">06</span> Built‑in Functions</h2>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Function</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>rate(key, window)</code></td><td>Returns request count in window</td><td><code>rate(ip, "60s")</code></td></tr>
+                            <tr><td><code>contains(str, sub)</code></td><td>String contains</td><td><code>if ua contains "python"</code></td></tr>
+                            <tr><td><code>matches(str, regex)</code></td><td>Regex match</td><td><code>if body matches "union.*select"</code></td></tr>
+                            <tr><td><code>starts(str, prefix)</code></td><td>Prefix check</td><td><code>if path starts "/admin"</code></td></tr>
+                            <tr><td><code>ends(str, suffix)</code></td><td>Suffix check</td><td><code>if file ends ".php"</code></td></tr>
+                            <tr><td><code>length(str)</code></td><td>String length</td><td><code>if length(body) > 1000</code></td></tr>
+                            <tr><td><code>log_attack(type, payload)</code></td><td>Structured attack log</td><td><code>log attack "SQLI" "union select"</code></td></tr>
+                        </tbody>
+                    </table></div>
+                </section>
+
+                <!-- ==================== ACTIONS ==================== -->
+                <section class="cadre-section" id="actions">
+                    <h2 class="cadre-section__title"><span class="sec-num">07</span> Actions</h2>
+                    <div class="cadre-table-wrap"><table class="cadre-table">
+                        <thead><tr><th>Action</th><th>Description</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>block</code></td><td>Block request</td><td><code>block</code> or <code>block "Custom message"</code></td></tr>
+                            <tr><td><code>allow</code></td><td>Allow request</td><td><code>allow</code></td></tr>
+                            <tr><td><code>log</code></td><td>Log message</td><td><code>log "Request processed"</code></td></tr>
+                            <tr><td><code>add</code></td><td>Add response header</td><td><code>add "X-Frame-Options: DENY"</code></td></tr>
+                            <tr><td><code>remove</code></td><td>Remove response header</td><td><code>remove "Server"</code></td></tr>
+                            <tr><td><code>redirect</code></td><td>Redirect request</td><td><code>redirect "https://example.com/login"</code></td></tr>
+                        </tbody>
+                    </table></div>
+                </section>
+
+                <!-- ==================== ATTACK TYPES (100+) ==================== -->
+                <section class="cadre-section" id="attack-types">
+                    <h2 class="cadre-section__title"><span class="sec-num">08</span> Attack Types (100+ Modules)</h2>
+                    
+                    <h3 id="attack-injection" style="color:var(--cadre-teal); margin:20px 0 10px;">🔻 Injection Attacks (10 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💉</span><span class="feature-card__name">SQL Injection</span></div><div class="feature-card__desc">UNION-based, Boolean blind, Time-based, Error-based, Stacked queries</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🍃</span><span class="feature-card__name">NoSQL Injection</span></div><div class="feature-card__desc">$ne, $gt, $regex, $where operators, JavaScript injection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📋</span><span class="feature-card__name">LDAP Injection</span></div><div class="feature-card__desc">LDAP metacharacters, filter manipulation, auth bypass</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⌨️</span><span class="feature-card__name">Command Injection</span></div><div class="feature-card__desc">rm -rf, curl/wget, reverse shells, command chaining</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🗺️</span><span class="feature-card__name">XPath Injection</span></div><div class="feature-card__desc">OR injection patterns, XML query manipulation</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📝</span><span class="feature-card__name">Code Injection</span></div><div class="feature-card__desc">eval(), assert(), create_function() injection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🎨</span><span class="feature-card__name">SSTI</span></div><div class="feature-card__desc">Jinja2, Twig, Freemarker, Velocity template injection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔧</span><span class="feature-card__name">EL Injection</span></div><div class="feature-card__desc">Expression Language injection, ClassLoader access</div></div>
+                    </div>
+
+                    <h3 id="attack-xss" style="color:var(--cadre-teal); margin:20px 0 10px;">⚠️ XSS Attacks (8 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">Reflected XSS</span></div><div class="feature-card__desc">Script tags, event handlers, JavaScript protocol</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💾</span><span class="feature-card__name">Stored XSS</span></div><div class="feature-card__desc">IMG onerror, SVG onload, IFRAME injection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🌳</span><span class="feature-card__name">DOM-based XSS</span></div><div class="feature-card__desc">DOM manipulation, Cookie/location access</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🎯</span><span class="feature-card__name">Blind XSS</span></div><div class="feature-card__desc">Image src callbacks, Fetch API, BeEF hooks</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📄</span><span class="feature-card__name">HTML Injection</span></div><div class="feature-card__desc">IFRAME, OBJECT, EMBED injection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📜</span><span class="feature-card__name">JS Injection</span></div><div class="feature-card__desc">Alert functions, setTimeout/setInterval abuse</div></div>
+                    </div>
+
+                    <h3 id="attack-file" style="color:var(--cadre-teal); margin:20px 0 10px;">📁 File-Based Attacks (7 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📂</span><span class="feature-card__name">LFI</span></div><div class="feature-card__desc">Local File Inclusion, /etc/passwd, PHP wrappers</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🌐</span><span class="feature-card__name">RFI</span></div><div class="feature-card__desc">Remote File Inclusion, HTTP/HTTPS/FTP includes</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">Path Traversal</span></div><div class="feature-card__desc">../, ..\, URL-encoded traversal, double encoding</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📤</span><span class="feature-card__name">File Upload</span></div><div class="feature-card__desc">Dangerous extensions, double extensions, MIME spoofing</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐚</span><span class="feature-card__name">WebShell</span></div><div class="feature-card__desc">c99, r57, b374k, China Chopper, PHP webshells</div></div>
+                    </div>
+
+                    <h3 id="attack-server" style="color:var(--cadre-teal); margin:20px 0 10px;">🖥️ Server-Side Attacks (6 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🌐</span><span class="feature-card__name">SSRF</span></div><div class="feature-card__desc">Localhost, metadata endpoints, internal IPs</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📄</span><span class="feature-card__name">XXE</span></div><div class="feature-card__desc">XML External Entity, DOCTYPE, parameter entities</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔧</span><span class="feature-card__name">SSI</span></div><div class="feature-card__desc">Server-Side Includes directives</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">Java Deserialization</span></div><div class="feature-card__desc">Magic bytes detection, ysoserial payloads</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">PHP Deserialization</span></div><div class="feature-card__desc">Object injection patterns</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">Python Deserialization</span></div><div class="feature-card__desc">Pickle/YAML injection</div></div>
+                    </div>
+
+                    <h3 id="attack-auth" style="color:var(--cadre-teal); margin:20px 0 10px;">🔑 Auth & Session Attacks (5 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔐</span><span class="feature-card__name">Session Fixation</span></div><div class="feature-card__desc">Session cookie patterns, fixation attacks</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">CSRF</span></div><div class="feature-card__desc">Missing headers detection, token validation</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔑</span><span class="feature-card__name">JWT Attack</span></div><div class="feature-card__desc">None algorithm, signature bypass, alg confusion</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🍪</span><span class="feature-card__name">Cookie Tampering</span></div><div class="feature-card__desc">Admin cookie patterns, manipulation</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔗</span><span class="feature-card__name">OAuth Attack</span></div><div class="feature-card__desc">Redirect URI manipulation, code injection</div></div>
+                    </div>
+
+                    <h3 id="attack-api" style="color:var(--cadre-teal); margin:20px 0 10px;">🔌 API Attacks (6 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📊</span><span class="feature-card__name">GraphQL Introspection</span></div><div class="feature-card__desc">__schema, __type queries</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📏</span><span class="feature-card__name">GraphQL Depth</span></div><div class="feature-card__desc">Deep nested queries, DoS</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">GraphQL Batching</span></div><div class="feature-card__desc">Alias bombing, batch attacks</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔓</span><span class="feature-card__name">API Auth Bypass</span></div><div class="feature-card__desc">URL override, method override</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📝</span><span class="feature-card__name">API Mass Assignment</span></div><div class="feature-card__desc">Admin field injection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⏱️</span><span class="feature-card__name">API Rate Limit Bypass</span></div><div class="feature-card__desc">IP spoofing detection</div></div>
+                    </div>
+
+                    <h3 id="attack-dos" style="color:var(--cadre-teal); margin:20px 0 10px;">🐌 DoS/Protocol Attacks (6 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐌</span><span class="feature-card__name">Slowloris</span></div><div class="feature-card__desc">Incomplete headers, slow read attacks</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔁</span><span class="feature-card__name">ReDoS</span></div><div class="feature-card__desc">Nested quantifiers, evil regex patterns</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💣</span><span class="feature-card__name">XML Bomb</span></div><div class="feature-card__desc">Billion laughs, entity expansion</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">JSON Bomb</span></div><div class="feature-card__desc">Deep nesting attacks</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📨</span><span class="feature-card__name">HTTP Smuggling</span></div><div class="feature-card__desc">CL.TE, TE.CL, duplicate headers</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🏠</span><span class="feature-card__name">Host Header Injection</span></div><div class="feature-card__desc">Duplicate host, CRLF injection</div></div>
+                    </div>
+
+                    <h3 id="attack-scanner" style="color:var(--cadre-teal); margin:20px 0 10px;">🔍 Scanner Detection (6 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🗺️</span><span class="feature-card__name">SQLMap</span></div><div class="feature-card__desc">SQLMap User-Agent and signatures</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔍</span><span class="feature-card__name">Nmap</span></div><div class="feature-card__desc">Nmap scripting engine detection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📋</span><span class="feature-card__name">Nikto</span></div><div class="feature-card__desc">Nikto scanner detection</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔧</span><span class="feature-card__name">Burp Suite</span></div><div class="feature-card__desc">Burp User-Agent and headers</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📁</span><span class="feature-card__name">DirBuster</span></div><div class="feature-card__desc">Directory brute-forcing tools</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🖥️</span><span class="feature-card__name">WPScan</span></div><div class="feature-card__desc">WordPress scanner detection</div></div>
+                    </div>
+
+                    <h3 id="attack-modern" style="color:var(--cadre-teal); margin:20px 0 10px;">🐞 Modern Vulnerabilities (4 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📝</span><span class="feature-card__name">Log4Shell</span></div><div class="feature-card__desc">JNDI injection patterns, obfuscated bypasses</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🍃</span><span class="feature-card__name">Spring4Shell</span></div><div class="feature-card__desc">ClassLoader access patterns</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💥</span><span class="feature-card__name">ShellShock</span></div><div class="feature-card__desc">Function definition patterns</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⚙️</span><span class="feature-card__name">Struts2</span></div><div class="feature-card__desc">OGNL injection patterns</div></div>
+                    </div>
+
+                    <h3 id="attack-cloud" style="color:var(--cadre-teal); margin:20px 0 10px;">☁️ Cloud Attacks (4 types)</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">☁️</span><span class="feature-card__name">AWS Metadata</span></div><div class="feature-card__desc">169.254.169.254, /latest/meta-data/</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">☁️</span><span class="feature-card__name">GCP Metadata</span></div><div class="feature-card__desc">metadata.google.internal</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">☁️</span><span class="feature-card__name">Azure Metadata</span></div><div class="feature-card__desc">169.254.169.254/metadata</div></div>
+                        <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">S3 Bucket</span></div><div class="feature-card__desc">Bucket enumeration, access patterns</div></div>
+                    </div>
+
+                    <h3 id="attack-script" style="color:var(--cadre-teal); margin:20px 0 10px;">📜 Script Blocking (50+ Languages)</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐹</span><span class="feature-card__name">Go</span></div><div class="feature-card__desc">go-http-client, os.Exec, exec.Command, net.Dial, reverse shells</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐍</span><span class="feature-card__name">Python</span></div><div class="feature-card__desc">python-requests, python -c, exec(), eval(), subprocess, os.system, pickle, cpickle, __import__, reverse shells</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📘</span><span class="feature-card__name">Node.js</span></div><div class="feature-card__desc">node-fetch, axios, superagent, child_process.exec, require('net'), vm.runInNewContext, reverse shells</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐘</span><span class="feature-card__name">PHP</span></div><div class="feature-card__desc">system(), exec(), shell_exec(), passthru(), popen(), proc_open(), eval(), assert(), create_function(), webshells (c99, r57, b374k)</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💎</span><span class="feature-card__name">Ruby</span></div><div class="feature-card__desc">system(), exec(), IO.popen, TCPSocket, UNIXSocket, Kernel.exec, reverse shells</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐪</span><span class="feature-card__name">Perl</span></div><div class="feature-card__desc">system(), exec(), backticks (`), qx//, open(), IO::Socket, reverse shells</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐚</span><span class="feature-card__name">Bash</span></div><div class="feature-card__desc">bash -c, sh -c, zsh -c, dash -c, reverse shells (bash -i, nc -e), command substitution ($(), ``), pipe to sh</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🪟</span><span class="feature-card__name">PowerShell</span></div><div class="feature-card__desc">Invoke-Expression, IEX, -EncodedCommand, -e, DownloadFile, Invoke-WebRequest, wget, Net.WebClient, AMSI bypass patterns</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">☕</span><span class="feature-card__name">Java</span></div><div class="feature-card__desc">Runtime.exec(), ProcessBuilder, JNDI injection (Log4Shell), Java deserialization, JDBC connection strings</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📜</span><span class="feature-card__name">JavaScript</span></div><div class="feature-card__desc">eval(), Function(), setTimeout(), setInterval(), document.write(), location.replace(), fetch()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔧</span><span class="feature-card__name">Lua</span></div><div class="feature-card__desc">os.execute(), io.popen(), loadfile(), dofile(), require() with dangerous modules</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🦀</span><span class="feature-card__name">Rust</span></div><div class="feature-card__desc">std::process::Command, std::net::TcpStream, reverse shell patterns, unsafe code execution</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔷</span><span class="feature-card__name">C#</span></div><div class="feature-card__desc">Process.Start(), WebClient.DownloadString(), Assembly.Load(), reflection invocation, PowerShell assembly loading</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📊</span><span class="feature-card__name">R</span></div><div class="feature-card__desc">system(), shell(), source(), eval(), parse(), unserialize()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔢</span><span class="feature-card__name">Julia</span></div><div class="feature-card__desc">run(), eval(), include(), exec()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🍎</span><span class="feature-card__name">Swift</span></div><div class="feature-card__desc">Process(), shell() from Foundation, NSTask</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🎯</span><span class="feature-card__name">Kotlin</span></div><div class="feature-card__desc">Runtime.exec(), ProcessBuilder, eval() in scripting mode</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔥</span><span class="feature-card__name">Scala</span></div><div class="feature-card__desc">scala.sys.process, Runtime.exec(), ProcessBuilder</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">✏️</span><span class="feature-card__name">Groovy</span></div><div class="feature-card__desc">execute(), Runtime.exec(), GroovyShell.evaluate()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📝</span><span class="feature-card__name">Tcl</span></div><div class="feature-card__desc">exec(), open |, source, eval</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💧</span><span class="feature-card__name">Elixir</span></div><div class="feature-card__desc">System.cmd(), :os.cmd(), eval()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📞</span><span class="feature-card__name">Erlang</span></div><div class="feature-card__desc">os:cmd(), rpc:call()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">λ</span><span class="feature-card__name">Haskell</span></div><div class="feature-card__desc">System.Process.callCommand, System.Cmd.system, unsafePerformIO</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔗</span><span class="feature-card__name">Clojure</span></div><div class="feature-card__desc">(clojure.java.shell/sh), (eval), (load-string), Runtime.exec() interop</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🎯</span><span class="feature-card__name">Dart</span></div><div class="feature-card__desc">Process.run(), Process.start(), Isolate.spawnUri()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🍏</span><span class="feature-card__name">Objective-C</span></div><div class="feature-card__desc">system(), popen(), NSTask</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📜</span><span class="feature-card__name">VBScript</span></div><div class="feature-card__desc">CreateObject("WScript.Shell").Run, Execute, Eval</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📊</span><span class="feature-card__name">MATLAB</span></div><div class="feature-card__desc">system(), eval(), run(), load() with malicious .mat</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🗄️</span><span class="feature-card__name">SQL Scripts</span></div><div class="feature-card__desc">xp_cmdshell, sp_configure, exec master..xp_cmdshell, MySQL INTO OUTFILE, PostgreSQL COPY PROGRAM</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📘</span><span class="feature-card__name">TypeScript</span></div><div class="feature-card__desc">child_process.exec, eval(), fetch(), axios (compiled to JS patterns)</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⚡</span><span class="feature-card__name">Zig</span></div><div class="feature-card__desc">std.os.system, std.ChildProcess, execve patterns</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔷</span><span class="feature-card__name">Nim</span></div><div class="feature-card__desc">exec(), gorge(), staticExec(), osproc.startProcess()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💎</span><span class="feature-card__name">Crystal</span></div><div class="feature-card__desc">system(), Process.run(), eval()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔷</span><span class="feature-card__name">F#</span></div><div class="feature-card__desc">System.Diagnostics.Process.Start, System.IO.File.WriteAllText (webshells)</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🐫</span><span class="feature-card__name">OCaml</span></div><div class="feature-card__desc">Sys.command(), Unix.open_process, eval()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🎨</span><span class="feature-card__name">Racket</span></div><div class="feature-card__desc">system(), process, eval, dynamic-require</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🌀</span><span class="feature-card__name">Common Lisp</span></div><div class="feature-card__desc">run-program, shell, eval, load</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔢</span><span class="feature-card__name">Fortran</span></div><div class="feature-card__desc">CALL SYSTEM(), EXECUTE_COMMAND_LINE()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">💼</span><span class="feature-card__name">COBOL</span></div><div class="feature-card__desc">CALL 'SYSTEM', DISPLAY UPON CONSOLE (command injection)</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">Delphi</span></div><div class="feature-card__desc">ShellExecute(), WinExec(), CreateProcess()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔷</span><span class="feature-card__name">Ada</span></div><div class="feature-card__desc">Ada.Command_Line, System.Address_Image (information disclosure)</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📜</span><span class="feature-card__name">Prolog</span></div><div class="feature-card__desc">shell(), open/3 with pipe, exec/1</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📦</span><span class="feature-card__name">Smalltalk</span></div><div class="feature-card__desc">system: 'command', perform: #value:</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">λ</span><span class="feature-card__name">Scheme</span></div><div class="feature-card__desc">system, open-input-pipe, eval</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📊</span><span class="feature-card__name">VBA</span></div><div class="feature-card__desc">Shell(), CreateObject("WScript.Shell").Run, Application.Run</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🤖</span><span class="feature-card__name">AutoIt</span></div><div class="feature-card__desc">Run(), ShellExecute(), RunAs()</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⌨️</span><span class="feature-card__name">AutoHotkey</span></div><div class="feature-card__desc">Run, RunWait, ComObjCreate("WScript.Shell")</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🪟</span><span class="feature-card__name">Windows Batch</span></div><div class="feature-card__desc">cmd.exe /c, powershell.exe -c, certutil -urlcache, regsvr32.exe</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⬇️</span><span class="feature-card__name">cURL</span></div><div class="feature-card__desc">curl command, wget, aria2, axel downloaders, data exfiltration patterns</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">📁</span><span class="feature-card__name">FTP Clients</span></div><div class="feature-card__desc">ftp, sftp, lftp commands with credential exfiltration</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🔐</span><span class="feature-card__name">SSH Clients</span></div><div class="feature-card__desc">ssh commands, scp, rsync for tunneling or exfiltration</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🗄️</span><span class="feature-card__name">Database Clients</span></div><div class="feature-card__desc">mysql, psql, sqlcmd, mssql-cli for data extraction</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">⚡</span><span class="feature-card__name">Redis CLI</span></div><div class="feature-card__desc">redis-cli with FLUSHALL, CONFIG SET, EVAL lua scripts</div></div>
+                            <div class="feature-card"><div class="feature-card__header"><span class="feature-card__icon">🍃</span><span class="feature-card__name">MongoDB Client</span></div><div class="feature-card__desc">mongo, mongosh with db.adminCommand(), eval()</div></div>
+                        </div>
+                </section>
+
+                <!-- ==================== COMPLETE EXAMPLES ==================== -->
+                <section class="cadre-section" id="examples">
+                    <h2 class="cadre-section__title"><span class="sec-num">09</span> Complete Examples</h2>
+                    
+                    <p class="cadre-sub">Example: SQL Injection Protection with Full Metadata</p>
+                    <div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">clofix</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div>
+                    <pre># ============================================
+# MODULE: SQL Injection Detection
+# RULE ID: SQL-001
+# VERSION: 2.0.0
+# AUTHOR: Security Team
+# SEVERITY: critical
+# DESCRIPTION: Detects UNION, Boolean, Time-based SQL injection
+# CREATED: 2024-12-01T10:00:00Z
+# EXPIRES: 2025-12-01T10:00:00Z
+# DOMAINS: example.com, api.example.com
+# ALLOWED-IPS: 192.168.1.0/24
+# BLOCKED-COUNTRIES: RU, CN, KP
+# RATE-LIMIT: 100
+# RATE-WINDOW: 60s
+# TAGS: owasp, sqli, critical
+# OWASP: A03:2021-Injection
+# ============================================
+
+if body matches "union.*select|or.*=.*=|sleep\\(\\d+\\)" {
+    log attack "SQLI" "injection pattern"
+    block "SQL injection detected"
+}
+
+if param.id contains "' or '1'='1" {
+    block "Boolean SQL injection"
+}
+
+let req = rate(ip, "60s")
+if req > 100 {
+    block "Rate limit exceeded"
+}
+
+allow</pre></div>
+
+                    <p class="cadre-sub">Example: Complete Security Profile</p>
+                    <div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">clofix</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div>
+                    <pre># ============================================
+# MODULE: Complete Security Profile
+# RULE ID: ALL-001
+# VERSION: 2.0.0
+# AUTHOR: Security Team
+# SEVERITY: mixed
+# ============================================
+
+# SQL Injection
+if body matches "union.*select|or.*=.*=" {
+    log attack "SQLI" "injection"
+    block "SQL injection"
+}
+
+# XSS Protection
+if body contains "<script" or param.q contains "javascript:" {
+    block "XSS attack"
+}
+
+# Bot Detection
+if ua == "" or ua contains "python" { block "Bot detected" }
+
+# Path Traversal
+if path contains ".." { block "Path traversal" }
+
+# Rate Limiting
+let req = rate(ip, "60s")
+if req > 60 { block "Rate limit" }
+
+# Geo Blocking
+if country == "RU" { block "Country blocked" }
+
+# Login Protection
+if path == "/login" {
+    let attempts = rate("login:" + ip, "5m")
+    if attempts > 5 { block "Too many login attempts" }
+}
+
+# Response Hardening
+add "X-Frame-Options: DENY"
+add "X-Content-Type-Options: nosniff"
+remove "Server"
+
+allow</pre></div>
+                </section>
+
+                <!-- ==================== DEPLOYMENT ==================== -->
+                <section class="cadre-section" id="deployment">
+                    <h2 class="cadre-section__title"><span class="sec-num">10</span> Deployment</h2>
+                    <div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">bash</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div>
+                    <pre># Add a new rule
+sudo tee /etc/clofix/cadre_modules/sqli/001-sql-injection.clofix << 'EOF'
+if body matches "union.*select" { block "SQL injection" }
+allow
+EOF
+
+# Reload engine instantly
+curl -X POST http://localhost:8080/api/cadre/reload
+
+# Check statistics
+curl http://localhost:8080/api/cadre/stats</pre></div>
+                    <div class="cadre-box"><strong>📁 Directory Structure</strong><pre style="margin-top:8px;">/etc/clofix/cadre_modules/
+├── sqli/ └── 001-sql-injection.clofix
+├── xss/  └── 001-xss-protection.clofix
+├── bot/  └── 001-bot-detection.clofix
+└── geo/  └── 001-country-block.clofix</pre></div>
+                </section>
+
+                <!-- ==================== BEST PRACTICES ==================== -->
+                <section class="cadre-section" id="best-practices">
+                    <h2 class="cadre-section__title"><span class="sec-num">11</span> Best Practices</h2>
+                    <ul style="padding-left:24px;margin:12px 0;">
+                        <li><strong>Order matters</strong> - rules execute alphabetically; use numeric prefixes like <code>01_</code>, <code>02_</code> to control priority.</li>
+                        <li><strong>Use rate limiting</strong> - always wrap login/OTP endpoints with <code>rate()</code> to prevent brute‑force.</li>
+                        <li><strong>Log attacks</strong> - use <code>log attack</code> for structured logging and SIEM integration.</li>
+                        <li><strong>Set expiry dates</strong> - for temporary rules, add <code>Expires: YYYY-MM-DDTHH:MM:SSZ</code> to auto‑disable them.</li>
+                        <li><strong>Restrict domains</strong> - use <code>Domains: example.com</code> to keep rules scoped to specific applications.</li>
+                        <li><strong>Test before deploying</strong> - use <code>curl</code> to simulate attacks and verify rule behaviour.</li>
+                    </ul>
+                    <div class="cadre-box gold"><strong>Need Help?</strong> For CloFix WAF support or CADRE Script questions, visit our <a href="/support" style="color:var(--cadre-teal);">Support</a> page or <a href="/contact" style="color:var(--cadre-teal);">contact us</a>.</div>
+                </section>
+                <!-- ==================== CONTRIBUTE SECTION ==================== -->
+                <section class="cadre-section" id="contribute">
+                    <h2 class="cadre-section__title"><span class="sec-num">12</span> Contribute to CADRE</h2>
+                    
+                    <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="feature-card" style="background: linear-gradient(135deg, rgba(0,194,168,0.08) 0%, rgba(0,194,168,0.02) 100%); border-color: var(--cadre-teal);">
+                            <div class="feature-card__header">
+                                <span class="feature-card__icon">🤝</span>
+                                <span class="feature-card__name">Contribute Rules</span>
+                            </div>
+                            <div class="feature-card__desc" style="margin-bottom: 16px;">
+                                Help make CADRE the most comprehensive WAF rule engine. Share your security rules, attack patterns, and detection modules with the community.
+                            </div>
+                            <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 12px; margin-top: 8px;">
+                                <code style="font-family: var(--cadre-mono); font-size: 12px; color: var(--cadre-teal);">📧 Email: support@clofix.com</code><br>
+                                <code style="font-family: var(--cadre-mono); font-size: 12px; color: var(--cadre-teal);">🐙 GitHub: github.com/clofix19/clofix-cadre-engine</code>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card" style="background: linear-gradient(135deg, rgba(232,184,75,0.08) 0%, rgba(232,184,75,0.02) 100%); border-color: var(--cadre-gold);">
+                            <div class="feature-card__header">
+                                <span class="feature-card__icon">🌟</span>
+                                <span class="feature-card__name">Get Involved</span>
+                            </div>
+                            <div class="feature-card__desc" style="margin-bottom: 16px;">
+                                <strong>Ways to contribute:</strong>
+                                <ul style="margin-top: 10px; margin-left: 20px; list-style-type: none; padding-left: 0;">
+                                    <li style="margin-bottom: 8px;">✓ Submit new attack detection rules</li>
+                                    <li style="margin-bottom: 8px;">✓ Report false positives/negatives</li>
+                                    <li style="margin-bottom: 8px;">✓ Improve documentation</li>
+                                    <li style="margin-bottom: 8px;">✓ Share deployment examples</li>
+                                    <li style="margin-bottom: 8px;">✓ Create language packs</li>
+                                </ul>
+                            </div>
+                            <div class="cadre-box gold" style="margin: 0; padding: 10px 14px;">
+                                <strong>⭐ Star us on GitHub</strong><br>
+                                <span style="font-size: 12px;">Support the project by giving us a star!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 24px; padding: 20px; background: rgba(0,194,168,0.05); border-radius: 12px; border: 1px solid rgba(0,194,168,0.2);">
+                        <p style="margin-bottom: 12px;"><strong>📢 All contributions are welcome!</strong> Whether you're a security researcher, developer, or just passionate about web security.</p>
+                        <a href="https://github.com/clofix19/clofix-cadre-engine" target="_blank" style="display: inline-block; background: var(--cadre-teal); color: var(--cadre-dark); padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 700; margin-right: 12px;">GitHub Repository →</a>
+                        <a href="mailto:support@clofix.com" style="display: inline-block; background: transparent; border: 1px solid var(--cadre-teal); color: var(--cadre-teal); padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 700;">Email Us →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo"></a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+                <ul class="social">
+                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook"></a></li>
+                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X"></a></li>
+                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn"></a></li>
+                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp"></a></li>
+                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube"></a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column"><h4 class="c-footer__subtitle">Company</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/about">About CloFix</a></li><li><a href="/contact">Contact</a></li><li><a href="/support">Support</a></li></ul></div>
+            <div class="c-footer__column"><h4 class="c-footer__subtitle">Legal</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/terms">Terms and Conditions</a></li><li><a href="/sla">Service Level Agreement</a></li></ul></div>
+        </div>
+        <div class="container"><p class="footer__text">© 2025 CloFix InfoTech – All Rights Reserved</p></div>
+    </footer>
+
+    <script>
+        // Navigation & TOC scripts
+        const navToggle = document.getElementById('navToggle');
+        const navContent = document.querySelector('.c-nav__content');
+        const dropdowns = document.querySelectorAll('.c-dropdown');
+        function closeAllDropdowns(){ dropdowns.forEach(dd=>{ dd.classList.remove('open'); const btn=dd.querySelector('.c-dropdown__toggle'); if(btn)btn.setAttribute('aria-expanded','false'); }); }
+        if(navToggle&&navContent){
+            navToggle.setAttribute('aria-expanded','false');
+            navToggle.addEventListener('click',()=>{ const o=navContent.classList.toggle('active'); document.body.classList.toggle('nav-open',o); navToggle.setAttribute('aria-expanded',o?'true':'false'); if(!o)closeAllDropdowns(); });
+            navContent.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); }));
+            document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&navContent.classList.contains('active')){ navContent.classList.remove('active'); document.body.classList.remove('nav-open'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+            window.addEventListener('resize',()=>{ if(window.innerWidth>768){ document.body.classList.remove('nav-open'); navContent.classList.remove('active'); navToggle.setAttribute('aria-expanded','false'); closeAllDropdowns(); } });
+        }
+        dropdowns.forEach(dd=>{ const t=dd.querySelector('.c-dropdown__toggle'); if(t) t.addEventListener('click',e=>{ e.preventDefault();e.stopPropagation(); const w=!dd.classList.contains('open'); closeAllDropdowns(); if(w){dd.classList.add('open');t.setAttribute('aria-expanded','true');} }); });
+        document.addEventListener('click',e=>{ if(navContent&&navContent.classList.contains('active'))return; if(!e.target.closest('.c-dropdown'))closeAllDropdowns(); });
+        document.querySelectorAll('.c-dropdown__menu a').forEach(a=>a.addEventListener('click',()=>{ closeAllDropdowns(); if(navContent)navContent.classList.remove('active'); document.body.classList.remove('nav-open'); if(navToggle)navToggle.setAttribute('aria-expanded','false'); }));
+
+        function copyCode(btn){ const pre = btn.closest('.cadre-code').querySelector('pre'); navigator.clipboard.writeText(pre.innerText).then(()=>{ btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy',1800); }); }
+        const tocLinks = document.querySelectorAll('.cadre-toc a');
+        const sections = document.querySelectorAll('[id]');
+        const observer = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ tocLinks.forEach(l=>l.classList.remove('toc-active')); const link = document.querySelector(`.cadre-toc a[href="#${e.target.id}"]`); if(link) link.classList.add('toc-active'); } }); },{rootMargin:'-25% 0px -65% 0px'});
+        sections.forEach(s=>observer.observe(s));
+    </script>
+</body>
+</html>
