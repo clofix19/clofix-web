@@ -700,11 +700,24 @@
           <!-- LB CATEGORY -->
           <h2 class="category-heading">CloFix Load Balancer</h2>
           <div class="feature-card" data-id="load_balancer">
-              <!-- SEO-friendly link - Google sees this -->
-              <a href="/features/clofix-load-balancer" class="feature-link" data-modal="load_balancer" style="text-decoration: none; color: inherit; display: block;">
+              <a href="/features/clofix-load-balancer" 
+                 class="feature-link" 
+                 data-modal="load_balancer" 
+                 style="text-decoration: none; color: inherit; display: block;"
+                 title="CloFix Load Balancer - Intelligent Traffic Distribution & Backend Security">
+                  
                   <h3>⚖️ CloFix Load Balancer</h3>
-                  <p>Intelligent traffic distribution with backend information hiding, health checks, and 99.99% availability SLA</p>
-                  <div style="color: #667eea; margin-top: 12px;">Learn More →</div>
+                  <p>Intelligent traffic distribution with <strong>backend information hiding</strong>, <strong>health checks</strong>, <strong>sticky sessions</strong>, and <strong>99.99% availability SLA</strong> — all with <strong>&lt;1ms latency overhead</strong>.</p>
+                  
+                  <div style="color: #3b82f6; margin-top: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                      <span>Learn More About Load Balancer</span>
+                      <span style="transition: transform 0.2s;">→</span>
+                  </div>
+                  
+                  <!-- Micro-data for SEO -->
+                  <meta itemprop="name" content="CloFix Load Balancer">
+                  <meta itemprop="description" content="Enterprise load balancer with backend hiding, health checks, sticky sessions, and 99.99% availability">
+                  <meta itemprop="url" content="https://clofix.com/features/clofix-load-balancer">
               </a>
           </div>
           <template id="load_balancer">
@@ -4858,7 +4871,6 @@
     });
   });
 
-    // Get all feature cards with links
   const featureLinks = document.querySelectorAll('.feature-link');
   const modal = document.getElementById('featureModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -4867,7 +4879,19 @@
 
   featureLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();  // ❌ Stops browser from navigating away
+      // Check if Ctrl key (Windows) or Cmd key (Mac) is pressed
+      const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+      
+      // Check if middle mouse button is clicked
+      const isMiddleClick = e.button === 1;
+      
+      // If Ctrl/Cmd or Middle click - let browser handle navigation (open in new tab)
+      if (isCtrlOrCmd || isMiddleClick) {
+        return; // Allow default navigation
+      }
+      
+      // Otherwise - prevent navigation and show modal
+      e.preventDefault();
       
       // Get the card and template
       const card = link.closest('.feature-card');
@@ -4880,29 +4904,41 @@
       modalDescription.innerHTML = template.innerHTML;
       modal.style.display = 'block';
       
-      // Optional: Update browser URL without page reload (for SEO/history)
+      // Update browser URL without page reload (optional)
       const href = link.getAttribute('href');
-      window.history.pushState({}, '', href);
+      if (href && href !== '#') {
+        window.history.pushState({ modalOpen: true, featureId: id }, '', href);
+      }
     });
   });
 
-  // Close modal
-  closeButton.addEventListener('click', () => {
+  // Close modal function
+  function closeModal() {
     modal.style.display = 'none';
-    // Optional: Restore original URL
-    window.history.pushState({}, '', '/features');
-  });
-
-  window.addEventListener('click', e => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
+    // Restore original URL if modal was opened via pushState
+    if (window.history.state && window.history.state.modalOpen) {
       window.history.pushState({}, '', '/features');
     }
+  }
+
+  closeButton.addEventListener('click', closeModal);
+  
+  window.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
   });
 
   // Handle browser back button
-  window.addEventListener('popstate', () => {
-    modal.style.display = 'none';
+  window.addEventListener('popstate', (event) => {
+    if (modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
   });
 
   window.dataLayer = window.dataLayer || [];
