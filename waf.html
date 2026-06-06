@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://clofix.com/waf" />
+  
+  <!-- SEO -->
+  <title>CloFix WAF - Next-Generation Web Application Firewall | WAF</title>
+
+  <meta name="description" content="CloFix WAF protects your web apps from DDoS, SQL injection, XSS, and OWASP Top 10 threats with real-time AI-powered security.">
+
+  <meta name="keywords" content="WAF, web application firewall, cloud waf, DDoS protection, SQL injection prevention, XSS protection, OWASP, API security, bot mitigation, WAF Global">
+
+  <meta name="robots" content="index, follow">
+  <meta name="page-type" content="product-page">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CloFix WAF - Next-Gen Web Application Firewall">
+  <meta property="og:description" content="Protect your web applications with AI-powered WAF. Real-time threat detection, OWASP Top 10 coverage, and enterprise-grade security.">
+  <meta property="og:url" content="https://clofix.com/waf">
+  <meta property="og:image" content="https://clofix.com/img/waf-og.png">
+  <meta property="og:site_name" content="CloFix">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CloFix WAF - Advanced Web Application Firewall">
+  <meta name="twitter:description" content="AI-powered WAF protection for modern web applications.">
+  <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+  
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <style>
+    /* WAF Page Specific Styles */
+    .waf-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: white;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .waf-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(59,130,246,0.05)" d="M0 0h200v200H0z"/><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="2"/></svg>') repeat;
+      pointer-events: none;
+    }
+    
+    .waf-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .waf-badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.2);
+      border: 1px solid rgba(59,130,246,0.5);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      color: #60a5fa;
+    }
+    
+    .waf-hero h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    
+    .waf-hero p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      color: #cbd5e1;
+    }
+    
+    .waf-cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4);
+    }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 80px 0;
+      background: #f8fafc;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #64748b;
+      margin-bottom: 60px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .feature-card {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 32px;
+    }
+    
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      padding: 80px 0;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: #3b82f6;
+      margin-bottom: 12px;
+    }
+    
+    .stat-label {
+      font-size: 16px;
+      color: #cbd5e1;
+    }
+    
+    /* How It Works */
+    .how-it-works {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .steps-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 30px;
+    }
+    
+    .step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+    
+    .step h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+    
+    .step p {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      .waf-hero h1 {
+        font-size: 36px;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .steps-container {
+        flex-direction: column;
+      }
+    }
+    
+    /* Pricing Card */
+    .pricing-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: 0 auto;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 20px 0;
+    }
+    
+    .pricing-price span {
+      font-size: 18px;
+      color: #64748b;
+    }
+    
+    .btn-large {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    
+    .cta-section .btn-primary {
+      background: white;
+      color: #3b82f6;
+      margin-top: 30px;
+    }
+    
+    .cta-section .btn-primary:hover {
+      background: #f1f5f9;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="/" aria-label="CloFix Home - AI-Powered WAF & Cloud Security Platform">
+            <img src="img/logo.png" alt="CloFix Logo - Return to Homepage" class="c-logo__img" />
+          </a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="/" class="c-link c-link--list">Home</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/pricing" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="#section-services" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/about" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/features" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
+              <li class="c-list__item">
+                <a href="/contact" class="c-link c-link--list">Contact</a>
+              </li>
+              <!-- Others mega dropdown -->
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <!-- Documentation -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">
+                          CloFix LUA Script
+                        </a>
+                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">
+                          CloFix JS Script
+                        </a>
+                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">
+                          CloFix CRS Script
+                        </a>
+                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">
+                          CloFix WASM
+                        </a>
+                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">
+                          CloFix WAF Workflow
+                        </a>
+                      </div>
+
+                      <!-- Tools -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">
+                          CVE Checker
+                        </a>
+                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">
+                          CloFix Pentest
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <a href="/faq" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">
+                  FAQ
+                </button>
+              </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+<!-- ================= WAF HERO SECTION ================= -->
+<section class="waf-hero">
+  <div class="container">
+    <div class="waf-hero-content">
+      <span class="waf-badge">⚡ Next-Generation Protection</span>
+      <h1>Advanced Web Application<br>Firewall (WAF)</h1>
+      <p>Protect your web applications from OWASP Top 10 threats, DDoS attacks, and zero-day exploits with our AI-powered, cloud-native WAF solution.</p>
+      <div class="waf-cta-buttons">
+        <a href="/contact" class="btn-primary">Start Free Trial →</a>
+        <a href="#features" class="btn-secondary">Explore Features</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES SECTION ================= -->
+<section id="features" class="features-section">
+  <div class="container">
+    <h2 class="section-title">Enterprise-Grade Security Features</h2>
+    <p class="section-subtitle">Built by security experts to defend against modern web threats</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>OWASP Top 10 Protection</h3>
+        <p>Complete coverage against SQL injection, XSS, CSRF, and all OWASP Top 10 vulnerabilities with customizable rule sets.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Powered Threat Detection</h3>
+        <p>Machine learning models detect and block zero-day attacks, anomaly patterns, and sophisticated bot traffic in real-time.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>DDoS Mitigation</h3>
+        <p>Multi-layered DDoS protection with rate limiting, traffic filtering, and automatic scaling to absorb large-scale attacks.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>API Security</h3>
+        <p>Protect REST, GraphQL, and gRPC APIs with schema validation, JWT inspection, and fine-grained access controls.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Real-Time Analytics</h3>
+        <p>Comprehensive dashboard with attack visualization, threat intelligence, and compliance reporting.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Global Edge Network</h3>
+        <p>Deployed global PoPs for low-latency protection and automatic failover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS SECTION ================= -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">99.99%</div>
+        <div class="stat-label">Uptime SLA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5M+</div>
+        <div class="stat-label">Attacks Blocked Daily</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">&lt;1ms</div>
+        <div class="stat-label">Latency Added</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">OWASP Coverage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="section-title">How CloFix WAF Works</h2>
+    <p class="section-subtitle">Simple integration, powerful protection</p>
+    
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Deploy & Configure</h4>
+        <p>Deploy CloFix WAF in front of your applications with our CDN, reverse proxy, or cloud gateway integration.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Customize Rules</h4>
+        <p>Configure custom rule sets, whitelists, blacklists, and rate limiting policies based on your needs.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Monitor & Protect</h4>
+        <p>Real-time monitoring, automated threat blocking, and detailed security analytics dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPLOYMENT OPTIONS ================= -->
+<section class="features-section" style="background: white;">
+  <div class="container">
+    <h2 class="section-title">Flexible Deployment Options</h2>
+    <p class="section-subtitle">Choose the deployment model that fits your infrastructure</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">☁️</div>
+        <h3>Cloud WAF</h3>
+        <p>Fully managed, cloud-native WAF with global edge network. Zero maintenance, always updated.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🏢</div>
+        <h3>On-Premise WAF</h3>
+        <p>Deploy in your data center for complete control. Ideal for compliance-heavy industries.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <h3>Hybrid WAF</h3>
+        <p>Combine cloud and on-premise protection for maximum flexibility and redundancy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING CTA ================= -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Secure Your Web Applications?</h2>
+    <p style="font-size: 18px; max-width: 600px; margin: 0 auto;">Start your 14-day free trial. No credit card required.</p>
+    <a href="/contact" class="btn-primary" style="background: white; color: #3b82f6;">Get Started →</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="/" class="c-footer__brand" aria-label="CloFix Home">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png"
+                alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png"
+                alt="WhatsApp" /></a></li>
+          <li class="social-li">
+            <a href="https://youtube.com/@clofix-infotech" target="_blank">
+              <img src="img/youtube_clofix.png" alt="YouTube" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2026 © Clofix - Copyright All Rights Reserved</p>
+    </div>
+  </footer>
+
+<!-- ================= JS ================= -->
+<script>
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+
+    // Helpers
+    const dropdowns = document.querySelectorAll('.c-dropdown');
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Mobile nav toggle + body lock + aria-expanded
+    if (navToggle && navContent) {
+      navToggle.setAttribute('aria-expanded', 'false');
+
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
+      });
+
+      // Close menu when any nav link clicked
+      navContent.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        });
+      });
+
+      // Close menu with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+
+      // If resized to desktop, ensure body scroll is restored and panel closed
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
+          navContent.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+    }
+
+    // Dropdown toggle (accordion on mobile, click on desktop)
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const willOpen = !dd.classList.contains('open');
+
+        // Close all
+        closeAllDropdowns();
+
+        // Open current if it was closed
+        if (willOpen) {
+          dd.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+    document.addEventListener('click', (e) => {
+      const panelOpen = navContent && navContent.classList.contains('active');
+      if (panelOpen) return; // mobile panel manages its own closing
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
+
+    // Also close dropdowns explicitly when a dropdown link is clicked
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeAllDropdowns();
+        if (navContent) navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE');
+
+    (function () {
+      const reveals = document.querySelectorAll(
+        '.trust-inner, .trust-card, .why-item, .compliance-card, .badge-pill'
+      );
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('trust-reveal');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      reveals.forEach((el, i) => {
+        el.style.transitionDelay = (0.10 + i * 0.06) + 's';
+        io.observe(el);
+      });
+    })();
+    (function () {
+      const headerEl = document.querySelector('.header');
+      function syncHeaderHeight() {
+        if (!headerEl) return;
+        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+      }
+      window.addEventListener('load', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeaderHeight);
+      }
+    })();
+  </script>
+
+</body>
+</html>
