@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="canonical" href="https://clofix.com/infrastructure-management" />
+  
+  <!-- SEO -->
+  <title>Infrastructure Management | Server & Cloud Management | CloFix</title>
+
+  <meta name="description" content="Professional infrastructure management services including server management, network monitoring, cloud infrastructure, storage, and backup solutions." />
+
+  <meta name="keywords" content="Infrastructure Management, Server Management, Network Management, Cloud Infrastructure, IT Infrastructure, Server Monitoring, Network Security, Storage Management, Backup Solutions, Disaster Recovery, Virtualization, VMware, Hyper-V, Load Balancing, Firewall Management, IT Operations, System Administration, Infrastructure Automation, CloFix" />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CloFix InfoTech" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Infrastructure Management | Server, Network & Cloud Management" />
+  <meta property="og:description" content="Complete infrastructure management services including servers, networks, storage, and cloud with 16/7 support and 99.99% uptime guarantee." />
+  <meta property="og:url" content="https://clofix.com/infrastructure-management" />
+  <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png" />
+  <meta property="og:site_name" content="CloFix InfoTech" />
+  
+  <!-- LinkedIn -->
+  <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png" />
+  <meta property="og:image:alt" content="CloFix - Infrastructure Management Services" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Infrastructure Management | 16/7 Expert Support" />
+  <meta name="twitter:description" content="Complete infrastructure management: servers, networks, storage, cloud. 16/7 monitoring and support." />
+  <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png" />
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="stylesheet" href="./style.css" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
+    gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
+  </script>
+
+  <style>
+    /* Additional Styles for Infrastructure Management Page */
+    .page-hero {
+      background: linear-gradient(135deg, #0a0c15 0%, #0f172a 50%, #0a0c15 100%);
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(56,189,248,0.03)" d="M0 0h200v200H0z"/><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(56,189,248,0.05)" stroke-width="2"/></svg>') repeat;
+      pointer-events: none;
+    }
+    
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .page-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #38bdf8;
+    }
+    
+    .page-hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .page-hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #94a3b8;
+      margin-bottom: 32px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: #38bdf8;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid #38bdf8;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    /* Services Section */
+    .services-offered {
+      padding: 80px 0;
+      background: #0f172a;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    
+    .section-header p {
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .services-grid-infra {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    .service-item {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(10, 14, 23, 0.9));
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    
+    .service-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    
+    .service-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .service-item h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    
+    .service-item p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    
+    /* Tech Stack */
+    .tech-stack {
+      padding: 80px 0;
+      background: #0a0c15;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .tech-item {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .tech-item:hover {
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .tech-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    
+    .tech-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    
+    /* Pricing Section */
+    .pricing-section {
+      padding: 80px 0;
+      background: #0f172a;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(10, 14, 23, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    
+    .pricing-card.popular {
+      border: 2px solid #38bdf8;
+      position: relative;
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #38bdf8;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 20px;
+    }
+    
+    .pricing-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+    
+    .pricing-price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: #64748b;
+    }
+    
+    .pricing-duration {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      text-align: left;
+    }
+    
+    .pricing-features li {
+      padding: 10px 0;
+      color: #94a3b8;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .pricing-features li::before {
+      content: "✓";
+      color: #38bdf8;
+      font-weight: bold;
+    }
+    
+    .btn-pricing {
+      display: block;
+      background: #38bdf8;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-pricing:hover {
+      background: #2563eb;
+    }
+    
+    .btn-pricing.outline {
+      background: transparent;
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #0f172a, #0a0c15);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 42px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    
+    .cta-section p {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 32px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .services-grid-infra {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .services-grid-infra {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-hero h1 {
+        font-size: 36px;
+      }
+      
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <style>
+    /* Free Offers Styling */
+    .free-waf, .free-alert {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .free-waf::before, .free-alert::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    
+    .free-badge {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-left: 8px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    .free-badge.green {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+    
+    .waf-features, .alert-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    
+    .waf-features span, .alert-features span {
+      font-size: 11px;
+      color: #94a3b8;
+      background: rgba(56, 189, 248, 0.08);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="/" aria-label="CloFix Home - AI-Powered WAF & Cloud Security Platform">
+            <img src="img/logo.png" alt="CloFix Logo - Return to Homepage" class="c-logo__img" />
+          </a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="/" class="c-link c-link--list">Home</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/pricing" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="#section-services" class="c-link c-link--list">Services</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/about" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/features" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
+              <li class="c-list__item">
+                <a href="/contact" class="c-link c-link--list">Contact</a>
+              </li>
+              <!-- Others mega dropdown -->
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <!-- Documentation -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">
+                          CloFix LUA Script
+                        </a>
+                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">
+                          CloFix JS Script
+                        </a>
+                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">
+                          CloFix CRS Script
+                        </a>
+                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">
+                          CloFix WASM
+                        </a>
+                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">
+                          CloFix WAF Workflow
+                        </a>
+                      </div>
+
+                      <!-- Tools -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">
+                          CVE Checker
+                        </a>
+                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">
+                          CloFix Pentest
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <a href="/faq" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">
+                  FAQ
+                </button>
+              </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="page-badge">🏗️ 16/7 EXPERT SUPPORT</span>
+        <h1>Infrastructure Management Services</h1>
+        <p>Complete infrastructure management including servers, networks, storage, and cloud environments. 16/7 monitoring, proactive maintenance, and 99.99% uptime guarantee.</p>
+        <div class="hero-buttons">
+          <a href="#pricing" class="btn-primary">Get Started →</a>
+          <a href="#contact" class="btn-outline">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">99.99%</div>
+          <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Servers Managed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Monitoring</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">&lt;15min</div>
+          <div class="stat-label">Incident Response</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Offered -->
+  <section class="services-offered">
+    <div class="container">
+      <div class="section-header">
+        <h2>What We Manage</h2>
+        <p>Complete infrastructure lifecycle management</p>
+      </div>
+      <div class="services-grid-infra">
+        <div class="service-item">
+          <div class="service-icon">🖥️</div>
+          <h3>Server Management</h3>
+          <p>Linux/Windows server administration, patch management, performance tuning, and security hardening.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🌐</div>
+          <h3>Network Management</h3>
+          <p>Router, switch, firewall configuration, VPN setup, load balancing, and network monitoring.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">☁️</div>
+          <h3>Cloud Infrastructure</h3>
+          <p>AWS, Azure, GCP management including VPC, EC2, networking, and cost optimization.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">💾</div>
+          <h3>Storage Management</h3>
+          <p>SAN, NAS, cloud storage configuration, capacity planning, and performance optimization.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🔄</div>
+          <h3>Backup & Disaster Recovery</h3>
+          <p>Automated backups, offsite replication, disaster recovery planning, and regular testing.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🔒</div>
+          <h3>Security Management</h3>
+          <p>Firewall rules, intrusion detection, vulnerability scanning, and compliance monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="tech-stack">
+    <div class="container">
+      <div class="section-header">
+        <h2>Technologies We Master</h2>
+        <p>Industry-leading infrastructure tools and platforms</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item"><div class="tech-icon">🐧</div><div class="tech-name">Linux (Ubuntu/CentOS/RHEL)</div></div>
+        <div class="tech-item"><div class="tech-icon">🪟</div><div class="tech-name">Windows Server</div></div>
+        <div class="tech-item"><div class="tech-icon">☁️</div><div class="tech-name">AWS</div></div>
+        <div class="tech-item"><div class="tech-icon">☁️</div><div class="tech-name">Azure</div></div>
+        <div class="tech-item"><div class="tech-icon">☁️</div><div class="tech-name">GCP</div></div>
+        <div class="tech-item"><div class="tech-icon">🔄</div><div class="tech-name">VMware vSphere</div></div>
+        <div class="tech-item"><div class="tech-icon">🔧</div><div class="tech-name">Proxmox</div></div>
+        <div class="tech-item"><div class="tech-icon">📊</div><div class="tech-name">Nagios/Zabbix</div></div>
+        <div class="tech-item"><div class="tech-icon">🔥</div><div class="tech-name">pfSense/OPNsense</div></div>
+        <div class="tech-item"><div class="tech-icon">🔗</div><div class="tech-name">Cisco/Juniper</div></div>
+        <div class="tech-item"><div class="tech-icon">📦</div><div class="tech-name">Dell EMC/NetApp</div></div>
+        <div class="tech-item"><div class="tech-icon">💾</div><div class="tech-name">Veeam</div></div>
+        <div class="tech-item"><div class="tech-icon">🔒</div><div class="tech-name">CrowdStrike</div></div>
+        <div class="tech-item"><div class="tech-icon">🌐</div><div class="tech-name">HAProxy/Nginx</div></div>
+        <div class="tech-item"><div class="tech-icon">📝</div><div class="tech-name">Ansible/Terraform</div></div>
+        <div class="tech-item"><div class="tech-icon">🔍</div><div class="tech-name">Prometheus/Grafana</div></div>
+        <div class="tech-item"><div class="tech-icon">📜</div><div class="tech-name">ELK Stack</div></div>
+        <div class="tech-item"><div class="tech-icon">🐳</div><div class="tech-name">Docker</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Flexible Pricing Plans</h2>
+        <p>Choose the plan that fits your infrastructure needs</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-title">Starter</div>
+          <div class="pricing-price">$345<span>/month</span></div>
+          <div class="pricing-duration">For small businesses</div>
+          <ul class="pricing-features">
+            <li>Up to 5 servers</li>
+            <li>Basic network monitoring</li>
+            <li>8/5 support (business hours)</li>
+            <li>Weekly backup verification</li>
+            <li>Free CloFix WAF for 1 website</li>
+            <li>Monthly health report</li>
+          </ul>
+          <a href="/contact" class="btn-pricing outline">Choose Plan</a>
+        </div>
+        
+        <div class="pricing-card popular">
+          <div class="popular-badge">🔥 MOST POPULAR</div>
+          <div class="pricing-title">Professional</div>
+          <div class="pricing-price">$950<span>/month</span></div>
+          <div class="pricing-duration">For growing companies</div>
+          <ul class="pricing-features">
+            <li>Up to 20 servers</li>
+            <li>Full network monitoring</li>
+            <li>16/7 support (SLA 99.99%)</li>
+            <li>Daily backup & DR testing</li>
+            <li>Free CloFix WAF for 1 website</li>
+            <li>Free AWS Alert Manager for 1 account</li>
+            <li>24/7 proactive monitoring</li>
+            <li>Monthly optimization report</li>
+          </ul>
+          <a href="/contact" class="btn-pricing">Choose Plan</a>
+        </div>
+        
+        <div class="pricing-card">
+          <div class="pricing-title">Enterprise</div>
+          <div class="pricing-price">Custom</div>
+          <div class="pricing-duration">For large organizations</div>
+          <ul class="pricing-features">
+            <li>Unlimited servers</li>
+            <li>Advanced security & compliance</li>
+            <li>24/7 dedicated support team</li>
+            <li>Custom DR strategy</li>
+            <li>Free CloFix WAF for 3 websites</li>
+            <li>Free AWS Alert Manager for 3 accounts</li>
+            <li>On-site support available</li>
+            <li>Custom SLA & pricing</li>
+          </ul>
+          <a href="/contact" class="btn-pricing outline">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="services-offered" style="background: #0a0c15;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Choose CloFix Infrastructure Management?</h2>
+        <p>Expertise you can trust</p>
+      </div>
+      <div class="services-grid-infra">
+        <div class="service-item">
+          <div class="service-icon">👨‍💻</div>
+          <h3>Certified Engineers</h3>
+          <p>Infrastructure experts with 10+ years of experience in enterprise environments.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">⚡</div>
+          <h3>16/7 Availability</h3>
+          <p>Extended hours support with rapid incident response and resolution.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">💰</div>
+          <h3>Cost Optimization</h3>
+          <p>We help reduce infrastructure costs by up to 35% through optimization.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🛡️</div>
+          <h3>Security First</h3>
+          <p>Security best practices applied to every infrastructure component.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">📈</div>
+          <h3>Scalable Solutions</h3>
+          <p>Infrastructure designed to scale with your business growth.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🏆</div>
+          <h3>99.99% Uptime SLA</h3>
+          <p>Guaranteed reliability with proactive monitoring and auto-healing.</p>
+        </div>
+        <div class="service-item free-waf">
+          <div class="service-icon">🔥</div>
+          <h3>Free CloFix WAF <span class="free-badge">1 SITE FREE</span></h3>
+          <p>Get CloFix Web Application Firewall protection for 1 website completely free with any infrastructure plan.</p>
+          <div class="waf-features">
+            <span>✓ DDoS Protection</span>
+            <span>✓ OWASP Top 10</span>
+            <span>✓ Bot Mitigation</span>
+            <span>✓ Zero-Day Protection</span>
+          </div>
+        </div>
+        <div class="service-item free-alert">
+          <div class="service-icon">📧</div>
+          <h3>AWS Alert Manager <span class="free-badge green">1 Account FREE</span></h3>
+          <p>Get AWS Notification Alert Manager completely free - real-time alerts for your cloud infrastructure.</p>
+          <div class="alert-features">
+            <span>✓ Real-time AWS Alerts</span>
+            <span>✓ CloudWatch Integration</span>
+            <span>✓ SNS Notifications</span>
+            <span>✓ Email/SMS Alerts</span>
+            <span>✓ Cost Anomaly Detection</span>
+            <span>✓ Health Dashboard</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <h2>Ready to Optimize Your Infrastructure?</h2>
+      <p>Get expert infrastructure management today and ensure 99.99% uptime for your business.</p>
+      <a href="/contact" class="btn-primary" style="background: #38bdf8;">Contact Our Infrastructure Team →</a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="/" class="c-footer__brand" aria-label="CloFix Home">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png"
+                alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png"
+                alt="WhatsApp" /></a></li>
+          <li class="social-li">
+            <a href="https://youtube.com/@clofix-infotech" target="_blank">
+              <img src="img/youtube_clofix.png" alt="YouTube" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="#about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2026 © Clofix - Copyright All Rights Reserved</p>
+    </div>
+  </footer>
+
+<script>
+  // Mobile Navigation Toggle
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+  const dropdowns = document.querySelectorAll('.c-dropdown');
+  
+  function closeAllDropdowns() {
+    dropdowns.forEach(dd => {
+      dd.classList.remove('open');
+      const btn = dd.querySelector('.c-dropdown__toggle');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+  
+  if (navToggle && navContent) {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.addEventListener('click', () => {
+      const open = navContent.classList.toggle('active');
+      document.body.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) closeAllDropdowns();
+    });
+    
+    navContent.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      });
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navContent.classList.contains('active')) {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      }
+    });
+    
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        document.body.classList.remove('nav-open');
+        navContent.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      }
+    });
+  }
+  
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.c-dropdown__toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !dd.classList.contains('open');
+      closeAllDropdowns();
+      if (willOpen) {
+        dd.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+  
+  document.addEventListener('click', (e) => {
+    const panelOpen = navContent && navContent.classList.contains('active');
+    if (panelOpen) return;
+    if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+  });
+</script>
+
+</body>
+</html>
