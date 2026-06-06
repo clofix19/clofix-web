@@ -19,7 +19,7 @@
     <!-- Author -->
     <meta name="author" content="CloFix InfoTech">
     
-    <!-- Canonical URL (update with your actual domain) -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://clofix.com/dns">
     
     <!-- Open Graph / Facebook -->
@@ -41,35 +41,22 @@
     
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Your custom styles (add after Font Awesome) -->
-    <!-- <link rel="stylesheet" href="./style.css"> -->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-
     <script>
         window.dataLayer = window.dataLayer || [];
-
-        function gtag(){
-          window.dataLayer.push(arguments);
-        }
-
-        // Initialize GA4
+        function gtag(){ window.dataLayer.push(arguments); }
         gtag('js', new Date());
-
-        // Config (production-ready)
         gtag('config', 'G-WP02RFXGSE', {
           send_page_view: true,
           anonymize_ip: true
         });
-
-        // Optional: track initial page load event
         gtag('event', 'page_view', {
           page_title: document.title,
           page_location: window.location.href
         });
-      </script>
+    </script>
 
     <style>
         * {
@@ -117,6 +104,30 @@
             color: #666;
             font-size: 1.2em;
             font-weight: 300;
+        }
+
+        /* Home link styling */
+        .home-link-container {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .query-section {
@@ -425,6 +436,7 @@
             font-size: 0.9em;
             transition: background 0.3s ease;
             margin-top: 15px;
+            margin-left: 10px;
         }
 
         .refresh-btn:hover {
@@ -441,6 +453,23 @@
 
         .ip-display strong {
             color: #007bff;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e8eaed;
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -460,12 +489,22 @@
             .summary-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .home-link-container {
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div class="home-link-container">
+            <a href="/" class="home-link">
+                <i class="fas fa-home"></i> CloFix Home
+            </a>
+        </div>
+        
         <div class="header">
             <h1><i class="fas fa-globe-americas"></i> DNS Propagation Checker</h1>
             <p>Monitor DNS record propagation across global nameservers in real-time</p>
@@ -606,6 +645,11 @@
             </div>
 
             <div class="results-grid" id="resultsGrid"></div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 CloFix InfoTech - <a href="/">Home</a> | <a href="/contact">Contact</a> | <a href="/privacy">Privacy Policy</a></p>
+            <p>Free DNS Propagation Checker Tool | Check DNS records globally</p>
         </div>
     </div>
 
