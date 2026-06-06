@@ -911,17 +911,137 @@
   </footer>
 
 <script>
-  // Mobile Navigation Toggle
-  const navToggle = document.getElementById('navToggle');
-  const navContent = document.querySelector('.c-nav__content');
-  
-  if (navToggle && navContent) {
-    navToggle.addEventListener('click', () => {
-      navContent.classList.toggle('active');
-      document.body.classList.toggle('nav-open');
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+
+    // Helpers
+    const dropdowns = document.querySelectorAll('.c-dropdown');
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Mobile nav toggle + body lock + aria-expanded
+    if (navToggle && navContent) {
+      navToggle.setAttribute('aria-expanded', 'false');
+
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
+      });
+
+      // Close menu when any nav link clicked
+      navContent.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        });
+      });
+
+      // Close menu with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+
+      // If resized to desktop, ensure body scroll is restored and panel closed
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
+          navContent.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+    }
+
+    // Dropdown toggle (accordion on mobile, click on desktop)
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const willOpen = !dd.classList.contains('open');
+
+        // Close all
+        closeAllDropdowns();
+
+        // Open current if it was closed
+        if (willOpen) {
+          dd.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
     });
-  }
-</script>
+
+    // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+    document.addEventListener('click', (e) => {
+      const panelOpen = navContent && navContent.classList.contains('active');
+      if (panelOpen) return; // mobile panel manages its own closing
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
+
+    // Also close dropdowns explicitly when a dropdown link is clicked
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeAllDropdowns();
+        if (navContent) navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE');
+
+    (function () {
+      const reveals = document.querySelectorAll(
+        '.trust-inner, .trust-card, .why-item, .compliance-card, .badge-pill'
+      );
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('trust-reveal');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      reveals.forEach((el, i) => {
+        el.style.transitionDelay = (0.10 + i * 0.06) + 's';
+        io.observe(el);
+      });
+    })();
+    (function () {
+      const headerEl = document.querySelector('.header');
+      function syncHeaderHeight() {
+        if (!headerEl) return;
+        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+      }
+      window.addEventListener('load', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeaderHeight);
+      }
+    })();
+  </script>
 
 </body>
 </html>
