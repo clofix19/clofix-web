@@ -213,7 +213,181 @@
       border: 1px solid #334155;
     }
   </style>
-
+  <style>
+  .pricing-box {
+    background: #1a1a2e;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  .pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  .pricing-tier {
+    background: #0f0f1a;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+    color: #e0e0e0;
+    border: 1px solid #2c2c3a;
+  }
+  .price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #00d4ff;
+    margin: 0.5rem 0;
+  }
+  .dedicated {
+    background: linear-gradient(135deg, #0b2b26, #1a1a2e);
+    border: 1px solid #00d4ff40;
+  }
+  .dedicated-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    justify-content: center;
+  }
+  .dedicated-tier {
+    background: #0f0f1a;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    color: #e0e0e0;
+    border: 1px solid #2c2c3a;
+    transition: transform 0.2s;
+  }
+  .dedicated-tier:hover {
+    transform: translateY(-4px);
+    border-color: #00d4ff;
+  }
+  .recommended {
+    border: 2px solid #ffb347;
+    background: #1a1a2e;
+  }
+  .tier-badge {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #00d4ff20;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  .price-large {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffb347;
+  }
+  .price-large span {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #aaa;
+  }
+  .price-detail {
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 0.2rem 0;
+  }
+  .specs {
+    background: #00d4ff10;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    margin: 0.8rem 0;
+  }
+  .features {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0.8rem 0;
+  }
+  .infra-note {
+    font-size: 0.7rem;
+    color: #ffb347;
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .contact-btn {
+    display: inline-block;
+    background: #2c2c3a;
+    color: #00d4ff;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    transition: 0.2s;
+  }
+  .contact-btn.primary {
+    background: #00d4ff;
+    color: #0a0a1a;
+  }
+  .contact-btn:hover {
+    background: #ffb347;
+    color: #0a0a1a;
+  }
+  .custom-enterprise {
+    background: #0f0f1a;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    border: 1px dashed #00d4ff;
+  }
+  .custom-badge {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #00d4ff;
+  }
+  .custom-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffb347;
+    margin: 0.5rem 0;
+  }
+  .custom-note {
+    font-style: italic;
+    color: #aaa;
+  }
+  .custom-desc {
+    margin: 1rem 0;
+    color: #ddd;
+  }
+  .custom-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .custom-features span {
+    background: #00d4ff10;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+  }
+  hr {
+    border-color: #2c2c3a;
+    margin: 0.8rem 0;
+  }
+  @media (max-width: 900px) {
+    .dedicated-grid { flex-direction: column; }
+    .dedicated-tier { min-width: auto; }
+    .pricing-grid { flex-direction: column; }
+    .pricing-tier { min-width: auto; }
+  }
+</style>
   <title>CloFix vs Cloudflare, AWS, Azure, Sucuri: Best WAF in Bangladesh</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
@@ -294,7 +468,7 @@
       <!-- Introduction -->
       <section>
         <h2>🌏 The Truth About Global WAFs in Bangladesh</h2>
-        <p>When Bangladeshi businesses choose a WAF, they typically look at global names: <strong>Cloudflare, AWS WAF, Azure WAF, and Sucuri</strong>. These are powerful solutions – in their home markets. But are they the <strong>best choice for Bangladesh</strong>? The answer is no. High latency (150-250ms), pricing in USD, no local support, and critical features locked behind expensive add-ons make them suboptimal.</p>
+        <p>When Bangladeshi businesses choose a WAF, they typically look at global names: <strong>Cloudflare, AWS WAF, Azure WAF, and Sucuri</strong>. These are powerful solutions - in their home markets. But are they the <strong>best choice for Bangladesh</strong>? The answer is no. complex configuration, pricing in USD, no local support, no android app, and critical features locked behind expensive add-ons make them suboptimal.</p>
         <p><strong>CloFix WAF</strong> was built specifically for Bangladesh. Let's compare them head-to-head.</p>
       </section>
 
@@ -320,11 +494,10 @@
             <tr><td>Local Support</td><td class="check-yes">✅ 24/7 Phone/WhatsApp</td><td class="check-no">❌ Global ticket only</td><td class="check-no">❌ Premium extra</td><td class="check-no">❌ Premium support only</td><td class="check-no">❌ Email only, US hours</td></tr>
             <tr><td>Pricing Currency</td><td class="check-yes">✅ BDT Only</td><td class="check-no">❌ USD</td><td class="check-no">❌ USD</td><td class="check-no">❌ USD</td><td class="check-no">❌ USD</td></tr>
             <tr><td>DDoS Protection</td><td class="check-yes">✅ Included all plans</td><td class="check-no">❌ Extra cost for advanced</td><td class="check-no">❌ Shield Advanced $$$</td><td class="check-no">❌ Azure DDoS Protection extra</td><td class="check-no">❌ Limited, extra cost</td></tr>
-            <tr><td>Monthly Starter Price</td><td class="check-yes"><strong>₿1,500</strong></td><td>~₿6,500+ (USD 55+)</td><td>~₿8,000+</td><td>~₿10,000+</td><td>~₿10,500+</td></tr>
             <tr><td>WASM/JS/Lua Scripting</td><td class="check-yes">✅ All three</td><td class="check-no">❌ Workers (extra)</td><td class="check-yes">✅ Lambda@edge (complex)</td><td class="check-yes">✅ Yes (complex)</td><td class="check-no">❌ No</td></tr>
             <tr><td>Behavioral Analysis (JA3)</td><td class="check-yes">✅ Yes</td><td class="check-no">❌ Bot Management extra</td><td class="check-no">❌ Limited</td><td class="check-no">❌ Limited</td><td class="check-no">❌ Basic</td></tr>
             <tr><td>Load Balancer Included</td><td class="check-yes">✅ Yes</td><td class="check-yes">✅ Yes (extra)</td><td class="check-yes">✅ Yes (extra)</td><td class="check-yes">✅ Yes (extra)</td><td class="check-no">❌ No</td></tr>
-            <tr><td>Latency for BD Traffic</td><td class="check-yes">✅ Sub-50ms</td><td class="check-no">❌ 150-220ms</td><td class="check-no">❌ High</td><td class="check-no">❌ High</td><td class="check-no">❌ 140ms+</td></tr>
+            
           </tbody>
         </table>
       </section>
@@ -355,7 +528,7 @@
           </div>
           <div class="feature-card">
             <h3><span class="reason-badge">6</span> BDT Pricing</h3>
-            <p>Pay in Taka. No USD conversion fees. Starter at ₿1,500 – unbeatable value.</p>
+            <p>Pay in Taka. No USD conversion fees. Starter at ₿1,500 - unbeatable value.</p>
           </div>
           <div class="feature-card">
             <h3><span class="reason-badge">7</span> DDoS Included</h3>
@@ -368,8 +541,8 @@
       <section>
         <h2>⚡ What Global WAFs Don't Have (But CloFix Does)</h2>
         
-        <h3>CADRE Engine – 100+ Attack Type Modules</h3>
-        <p>SQLi, XSS, LFI, RFI, SSRF, XXE, Log4Shell, Slowloris, GraphQL, NoSQLi, CMDi, LDAPi, SSTI, and 90+ more. All pre-loaded in RAM. Hot reload – update rules without restarting. Network-level blocking integration.</p>
+        <h3>CADRE Engine - 100+ Attack Type Modules</h3>
+        <p>SQLi, XSS, LFI, RFI, SSRF, XXE, Log4Shell, Slowloris, GraphQL, NoSQLi, CMDi, LDAPi, SSTI, and 90+ more. All pre-loaded in RAM. Hot reload - update rules without restarting. Network-level blocking integration.</p>
         
         <h3>No-IP Device Behavioral Protection</h3>
         <p>Generates persistent device IDs using click patterns, scroll velocity. Detects IP hopping (3+ IPs/1h = +30% risk), geo-impossible travel (>900 km/h = +35% risk), and login brute force. Blocks attackers even when they change IPs via VPN, proxy, Datacenter or Tor.</p>
@@ -380,32 +553,128 @@
 
       <!-- Pricing -->
       <section>
-        <h2>💰 Transparent BDT Pricing – No USD, No Hidden Fees</h2>
+        <h2>💰 Transparent BDT Pricing - No USD, No Hidden Fees</h2>
+
+        <!-- WAF SaaS Plans -->
         <div class="pricing-box">
-          <h3 style="color:white; margin:0;">CloFix WAF Plans (Monthly – BDT Only)</h3>
+          <h3 style="color:white; margin:0;">CloFix WAF Plans (Monthly - BDT Only)</h3>
           <div class="pricing-grid">
             <div class="pricing-tier">
               <strong>Starter</strong>
               <div class="price">BDT 1,500</div>
-              <small>1 domain • 30K req/mo • CRS + 5 rules • No-IP fingerprinting</small>
+              <small>1 domain • 30K req/mo • 2GB bandwidth • CRS + 5 rules • No-IP fingerprinting</small>
             </div>
             <div class="pricing-tier">
               <strong>Growth</strong>
               <div class="price">BDT 5,500</div>
-              <small>3 domains • 100K req/mo • JS/Lua scripting • DDoS L3/L4</small>
+              <small>3 domains • 100K req/mo • 15GB bandwidth • JS/Lua scripting • DDoS L3/L4</small>
             </div>
             <div class="pricing-tier">
               <strong>Pro 🔥</strong>
               <div class="price">BDT 16,500</div>
-              <small>5 domains • 200K req/mo • WASM engine • API security</small>
+              <small>5 domains • 200K req/mo • 50GB bandwidth • WASM engine • API security</small>
             </div>
             <div class="pricing-tier">
               <strong>Enterprise</strong>
               <div class="price">BDT 50,000</div>
-              <small>10+ domains • Unlimited • 99.99% SLA • Phone support</small>
+              <small>10+ domains • Unlimited requests/bandwidth • 99.99% SLA • Phone support + AWS monitoring</small>
             </div>
           </div>
           <p style="margin-top:1rem;">✅ All plans include: WAF Dashboard • Android App • Unlimited users • DDoS Protection • Bot Mitigation • Behavioral Analysis • NO IP Device Engine</p>
+        </div>
+
+        <!-- Dedicated Hosting Plans -->
+        <div class="pricing-box dedicated">
+          <h3 style="color:white; margin:0;">🖥️ Dedicated Hosting - Maximum Control & Compliance</h3>
+          <p style="color:#ccc; margin-bottom:1rem;">Isolated infrastructure • Bring your own cloud or use our datacenter • Full customization • Named engineer • Enterprise SLA up to 99.999%</p>
+          
+          <div class="dedicated-grid">
+            <!-- Starter Dedicated -->
+            <div class="dedicated-tier">
+              <div class="tier-badge">Starter Dedicated</div>
+              <div class="price-large">৳ 5,40,000 <span>/Yearly</span></div>
+              <div class="price-detail">One-time Setup: ৳ 15,000</div>
+              <div class="price-detail">Feature+Branding: ৳ 2,70,000/yr</div>
+              <div class="price-detail">License: ৳ 1,20,000/yr</div>
+              <div class="price-detail">Maintenance: ৳ 12,500/mo</div>
+              <hr>
+              <div class="specs">
+                <strong>Infrastructure Specs:</strong> 4 vCPU | 8 GB RAM | 2 TB BW | 50M req
+              </div>
+              <div class="features">
+                ✅ Up to 10 Domains<br>
+                ✅ Business hours support<br>
+                ✅ PCI-DSS / HIPAA / GDPR<br>
+                ✅ Flexible Deployment (AWS/Azure/GCP/VM/Our DC)
+              </div>
+              <small class="infra-note">* Infrastructure/server cost to be provided by client separately</small>
+              <a href="/support" class="contact-btn">View Support Details →</a>
+            </div>
+
+            <!-- Business Dedicated (Recommended) -->
+            <div class="dedicated-tier recommended">
+              <div class="tier-badge">⭐ Business Dedicated</div>
+              <div class="price-large">৳ 9,22,000 <span>/Yearly</span></div>
+              <div class="price-detail">One-time Setup: ৳ 25,000</div>
+              <div class="price-detail">Feature+Branding: ৳ 4,86,000/yr</div>
+              <div class="price-detail">License: ৳ 2,20,000/yr</div>
+              <div class="price-detail">Maintenance: ৳ 18,000/mo</div>
+              <hr>
+              <div class="specs">
+                <strong>Infrastructure Specs:</strong> 8 vCPU | 16 GB RAM | 5 TB BW | 200M req
+              </div>
+              <div class="features">
+                ✅ Up to 20 Domains<br>
+                ✅ 24/7 priority support<br>
+                ✅ Advanced DDoS<br>
+                ✅ Flexible Deployment (AWS/Azure/GCP/VM/Our DC)
+              </div>
+              <small class="infra-note">* Infrastructure/server cost to be provided by client separately</small>
+              <a href="/support" class="contact-btn">View Support Details →</a>
+            </div>
+
+            <!-- Enterprise Dedicated -->
+            <div class="dedicated-tier">
+              <div class="tier-badge">Enterprise Dedicated</div>
+              <div class="price-large">৳ 16,24,000 <span>/Yearly</span></div>
+              <div class="price-detail">One-time Setup: ৳ 35,000</div>
+              <div class="price-detail">Feature+Branding: ৳ 8,64,000/yr</div>
+              <div class="price-detail">License: ৳ 4,00,000/yr</div>
+              <div class="price-detail">Maintenance: ৳ 30,000/mo</div>
+              <hr>
+              <div class="specs">
+                <strong>Infrastructure Specs:</strong> 16+ vCPU | 32+ GB RAM | Unlimited* BW | Unlimited* req
+              </div>
+              <div class="features">
+                ✅ Up to 30 Domains<br>
+                ✅ Named engineer<br>
+                ✅ Custom SLA<br>
+                ✅ Flexible Deployment (AWS/Azure/GCP/VM/Our DC)
+              </div>
+              <small class="infra-note">* Infrastructure/server cost to be provided by client separately</small>
+              <a href="/support" class="contact-btn">View Support Details →</a>
+            </div>
+          </div>
+
+          <!-- Custom Enterprise Section -->
+          <div class="custom-enterprise">
+            <div class="custom-badge">🚀 Custom Enterprise</div>
+            <div class="custom-price">Custom Pricing</div>
+            <div class="custom-note">No fixed setup fee - pay as you grow</div>
+            <div class="custom-desc">
+              Fully customizable solution — tailored infrastructure, dedicated resources, and enterprise-grade security.
+            </div>
+            <div class="custom-features">
+              <span>✅ Unlimited domains & traffic</span>
+              <span>✅ 99.999% SLA guarantee</span>
+              <span>✅ Dedicated security team</span>
+              <span>✅ On-premise or Cloud deployment</span>
+              <span>✅ 24/7 phone & WhatsApp support</span>
+              <span>✅ Custom compliance packages</span>
+              <span>✅ Named solution architect</span>
+            </div>
+            <a href="/contact" class="contact-btn primary">📞 Request Custom Quote</a>
+          </div>
         </div>
       </section>
 
@@ -414,10 +683,9 @@
         <h2>🔷 What About Azure WAF?</h2>
         <p>Azure WAF integrates well with Azure infrastructure, but for Bangladeshi businesses, it has critical drawbacks:</p>
         <ul>
-          <li><strong>No local presence:</strong> Traffic routes to Singapore/India – 150-200ms latency minimum.</li>
-          <li><strong>Complex pricing:</strong> Pay for policy, plus rule sets, plus data transfer – all in USD.</li>
+          <li><strong>Complex pricing:</strong> Pay for policy, plus rule sets, plus data transfer - all in USD.</li>
           <li><strong>No local support:</strong> Standard support is email/ticket only with 24+ hour response.</li>
-          <li><strong>No DDoS included:</strong> Azure DDoS Protection is a separate paid service (starting BDT 20,000/month).</li>
+          <li><strong>No DDoS included:</strong> Azure DDoS Protection is a separate paid service.</li>
           <li><strong>No Android app, no on-prem option, no No-IP behavioral protection.</strong></li>
         </ul>
         <p>If you're already deep in Azure, Azure WAF is an option. But for pure security, performance, and value in Bangladesh, <strong>CloFix is superior</strong>.</p>
@@ -427,9 +695,9 @@
       <section>
         <h2>📈 Head-to-Head Summary: CloFix vs The Rest</h2>
         <ul>
-          <li><strong>vs Cloudflare:</strong> CloFix has lower latency (sub-50ms vs 150ms+), No-IP protection, Android app, local support, BDT pricing, and DDoS included. Cloudflare's free tier is attractive for hobbyists, but businesses need CloFix.</li>
+          <li><strong>vs Cloudflare:</strong> CloFix has lower latency No-IP protection, Android app, local support, BDT pricing, and Advance DDoS included. Cloudflare's free tier is attractive for hobbyists, but businesses need CloFix.</li>
           <li><strong>vs AWS WAF:</strong> AWS is powerful but complex, expensive, and has no local presence. CloFix is simpler, more affordable, and built for Bangladesh.</li>
-          <li><strong>vs Azure WAF:</strong> Same issues as AWS – USD pricing, no local support, high latency. CloFix wins on every Bangladesh-specific metric.</li>
+          <li><strong>vs Azure WAF:</strong> Same issues as AWS - USD pricing, no local support, high latency. CloFix wins on every Bangladesh-specific metric.</li>
           <li><strong>vs Sucuri:</strong> Sucuri is good for CMS malware cleanup but lacks advanced bot mitigation, DDoS capacity, and local support. CloFix is more comprehensive.</li>
         </ul>
       </section>
@@ -437,8 +705,8 @@
       <!-- Conclusion -->
       <section>
         <h2>🎯 Final Verdict: CloFix is the Best WAF in Bangladesh</h2>
-        <p>Global WAFs are not designed for Bangladesh's unique challenges – latency, currency, language, and local compliance. <strong>CloFix WAF is.</strong></p>
-        <p>With the <strong>CADRE Engine</strong> (100+ attack Types, 10,000+ rule modules), <strong>No-IP Device Protection</strong> (tracks attackers across VPN/proxy/Tor), <strong>dedicated on-prem hosting</strong>, <strong>Android app</strong>, <strong>24/7 support</strong>, <strong>transparent BDT pricing</strong>, and <strong>DDoS protection included in every plan</strong> – CloFix delivers more value than any competitor.</p>
+        <p>Global WAFs are not designed for Bangladesh's unique challenges - latency, currency, language, and local compliance. <strong>CloFix WAF is.</strong></p>
+        <p>With the <strong>CADRE Engine</strong> (100+ attack Types, 10,000+ rule modules), <strong>No-IP Device Protection</strong> (tracks attackers across VPN/proxy/Tor), <strong>dedicated on-prem hosting</strong>, <strong>Android app</strong>, <strong>24/7 support</strong>, <strong>transparent BDT pricing</strong>, and <strong>Advance DDoS protection included in every plan</strong> - CloFix delivers more value than any competitor.</p>
         <p>Don't settle for a WAF built for Silicon Valley or Seattle. Choose the WAF built for <strong>Bangladesh</strong>. Choose <strong>CloFix</strong>.</p>
         <p style="text-align: center; margin-top: 2rem;">
           <a href="https://clofix.com/contact" class="cta-button" style="background:#334155;">Contact Sales →</a>&nbsp;&nbsp;
@@ -468,7 +736,7 @@
       <div class="c-footer__column"><h4 class="c-footer__subtitle">Explore</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/case-study">Case Study</a></li><li><a href="/partner">Become A Partner</a></li><li><a href="/blogs">Blogs</a></li></ul></div>
       <div class="c-footer__column"><h4 class="c-footer__subtitle">Legal</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/terms">Terms and Conditions</a></li><li><a href="/sla">Service Level Agreement</a></li></ul></div>
     </div>
-    <div class="container"><p class="footer__text">© 2026 © CloFix – All Rights Reserved</p></div>
+    <div class="container"><p class="footer__text">© 2026 © CloFix - All Rights Reserved</p></div>
   </footer>
 
   <script>
