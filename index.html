@@ -15,7 +15,7 @@
   <meta name="author" content="CloFix InfoTech" />
 
   <!-- SEO Keywords -->
-  <meta name="keywords" content="Web Application Firewall, WAF Security, AI-powered WAF, Cloud Security Services, Cybersecurity Solutions, Network Security, OWASP Top 10 Protection, Data Breach Prevention, Cloud Infrastructure Automation, DDoS protection, bot mitigation, API security, zero-day protection, cloud firewall, L7 security, DevSecOps, behavioral threat detection, TLS fingerprinting, CloFix WAF, managed WAF, ISO 27001 Compliance, Next-Gen Security, Best WAF in Bangladesh, First WAF Company in Bangladesh, cloud security Bangladesh, All WAF, WAF," />
+  <meta name="keywords" content="CloFix WAF, Web Application Firewall, AI-powered WAF, Cloud WAF, Managed WAF, DDoS Protection, Bot Mitigation, API Security, OWASP Top 10, Zero-Day Protection, SQL Injection Prevention, XSS Protection, Cloud Security, Cybersecurity Solutions, DevSecOps, Infrastructure as Code, Cloud Automation, AWS Security, Azure Security, Multi-Cloud Security, TLS Fingerprinting, Behavioral Threat Detection, L7 Security, Rate Limiting, IP Whitelisting, Custom WAF Rules, CADRE Scripting, Lua Scripting, JavaScript WAF, WASM Security, CRS Engine, Real-Time Threat Blocking, Security Compliance, ISO 27001, GDPR Compliance, HIPAA Compliance, Penetration Testing, Vulnerability Assessment, Security Audit, DevOps Support, Cloud Infrastructure Management, On-Demand Engineering, Free DevOps Consultancy, Best WAF in Bangladesh, First WAF Company Bangladesh, Cloud Security Bangladesh, Enterprise Security, Next-Gen WAF, CloFix InfoTech" />
 
   <!-- Standard SEO Meta — 155 chars max, primary keyword first -->
   <meta name="description" content="CloFix WAF - AI-powered Web Application Firewall with real-time DDoS protection, OWASP Top 10 defense, bot mitigation, and zero-day threat blocking." />
@@ -142,59 +142,983 @@
   </script>
 
   <style>
-  .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-radial-gradient(circle at 20% 30%, rgba(0,255,200,0.02) 0px, rgba(0,255,200,0.02) 2px, transparent 2px, transparent 6px); pointer-events: none; z-index: 1; }
-  .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.02) 0px, rgba(0, 255, 255, 0.02) 2px, transparent 2px, transparent 8px); pointer-events: none; z-index: 2; animation: scanMove 12s linear infinite; }
-  @keyframes scanMove { 0% { background-position: 0 0; } 100% { background-position: 0 30px; } }
-  .workflow-container { position: relative; z-index: 10; width: 100%; }
-  .header-section { text-align: center; margin-bottom: 1.2rem; }
-  .badge-status { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(0, 200, 255, 0.08); padding: 0.3rem 1rem; border-radius: 40px; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 1.5px; border: 1px solid rgba(0,200,255,0.3); backdrop-filter: blur(4px); }
-  .pulse-led { width: 8px; height: 8px; border-radius: 50%; background: #0ff; box-shadow: 0 0 8px #0ff; animation: ledPulse 1.2s infinite; }
-  @keyframes ledPulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: 0.4; transform: scale(0.8);} }
-  .pipeline-scroll { overflow-x: auto; padding: 0.5rem 0.5rem 1rem 0.5rem; scrollbar-width: thin; scrollbar-color: #0cf #1a2a3a; }
-  .pipeline { display: flex; align-items: center; justify-content: center; min-width: min-content; position: relative; }
-  .node-card { position: relative; width: 115px; height: 115px; background: rgba(12, 20, 35, 0.75); backdrop-filter: blur(8px); border-radius: 18px; padding: 0.6rem 0.3rem; text-align: center; border: 1px solid rgba(0, 200, 255, 0.25); transition: all 0.25s ease; cursor: default; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .node-card:hover { transform: translateY(-6px); border-color: rgba(0, 230, 255, 0.7); box-shadow: 0 12px 28px rgba(0,200,255,0.2); }
-  .step-marker { position: absolute; top: -8px; left: 10px; background: #0a1424; font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; font-weight: bold; padding: 0.15rem 0.45rem; border-radius: 20px; border: 1px solid rgba(0,200,255,0.5); color: #0cf; letter-spacing: 1px; backdrop-filter: blur(2px); }
-  .icon-lg { font-size: 2rem; margin: 0.2rem 0; display: inline-block; filter: drop-shadow(0 0 4px currentColor); }
-  .node-title { font-weight: 700; font-size: 0.75rem; letter-spacing: 0.5px; margin: 0.2rem 0; color: #f0fcff; line-height: 1.2; }
-  .node-desc { font-family: 'Share Tech Mono', monospace; font-size: 0.55rem; color: #8db5e0; opacity: 0.9; text-transform: uppercase; margin-top: 0.1rem; }
-  .connector { width: 50px; position: relative; display: flex; align-items: center; justify-content: center; margin: 0 -4px; flex-shrink: 0; }
-  .line-path { width: 100%; height: 2px; background: linear-gradient(90deg, #0cf, #3f8eff, #0cf); position: relative; opacity: 0.6; }
-  .data-packet { position: absolute; width: 8px; height: 8px; background: #0ff; border-radius: 50%; box-shadow: 0 0 12px #0ff; top: 50%; transform: translateY(-50%); left: 0; animation: packetFlow 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) infinite; }
-  @keyframes packetFlow { 0% { left: 0%; opacity: 0.3; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: calc(100% - 8px); opacity: 0; } }
-  .arrow-tip { position: absolute; right: -4px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid #0cf; filter: drop-shadow(0 0 2px cyan); }
-  .node-behavior { border-top: 3px solid #ff6b2b; }
-  .node-crs { border-top: 3px solid #3a86ff; }
-  .node-js { border-top: 3px solid #00ff9d; }
-  .node-lua { border-top: 3px solid #b94fff; }
-  .node-ai { border-top: 3px solid #ff3eac; }
-  .node-core { border-top: 3px solid #00e5ff; }
-  .node-decision { border-top: 3px solid #ff2d55; }
-  .node-backend { border-top: 3px solid #4a90d9; }
-  .node-user { border-top: 3px solid #6c8eff; }
-  .stats-dashboard { margin-top: 1.8rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 0.8rem 1.5rem; background: rgba(0, 20, 40, 0.4); border-radius: 60px; backdrop-filter: blur(8px); border: 1px solid rgba(0,200,255,0.2); }
-  .stat { display: flex; align-items: center; gap: 0.7rem; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 0.5px; color: #bbddff; }
-  .stat-led { width: 8px; height: 8px; border-radius: 50%; }
-  .stat-led.green { background: #0f6; box-shadow: 0 0 6px #0f6; animation: pulseStat 2s infinite; }
-  .stat-led.orange { background: #ff6b2b; box-shadow: 0 0 6px #ff6b2b; animation: pulseStat 2s infinite 0.3s; }
-  .stat-led.cyan { background: #0cf; box-shadow: 0 0 6px #0cf; animation: pulseStat 2s infinite 0.6s; }
-  @keyframes pulseStat { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: 0.4; transform: scale(0.9);} }
-  [data-tooltip] { position: relative; }
-  [data-tooltip]:before { content: attr(data-tooltip); position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); background: #050b14dd; backdrop-filter: blur(8px); color: #ccf4ff; font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; padding: 0.25rem 0.6rem; border-radius: 6px; white-space: nowrap; border: 1px solid rgba(0,200,255,0.4); pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 100; letter-spacing: 0.5px; }
-  [data-tooltip]:hover:before { opacity: 1; }
-  .c-logo__tagline { margin-left: 12px; font-size: 14px; font-weight: 500; color: #4a5568; letter-spacing: 0.5px; }
-  .c-logo__img { border-right: 1px solid #e2e8f0; padding-right: 12px; }
-  @media (max-width: 980px) {
-    body { overflow-x: auto; align-items: flex-start; padding: 1rem; }
-    .workflow-container { padding: 1rem; }
-    .node-card { width: 100px; height: 100px; padding: 0.4rem 0.2rem; }
-    .icon-lg { font-size: 1.6rem; }
-    .node-title { font-size: 0.65rem; }
-    .node-desc { font-size: 0.5rem; }
-    .connector { width: 30px; }
-    .step-marker { font-size: 0.55rem; top: -6px; left: 6px; padding: 0.1rem 0.35rem; }
+  /* ============================================
+   GLOBAL STYLES & OVERLAYS
+   ============================================ */
+
+.noise-overlay { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: repeating-radial-gradient(circle at 20% 30%, rgba(0,255,200,0.02) 0px, rgba(0,255,200,0.02) 2px, transparent 2px, transparent 6px); 
+  pointer-events: none; 
+  z-index: 1; 
+}
+
+.scanlines { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.02) 0px, rgba(0, 255, 255, 0.02) 2px, transparent 2px, transparent 8px); 
+  pointer-events: none; 
+  z-index: 2; 
+  animation: scanMove 12s linear infinite; 
+}
+
+@keyframes scanMove { 
+  0% { background-position: 0 0; } 
+  100% { background-position: 0 30px; } 
+}
+
+/* ============================================
+   WORKFLOW CONTAINER
+   ============================================ */
+
+.workflow-container { 
+  position: relative; 
+  z-index: 10; 
+  width: 100%; 
+}
+
+.header-section { 
+  text-align: center; 
+  margin-bottom: 1.2rem; 
+}
+
+.badge-status { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+  background: rgba(0, 200, 255, 0.08); 
+  padding: 0.3rem 1rem; 
+  border-radius: 40px; 
+  font-family: 'Share Tech Mono', monospace; 
+  font-size: 0.7rem; 
+  letter-spacing: 1.5px; 
+  border: 1px solid rgba(0,200,255,0.3); 
+  backdrop-filter: blur(4px); 
+}
+
+.pulse-led { 
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%; 
+  background: #0ff; 
+  box-shadow: 0 0 8px #0ff; 
+  animation: ledPulse 1.2s infinite; 
+}
+
+@keyframes ledPulse { 
+  0%,100% { opacity: 1; transform: scale(1);}
+  50% { opacity: 0.4; transform: scale(0.8);} 
+}
+
+.pipeline-scroll { 
+  overflow-x: auto; 
+  padding: 0.5rem 0.5rem 1rem 0.5rem; 
+  scrollbar-width: thin; 
+  scrollbar-color: #0cf #1a2a3a; 
+}
+
+.pipeline { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  min-width: min-content; 
+  position: relative; 
+}
+
+.node-card { 
+  position: relative; 
+  width: 115px; 
+  height: 115px; 
+  background: rgba(12, 20, 35, 0.75); 
+  backdrop-filter: blur(8px); 
+  border-radius: 18px; 
+  padding: 0.6rem 0.3rem; 
+  text-align: center; 
+  border: 1px solid rgba(0, 200, 255, 0.25); 
+  transition: all 0.25s ease; 
+  cursor: default; 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.node-card:hover { 
+  transform: translateY(-6px); 
+  border-color: rgba(0, 230, 255, 0.7); 
+  box-shadow: 0 12px 28px rgba(0,200,255,0.2); 
+}
+
+.step-marker { 
+  position: absolute; 
+  top: -8px; 
+  left: 10px; 
+  background: #0a1424; 
+  font-family: 'Share Tech Mono', monospace; 
+  font-size: 0.6rem; 
+  font-weight: bold; 
+  padding: 0.15rem 0.45rem; 
+  border-radius: 20px; 
+  border: 1px solid rgba(0,200,255,0.5); 
+  color: #0cf; 
+  letter-spacing: 1px; 
+  backdrop-filter: blur(2px); 
+}
+
+.icon-lg { 
+  font-size: 2rem; 
+  margin: 0.2rem 0; 
+  display: inline-block; 
+  filter: drop-shadow(0 0 4px currentColor); 
+}
+
+.node-title { 
+  font-weight: 700; 
+  font-size: 0.75rem; 
+  letter-spacing: 0.5px; 
+  margin: 0.2rem 0; 
+  color: #f0fcff; 
+  line-height: 1.2; 
+}
+
+.node-desc { 
+  font-family: 'Share Tech Mono', monospace; 
+  font-size: 0.55rem; 
+  color: #8db5e0; 
+  opacity: 0.9; 
+  text-transform: uppercase; 
+  margin-top: 0.1rem; 
+}
+
+.connector { 
+  width: 50px; 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  margin: 0 -4px; 
+  flex-shrink: 0; 
+}
+
+.line-path { 
+  width: 100%; 
+  height: 2px; 
+  background: linear-gradient(90deg, #0cf, #3f8eff, #0cf); 
+  position: relative; 
+  opacity: 0.6; 
+}
+
+.data-packet { 
+  position: absolute; 
+  width: 8px; 
+  height: 8px; 
+  background: #0ff; 
+  border-radius: 50%; 
+  box-shadow: 0 0 12px #0ff; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  left: 0; 
+  animation: packetFlow 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) infinite; 
+}
+
+@keyframes packetFlow { 
+  0% { left: 0%; opacity: 0.3; } 
+  15% { opacity: 1; } 
+  85% { opacity: 1; } 
+  100% { left: calc(100% - 8px); opacity: 0; } 
+}
+
+.arrow-tip { 
+  position: absolute; 
+  right: -4px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: 0; 
+  height: 0; 
+  border-top: 5px solid transparent; 
+  border-bottom: 5px solid transparent; 
+  border-left: 8px solid #0cf; 
+  filter: drop-shadow(0 0 2px cyan); 
+}
+
+/* Node Colors */
+.node-behavior { border-top: 3px solid #ff6b2b; }
+.node-crs { border-top: 3px solid #3a86ff; }
+.node-js { border-top: 3px solid #00ff9d; }
+.node-lua { border-top: 3px solid #b94fff; }
+.node-ai { border-top: 3px solid #ff3eac; }
+.node-core { border-top: 3px solid #00e5ff; }
+.node-decision { border-top: 3px solid #ff2d55; }
+.node-backend { border-top: 3px solid #4a90d9; }
+.node-user { border-top: 3px solid #6c8eff; }
+
+.stats-dashboard { 
+  margin-top: 1.8rem; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 2rem; 
+  padding: 0.8rem 1.5rem; 
+  background: rgba(0, 20, 40, 0.4); 
+  border-radius: 60px; 
+  backdrop-filter: blur(8px); 
+  border: 1px solid rgba(0,200,255,0.2); 
+}
+
+.stat { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.7rem; 
+  font-family: 'Share Tech Mono', monospace; 
+  font-size: 0.7rem; 
+  letter-spacing: 0.5px; 
+  color: #bbddff; 
+}
+
+.stat-led { 
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%; 
+}
+
+.stat-led.green { 
+  background: #0f6; 
+  box-shadow: 0 0 6px #0f6; 
+  animation: pulseStat 2s infinite; 
+}
+
+.stat-led.orange { 
+  background: #ff6b2b; 
+  box-shadow: 0 0 6px #ff6b2b; 
+  animation: pulseStat 2s infinite 0.3s; 
+}
+
+.stat-led.cyan { 
+  background: #0cf; 
+  box-shadow: 0 0 6px #0cf; 
+  animation: pulseStat 2s infinite 0.6s; 
+}
+
+@keyframes pulseStat { 
+  0%,100% { opacity: 1; transform: scale(1);}
+  50% { opacity: 0.4; transform: scale(0.9);} 
+}
+
+/* Tooltips */
+[data-tooltip] { position: relative; }
+
+[data-tooltip]:before { 
+  content: attr(data-tooltip); 
+  position: absolute; 
+  bottom: 110%; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  background: #050b14dd; 
+  backdrop-filter: blur(8px); 
+  color: #ccf4ff; 
+  font-family: 'Share Tech Mono', monospace; 
+  font-size: 0.6rem; 
+  padding: 0.25rem 0.6rem; 
+  border-radius: 6px; 
+  white-space: nowrap; 
+  border: 1px solid rgba(0,200,255,0.4); 
+  pointer-events: none; 
+  opacity: 0; 
+  transition: opacity 0.2s; 
+  z-index: 100; 
+  letter-spacing: 0.5px; 
+}
+
+[data-tooltip]:hover:before { opacity: 1; }
+
+/* Logo Styles */
+.c-logo__tagline { 
+  margin-left: 12px; 
+  font-size: 14px; 
+  font-weight: 500; 
+  color: #4a5568; 
+  letter-spacing: 0.5px; 
+}
+
+.c-logo__img { 
+  border-right: 1px solid #e2e8f0; 
+  padding-right: 12px; 
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+
+.services-section {
+  position: relative;
+  padding: 100px 0;
+  background: #0a0c15;
+  overflow: hidden;
+}
+
+.services-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.services-glow {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(56,189,248,0.12) 0%, rgba(56,189,248,0) 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.services-grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.services-radial {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, rgba(56,189,248,0) 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.services-container {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  z-index: 2;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.services-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56,189,248,0.1);
+  border: 1px solid rgba(56,189,248,0.2);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+
+.services-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.services-title {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+}
+
+.services-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.services-divider span:first-child,
+.services-divider span:last-child {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+}
+
+.services-divider span:first-child {
+  background: linear-gradient(90deg, transparent, #38bdf8);
+}
+
+.services-divider span:last-child {
+  background: linear-gradient(90deg, #38bdf8, transparent);
+}
+
+.services-divider span:nth-child(2) {
+  color: #38bdf8;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.services-description {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* ============================================
+   SERVICES GRID & CARDS
+   ============================================ */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.service-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 14, 23, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: 28px;
+  padding: 32px 24px;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make all cards same height */
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 25px 40px -20px rgba(56, 189, 248, 0.25);
+  animation: cardGlow 0.5s ease-out;
+}
+
+@keyframes cardGlow {
+  0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.2); }
+  100% { box-shadow: 0 0 20px 2px rgba(56, 189, 248, 0.15); }
+}
+
+.card-number {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(139, 92, 246, 0.2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.6;
+  font-family: monospace;
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: inline-block;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .card-icon {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.card-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin-bottom: 24px;
+  flex: 1; /* Push button to bottom */
+}
+
+.card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(56, 189, 248, 0.12);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #38bdf8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: auto; /* Push to bottom */
+  align-self: flex-start; /* Align to left */
+}
+
+.link-arrow {
+  transition: transform 0.3s ease;
+  font-size: 16px;
+}
+
+.card-link:hover {
+  gap: 12px;
+  color: #60a5fa;
+}
+
+.card-link:hover .link-arrow {
+  transform: translateX(6px);
+}
+
+/* Free Consultancy Card */
+.free-consultancy {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.free-consultancy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.card-badge {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.consultancy-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px 0;
+  flex: 1; /* Push button down */
+}
+
+.consultancy-features span {
+  font-size: 11px;
+  color: #94a3b8;
+  background: rgba(56, 189, 248, 0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+/* ============================================
+   TRUST INDICATORS
+   ============================================ */
+
+.services-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px 32px;
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  border-radius: 60px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-icon {
+  font-size: 28px;
+}
+
+.trust-item strong {
+  font-size: 14px;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.trust-item small {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(56, 189, 248, 0.2);
+}
+
+/* ============================================
+   TRUST INDICATORS WRAPPER (GRID VERSION)
+   ============================================ */
+
+.services-trust-wrapper {
+  margin-top: 30px;
+}
+
+.trust-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.trust-tag-icon {
+  font-size: 18px;
+  color: #38bdf8;
+}
+
+.trust-tag span:not(.trust-tag-icon) {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.trust-tag-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, #38bdf8, transparent);
+}
+
+.services-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 28px;
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  border-radius: 28px;
+}
+
+.trust-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.trust-card:hover {
+  background: rgba(56, 189, 248, 0.08);
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.trust-card-icon {
+  font-size: 32px;
+  min-width: 40px;
+  text-align: center;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.3));
+}
+
+.trust-card-content {
+  flex: 1;
+}
+
+.trust-card-content strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.trust-card-content small {
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.4;
+  display: block;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .services-trust-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  </style>
+}
+
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .services-trust-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: 20px;
+  }
+  
+  .trust-card {
+    padding: 14px;
+  }
+  
+  .trust-card-icon {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 980px) {
+  body { 
+    overflow-x: auto; 
+    align-items: flex-start; 
+    padding: 1rem; 
+  }
+  
+  .workflow-container { 
+    padding: 1rem; 
+  }
+  
+  .node-card { 
+    width: 100px; 
+    height: 100px; 
+    padding: 0.4rem 0.2rem; 
+  }
+  
+  .icon-lg { 
+    font-size: 1.6rem; 
+  }
+  
+  .node-title { 
+    font-size: 0.65rem; 
+  }
+  
+  .node-desc { 
+    font-size: 0.5rem; 
+  }
+  
+  .connector { 
+    width: 30px; 
+  }
+  
+  .step-marker { 
+    font-size: 0.55rem; 
+    top: -6px; 
+    left: 6px; 
+    padding: 0.1rem 0.35rem; 
+  }
+}
+
+@media (max-width: 900px) {
+  .services-trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 0;
+  }
+  
+  .services-title {
+    font-size: 32px;
+  }
+  
+  .services-description {
+    font-size: 15px;
+    padding: 0 16px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .service-card {
+    padding: 28px 20px;
+  }
+  
+  .card-number {
+    font-size: 36px;
+    top: 16px;
+    right: 20px;
+  }
+  
+  .card-icon {
+    font-size: 40px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  .card-stats {
+    gap: 12px;
+    padding: 14px 0;
+  }
+  
+  .stat-value {
+    font-size: 18px;
+  }
+  
+  .stat-label {
+    font-size: 9px;
+  }
+  
+  .services-trust {
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 28px;
+    padding: 24px;
+  }
+  
+  .trust-divider {
+    width: 60px;
+    height: 1px;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-trust-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trust-tag {
+    justify-content: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .trust-tag span:not(.trust-tag-icon) {
+    font-size: 10px;
+  }
+  
+  .trust-tag-line {
+    width: 40px;
+  }
+  
+  .trust-card {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .trust-card-icon {
+    font-size: 36px;
+  }
+  
+  .trust-card-content strong,
+  .trust-card-content small {
+    text-align: center;
+  }
+}
+
+@media (max-width: 550px) {
+  .services-trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -483,28 +1407,290 @@
       </div>
     </section>
 
-    <section class="ops-deck" aria-label="CloFix Systems Deck">
-      <div class="ops-bg" aria-hidden="true">
-        <div class="ops-vignette"></div>
-        <div class="ops-gridlines"></div>
-        <div class="ops-aurora"></div>
+    <section class="services-section" aria-label="CloFix Services">
+      <div class="services-bg" aria-hidden="true">
+        <div class="services-glow"></div>
+        <div class="services-grid-pattern"></div>
+        <div class="services-radial"></div>
       </div>
-      <div class="ops-shell">
-        <header class="ops-head">
-          <div class="ops-pill"><span class="ops-pill-led"></span>operational</div>
-          <h2 class="ops-title">Our Services</h2>
-          <p class="ops-sub">
-            CloFix delivers powerful security, automation, and infrastructure solutions tailored for cloud-native and enterprise-grade applications.
-            We specialize in Web Application Firewall (WAF), DevSecOps, and intelligent cloud automation enabling businesses to operate securely, efficiently, and at scale.
-            With real-time threat detection, dynamic policy enforcement, and full-stack observability, CloFix empowers organizations to stay resilient against evolving cyber threats.
-            Whether you're running SaaS platforms, e-commerce portals, or mission-critical APIs, CloFix ensures performance, protection, and peace of mind 24/7.
+      
+      <div class="services-container">
+        <!-- Section Header -->
+        <div class="services-header">
+          <div class="services-badge">
+            <span class="services-badge-dot"></span>
+            <span>CORE CAPABILITIES</span>
+          </div>
+          <h2 class="services-title">Our Services</h2>
+          <div class="services-divider">
+            <span></span>
+            <span>✦</span>
+            <span></span>
+          </div>
+          <p class="services-description">
+            CloFix delivers enterprise-grade security, automation, and infrastructure solutions 
+            purpose-built for cloud-native and mission-critical applications.
           </p>
-        </header>
-        <div class="ops-grid">
-          <a class="ops-tile" href="/devsecops"><div class="ops-tile-inner"><div class="ops-top"><div class="ops-icon"><clofix-devops-logo variant="orbit" color="#38bdf8" speed="4"></clofix-devops-logo></div></div></div></a>
-          <a class="ops-tile" href="/automation"><div class="ops-tile-inner"><div class="ops-top"><div class="ops-icon"><clofix-automation-logo variant="orbit" color="#38bdf8" speed="4"></clofix-automation-logo></div></div></div></a>
-          <a class="ops-tile" href="/ondemand"><div class="ops-tile-inner"><div class="ops-top"><div class="ops-icon"><clofix-on-demand-engineering-support-logo variant="orbit" color="#38bdf8" speed="4"></clofix-on-demand-engineering-support-logo></div></div></div></a>
-          <a class="ops-tile" href="/features.html#waf"><div class="ops-tile-inner"><div class="ops-top"><div class="ops-icon"><clofix-waf-logo variant="orbit" color="#38bdf8" speed="4"></clofix-waf-logo></div></div></div></a>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <<div class="services-grid">
+          <!-- Card 1: DevSecOps -->
+          <div class="service-card">
+            <div class="card-number">01</div>
+            <div class="card-icon">🛡️</div>
+            <h3 class="card-title">DevSecOps</h3>
+            <p class="card-description">
+              Shift-left security integrated into your CI/CD pipelines for faster, safer deployments.
+            </p>
+            <a href="/devsecops" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Automation -->
+          <div class="service-card">
+            <div class="card-number">02</div>
+            <div class="card-icon">⚙️</div>
+            <h3 class="card-title">Intelligent Automation</h3>
+            <p class="card-description">
+              Streamline operations with AI-driven workflows and infrastructure as code.
+            </p>
+            <a href="/automation" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 3: On-Demand Engineering -->
+          <div class="service-card">
+            <div class="card-number">03</div>
+            <div class="card-icon">👨‍💻</div>
+            <h3 class="card-title">On-Demand Engineering</h3>
+            <p class="card-description">
+              Expert DevOps and security engineers available when you need them most.
+            </p>
+            <a href="/ondemand" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 4: WAF -->
+          <div class="service-card">
+            <div class="card-number">04</div>
+            <div class="card-icon">🔥</div>
+            <h3 class="card-title">Web Application Firewall</h3>
+            <p class="card-description">
+              AI-powered protection against OWASP Top 10, DDoS, and zero-day attacks.
+            </p>
+            <a href="/features" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 5: DevOps Support -->
+          <div class="service-card">
+            <div class="card-number">05</div>
+            <div class="card-icon">🚀</div>
+            <h3 class="card-title">DevOps Support</h3>
+            <p class="card-description">
+              24/7 DevOps support with CI/CD pipeline management, automation, and monitoring solutions.
+            </p>
+            <a href="/devops-support" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 6: Infrastructure Management -->
+          <div class="service-card">
+            <div class="card-number">06</div>
+            <div class="card-icon">🏗️</div>
+            <h3 class="card-title">Infrastructure Management</h3>
+            <p class="card-description">
+              Complete infrastructure lifecycle management including servers, networks, and storage.
+            </p>
+            <a href="/infrastructure-management" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 7: Cloud Management -->
+          <div class="service-card">
+            <div class="card-number">07</div>
+            <div class="card-icon">☁️</div>
+            <h3 class="card-title">Cloud Management</h3>
+            <p class="card-description">
+              Multi-cloud management across AWS, Azure, GCP with cost optimization and security.
+            </p>
+            <a href="/cloud-management" class="card-link">
+              Explore Service
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Card 8: Free DevOps Consultancy -->
+          <div class="service-card free-consultancy">
+            <div class="card-badge">FREE</div>
+            <div class="card-number">08</div>
+            <div class="card-icon">🎯</div>
+            <h3 class="card-title">Free DevOps Consultancy</h3>
+            <p class="card-description">
+              Get expert DevOps consultation to assess your infrastructure, identify gaps, and plan your cloud journey.
+            </p>
+            <div class="consultancy-features">
+              <span>✓ Infrastructure Assessment</span>
+              <span>✓ Security Audit</span>
+              <span>✓ Cost Optimization Review</span>
+              <span>✓ Migration Strategy</span>
+            </div>
+            <a href="/free-consultancy" class="card-link">
+              Claim Free Session
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Trust Indicators - CloFix WAF Unique Advantages -->
+        <div class="services-trust-wrapper">
+          <div class="trust-tag">
+            <span class="trust-tag-icon">✨</span>
+            <span>CloFix WAF Unique Advantages</span>
+            <span class="trust-tag-line"></span>
+          </div>
+          
+          <div class="services-trust-grid">
+            <div class="trust-card">
+              <span class="trust-card-icon">⚡</span>
+              <div class="trust-card-content">
+                <strong>Real-Time Threat Blocking</strong>
+                <small>&lt;1ms latency · 5M+ threats/day</small>      </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🧠</span>
+              <div class="trust-card-content">
+                <strong>AI + Multi-Engine Protection</strong>
+                <small>Lua · JS · WASM · CRS · Zero-day</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🛡️</span>
+              <div class="trust-card-content">
+                <strong>Complete OWASP Coverage</strong>
+                <small>SQLi · XSS · CSRF · RFI/LFI</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🤖</span>
+              <div class="trust-card-content">
+                <strong>Advanced Bot Mitigation</strong>
+                <small>Bad bot detection · Behavioral analysis · CAPTCHA</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">📜</span>
+              <div class="trust-card-content">
+                <strong>CADRE Scripting Engine</strong>
+                <small>Custom security rules · Advanced logic · Real-time</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">⚙️</span>
+              <div class="trust-card-content">
+                <strong>Manage Custom Rules</strong>
+                <small>Create · Edit · Delete · Enable/Disable · Priority</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🖥️</span>
+              <div class="trust-card-content">
+                <strong>Dedicated WAF Server</strong>
+                <small>Isolated resources · High performance · SLA 99.99%</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🔧</span>
+              <div class="trust-card-content">
+                <strong>On-Demand Security Features</strong>
+                <small>Custom rules · API security · Rate limiting · IP whitelist</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🚀</span>
+              <div class="trust-card-content">
+                <strong>Quick Onboard</strong>
+                <small>5-min setup · DNS change only · Instant protection</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🎨</span>
+              <div class="trust-card-content">
+                <strong>Custom Your WAF Server</strong>
+                <small>Custom config · Your policies · Tailored rules</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">📊</span>
+              <div class="trust-card-content">
+                <strong>Central Dashboard</strong>
+                <small>Real-time analytics · Full visibility · Audit logs</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">📱</span>
+              <div class="trust-card-content">
+                <strong>Android & Mobile Support</strong>
+                <small>Manage from anywhere · Mobile app · Push alerts</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🏢</span>
+              <div class="trust-card-content">
+                <strong>Local Support (Bangladesh)</strong>
+                <small>24/7 local engineers · Fast response · On-site available</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">🌐</span>
+              <div class="trust-card-content">
+                <strong>No IP Device Required</strong>
+                <small>Cloud-native · Zero hardware · Instant deployment</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">💥</span>
+              <div class="trust-card-content">
+                <strong>Advanced DDoS Mitigation</strong>
+                <small>L3/L4/L7 · Auto-scaling · Rate limiting</small>
+              </div>
+            </div>
+            
+            <div class="trust-card">
+              <span class="trust-card-icon">💰</span>
+              <div class="trust-card-content">
+                <strong>Flexible Payment Options</strong>
+                <small>BDT (Taka) · USD (Dollar) · Monthly/Yearly</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
