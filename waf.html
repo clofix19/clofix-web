@@ -20,7 +20,7 @@
   <meta property="og:title" content="CloFix WAF - Next-Gen Web Application Firewall">
   <meta property="og:description" content="Protect your web applications with AI-powered WAF. Real-time threat detection, OWASP Top 10 coverage, and enterprise-grade security.">
   <meta property="og:url" content="https://clofix.com/waf">
-  <meta property="og:image" content="https://clofix.com/img/waf-og.png">
+  <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
   <meta property="og:site_name" content="CloFix">
   
   <!-- Twitter -->
@@ -36,6 +36,30 @@
   <!-- Icons -->
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){
+      window.dataLayer.push(arguments);
+    }
+
+    // Initialize GA4
+    gtag('js', new Date());
+
+    // Config (production-ready)
+    gtag('config', 'G-WP02RFXGSE', {
+      send_page_view: true,
+      anonymize_ip: true
+    });
+
+    // Optional: track initial page load event
+    gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href
+    });
+  </script>
   
   <style>
     /* WAF Page Specific Styles */

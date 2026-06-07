@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://clofix.com/waf-setup" />
+  
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  
+  <!-- Author -->
+  <meta name="author" content="CloFix InfoTech" />
+  
+  <!-- SEO Keywords -->
+  <meta name="keywords" content="CloFix WAF Setup, Web Application Firewall Configuration, DNS Setup for WAF, Enable WAF Protection, Cloud WAF Deployment, WAF Activation Guide, CloFix Setup Process, WAF DNS Configuration, Origin Server Protection, 3-Step WAF Setup" />
+
+  <!-- Standard SEO Meta -->
+  <meta name="description" content="Step-by-step CloFix WAF setup process: Change DNS records, provide origin server IP/CNAME, and activate protection in 1-3 hours. Secure your website with enterprise-grade WAF." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CloFix WAF Setup | 3-Step Configuration Guide | Web Application Firewall">
+  <meta property="og:description" content="Step-by-step CloFix WAF setup process: Change DNS records, provide origin server IP/CNAME, and activate protection in 1-3 hours. Get DDoS protection, SQLi/XSS blocking, and real-time monitoring.">
+  <meta property="og:url" content="https://clofix.com/waf-setup">
+  <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+  <meta property="og:image:alt" content="CloFix WAF Setup Guide - 3 Steps to Secure Your Website">
+  <meta property="og:site_name" content="CloFix InfoTech">
+  <meta property="og:locale" content="en_US">
+
+  <!-- LinkedIn -->
+  <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
+  <meta property="og:image:alt" content="CloFix WAF Setup - Enterprise Protection">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CloFix WAF Setup | 3-Step Configuration Guide">
+  <meta name="twitter:description" content="Easy 3-step WAF setup: Change DNS, provide origin server, activate. Protect your website from DDoS, SQLi, XSS, and OWASP Top 10 threats.">
+  <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
+  <meta name="twitter:image:alt" content="CloFix WAF Setup - Quick & Easy Configuration">
+  <meta name="twitter:site" content="@clofix19">
+
+  <!-- WhatsApp -->
+  <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
+  <meta property="og:image:alt" content="CloFix WAF Setup - Share on WhatsApp">
+
+  <!-- Additional setup-specific meta tags -->
+  <meta name="how-to" content="step-by-step WAF deployment">
+  <meta name="est-time" content="1-3 hours for DNS propagation">
+  <meta name="difficulty" content="beginner-friendly">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Styles -->
+  <link href="./style.css" rel="stylesheet" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Title -->
+  <title>CloFix WAF Setup | 3-Step Configuration Guide | Web Application Firewall</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE', {
+      send_page_view: true,
+      anonymize_ip: true,
+      page_title: 'CloFix WAF Setup Guide',
+      page_location: window.location.href
+    });
+    function trackSetupStep(stepNumber) {
+      gtag('event', 'view_setup_step', { 'step': stepNumber, 'page_title': 'WAF Setup Process' });
+    }
+  </script>
+
+  <style>
+    /* Additional inline styles for WAF Setup page */
+    .waf-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(59, 130, 246, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 1.3rem;
+      border-radius: 80px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #a5d8ff;
+      margin-bottom: 1rem;
+      gap: 10px;
+      border: 1px solid rgba(59, 130, 246, 0.5);
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #7aa9ff, #3b82f6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #b9ceff;
+      max-width: 620px;
+      margin: 0.75rem auto 0;
+    }
+    .setup-timer {
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .step-card {
+      flex: 1;
+      min-width: 270px;
+      background: rgba(15, 25, 50, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.5rem 2rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .step-card:hover {
+      transform: translateY(-6px);
+      border-color: #3b82f6;
+      background: rgba(20, 32, 60, 0.85);
+    }
+    .step-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #60a5fa, #2563eb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .step-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+    .step-desc {
+      color: #cbd5ff;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .dns-code {
+      background: #0a0f1f;
+      padding: 0.8rem 1rem;
+      border-radius: 1.2rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      margin: 1rem 0;
+      border-left: 4px solid #3b82f6;
+      color: #cbd5ff;
+    }
+    .badge-or {
+      background: #1e2a4a;
+      display: inline-block;
+      padding: 0.25rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #90cdf4;
+      margin: 10px 0 4px;
+    }
+    .dns-table {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 1.2rem;
+      padding: 0.6rem;
+      margin: 1rem 0 0.5rem;
+      font-size: 0.8rem;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .dns-table th, .dns-table td {
+      text-align: left;
+      padding: 0.55rem 0.4rem;
+      border-bottom: 1px solid rgba(71, 125, 255, 0.3);
+      color: #e0edff;
+    }
+    .flow-section {
+      background: rgba(5, 12, 30, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      margin: 2rem 0 2.2rem;
+      padding: 1.6rem 1.2rem;
+      border: 1px solid rgba(59, 130, 246, 0.5);
+    }
+    .flow-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.4rem;
+      color: #b9e2ff;
+    }
+    .flow-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    .flow-node {
+      background: #0f1a2e;
+      padding: 0.9rem 1.5rem;
+      border-radius: 2rem;
+      text-align: center;
+      min-width: 160px;
+      font-weight: 600;
+      color: #f0f6ff;
+      border: 1px solid #2a406e;
+    }
+    .flow-node i { margin-right: 10px; color: #3b82f6; }
+    .arrow { font-size: 1.7rem; color: #5a8dee; }
+    .benefits-section { margin: 2.5rem 0 2rem; }
+    .benefits-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .benefits-header i {
+      font-size: 2rem;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.15);
+      padding: 8px;
+      border-radius: 1rem;
+    }
+    .benefits-header h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(125deg, #ffd966, #ffffff, #8bb4ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .benefit-card {
+      background: linear-gradient(145deg, rgba(15, 30, 55, 0.85), rgba(5, 15, 35, 0.9));
+      backdrop-filter: blur(12px);
+      border-radius: 1.8rem;
+      padding: 1.6rem;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      transition: 0.25s;
+    }
+    .benefit-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+    .benefit-icon {
+      width: 58px;
+      height: 58px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.9rem;
+      color: #60a5fa;
+    }
+    .benefit-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      color: #ffffff;
+    }
+    .benefit-card p { color: #cbdffc; font-size: 0.9rem; line-height: 1.5; }
+    .benefit-badge {
+      display: inline-block;
+      background: #1e3a5f;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.8rem;
+      margin-top: 1rem;
+      color: #9bc0ff;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+      margin: 2rem 0 2rem;
+    }
+    .feature-card {
+      background: rgba(10, 20, 40, 0.65);
+      backdrop-filter: blur(8px);
+      border-radius: 1.4rem;
+      padding: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+    }
+    .feature-icon {
+      background: #0f2442;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.2rem;
+      color: #60a5fa;
+      font-size: 1.5rem;
+    }
+    .feature-text h4 { font-weight: 700; font-size: 1rem; color: #ffffff; }
+    .feature-text p { font-size: 0.75rem; color: #b7cdff; }
+    .dashboard-receive {
+      background: linear-gradient(105deg, #0a1c35, #02112a);
+      border-radius: 1.6rem;
+      padding: 1.4rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.8rem;
+      border: 1px solid #2563eb;
+    }
+    .receive-text { display: flex; align-items: center; gap: 14px; font-weight: 500; color: white; }
+    .receive-text i { font-size: 1.8rem; color: #3b82f6; }
+    .btn-soft {
+      background: rgba(59, 130, 246, 0.25);
+      padding: 0.55rem 1.3rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 1px solid #3b82f6;
+      color: white;
+    }
+    .dns-manager-card {
+      background: rgba(0, 15, 35, 0.7);
+      border-radius: 1.5rem;
+      margin-top: 1.8rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid #2c4b7a;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .glow-text { text-shadow: 0 0 6px rgba(59,130,246,0.3); }
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .step-card { min-width: 100%; }
+      .arrow { transform: rotate(90deg); display: inline-block; }
+      .flow-diagram { flex-direction: column; }
+      .dashboard-receive { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="/" aria-label="CloFix Home - AI-Powered WAF & Cloud Security Platform">
+            <img src="img/logo.png" alt="CloFix Logo - Return to Homepage" class="c-logo__img" />
+          </a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="/" class="c-link c-link--list">Home</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/pricing" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/waf-setup" class="c-link c-link--list">WAF Setup</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/about" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/features" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
+              <li class="c-list__item">
+                <a href="/contact" class="c-link c-link--list">Contact</a>
+              </li>
+              <!-- Others mega dropdown -->
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others
+                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <!-- Documentation -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">
+                          CloFix LUA Script
+                        </a>
+                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">
+                          CloFix JS Script
+                        </a>
+                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">
+                          CloFix CRS Script
+                        </a>
+                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">
+                          CloFix WASM
+                        </a>
+                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">
+                          CloFix WAF Workflow
+                        </a>
+                      </div>
+
+                      <!-- Tools -->
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">
+                          CVE Checker
+                        </a>
+                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">
+                          CloFix Pentest
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <a href="/faq" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">
+                  FAQ
+                </button>
+              </a>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="waf-container">
+      <div class="hero">
+        <div class="badge">
+          <i class="fas fa-shield-haltered"></i> <span>WAF Setup · 3-Step Process</span>
+        </div>
+        <h1>CloFix WAF Setup</h1>
+        <p>Secure your website with CloFix WAF in 3 simple steps - enterprise protection, effortless integration.</p>
+        <div class="setup-timer">
+          <i class="fas fa-clock"></i> Total setup time: ~5 minutes + 1-3 hours DNS propagation
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card" onclick="trackSetupStep('1 - Change DNS')">
+          <div class="step-number">01</div>
+          <div class="step-title">Change DNS</div>
+          <div class="step-desc">
+            Point your domain to CloFix WAF IP inside your DNS manager.
+            <div class="dns-code">
+              <i class="fas fa-globe"></i> <strong>example.com</strong><br>
+              Type: A | Name: @ | Value: <span class="glow-text">CLOFIX_WAF_IP</span>
+            </div>
+            <div class="dns-table">
+              <table style="width:100%;">
+                <tr><th>Domain</th><td>example.com</td></tr>
+                <tr><th>Type</th><td>A</td></tr>
+                <tr><th>Name</th><td>@</td></tr>
+                <tr><th>Value / Content</th><td>Your CloFix WAF IP / CNAME</td></tr>
+                <tr><th>TTL</th><td>Auto (300s recommended)</td></tr>
+              </table>
+            </div>
+            <div class="badge-or"><i class="fas fa-code-branch"></i> Also supports CNAME record</div>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="trackSetupStep('2 - Provide Origin')">
+          <div class="step-number">02</div>
+          <div class="step-title">Provide Origin</div>
+          <div class="step-desc">
+            Share your server IP address or CNAME record with CloFix.
+            <div class="dns-code" style="background:#0a1022;">
+              <i class="fas fa-server"></i> <strong>Server IP Address:</strong> 203.0.113.10<br>
+              <span style="font-size: 12px;">━━━━ OR ━━━━</span><br>
+              <i class="fas fa-link"></i> <strong>CNAME:</strong> origin.yourdomain.com
+            </div>
+            <p><i class="fas fa-check-circle" style="color:#34d399;"></i> CloFix will route protected traffic to your origin via secure proxy.</p>
+          </div>
+        </div>
+
+        <div class="step-card" onclick="trackSetupStep('3 - Activation')">
+          <div class="step-number">03</div>
+          <div class="step-title">Activation</div>
+          <div class="step-desc">
+            <i class="fas fa-hourglass-half"></i> Give us <strong>1–3 hours</strong> for full DNS propagation & cluster sync.
+            <div style="background:rgba(16, 185, 129, 0.15); padding: 12px 14px; border-radius: 1.2rem; margin-top: 16px; border-left: 3px solid #10b981;">
+              <i class="fas fa-sync-alt" style="color:#4ade80;"></i> <strong>Propagation in progress</strong><br>
+              <span style="font-size: 0.75rem;">Please allow 1-3 hours for DNS propagation. Your origin stays hidden.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-section">
+        <div class="flow-title"><i class="fas fa-diagram-project"></i> How the Setup Works · Traffic Flow After Activation</div>
+        <div class="flow-diagram">
+          <div class="flow-node"><i class="fas fa-user-astronaut"></i> Visitor</div>
+          <div class="arrow"><i class="fas fa-angle-double-right"></i></div>
+          <div class="flow-node" style="background:#0f2a44; border-color:#3b82f6;"><i class="fas fa-shield-virus"></i> CloFix WAF</div>
+          <div class="arrow"><i class="fas fa-angle-double-right"></i></div>
+          <div class="flow-node"><i class="fas fa-cloud-upload-alt"></i> Your Origin Server</div>
+        </div>
+        <p style="text-align: center; margin-top: 18px; font-size: 0.85rem; color:#b7d0ff;"><i class="fas fa-dns"></i> Step 1: DNS Manager → CloFix WAF IP | Step 2: Provide origin | Step 3: Go live</p>
+      </div>
+
+      <div class="benefits-section">
+        <div class="benefits-header"><i class="fas fa-gem"></i><h2>What You Get After Setup</h2></div>
+        <div class="benefits-grid">
+          <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-mask"></i></div><h3>Hide Your Backend Server</h3><p>CloFix WAF masks your origin IP address. Attackers only see our protected edge, never your real infrastructure.</p><div class="benefit-badge"><i class="fas fa-eye-slash"></i> Complete IP obfuscation</div></div>
+          <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-arrows-spin"></i></div><h3>Automatic Failover</h3><p>Intelligent health checks detect backend outages. Traffic instantly reroutes to healthy backups - ensuring 99.99% uptime.</p><div class="benefit-badge"><i class="fas fa-sync"></i> Seamless switchover</div></div>
+          <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-lock"></i></div><h3>Protect Sensitive Backend Data</h3><p>TLS 1.3 encryption between WAF and origin. Sensitive headers, cookies, and payloads are sanitized.</p><div class="benefit-badge"><i class="fas fa-shield"></i> Data-in-transit protection</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem;"><i class="fas fa-crown" style="color:#fbbf24; font-size: 1.7rem;"></i><h2 style="font-size: 1.7rem; font-weight: 700; background: linear-gradient(125deg,#fff,#8bb4ff); background-clip:text; -webkit-background-clip:text; color:transparent;">After Setup – What You Get</h2></div>
+        <div class="features">
+          <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-haltered"></i></div><div class="feature-text"><h4>DDoS Protection</h4><p>Multi-layered mitigation</p></div></div>
+          <div class="feature-card"><div class="feature-icon"><i class="fas fa-firewall"></i></div><div class="feature-text"><h4>Web App Firewall</h4><p>Blocks SQLi, XSS, OWASP Top 10</p></div></div>
+          <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><div class="feature-text"><h4>Real-time Monitoring</h4><p>Live metrics & threats</p></div></div>
+          <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-pie"></i></div><div class="feature-text"><h4>Detailed Reports</h4><p>Attack analytics</p></div></div>
+          <div class="feature-card"><div class="feature-icon"><i class="fab fa-android"></i></div><div class="feature-text"><h4>Android App</h4><p>Real-time alerts & mgmt</p></div></div>
+        </div>
+      </div>
+
+      <div class="dashboard-receive">
+        <div class="receive-text"><i class="fas fa-envelope-open-text"></i> <span><strong>You will receive:</strong> WAF Dashboard credentials + Android App for real-time alerts & management</span></div>
+        <div class="btn-soft"><i class="fas fa-bell"></i> Push notifications · Live</div>
+      </div>
+
+      <div class="dns-manager-card">
+        <div><i class="fas fa-dns" style="color:#60a5fa;"></i> <strong>DNS Manager (example.com)</strong> - Update your A record to <span style="background:#142842; padding:4px 10px; border-radius:50px;">CLOFIX_WAF_IP</span></div>
+        <div style="font-family: monospace; background:#0d1b33; padding: 6px 14px; border-radius: 60px;">Propagation: 1-3 hrs ⏳</div>
+      </div>
+
+      <div style="margin-top: 1.8rem; text-align: center; background: rgba(0, 0, 0, 0.3); border-radius: 1.8rem; padding: 1rem;">
+        <i class="fas fa-check-double" style="color:#3b82f6;"></i> <strong>Your website will be live and protected by CloFix WAF</strong> - after successful propagation. Gain full visibility & industry-leading mitigation.
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="/" class="c-footer__brand" aria-label="CloFix Home">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2026 CloFix – All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navContent = document.querySelector('.c-nav__content');
+    const dropdowns = document.querySelectorAll('.c-dropdown');
+    
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    if (navToggle && navContent) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
+      });
+      navContent.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
+          navContent.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const willOpen = !dd.classList.contains('open');
+        closeAllDropdowns();
+        if (willOpen) {
+          dd.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      const panelOpen = navContent && navContent.classList.contains('active');
+      if (panelOpen) return;
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
+
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeAllDropdowns();
+        if (navContent) navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+
+</html>
