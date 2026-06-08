@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://clofix.com/clofix-agent">
+    <meta name="description" content="CloFix Agent: Lightweight, resilient Kubernetes WAF agent. Validates requests against server-side scripts & licenses, blocks attacks, and includes smart fallback for high availability.">
+    <meta name="keywords" content="CloFix Agent, WAF Agent, Kubernetes WAF, security agent, ingress filter, pricing, compliance, per domain pricing">
+    <meta name="author" content="CloFix InfoTech">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CloFix Agent | Lightweight WAF for Kubernetes & Ingress">
+    <meta property="og:description" content="Deploy a resilient WAF agent. Server-side validation, smart caching, and automatic fallback ensure security with zero downtime. Starting at $5/domain.">
+    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CloFix Agent | Resilient Kubernetes WAF">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>CloFix Agent | Lightweight WAF Agent for Kubernetes</title>
+    <style>
+        :root {
+            --dark-bg: #0a0f1a;
+            --dark-navy: #0d1b2e;
+            --dark-surface: #0f2138;
+            --dark-border: #1a3a56;
+            --dark-teal: #00c2a8;
+            --dark-orange: #e85d26;
+            --dark-text: #c8d8e8;
+            --dark-muted: #5a7088;
+            --dark-code: #081422;
+            --dark-gold: #e8b84b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--dark-bg); color: var(--dark-text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+        .header { background: var(--dark-navy); border-bottom: 1px solid var(--dark-border); position: sticky; top: 0; z-index: 1000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .header__wrapper { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+        .c-logo img { height: 40px; }
+        .c-nav__content ul { display: flex; list-style: none; gap: 24px; align-items: center; }
+        .c-link { color: var(--dark-text); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .c-link:hover { color: var(--dark-teal); }
+        .c-button { background: var(--dark-teal); color: var(--dark-bg); border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .agent-hero { background: radial-gradient(ellipse at 70% -10%, rgba(0,194,168,.18) 0%, transparent 55%), radial-gradient(ellipse at 20% 110%, rgba(46,109,180,.12) 0%, transparent 55%), var(--dark-navy); padding: 80px 0 64px; border-bottom: 1px solid var(--dark-border); }
+        .agent-hero__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,194,168,.1); border: 1px solid rgba(0,194,168,.35); color: var(--dark-teal); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+        .agent-hero__badge::before { content: ''; width: 7px; height: 7px; background: var(--dark-teal); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{ opacity: 1; } 50%{ opacity: .25; } }
+        .agent-hero h1 { font-size: clamp(32px,5vw,52px); font-weight: 800; line-height: 1.1; color: #fff; margin: 0 0 16px; }
+        .agent-hero h1 span { color: var(--dark-teal); }
+        .agent-hero__lead { font-size: 18px; color: var(--dark-muted); max-width: 650px; margin: 0 0 36px; }
+        .cadre-hero__pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cadre-hero__pill { background: rgba(255,255,255,.04); border: 1px solid var(--dark-border); border-radius: 6px; padding: 6px 14px; font-size: 13px; color: var(--dark-text); }
+        .cadre-body { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 24px; gap: 48px; align-items: flex-start; }
+        .cadre-toc { position: sticky; top: 100px; width: 250px; flex-shrink: 0; padding: 24px 0; max-height: calc(100vh - 120px); overflow-y: auto; }
+        .cadre-toc__title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--dark-muted); margin-bottom: 16px; }
+        .cadre-toc a { display: block; padding: 8px 12px; font-size: 13px; color: var(--dark-muted); text-decoration: none; border-left: 2px solid transparent; transition: all 0.2s; }
+        .cadre-toc a:hover, .cadre-toc a.active { color: var(--dark-teal); border-left-color: var(--dark-teal); background: rgba(0,194,168,.06); }
+        .cadre-content { flex: 1; min-width: 0; padding: 48px 0 80px; }
+        .cadre-section { margin-bottom: 72px; scroll-margin-top: 80px; }
+        .cadre-section__title { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid var(--dark-border); }
+        .cadre-section__title .sec-num { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--dark-teal); background: rgba(0,194,168,.1); padding: 2px 8px; border-radius: 4px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin: 20px 0 30px; }
+        .feature-card { background: var(--dark-surface); border: 1px solid var(--dark-border); border-radius: 12px; padding: 20px; transition: all 0.2s; cursor: pointer; }
+        .feature-card.non-clickable { cursor: default; }
+        .feature-card.non-clickable:hover { transform: none; border-color: var(--dark-border); }
+        .feature-card:hover:not(.non-clickable) { transform: translateY(-2px); border-color: var(--dark-teal); }
+        .feature-card__header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .feature-card__icon { font-size: 32px; }
+        .feature-card__name { font-size: 18px; font-weight: 700; color: #fff; }
+        .feature-card__desc { font-size: 13px; color: var(--dark-muted); line-height: 1.5; }
+        /* Pricing Cards */
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 20px 0 30px; }
+        @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+        .pricing-card { background: linear-gradient(135deg, var(--dark-surface) 0%, rgba(0,194,168,0.03) 100%); border: 1px solid var(--dark-border); border-radius: 20px; padding: 28px; transition: all 0.3s; position: relative; }
+        .pricing-card.popular { border: 2px solid var(--dark-teal); transform: scale(1.02); }
+        .pricing-card.popular::before { content: "🔥 MOST POPULAR"; position: absolute; top: -12px; left: 20px; background: var(--dark-teal); color: var(--dark-bg); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; }
+        .pricing-card:hover { transform: translateY(-5px); border-color: var(--dark-teal); }
+        .pricing-card h3 { color: var(--dark-teal); font-size: 24px; margin-bottom: 8px; }
+        .pricing-price { font-size: 48px; font-weight: 800; color: #fff; margin: 20px 0; }
+        .pricing-price span { font-size: 18px; color: var(--dark-muted); }
+        .pricing-sub { color: var(--dark-muted); font-size: 13px; margin-bottom: 20px; }
+        .pricing-features { list-style: none; margin: 20px 0; }
+        .pricing-features li { padding: 10px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--dark-border); font-size: 14px; }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features li i { color: var(--dark-teal); width: 20px; }
+        .pricing-features li i.fa-times { color: var(--dark-muted); }
+        .pricing-btn { background: var(--dark-teal); color: var(--dark-bg); border: none; padding: 14px 24px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; transition: opacity 0.2s; margin-top: 20px; }
+        .pricing-btn:hover { opacity: 0.85; }
+        .domain-pricing { background: var(--dark-code); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .domain-pricing h4 { color: var(--dark-gold); margin-bottom: 15px; }
+        .domain-badge { display: inline-block; background: var(--dark-teal); color: var(--dark-bg); padding: 8px 20px; border-radius: 30px; font-weight: 700; margin: 5px; }
+        .compliance-card { background: var(--dark-surface); border: 1px solid var(--dark-gold); border-radius: 12px; padding: 20px; }
+        .compliance-card h3 { color: var(--dark-gold); margin-bottom: 16px; font-size: 18px; }
+        .diagram { background: var(--dark-code); border-radius: 12px; padding: 24px; margin: 20px 0; overflow-x: auto; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.8; text-align: center; }
+        .diagram pre { color: var(--dark-teal); margin: 0; white-space: pre; }
+        .benefits-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .benefits-table th, .benefits-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--dark-border); }
+        .benefits-table th { background: var(--dark-navy); color: var(--dark-teal); font-weight: 700; }
+        .benefits-table tr:hover { background: rgba(0,194,168,0.05); }
+        .protected-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 20px 0; }
+        .protected-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(0,194,168,0.05); border-radius: 8px; }
+        .protected-item i { color: var(--dark-teal); width: 24px; }
+        .savings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .savings-item { display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--dark-code); border-radius: 8px; border-left: 3px solid var(--dark-teal); }
+        .cadre-code { margin: 16px 0 24px; border-radius: 8px; overflow: hidden; border: 1px solid var(--dark-border); }
+        .cadre-code__hdr { display: flex; justify-content: space-between; padding: 8px 16px; background: var(--dark-navy); border-bottom: 1px solid var(--dark-border); }
+        .cadre-code__lang { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--dark-teal); }
+        .cadre-copy { font-size: 11px; color: var(--dark-muted); background: none; border: 1px solid var(--dark-border); padding: 3px 10px; border-radius: 4px; cursor: pointer; }
+        .cadre-copy:hover { color: var(--dark-teal); border-color: var(--dark-teal); }
+        .cadre-code pre { background: var(--dark-code); padding: 18px 20px; overflow-x: auto; font-family: 'Space Mono', monospace; font-size: 13px; line-height: 1.75; margin: 0; }
+        .cadre-box { border-left: 3px solid var(--dark-teal); background: rgba(0,194,168,.06); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 16px 0 24px; }
+        .cadre-box.gold { border-left-color: var(--dark-gold); background: rgba(232,184,75,.06); }
+        .cadre-table-wrap { overflow-x: auto; margin: 14px 0 24px; border-radius: 8px; border: 1px solid var(--dark-border); }
+        .cadre-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        .cadre-table th { padding: 12px 16px; text-align: left; background: var(--dark-navy); color: var(--dark-teal); }
+        .cadre-table td { padding: 10px 16px; border-bottom: 1px solid var(--dark-border); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: var(--dark-surface); border: 1px solid var(--dark-border); border-radius: 16px; max-width: 800px; width: 90%; max-height: 85vh; overflow-y: auto; position: relative; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--dark-border); background: var(--dark-navy); border-radius: 16px 16px 0 0; position: sticky; top: 0; }
+        .modal-header h3 { color: var(--dark-teal); font-size: 20px; }
+        .modal-close { background: none; border: none; color: var(--dark-muted); font-size: 28px; cursor: pointer; }
+        .modal-close:hover { color: var(--dark-orange); }
+        .modal-body { padding: 24px; }
+        .modal-body h4 { color: var(--dark-gold); margin: 20px 0 10px; font-size: 16px; }
+        .modal-body pre { background: var(--dark-code); padding: 16px; border-radius: 8px; overflow-x: auto; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.5; margin: 10px 0; }
+        .footer { background: var(--dark-navy); border-top: 1px solid var(--dark-border); padding: 40px 0 20px; margin-top: 40px; text-align: center; color: var(--dark-muted); font-size: 12px; }
+        @media (max-width: 860px) { .cadre-toc { display: none; } .cadre-body { padding: 0 16px; } .c-nav__content ul { display: none; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-code); }
+        ::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
+        .price-highlight { color: var(--dark-teal); font-size: 20px; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header class="header"><div class="container"><div class="header__wrapper"><div class="c-logo"><a href="/"><img src="img/logo.png" alt="CloFix Logo"></a></div><nav class="c-nav"><div class="c-nav__content"><ul><li><a href="/" class="c-link">Home</a></li><li><a href="#pricing" class="c-link">Pricing</a></li><li><a href="/waf-setup" class="c-link">WAF Setup</a></li><li><a href="/features" class="c-link">Features</a></li><li><a href="/contact" class="c-link">Contact</a></li><li><a href="/faq"><button class="c-button">FAQ</button></a></li></ul></div></nav></div></div></header>
+
+    <div class="agent-hero"><div class="container"><div class="agent-hero__badge">CLOFIX AGENT v1.0</div><h1>Lightweight <span>Kubernetes WAF</span> Agent</h1><p class="agent-hero__lead">Deploy a resilient, server-side validated security agent that filters all ingress traffic. Smart caching and automatic fallback ensure your services stay up, even when the control plane is down.</p><div class="cadre-hero__pills"><span class="cadre-hero__pill">Server-side validation</span><span class="cadre-hero__pill">$5/domain</span><span class="cadre-hero__pill">Smart fallback</span><span class="cadre-hero__pill">K8s native</span><span class="cadre-hero__pill">99.99% SLA</span></div></div></div>
+
+    <div class="cadre-body">
+        <aside class="cadre-toc"><div class="cadre-toc__title">Contents</div><a href="#what-is-agent">What is CloFix Agent?</a><a href="#benefits">Benefits</a><a href="#pricing">Pricing</a><a href="#domain-pricing-info">Domain Pricing</a><a href="#compliance">Compliance</a><a href="#domain-filtering">Domain Filtering</a><a href="#high-availability">High Availability</a><a href="#scalability">Scalability</a><a href="#protected">Protected Against</a><a href="#core-benefits">Core Benefits</a><a href="#how-integrate">How to Integrate</a><a href="#where-integrate">Where to Integrate</a><a href="#features">Features</a><a href="#deployment">Deployment</a><a href="#faq">FAQ</a></aside>
+
+        <div class="cadre-content">
+            <section class="cadre-section" id="what-is-agent"><h2 class="cadre-section__title"><span class="sec-num">01</span> What is the CloFix Agent?</h2><p>The <strong>CloFix Agent</strong> is a lightweight, high-performance security proxy that runs inside your Kubernetes cluster as a <code>DaemonSet</code>. It intercepts all incoming traffic and validates each request against a central <strong>CloFix API Server</strong>.</p><div class="cadre-box"><strong>🎯 Core Design Philosophy</strong><br>✅ All security rules and licenses are managed on the server (central control plane).<br>✅ The agent is stateless, caching decisions for high performance.<br>✅ If the server becomes unreachable, the agent enters fallback mode for zero downtime.</div></section>
+
+            <section class="cadre-section" id="benefits"><h2 class="cadre-section__title"><span class="sec-num">02</span> Key Benefits</h2><div class="feature-grid"><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">Server-Side Validation</span></div><div class="feature-card__desc">All rules managed centrally. Update once, secure all agents instantly.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">Smart Fallback</span></div><div class="feature-card__desc">If API server is down, agent bypasses/caches to keep services running.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">⚡</span><span class="feature-card__name">Ultra-Low Latency</span></div><div class="feature-card__desc">90% cache hit rate, &lt;10µs processing for cached requests.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🔐</span><span class="feature-card__name">License & IP Control</span></div><div class="feature-card__desc">Centrally manage licenses, IP ranges, and blocklists.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">💰</span><span class="feature-card__name">Transparent Pricing</span></div><div class="feature-card__desc">$5 per domain. No hidden fees. Pay only for what you protect.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🐳</span><span class="feature-card__name">Kubernetes Native</span></div><div class="feature-card__desc">DaemonSet with hostNetwork, simple Helm chart.</div></div></div></section>
+
+            <!-- Pricing Section with Domain Pricing -->
+            <section class="cadre-section" id="pricing"><h2 class="cadre-section__title"><span class="sec-num">03</span> Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card"><h3>Starter</h3><div class="pricing-price">$49<span>/month</span></div><div class="pricing-sub">+ $5 per domain</div><ul class="pricing-features"><li><i class="fas fa-check"></i> Up to 2 agents</li><li><i class="fas fa-check"></i> <strong>10 domains included</strong></li><li><i class="fas fa-check"></i> 50K requests/month</li><li><i class="fas fa-check"></i> Email support</li><li><i class="fas fa-check"></i> 99.9% SLA</li><li><i class="fas fa-times"></i> Slack notifications</li></ul><button class="pricing-btn" onclick="alert('Contact sales for Starter plan')">Get Started</button></div>
+                <div class="pricing-card popular"><h3>Professional</h3><div class="pricing-price">$99<span>/month</span></div><div class="pricing-sub">+ $5 per domain</div><ul class="pricing-features"><li><i class="fas fa-check"></i> Up to <strong>10 agents</strong></li><li><i class="fas fa-check"></i> <strong>25 domains included</strong></li><li><i class="fas fa-check"></i> 100K requests/month</li><li><i class="fas fa-check"></i> Priority email support</li><li><i class="fas fa-check"></i> 99.99% SLA</li><li><i class="fas fa-check"></i> Slack notifications</li><li><i class="fas fa-check"></i> Prometheus metrics</li></ul><button class="pricing-btn" onclick="alert('Contact sales for Professional plan')">Get Started</button></div>
+                <div class="pricing-card"><h3>Enterprise</h3><div class="pricing-price">Custom</div><div class="pricing-sub">Volume discounts available</div><ul class="pricing-features"><li><i class="fas fa-check"></i> Unlimited agents</li><li><i class="fas fa-check"></i> <strong>Unlimited domains</strong></li><li><i class="fas fa-check"></i> Unlimited requests</li><li><i class="fas fa-check"></i> 24/7 Phone + Slack support</li><li><i class="fas fa-check"></i> 99.999% SLA</li><li><i class="fas fa-check"></i> On-premise deployment</li><li><i class="fas fa-check"></i> Dedicated account manager</li></ul><button class="pricing-btn" onclick="alert('Contact sales for Enterprise plan')">Contact Sales</button></div>
+            </div></section>
+
+            <!-- Domain Pricing Details -->
+            <section class="cadre-section" id="domain-pricing-info"><h2 class="cadre-section__title"><span class="sec-num">04</span> Domain-Based Pricing</h2>
+            <div class="domain-pricing"><h4><i class="fas fa-globe"></i> How Domain Pricing Works</h4><p>Each protected domain costs <strong class="price-highlight">$5/month</strong>. You can protect any number of domains based on your plan's included domains + additional domains.</p><div style="margin: 20px 0;"><span class="domain-badge">example.com → $5/month</span><span class="domain-badge">api.example.com → $5/month</span><span class="domain-badge">*.staging.com → $5/month</span><span class="domain-badge">dashboard.company.com → $5/month</span></div><div class="cadre-box gold"><strong>📊 Example Calculation</strong><br>Professional Plan ($99/month) includes 25 domains.<br>If you need 35 domains → $99 + (10 × $5) = <strong>$149/month</strong><br>Each additional domain beyond included limits is just $5/month.</div></div>
+            <div class="savings-grid"><div class="savings-item"><i class="fas fa-dollar-sign"></i> No per-request fees – Flat pricing</div><div class="savings-item"><i class="fas fa-charging-station"></i> No egress charges</div><div class="savings-item"><i class="fas fa-lock"></i> No SSL termination fees</div><div class="savings-item"><i class="fas fa-headset"></i> Free 24/7 support</div><div class="savings-item"><i class="fas fa-cloud-upload-alt"></i> No upgrade costs</div></div></section>
+
+            <section class="cadre-section" id="compliance"><h2 class="cadre-section__title"><span class="sec-num">05</span> Compliance Ready</h2><div class="feature-grid"><div class="compliance-card"><h3><i class="fas fa-shield-alt"></i> PCI DSS 4.0</h3><p>Complete logging & auditing for payment card industry.</p></div><div class="compliance-card"><h3><i class="fas fa-user-secret"></i> GDPR</h3><p>Data anonymization and privacy controls.</p></div><div class="compliance-card"><h3><i class="fas fa-hospital-user"></i> HIPAA</h3><p>Audit trails for healthcare data.</p></div><div class="compliance-card"><h3><i class="fas fa-chart-line"></i> SOC2</h3><p>Access controls and security monitoring.</p></div><div class="compliance-card"><h3><i class="fas fa-file-alt"></i> ISO 27001</h3><p>Information security management certified.</p></div></div></section>
+
+            <section class="cadre-section" id="domain-filtering"><h2 class="cadre-section__title"><span class="sec-num">06</span> Domain-Based Filtering</h2><div class="cadre-box"><strong>🌐 How Domain Filtering Works</strong><br>✅ <strong>Allowed Domains (Server-Side)</strong> - Configure which domains the agent protects.<br>✅ <strong>Bypass for Other Domains</strong> - Requests to non-configured domains pass through without validation.<br>✅ <strong>Central Management</strong> - All domain configurations are stored on the API server.<br>✅ <strong>Per-Domain Pricing</strong> - $5 per domain per month.</div><div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">json</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div><pre>{
+  "license_key": "CLOFIX-XXXX-XXXX",
+  "plan": "professional",
+  "included_domains": 25,
+  "additional_domains": 10,
+  "total_monthly": 149,
+  "allowed_domains": [
+    "example.com",
+    "api.example.com",
+    "*.staging.example.com",
+    "dashboard.company.com"
+  ],
+  "bypass_others": true
+}</pre></div></section>
+
+            <section class="cadre-section" id="high-availability"><h2 class="cadre-section__title"><span class="sec-num">07</span> High Availability</h2><div class="diagram"><pre>┌─────────────────────────────────────────────────────────┐
+│              Normal Operation (Server UP)               │
+│  Request → Agent → API Server → Validation → Allow/Block │
+└─────────────────────────────────────────────────────────┘
+                         ⬇
+┌─────────────────────────────────────────────────────────┐
+│            Server DOWN (Automatic Fallback)              │
+│  Request → Agent → Cache → Bypass/Deny → Service Continues│
+└─────────────────────────────────────────────────────────┘</pre></div><div class="cadre-box"><strong>🔄 Fallback Modes</strong><br><strong>Bypass:</strong> Allow all when server down (High availability)<br><strong>Cache Only:</strong> Use cached decisions<br><strong>Deny:</strong> Block when server down (Maximum security)</div></section>
+
+            <section class="cadre-section" id="scalability"><h2 class="cadre-section__title"><span class="sec-num">08</span> Scalability</h2><div class="diagram"><pre>                    ┌─────────────┐
+                    │   Load      │
+                    │  Balancer   │
+                    └──────┬──────┘
+                           │
+           ┌───────────────┼───────────────┐
+           │               │               │
+      ┌────▼────┐     ┌─────▼────┐    ┌─────▼────┐
+      │ Agent 1 │     │ Agent 2  │    │ Agent N  │
+      └────┬────┘     └─────┬────┘    └─────┬────┘
+           └────────────────┼───────────────┘
+                            │
+                    ┌───────▼───────┐
+                    │   API Server  │
+                    └───────────────┘</pre></div></section>
+
+            <section class="cadre-section" id="protected"><h2 class="cadre-section__title"><span class="sec-num">09</span> Protected Against</h2><div class="protected-grid"><div class="protected-item"><i class="fas fa-database"></i> SQL Injection (Union, Time-based, Boolean blind)</div><div class="protected-item"><i class="fas fa-code"></i> XSS (Reflected, Stored, DOM-based)</div><div class="protected-item"><i class="fas fa-folder-open"></i> Path Traversal & LFI/RFI</div><div class="protected-item"><i class="fas fa-terminal"></i> Command Injection</div><div class="protected-item"><i class="fas fa-network-wired"></i> SSRF & CSRF</div><div class="protected-item"><i class="fas fa-robot"></i> Bot attacks & Scrapers</div><div class="protected-item"><i class="fas fa-chart-line"></i> DDoS & Brute force</div><div class="protected-item"><i class="fas fa-plug"></i> API abuse & GraphQL attacks</div><div class="protected-item"><i class="fas fa-key"></i> Credential stuffing</div><div class="protected-item"><i class="fas fa-file-alt"></i> Log4Shell & Zero-day exploits</div><div class="protected-item"><i class="fas fa-cookie-bite"></i> Session hijacking & Fixation</div><div class="protected-item"><i class="fas fa-envelope"></i> Email spoofing & Phishing</div><div class="protected-item"><i class="fas fa-download"></i> Malicious file uploads</div><div class="protected-item"><i class="fas fa-x-ray"></i> XXE & XML attacks</div><div class="protected-item"><i class="fas fa-box"></i> Deserialization attacks</div><div class="protected-item"><i class="fas fa-cloud"></i> Cloud metadata access (AWS/GCP/Azure)</div><div class="protected-item"><i class="fas fa-chart-simple"></i> Rate limiting bypass attempts</div><div class="protected-item"><i class="fas fa-mask"></i> IP spoofing & rotation attacks</div></div></section>
+
+            <section class="cadre-section" id="core-benefits"><h2 class="cadre-section__title"><span class="sec-num">10</span> Core Benefits Summary</h2><table class="benefits-table"><thead><tr><th>Category</th><th>Benefit</th><th>Impact</th></tr></thead><tbody><tr><td>Security</td><td>99.97% threat detection</td><td>Blocks SQLi, XSS, bot attacks</td></tr><tr><td>Performance</td><td>&lt;2ms latency</td><td>No noticeable slowdown</td></tr><tr><td>Availability</td><td>99.99% SLA</td><td>Smart fallback when server down</td></tr><tr><td>Cost</td><td>70-80% reduction</td><td>Lower than traditional WAF</td></tr><tr><td>Pricing</td><td>$5/domain</td><td>Pay only for what you protect</td></tr></tbody></table></section>
+
+            <section class="cadre-section" id="how-integrate"><h2 class="cadre-section__title"><span class="sec-num">11</span> How to Integrate</h2><div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">bash</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div><pre># Deploy agent as DaemonSet
+kubectl apply -f https://clofix.com/k8s/agent-daemonset.yaml
+
+# Configure ingress with auth-url
+kubectl annotate ingress my-app \
+  nginx.ingress.kubernetes.io/auth-url="http://clofix-agent:8080/validate"</pre></div></section>
+
+            <section class="cadre-section" id="where-integrate"><h2 class="cadre-section__title"><span class="sec-num">12</span> Where to Integrate</h2><p>Click any card to see full setup steps.</p><div class="feature-grid" id="integrationGrid"><div class="feature-card" data-integration="nginx"><div class="feature-card__header"><span class="feature-card__icon"><i class="fab fa-nginx"></i></span><span class="feature-card__name">Nginx</span></div><div class="feature-card__desc">Standalone Nginx with auth_request module</div></div><div class="feature-card" data-integration="apache"><div class="feature-card__header"><span class="feature-card__icon"><i class="fas fa-server"></i></span><span class="feature-card__name">Apache</span></div><div class="feature-card__desc">Apache with mod_auth_request</div></div><div class="feature-card" data-integration="k8s-ingress"><div class="feature-card__header"><span class="feature-card__icon"><i class="fab fa-kubernetes"></i></span><span class="feature-card__name">K8s Nginx Ingress</span></div><div class="feature-card__desc">Kubernetes Ingress with auth-url</div></div><div class="feature-card" data-integration="aws-alb"><div class="feature-card__header"><span class="feature-card__icon"><i class="fab fa-aws"></i></span><span class="feature-card__name">AWS ALB</span></div><div class="feature-card__desc">Application Load Balancer + Lambda</div></div><div class="feature-card" data-integration="traefik"><div class="feature-card__header"><span class="feature-card__icon"><i class="fas fa-cloud"></i></span><span class="feature-card__name">Traefik</span></div><div class="feature-card__desc">Traefik ForwardAuth middleware</div></div><div class="feature-card" data-integration="istio"><div class="feature-card__header"><span class="feature-card__icon"><i class="fas fa-network-wired"></i></span><span class="feature-card__name">Istio</span></div><div class="feature-card__desc">EnvoyFilter external authorization</div></div><div class="feature-card" data-integration="caddy"><div class="feature-card__header"><span class="feature-card__icon"><i class="fas fa-rocket"></i></span><span class="feature-card__name">Caddy</span></div><div class="feature-card__desc">Caddy with forward_auth</div></div><div class="feature-card" data-integration="haproxy"><div class="feature-card__header"><span class="feature-card__icon"><i class="fas fa-chart-line"></i></span><span class="feature-card__name">HAProxy</span></div><div class="feature-card__desc">HAProxy with http-request auth</div></div></div></section>
+
+            <section class="cadre-section" id="features"><h2 class="cadre-section__title"><span class="sec-num">13</span> Features</h2><div class="cadre-table-wrap"><table class="cadre-table"><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody><tr><td><code>Server-side validation</code></td><td>Agent forwards request to central API for decision</td></tr><tr><td><code>Smart caching</code></td><td>90% cache hit rate, configurable TTL</td></tr><tr><td><code>Domain filtering</code></td><td>Only configured domains are validated, others bypass</td></tr><tr><td><code>Per-domain pricing</code></td><td>$5 per domain – pay only for what you protect</td></tr><tr><td><code>Fallback modes</code></td><td>bypass / cache_only / deny when server down</td></tr><tr><td><code>License enforcement</code></td><td>Validates license key, expiry, organization</td></tr><tr><td><code>IP filtering</code></td><td>Allow/block lists, CIDR ranges, GeoIP</td></tr><tr><td><code>Prometheus metrics</code></td><td>Request counts, latency, cache hit ratio</td></tr><tr><td><code>Slack notifications</code></td><td>Real-time alerts for attacks & license expiry</td></tr></tbody></table></div></section>
+
+            <section class="cadre-section" id="deployment"><h2 class="cadre-section__title"><span class="sec-num">14</span> Deployment</h2><div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">bash</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div><pre># DaemonSet (K8s)
+kubectl apply -f https://clofix.com/k8s/agent-daemonset.yaml
+
+# Docker
+docker run -d --name clofix-agent -p 8080:8080 -p 9090:9090 clofix/agent:latest
+
+# Binary
+./clofix-agent --license=YOUR_KEY --api=http://api.clofix.com:8081</pre></div></section>
+
+            <section class="cadre-section" id="faq"><h2 class="cadre-section__title"><span class="sec-num">15</span> FAQ</h2><div class="cadre-box"><strong>❓ How does domain pricing work?</strong><br>Each domain you protect costs $5/month. Your plan includes a certain number of domains. Additional domains are $5 each.</div><div class="cadre-box"><strong>❓ What if I have 100 domains?</strong><br>Enterprise plan offers unlimited domains with volume discounts. Contact sales for custom pricing.</div><div class="cadre-box"><strong>❓ Does the agent store security rules?</strong><br>No. Only caches decisions. Rules are on the API server.</div><div class="cadre-box"><strong>❓ What if API server is down?</strong><br>Enters fallback mode (bypass/cache_only/deny). No downtime.</div><div class="cadre-box"><strong>❓ How does domain filtering work?</strong><br>Only domains configured on the server are validated. Other domains bypass automatically.</div><div class="cadre-box gold"><strong>❓ Is there a free trial?</strong><br>Yes! Contact us for a 14-day free trial with 5 domains included.</div></div></section>
+        </div>
+    </div>
+
+    <div id="integrationModal" class="modal"><div class="modal-content"><div class="modal-header"><h3 id="modalTitle">Integration</h3><button class="modal-close" onclick="closeModal()">&times;</button></div><div class="modal-body" id="modalBody"></div></div></div>
+
+    <footer class="footer"><div class="container"><p>© 2026 CloFix - All Rights Reserved</p></div></footer>
+
+    <script>
+        const configs = {
+            nginx: { title: "Nginx Integration", content: `<h4>1. Install CloFix Agent</h4><pre><code>./clofix-agent --license=YOUR_KEY --port=8080</code></pre><h4>2. Nginx Configuration</h4><pre><code>upstream clofix_agent { server 127.0.0.1:8080; keepalive 100; }\nserver {\n    listen 80;\n    location = /clofix-auth {\n        internal;\n        proxy_pass http://clofix_agent/validate;\n        proxy_pass_request_body off;\n        proxy_set_header X-Original-URI $request_uri;\n        proxy_set_header X-Real-IP $remote_addr;\n    }\n    location / {\n        auth_request /clofix-auth;\n        error_page 403 = @blocked;\n        proxy_pass http://your-backend;\n    }\n    location @blocked {\n        return 403 '{"error":"Blocked by CloFix"}';\n        add_header Content-Type application/json;\n    }\n}</code></pre><h4>3. Reload Nginx</h4><pre><code>sudo nginx -t && sudo systemctl reload nginx</code></pre>` },
+            apache: { title: "Apache Integration", content: `<h4>1. Enable Modules</h4><pre><code>sudo a2enmod auth_request proxy proxy_http\nsudo systemctl restart apache2</code></pre><h4>2. VirtualHost Configuration</h4><pre><code>&lt;VirtualHost *:80&gt;\n    ServerName example.com\n    &lt;Location /clofix-auth&gt;\n        ProxyPass "http://127.0.0.1:8080/validate"\n        ProxyPassReverse "http://127.0.0.1:8080/validate"\n    &lt;/Location&gt;\n    &lt;Location /&gt;\n        AuthType None\n        AuthRequest "http://127.0.0.1:8080/validate"\n        Require valid-user\n        ErrorDocument 403 /clofix-blocked.html\n        ProxyPass "http://your-backend:80/"\n    &lt;/Location&gt;\n&lt;/VirtualHost&gt;</code></pre><h4>3. Restart Apache</h4><pre><code>sudo systemctl restart apache2</code></pre>` },
+            "k8s-ingress": { title: "K8s Nginx Ingress", content: `<h4>1. Deploy Agent</h4><pre><code>kubectl apply -f https://clofix.com/k8s/agent-daemonset.yaml</code></pre><h4>2. Ingress with Auth</h4><pre><code>apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: my-app\n  annotations:\n    nginx.ingress.kubernetes.io/auth-url: "http://clofix-agent.clofix-system.svc:8080/validate"\n    nginx.ingress.kubernetes.io/auth-response-headers: "X-CloFix-Decision"\nspec:\n  rules:\n  - host: app.example.com\n    http:\n      paths:\n      - path: /\n        backend:\n          service:\n            name: my-backend\n            port:\n              number: 80</code></pre><h4>3. Create Service</h4><pre><code>apiVersion: v1\nkind: Service\nmetadata:\n  name: clofix-agent\n  namespace: clofix-system\nspec:\n  selector:\n    app: clofix-agent\n  ports:\n  - port: 8080</code></pre>` },
+            "aws-alb": { title: "AWS ALB Integration", content: `<h4>1. Deploy Agent on EC2</h4><pre><code># Run agent on EC2 instance\n./clofix-agent --license=YOUR_KEY --port=8080</code></pre><h4>2. Create Target Group</h4><pre><code>aws elbv2 create-target-group \\\n    --name clofix-agent-tg \\\n    --protocol HTTP \\\n    --port 8080 \\\n    --vpc-id vpc-xxxxx</code></pre><h4>3. Register Targets</h4><pre><code>aws elbv2 register-targets \\\n    --target-group-arn arn:aws:elbv2:xxx \\\n    --targets Id=i-xxxxx</code></pre><h4>4. Create Listener Rule</h4><pre><code>aws elbv2 create-rule \\\n    --listener-arn arn:aws:elbv2:xxx \\\n    --priority 1 \\\n    --conditions Field=path-pattern,Values=/* \\\n    --actions Type=forward,TargetGroupArn=arn:aws:elbv2:clofix-agent-tg</code></pre>` },
+            traefik: { title: "Traefik Integration", content: `<h4>1. Create Middleware</h4><pre><code>apiVersion: traefik.containo.us/v1alpha1\nkind: Middleware\nmetadata:\n  name: clofix-auth\nspec:\n  forwardAuth:\n    address: http://clofix-agent.clofix-system.svc:8080/validate\n    trustForwardHeader: true\n    authResponseHeaders:\n      - X-CloFix-Decision</code></pre><h4>2. Apply to Ingress</h4><pre><code>apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: my-app\n  annotations:\n    traefik.ingress.kubernetes.io/router.middlewares: "clofix-system-clofix-auth@kubernetescrd"\nspec:\n  rules:\n  - host: app.example.com\n    http:\n      paths:\n      - path: /\n        backend:\n          service:\n            name: my-backend\n            port: 80</code></pre>` },
+            istio: { title: "Istio Integration", content: `<h4>1. EnvoyFilter</h4><pre><code>apiVersion: networking.istio.io/v1alpha3\nkind: EnvoyFilter\nmetadata:\n  name: clofix-auth\nspec:\n  configPatches:\n  - applyTo: HTTP_FILTER\n    match:\n      context: GATEWAY\n    patch:\n      operation: INSERT_BEFORE\n      value:\n        name: envoy.filters.http.ext_authz\n        typed_config:\n          "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz\n          grpc_service:\n            envoy_grpc:\n              cluster_name: outbound|8080||clofix-agent.clofix-system.svc</code></pre><h4>2. AuthorizationPolicy</h4><pre><code>apiVersion: security.istio.io/v1beta1\nkind: AuthorizationPolicy\nmetadata:\n  name: clofix-auth-policy\nspec:\n  action: CUSTOM\n  provider:\n    name: clofix-ext-authz\n  rules:\n  - to:\n    - operation:\n        paths: ["/*"]</code></pre>` },
+            caddy: { title: "Caddy Integration", content: `<h4>Caddyfile Configuration</h4><pre><code>example.com {\n    route {\n        forward_auth http://clofix-agent:8080/validate {\n            uri /validate\n            copy_headers X-CloFix-Decision\n        }\n        reverse_proxy your-backend:80\n    }\n}</code></pre><h4>Run Caddy</h4><pre><code>caddy run --config Caddyfile</code></pre>` },
+            haproxy: { title: "HAProxy Integration", content: `<h4>HAProxy Configuration</h4><pre><code>backend clofix_agent\n    server agent1 127.0.0.1:8080 check\n\nfrontend web_front\n    bind *:80\n    http-request auth-realm "CloFix" unless { path /health }\n    http-request use-service lua.clofix-validate\n    default_backend app_backend</code></pre><h4>Lua Script</h4><pre><code>function clofix_validate(txn)\n    local url = "http://127.0.0.1:8080/validate"\n    -- validation logic here\nend</code></pre>` }
+        };
+        const modal = document.getElementById('integrationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        function openModal(integration) { const c = configs[integration]; if(c) { modalTitle.textContent = c.title; modalBody.innerHTML = c.content; modal.classList.add('active'); document.body.style.overflow = 'hidden'; } }
+        function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
+        document.querySelectorAll('.feature-card[data-integration]').forEach(card => { card.addEventListener('click', () => openModal(card.getAttribute('data-integration'))); });
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+        function copyCode(btn) { const pre = btn.closest('.cadre-code').querySelector('pre'); if(pre) { navigator.clipboard.writeText(pre.innerText).then(() => { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1800); }); } }
+        window.copyCode = copyCode;
+        document.querySelectorAll('.cadre-toc a').forEach(link => { link.addEventListener('click', (e) => { document.querySelectorAll('.cadre-toc a').forEach(l => l.classList.remove('active')); link.classList.add('active'); }); });
+    </script>
+</body>
+</html>
