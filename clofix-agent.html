@@ -579,7 +579,306 @@
             <section class="cadre-section" id="what-is-agent"><h2 class="cadre-section__title"><span class="sec-num">01</span> What is the CloFix Agent?</h2><p>The <strong>CloFix Agent</strong> is a lightweight, high-performance security proxy that runs inside your Kubernetes cluster as a <code>DaemonSet</code>. It intercepts all incoming traffic and validates each request against a central <strong>CloFix API Server</strong>.</p><div class="cadre-box"><strong>🎯 Core Design Philosophy</strong><br>✅ All security rules and licenses are managed on the server (central control plane).<br>✅ The agent is stateless, caching decisions for high performance.<br>✅ If the server becomes unreachable, the agent enters fallback mode for zero downtime.</div></section>
 
             <!-- Section 02 Benefits -->
-            <section class="cadre-section" id="benefits"><h2 class="cadre-section__title"><span class="sec-num">02</span> Key Benefits</h2><div class="feature-grid"><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">Server-Side Validation</span></div><div class="feature-card__desc">All rules managed centrally. Update once, secure all agents instantly.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">Smart Fallback</span></div><div class="feature-card__desc">If API server is down, agent bypasses/caches to keep services running.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">⚡</span><span class="feature-card__name">Ultra-Low Latency</span></div><div class="feature-card__desc">90% cache hit rate, &lt;10µs processing for cached requests.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🔐</span><span class="feature-card__name">License & IP Control</span></div><div class="feature-card__desc">Centrally manage licenses, IP ranges, and blocklists.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">💰</span><span class="feature-card__name">Transparent Pricing</span></div><div class="feature-card__desc">$5 per domain. No hidden fees. Pay only for what you protect.</div></div><div class="feature-card non-clickable"><div class="feature-card__header"><span class="feature-card__icon">🐳</span><span class="feature-card__name">Kubernetes Native</span></div><div class="feature-card__desc">DaemonSet with hostNetwork, simple Helm chart.</div></div></div></section>
+            <section class="cadre-section" id="benefits">
+                <h2 class="cadre-section__title">
+                    <span class="sec-num">02</span> Key Benefits
+                </h2>
+                
+                <!-- Main Benefits Grid -->
+                <div class="feature-grid">
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header">
+                            <span class="feature-card__icon">🛡️</span>
+                            <span class="feature-card__name">Complete OWASP Top 10 Protection</span>
+                        </div>
+                        <div class="feature-card__desc">Full coverage against A01-A10 vulnerabilities including Injection, Broken Auth, XSS, SSRF, and more. 99.9% attack detection rate.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header">
+                            <span class="feature-card__icon">🔧</span>
+                            <span class="feature-card__name">Multi-Script Security Engine</span>
+                        </div>
+                        <div class="feature-card__desc">Write rules in JSON, Lua, Python, JavaScript, or Go plugins. Auto-reload on changes. 10x faster than traditional WAFs.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header">
+                            <span class="feature-card__icon">⚡</span>
+                            <span class="feature-card__name">Ultra-Low Latency</span>
+                        </div>
+                        <div class="feature-card__desc">95% cache hit rate, &lt;5µs processing for cached requests. Handles 50k+ RPS on single node.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header">
+                            <span class="feature-card__icon">🔐</span>
+                            <span class="feature-card__name">Enterprise License Control</span>
+                        </div>
+                        <div class="feature-card__desc">Domain-based licensing, IP whitelisting, monthly quota, agent limits, and feature-based access control.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header">
+                            <span class="feature-card__icon">🌐</span>
+                            <span class="feature-card__name">Multi-Platform Support</span>
+                        </div>
+                        <div class="feature-card__desc">Nginx, Apache, HAProxy, Traefik, Caddy, AWS ALB, K8s Ingress, Cloudflare Workers, and Istio.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header">
+                            <span class="feature-card__icon">🐳</span>
+                            <span class="feature-card__name">Kubernetes Native</span>
+                        </div>
+                        <div class="feature-card__desc">DaemonSet with hostNetwork, Helm chart, Prometheus metrics, and automatic sidecar injection.</div>
+                    </div>
+                </div>
+
+                <!-- OWASP Top 10 Coverage Section -->
+                <div style="margin-top: 60px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: #00c2a8; font-size: 28px;">
+                        <span style="background: #fff; padding: 4px 16px; border-radius: 20px; font-size: 14px; margin-right: 10px;">OWASP Top 10</span>
+                        Complete Vulnerability Coverage
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                        
+                        <!-- A01:2021 - Broken Access Control -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A01:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Broken Access Control</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Path-based authorization checks</li>
+                                <li>Forceful browsing prevention</li>
+                                <li>Directory traversal detection</li>
+                                <li>IDOR protection</li>
+                            </ul>
+                        </div>
+
+                        <!-- A02:2021 - Cryptographic Failures -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A02:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Cryptographic Failures</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>TLS/SSL enforcement</li>
+                                <li>Weak cipher detection</li>
+                                <li>Secure header injection (HSTS, CSP)</li>
+                                <li>Sensitive data exposure prevention</li>
+                            </ul>
+                        </div>
+
+                        <!-- A03:2021 - Injection -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A03:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Injection Flaws</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>SQL/NoSQL Injection prevention</li>
+                                <li>Command Injection blocking</li>
+                                <li>LDAP Injection protection</li>
+                                <li>ORM Injection detection</li>
+                            </ul>
+                        </div>
+
+                        <!-- A04:2021 - Insecure Design -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A04:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Insecure Design</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Rate limiting & brute force prevention</li>
+                                <li>Request throttling</li>
+                                <li>Business logic flaw detection</li>
+                                <li>Input validation rules</li>
+                            </ul>
+                        </div>
+
+                        <!-- A05:2021 - Security Misconfiguration -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A05:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Security Misconfiguration</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Security headers enforcement</li>
+                                <li>Directory listing blocking</li>
+                                <li>Default path protection</li>
+                                <li>Debug mode detection</li>
+                            </ul>
+                        </div>
+
+                        <!-- A06:2021 - Vulnerable Components -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A06:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Vulnerable Components</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>CMS vulnerability blocking</li>
+                                <li>Framework-specific attack prevention</li>
+                                <li>Plugin vulnerability detection</li>
+                                <li>Known exploit pattern matching</li>
+                            </ul>
+                        </div>
+
+                        <!-- A07:2021 - Identification Failures -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A07:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Identification & Auth Failures</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Brute force protection</li>
+                                <li>Credential stuffing prevention</li>
+                                <li>Session hijacking detection</li>
+                                <li>JWT validation</li>
+                            </ul>
+                        </div>
+
+                        <!-- A08:2021 - Data Integrity Failures -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A08:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Software & Data Integrity</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Deserialization attack prevention</li>
+                                <li>Object injection detection</li>
+                                <li>Parameter tampering protection</li>
+                                <li>Request integrity validation</li>
+                            </ul>
+                        </div>
+
+                        <!-- A09:2021 - Security Logging Failures -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A09:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Security Logging Failures</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Detailed attack logging</li>
+                                <li>Audit trail generation</li>
+                                <li>Alert webhooks (Slack, email)</li>
+                                <li>Prometheus metrics integration</li>
+                            </ul>
+                        </div>
+
+                        <!-- A10:2021 - SSRF -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 12px; padding: 20px; border-left: 3px solid #e85d26;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="background: #e85d26; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">A10:2021</span>
+                                <h4 style="color: #00c2a8; margin: 0; font-size: 16px;">Server-Side Request Forgery</h4>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; color: #c8d8e8; font-size: 13px;">
+                                <li>Internal IP blocking</li>
+                                <li>Metadata endpoint protection</li>
+                                <li>URL allowlist/blocklist</li>
+                                <li>Port scanning prevention</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supported Platforms Integration -->
+                <div style="margin-top: 60px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: #00c2a8; font-size: 28px;">Supported Platforms & Integrations</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        
+                        <!-- Nginx -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">🟢</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">Nginx</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">Native auth_request module. Sub-request authentication with &lt;5ms overhead.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">auth_request /clofix-auth;</code>
+                        </div>
+
+                        <!-- Apache -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">🟡</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">Apache</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">mod_auth_request + mod_proxy. Full compatibility with Apache 2.4+.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">AuthRequest "/clofix-auth"</code>
+                        </div>
+
+                        <!-- K8s Nginx Ingress -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">⎈</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">K8s Nginx Ingress</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">ExternalAuth with DaemonSet. Prometheus metrics. Auto-scaling with HPA.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">nginx.ingress.kubernetes.io/auth-url</code>
+                        </div>
+
+                        <!-- AWS ALB -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">☁️</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">AWS ALB</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">AWS Load Balancer Controller. Target group routing with forward auth.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">alb.ingress.kubernetes.io/auth-type: forward</code>
+                        </div>
+
+                        <!-- Traefik -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">🔄</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">Traefik</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">ForwardAuth middleware. Native Kubernetes CRD support.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">forwardAuth.address: http://clofix-agent:8080</code>
+                        </div>
+
+                        <!-- Istio -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">🔷</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">Istio</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">EnvoyFilter with external auth. Service mesh integration.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">CUSTOM action with ext_authz</code>
+                        </div>
+
+                        <!-- Caddy -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">🚀</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">Caddy</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">Forward auth directive. Automatic HTTPS support.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">forward_auth http://clofix-agent:8080</code>
+                        </div>
+
+                        <!-- HAProxy -->
+                        <div style="background: rgba(15,33,56,0.6); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid rgba(0,194,168,0.2); transition: all 0.3s ease;">
+                            <div style="font-size: 36px;">⚡</div>
+                            <h4 style="color: #00c2a8; margin: 10px 0; font-size: 16px;">HAProxy</h4>
+                            <p style="font-size: 12px; color: #c8d8e8;">Lua-based external authentication. High-performance with &lt;100µs overhead.</p>
+                            <code style="background: #0a0f1a; padding: 4px 8px; display: inline-block; border-radius: 4px; font-size: 10px; margin-top: 8px;">http-request lua.clofix-validate</code>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Performance Metrics -->
+                <div style="margin-top: 60px; background: linear-gradient(135deg, #0a0e17 0%, #0d1b2e 100%); border-radius: 16px; padding: 30px; text-align: center;">
+                    <h3 style="color: #00c2a8; margin-bottom: 20px; font-size: 24px;">Performance Metrics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; color: #e85d26;">99.99%</div>
+                            <div style="font-size: 12px;">Uptime SLA</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; color: #e85d26;">50k+</div>
+                            <div style="font-size: 12px;">RPS per node</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; color: #e85d26;">95%</div>
+                            <div style="font-size: 12px;">Cache hit rate</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; color: #e85d26;">50MB</div>
+                            <div style="font-size: 12px;">Memory footprint</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; color: #e85d26;">5min</div>
+                            <div style="font-size: 12px;">Setup time</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Section 03 Pricing - UPDATED with two rows -->
             <section class="cadre-section" id="pricing">
