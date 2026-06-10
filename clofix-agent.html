@@ -768,7 +768,7 @@
 
             <!-- Section 11 How to Integrate -->
             <section class="cadre-section" id="how-integrate"><h2 class="cadre-section__title"><span class="sec-num">11</span> How to Integrate</h2><div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">bash</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div><pre># Deploy agent as DaemonSet
-kubectl apply -f https://clofix.com/k8s/agent-daemonset.yaml
+kubectl apply -f https://clofix.com/k8s/clofix-agent-daemonset.yaml
 
 # Configure ingress with auth-url
 kubectl annotate ingress my-app \
@@ -781,9 +781,9 @@ kubectl annotate ingress my-app \
                 <div class="integration-split">
                     <div class="integration-sidebar">
                         <div class="integration-list" id="integrationSidebarList">
-                            <div class="integration-item" data-target="nginx"><div class="integration-icon"><i class="fab fa-nginx"></i></div><div class="integration-info"><h4>Nginx</h4><p>auth_request module</p></div></div>
+                            <div class="integration-item" data-target="nginx"><div class="integration-icon"><i class="fas fa-server"></i></div><div class="integration-info"><h4>Nginx</h4><p>auth_request module</p></div></div>
                             <div class="integration-item" data-target="apache"><div class="integration-icon"><i class="fas fa-server"></i></div><div class="integration-info"><h4>Apache</h4><p>mod_auth_request</p></div></div>
-                            <div class="integration-item" data-target="k8s-ingress"><div class="integration-icon"><i class="fab fa-kubernetes"></i></div><div class="integration-info"><h4>K8s Nginx Ingress</h4><p>auth-url annotation</p></div></div>
+                            <div class="integration-item" data-target="k8s-ingress"><div class="integration-icon"><i class="fas fa-server"></i></div><div class="integration-info"><h4>K8s Nginx Ingress</h4><p>auth-url annotation</p></div></div>
                             <div class="integration-item" data-target="aws-alb"><div class="integration-icon"><i class="fab fa-aws"></i></div><div class="integration-info"><h4>AWS ALB</h4><p>Lambda / Target group</p></div></div>
                             <div class="integration-item" data-target="traefik"><div class="integration-icon"><i class="fas fa-cloud"></i></div><div class="integration-info"><h4>Traefik</h4><p>ForwardAuth middleware</p></div></div>
                             <div class="integration-item" data-target="istio"><div class="integration-icon"><i class="fas fa-network-wired"></i></div><div class="integration-info"><h4>Istio</h4><p>EnvoyFilter ext_authz</p></div></div>
@@ -1004,7 +1004,8 @@ gtag('config', 'G-WP02RFXGSE');
         nginx: { 
             title: "Nginx Integration", 
             icon: "fab fa-nginx", 
-            snippet: `upstream clofix_agent {
+            snippet: `
+    upstream clofix_agent {
         server 127.0.0.1:8080;
         keepalive 32;
     }
