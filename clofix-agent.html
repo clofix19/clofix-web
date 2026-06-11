@@ -626,7 +626,116 @@
 
         <div class="cadre-content">
             <!-- Section 01 -->
-            <section class="cadre-section" id="what-is-agent"><h2 class="cadre-section__title"><span class="sec-num">01</span> What is the CloFix Agent?</h2><p>The <strong>CloFix Agent</strong> is a lightweight, high-performance security proxy that runs inside your Kubernetes cluster as a <code>DaemonSet</code>. It intercepts all incoming traffic and validates each request against a central <strong>CloFix API Server</strong>.</p><div class="cadre-box"><strong>🎯 Core Design Philosophy</strong><br>✅ All security rules and licenses are managed on the server (central control plane).<br>✅ The agent is stateless, caching decisions for high performance.<br>✅ If the server becomes unreachable, the agent enters fallback mode for zero downtime.</div></section>
+            <section class="cadre-section" id="what-is-agent">
+                <h2 class="cadre-section__title">
+                    <span class="sec-num">01</span> 
+                    What is the CloFix Nano Agent?
+                </h2>
+                
+                <p>The <strong>CloFix Nano Agent</strong> is a lightweight, high-performance security proxy that protects any workload regardless of platform. Deploy it as a Kubernetes <code>DaemonSet</code>, sidecar container, standalone Docker container, systemd service, or integrate directly with your existing reverse proxy.</p>
+                
+                <div class="cadre-box">
+                    <strong>🎯 Core Design Philosophy</strong><br>
+                    ✅ <strong>Server-Side Control</strong> - All security rules, licenses, and policies are managed centrally on the API server.<br>
+                    ✅ <strong>Stateless & Fast</strong> - The Nano Agent maintains no local state, caching decisions for sub-millisecond validation.<br>
+                    ✅ <strong>Zero-Downtime Fallback</strong> - If the API server becomes unreachable, the agent automatically enters fallback mode (bypass/deny/cache_only) to ensure continuous operation.<br>
+                    ✅ <strong>Ultra-Lightweight</strong> - Consumes only ~50MB RAM and <0.1 CPU core under normal load, perfect for edge deployments.<br>
+                    ✅ <strong>Prometheus Native</strong> - Exposes all metrics at <code>/metrics</code> endpoint for real-time observability.
+                </div>
+                
+                <!-- Multi-Platform Support Grid -->
+                <div style="margin: 24px 0 16px 0;">
+                    <h3 style="color: var(--dark-gold); font-size: 16px; margin-bottom: 16px;">
+                        <i class="fas fa-globe"></i> Works with Any Infrastructure
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">⎈</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Kubernetes</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">DaemonSet / Sidecar / Ingress</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🐳</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Docker</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">Container / Compose / Swarm</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🟢</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Nginx</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">auth_request module</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🟡</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Apache</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">mod_auth_request</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🔄</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Traefik</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">ForwardAuth middleware</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">⚡</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">HAProxy</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">Lua / http-request</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🚀</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Caddy</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">forward_auth directive</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">☁️</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">AWS ALB / NLB</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">Lambda / Target Group</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🔷</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Istio / Envoy</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">ext_authz filter</div>
+                        </div>
+                        
+                        <div style="background: var(--dark-surface); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--dark-border);">
+                            <div style="font-size: 28px;">🖥️</div>
+                            <div style="font-weight: bold; color: var(--dark-teal); font-size: 14px;">Bare Metal / VM</div>
+                            <div style="font-size: 10px; color: var(--dark-muted);">systemd / binary</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Performance Stats -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0 0 0;">
+                    <div style="background: var(--dark-surface); border-radius: 10px; padding: 16px; text-align: center; border: 1px solid var(--dark-border);">
+                        <div style="font-size: 32px;">⚡</div>
+                        <div style="font-weight: bold; color: var(--dark-teal); margin: 8px 0;">50k+ RPS</div>
+                        <div style="font-size: 11px; color: var(--dark-muted);">Per Node Throughput</div>
+                    </div>
+                    <div style="background: var(--dark-surface); border-radius: 10px; padding: 16px; text-align: center; border: 1px solid var(--dark-border);">
+                        <div style="font-size: 32px;">📦</div>
+                        <div style="font-weight: bold; color: var(--dark-teal); margin: 8px 0;">~50MB RAM</div>
+                        <div style="font-size: 11px; color: var(--dark-muted);">Memory Footprint</div>
+                    </div>
+                    <div style="background: var(--dark-surface); border-radius: 10px; padding: 16px; text-align: center; border: 1px solid var(--dark-border);">
+                        <div style="font-size: 32px;">🎯</div>
+                        <div style="font-weight: bold; color: var(--dark-teal); margin: 8px 0;">99.99%</div>
+                        <div style="font-size: 11px; color: var(--dark-muted);">Availability SLA</div>
+                    </div>
+                    <div style="background: var(--dark-surface); border-radius: 10px; padding: 16px; text-align: center; border: 1px solid var(--dark-border);">
+                        <div style="font-size: 32px;">🐳</div>
+                        <div style="font-weight: bold; color: var(--dark-teal); margin: 8px 0;">5-Minute</div>
+                        <div style="font-size: 11px; color: var(--dark-muted);">Deployment Time</div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Section 02 Benefits -->
             <section class="cadre-section" id="benefits">
