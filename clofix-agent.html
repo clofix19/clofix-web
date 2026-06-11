@@ -1174,7 +1174,14 @@
             <section class="cadre-section" id="compliance"><h2 class="cadre-section__title"><span class="sec-num">05</span> Compliance Ready</h2><div class="feature-grid"><div class="compliance-card"><h3><i class="fas fa-shield-alt"></i> PCI DSS 4.0</h3><p>Complete logging & auditing for payment card industry.</p></div><div class="compliance-card"><h3><i class="fas fa-user-secret"></i> GDPR</h3><p>Data anonymization and privacy controls.</p></div><div class="compliance-card"><h3><i class="fas fa-hospital-user"></i> HIPAA</h3><p>Audit trails for healthcare data.</p></div><div class="compliance-card"><h3><i class="fas fa-chart-line"></i> SOC2</h3><p>Access controls and security monitoring.</p></div><div class="compliance-card"><h3><i class="fas fa-file-alt"></i> ISO 27001</h3><p>Information security management certified.</p></div></div></section>
 
             <!-- Section 06 Domain Filtering -->
-            <section class="cadre-section" id="domain-filtering"><h2 class="cadre-section__title"><span class="sec-num">06</span> Domain-Based Filtering</h2><div class="cadre-box"><strong>🌐 How Domain Filtering Works</strong><br>✅ <strong>Allowed Domains (Server-Side)</strong> - Configure which domains the agent protects.<br>✅ <strong>Bypass for Other Domains</strong> - Requests to non-configured domains pass through without validation.<br>✅ <strong>Central Management</strong> - All domain configurations are stored on the API server.<br>✅ <strong>Per-Domain Pricing</strong> - $5 per domain per month.</div><div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">json</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div><pre>{"license_key": "CLOFIX-XXXX", "allowed_domains": ["example.com", "api.example.com"], "bypass_others": true}</pre></div></section>
+            <section class="cadre-section" id="domain-filtering"><h2 class="cadre-section__title"><span class="sec-num">06</span> Domain-Based Filtering</h2><div class="cadre-box"><strong>🌐 How Domain Filtering Works</strong><br>✅ <strong>Allowed Domains (Server-Side)</strong> - Configure which domains the agent protects.<br>✅ <strong>Bypass for Other Domains</strong> - Requests to non-configured domains pass through without validation.<br>✅ <strong>Central Management</strong> - All domain configurations are stored on the API server.<br>✅ <strong>Per-Domain Pricing</strong> - $5 per domain per month.</div><div class="cadre-code"><div class="cadre-code__hdr"><span class="cadre-code__lang">CloFix Nano Agent License Example:</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div><pre>{
+ "license_key": "CLOFIX-XXXX", 
+ "plan": "enterprise",
+ "organization_name": "CloFix-Infotech",
+ "email": "support@clofix.com",
+ "allowed_domains": ["example.com", "api.example.com"], 
+ "bypass_others": true
+}</pre></div></section>
 
             <!-- Section 07 High Availability -->
             <section class="cadre-section" id="high-availability"><h2 class="cadre-section__title"><span class="sec-num">07</span> High Availability</h2><div class="diagram"><pre>┌─────────────────────────────────────────────────────────┐
