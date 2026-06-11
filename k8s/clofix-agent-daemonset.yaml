@@ -1,0 +1,277 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: clofix-system
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clofix-agent-config
+  namespace: clofix-system
+data:
+  config.json: |
+    {
+      "fallback_mode": "bypass",
+      "cache_ttl": "1h",
+      "api_timeout": "5s",
+      "health_interval": "30s",
+      "metrics_port": ":9090"
+    }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: clofix-license
+  namespace: clofix-system
+type: Opaque
+stringData:
+  LICENSE_KEY: "<clofix license number>"
+  ORGANIZATION: "<your org name>"
+  EMAIL: "<email address>"
+  API_ENDPOINT: "http://clofix-api-server.clofix-system.svc:8081"
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: clofix-agent
+  namespace: clofix-system
+  labels:
+    app: clofix-agent
+    component: waf
+    version: v2.0
+spec:
+  selector:
+    matchLabels:
+      app: clofix-agent
+  template:
+    metadata:
+      labels:
+        app: clofix-agent
+        component: waf
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      hostNetwork: true  # Required to intercept traffic on node IP
+      dnsPolicy: ClusterFirstWithHostNet
+      serviceAccountName: clofix-agent
+      containers:
+      - name: clofix-agent
+        image: clofix/agent:latest
+        imagePullPolicy: IfNotPresent
+        args:
+        - --license=$(LICENSE_KEY)
+        - --org=$(ORGANIZATION)
+        - --email=$(EMAIL)
+        - --api=$(API_ENDPOINT)
+        - --fallback=bypass
+        - --port=:8080
+        - --metrics=:9090
+        - --cache-ttl=1h
+        - --api-timeout=5s
+        - --health-interval=30s
+        env:
+        - name: LICENSE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: clofix-license
+              key: LICENSE_KEY
+        - name: ORGANIZATION
+          valueFrom:
+            secretKeyRef:
+              name: clofix-license
+              key: ORGANIZATION
+        - name: EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: clofix-license
+              key: EMAIL
+        - name: API_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: clofix-license
+              key: API_ENDPOINT
+        ports:
+        - name: http
+          containerPort: 8080
+          hostPort: 8080
+          protocol: TCP
+        - name: metrics
+          containerPort: 9090
+          hostPort: 9090
+          protocol: TCP
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 2
+        volumeMounts:
+        - name: cache
+          mountPath: /var/cache/clofix
+        - name: config
+          mountPath: /etc/clofix
+          readOnly: true
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1000
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_BIND_SERVICE
+      volumes:
+      - name: cache
+        emptyDir:
+          sizeLimit: 1Gi
+      - name: config
+        configMap:
+          name: clofix-agent-config
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clofix-agent
+  namespace: clofix-system
+  labels:
+    app: clofix-agent
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: 9090
+    protocol: TCP
+  selector:
+    app: clofix-agent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clofix-agent-headless
+  namespace: clofix-system
+  labels:
+    app: clofix-agent
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: clofix-agent
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: clofix-agent
+  namespace: clofix-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: clofix-agent
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "nodes/proxy", "services", "endpoints", "pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: clofix-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: clofix-agent
+subjects:
+- kind: ServiceAccount
+  name: clofix-agent
+  namespace: clofix-system
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: clofix-agent
+  namespace: clofix-system
+  labels:
+    app: clofix-agent
+spec:
+  selector:
+    matchLabels:
+      app: clofix-agent
+  endpoints:
+  - port: metrics
+    interval: 30s
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - clofix-system
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: clofix-agent
+  namespace: clofix-system
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: clofix-agent
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: clofix-agent
+  namespace: clofix-system
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: DaemonSet
+    name: clofix-agent
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80

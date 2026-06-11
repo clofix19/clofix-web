@@ -509,6 +509,52 @@
         ::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
         .price-highlight { color: var(--dark-teal); font-size: 20px; font-weight: 700; }
     </style>
+    <style>
+        .prometheus-slider-container:hover .slider-btn {
+            opacity: 1;
+        }
+        .slider-btn {
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        .prometheus-slider-container:hover .slider-btn {
+            opacity: 0.8;
+        }
+        .slider-btn:hover {
+            opacity: 1 !important;
+            background: var(--dark-teal) !important;
+        }
+        .dot.active {
+            background: var(--dark-teal);
+            transform: scale(1.2);
+        }
+        @media (max-width: 768px) {
+            .slider-btn {
+                opacity: 0.6;
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+            [style*="gap: 20px"] {
+                gap: 12px;
+            }
+            .pricing-btn {
+                padding: 10px 20px !important;
+                font-size: 13px !important;
+            }
+        }
+    </style>
+    <style>
+    .metrics-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--dark-teal) !important;
+        background: rgba(0,194,168,0.1) !important;
+    }
+    .metrics-card.active {
+        border-color: var(--dark-teal) !important;
+        background: rgba(0,194,168,0.15) !important;
+    }
+    </style>
 </head>
 <body>
     <!-- ══════════ HEADER ══════════ -->
@@ -1076,6 +1122,240 @@ kubectl apply -f https://clofix.com/k8s/clofix-agent-daemonset.yaml
 # Configure ingress with auth-url
 kubectl annotate ingress my-app \
   nginx.ingress.kubernetes.io/auth-url="http://clofix-agent:8080/validate"</pre></div></section>
+            
+            <!-- Section 11.5 - Prometheus Dashboard Integration -->
+            <section class="cadre-section" id="prometheus-integration">
+                <h2 class="cadre-section__title">
+                    <span class="sec-num">11.5</span> 
+                    Prometheus Integration
+                </h2>
+                
+                <p style="margin-bottom: 20px;">Achieve complete observability into your CloFix Nano Agent deployment. The pre-built Prometheus dashboard delivers real-time visualization of all agent metrics including request throughput, latency distribution, cache hit ratios, security violation patterns, DDoS protection events, license consumption, and API server connectivity status.</p>
+                
+                <!-- Image Slider -->
+                <div class="prometheus-slider-container" style="position: relative; margin: 30px 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--dark-border); background: var(--dark-surface);">
+                    <div class="slider-images" style="display: flex; transition: transform 0.5s ease-in-out;">
+                        <div class="slide" style="min-width: 100%;">
+                            <img src="img/nano/prome1.png" alt="Prometheus Dashboard Overview" style="width: 100%; display: block;" onerror="this.src='https://placehold.co/800x400/0d1b2e/00c2a8?text=Prometheus+Dashboard+Preview'">
+                        </div>
+                        <div class="slide" style="min-width: 100%;">
+                            <img src="img/nano/prome2.png" alt="Security Metrics Dashboard" style="width: 100%; display: block;" onerror="this.src='https://placehold.co/800x400/0d1b2e/00c2a8?text=Security+Metrics+Preview'">
+                        </div>
+                        <div class="slide" style="min-width: 100%;">
+                            <img src="img/nano/prome3.png" alt="Grafana Alerts Configuration" style="width: 100%; display: block;" onerror="this.src='https://placehold.co/800x400/0d1b2e/00c2a8?text=Grafana+Alerts+Preview'">
+                        </div>
+                    </div>
+                    
+                    <!-- Slider Navigation Buttons -->
+                    <button class="slider-btn prev" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10;">❮</button>
+                    <button class="slider-btn next" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10;">❯</button>
+                    
+                    <!-- Dot Indicators -->
+                    <div class="slider-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
+                        <span class="dot active" style="width: 10px; height: 10px; background: var(--dark-teal); border-radius: 50%; cursor: pointer;"></span>
+                        <span class="dot" style="width: 10px; height: 10px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer;"></span>
+                        <span class="dot" style="width: 10px; height: 10px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer;"></span>
+                    </div>
+                </div>
+                
+                <!-- Metrics Description -->
+                <!-- Metrics Description -->
+                <div style="background: rgba(0,194,168,0.05); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                    <h3 style="color: var(--dark-teal); margin-bottom: 15px; font-size: 18px;">
+                        <i class="fas fa-chart-line"></i> Available Metrics
+                        <span style="font-size: 12px; color: var(--dark-muted); margin-left: 10px;">Click any card to view metrics</span>
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                        
+                        <!-- Request Metrics Card -->
+                        <div class="metrics-card" data-metrics="request" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">📊</span>
+                                <strong style="color: var(--dark-gold);">Request Metrics</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Total requests, latency, RPS, active requests</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Security Metrics Card -->
+                        <div class="metrics-card" data-metrics="security" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">🛡️</span>
+                                <strong style="color: var(--dark-gold);">Security Metrics</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Decisions, violations, attacks by IP/country, DDoS blocks</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- System Health Card -->
+                        <div class="metrics-card" data-metrics="system" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">⚙️</span>
+                                <strong style="color: var(--dark-gold);">System Health</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Uptime, memory, CPU, goroutines, availability</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Cache Metrics Card -->
+                        <div class="metrics-card" data-metrics="cache" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">💾</span>
+                                <strong style="color: var(--dark-gold);">Cache Metrics</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Hits/misses, size, TTL, evictions, false positive rate</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- License Metrics Card -->
+                        <div class="metrics-card" data-metrics="license" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">🔑</span>
+                                <strong style="color: var(--dark-gold);">License Metrics</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>License validity, expiry days, quota usage</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Upstream & API Card -->
+                        <div class="metrics-card" data-metrics="upstream" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">📈</span>
+                                <strong style="color: var(--dark-gold);">Upstream & API</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Backend requests, API calls, network latency</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- DDoS Metrics Card -->
+                        <div class="metrics-card" data-metrics="ddos" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">🛑</span>
+                                <strong style="color: var(--dark-gold);">DDoS Protection</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Rate limit hits, active blocks, concurrent requests</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Business Metrics Card -->
+                        <div class="metrics-card" data-metrics="business" style="background: rgba(15,33,56,0.8); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; border: 1px solid var(--dark-border);">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                <span style="font-size: 24px;">💼</span>
+                                <strong style="color: var(--dark-gold);">Business Metrics</strong>
+                                <span style="margin-left: auto; font-size: 12px; color: var(--dark-teal);"><i class="fas fa-chevron-right"></i></span>
+                            </div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: var(--dark-muted);">
+                                <li>Tenant requests, feature usage, alerts</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Metrics Detail Panel - Shows when card is clicked -->
+                    <div id="metricsDetailPanel" style="margin-top: 20px; display: none; background: var(--dark-code); border-radius: 12px; border: 1px solid var(--dark-teal); overflow: hidden;">
+                        <div style="background: var(--dark-navy); padding: 12px 20px; border-bottom: 1px solid var(--dark-border); display: flex; justify-content: space-between; align-items: center;">
+                            <h4 id="metricsDetailTitle" style="color: var(--dark-teal); margin: 0; font-size: 16px;">
+                                <i class="fas fa-chart-simple"></i> Request Metrics
+                            </h4>
+                            <button id="closeMetricsPanel" style="background: none; border: none; color: var(--dark-muted); cursor: pointer; font-size: 18px;">&times;</button>
+                        </div>
+                        <div id="metricsDetailContent" style="padding: 20px;">
+                            <!-- Dynamic content loads here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Two Button Row -->
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 30px 0 20px;">
+                    <a href="img/nano/clofix-agent.json" download class="pricing-btn" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--dark-teal) 0%, #00a08a 100%); text-decoration: none; width: auto; padding: 14px 32px;">
+                        <i class="fas fa-download"></i> Download Prometheus Dashboard (JSON)
+                    </a>
+                    <!-- <a href="img/nano/setup-guide.pdf" target="_blank" class="pricing-btn" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #e85d26 0%, #c44a1a 100%); text-decoration: none; width: auto; padding: 14px 32px;">
+                        <i class="fas fa-book-open"></i> Setup Documentation
+                    </a> -->
+                </div>
+                
+                <div class="cadre-box" style="margin-top: 20px; padding: 0; overflow: hidden;">
+                    <div style="background: var(--dark-teal); color: var(--dark-bg); padding: 12px 20px; font-weight: 700; font-size: 14px;">
+                        <i class="fas fa-rocket"></i> Quick Setup - Configure Prometheus to Scrape CloFix Nano Agent
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <p style="margin-bottom: 16px;"><strong>3.1 Add CloFix Agent as a Prometheus Scrape Target</strong></p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: flex-start; gap: 12px; background: var(--dark-code); padding: 10px 15px; border-radius: 8px;">
+                                <span style="background: var(--dark-teal); color: var(--dark-bg); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">1</span>
+                                <div><strong>Open the config file</strong><br><code style="background: var(--dark-bg); padding: 4px 8px; border-radius: 4px; font-size: 12px;">nano ~/cloudguardian/config/prometheus.yml</code></div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: flex-start; gap: 12px; background: var(--dark-code); padding: 10px 15px; border-radius: 8px;">
+                                <span style="background: var(--dark-teal); color: var(--dark-bg); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">2</span>
+                                <div><strong>Append scrape job</strong><br>Add the <code>clofix_agent</code> job block shown below inside <code>scrape_configs</code></div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: flex-start; gap: 12px; background: var(--dark-code); padding: 10px 15px; border-radius: 8px;">
+                                <span style="background: var(--dark-teal); color: var(--dark-bg); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">3</span>
+                                <div><strong>Save and exit</strong><br><code>Ctrl+O</code> → <code>Enter</code> → <code>Ctrl+X</code></div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: flex-start; gap: 12px; background: var(--dark-code); padding: 10px 15px; border-radius: 8px;">
+                                <span style="background: var(--dark-teal); color: var(--dark-bg); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">4</span>
+                                <div><strong>Reload Prometheus</strong><br><code style="background: var(--dark-bg); padding: 4px 8px; border-radius: 4px; font-size: 12px;">curl -X POST http://localhost:9090/-/reload</code></div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: flex-start; gap: 12px; background: var(--dark-code); padding: 10px 15px; border-radius: 8px;">
+                                <span style="background: var(--dark-teal); color: var(--dark-bg); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">5</span>
+                                <div><strong>Verify target is UP</strong><br>Open <code>http://localhost:9090/targets</code> in your browser and confirm <code>clofix_agent</code> status is <span style="color: #00c2a8;">UP</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prometheus Configuration Snippet -->
+                        <div class="cadre-code" style="margin: 16px 0;">
+                            <div class="cadre-code__hdr">
+                                <span class="cadre-code__lang"><i class="fab fa-prometheus"></i> prometheus.yml - Append inside scrape_configs</span>
+                                <button class="cadre-copy" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre> - job_name: clofix_agent
+    static_configs:
+      - targets: ["clofix-agent-ip:9090"]
+    metrics_path: /metrics</pre>
+                        </div>
+                        
+                        <!-- Grafana Dashboard Import -->
+                        <div style="background: rgba(0,194,168,0.08); border-radius: 8px; padding: 16px; margin: 16px 0;">
+                            <strong style="color: var(--dark-teal);"><i class="fas fa-chart-pie"></i> Import Grafana Dashboard</strong>
+                            <ul style="margin: 10px 0 0 20px; font-size: 13px; color: var(--dark-muted);">
+                                <li>Download the dashboard JSON file using the button below</li>
+                                <li>Open Grafana (http://localhost:3000) → Dashboards → Import</li>
+                                <li>Upload the JSON file or paste its contents</li>
+                                <li>Select your Prometheus data source and click Import</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cadre-box gold" style="margin-top: 16px; text-align: left;">
+                            <strong><i class="fas fa-check-circle"></i> Verification Checklist</strong><br>
+                            ✅ Agent metrics endpoint accessible: <code>curl http://clofix-agent-ip:9090/metrics | head -20</code><br>
+                            ✅ Prometheus target UP: <code>http://localhost:9090/targets</code><br>
+                            ✅ Metrics visible in Grafana: Explore → Select <code>clofix_agent_requests_total</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Section 12 Where to Integrate (SPLIT LAYOUT with correct icons) -->
             <section class="cadre-section" id="where-integrate">
@@ -1665,6 +1945,285 @@ gtag('config', 'G-WP02RFXGSE');
         const pre = btn.closest('.cadre-code')?.querySelector('pre');
         if (pre) { navigator.clipboard.writeText(pre.innerText); btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1500); }
     };
+</script>
+<script>
+(function() {
+    // Initialize Prometheus Slider
+    const sliderContainer = document.querySelector('.prometheus-slider-container');
+    if (!sliderContainer) return;
+    
+    const imagesContainer = sliderContainer.querySelector('.slider-images');
+    const slides = sliderContainer.querySelectorAll('.slide');
+    const prevBtn = sliderContainer.querySelector('.slider-btn.prev');
+    const nextBtn = sliderContainer.querySelector('.slider-btn.next');
+    const dots = sliderContainer.querySelectorAll('.dot');
+    
+    if (!imagesContainer || slides.length === 0) return;
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    
+    function updateSlider() {
+        imagesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, i) => {
+            if (i === currentIndex) {
+                dot.classList.add('active');
+                dot.style.backgroundColor = 'var(--dark-teal)';
+            } else {
+                dot.classList.remove('active');
+                dot.style.backgroundColor = 'rgba(255,255,255,0.4)';
+            }
+        });
+    }
+    
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }
+    
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+    
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            currentIndex = i;
+            updateSlider();
+        });
+    });
+    
+    // Auto-slide every 5 seconds
+    let autoSlideInterval = setInterval(nextSlide, 5000);
+    
+    // Pause auto-slide on hover
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    sliderContainer.addEventListener('mouseleave', () => {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+    
+    // Fallback images if local files don't exist
+    const imgElements = sliderContainer.querySelectorAll('img');
+    imgElements.forEach(img => {
+        img.addEventListener('error', function() {
+            const slideIndex = Array.from(slides).indexOf(this.closest('.slide'));
+            const titles = ['📊 Request Analytics Dashboard', '🛡️ Security Events Overview', '⚙️ System Health Monitor'];
+            const placeholders = [
+                'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%230d1b2e\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'monospace\' font-size=\'24\' fill=\'%2300c2a8\' text-anchor=\'middle\'%3EPrometheus Dashboard Preview%3C/text%3E%3Ctext x=\'400\' y=\'240\' font-family=\'monospace\' font-size=\'14\' fill=\'%235a7088\' text-anchor=\'middle\'%3E' + titles[slideIndex] + '%3C/text%3E%3C/svg%3E'
+            ];
+            if (slideIndex !== -1) {
+                this.src = placeholders[slideIndex] || placeholders[0];
+            }
+        });
+    });
+})();
+</script>
+<script>
+// Metrics data with actual Prometheus metric names and descriptions
+const metricsData = {
+    request: {
+        title: "📊 Request Metrics",
+        metrics: [
+            { name: "clofix_agent_requests_total", type: "counter", labels: "decision, method, path, license_key", description: "Total number of requests processed by the agent, segmented by decision (allow/block), HTTP method, request path, and license key." },
+            { name: "clofix_agent_request_duration_seconds", type: "histogram", labels: "decision, method", description: "Request processing duration in seconds. Use for p50, p95, p99 latency calculations." },
+            { name: "clofix_agent_throughput_rps", type: "gauge", labels: "none", description: "Current requests per second throughput." },
+            { name: "clofix_agent_max_throughput_rps", type: "gauge", labels: "none", description: "Maximum requests per second achieved since agent started." },
+            { name: "clofix_agent_realtime_rps", type: "gauge", labels: "none", description: "Real-time requests per second (sliding window)." },
+            { name: "clofix_agent_active_requests", type: "gauge", labels: "none", description: "Current number of requests being actively processed." },
+            { name: "clofix_agent_response_size_bytes", type: "histogram", labels: "none", description: "Response size in bytes returned to clients." },
+            { name: "clofix_agent_request_size_bytes", type: "histogram", labels: "none", description: "Request size in bytes received from clients." },
+            { name: "clofix_agent_queue_length", type: "gauge", labels: "none", description: "Current request queue length." },
+            { name: "clofix_agent_queue_wait_seconds", type: "histogram", labels: "none", description: "Time requests spend waiting in queue." }
+        ]
+    },
+    security: {
+        title: "🛡️ Security Metrics",
+        metrics: [
+            { name: "clofix_agent_decisions_total", type: "counter", labels: "decision, reason", description: "Total security decisions made (allow/block) with reason codes." },
+            { name: "clofix_agent_security_violations_total", type: "counter", labels: "violation_type, severity", description: "Security violations detected by type (SQLi, XSS, etc.) and severity level." },
+            { name: "clofix_agent_blocked_paths_total", type: "counter", labels: "path_pattern, method", description: "Blocked requests by URL path pattern and HTTP method." },
+            { name: "clofix_agent_attacks_by_ip_total", type: "counter", labels: "ip, attack_type", description: "Total attacks grouped by source IP address and attack type." },
+            { name: "clofix_agent_attacks_by_country_total", type: "counter", labels: "country, attack_type", description: "Total attacks grouped by country code and attack type." },
+            { name: "clofix_agent_top_attacked_paths", type: "gauge", labels: "path", description: "Most frequently attacked URL paths." },
+            { name: "clofix_agent_anomaly_score", type: "gauge", labels: "none", description: "Current anomaly detection score (0-100). Higher scores indicate suspicious activity." },
+            { name: "clofix_agent_false_positive_rate", type: "gauge", labels: "none", description: "False positive detection rate percentage." },
+            { name: "clofix_agent_rate_limit_hits", type: "counter", labels: "none", description: "Total rate limit hits (429 responses)." }
+        ]
+    },
+    system: {
+        title: "⚙️ System Health Metrics",
+        metrics: [
+            { name: "clofix_agent_server_health", type: "gauge", labels: "none", description: "API server health status (1=healthy, 0=unhealthy)." },
+            { name: "clofix_agent_uptime_seconds", type: "gauge", labels: "none", description: "Agent uptime in seconds since start." },
+            { name: "clofix_agent_start_time_seconds", type: "gauge", labels: "none", description: "Unix timestamp of agent start time." },
+            { name: "clofix_agent_memory_usage_bytes", type: "gauge", labels: "none", description: "Current memory usage in bytes." },
+            { name: "clofix_agent_cpu_usage_percent", type: "gauge", labels: "none", description: "Current CPU usage percentage." },
+            { name: "clofix_agent_goroutines", type: "gauge", labels: "none", description: "Current number of goroutines." },
+            { name: "clofix_agent_fallback_mode", type: "gauge", labels: "mode", description: "Current fallback mode (0=normal, 1=bypass, 2=deny, 3=cache_only)." },
+            { name: "clofix_agent_availability_percent", type: "gauge", labels: "none", description: "Service availability percentage (uptime SLA)." },
+            { name: "clofix_agent_error_rate_percent", type: "gauge", labels: "none", description: "Overall error rate percentage." },
+            { name: "clofix_agent_go_max_procs", type: "gauge", labels: "none", description: "GOMAXPROCS value." },
+            { name: "clofix_agent_go_version", type: "gauge", labels: "version", description: "Go version information." },
+            { name: "clofix_agent_host_info", type: "gauge", labels: "hostname, os, architecture", description: "Host system information." }
+        ]
+    },
+    cache: {
+        title: "💾 Cache Metrics",
+        metrics: [
+            { name: "clofix_agent_cache_hits_total", type: "counter", labels: "cache_type", description: "Total cache hits (decision cache type)." },
+            { name: "clofix_agent_cache_misses_total", type: "counter", labels: "cache_type", description: "Total cache misses (decision cache type)." },
+            { name: "clofix_agent_cache_size", type: "gauge", labels: "none", description: "Current number of items in cache." },
+            { name: "clofix_agent_cache_ttl_seconds", type: "gauge", labels: "none", description: "Cache TTL in seconds." },
+            { name: "clofix_agent_cache_evictions_total", type: "counter", labels: "none", description: "Total cache evictions due to TTL expiry or memory pressure." },
+            { name: "clofix_agent_cache_memory_bytes", type: "gauge", labels: "none", description: "Cache memory usage in bytes." }
+        ]
+    },
+    license: {
+        title: "🔑 License Metrics",
+        metrics: [
+            { name: "clofix_agent_license_valid", type: "gauge", labels: "license_key, organization, plan", description: "License validity status (1=valid, 0=invalid)." },
+            { name: "clofix_agent_license_expiry_days", type: "gauge", labels: "license_key, organization", description: "Days until license expires." },
+            { name: "clofix_agent_active_licenses", type: "gauge", labels: "none", description: "Number of active licenses." },
+            { name: "clofix_agent_license_usage_percent", type: "gauge", labels: "none", description: "License usage percentage (agents used vs max allowed)." },
+            { name: "clofix_agent_monthly_quota_usage_percent", type: "gauge", labels: "none", description: "Monthly quota usage percentage." },
+            { name: "clofix_agent_rate_limit_remaining", type: "gauge", labels: "none", description: "Remaining rate limit quota." },
+            { name: "clofix_agent_rate_limit_reset_seconds", type: "gauge", labels: "none", description: "Seconds until rate limit resets." },
+            { name: "clofix_agent_quota_limit", type: "gauge", labels: "none", description: "Total quota limit." }
+        ]
+    },
+    upstream: {
+        title: "📈 Upstream & API Metrics",
+        metrics: [
+            { name: "clofix_agent_upstream_requests_total", type: "counter", labels: "status_code", description: "Total requests forwarded to upstream backend." },
+            { name: "clofix_agent_upstream_request_duration_seconds", type: "histogram", labels: "none", description: "Upstream request duration in seconds." },
+            { name: "clofix_agent_api_requests_total", type: "counter", labels: "endpoint, status_code", description: "Total API requests made to backend server." },
+            { name: "clofix_agent_api_request_duration_seconds", type: "histogram", labels: "endpoint", description: "API request duration to backend server." },
+            { name: "clofix_agent_api_errors_total", type: "counter", labels: "none", description: "Total API errors encountered." },
+            { name: "clofix_agent_retry_count_total", type: "counter", labels: "none", description: "Total number of API retries." },
+            { name: "clofix_agent_network_latency_seconds", type: "histogram", labels: "none", description: "Network latency to backend." },
+            { name: "clofix_agent_connection_pool_size", type: "gauge", labels: "none", description: "Connection pool size." },
+            { name: "clofix_agent_active_connections", type: "gauge", labels: "none", description: "Current number of active connections." },
+            { name: "clofix_agent_idle_connections", type: "gauge", labels: "none", description: "Current number of idle connections." }
+        ]
+    },
+    ddos: {
+        title: "🛑 DDoS Protection Metrics",
+        metrics: [
+            { name: "clofix_agent_ddos_blocks_total", type: "counter", labels: "none", description: "Total DDoS blocks (IPs blocked due to attack patterns)." },
+            { name: "clofix_agent_ddos_rate_limit_hits_total", type: "counter", labels: "none", description: "Total DDoS rate limit hits (429 responses)." },
+            { name: "clofix_agent_ddos_active_blocks", type: "gauge", labels: "none", description: "Number of currently blocked IPs." },
+            { name: "clofix_agent_ddos_concurrent_requests", type: "gauge", labels: "none", description: "Total concurrent requests across all IPs." },
+            { name: "clofix_agent_fallback_triggered_total", type: "counter", labels: "none", description: "Total times fallback mode was triggered due to API unavailability." }
+        ]
+    },
+    business: {
+        title: "💼 Business Metrics",
+        metrics: [
+            { name: "clofix_agent_tenant_requests_total", type: "counter", labels: "tenant_id, decision", description: "Total requests per tenant/client." },
+            { name: "clofix_agent_tenant_active_requests", type: "gauge", labels: "tenant_id", description: "Active requests per tenant." },
+            { name: "clofix_agent_feature_usage_total", type: "counter", labels: "feature", description: "Total feature usage counts (rate_limiting, geo_blocking, etc.)." },
+            { name: "clofix_agent_alerts_total", type: "counter", labels: "severity, type", description: "Total alerts generated by severity (critical, warning, info) and type." },
+            { name: "clofix_agent_alert_rate_per_second", type: "gauge", labels: "none", description: "Alert rate per second." },
+            { name: "clofix_agent_requests_by_country_total", type: "counter", labels: "country, decision", description: "Total requests by country code and decision." },
+            { name: "clofix_agent_data_processing_requests_total", type: "counter", labels: "none", description: "Total data processing requests (GDPR compliance)." },
+            { name: "clofix_agent_data_deletion_requests_total", type: "counter", labels: "none", description: "Total data deletion requests (GDPR compliance)." }
+        ]
+    }
+};
+
+// DOM Elements
+const metricsCards = document.querySelectorAll('.metrics-card');
+const detailPanel = document.getElementById('metricsDetailPanel');
+const detailTitle = document.getElementById('metricsDetailTitle');
+const detailContent = document.getElementById('metricsDetailContent');
+const closePanel = document.getElementById('closeMetricsPanel');
+
+// Function to render metrics table
+function renderMetrics(metricType) {
+    const data = metricsData[metricType];
+    if (!data) return;
+    
+    detailTitle.innerHTML = `<i class="fas fa-chart-simple"></i> ${data.title}`;
+    
+    let html = `
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--dark-border);">
+                        <th style="text-align: left; padding: 10px 8px; color: var(--dark-teal);">Metric Name</th>
+                        <th style="text-align: left; padding: 10px 8px; color: var(--dark-teal);">Type</th>
+                        <th style="text-align: left; padding: 10px 8px; color: var(--dark-teal);">Labels</th>
+                        <th style="text-align: left; padding: 10px 8px; color: var(--dark-teal);">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    for (const metric of data.metrics) {
+        html += `
+            <tr style="border-bottom: 1px solid var(--dark-border);">
+                <td style="padding: 10px 8px;"><code style="background: var(--dark-bg); padding: 2px 6px; border-radius: 4px; font-size: 11px;">${metric.name}</code></td>
+                <td style="padding: 10px 8px;">
+                    <span style="background: ${metric.type === 'counter' ? '#e85d26' : metric.type === 'gauge' ? '#00c2a8' : '#e8b84b'}; color: var(--dark-bg); padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: bold;">
+                        ${metric.type}
+                    </span>
+                </td>
+                <td style="padding: 10px 8px;"><code style="font-size: 11px; color: var(--dark-muted);">${metric.labels}</code></td>
+                <td style="padding: 10px 8px; color: var(--dark-text);">${metric.description}</td>
+            </tr>
+        `;
+    }
+    
+    html += `
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top: 16px; padding: 12px; background: rgba(0,194,168,0.05); border-radius: 8px; font-size: 12px;">
+            <i class="fas fa-info-circle"></i> 
+            <strong>Prometheus Query Examples:</strong><br>
+            <code style="background: var(--dark-bg); padding: 4px 8px; border-radius: 4px; display: inline-block; margin-top: 8px;">
+                rate(clofix_agent_requests_total[5m])</code>
+            <code style="background: var(--dark-bg); padding: 4px 8px; border-radius: 4px; display: inline-block; margin-left: 8px;">
+                histogram_quantile(0.95, clofix_agent_request_duration_seconds_bucket)</code>
+        </div>
+    `;
+    
+    detailContent.innerHTML = html;
+    detailPanel.style.display = 'block';
+    
+    // Scroll to panel
+    detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Add click handlers to cards
+metricsCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const metricType = card.getAttribute('data-metrics');
+        
+        // Remove active class from all cards
+        metricsCards.forEach(c => c.classList.remove('active'));
+        // Add active class to clicked card
+        card.classList.add('active');
+        
+        renderMetrics(metricType);
+    });
+});
+
+// Close panel handler
+closePanel.addEventListener('click', () => {
+    detailPanel.style.display = 'none';
+    metricsCards.forEach(c => c.classList.remove('active'));
+});
+
+// Optional: Click outside to close (but keep for usability)
+document.addEventListener('click', (e) => {
+    if (!detailPanel.contains(e.target) && !e.target.closest('.metrics-card')) {
+        // Don't auto-close, user can click X
+    }
+});
 </script>
 </body>
 </html>
