@@ -413,7 +413,7 @@
         .pricing-features li { padding: 10px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--dark-border); font-size: 14px; }
         .pricing-features li i { color: var(--dark-teal); width: 20px; }
         .pricing-features li i.fa-times { color: var(--dark-muted); }
-        .pricing-btn { background: var(--dark-teal); color: var(--dark-bg); border: none; padding: 14px 24px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; transition: opacity 0.2s; margin-top: 20px; }
+        .pricing-btn { background: var(--dark-teal); color: var(--dark-bg); border: none; padding: 14px 24px; border-radius: 10px; cursor: pointer; width: 100%; transition: opacity 0.2s; margin-top: 20px; }
         .pricing-btn:hover { opacity: 0.85; }
         
         .domain-pricing { background: var(--dark-code); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
@@ -1084,7 +1084,7 @@
                 
                 <!-- Row 2: CloFix WAF Community (Full Wide, Special Styling) -->
                 <div class="pricing-row">
-                    <div class="pricing-row-label">💚 For Community</div>
+                    <div class="pricing-row-label">💚 For CloFix Community</div>
                     <div class="pricing-grid-fullwide">
                         <div class="pricing-card pricing-card-community">
                             <!-- Decorative corner accents -->
@@ -1111,7 +1111,7 @@
                                 <div class="community-features-col">
                                     <h4><i class="fas fa-crown"></i> Core Security</h4>
                                     <ul class="pricing-features">
-                                        <li><i class="fas fa-check-circle"></i> Up to <strong>3 agents</strong></li>
+                                        <li><i class="fas fa-check-circle"></i> Up to <strong>1 nano agents license</strong></li>
                                         <li><i class="fas fa-check-circle"></i> <strong>3 domain</strong> included</li>
                                         <li><i class="fas fa-check-circle"></i> <strong>50,000 requests</strong> / month</li>
                                         <li><i class="fas fa-check-circle"></i> <strong>OWASP Top 10</strong> Security</li>
@@ -1120,7 +1120,7 @@
                                     <h4><i class="fas fa-chart-line"></i> Monitoring</h4>
                                     <ul class="pricing-features">
                                         <li><i class="fas fa-check-circle"></i> <strong>prometheus</strong> </li>
-                                        <li><i class="fas fa-check-circle"></i><strong>Email alerts</strong> (5 per month)</li>
+                                        <li><i class="fas fa-check-circle"></i><strong>Slack alerts</strong></li>
                                         <li><i class="fas fa-check-circle"></i> <strong>99.5% SLA</strong> uptime guarantee</li>
                                     </ul>
                                 </div>
@@ -1143,15 +1143,21 @@
                             <div class="community-cta">
                                 <div class="community-buttons-row">
                                     <a href="https://docs.google.com/forms/d/1hPlZEfzofZIwNYpDdNtnteWOeMzjglsvwGTbi_mPpos/preview" target="_blank" rel="noopener noreferrer" class="pricing-btn pricing-btn-community">
-                                        <i class="fas fa-file-alt"></i> Sign Up Form <i class="fas fa-arrow-right"></i>
+                                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: rgba(255,255,255,0.25); border-radius: 50%; margin-right: 8px; font-size: 11px; font-weight: bold;">1</span>
+                                        <i class="fas fa-file-alt"></i> Sign Up<i class="fas fa-arrow-right"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/company/113040097" target="_blank" rel="noopener noreferrer" class="pricing-btn pricing-btn-linkedin">
+                                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: rgba(255,255,255,0.25); border-radius: 50%; margin-right: 8px; font-size: 11px; font-weight: bold;">2</span>
+                                        <i class="fab fa-linkedin"></i> Follow CloFix<i class="fas fa-external-link-alt"></i>
                                     </a>
                                     <a href="https://www.linkedin.com/groups/19298019/" target="_blank" rel="noopener noreferrer" class="pricing-btn pricing-btn-linkedin">
-                                        <i class="fab fa-linkedin"></i> Join LinkedIn Group <i class="fas fa-external-link-alt"></i>
+                                        <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: rgba(255,255,255,0.25); border-radius: 50%; margin-right: 8px; font-size: 11px; font-weight: bold;">3</span>
+                                        <i class="fab fa-linkedin"></i> Join LinkedIn<i class="fas fa-external-link-alt"></i>
                                     </a>
                                 </div>
                                 <p class="community-note">
-                                    <i class="fas fa-heart" style="color: #ff6b6b;"></i> 
-                                    Forever free for open source projects, homelabs, and learning
+                                    <i class="fas fa-infinity" style="color: var(--dark-teal);"></i> 
+                                    Forever free for personal use, homelabs, learning environments, and non-commercial applications
                                 </p>
                             </div>
                         </div>
