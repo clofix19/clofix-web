@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CloFix School of DevOps - 6 Month Mastery | CloFix InfoTech</title>
+  <meta name="description" content="CloFix School of DevOps by CloFix InfoTech: 6 months industry-led training, CI/CD, K8s, Terraform, AWS. BDT pricing, job-ready certification.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clofix.com/devops-training">
+  <meta property="og:title" content="CloFix School of DevOps - 6 Month Program | CloFix InfoTech">
+  <meta property="og:description" content="6 months, hands-on DevOps training. Master modern tools, real pipelines, and get certified. Affordable BDT pricing.">
+  <meta property="og:image" content="https://clofix.com/img/og-devops-training.jpg">
+  <meta property="og:url" content="https://clofix.com/devops-training">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #05070f;
+      color: #eef5ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    .noise-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-radial-gradient(circle at 20% 30%, rgba(0,255,200,0.02) 0px, rgba(0,255,200,0.02) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .header {
+      background: rgba(5, 10, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+    .c-logo a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .c-logo__img {
+      height: 48px;
+      width: auto;
+    }
+    .c-logo__tagline {
+      font-weight: 600;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #cbd5e6;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+    .btn-outline {
+      border: 1px solid #38bdf8;
+      background: transparent;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #38bdf8;
+    }
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+      color: #7bc9ff;
+    }
+    h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #90cdf4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+    .school-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e2a4a, #0f172a);
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: 1px solid #38bdf8;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .subhead {
+      font-size: 1.2rem;
+      color: #9ab3d0;
+      max-width: 750px;
+      margin: 0 auto 32px;
+    }
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 32px 0 20px;
+    }
+    .btn-primary {
+      background: linear-gradient(95deg, #0e3b5e, #0a1f2f);
+      border: 1px solid #38bdf8;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      transition: 0.25s;
+      box-shadow: 0 4px 12px rgba(0,160,255,0.2);
+    }
+    .btn-primary:hover {
+      background: #0e4a70;
+      transform: translateY(-3px);
+    }
+    .btn-secondary {
+      background: rgba(20, 30, 45, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid #3b4b66;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #e2e8f0;
+      text-decoration: none;
+    }
+    .trainer-section {
+      background: linear-gradient(145deg, #0c1122, #080c18);
+      border-radius: 48px;
+      padding: 48px 40px;
+      margin: 60px 0;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      box-shadow: 0 25px 40px -15px rgba(0,0,0,0.5);
+    }
+    .trainers-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .trainer-card {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      background: rgba(5, 10, 20, 0.6);
+      border-radius: 36px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+    .trainer-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateX(6px);
+      background: rgba(8, 15, 28, 0.8);
+    }
+    .trainer-avatar {
+      background: linear-gradient(145deg, #16223e, #0a0f1c);
+      border-radius: 32px;
+      padding: 28px;
+      text-align: center;
+      min-width: 280px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .avatar-icon {
+      font-size: 80px;
+      filter: drop-shadow(0 0 12px #38bdf8);
+    }
+    .trainer-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-top: 12px;
+      background: linear-gradient(135deg, #fff, #90cdf4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .trainer-title {
+      color: #38bdf8;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .trainer-bio {
+      flex: 1;
+      font-size: 1rem;
+      color: #cbd5e6;
+      line-height: 1.6;
+    }
+    .exp-badge {
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 60px;
+      padding: 4px 16px;
+      display: inline-block;
+      font-size: 0.7rem;
+      margin: 8px 8px 0 0;
+      font-weight: 500;
+      border: 1px solid rgba(56,189,248,0.2);
+    }
+    .founder-badge {
+      background: linear-gradient(135deg, #f59e0b20, #f59e0b10);
+      border-color: #f59e0b;
+      color: #fbbf24;
+    }
+    .cert-grid-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-start;
+    }
+    .cert-card-mini {
+      background: linear-gradient(145deg, #0f172a, #090e1a);
+      border-radius: 20px;
+      padding: 10px 16px;
+      min-width: 170px;
+      flex: 1 0 auto;
+      text-align: center;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      transition: all 0.2s ease;
+    }
+    .cert-card-mini:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+    }
+    .cert-icon-mini {
+      font-size: 1.6rem;
+    }
+    .cert-name-mini {
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .duration-price-card {
+      background: linear-gradient(135deg, #0f212e, #07111e);
+      border-radius: 40px;
+      padding: 32px;
+      margin: 40px 0;
+      text-align: center;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 20px 30px -15px rgba(0,200,255,0.2);
+    }
+    .price-bdt {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #facc15;
+      margin: 12px 0;
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 28px;
+      margin: 48px 0;
+    }
+    .module-card {
+      background: rgba(12, 20, 32, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 32px;
+      padding: 28px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: all 0.25s;
+    }
+    .module-card:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+    }
+    .module-number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .module-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 12px 0 16px;
+    }
+    .topic-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+    .topic-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: #38bdf8;
+      border-radius: 50%;
+    }
+    .expertise-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .exp-card {
+      background: rgba(2, 8, 20, 0.7);
+      border-radius: 28px;
+      padding: 28px;
+      flex: 1;
+      min-width: 200px;
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      transition: 0.2s;
+    }
+    .exp-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    /* New special classes grid */
+    .special-class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin: 48px 0;
+    }
+    .special-card {
+      background: linear-gradient(145deg, #0a1225, #040812);
+      border-radius: 32px;
+      padding: 32px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      transition: 0.2s;
+    }
+    .special-card:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+    }
+    .special-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      color: #38bdf8;
+    }
+    .special-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .special-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+    .special-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    .footer {
+      background: #03050c;
+      border-top: 1px solid #1f2a3e;
+      padding: 48px 0 24px;
+      margin-top: 60px;
+    }
+    @media (max-width: 800px) {
+      h1 { font-size: 2.3rem; }
+      .trainer-card { flex-direction: column; padding: 20px; }
+      .cert-card-mini { min-width: 140px; }
+      .price-bdt { font-size: 2rem; }
+      .special-class-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="noise-bg"></div>
+<header class="header">
+  <div class="container">
+    <div class="header__wrapper">
+      <div class="c-logo">
+        <a href="https://clofix.com/">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-logo__img">
+          <span class="c-logo__tagline">Secure. Automate. Scale.</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/features">WAF</a>
+        <a href="/devops-training" class="btn-outline">DevOps Training</a>
+        <a href="/security-training">Cyber Training</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <!-- Hero with School branding -->
+    <div class="hero">
+      <div class="school-badge"><i class="fas fa-graduation-cap"></i> CloFix School of CloFix InfoTech</div>
+      <h1>DevOps Engineering - 6 Month<br>Career Accelerator</h1>
+      <p class="subhead">Industry’s most immersive DevOps program: 6 months, real pipelines, 1:1 mentorship, and job-ready certification. Built by CloFix InfoTech - trusted by 150+ enterprises.</p>
+      <div class="cta-group">
+        <a href="#modules" class="btn-primary">📘 View Curriculum →</a>
+        <a href="#pricing" class="btn-secondary">💰 BDT Pricing & Enrollment</a>
+      </div>
+    </div>
+
+    <!-- Duration & Pricing Card (BDT, 6 months) -->
+    <div id="pricing" class="duration-price-card">
+      <i class="fas fa-calendar-alt" style="font-size: 2rem; color:#38bdf8;"></i>
+      <h2 style="font-size: 1.8rem; margin: 12px 0;">Program Duration: 6 Months</h2>
+      <p style="color: #cbd5e6;">Weekend & evening batches · Live + recorded · Hands-on labs 24/7</p>
+      <div class="price-bdt">৳ 55,000 BDT <span style="font-size: 1rem; color:#94a3b8;">(Full program)</span></div>
+      <p style="font-size: 0.85rem;">Easy installment: ৳ 10,000/month · 0% interest · Limited seats per batch</p>
+      <div style="margin-top: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <span class="exp-badge"><i class="fas fa-check-circle"></i> 200+ Hours Live</span>
+        <span class="exp-badge"><i class="fas fa-tasks"></i> 15 Real-world Projects</span>
+        <span class="exp-badge"><i class="fas fa-certificate"></i> CloFix Certification</span>
+      </div>
+    </div>
+
+    <!-- Trainer Section: Founder + Senior Trainer, with cert cards inside -->
+    <div class="trainer-section">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <span class="badge"><i class="fas fa-chalkboard-user"></i> LEAD INSTRUCTORS - CLOFIX SCHOOL</span>
+      </div>
+      <div class="trainers-grid">
+        <!-- Founder -->
+        <div class="trainer-card">
+          <div class="trainer-avatar">
+            <div class="avatar-icon"><i class="fas fa-crown"></i></div>
+            <div class="trainer-name">Md. Shariful Islam</div>
+            <div class="trainer-title">Founder & Principal Architect</div>
+            <div><span class="exp-badge founder-badge"><i class="fas fa-star"></i> Founder</span><span class="exp-badge">14+ Years</span></div>
+          </div>
+          <div class="trainer-bio">
+            <h3 style="font-size: 1.7rem;">🏆 Visionary Leader</h3>
+            <p>Founder of CloFix InfoTech, architect behind CloFix WAF & Nano Agent (50M+ req/day). Led 30+ enterprise cloud transformations, mentored 3k+ engineers. Ex-AWS consultant, DevOpsDays speaker.</p>
+            <div class="cert-grid-inline">
+              <div class="cert-card-mini"><div class="cert-icon-mini"><i class="fab fa-aws"></i></div><div class="cert-name-mini">AWS DevOps Eng.</div><div class="cert-name-mini" style="font-size:0.6rem;">Professional</div></div>
+              <div class="cert-card-mini"><div class="cert-icon-mini"><i class="fas fa-cubes"></i></div><div class="cert-name-mini">CKA (K8s Admin)</div></div>
+              <div class="cert-card-mini"><div class="cert-icon-mini"><i class="fas fa-shield-haltered"></i></div><div class="cert-name-mini">CEH v11</div></div>
+              <div class="cert-card-mini"><div class="cert-icon-mini"><i class="fas fa-fingerprint"></i></div><div class="cert-name-mini">CHFI</div></div>
+              <div class="cert-card-mini"><div class="cert-icon-mini"><i class="fab fa-microsoft"></i></div><div class="cert-name-mini">Azure Admin</div></div>
+              <div class="cert-card-mini"><div class="cert-icon-mini"><i class="fas fa-chart-line"></i></div><div class="cert-name-mini">Certified SOC Analyst</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Sajedul Islam -->
+        <div class="trainer-card">
+          <div class="trainer-avatar">
+            <div class="avatar-icon"><i class="fas fa-user-graduate"></i></div>
+            <div class="trainer-name">Sajedul Islam</div>
+            <div class="trainer-title">Senior DevOps & Lead Trainer</div>
+            <div><span class="exp-badge">K8s | Terraform</span><span class="exp-badge">10+ Years</span></div>
+          </div>
+          <div class="trainer-bio">
+            <h3 style="font-size: 1.7rem;">⚡ Hands‑on Mentor</h3>
+            <p>Specializes in GitOps, ArgoCD, and infrastructure automation. Trained 1,200+ engineers, reduced cloud costs by 40% for fintechs. Docker Captain and CI/CD expert.</p>
+            <div style="margin-top: 16px;"><span class="exp-badge"><i class="fas fa-docker"></i> Docker Captain</span><span class="exp-badge"><i class="fas fa-code-branch"></i> GitOps Advocate</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CloFix Expertise -->
+    <div><span class="badge">🏆 CLOFIX EXPERTISE DNA</span><h2 class="section-title" style="font-size:2rem;">Why CloFix School stands out</h2></div>
+    <div class="expertise-grid">
+      <div class="exp-card"><div class="exp-number">50+</div><div>Enterprise projects</div></div>
+      <div class="exp-card"><div class="exp-number">1M+</div><div>Infra nodes managed</div></div>
+      <div class="exp-card"><div class="exp-number">150+</div><div>Apps scaled</div></div>
+      <div class="exp-card"><div class="exp-number">99.95%</div><div>Uptime expertise</div></div>
+    </div>
+    <p style="background: #0f172a80; padding: 20px; border-radius: 28px; border-left: 4px solid #38bdf8;">CloFix InfoTech isn’t just a training provider - we are a cyber-security & cloud automation firm trusted by banks, e‑commerce giants, and unicorn startups. Our DevOps training is infused with production-grade pipelines, real incident simulations, and advanced GitOps methodologies - all taught by practitioners who actively manage large-scale environments.</p>
+
+    <!-- NEW: Security Class, Industry Knowledge, Interview Preparation Modules (ADDED, NOTHING DELETED) -->
+    <div><span class="badge">🛡️ BONUS CAREER ACCELERATORS</span><h2 class="section-title" style="font-size:2rem;">Beyond DevOps - Job-Ready Edge</h2></div>
+    <div class="special-class-grid">
+      <!-- Security Class -->
+      <div class="special-card">
+        <div class="special-icon"><i class="fas fa-shield-virus"></i></div>
+        <div class="special-title">Security Class</div>
+        <p style="color:#b9ceff;">Embedded DevSecOps mindset: from secure pipelines to cloud hardening.</p>
+        <ul class="special-list">
+          <li><span class="dot"></span> OWASP Top 10 & mitigation strategies</li>
+          <li><span class="dot"></span> SAST/DAST integration (SonarQube, Trivy)</li>
+          <li><span class="dot"></span> Secrets management with HashiCorp Vault</li>
+          <li><span class="dot"></span> Container image scanning & compliance</li>
+          <li><span class="dot"></span> Cloud security (IAM, GuardDuty, WAF policies)</li>
+        </ul>
+      </div>
+      <!-- Industry Knowledge -->
+      <div class="special-card">
+        <div class="special-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="special-title">Industry Knowledge</div>
+        <p style="color:#b9ceff;">Real-world enterprise context and operational excellence.</p>
+        <ul class="special-list">
+          <li><span class="dot"></span> FinOps & cloud cost optimization (savings up to 40%)</li>
+          <li><span class="dot"></span> Incident management & on-call best practices</li>
+          <li><span class="dot"></span> Compliance (GDPR, HIPAA, SOC2) fundamentals</li>
+          <li><span class="dot"></span> High-availability & DR strategies for mission-critical apps</li>
+          <li><span class="dot"></span> Real case studies: e‑commerce, fintech, SaaS scaling</li>
+        </ul>
+      </div>
+      <!-- Interview Preparation -->
+      <div class="special-card">
+        <div class="special-icon"><i class="fas fa-bullhorn"></i></div>
+        <div class="special-title">Interview Preparation</div>
+        <p style="color:#b9ceff;">Crack DevOps/Cloud interviews with confidence.</p>
+        <ul class="special-list">
+          <li><span class="dot"></span> Mock technical interviews (CKA, AWS, Terraform)</li>
+          <li><span class="dot"></span> Resume/LinkedIn optimization by industry experts</li>
+          <li><span class="dot"></span> System design & scenario-based whiteboarding</li>
+          <li><span class="dot"></span> Behavioral & leadership coaching</li>
+          <li><span class="dot"></span> Access to CloFix hiring network + referral program</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Modules (existing, untouched) -->
+    <div id="modules"><div class="badge">📌 6-MONTH CURRICULUM</div><h2 class="section-title">DevOps Mastery - Modules & Descriptions</h2>
+    <div class="modules-grid">
+      <div class="module-card"><div class="module-number">01</div><div class="module-title">Linux & Automation</div><div class="module-desc">Shell scripting, systemd, Ansible (AWX), automation at scale.</div><ul class="topic-list"><li><span class="dot"></span> Bash/Python automation</li><li><span class="dot"></span> Ansible roles, Jinja2</li><li><span class="dot"></span> GitOps foundations</li></ul></div>
+      <div class="module-card"><div class="module-number">02</div><div class="module-title">CI/CD Pipelines</div><div class="module-desc">Jenkins, GitLab CI, GitHub Actions: multi-branch, security scanning, blue/green.</div><ul class="topic-list"><li><span class="dot"></span> Declarative pipelines</li><li><span class="dot"></span> SonarQube, Trivy</li><li><span class="dot"></span> Canary deployments</li></ul></div>
+      <div class="module-card"><div class="module-number">03</div><div class="module-title">Docker & Containers</div><div class="module-desc">Multi-stage builds, registry (Harbor), orchestration patterns.</div><ul class="topic-list"><li><span class="dot"></span> Dockerfile best practices</li><li><span class="dot"></span> Docker Compose</li><li><span class="dot"></span> Security scanning</li></ul></div>
+      <div class="module-card"><div class="module-number">04</div><div class="module-title">Kubernetes (CKA track)</div><div class="module-desc">Pods, services, Ingress, Helm, EKS/AKS, service mesh (Istio).</div><ul class="topic-list"><li><span class="dot"></span> ArgoCD GitOps</li><li><span class="dot"></span> OPA, Kyverno</li><li><span class="dot"></span> Cluster autoscaling</li></ul></div>
+      <div class="module-card"><div class="module-number">05</div><div class="module-title">Infrastructure as Code</div><div class="module-desc">Terraform (modules, state), Pulumi, terragrunt, Atlantis.</div><ul class="topic-list"><li><span class="dot"></span> Multi-cloud provisioning</li><li><span class="dot"></span> Drift detection</li><li><span class="dot"></span> Policy as code</li></ul></div>
+      <div class="module-card"><div class="module-number">06</div><div class="module-title">Observability</div><div class="module-desc">Prometheus, Grafana, Loki, Tempo, SLI/SLO, alerting.</div><ul class="topic-list"><li><span class="dot"></span> Metrics & exporters</li><li><span class="dot"></span> On-call automation</li><li><span class="dot"></span> ELK stack</li></ul></div>
+      <div class="module-card"><div class="module-number">07</div><div class="module-title">Cloud DevOps (AWS/Azure)</div><div class="module-desc">IAM, VPC, Lambda, ECS, CodePipeline, FinOps.</div><ul class="topic-list"><li><span class="dot"></span> CloudFormation/CDK</li><li><span class="dot"></span> Cost optimization</li><li><span class="dot"></span> Serverless patterns</li></ul></div>
+      <div class="module-card"><div class="module-number">08</div><div class="module-title">DevSecOps</div><div class="module-desc">SAST/DAST, Vault, dependency scanning, compliance as code.</div><ul class="topic-list"><li><span class="dot"></span> Trivy, Checkov</li><li><span class="dot"></span> HashiCorp Vault</li><li><span class="dot"></span> Incident simulation</li></ul></div>
+    </div></div>
+
+    <!-- Capstone (existing, untouched) -->
+    <div style="background: linear-gradient(125deg, #0c1428, #050b18); border-radius: 40px; padding: 40px; margin: 40px 0;">
+      <h3><i class="fas fa-microchip"></i> Capstone: Production-Grade Pipeline</h3>
+      <p style="margin: 20px 0;">Build end-to-end platform: GitHub → CI/CD → Docker → K8s (EKS) → ArgoCD → Prometheus → Slack alerts. Portfolio project that lands jobs.</p>
+      <div><span class="exp-badge">✅ 100% hands-on</span><span class="exp-badge">✅ 24/7 lab</span><span class="exp-badge">✅ Interview prep</span></div>
+    </div>
+
+    <!-- pricing repeat + installment BDT (existing, untouched) -->
+    <div id="register" style="background: #0f172fd9; border-radius: 48px; padding: 48px 36px; margin: 50px 0; text-align: center;">
+      <span class="badge">🎓 LIMITED SEATS - BDT PRICING</span>
+      <h2 style="font-size: 2rem;">Enroll in 6-Month Program</h2>
+      <p style="font-size: 1.4rem; font-weight: bold; margin: 20px;">Full course: ৳ 55,000 BDT (or 4 installments of ৳ 14,000)</p>
+      <p>✅ Lifetime access to recordings · ✅ Free repeat if needed · ✅ CloFix School certificate + LinkedIn badge</p>
+      <div style="margin-top: 32px;">
+        <a href="#" class="btn-primary" style="background: #1e3a5f;">📝 Apply Now →</a>
+        <a href="https://wa.me/8801850603126" class="btn-secondary" style="margin-left: 12px;">💬 WhatsApp Inquiry</a>
+      </div>
+    </div>
+
+    <!-- Testimonials (existing, untouched) -->
+    <div style="display: flex; gap: 24px; flex-wrap: wrap; margin: 30px 0;">
+      <div style="background: #0a0f1d; border-radius: 32px; padding: 28px; flex:1;"><span style="font-size: 42px;">⭐ 4.98</span><p>Rated by 700+ alumni</p><small>“The 6-month journey transformed my career. Real K8s & Terraform projects.” - Senior DevOps Engineer</small></div>
+      <div style="background: #0a0f1d; border-radius: 32px; padding: 28px; flex:1;"><span style="font-size: 42px;">🏅</span><p>Alumni placed at</p><small>Google, Oracle, Delivery Hero, regional unicorns.</small></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+      <div><img src="img/logo.png" alt="CloFix" style="height: 48px;"><p>Secure. Automate. Scale.<br>CloFix School of DevOps</p></div>
+      <div><strong>Quick links</strong><br><a href="/devops-training" style="color:#94a3b8;">DevOps Training</a><br><a href="/security-training" style="color:#94a3b8;">Cyber Security</a><br><a href="/contact">Contact</a></div>
+      <div><strong>Contact</strong><br>📞 +880 1850603126<br>✉️ school@clofix.com<br>📍 Dhaka, Bangladesh</div>
+    </div>
+    <hr style="border-color:#1f2a3e; margin: 32px 0 20px;">
+    <p style="text-align: center; font-size: 0.8rem;">© 2026 CloFix InfoTech - CloFix School of DevOps. 6-month program. BDT pricing.</p>
+  </div>
+</footer>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId && targetId !== "#") {
+        const targetEl = document.querySelector(targetId);
+        if(targetEl) { e.preventDefault(); targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+</script>
+<script>
+  (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="iX2kRqQGvBQ5z1sDASQoQ";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+</body>
+</html>
