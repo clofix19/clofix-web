@@ -786,6 +786,377 @@
   border: 1px solid rgba(56, 189, 248, 0.15);
 }
 
+/* =============================================
+   ECOSYSTEM SECTION
+   ============================================= */
+.ecosystem-section {
+    padding: 80px 0 100px 0;
+    background: linear-gradient(135deg, #0a0e17 0%, #0d1b2e 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ecosystem-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* =============================================
+   ECOSYSTEM HEADER
+   ============================================= */
+.ecosystem-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.ecosystem-badge {
+    display: inline-block;
+    background: rgba(0, 194, 168, 0.1);
+    border: 1px solid rgba(0, 194, 168, 0.15);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #00c2a8;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ecosystem-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.ecosystem-description {
+    color: #8a9bb5;
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* =============================================
+   ECOSYSTEM GRID
+   ============================================= */
+.ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* =============================================
+   ECOSYSTEM CARDS
+   ============================================= */
+.ecosystem-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.ecosystem-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 194, 168, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ecosystem-card.featured {
+    border-color: rgba(0, 194, 168, 0.3);
+    background: rgba(0, 194, 168, 0.05);
+}
+
+.ecosystem-card.featured::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00c2a8, transparent);
+    border-radius: 0 0 2px 2px;
+}
+
+/* =============================================
+   ECOSYSTEM CARD ELEMENTS
+   ============================================= */
+.ecosystem-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.ecosystem-badge-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px 14px;
+    border-radius: 12px;
+    font-size: 10px;
+    color: #5a7a95;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ecosystem-card-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+}
+
+.ecosystem-card-desc {
+    color: #8a9bb5;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+/* =============================================
+   ECOSYSTEM FEATURES (Tags)
+   ============================================= */
+.ecosystem-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.ecosystem-features span {
+    font-size: 12px;
+    color: #5a7a95;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.ecosystem-card:hover .ecosystem-features span {
+    border-color: rgba(0, 194, 168, 0.1);
+    color: #8a9bb5;
+}
+
+/* =============================================
+   ECOSYSTEM STATUS
+   ============================================= */
+.ecosystem-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    width: fit-content;
+}
+
+.ecosystem-status.active {
+    color: #00c2a8;
+    background: rgba(0, 194, 168, 0.1);
+}
+
+.ecosystem-status.coming-soon {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.ecosystem-status .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ecosystem-status.active .status-dot {
+    background: #00c2a8;
+    animation: pulse-dot 2s infinite;
+}
+
+.ecosystem-status.coming-soon .status-dot {
+    background: #f59e0b;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.5; 
+        transform: scale(1.3); 
+    }
+}
+
+/* =============================================
+   ECOSYSTEM URL
+   ============================================= */
+.ecosystem-url {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    margin-bottom: 16px;
+}
+
+.ecosystem-url code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: #5a7a95;
+    word-break: break-all;
+}
+
+/* =============================================
+   ECOSYSTEM BUTTON
+   ============================================= */
+.ecosystem-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: auto;
+    padding: 10px 20px;
+    background: rgba(0, 194, 168, 0.08);
+    border: 1px solid rgba(0, 194, 168, 0.15);
+    border-radius: 10px;
+    color: #00c2a8;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    cursor: pointer;
+    width: 100%;
+}
+
+.ecosystem-btn:hover {
+    background: rgba(0, 194, 168, 0.18);
+    border-color: rgba(0, 194, 168, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 194, 168, 0.12);
+    color: #00e6c8;
+}
+
+.ecosystem-btn .btn-arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.ecosystem-btn:hover .btn-arrow {
+    transform: translateX(6px);
+}
+
+/* Featured Card Button - Slightly Different */
+.ecosystem-card.featured .ecosystem-btn {
+    background: rgba(0, 194, 168, 0.12);
+    border-color: rgba(0, 194, 168, 0.25);
+}
+
+.ecosystem-card.featured .ecosystem-btn:hover {
+    background: rgba(0, 194, 168, 0.22);
+    border-color: #00c2a8;
+    box-shadow: 0 8px 25px rgba(0, 194, 168, 0.2);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 992px) {
+    .ecosystem-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .ecosystem-section {
+        padding: 60px 0 80px 0;
+    }
+    
+    .ecosystem-title {
+        font-size: 30px;
+    }
+    
+    .ecosystem-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    
+    .ecosystem-card {
+        padding: 22px 18px;
+    }
+    
+    .ecosystem-card-title {
+        font-size: 18px;
+    }
+    
+    .ecosystem-btn {
+        font-size: 13px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ecosystem-section {
+        padding: 40px 0 60px 0;
+    }
+    
+    .ecosystem-container {
+        padding: 0 16px;
+    }
+    
+    .ecosystem-title {
+        font-size: 24px;
+    }
+    
+    .ecosystem-description {
+        font-size: 14px;
+    }
+    
+    .ecosystem-card {
+        padding: 18px 14px;
+        border-radius: 12px;
+    }
+    
+    .ecosystem-features span {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+    
+    .ecosystem-btn {
+        font-size: 12px;
+        padding: 8px 14px;
+        border-radius: 8px;
+    }
+    
+    .ecosystem-badge {
+        font-size: 11px;
+        padding: 6px 16px;
+    }
+    
+    .ecosystem-icon {
+        font-size: 32px;
+    }
+    
+    .ecosystem-url code {
+        font-size: 11px;
+    }
+}
+
+
 /* ============================================
    TRUST INDICATORS
    ============================================ */
@@ -1401,332 +1772,438 @@
       </div>
     </section> -->
 
+    <!-- ============================================= -->
+    <!-- SERVICES SECTION                              -->
+    <!-- ============================================= -->
     <section class="services-section" aria-label="CloFix Services">
-      <div class="services-bg" aria-hidden="true">
-        <div class="services-glow"></div>
-        <div class="services-grid-pattern"></div>
-        <div class="services-radial"></div>
-      </div>
-      
-      <div class="services-container">
-        <!-- Section Header -->
-        <div class="services-header">
-          <div class="services-badge">
-            <span class="services-badge-dot"></span>
-            <span>CORE CAPABILITIES</span>
-          </div>
-          <h2 class="services-title">Our Services</h2>
-          <div class="services-divider">
-            <span></span>
-            <span>✦</span>
-            <span></span>
-          </div>
-          <p class="services-description">
-            CloFix delivers enterprise-grade security, automation, and infrastructure solutions 
-            purpose-built for cloud-native and mission-critical applications.
-          </p>
+        <div class="services-bg" aria-hidden="true">
+            <div class="services-glow"></div>
+            <div class="services-grid-pattern"></div>
+            <div class="services-radial"></div>
         </div>
 
-        <!-- Service Cards Grid -->
-        <<div class="services-grid">
-          <!-- Card 1: DevSecOps -->
-          <div class="service-card">
-            <div class="card-number">01</div>
-            <div class="card-icon">🛡️</div>
-            <h3 class="card-title">DevSecOps</h3>
-            <p class="card-description">
-              Shift-left security integrated into your CI/CD pipelines for faster, safer deployments.
-            </p>
-            <a href="/devsecops" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 2: Automation -->
-          <div class="service-card">
-            <div class="card-number">02</div>
-            <div class="card-icon">⚙️</div>
-            <h3 class="card-title">Intelligent Automation</h3>
-            <p class="card-description">
-              Streamline operations with AI-driven workflows and infrastructure as code.
-            </p>
-            <a href="/automation" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 3: On-Demand Engineering -->
-          <div class="service-card">
-            <div class="card-number">03</div>
-            <div class="card-icon">👨‍💻</div>
-            <h3 class="card-title">On-Demand Engineering</h3>
-            <p class="card-description">
-              Expert DevOps and security engineers available when you need them most.
-            </p>
-            <a href="/ondemand" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 4: WAF -->
-          <div class="service-card">
-            <div class="card-number">04</div>
-            <div class="card-icon">🔥</div>
-            <h3 class="card-title">Web Application Firewall</h3>
-            <p class="card-description">
-              AI-powered protection against OWASP Top 10, DDoS, and zero-day attacks.
-            </p>
-            <a href="/features" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 5: DevOps Support -->
-          <div class="service-card">
-            <div class="card-number">05</div>
-            <div class="card-icon">🚀</div>
-            <h3 class="card-title">DevOps Support</h3>
-            <p class="card-description">
-              24/7 DevOps support with CI/CD pipeline management, automation, and monitoring solutions.
-            </p>
-            <a href="/devops-support" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 6: Infrastructure Management -->
-          <div class="service-card">
-            <div class="card-number">06</div>
-            <div class="card-icon">🏗️</div>
-            <h3 class="card-title">Infrastructure Management</h3>
-            <p class="card-description">
-              Complete infrastructure lifecycle management including servers, networks, and storage.
-            </p>
-            <a href="/infrastructure-management" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 7: Cloud Management -->
-          <div class="service-card">
-            <div class="card-number">07</div>
-            <div class="card-icon">☁️</div>
-            <h3 class="card-title">Cloud Management</h3>
-            <p class="card-description">
-              Multi-cloud management across AWS, Azure, GCP with cost optimization and security.
-            </p>
-            <a href="/cloud-management" class="card-link">
-              Explore Service
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- Card 8: Free DevOps Consultancy -->
-          <div class="service-card free-consultancy">
-            <div class="card-badge">FREE</div>
-            <div class="card-number">08</div>
-            <div class="card-icon">🎯</div>
-            <h3 class="card-title">Free DevOps Consultancy</h3>
-            <p class="card-description">
-              Get expert DevOps consultation to assess your infrastructure, identify gaps, and plan your cloud journey.
-            </p>
-            <div class="consultancy-features">
-              <span>✓ Infrastructure Assessment</span>
-              <span>✓ Security Audit</span>
-              <span>✓ Cost Optimization Review</span>
-              <span>✓ Migration Strategy</span>
+        <div class="services-container">
+            <!-- Section Header -->
+            <div class="services-header">
+                <div class="services-badge">
+                    <span class="services-badge-dot"></span>
+                    <span>CORE CAPABILITIES</span>
+                </div>
+                <h2 class="services-title">Our Services</h2>
+                <div class="services-divider">
+                    <span></span>
+                    <span>✦</span>
+                    <span></span>
+                </div>
+                <p class="services-description">
+                    CloFix delivers enterprise-grade security, automation, and infrastructure solutions
+                    purpose-built for cloud-native and mission-critical applications.
+                </p>
             </div>
-            <a href="/free-consultancy" class="card-link">
-              Claim Free Session
-              <span class="link-arrow">→</span>
-            </a>
-          </div>
 
-          <!-- DevOps Training Card -->
-          <div class="service-card">
-            <div class="card-number">09</div>
-            <div class="card-icon">🎓</div>
-            <h3 class="card-title">DevOps Training</h3>
-            <p class="card-description">
-              Master DevOps practices with hands-on training in CI/CD, automation, infrastructure as code, and cloud-native tools from industry experts.
-            </p>
-            <div class="consultancy-features" style="margin-bottom: 24px;">
-              <span>✓ CI/CD Pipelines</span>
-              <span>✓ Docker & Kubernetes</span>
-              <span>✓ Terraform & Ansible</span>
-              <span>✓ Real-World Projects</span>
-            </div>
-            <!-- <a href="/devops-training" class="card-link">
-              Explore Training
-              <span class="link-arrow">→</span>
-            </a> -->
-          </div>
+            <!-- Service Cards Grid -->
+            <div class="services-grid">
+                <!-- Card 1: DevSecOps -->
+                <div class="service-card">
+                    <div class="card-number">01</div>
+                    <div class="card-icon">🛡️</div>
+                    <h3 class="card-title">DevSecOps</h3>
+                    <p class="card-description">
+                        Shift-left security integrated into your CI/CD pipelines for faster, safer deployments.
+                    </p>
+                    <a href="/devsecops" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
 
-          <!-- Cyber Security Training Card -->
-          <div class="service-card">
-            <div class="card-number">10</div>
-            <div class="card-icon">🔐</div>
-            <h3 class="card-title">Cyber Security Training</h3>
-            <p class="card-description">
-              Comprehensive cybersecurity training covering ethical hacking, threat detection, incident response, and security best practices.
-            </p>
-            <div class="consultancy-features" style="margin-bottom: 24px;">
-              <span>✓ Ethical Hacking</span>
-              <span>✓ Threat Hunting</span>
-              <span>✓ Incident Response</span>
-              <span>✓ Security Auditing</span>
+                <!-- Card 2: Automation -->
+                <div class="service-card">
+                    <div class="card-number">02</div>
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Intelligent Automation</h3>
+                    <p class="card-description">
+                        Streamline operations with AI-driven workflows and infrastructure as code.
+                    </p>
+                    <a href="/automation" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 3: On-Demand Engineering -->
+                <div class="service-card">
+                    <div class="card-number">03</div>
+                    <div class="card-icon">👨‍💻</div>
+                    <h3 class="card-title">On-Demand Engineering</h3>
+                    <p class="card-description">
+                        Expert DevOps and security engineers available when you need them most.
+                    </p>
+                    <a href="/ondemand" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 4: WAF (Featured) -->
+                <div class="service-card featured">
+                    <div class="card-badge">POPULAR</div>
+                    <div class="card-number">04</div>
+                    <div class="card-icon">🔥</div>
+                    <h3 class="card-title">Web Application Firewall</h3>
+                    <p class="card-description">
+                        AI-powered protection against OWASP Top 10, DDoS, and zero-day attacks.
+                    </p>
+                    <a href="/features" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 5: DevOps Support -->
+                <div class="service-card">
+                    <div class="card-number">05</div>
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">DevOps Support</h3>
+                    <p class="card-description">
+                        24/7 DevOps support with CI/CD pipeline management, automation, and monitoring solutions.
+                    </p>
+                    <a href="/devops-support" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 6: Infrastructure Management -->
+                <div class="service-card">
+                    <div class="card-number">06</div>
+                    <div class="card-icon">🏗️</div>
+                    <h3 class="card-title">Infrastructure Management</h3>
+                    <p class="card-description">
+                        Complete infrastructure lifecycle management including servers, networks, and storage.
+                    </p>
+                    <a href="/infrastructure-management" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 7: Cloud Management -->
+                <div class="service-card">
+                    <div class="card-number">07</div>
+                    <div class="card-icon">☁️</div>
+                    <h3 class="card-title">Cloud Management</h3>
+                    <p class="card-description">
+                        Multi-cloud management across AWS, Azure, GCP with cost optimization and security.
+                    </p>
+                    <a href="/cloud-management" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 8: Free DevOps Consultancy -->
+                <div class="service-card free-consultancy">
+                    <div class="card-badge">FREE</div>
+                    <div class="card-number">08</div>
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Free DevOps Consultancy</h3>
+                    <p class="card-description">
+                        Get expert DevOps consultation to assess your infrastructure, identify gaps, and plan your cloud journey.
+                    </p>
+                    <div class="consultancy-features">
+                        <span>✓ Infrastructure Assessment</span>
+                        <span>✓ Security Audit</span>
+                        <span>✓ Cost Optimization Review</span>
+                        <span>✓ Migration Strategy</span>
+                    </div>
+                    <a href="/free-consultancy" class="card-link">
+                        Claim Free Session
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 9: DevOps Training -->
+                <div class="service-card">
+                    <div class="card-number">09</div>
+                    <div class="card-icon">🎓</div>
+                    <h3 class="card-title">DevOps Training</h3>
+                    <p class="card-description">
+                        Master DevOps practices with hands-on training in CI/CD, automation, infrastructure as code, and cloud-native tools from industry experts.
+                    </p>
+                    <div class="consultancy-features" style="margin-bottom: 24px;">
+                        <span>✓ CI/CD Pipelines</span>
+                        <span>✓ Docker & Kubernetes</span>
+                        <span>✓ Terraform & Ansible</span>
+                        <span>✓ Real-World Projects</span>
+                    </div>
+                </div>
+
+                <!-- Card 10: Cyber Security Training -->
+                <div class="service-card">
+                    <div class="card-number">10</div>
+                    <div class="card-icon">🔐</div>
+                    <h3 class="card-title">Cyber Security Training</h3>
+                    <p class="card-description">
+                        Comprehensive cybersecurity training covering ethical hacking, threat detection, incident response, and security best practices.
+                    </p>
+                    <div class="consultancy-features" style="margin-bottom: 24px;">
+                        <span>✓ Ethical Hacking</span>
+                        <span>✓ Threat Hunting</span>
+                        <span>✓ Incident Response</span>
+                        <span>✓ Security Auditing</span>
+                    </div>
+                </div>
             </div>
-           <!--  <a href="/security-training" class="card-link">
-              Explore Training
-              <span class="link-arrow">→</span>
-            </a> -->
+
+            <!-- ============================================= -->
+            <!-- TRUST INDICATORS - CloFix WAF Advantages    -->
+            <!-- ============================================= -->
+            <div class="services-trust-wrapper">
+                <div class="trust-tag">
+                    <span class="trust-tag-icon">✨</span>
+                    <span>CloFix WAF Unique Advantages</span>
+                    <span class="trust-tag-line"></span>
+                </div>
+
+                <div class="services-trust-grid">
+                    <div class="trust-card">
+                        <span class="trust-card-icon">⚡</span>
+                        <div class="trust-card-content">
+                            <strong>Real-Time Threat Blocking</strong>
+                            <small>&lt;1ms latency · 5M+ threats/day</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🧠</span>
+                        <div class="trust-card-content">
+                            <strong>AI + Multi-Engine Protection</strong>
+                            <small>Lua · JS · WASM · CRS · Zero-day</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🛡️</span>
+                        <div class="trust-card-content">
+                            <strong>Complete OWASP Coverage</strong>
+                            <small>SQLi · XSS · CSRF · RFI/LFI</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🤖</span>
+                        <div class="trust-card-content">
+                            <strong>Advanced Bot Mitigation</strong>
+                            <small>Bad bot detection · Behavioral analysis · CAPTCHA</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">📜</span>
+                        <div class="trust-card-content">
+                            <strong>CADRE Scripting Engine</strong>
+                            <small>Custom security rules · Advanced logic · Real-time</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">⚙️</span>
+                        <div class="trust-card-content">
+                            <strong>Manage Custom Rules</strong>
+                            <small>Create · Edit · Delete · Enable/Disable · Priority</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🖥️</span>
+                        <div class="trust-card-content">
+                            <strong>Dedicated WAF Server</strong>
+                            <small>Isolated resources · High performance · SLA 99.99%</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🔧</span>
+                        <div class="trust-card-content">
+                            <strong>On-Demand Security Features</strong>
+                            <small>Custom rules · API security · Rate limiting · IP whitelist</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🚀</span>
+                        <div class="trust-card-content">
+                            <strong>Quick Onboard</strong>
+                            <small>5-min setup · DNS change only · Instant protection</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🎨</span>
+                        <div class="trust-card-content">
+                            <strong>Custom Your WAF Server</strong>
+                            <small>Custom config · Your policies · Tailored rules</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">📊</span>
+                        <div class="trust-card-content">
+                            <strong>Central Dashboard</strong>
+                            <small>Real-time analytics · Full visibility · Audit logs</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">📱</span>
+                        <div class="trust-card-content">
+                            <strong>Android & Mobile Support</strong>
+                            <small>Manage from anywhere · Mobile app · Push alerts</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🏢</span>
+                        <div class="trust-card-content">
+                            <strong>Local Support (Bangladesh)</strong>
+                            <small>24/7 local engineers · Fast response · On-site available</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">🌐</span>
+                        <div class="trust-card-content">
+                            <strong>No IP Device Required</strong>
+                            <small>Cloud-native · Zero hardware · Instant deployment</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">💥</span>
+                        <div class="trust-card-content">
+                            <strong>Advanced DDoS Mitigation</strong>
+                            <small>L3/L4/L7 · Auto-scaling · Rate limiting</small>
+                        </div>
+                    </div>
+
+                    <div class="trust-card">
+                        <span class="trust-card-icon">💰</span>
+                        <div class="trust-card-content">
+                            <strong>Flexible Payment Options</strong>
+                            <small>BDT (Taka) · USD (Dollar) · Monthly/Yearly</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- CLOFIX ECOSYSTEM SECTION                     -->
+    <!-- ============================================= -->
+    <section class="ecosystem-section" aria-label="CloFix Ecosystem">
+        <div class="ecosystem-container">
+            <div class="ecosystem-header">
+                <div class="ecosystem-badge">
+                    <span>🛡️ CloFix Ecosystem</span>
+                </div>
+                <h2 class="ecosystem-title">Complete Security Ecosystem</h2>
+                <p class="ecosystem-description">
+                    One platform, multiple layers of protection. Everything you need to secure your applications.
+                </p>
+            </div>
+
+            <div class="ecosystem-grid">
+              <!-- Ecosystem Card 1: CloFix WAF -->
+              <div class="ecosystem-card">
+                  <div class="ecosystem-icon">🔥</div>
+                  <div class="ecosystem-badge-tag">Cloud Service</div>
+                  <h3 class="ecosystem-card-title">CloFix WAF</h3>
+                  <p class="ecosystem-card-desc">
+                      Cloud-based Web Application Firewall with AI-powered threat detection, OWASP Top 10 protection, and real-time blocking.
+                  </p>
+                  <div class="ecosystem-features">
+                      <span>🛡️ AI Threat Detection</span>
+                      <span>🛡️ OWASP Top 10</span>
+                      <span>🛡️ DDoS Protection</span>
+                      <span>🛡️ Zero-day Defense</span>
+                      <span>🛡️ Real-time Blocking</span>
+                      <span>🛡️ Custom Rules Engine</span>
+                      <span>🧠 Behavioral Analysis</span>
+                      <span>🌐 No IP Device Required</span>
+                  </div>
+                  <div class="ecosystem-status active">
+                      <span class="status-dot"></span>
+                      Active
+                  </div>
+                  <a href="/features" class="ecosystem-btn">
+                      Explore CloFix WAF
+                      <span class="btn-arrow">→</span>
+                  </a>
+              </div>
+
+              <!-- Ecosystem Card 2: CloFix Nano Agent -->
+              <div class="ecosystem-card">
+                  <div class="ecosystem-icon">🤖</div>
+                  <div class="ecosystem-badge-tag">Client Library</div>
+                  <h3 class="ecosystem-card-title">CloFix Nano Agent</h3>
+                  <p class="ecosystem-card-desc">
+                      The CloFix Nano Agent is a lightweight, high-performance security proxy that protects any workload regardless of platform. Deploy it as a Kubernetes DaemonSet, sidecar container, standalone Docker container, systemd service, or integrate directly with your existing reverse proxy.
+                  </p>
+                  <div class="ecosystem-features">
+                      <span>🚀 Kubernetes DaemonSet</span>
+                      <span>🚀 Apache and Nginx</span>
+                      <span>🚀 Docker Container</span>
+                      <span>🚀 Systemd Service</span>
+                      <span>🚀 Reverse Proxy Integration</span>
+                      <span>🚀 Any Workload Protection</span>
+                      <span>🚀 Slack Alert</span>
+                      <span>🚀 Grafana Dashboard</span>
+                  </div>
+                  <div class="ecosystem-status active">
+                      <span class="status-dot"></span>
+                      Active
+                  </div>
+                  <a href="/clofix-agent" class="ecosystem-btn">
+                      Explore CloFix Nano Agent
+                      <span class="btn-arrow">→</span>
+                  </a>
+              </div>
+
+              <!-- Ecosystem Card 3: CloFix Core API -->
+              <div class="ecosystem-card featured">
+                  <div class="ecosystem-icon">🚀</div>
+                  <div class="ecosystem-badge-tag">Security Engine</div>
+                  <h3 class="ecosystem-card-title">CloFix Core API</h3>
+                  <p class="ecosystem-card-desc">
+                      The brain behind the shield - a powerful security API engine with multi-script support, 
+                      license management, form protection, and real-time threat detection.
+                  </p>
+                  <div class="ecosystem-features">
+                      <span>🛡️ Form Protection</span>
+                      <span>🛡️ SQL Injection Prevention</span>
+                      <span>🛡️ XSS Protection</span>
+                      <span>🛡️ CSRF Protection</span>
+                      <span>⚡ Multi-Script Support</span>
+                      <span>⚡ License Management</span>
+                      <span>⚡ Real-time Detection</span>
+                      <span>⚡ Auto-Reload Engine</span>
+                      <span>⚡ JS/Lua/Python/Go Support</span>
+                      <span>⚡ Custom Security Rules</span>
+                  </div>
+                  <div class="ecosystem-status active">
+                      <span class="status-dot"></span>
+                      Active
+                  </div>
+                  <a href="/clofix-api" class="ecosystem-btn">
+                      Explore CloFix Core API
+                      <span class="btn-arrow">→</span>
+                  </a>
+              </div>
           </div>
         </div>
-
-        <!-- Trust Indicators - CloFix WAF Unique Advantages -->
-        <div class="services-trust-wrapper">
-          <div class="trust-tag">
-            <span class="trust-tag-icon">✨</span>
-            <span>CloFix WAF Unique Advantages</span>
-            <span class="trust-tag-line"></span>
-          </div>
-          
-          <div class="services-trust-grid">
-            <div class="trust-card">
-              <span class="trust-card-icon">⚡</span>
-              <div class="trust-card-content">
-                <strong>Real-Time Threat Blocking</strong>
-                <small>&lt;1ms latency · 5M+ threats/day</small>      </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🧠</span>
-              <div class="trust-card-content">
-                <strong>AI + Multi-Engine Protection</strong>
-                <small>Lua · JS · WASM · CRS · Zero-day</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🛡️</span>
-              <div class="trust-card-content">
-                <strong>Complete OWASP Coverage</strong>
-                <small>SQLi · XSS · CSRF · RFI/LFI</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🤖</span>
-              <div class="trust-card-content">
-                <strong>Advanced Bot Mitigation</strong>
-                <small>Bad bot detection · Behavioral analysis · CAPTCHA</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">📜</span>
-              <div class="trust-card-content">
-                <strong>CADRE Scripting Engine</strong>
-                <small>Custom security rules · Advanced logic · Real-time</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">⚙️</span>
-              <div class="trust-card-content">
-                <strong>Manage Custom Rules</strong>
-                <small>Create · Edit · Delete · Enable/Disable · Priority</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🖥️</span>
-              <div class="trust-card-content">
-                <strong>Dedicated WAF Server</strong>
-                <small>Isolated resources · High performance · SLA 99.99%</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🔧</span>
-              <div class="trust-card-content">
-                <strong>On-Demand Security Features</strong>
-                <small>Custom rules · API security · Rate limiting · IP whitelist</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🚀</span>
-              <div class="trust-card-content">
-                <strong>Quick Onboard</strong>
-                <small>5-min setup · DNS change only · Instant protection</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🎨</span>
-              <div class="trust-card-content">
-                <strong>Custom Your WAF Server</strong>
-                <small>Custom config · Your policies · Tailored rules</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">📊</span>
-              <div class="trust-card-content">
-                <strong>Central Dashboard</strong>
-                <small>Real-time analytics · Full visibility · Audit logs</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">📱</span>
-              <div class="trust-card-content">
-                <strong>Android & Mobile Support</strong>
-                <small>Manage from anywhere · Mobile app · Push alerts</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🏢</span>
-              <div class="trust-card-content">
-                <strong>Local Support (Bangladesh)</strong>
-                <small>24/7 local engineers · Fast response · On-site available</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">🌐</span>
-              <div class="trust-card-content">
-                <strong>No IP Device Required</strong>
-                <small>Cloud-native · Zero hardware · Instant deployment</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">💥</span>
-              <div class="trust-card-content">
-                <strong>Advanced DDoS Mitigation</strong>
-                <small>L3/L4/L7 · Auto-scaling · Rate limiting</small>
-              </div>
-            </div>
-            
-            <div class="trust-card">
-              <span class="trust-card-icon">💰</span>
-              <div class="trust-card-content">
-                <strong>Flexible Payment Options</strong>
-                <small>BDT (Taka) · USD (Dollar) · Monthly/Yearly</small>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <section class="tools-sec" id="tools">

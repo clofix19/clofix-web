@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://clofix.com/clofix-api" />
+
+    <meta name="description" content="CloFix Core API - The brain behind the shield. A powerful security API engine with license management, form protection, and real-time threat detection." />
+
+    <meta name="keywords" content="CloFix, Core API, Security API, WAF API, License Management, Form Protection, SQL Injection Prevention, XSS Protection, CSRF Protection, Real-time Detection, Custom Security Rules, Cloud WAF, API Security" />
+
+    <meta name="author" content="CloFix InfoTech" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CloFix Core API | Security Engine" />
+    <meta property="og:description" content="The brain behind the shield - a powerful security API engine with license management, form protection, and real-time threat detection." />
+    <meta property="og:url" content="https://clofix.com/">
+    <meta property="og:image" content="https://clofix.com/img/share.jpg">
+    <meta property="og:image:width" content="128">
+    <meta property="og:image:height" content="128">
+
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="./style.css" rel="stylesheet" />
+
+    <title>CloFix Core API | Security Engine</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WP02RFXGSE', {
+            send_page_view: true,
+            anonymize_ip: true
+        });
+        gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href
+        });
+    </script>
+
+    <style>
+        :root {
+            --dark-bg: #0a0f1a;
+            --dark-navy: #0d1b2e;
+            --dark-surface: #0f2138;
+            --dark-border: #1a3a56;
+            --dark-teal: #00c2a8;
+            --dark-orange: #e85d26;
+            --dark-text: #c8d8e8;
+            --dark-muted: #5a7088;
+            --dark-code: #081422;
+            --dark-gold: #e8b84b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--dark-bg); color: var(--dark-text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+        .header { background: var(--dark-navy); border-bottom: 1px solid var(--dark-border); position: sticky; top: 0; z-index: 1000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .header__wrapper { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+        .c-logo img { height: 40px; }
+        .c-nav__content ul { display: flex; list-style: none; gap: 24px; align-items: center; }
+        .c-link { color: var(--dark-text); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .c-link:hover { color: var(--dark-teal); }
+        .c-button { background: var(--dark-teal); color: var(--dark-bg); border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .agent-hero { background: radial-gradient(ellipse at 70% -10%, rgba(0,194,168,.18) 0%, transparent 55%), radial-gradient(ellipse at 20% 110%, rgba(46,109,180,.12) 0%, transparent 55%), var(--dark-navy); padding: 80px 0 64px; border-bottom: 1px solid var(--dark-border); }
+        .agent-hero__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,194,168,.1); border: 1px solid rgba(0,194,168,.35); color: var(--dark-teal); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+        .agent-hero__badge::before { content: ''; width: 7px; height: 7px; background: var(--dark-teal); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{ opacity: 1; } 50%{ opacity: .25; } }
+        .agent-hero h1 { font-size: clamp(32px,5vw,52px); font-weight: 800; line-height: 1.1; color: #fff; margin: 0 0 16px; }
+        .agent-hero h1 span { color: var(--dark-teal); }
+        .agent-hero__lead { font-size: 18px; color: var(--dark-muted); max-width: 650px; margin: 0 0 36px; }
+        .cadre-hero__pills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cadre-hero__pill { background: rgba(255,255,255,.04); border: 1px solid var(--dark-border); border-radius: 6px; padding: 6px 14px; font-size: 13px; color: var(--dark-text); }
+        .cadre-body { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 24px; gap: 48px; align-items: flex-start; }
+        .cadre-toc { position: sticky; top: 100px; width: 250px; flex-shrink: 0; padding: 24px 0; max-height: calc(100vh - 120px); overflow-y: auto; }
+        .cadre-toc__title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--dark-muted); margin-bottom: 16px; }
+        .cadre-toc a { display: block; padding: 8px 12px; font-size: 13px; color: var(--dark-muted); text-decoration: none; border-left: 2px solid transparent; transition: all 0.2s; }
+        .cadre-toc a:hover, .cadre-toc a.active { color: var(--dark-teal); border-left-color: var(--dark-teal); background: rgba(0,194,168,.06); }
+        .cadre-content { flex: 1; min-width: 0; padding: 48px 0 80px; }
+        .cadre-section { margin-bottom: 72px; scroll-margin-top: 80px; }
+        .cadre-section__title { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; color: #fff; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid var(--dark-border); }
+        .cadre-section__title .sec-num { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--dark-teal); background: rgba(0,194,168,.1); padding: 2px 8px; border-radius: 4px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin: 20px 0 30px; }
+        .feature-card { background: var(--dark-surface); border: 1px solid var(--dark-border); border-radius: 12px; padding: 20px; transition: all 0.2s; cursor: pointer; }
+        .feature-card.non-clickable { cursor: default; }
+        .feature-card.non-clickable:hover { transform: none; border-color: var(--dark-border); }
+        .feature-card:hover:not(.non-clickable) { transform: translateY(-2px); border-color: var(--dark-teal); }
+        .feature-card__header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .feature-card__icon { font-size: 32px; }
+        .feature-card__name { font-size: 18px; font-weight: 700; color: #fff; }
+        .feature-card__desc { font-size: 13px; color: var(--dark-muted); line-height: 1.5; }
+        .cadre-box { border-left: 3px solid var(--dark-teal); background: rgba(0,194,168,.06); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 16px 0 24px; }
+        .cadre-box.gold { border-left-color: var(--dark-gold); background: rgba(232,184,75,.06); }
+        .cadre-code { margin: 16px 0 24px; border-radius: 8px; overflow: hidden; border: 1px solid var(--dark-border); }
+        .cadre-code__hdr { display: flex; justify-content: space-between; padding: 8px 16px; background: var(--dark-navy); border-bottom: 1px solid var(--dark-border); }
+        .cadre-code__lang { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--dark-teal); }
+        .cadre-copy { font-size: 11px; color: var(--dark-muted); background: none; border: 1px solid var(--dark-border); padding: 3px 10px; border-radius: 4px; cursor: pointer; }
+        .cadre-copy:hover { color: var(--dark-teal); border-color: var(--dark-teal); }
+        .cadre-code pre { background: var(--dark-code); padding: 18px 20px; overflow-x: auto; font-family: 'Space Mono', monospace; font-size: 13px; line-height: 1.75; margin: 0; }
+        .cadre-table-wrap { overflow-x: auto; margin: 14px 0 24px; border-radius: 8px; border: 1px solid var(--dark-border); }
+        .cadre-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        .cadre-table th { padding: 12px 16px; text-align: left; background: var(--dark-navy); color: var(--dark-teal); }
+        .cadre-table td { padding: 10px 16px; border-bottom: 1px solid var(--dark-border); }
+        .footer { background: var(--dark-navy); border-top: 1px solid var(--dark-border); padding: 40px 0 20px; margin-top: 40px; }
+        .c-footer { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .c-footer__logo { height: 40px; }
+        .c-footer__subtitle { color: var(--dark-teal); font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+        .c-footer__list { list-style: none; }
+        .c-footer__list li { margin-bottom: 8px; }
+        .c-footer__list a { color: var(--dark-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .c-footer__list a:hover { color: var(--dark-teal); }
+        .social { display: flex; gap: 12px; list-style: none; margin-top: 16px; }
+        .social-li img { height: 28px; width: 28px; border-radius: 50%; transition: transform 0.2s; }
+        .social-li img:hover { transform: scale(1.1); }
+        .footer__text { text-align: center; color: var(--dark-muted); font-size: 12px; padding-top: 20px; border-top: 1px solid var(--dark-border); margin-top: 20px; }
+
+        @media (max-width: 860px) { .cadre-toc { display: none; } .cadre-body { padding: 0 16px; } .c-nav__content ul { display: none; } .c-footer { grid-template-columns: 1fr; gap: 24px; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-code); }
+        ::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
+
+        /* Use Case Cards */
+        .use-case-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin: 20px 0 30px; }
+        .use-case-card { background: var(--dark-surface); border: 1px solid var(--dark-border); border-radius: 12px; padding: 24px; transition: all 0.3s; }
+        .use-case-card:hover { transform: translateY(-4px); border-color: var(--dark-teal); }
+        .use-case-card .uc-icon { font-size: 40px; margin-bottom: 12px; }
+        .use-case-card .uc-title { color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .use-case-card .uc-desc { color: var(--dark-muted); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+        .use-case-card .uc-code { background: var(--dark-code); border-radius: 8px; padding: 12px 14px; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--dark-teal); overflow-x: auto; border: 1px solid var(--dark-border); }
+        .use-case-card .uc-code .tag { color: var(--dark-gold); }
+        .use-case-card .uc-code .string { color: #a8d5e2; }
+        .use-case-card .uc-code .comment { color: var(--dark-muted); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="/"><img src="img/logo.png" alt="Logo" class="c-logo__img" /></a>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="/" class="c-link c-link--list">Home</a>
+              </li>
+              <li class="c-list__item"><a href="/pricing" class="c-link c-link--list">Pricing</a></li>
+              <li class="c-list__item">
+                <a href="/waf-setup" class="c-link c-link--list">WAF Setup</a>
+              </li>
+              <li class="c-list__item"><a href="/about" class="c-link c-link--list">About</a></li>
+              <li class="c-list__item"><a href="/features" class="c-link c-link--list">Features</a></li>
+              <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
+              <li class="c-list__item"><a href="/contact" class="c-link c-link--list">Contact</a></li>
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">CloFix JS Script</a>
+                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">CloFix WASM</a>
+                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">CloFix Nano Agent Workflow</a>
+                      </div>
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">CloFix Pentest</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <a href="/faq" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">FAQ</button>
+              </a>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+    <!-- ══════════ HERO ══════════ -->
+    <div class="agent-hero">
+        <div class="container">
+            <div class="agent-hero__badge">CLOFIX CORE API v1.0</div>
+            <h1>⚡ The Brain Behind <span>the Shield</span></h1>
+            <p class="agent-hero__lead">A powerful security API engine with license management, form protection, and real-time threat detection.</p>
+            <div class="cadre-hero__pills">
+                <span class="cadre-hero__pill">🛡️ Form Protection</span>
+                <span class="cadre-hero__pill">🔑 License Management</span>
+                <span class="cadre-hero__pill">🔄 Real-time Detection</span>
+                <span class="cadre-hero__pill">📜 Custom Rules</span>
+                <span class="cadre-hero__pill">🌐 API Integration</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ BODY ══════════ -->
+    <div class="cadre-body">
+        <aside class="cadre-toc">
+            <div class="cadre-toc__title">Contents</div>
+            <a href="#what-is-core">What is CloFix Core API?</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="#features">Features</a>
+            <a href="#license-management">License Management</a>
+            <a href="#form-protection">Form Protection</a>
+            <a href="#integration">Integration</a>
+            <a href="#faq">FAQ</a>
+        </aside>
+
+        <div class="cadre-content">
+            <!-- Section 01 -->
+            <section class="cadre-section" id="what-is-core">
+                <h2 class="cadre-section__title"><span class="sec-num">01</span> What is CloFix Core API?</h2>
+                <p><strong>CloFix Core API</strong> is the security engine that powers the entire CloFix ecosystem. It provides:</p>
+                <div class="feature-grid">
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">Form Protection</span></div>
+                        <div class="feature-card__desc">Protect your forms from SQL Injection, XSS, CSRF, and other OWASP Top 10 attacks.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🔑</span><span class="feature-card__name">License Management</span></div>
+                        <div class="feature-card__desc">Domain-based licensing, IP whitelisting, monthly quota, and feature-based access control.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🔄</span><span class="feature-card__name">Real-time Detection</span></div>
+                        <div class="feature-card__desc">Instant threat detection and blocking with sub-millisecond latency.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">📜</span><span class="feature-card__name">Custom Security Rules</span></div>
+                        <div class="feature-card__desc">Create custom security rules in JSON, Lua, Python, JavaScript, or Go.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 02: Use Cases -->
+            <!-- ============================================= -->
+            <!-- USE CASES - ALL FRAMEWORKS                    -->
+            <!-- ============================================= -->
+            <section class="cadre-section" id="use-cases">
+                <h2 class="cadre-section__title">
+                    <span class="sec-num">02</span> 
+                    Use Cases <span style="font-size:14px; color: var(--dark-muted); font-weight:400;">- All Frameworks</span>
+                </h2>
+                <p>Integrate CloFix Core API with any framework in minutes. Here's how:</p>
+
+                <div class="use-case-grid">
+                    <!-- 1. HTML + JavaScript (CDN) -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🌐</div>
+                        <div class="uc-title">HTML + JavaScript</div>
+                        <div class="uc-desc">One-line CDN integration for any HTML page.</div>
+                        <div class="uc-code">
+                            <span class="comment">&lt;!-- Add this one line --&gt;</span><br />
+                            <span class="tag">&lt;script</span> <span class="string">src</span>=<span class="string">"https://clofix.com/api/clofix-waf.js"</span><span class="tag">&gt;&lt;/script&gt;</span><br /><br />
+                            <span class="comment">&lt;!-- Protect any form --&gt;</span><br />
+                            <span class="tag">&lt;form</span> <span class="string">data-waf-protected</span><span class="tag">&gt;</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="string">type</span>=<span class="string">"text"</span> <span class="string">name</span>=<span class="string">"email"</span><span class="tag">&gt;</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="string">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span><br />
+                            <span class="tag">&lt;/form&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. React.js -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">⚛️</div>
+                        <div class="uc-title">React.js</div>
+                        <div class="uc-desc">Protect your React forms with a custom hook.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: npm install @clofix/react</span><br />
+                            <span class="tag">import</span> { useCloFixWAF } <span class="tag">from</span> <span class="string">'@clofix/react'</span>;<br /><br />
+                            <span class="tag">function</span> LoginForm() {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> { validate, loading } = <span class="tag">useCloFixWAF</span>({<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <span class="string">'example.com'</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;});<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> handleSubmit = <span class="tag">async</span> (data) => {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> result = <span class="tag">await</span> validate(<span class="string">'login'</span>, data);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (result.allowed) { <span class="comment">// Submit</span> }<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;};<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 3. Next.js -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">▲</div>
+                        <div class="uc-title">Next.js</div>
+                        <div class="uc-desc">Protect your Next.js forms with SSR support.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: npm install @clofix/next</span><br />
+                            <span class="tag">import</span> { useCloFixWAF } <span class="tag">from</span> <span class="string">'@clofix/next'</span>;<br /><br />
+                            <span class="tag">export function</span> LoginPage() {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> { validate, isReady } = <span class="tag">useCloFixWAF</span>({<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <span class="string">'example.com'</span>,<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apiUrl: process.env.NEXT_PUBLIC_API_URL<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;});<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> handleSubmit = <span class="tag">async</span> (e) => {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> result = <span class="tag">await</span> validate(formData);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (result.allowed) { <span class="comment">// Submit</span> }<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;};<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 4. Vue.js -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🟢</div>
+                        <div class="uc-title">Vue.js</div>
+                        <div class="uc-desc">Protect your Vue forms with a composable.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: npm install @clofix/vue</span><br />
+                            <span class="tag">&lt;script setup&gt;</span><br />
+                            <span class="tag">import</span> { useCloFixWAF } <span class="tag">from</span> <span class="string">'@clofix/vue'</span>;<br /><br />
+                            <span class="tag">const</span> { validate, loading } = <span class="tag">useCloFixWAF</span>({<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;domain: <span class="string">'example.com'</span><br />
+                            });<br /><br />
+                            <span class="tag">const</span> handleSubmit = <span class="tag">async</span> (data) => {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> result = <span class="tag">await</span> validate(<span class="string">'login'</span>, data);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (result.allowed) { <span class="comment">// Submit</span> }<br />
+                            };<br />
+                            <span class="tag">&lt;/script&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- 5. Angular -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🅰️</div>
+                        <div class="uc-title">Angular</div>
+                        <div class="uc-desc">Protect your Angular forms with a service.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: npm install @clofix/angular</span><br />
+                            <span class="tag">import</span> { Injectable } <span class="tag">from</span> <span class="string">'@angular/core'</span>;<br />
+                            <span class="tag">import</span> { CloFixWAF } <span class="tag">from</span> <span class="string">'@clofix/angular'</span>;<br /><br />
+                            <span class="tag">@Injectable</span>({ providedIn: <span class="string">'root'</span> })<br />
+                            <span class="tag">export class</span> SecurityService {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">constructor</span>() {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">this</span>.waf = <span class="tag">new</span> CloFixWAF({<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain: <span class="string">'example.com'</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">async</span> validate(data: any) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span> <span class="tag">await</span> <span class="tag">this</span>.waf.validate(<span class="string">'login'</span>, data);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 6. Svelte -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">⚡</div>
+                        <div class="uc-title">Svelte</div>
+                        <div class="uc-desc">Protect your Svelte forms with a store.</div>
+                        <div class="uc-code">
+                            <span class="comment">&lt;!-- Install: npm install @clofix/svelte --&gt;</span><br />
+                            <span class="tag">&lt;script&gt;</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">import</span> { clofix } <span class="tag">from</span> <span class="string">'@clofix/svelte'</span>;<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">let</span> email, password;<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">async function</span> handleSubmit() {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">const</span> result = <span class="tag">await</span> clofix.validate(<span class="string">'login'</span>, { email, password });<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (result.allowed) { <span class="comment">// Submit</span> }<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            <span class="tag">&lt;/script&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- 7. Laravel (PHP) -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🟡</div>
+                        <div class="uc-title">Laravel (PHP)</div>
+                        <div class="uc-desc">Protect your Laravel routes with middleware.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: composer require clofix/laravel</span><br />
+                            <span class="comment">// app/Http/Middleware/CloFixWAF.php</span><br />
+                            <span class="tag">public function</span> handle($request, $next) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;$response = <span class="tag">CloFix::validate</span>($request);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (!$response->allowed) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span> response()->json([<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'error'</span> => $response->reason<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;], <span class="string">403</span>);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span> $next($request);<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 8. Python Django -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🐍</div>
+                        <div class="uc-title">Python Django</div>
+                        <div class="uc-desc">Protect your Django views with middleware.</div>
+                        <div class="uc-code">
+                            <span class="comment"># Install: pip install clofix-django</span><br />
+                            <span class="comment"># middleware.py</span><br />
+                            <span class="tag">from</span> clofix <span class="tag">import</span> CloFixWAF<br /><br />
+                            <span class="tag">class</span> CloFixMiddleware:<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">def</span> __init__(self, get_response):<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.get_response = get_response<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.waf = CloFixWAF(domain=<span class="string">'example.com'</span>)<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">def</span> __call__(self, request):<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response = self.waf.validate(request)<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> <span class="tag">not</span> response.allowed:<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span> JsonResponse({<span class="string">'error'</span>: response.reason}, status=<span class="string">403</span>)<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span> self.get_response(request)
+                        </div>
+                    </div>
+
+                    <!-- 9. Spring Boot (Java) -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">☕</div>
+                        <div class="uc-title">Spring Boot (Java)</div>
+                        <div class="uc-desc">Protect your Spring Boot endpoints with filter.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: implementation 'com.clofix:spring-boot-starter'</span><br />
+                            <span class="tag">@Component</span><br />
+                            <span class="tag">public class</span> CloFixFilter <span class="tag">implements</span> Filter {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">private</span> CloFixWAF waf;<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">@Override</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">public void</span> doFilter(ServletRequest request,<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ServletResponse response, FilterChain chain) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ValidationResult result = waf.validate(request);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (!result.isAllowed()) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((HttpServletResponse) response).setStatus(<span class="string">403</span>);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span>;<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chain.doFilter(request, response);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 10. Kotlin (Ktor) -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🔷</div>
+                        <div class="uc-title">Kotlin (Ktor)</div>
+                        <div class="uc-desc">Protect your Ktor routes with interceptor.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: implementation 'com.clofix:ktor-clofix'</span><br />
+                            <span class="tag">fun</span> Application.module() {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">install</span>(CloFixWAF) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain = <span class="string">"example.com"</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apiUrl = <span class="string">"https://api.clofix.com"</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">routing</span> {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">post</span>(<span class="string">"/login"</span>) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">val</span> result = <span class="tag">call</span>.validate()<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (result.allowed) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Process login</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 11. .NET (C#) -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">🔵</div>
+                        <div class="uc-title">.NET (C#)</div>
+                        <div class="uc-desc">Protect your .NET endpoints with middleware.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: dotnet add package CloFix.NET</span><br />
+                            <span class="tag">public class</span> CloFixMiddleware {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">private readonly</span> RequestDelegate _next;<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">private readonly</span> CloFixWAF _waf;<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">public async Task</span> InvokeAsync(HttpContext context) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">var</span> result = <span class="tag">await</span> _waf.ValidateAsync(context);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (!result.Allowed) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.Response.StatusCode = <span class="string">403</span>;<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">await</span> context.Response.WriteAsync(result.Reason);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">return</span>;<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">await</span> _next(context);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- 12. Flutter -->
+                    <div class="use-case-card">
+                        <div class="uc-icon">📱</div>
+                        <div class="uc-title">Flutter (Dart)</div>
+                        <div class="uc-desc">Protect your Flutter app with HTTP interceptor.</div>
+                        <div class="uc-code">
+                            <span class="comment">// Install: flutter pub add clofix_flutter</span><br />
+                            <span class="tag">import</span> 'package:clofix_flutter/clofix_flutter.dart';<br /><br />
+                            <span class="tag">class</span> CloFixInterceptor <span class="tag">extends</span> Interceptor {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">final</span> CloFixWAF waf = CloFixWAF(domain: <span class="string">'example.com'</span>);<br /><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">@override</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">Future</span> onRequest(RequestOptions options,<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RequestInterceptorHandler handler) <span class="tag">async</span> {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">final</span> result = <span class="tag">await</span> waf.validate(options);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">if</span> (!result.allowed) {<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">throw</span> DioError(<span class="string">'Blocked'</span>);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.next(options);<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Integration Note -->
+                <div class="cadre-box gold" style="margin-top: 24px;">
+                    <strong>🚀 Quick Integration</strong><br />
+                    ✅ <strong>One-Line Setup</strong> - Add the script tag to your HTML<br />
+                    ✅ <strong>Framework Agnostic</strong> - Works with all frameworks<br />
+                    ✅ <strong>Auto Domain Detection</strong> - No configuration needed<br />
+                    ✅ <strong>Zero Configuration</strong> - Just add <code>data-waf-protected</code> to your forms
+                </div>
+            </section>
+
+            <!-- Section 03: Features -->
+            <section class="cadre-section" id="features">
+                <h2 class="cadre-section__title"><span class="sec-num">03</span> Core Features</h2>
+                <div class="cadre-table-wrap">
+                    <table class="cadre-table">
+                        <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Form Protection</code></td><td>Protects forms from SQL Injection, XSS, CSRF, and other attacks</td></tr>
+                            <tr><td><code>License Management</code></td><td>Domain-based, IP whitelisting, quota, feature-based access</td></tr>
+                            <tr><td><code>Real-time Detection</code></td><td>Instant threat detection and blocking</td></tr>
+                            <tr><td><code>Custom Security Rules</code></td><td>Create custom rules in JSON, Lua, Python, JavaScript, or Go</td></tr>
+                            <tr><td><code>Auto-Reload</code></td><td>Automatic reload on script changes</td></tr>
+                            <tr><td><code>Multi-Language Support</code></td><td>JSON, Lua, Python, JavaScript, Go, YAML</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 04: License Management -->
+            <section class="cadre-section" id="license-management">
+                <h2 class="cadre-section__title"><span class="sec-num">04</span> License Management</h2>
+                <div class="cadre-code">
+                    <div class="cadre-code__hdr"><span class="cadre-code__lang">License Configuration Example</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div>
+                    <pre>{
+    "license_key": "CLOFIX-ACME-001",
+    "plan": "enterprise",
+    "organization_name": "Acme-Corporation",
+    "email": "admin@acme.com",
+    "allowed_ips": ["0.0.0.0/0"],
+    "allowed_domains": ["*.acme.com"],
+    "nano_agent_connect": "0.0.0.0/0, ::1, 127.0.0.1",
+    "expire_date": "2036-12-31",
+    "total_monthly_requests": 1000000,
+    "max_agents": 100,
+    "features": ["waf", "challenge_page", "rate_limit", "bot_detection"],
+    "status": "active",
+    "challenge_mode": "cloud"
+}</pre>
+                </div>
+            </section>
+
+            <!-- Section 05: Form Protection -->
+            <section class="cadre-section" id="form-protection">
+                <h2 class="cadre-section__title"><span class="sec-num">05</span> Form Protection</h2>
+                <p>CloFix Core API protects your forms from:</p>
+                <div class="feature-grid">
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">SQL Injection</span></div>
+                        <div class="feature-card__desc">Prevents SQL injection attacks on all form inputs.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">XSS Protection</span></div>
+                        <div class="feature-card__desc">Blocks cross-site scripting attempts.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">CSRF Protection</span></div>
+                        <div class="feature-card__desc">Prevents cross-site request forgery attacks.</div>
+                    </div>
+                    <div class="feature-card non-clickable">
+                        <div class="feature-card__header"><span class="feature-card__icon">🛡️</span><span class="feature-card__name">Command Injection</span></div>
+                        <div class="feature-card__desc">Blocks command injection attempts.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 06: Integration -->
+            <section class="cadre-section" id="integration">
+                <h2 class="cadre-section__title"><span class="sec-num">06</span> Integration</h2>
+                <div class="cadre-code">
+                    <div class="cadre-code__hdr"><span class="cadre-code__lang">JavaScript Client Integration</span><button class="cadre-copy" onclick="copyCode(this)">Copy</button></div>
+                    <pre>// JavaScript Client Integration
+const waf = new CloFixWAF({
+    apiUrl: 'https://api.clofix.com',
+    debug: true
+});
+
+// Protect a form
+document.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = {};
+    formData.forEach((value, key) => { data[key] = value; });
+    
+    const result = await waf.verify('login', data);
+    if (result.allowed) {
+        // Submit form normally
+        e.target.submit();
+    } else {
+        alert('Security check failed: ' + result.reason);
+    }
+});</pre>
+                </div>
+            </section>
+
+            <!-- ============================================= -->
+            <!-- SECTION 07: FAQ - UPDATED                     -->
+            <!-- ============================================= -->
+            <section class="cadre-section" id="faq">
+                <h2 class="cadre-section__title">
+                    <span class="sec-num">07</span> 
+                    Frequently Asked Questions
+                    <span style="font-size:14px; color: var(--dark-muted); font-weight:400; margin-left:8px;">- Everything you need to know</span>
+                </h2>
+
+                <!-- FAQ Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+                    <!-- FAQ 1 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ What is CloFix Core API?</strong>
+                        <br>It's the security engine that powers CloFix WAF with license management, form protection, and real-time threat detection. It acts as the central brain that validates all incoming requests and applies security rules.
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ What languages are supported?</strong>
+                        <br>CloFix Core API supports multiple scripting languages for custom security rules: <strong>JSON</strong>, <strong>Lua</strong>, <strong>Python</strong>, <strong>JavaScript (Node.js)</strong>, <strong>Go plugins</strong>, and <strong>YAML</strong>. You can write rules in the language you're most comfortable with.
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ How does license management work?</strong>
+                        <br>License management includes:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>✅ <strong>Domain-based licensing</strong> - Protect specific domains</li>
+                            <li>✅ <strong>IP whitelisting</strong> - Allow only trusted IPs</li>
+                            <li>✅ <strong>Monthly quota</strong> - Control request limits</li>
+                            <li>✅ <strong>Feature-based access</strong> - Enable/disable features per license</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ Is there a free trial?</strong>
+                        <br>Yes! We offer a <strong>14-day free trial</strong> with 5 domains included. No credit card required. Contact us to get started.
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-gold);">
+                        <strong>❓ Can I use it with any framework?</strong>
+                        <br>Absolutely! CloFix Core API works with:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>✅ <strong>Frontend</strong> - React, Vue, Angular, Next.js, Svelte, HTML/JS</li>
+                            <li>✅ <strong>Backend</strong> - Laravel, Django, Spring Boot, .NET, Kotlin</li>
+                            <li>✅ <strong>Mobile</strong> - Flutter, React Native</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-gold);">
+                        <strong>❓ How does form protection work?</strong>
+                        <br>Protects forms from:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>🛡️ <strong>SQL Injection</strong> - Blocks malicious SQL queries</li>
+                            <li>🛡️ <strong>XSS</strong> - Prevents cross-site scripting</li>
+                            <li>🛡️ <strong>CSRF</strong> - Stops cross-site request forgery</li>
+                            <li>🛡️ <strong>Command Injection</strong> - Blocks OS command attacks</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 7 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-gold);">
+                        <strong>❓ Can I create custom security rules?</strong>
+                        <br>Yes! You can create custom rules using:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>✅ <strong>JSON</strong> - Simple rule-based configuration</li>
+                            <li>✅ <strong>Lua/Python/JS</strong> - Complex logic with full programming power</li>
+                            <li>✅ <strong>Go Plugins</strong> - High-performance custom modules</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 8 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-gold);">
+                        <strong>❓ What happens if the API server is down?</strong>
+                        <br>The system enters <strong>fallback mode</strong>:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>🔄 <strong>Bypass</strong> - Allow all requests (high availability)</li>
+                            <li>🔄 <strong>Cache Only</strong> - Use cached decisions</li>
+                            <li>🔄 <strong>Deny</strong> - Block all requests (maximum security)</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 9 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ How do I integrate with my existing app?</strong>
+                        <br>Integration is simple:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>✅ <strong>Frontend</strong> - Add <code>&lt;script src="https://clofix.com/api/clofix-waf.js"&gt;&lt;/script&gt;</code></li>
+                            <li>✅ <strong>Backend</strong> - Install package and add middleware</li>
+                            <li>✅ <strong>API</strong> - Call <code>/api/v1/validate</code> endpoint</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 10 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ Does it support Kubernetes/Cloud?</strong>
+                        <br>Yes! CloFix Core API is cloud-native:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>☸️ <strong>Kubernetes</strong> - DaemonSet, Ingress, Sidecar</li>
+                            <li>☁️ <strong>AWS</strong> - ALB, ECS, Lambda</li>
+                            <li>🐳 <strong>Docker</strong> - Containerized deployment</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 11 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-gold);">
+                        <strong>❓ Is there a free tier for small projects?</strong>
+                        <br>Yes! We offer:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>🎯 <strong>Community Edition</strong> - Free forever with 1 domain</li>
+                            <li>🎯 <strong>Startup Plan</strong> - $5/month with 5 domains</li>
+                            <li>🎯 <strong>Custom Pricing</strong> - For enterprise needs</li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ 12 -->
+                    <div class="cadre-box" style="border-left-color: var(--dark-teal);">
+                        <strong>❓ How is it different from Cloudflare?</strong>
+                        <br>CloFix Core API offers:
+                        <ul style="margin: 8px 0 0 20px; color: var(--dark-text); font-size: 13px;">
+                            <li>✅ <strong>Self-hosted option</strong> - Full control over your data</li>
+                            <li>✅ <strong>Custom rules</strong> - Write rules in your preferred language</li>
+                            <li>✅ <strong>Lower cost</strong> - Up to 70% cheaper for the same features</li>
+                            <li>✅ <strong>Local support</strong> - Direct access to engineering team</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Still Have Questions? -->
+                <div class="cadre-box gold" style="margin-top: 20px; text-align: center; padding: 20px;">
+                    <strong>💬 Still have questions?</strong>
+                    <br>Our team is here to help you!
+                    <div style="margin-top: 12px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <a href="/contact" style="background: var(--dark-teal); color: var(--dark-bg); padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                        <a href="https://wa.me/8801850603126" target="_blank" style="background: #25D366; color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="/" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale.</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png" alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <p class="footer__text">© 2026 CloFix – All Rights Reserved</p>
+    </div>
+  </footer>
+
+    <script>
+        function copyCode(btn) {
+            const pre = btn.closest('.cadre-code')?.querySelector('pre');
+            if (pre) {
+                navigator.clipboard.writeText(pre.innerText);
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 1500);
+            }
+        }
+    </script>
+</body>
+</html>
