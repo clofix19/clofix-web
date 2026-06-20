@@ -3,680 +3,276 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="canonical" href="https://clofix.com/devops-support" />
-  
-  <!-- SEO -->
-  <title>DevOps Support Services | Cloud & Infrastructure Management | CloFix</title>
-
+  <title>DevOps Manage Services | Cloud & Infrastructure Management | CloFix</title>
   <meta name="description" content="Get expert DevOps support for AWS, Azure, and GCP. Enjoy CI/CD automation, cloud infrastructure management and rapid incident response. Scale with confidence." />
-
-  <meta name="keywords" content="DevOps Support, CI/CD Pipeline Management, Cloud Infrastructure, DevOps Services, AWS DevOps, Azure DevOps, Kubernetes Support, Docker Management, Infrastructure as Code, Terraform, Ansible, Jenkins, GitOps, 24/7 DevOps, DevOps Consulting, Site Reliability Engineering, SRE, Cloud Automation, DevOps Bangladesh" />
-
+  <meta name="keywords" content="DevOps Support, DevOps Manage Service, CI/CD Pipeline Management, Cloud Infrastructure, DevOps Services, AWS DevOps, Azure DevOps, Kubernetes Support, Docker Management, Infrastructure as Code, Terraform, Ansible, Jenkins, GitOps, 24/7 DevOps, DevOps Consulting, Site Reliability Engineering, SRE, Cloud Automation, DevOps Bangladesh" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="CloFix InfoTech" />
-  
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="DevOps Support Services | 24/7 Expert DevOps Engineers" />
   <meta property="og:description" content="Comprehensive DevOps support including CI/CD, cloud infrastructure, automation, and 24/7 monitoring. Get expert DevOps engineers for your team." />
   <meta property="og:url" content="https://clofix.com/devops-support" />
   <meta property="og:image" content="https://clofix.com/img/share.jpg">
   <meta property="og:site_name" content="CloFix InfoTech" />
-  
-  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
   <link rel="stylesheet" href="./style.css" />
-  
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
-  
-  <!-- Google tag (gtag.js) -->
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag(){
-      window.dataLayer.push(arguments);
-    }
-
-    // Initialize GA4
+    function gtag(){ window.dataLayer.push(arguments); }
     gtag('js', new Date());
-
-    // Config (production-ready)
-    gtag('config', 'G-WP02RFXGSE', {
-      send_page_view: true,
-      anonymize_ip: true
-    });
-
-    // Optional: track initial page load event
-    gtag('event', 'page_view', {
-      page_title: document.title,
-      page_location: window.location.href
-    });
+    gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
+    gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
   </script>
-
   <style>
-    /* Additional Styles for DevOps Support Page */
-    .page-hero {
-      background: linear-gradient(135deg, #0a0c15 0%, #0f172a 50%, #0a0c15 100%);
-      padding: 120px 0 80px;
-      position: relative;
-      overflow: hidden;
+    /* base & reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; background: #0a0c15; color: #e2e8f0; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    /* header (minimal) */
+    .header { background: #0f172a; border-bottom: 1px solid rgba(56,189,248,0.15); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+    .header__wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .c-logo a { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .c-logo__img { height: 40px; width: auto; }
+    .c-nav__toggle { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .c-nav__bar { width: 28px; height: 3px; background: #94a3b8; border-radius: 4px; }
+    .c-nav__content { display: flex; align-items: center; }
+    .c-list { display: flex; gap: 20px; list-style: none; align-items: center; flex-wrap: wrap; }
+    .c-link { color: #94a3b8; text-decoration: none; font-weight: 500; transition: 0.2s; }
+    .c-link:hover { color: #38bdf8; }
+    .c-dropdown { position: relative; }
+    .c-dropdown__toggle { background: none; border: none; font-size: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .c-dropdown__chev { font-size: 12px; }
+    .c-dropdown__menu--mega { display: none; position: absolute; top: 100%; left: 0; background: #0f172a; border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; padding: 24px; min-width: 500px; z-index: 50; backdrop-filter: blur(4px); }
+    .c-dropdown.open .c-dropdown__menu--mega { display: block; }
+    .c-dropdown__mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .c-dropdown__mega-title { color: #38bdf8; font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+    .c-dropdown__mega-link { display: block; color: #94a3b8; text-decoration: none; padding: 6px 0; font-size: 14px; }
+    .c-dropdown__mega-link:hover { color: white; }
+    .ticket-button .c-button { background: #3b82f6; border: none; color: white; padding: 8px 20px; border-radius: 30px; font-weight: 600; cursor: pointer; }
+    @media (max-width: 768px) {
+      .c-nav__toggle { display: flex; }
+      .c-nav__content { display: none; flex-direction: column; width: 100%; background: #0f172a; padding: 20px 0; }
+      .c-nav__content.active { display: flex; }
+      .c-list { flex-direction: column; width: 100%; gap: 12px; }
+      .c-dropdown__menu--mega { position: static; min-width: auto; width: 100%; }
     }
-    
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(56,189,248,0.03)" d="M0 0h200v200H0z"/><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(56,189,248,0.05)" stroke-width="2"/></svg>') repeat;
-      pointer-events: none;
-    }
-    
-    .page-hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .page-badge {
-      display: inline-block;
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 30px;
-      color: #38bdf8;
-    }
-    
-    .page-hero h1 {
-      font-size: 52px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #ffffff, #94a3b8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .page-hero p {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #94a3b8;
-      margin-bottom: 32px;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .btn-primary {
-      background: #3b82f6;
-      color: white;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-primary:hover {
-      background: #2563eb;
-      transform: translateY(-2px);
-    }
-    
-    .btn-outline {
-      background: transparent;
-      color: #38bdf8;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid #38bdf8;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-outline:hover {
-      background: rgba(56, 189, 248, 0.1);
-      transform: translateY(-2px);
-    }
-    
-    /* Services Section */
-    .services-offered {
-      padding: 80px 0;
-      background: #0f172a;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .section-header h2 {
-      font-size: 36px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 16px;
-    }
-    
-    .section-header p {
-      font-size: 18px;
-      color: #94a3b8;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .services-grid-devops {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    
-    .service-item {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(10, 14, 23, 0.9));
-      border: 1px solid rgba(56, 189, 248, 0.12);
-      border-radius: 20px;
-      padding: 32px;
-      transition: all 0.3s ease;
-    }
-    
-    .service-item:hover {
-      transform: translateY(-5px);
-      border-color: rgba(56, 189, 248, 0.3);
-    }
-    
-    .service-icon {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-    
-    .service-item h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-    
-    .service-item p {
-      font-size: 14px;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
-    
-    /* Tech Stack */
-    .tech-stack {
-      padding: 80px 0;
-      background: #0a0c15;
-    }
-    
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
-    .tech-item {
-      background: rgba(56, 189, 248, 0.05);
-      border: 1px solid rgba(56, 189, 248, 0.1);
-      border-radius: 16px;
-      padding: 24px;
-      transition: all 0.3s ease;
-    }
-    
-    .tech-item:hover {
-      background: rgba(56, 189, 248, 0.1);
-      transform: translateY(-3px);
-    }
-    
-    .tech-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
-    
-    .tech-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    
-    /* Pricing Section */
-    .pricing-section {
-      padding: 80px 0;
-      background: #0f172a;
-    }
-    
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    
-    .pricing-card {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(10, 14, 23, 0.95));
-      border: 1px solid rgba(56, 189, 248, 0.15);
-      border-radius: 24px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(56, 189, 248, 0.4);
-    }
-    
-    .pricing-card.popular {
-      border: 2px solid #38bdf8;
-      position: relative;
-    }
-    
-    .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #38bdf8;
-      color: white;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 16px;
-      border-radius: 20px;
-    }
-    
-    .pricing-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 16px;
-    }
-    
-    .pricing-price {
-      font-size: 48px;
-      font-weight: 800;
-      color: #38bdf8;
-      margin-bottom: 8px;
-    }
-    
-    .pricing-price span {
-      font-size: 16px;
-      font-weight: 400;
-      color: #64748b;
-    }
-    
-    .pricing-duration {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 24px;
-    }
-    
-    .pricing-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 32px 0;
-      text-align: left;
-    }
-    
-    .pricing-features li {
-      padding: 10px 0;
-      color: #94a3b8;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .pricing-features li::before {
-      content: "✓";
-      color: #38bdf8;
-      font-weight: bold;
-    }
-    
-    .btn-pricing {
-      display: block;
-      background: #38bdf8;
-      color: white;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-pricing:hover {
-      background: #2563eb;
-    }
-    
-    .btn-pricing.outline {
-      background: transparent;
-      border: 1px solid #38bdf8;
-      color: #38bdf8;
-    }
-    
-    /* CTA Section */
-    .cta-section {
-      padding: 80px 0;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      text-align: center;
-    }
-    
-    .cta-section h2 {
-      font-size: 36px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 16px;
-    }
-    
-    .cta-section p {
-      font-size: 18px;
-      color: #94a3b8;
-      margin-bottom: 32px;
-    }
-    
-    /* Responsive */
+    /* page hero */
+    .page-hero { background: linear-gradient(135deg, #0a0c15 0%, #0f172a 50%, #0a0c15 100%); padding: 120px 0 80px; position: relative; overflow: hidden; }
+    .page-hero-content { text-align: center; max-width: 800px; margin: 0 auto; position: relative; z-index: 2; }
+    .page-badge { display: inline-block; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; margin-bottom: 30px; color: #38bdf8; }
+    .page-hero h1 { font-size: 52px; font-weight: 700; margin-bottom: 24px; line-height: 1.2; background: linear-gradient(135deg, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .page-hero p { font-size: 18px; line-height: 1.6; color: #94a3b8; margin-bottom: 32px; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: #3b82f6; color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+    .btn-primary:hover { background: #2563eb; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: #38bdf8; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid #38bdf8; transition: all 0.3s ease; }
+    .btn-outline:hover { background: rgba(56,189,248,0.1); transform: translateY(-2px); }
+    /* sections */
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: 36px; font-weight: 700; color: #ffffff; margin-bottom: 16px; }
+    .section-header p { font-size: 18px; color: #94a3b8; max-width: 600px; margin: 0 auto; }
+    .services-offered { padding: 80px 0; background: #0f172a; }
+    .services-grid-devops { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .service-item { background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(10,14,23,0.9)); border: 1px solid rgba(56,189,248,0.12); border-radius: 20px; padding: 32px; transition: all 0.3s ease; }
+    .service-item:hover { transform: translateY(-5px); border-color: rgba(56,189,248,0.3); }
+    .service-icon { font-size: 48px; margin-bottom: 20px; }
+    .service-item h3 { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 12px; }
+    .service-item p { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+    .free-badge { background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-left: 8px; display: inline-block; }
+    .free-badge.green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .waf-features, .alert-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .waf-features span, .alert-features span { font-size: 11px; color: #94a3b8; background: rgba(56,189,248,0.08); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(56,189,248,0.15); }
+    .alert-features span { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.15); }
+    .tech-stack { padding: 80px 0; background: #0a0c15; }
+    .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .tech-item { background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.1); border-radius: 16px; padding: 24px; transition: all 0.3s ease; }
+    .tech-item:hover { background: rgba(56,189,248,0.1); transform: translateY(-3px); }
+    .tech-icon { font-size: 40px; margin-bottom: 12px; }
+    .tech-name { font-size: 14px; font-weight: 600; color: #ffffff; }
+    .pricing-section { padding: 80px 0; background: #0f172a; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .pricing-card { background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(10,14,23,0.95)); border: 1px solid rgba(56,189,248,0.15); border-radius: 24px; padding: 32px; text-align: center; transition: all 0.3s ease; }
+    .pricing-card.popular { border: 2px solid #38bdf8; position: relative; }
+    .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #38bdf8; color: white; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 20px; }
+    .pricing-title { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 16px; }
+    .pricing-price { font-size: 48px; font-weight: 800; color: #38bdf8; margin-bottom: 8px; }
+    .pricing-price span { font-size: 16px; font-weight: 400; color: #64748b; }
+    .pricing-duration { font-size: 14px; color: #64748b; margin-bottom: 24px; }
+    .pricing-features { list-style: none; padding: 0; margin: 0 0 32px 0; text-align: left; }
+    .pricing-features li { padding: 10px 0; color: #94a3b8; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+    .pricing-features li::before { content: "✓"; color: #38bdf8; font-weight: bold; }
+    .btn-pricing { display: block; background: #38bdf8; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; }
+    .btn-pricing:hover { background: #2563eb; }
+    .btn-pricing.outline { background: transparent; border: 1px solid #38bdf8; color: #38bdf8; }
+    .cta-section { padding: 80px 0; background: linear-gradient(135deg, #1e293b, #0f172a); text-align: center; }
+    .cta-section h2 { font-size: 36px; font-weight: 700; color: #ffffff; margin-bottom: 16px; }
+    .cta-section p { font-size: 18px; color: #94a3b8; margin-bottom: 32px; }
+    /* experience & comparison */
+    .exp-section { padding: 80px 0; background: #0a0c15; }
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .exp-card { background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.1); border-radius: 20px; padding: 32px; text-align: center; }
+    .exp-number { font-size: 48px; font-weight: 800; color: #38bdf8; }
+    .exp-label { color: #94a3b8; font-size: 16px; }
+    .comparison-section { padding: 80px 0; background: #0f172a; }
+    .table-wrap { overflow-x: auto; max-width: 1100px; margin: 0 auto; }
+    .compare-table { width: 100%; border-collapse: collapse; background: rgba(15,23,42,0.8); border-radius: 20px; overflow: hidden; }
+    .compare-table th, .compare-table td { padding: 18px 24px; text-align: left; border-bottom: 1px solid rgba(56,189,248,0.1); color: #e2e8f0; }
+    .compare-table th { background: rgba(56,189,248,0.12); color: #38bdf8; font-weight: 600; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .check { color: #22c55e; font-weight: 700; }
+    .compare-table .cross { color: #ef4444; }
+    .compare-table .highlight { background: rgba(56,189,248,0.05); }
     @media (max-width: 900px) {
-      .services-grid-devops {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-      }
+      .services-grid-devops { grid-template-columns: repeat(2,1fr); }
+      .tech-grid { grid-template-columns: repeat(2,1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
     }
-    
     @media (max-width: 600px) {
-      .services-grid-devops {
-        grid-template-columns: 1fr;
-      }
-      
-      .page-hero h1 {
-        font-size: 36px;
-      }
+      .page-hero h1 { font-size: 36px; }
+      .services-grid-devops { grid-template-columns: 1fr; }
+      .exp-grid { grid-template-columns: 1fr 1fr; }
     }
+    .footer { background: #0a0c15; padding: 40px 0 20px; border-top: 1px solid rgba(56,189,248,0.1); }
+    .c-footer { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    .c-footer__logo { height: 40px; }
+    .c-footer__text { color: #94a3b8; margin-top: 8px; }
+    .social { display: flex; gap: 12px; list-style: none; margin-top: 16px; }
+    .social-li img { width: 28px; height: 28px; border-radius: 50%; }
+    .c-footer__subtitle { color: #ffffff; font-size: 18px; margin-bottom: 16px; }
+    .c-footer__list { list-style: none; }
+    .c-footer__list li { margin-bottom: 10px; }
+    .c-footer__list a { color: #94a3b8; text-decoration: none; }
+    .c-footer__list a:hover { color: #38bdf8; }
+    .footer__text { text-align: center; color: #64748b; font-size: 14px; margin-top: 40px; border-top: 1px solid rgba(56,189,248,0.05); padding-top: 20px; }
+    @media (max-width: 768px) { .c-footer { grid-template-columns: 1fr; } }
   </style>
-  <style>
-/* Additional styles for free WAF and Alert Manager cards */
-.services-grid-devops {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.free-waf {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.free-alert {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.free-waf::before, .free-alert::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
-  animation: shimmer 3s infinite;
-}
-
-.free-alert::before {
-  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
-}
-
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.free-badge {
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 20px;
-  margin-left: 8px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.free-badge.green {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-}
-
-.waf-features, .alert-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.waf-features span, .alert-features span {
-  font-size: 11px;
-  color: #94a3b8;
-  background: rgba(56, 189, 248, 0.08);
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(56, 189, 248, 0.15);
-}
-
-.alert-features span {
-  background: rgba(34, 197, 94, 0.08);
-  border-color: rgba(34, 197, 94, 0.15);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .services-grid-devops {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .services-grid-devops {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
 </head>
-
 <body>
-
 <!-- Header -->
 <header class="header">
-    <div class="container">
-      <div class="header__wrapper">
-        <div class="c-logo">
-          <a href="/" aria-label="CloFix Home - AI-Powered WAF & Cloud Security Platform">
-            <img src="img/logo.png" alt="CloFix Logo - Return to Homepage" class="c-logo__img" />
-          </a>
-          <span class="c-logo__text c-logo__text--white"></span>
-        </div>
-        <nav class="c-nav">
-          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
-            <span class="c-nav__bar"></span>
-            <span class="c-nav__bar"></span>
-            <span class="c-nav__bar"></span>
-          </button>
-
-          <div class="c-nav__content">
-            <ul class="c-list c-list--flex">
-              <li class="c-list__item">
-                <a href="/" class="c-link c-link--list">Home</a>
-              </li>
-              <li class="c-list__item">
-                <a href="/pricing" class="c-link c-link--list">Pricing</a>
-              </li>
-              <li class="c-list__item">
-                <a href="/waf-setup" class="c-link c-link--list">WAF Setup</a>
-              </li>
-              <li class="c-list__item">
-                <a href="/about" class="c-link c-link--list">About</a>
-              </li>
-              <li class="c-list__item">
-                <a href="/features" class="c-link c-link--list">Features</a>
-              </li>
-              <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
-              <li class="c-list__item">
-                <a href="/contact" class="c-link c-link--list">Contact</a>
-              </li>
-              <!-- Others mega dropdown -->
-              <li class="c-list__item c-dropdown c-dropdown--mega">
-                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                  Others
-                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
-                </button>
-
-                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
-                  <div class="c-dropdown__mega-wrap">
-                    <div class="c-dropdown__mega-grid">
-                      <!-- Documentation -->
-                      <div class="c-dropdown__mega-col">
-                        <h4 class="c-dropdown__mega-title">Documentation</h4>
-                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">
-                          CloFix LUA Script
-                        </a>
-                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">
-                          CloFix JS Script
-                        </a>
-                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">
-                          CloFix CRS Script
-                        </a>
-                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">
-                          CloFix WASM
-                        </a>
-                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
-                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">
-                          CloFix WAF Workflow
-                        </a>
-                      </div>
-
-                      <!-- Tools -->
-                      <div class="c-dropdown__mega-col">
-                        <h4 class="c-dropdown__mega-title">Tools</h4>
-                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">
-                          CVE Checker
-                        </a>
-                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">
-                          CloFix Pentest
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <a href="/faq" class="ticket-button">
-                <button class="c-button c-button--small c-button--secondary">
-                  FAQ
-                </button>
-              </a>
-          </div>
-        </nav>
-      </div>
+  <div class="container">
+    <div class="header__wrapper">
+      <div class="c-logo"><a href="/"><img src="img/logo.png" alt="CloFix Logo" class="c-logo__img" /></a></div>
+      <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation"><span class="c-nav__bar"></span><span class="c-nav__bar"></span><span class="c-nav__bar"></span></button>
+      <nav class="c-nav__content" id="navContent">
+        <ul class="c-list">
+          <li><a href="/" class="c-link">Home</a></li>
+          <li><a href="/pricing" class="c-link">Pricing</a></li>
+          <li><a href="/waf-setup" class="c-link">WAF Setup</a></li>
+          <li><a href="/about" class="c-link">About</a></li>
+          <li><a href="/features" class="c-link">Features</a></li>
+          <li><a href="/client-partner" class="c-link">Partners</a></li>
+          <li><a href="/contact" class="c-link">Contact</a></li>
+          <li class="c-dropdown">
+            <button class="c-link c-dropdown__toggle" aria-expanded="false">Others <span class="c-dropdown__chev">▾</span></button>
+            <div class="c-dropdown__menu--mega">
+              <div class="c-dropdown__mega-grid">
+                <div><h4 class="c-dropdown__mega-title">Documentation</h4><a href="/clofix-lua-script" class="c-dropdown__mega-link">CloFix LUA Script</a><a href="/clofix-js-script" class="c-dropdown__mega-link">CloFix JS Script</a><a href="/clofix-crs" class="c-dropdown__mega-link">CloFix CRS Script</a><a href="/clofix-wasm" class="c-dropdown__mega-link">CloFix WASM</a><a href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a><a href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">CloFix WAF Workflow</a></div>
+                <div><h4 class="c-dropdown__mega-title">Tools</h4><a href="/cve" class="c-dropdown__mega-link">CVE Checker</a><a href="/pentest" class="c-dropdown__mega-link">CloFix Pentest</a></div>
+              </div>
+            </div>
+          </li>
+          <li><a href="/faq" class="ticket-button"><button class="c-button">FAQ</button></a></li>
+        </ul>
+      </nav>
     </div>
-  </header>
+  </div>
+</header>
 
 <main>
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="page-hero">
-    <div class="container">
-      <div class="page-hero-content">
-        <span class="page-badge">🚀 24/7 EXPERT SUPPORT</span>
-        <h1>DevOps Support Services</h1>
-        <p>Professional DevOps support including CI/CD pipeline management, cloud infrastructure, automation, monitoring, and 24/7 incident response. Get expert DevOps engineers for your team.</p>
-        <div class="hero-buttons">
-          <a href="#pricing" class="btn-primary">Get Started →</a>
-          <a href="#contact" class="btn-outline">Contact Sales</a>
-        </div>
+    <div class="container"><div class="page-hero-content">
+      <span class="page-badge">🚀 24/7 EXPERT SUPPORT</span>
+      <h1>DevOps Manage Services</h1>
+      <p>Professional DevOps support including CI/CD pipeline management, cloud infrastructure, automation, monitoring, and 24/7 incident response. Get expert DevOps engineers for your team.</p>
+      <div class="hero-buttons"><a href="#pricing" class="btn-primary">Get Started →</a><a href="#contact" class="btn-outline">Contact Sales</a></div>
+    </div></div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-offered">
+    <div class="container"><div class="section-header"><h2>What We Offer</h2><p>Comprehensive DevOps support tailored to your business needs</p></div>
+      <div class="services-grid-devops">
+        <div class="service-item"><div class="service-icon">⚙️</div><h3>CI/CD Pipeline Management</h3><p>Build, test, and deploy automation with Jenkins, GitLab CI, GitHub Actions, and AWS CodePipeline.</p></div>
+        <div class="service-item"><div class="service-icon">☁️</div><h3>Cloud Infrastructure</h3><p>AWS, Azure, GCP management including EC2, S3, VPC, RDS, Lambda, and cost optimization.</p></div>
+        <div class="service-item"><div class="service-icon">🐳</div><h3>Container Orchestration</h3><p>Docker and Kubernetes (EKS, AKS, GKE) management, Helm charts, and service mesh.</p></div>
+        <div class="service-item"><div class="service-icon">📝</div><h3>Infrastructure as Code</h3><p>Terraform, CloudFormation, and Ansible automation for reproducible infrastructure.</p></div>
+        <div class="service-item"><div class="service-icon">📊</div><h3>Monitoring & Observability</h3><p>Prometheus, Grafana, ELK Stack, and CloudWatch for real-time insights and alerts.</p></div>
+        <div class="service-item"><div class="service-icon">🔒</div><h3>Security & Compliance</h3><p>DevSecOps practices, vulnerability scanning, and compliance (HIPAA, GDPR, ISO 27001).</p></div>
+        <div class="service-item free-waf"><div class="service-icon">🔥</div><h3>Free CloFix WAF <span class="free-badge">1 SITE FREE</span></h3><p>Get CloFix Web Application Firewall protection for 1 website completely free with any DevOps support plan.</p><div class="waf-features"><span>✓ DDoS Protection</span><span>✓ OWASP Top 10</span><span>✓ Bot Mitigation</span><span>✓ Zero-Day Protection</span></div></div>
+        <div class="service-item free-alert"><div class="service-icon">📧</div><h3>AWS Alert Manager <span class="free-badge green">1 Account FREE</span></h3><p>Get AWS Notification Alert Manager completely free - real-time alerts for your cloud infrastructure.</p><div class="alert-features"><span>✓ Real-time AWS Alerts</span><span>✓ CloudWatch Integration</span><span>✓ SNS Notifications</span><span>✓ Email/SMS Alerts</span><span>✓ Cost Anomaly Detection</span><span>✓ Health Dashboard</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Services Offered -->
-  <section class="services-offered">
-    <div class="container">
-      <div class="section-header">
-        <h2>What We Offer</h2>
-        <p>Comprehensive DevOps support tailored to your business needs</p>
-      </div>
-      <div class="services-grid-devops">
-        <div class="service-item">
-          <div class="service-icon">⚙️</div>
-          <h3>CI/CD Pipeline Management</h3>
-          <p>Build, test, and deploy automation with Jenkins, GitLab CI, GitHub Actions, and AWS CodePipeline.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">☁️</div>
-          <h3>Cloud Infrastructure</h3>
-          <p>AWS, Azure, GCP management including EC2, S3, VPC, RDS, Lambda, and cost optimization.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">🐳</div>
-          <h3>Container Orchestration</h3>
-          <p>Docker and Kubernetes (EKS, AKS, GKE) management, Helm charts, and service mesh.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">📝</div>
-          <h3>Infrastructure as Code</h3>
-          <p>Terraform, CloudFormation, and Ansible automation for reproducible infrastructure.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">📊</div>
-          <h3>Monitoring & Observability</h3>
-          <p>Prometheus, Grafana, ELK Stack, and CloudWatch for real-time insights and alerts.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">🔒</div>
-          <h3>Security & Compliance</h3>
-          <p>DevSecOps practices, vulnerability scanning, and compliance (HIPAA, GDPR, ISO 27001).</p>
-        </div>
+  <!-- Comparison Table -->
+  <section class="comparison-section">
+    <div class="container"><div class="section-header"><h2>CloFix vs. Other Providers</h2><p>See why CloFix stands out</p></div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Feature</th><th>CloFix</th><th>Other Providers</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>24/7 Expert Support</td>
+              <td class="check">✅ Available</td>
+              <td class="cross">⚠️ Varies by provider and plan</td>
+            </tr>
+
+            <tr>
+              <td>CloFix WAF Community Edition</td>
+              <td class="check">✅ Available</td>
+              <td class="cross">⚠️ Availability varies</td>
+            </tr>
+
+            <tr>
+              <td>AWS Alert Manager</td>
+              <td class="check">✅ Included (eligible plans)</td>
+              <td class="cross">⚠️ Usually requires separate setup</td>
+            </tr>
+
+            <tr>
+              <td>Cost Optimization</td>
+              <td class="check">✅ Included as a managed service</td>
+              <td class="cross">⚠️ Approach varies by provider</td>
+            </tr>
+
+            <tr>
+              <td>Kubernetes Support (EKS/AKS/GKE)</td>
+              <td class="check">✅ Supported</td>
+              <td class="cross">⚠️ Level of support varies</td>
+            </tr>
+
+            <tr>
+              <td>Compliance Assistance (HIPAA/GDPR)</td>
+              <td class="check">✅ Guidance and implementation support</td>
+              <td class="cross">⚠️ Often offered as a specialized service</td>
+            </tr>
+
+            <tr>
+              <td>Custom Automation</td>
+              <td class="check">✅ Tailored solutions available</td>
+              <td class="cross">⚠️ Customization varies by provider</td>
+            </tr>
+
+            <tr class="highlight">
+              <td>Pricing Transparency</td>
+              <td class="check">✅ Clear pricing model</td>
+              <td class="cross">⚠️ Pricing structures vary</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
   <!-- Tech Stack -->
   <section class="tech-stack">
-    <div class="container">
-      <div class="section-header">
-        <h2>Our Technology Stack</h2>
-        <p>Industry-leading tools and technologies we master</p>
-      </div>
+    <div class="container"><div class="section-header"><h2>Our Technology Stack</h2><p>Industry-leading tools and technologies we master</p></div>
       <div class="tech-grid">
         <div class="tech-item"><div class="tech-icon">🐧</div><div class="tech-name">Linux/Unix</div></div>
         <div class="tech-item"><div class="tech-icon">🐳</div><div class="tech-name">Docker</div></div>
@@ -706,337 +302,38 @@
     </div>
   </section>
 
-  <!-- Pricing Section -->
+  <!-- Pricing -->
   <section class="pricing-section" id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <h2>Flexible Pricing Plans</h2>
-        <p>Choose the plan that fits your business needs</p>
-      </div>
+    <div class="container"><div class="section-header"><h2>Flexible Pricing Plans</h2><p>Choose the plan that fits your business needs</p></div>
       <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-title">Starter</div>
-          <div class="pricing-price">$345<span>/month</span></div>
-          <div class="pricing-duration">For small teams</div>
-          <ul class="pricing-features">
-            <li>Basic CI/CD setup</li>
-            <li>Cloud infrastructure support</li>
-            <li>8/5 support (business hours)</li>
-            <li>Monthly security audit</li>
-            <li>Free CloFix WAF protection for 1 website</li>
-            <li>Email support</li>
-          </ul>
-          <a href="/contact" class="btn-pricing outline">Choose Plan</a>
-        </div>
-        
-        <div class="pricing-card popular">
-          <div class="popular-badge">🔥 MOST POPULAR</div>
-          <div class="pricing-title">Professional</div>
-          <div class="pricing-price">$950<span>/month</span></div>
-          <div class="pricing-duration">For growing companies</div>
-          <ul class="pricing-features">
-            <li>Advanced CI/CD pipelines</li>
-            <li>Full cloud infrastructure</li>
-            <li>Kubernetes orchestration</li>
-            <li>24/7 monitoring & alerting</li>
-            <li>16/7 support (SLA 99.9%)</li>
-            <li>Free CloFix WAF protection for 1 website</li>
-            <li>Free AWS Alert Manager for 1 Account</li>
-            <li>Monthly cost optimization</li>
-          </ul>
-          <a href="/contact" class="btn-pricing">Choose Plan</a>
-        </div>
-        
-        <div class="pricing-card">
-          <div class="pricing-title">Enterprise</div>
-          <div class="pricing-price">Custom</div>
-          <div class="pricing-duration">For large organizations</div>
-          <ul class="pricing-features">
-            <li>Everything in Professional</li>
-            <li>Dedicated DevOps engineer</li>
-            <li>Custom automation solutions</li>
-            <li>Ensure Security compliance (HIPAA/GDPR)</li>
-            <li>On-Call support available</li>
-            <li>Free CloFix WAF protection for 3 website</li>
-            <li>Free AWS Alert Manager for 3 Account</li>
-            <li>Custom SLA & pricing</li>
-          </ul>
-          <a href="/contact" class="btn-pricing outline">Contact Sales</a>
-        </div>
+        <div class="pricing-card"><div class="pricing-title">Starter</div><div class="pricing-price">$345<span>/month</span></div><div class="pricing-duration">For small teams</div><ul class="pricing-features"><li>Basic CI/CD setup</li><li>Cloud infrastructure support</li><li>8/5 support (business hours)</li><li>Monthly security audit</li><li>Free CloFix WAF protection for 1 website</li><li>Email support</li></ul><a href="/contact" class="btn-pricing outline">Choose Plan</a></div>
+        <div class="pricing-card popular"><div class="popular-badge">🔥 MOST POPULAR</div><div class="pricing-title">Professional</div><div class="pricing-price">$950<span>/month</span></div><div class="pricing-duration">For growing companies</div><ul class="pricing-features"><li>Advanced CI/CD pipelines</li><li>Full cloud infrastructure</li><li>Kubernetes orchestration</li><li>24/7 monitoring & alerting</li><li>16/7 support (SLA 99.9%)</li><li>Free CloFix WAF protection for 1 website</li><li>Free AWS Alert Manager for 1 Account</li><li>Monthly cost optimization</li></ul><a href="/contact" class="btn-pricing">Choose Plan</a></div>
+        <div class="pricing-card"><div class="pricing-title">Enterprise</div><div class="pricing-price">Custom</div><div class="pricing-duration">For large organizations</div><ul class="pricing-features"><li>Everything in Professional</li><li>Dedicated DevOps engineer</li><li>Custom automation solutions</li><li>Ensure Security compliance (HIPAA/GDPR)</li><li>On-Call support available</li><li>Free CloFix WAF protection for 3 website</li><li>Free AWS Alert Manager for 3 Account</li><li>Custom SLA & pricing</li></ul><a href="/contact" class="btn-pricing outline">Contact Sales</a></div>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Us -->
-  <section class="services-offered" style="background: #0a0c15;">
-    <div class="container">
-      <div class="section-header">
-        <h2>Why Choose CloFix DevOps Support?</h2>
-        <p>Expertise you can trust</p>
-      </div>
-      <div class="services-grid-devops">
-        <div class="service-item">
-          <div class="service-icon">👨‍💻</div>
-          <h3>Expert Engineers</h3>
-          <p>Certified DevOps engineers with 10+ years of experience in cloud and automation.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">⚡</div>
-          <h3>16/7 Availability</h3>
-          <p>Extended hours support with rapid incident response and resolution.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">💰</div>
-          <h3>Cost Optimization</h3>
-          <p>We help reduce cloud costs by up to 40% through optimization strategies.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">🛡️</div>
-          <h3>Security First</h3>
-          <p>DevSecOps practices integrated into every stage of development.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">📈</div>
-          <h3>Scalable Solutions</h3>
-          <p>Infrastructure designed to scale with your business growth.</p>
-        </div>
-        <div class="service-item">
-          <div class="service-icon">🏆</div>
-          <h3>99.99% Uptime SLA</h3>
-          <p>Guaranteed reliability with proactive monitoring and auto-healing.</p>
-        </div>
-        <div class="service-item free-waf">
-          <div class="service-icon">🔥</div>
-          <h3>Free CloFix WAF <span class="free-badge">1 SITE FREE</span></h3>
-          <p>Get CloFix Web Application Firewall protection for 1 website completely free with any DevOps support plan.</p>
-          <div class="waf-features">
-            <span>✓ DDoS Protection</span>
-            <span>✓ OWASP Top 10</span>
-            <span>✓ Bot Mitigation</span>
-            <span>✓ Zero-Day Protection</span>
-          </div>
-        </div>
-        <div class="service-item free-alert">
-          <div class="service-icon">📧</div>
-          <h3>AWS Alert Manager <span class="free-badge green">1 Account FREE</span></h3>
-          <p>Get AWS Notification Alert Manager completely free - real-time alerts for your cloud infrastructure.</p>
-          <div class="alert-features">
-            <span>✓ Real-time AWS Alerts</span>
-            <span>✓ CloudWatch Integration</span>
-            <span>✓ SNS Notifications</span>
-            <span>✓ Email/SMS Alerts</span>
-            <span>✓ Cost Anomaly Detection</span>
-            <span>✓ Health Dashboard</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
+  <!-- CTA -->
   <section class="cta-section" id="contact">
-    <div class="container">
-      <h2>Ready to Scale Your DevOps?</h2>
-      <p>Get expert DevOps support today and focus on what matters most - building great products.</p>
-      <a href="/contact" class="btn-primary" style="background: #38bdf8;">Contact Our DevOps Team →</a>
-    </div>
+    <div class="container"><h2>Ready to Scale Your DevOps?</h2><p>Get expert DevOps support today and focus on what matters most - building great products.</p><a href="/contact" class="btn-primary" style="background:#38bdf8;">Contact Our DevOps Team →</a></div>
   </section>
 </main>
 
 <!-- Footer -->
 <footer class="footer">
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
-
-    <div class="container c-footer">
-      <div class="c-footer__column c-footer__logo-column">
-        <a href="/" class="c-footer__brand" aria-label="CloFix Home">
-          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
-        </a>
-        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
-        <ul class="social">
-          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img
-                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
-          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png"
-                alt="X" /></a></li>
-          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img
-                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
-          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png"
-                alt="WhatsApp" /></a></li>
-          <li class="social-li">
-            <a href="https://youtube.com/@clofix-infotech" target="_blank">
-              <img src="img/youtube_clofix.png" alt="YouTube" />
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Company</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="#about">About CloFix</a></li>
-          <li><a href="/contact">Contact CloFix</a></li>
-          <li><a href="#">Documentation</a></li>
-          <li><a href="/support">CloFix WAF Support Overview</a></li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Explore</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="/case-study">Case Study</a></li>
-          <li><a href="/partner">Become A Partner</a></li>
-          <li><a href="/blogs">Blogs</a></li>
-        </ul>
-      </div>
-
-      <div class="c-footer__column">
-        <h4 class="c-footer__subtitle">Legal</h4>
-        <ul class="c-footer__list c-footer__list--check">
-          <li><a href="/terms">Terms and Conditions</a></li>
-          <li><a href="/sla">Service Level Agreement</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="container">
-      <p class="footer__text">© 2026 © Clofix - Copyright All Rights Reserved</p>
-    </div>
-  </footer>
+  <div class="container c-footer">
+    <div class="c-footer__column"><a href="/" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a><p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p><ul class="social"><li class="social-li"><a href="#"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li><li class="social-li"><a href="#"><img src="img/X_clofix.png" alt="X" /></a></li><li class="social-li"><a href="#"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li><li class="social-li"><a href="#"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li><li class="social-li"><a href="#"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li></ul></div>
+    <div class="c-footer__column"><h4 class="c-footer__subtitle">Company</h4><ul class="c-footer__list"><li><a href="#about">About CloFix</a></li><li><a href="/contact">Contact CloFix</a></li><li><a href="#">Documentation</a></li><li><a href="/support">CloFix WAF Support Overview</a></li></ul></div>
+    <div class="c-footer__column"><h4 class="c-footer__subtitle">Explore</h4><ul class="c-footer__list"><li><a href="/case-study">Case Study</a></li><li><a href="/partner">Become A Partner</a></li><li><a href="/blogs">Blogs</a></li></ul></div>
+    <div class="c-footer__column"><h4 class="c-footer__subtitle">Legal</h4><ul class="c-footer__list"><li><a href="/terms">Terms and Conditions</a></li><li><a href="/sla">Service Level Agreement</a></li></ul></div>
+  </div>
+  <div class="container"><p class="footer__text">© 2026 © Clofix - Copyright All Rights Reserved</p></div>
+</footer>
 
 <script>
-    const navToggle = document.getElementById('navToggle');
-    const navContent = document.querySelector('.c-nav__content');
-
-    // Helpers
-    const dropdowns = document.querySelectorAll('.c-dropdown');
-    function closeAllDropdowns() {
-      dropdowns.forEach(dd => {
-        dd.classList.remove('open');
-        const btn = dd.querySelector('.c-dropdown__toggle');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    // Mobile nav toggle + body lock + aria-expanded
-    if (navToggle && navContent) {
-      navToggle.setAttribute('aria-expanded', 'false');
-
-      navToggle.addEventListener('click', () => {
-        const open = navContent.classList.toggle('active');
-        document.body.classList.toggle('nav-open', open);
-        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (!open) closeAllDropdowns();
-      });
-
-      // Close menu when any nav link clicked
-      navContent.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          navContent.classList.remove('active');
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          closeAllDropdowns();
-        });
-      });
-
-      // Close menu with ESC
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navContent.classList.contains('active')) {
-          navContent.classList.remove('active');
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          closeAllDropdowns();
-        }
-      });
-
-      // If resized to desktop, ensure body scroll is restored and panel closed
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-          document.body.classList.remove('nav-open');
-          navContent.classList.remove('active');
-          navToggle.setAttribute('aria-expanded', 'false');
-          closeAllDropdowns();
-        }
-      });
-    }
-
-    // Dropdown toggle (accordion on mobile, click on desktop)
-    dropdowns.forEach(dd => {
-      const toggle = dd.querySelector('.c-dropdown__toggle');
-      if (!toggle) return;
-
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const willOpen = !dd.classList.contains('open');
-
-        // Close all
-        closeAllDropdowns();
-
-        // Open current if it was closed
-        if (willOpen) {
-          dd.classList.add('open');
-          toggle.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-
-    // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
-    document.addEventListener('click', (e) => {
-      const panelOpen = navContent && navContent.classList.contains('active');
-      if (panelOpen) return; // mobile panel manages its own closing
-      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
-    });
-
-    // Also close dropdowns explicitly when a dropdown link is clicked
-    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
-      a.addEventListener('click', () => {
-        closeAllDropdowns();
-        if (navContent) navContent.classList.remove('active');
-        document.body.classList.remove('nav-open');
-        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-WP02RFXGSE');
-
-    (function () {
-      const reveals = document.querySelectorAll(
-        '.trust-inner, .trust-card, .why-item, .compliance-card, .badge-pill'
-      );
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('trust-reveal');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      reveals.forEach((el, i) => {
-        el.style.transitionDelay = (0.10 + i * 0.06) + 's';
-        io.observe(el);
-      });
-    })();
-    (function () {
-      const headerEl = document.querySelector('.header');
-      function syncHeaderHeight() {
-        if (!headerEl) return;
-        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
-      }
-      window.addEventListener('load', syncHeaderHeight);
-      window.addEventListener('resize', syncHeaderHeight);
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(syncHeaderHeight);
-      }
-    })();
-  </script>
-
+  (function(){ const toggle=document.getElementById('navToggle'); const content=document.getElementById('navContent'); if(toggle&&content){ toggle.addEventListener('click',function(){ content.classList.toggle('active'); }); } 
+  document.querySelectorAll('.c-dropdown__toggle').forEach(btn=>{ btn.addEventListener('click',function(e){ e.preventDefault(); const parent=this.closest('.c-dropdown'); if(parent) parent.classList.toggle('open'); }); });
+  })();
+</script>
 </body>
 </html>
