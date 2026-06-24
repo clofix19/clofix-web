@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://clofix.com/blog/what-is-waf" />
+  
+  <!-- SEO -->
+  <title>What is WAF? Web Application Firewall Explained | CloFix</title>
+
+  <meta name="description" content="Learn what a Web Application Firewall (WAF) is, how it works, and why your web applications need WAF protection against OWASP Top 10 threats, DDoS attacks, and zero-day exploits." />
+
+  <meta name="keywords" content="what is WAF, web application firewall, WAF explained, how WAF works, WAF security, cloud WAF, application security, OWASP, web security" />
+
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="page-type" content="blog-post" />
+  <meta name="author" content="CloFix InfoTech" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What is WAF? Web Application Firewall Explained | CloFix" />
+  <meta property="og:description" content="Learn what a Web Application Firewall (WAF) is, how it works, and why your web applications need WAF protection against OWASP Top 10 threats, DDoS attacks, and zero-day exploits." />
+  <meta property="og:url" content="https://clofix.com/blog/what-is-waf" />
+  <meta property="og:image" content="https://clofix.com/img/share.jpg" />
+  <meta property="og:image:width" content="128" />
+  <meta property="og:image:height" content="128" />
+  <meta property="og:site_name" content="CloFix InfoTech" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What is WAF? Web Application Firewall Explained" />
+  <meta name="twitter:description" content="Learn what a Web Application Firewall (WAF) is, how it works, and why your web applications need WAF protection." />
+  <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
+  
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  
+  <!-- Analytics -->
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE', {
+      send_page_view: true,
+      anonymize_ip: true,
+      page_title: 'What is WAF? Web Application Firewall Explained',
+      page_location: 'https://clofix.com/blog/what-is-waf'
+    });
+  </script>
+
+  <!-- ============================================ -->
+  <!-- SCHEMA MARKUP                               -->
+  <!-- ============================================ -->
+  
+  <!-- Schema: Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is WAF? Web Application Firewall Explained",
+    "description": "Learn what a Web Application Firewall (WAF) is, how it works, and why your web applications need WAF protection against OWASP Top 10 threats, DDoS attacks, and zero-day exploits.",
+    "image": "https://clofix.com/img/share.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "url": "https://clofix.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/logo.png"
+      }
+    },
+    "datePublished": "2026-06-20",
+    "dateModified": "2026-06-24",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://clofix.com/blog/what-is-waf"
+    },
+    "keywords": "WAF, Web Application Firewall, Cloud WAF, Application Security, OWASP, DDoS Protection"
+  }
+  </script>
+
+  <!-- Schema: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://clofix.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://clofix.com/blogs"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "What is WAF?",
+        "item": "https://clofix.com/blog/what-is-waf"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Web Application Firewall (WAF)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Web Application Firewall (WAF) is a security solution that monitors, filters, and blocks HTTP/HTTPS traffic to and from web applications, protecting them from common attacks like SQL injection, cross-site scripting (XSS), and DDoS attacks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does a WAF work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A WAF works by analyzing incoming HTTP requests, applying security rules and policies, and blocking malicious traffic before it reaches your web application. It can operate in detection mode (alerts only) or prevention mode (blocks attacks)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a WAF important for web security?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A WAF is critical because it protects against OWASP Top 10 vulnerabilities, provides visibility into attacks, ensures compliance with standards like PCI-DSS, and helps prevent data breaches and downtime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What types of WAF deployments are available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There are three main WAF deployment types: Cloud WAF (fully managed, global edge network), On-Premise WAF (deployed in your data center), and Hybrid WAF (combines cloud and on-premise)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ============================================= */
+    /* BLOG PAGE STYLES                             */
+    /* ============================================= */
+
+    .blog-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: white;
+      padding: 120px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(59,130,246,0.05)" d="M0 0h200v200H0z"/><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="2"/></svg>') repeat;
+      pointer-events: none;
+    }
+
+    .blog-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .blog-badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.2);
+      border: 1px solid rgba(59,130,246,0.5);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #60a5fa;
+    }
+
+    .blog-hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .blog-hero .meta {
+      color: #94a3b8;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .blog-hero .meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .blog-content {
+      padding: 60px 0;
+      background: #f8fafc;
+    }
+
+    .blog-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .blog-article {
+      background: white;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    .blog-article h2 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    .blog-article h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-top: 30px;
+      margin-bottom: 12px;
+    }
+
+    .blog-article p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #334155;
+      margin-bottom: 20px;
+    }
+
+    .blog-article ul,
+    .blog-article ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+
+    .blog-article li {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .blog-article .highlight-box {
+      background: #f1f5f9;
+      padding: 24px 30px;
+      border-radius: 12px;
+      border-left: 4px solid #3b82f6;
+      margin: 30px 0;
+    }
+
+    .blog-article .highlight-box h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .blog-article .highlight-box p {
+      margin-bottom: 0;
+    }
+
+    .blog-article .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+    }
+
+    .blog-article table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .blog-article table th {
+      background: #0f172a;
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    .blog-article table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #0f172a;
+    }
+
+    .blog-article table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .blog-article .cta-box {
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      color: white;
+      padding: 32px 40px;
+      border-radius: 12px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .blog-article .cta-box h3 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .blog-article .cta-box p {
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+    }
+
+    .blog-article .cta-box .btn-cta {
+      display: inline-block;
+      background: white;
+      color: #3b82f6;
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .blog-article .cta-box .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+    }
+
+    /* Sidebar */
+    .blog-sidebar {
+      margin-top: 40px;
+    }
+
+    .sidebar-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+    }
+
+    .sidebar-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-card ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar-card ul li a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar-card ul li a:hover {
+      color: #1e40af;
+      text-decoration: underline;
+    }
+
+    .toc {
+      background: #f1f5f9;
+      padding: 20px 24px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .toc h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc ul li {
+      margin-bottom: 6px;
+    }
+
+    .toc ul li a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .toc ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .blog-hero h1 {
+        font-size: 32px;
+      }
+
+      .blog-article {
+        padding: 24px;
+      }
+
+      .blog-article h2 {
+        font-size: 24px;
+      }
+
+      .blog-article h3 {
+        font-size: 20px;
+      }
+
+      .blog-article .highlight-box {
+        padding: 16px 20px;
+      }
+
+      .blog-article .cta-box {
+        padding: 24px 20px;
+      }
+
+      .blog-hero .meta {
+        font-size: 12px;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .blog-hero {
+        padding: 100px 0 40px;
+      }
+
+      .blog-hero h1 {
+        font-size: 26px;
+      }
+
+      .blog-article {
+        padding: 16px;
+      }
+
+      .blog-article p,
+      .blog-article li {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container">
+    <div class="header__wrapper">
+      <div class="c-logo">
+        <a href="/" aria-label="CloFix Home - AI-Powered WAF & Cloud Security Platform">
+          <img src="img/logo.png" alt="CloFix Logo - Global AI-Powered WAF" class="c-logo__img" />
+        </a>
+        <span class="c-logo__text c-logo__text--white"></span>
+      </div>
+      <nav class="c-nav">
+        <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+        </button>
+
+        <div class="c-nav__content">
+          <ul class="c-list c-list--flex">
+            <li class="c-list__item">
+              <a href="/" class="c-link c-link--list">Home</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/pricing" class="c-link c-link--list">Pricing</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/about" class="c-link c-link--list">About</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/features" class="c-link c-link--list">Features</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/client-partner" class="c-link c-link--list">Partners</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/contact" class="c-link c-link--list">Contact</a>
+            </li>
+            <!-- Others mega dropdown -->
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                Others
+                <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+
+              <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <!-- Documentation -->
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Documentation</h4>
+                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">
+                        CloFix LUA Script
+                      </a>
+                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">
+                        CloFix JS Script
+                      </a>
+                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">
+                        CloFix CRS Script
+                      </a>
+                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">
+                        CloFix WASM
+                      </a>
+                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">
+                        CloFix WAF Workflow
+                      </a>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Tools</h4>
+                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">
+                        CVE Checker
+                      </a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">
+                        CloFix Pentest
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <a href="/faq" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">
+                FAQ
+              </button>
+            </a>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ================= BLOG HERO ================= -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="blog-hero-content">
+      <span class="blog-badge">📚 Educational</span>
+      <h1>What is a Web Application Firewall (WAF)?</h1>
+      <div class="meta">
+        <span>📅 Published: June 20, 2026</span>
+        <span>⏱️ 8 min read</span>
+        <span>🏷️ Security</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BLOG CONTENT ================= -->
+<section class="blog-content">
+  <div class="blog-container">
+    <article class="blog-article">
+
+      <!-- Table of Contents -->
+      <div class="toc">
+        <h4>📋 Table of Contents</h4>
+        <ul>
+          <li><a href="#what-is-waf">What is a WAF?</a></li>
+          <li><a href="#how-waf-works">How Does a WAF Work?</a></li>
+          <li><a href="#waf-deployment-types">WAF Deployment Types</a></li>
+          <li><a href="#waf-protection-against">What Does a WAF Protect Against?</a></li>
+          <li><a href="#waf-vs-firewall">WAF vs Network Firewall</a></li>
+          <li><a href="#benefits-of-waf">Benefits of Using a WAF</a></li>
+          <li><a href="#clofix-waf">Why Choose CloFix WAF?</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+
+      <!-- Introduction -->
+      <h2 id="what-is-waf">What is a Web Application Firewall (WAF)?</h2>
+      <p>A <strong>Web Application Firewall (WAF)</strong> is a security solution that monitors, filters, and blocks HTTP/HTTPS traffic to and from web applications. Unlike traditional network firewalls that operate at the network layer (Layer 3/4), a WAF works at the application layer (Layer 7) to protect against attacks targeting web applications.</p>
+
+      <p>WAFs are designed to defend against common web exploits including <strong>SQL injection</strong>, <strong>cross-site scripting (XSS)</strong>, <strong>cross-site request forgery (CSRF)</strong>, and other OWASP Top 10 vulnerabilities. By analyzing incoming requests and applying security rules, a WAF ensures that only legitimate traffic reaches your application.</p>
+
+      <div class="highlight-box">
+        <h4>🔑 Key Takeaway</h4>
+        <p>A WAF is your application's first line of defense, acting as a shield between your web application and the internet, filtering out malicious requests before they can cause harm.</p>
+      </div>
+
+      <!-- How WAF Works -->
+      <h2 id="how-waf-works">How Does a WAF Work?</h2>
+      <p>A WAF operates by inspecting HTTP requests and applying a set of security rules to determine if traffic is legitimate or malicious. Here's the step-by-step process:</p>
+
+      <ol>
+        <li><strong>Traffic Interception:</strong> All incoming requests pass through the WAF before reaching your application.</li>
+        <li><strong>Rule Evaluation:</strong> The WAF analyzes the request against predefined and custom rulesets.</li>
+        <li><strong>Threat Detection:</strong> If a request matches a malicious pattern (e.g., SQL injection attempt), it's flagged.</li>
+        <li><strong>Action:</strong> The WAF can block, challenge, or log the request based on your configuration.</li>
+        <li><strong>Logging &amp; Monitoring:</strong> All traffic and events are logged for analysis and compliance.</li>
+      </ol>
+
+      <p>Modern WAFs, like CloFix WAF, use <strong>AI and machine learning</strong> to detect zero-day attacks and adapt to evolving threats automatically.</p>
+
+      <!-- WAF Deployment Types -->
+      <h2 id="waf-deployment-types">WAF Deployment Types</h2>
+      <p>There are three primary ways to deploy a WAF, each with its own advantages:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deployment Type</th>
+              <th>Description</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cloud WAF</strong></td>
+              <td>Fully managed, cloud-native WAF with global edge network</td>
+              <td>Businesses wanting zero maintenance, global coverage</td>
+            </tr>
+            <tr>
+              <td><strong>On-Premise WAF</strong></td>
+              <td>Deployed in your data center for complete control</td>
+              <td>Compliance-heavy industries, government agencies</td>
+            </tr>
+            <tr>
+              <td><strong>Hybrid WAF</strong></td>
+              <td>Combines cloud and on-premise protection</td>
+              <td>Organizations needing flexibility and redundancy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Protection Against -->
+      <h2 id="waf-protection-against">What Does a WAF Protect Against?</h2>
+      <p>A WAF protects against a wide range of application-layer attacks:</p>
+
+      <ul>
+        <li><strong>SQL Injection:</strong> Prevents attackers from executing malicious SQL queries.</li>
+        <li><strong>Cross-Site Scripting (XSS):</strong> Blocks malicious scripts from executing in browsers.</li>
+        <li><strong>Cross-Site Request Forgery (CSRF):</strong> Prevents unauthorized actions on behalf of users.</li>
+        <li><strong>Remote File Inclusion (RFI):</strong> Stops attackers from including remote files.</li>
+        <li><strong>Local File Inclusion (LFI):</strong> Prevents attackers from reading local files.</li>
+        <li><strong>DDoS Attacks:</strong> Mitigates layer 7 DDoS attacks.</li>
+        <li><strong>Zero-Day Attacks:</strong> Uses AI to detect unknown vulnerabilities.</li>
+        <li><strong>Bot Attacks:</strong> Blocks malicious bots and scrapers.</li>
+        <li><strong>API Attacks:</strong> Protects REST, GraphQL, and gRPC APIs.</li>
+      </ul>
+
+      <!-- WAF vs Firewall -->
+      <h2 id="waf-vs-firewall">WAF vs Network Firewall: What's the Difference?</h2>
+      <p>While both WAF and network firewalls provide security, they operate at different layers and serve different purposes:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>WAF</th>
+              <th>Network Firewall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Layer</strong></td>
+              <td>Application Layer (Layer 7)</td>
+              <td>Network Layer (Layer 3/4)</td>
+            </tr>
+            <tr>
+              <td><strong>Protocol</strong></td>
+              <td>HTTP/HTTPS</td>
+              <td>IP, TCP, UDP</td>
+            </tr>
+            <tr>
+              <td><strong>Protects Against</strong></td>
+              <td>SQL injection, XSS, CSRF, API attacks</td>
+              <td>Port scanning, IP spoofing, network-level attacks</td>
+            </tr>
+            <tr>
+              <td><strong>Rules</strong></td>
+              <td>Application-aware, content-based</td>
+              <td>IP-based, port-based</td>
+            </tr>
+            <tr>
+              <td><strong>Example</strong></td>
+              <td>CloFix WAF, Cloudflare WAF</td>
+              <td>Palo Alto, Fortinet, Cisco ASA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-box">
+        <h4>💡 Pro Tip</h4>
+        <p>For maximum security, deploy both a WAF and a network firewall. They work together to provide layered defense (defense in depth).</p>
+      </div>
+
+      <!-- Benefits -->
+      <h2 id="benefits-of-waf">Benefits of Using a WAF</h2>
+      <ul>
+        <li><strong>Enhanced Security:</strong> Protects against OWASP Top 10 vulnerabilities.</li>
+        <li><strong>Compliance:</strong> Helps meet PCI-DSS, HIPAA, and GDPR requirements.</li>
+        <li><strong>Zero-Day Protection:</strong> AI-powered detection for unknown threats.</li>
+        <li><strong>Visibility:</strong> Provides detailed analytics and reporting.</li>
+        <li><strong>Bot Mitigation:</strong> Blocks malicious bots while allowing legitimate ones.</li>
+        <li><strong>API Security:</strong> Protects modern APIs with schema validation.</li>
+        <li><strong>Cost Savings:</strong> Prevents costly data breaches and downtime.</li>
+        <li><strong>Peace of Mind:</strong> Let security experts handle threat monitoring.</li>
+      </ul>
+
+      <!-- CloFix WAF -->
+      <h2 id="clofix-waf">Why Choose CloFix WAF?</h2>
+      <p><strong>CloFix WAF</strong> is a global, AI-powered Web Application Firewall designed to protect modern applications with enterprise-grade security:</p>
+
+      <ul>
+		  <li>✅ <strong>AI-Powered Detection:</strong> 46+ AI engines detect and block zero-day attacks in real-time.</li>
+		  <li>✅ <strong>Multi-Engine Security Stack:</strong> OWASP CRS + Lua + JavaScript + WASM + CADRE rules.</li>
+		  <li>✅ <strong>OWASP Top 10 & DDoS:</strong> Complete protection against all OWASP vulnerabilities and L3/L4/L7 attacks.</li>
+		  <li>✅ <strong>Web Dashboard:</strong> Centralized management console with real-time analytics, attack visualization, threat intelligence, audit logs, and customizable widgets.</li>
+		  <li>✅ <strong>Advanced TLS Fingerprinting:</strong> JA3/JA4 analysis to identify and block malicious clients.</li>
+		  <li>✅ <strong>API Security:</strong> REST, GraphQL, and gRPC protection with schema validation and JWT inspection.</li>
+		  <li>✅ <strong>Custom Rules & JS Injector:</strong> Create, edit, delete, enable/disable custom rules with priority control and dynamic JavaScript injection.</li>
+		  <li>✅ <strong>Global Edge Network:</strong> Multi-region deployment with &lt;10ms latency, automatic failover, and 99.99% uptime SLA.</li>
+		  <li>✅ <strong>Bot Mitigation:</strong> Advanced bot detection with behavioral analysis and CAPTCHA challenges.</li>
+		  <li>✅ <strong>No-IP Device Required:</strong> Cloud-native deployment with zero hardware and 5-minute instant setup.</li>
+		  <li>✅ <strong>Mobile Management:</strong> Android app with push notifications, real-time alerts, and remote control.</li>
+		  <li>✅ <strong>Flexible Payment Options:</strong> BDT (Taka) and USD (Dollar) with monthly/yearly plans starting at $12.50/month.</li>
+		</ul>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>🚀 Ready to Secure Your Web Applications?</h3>
+        <p>Start your 14-day free trial of CloFix WAF today. No credit card required.</p>
+        <a href="/contact" class="btn-cta">Get Started →</a>
+      </div>
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <h3>What is a Web Application Firewall (WAF)?</h3>
+      <p>A WAF is a security solution that monitors, filters, and blocks HTTP/HTTPS traffic to protect web applications from common attacks like SQL injection and XSS.</p>
+
+      <h3>How does a WAF work?</h3>
+      <p>A WAF analyzes incoming HTTP requests, applies security rules, and blocks malicious traffic before it reaches your application.</p>
+
+      <h3>Why is a WAF important?</h3>
+      <p>A WAF protects against OWASP Top 10 vulnerabilities, ensures compliance, prevents data breaches, and provides visibility into attacks.</p>
+
+      <h3>What types of WAF deployments are available?</h3>
+      <p>Cloud WAF, On-Premise WAF, and Hybrid WAF are the three main deployment types.</p>
+
+      <h3>How much does CloFix WAF cost?</h3>
+      <p>CloFix WAF starts at $12.50/month for the Starter plan, with Professional ($49.99), Business ($149.99), and Enterprise ($416.67) plans available.</p>
+
+      <h3>Does CloFix WAF have a free trial?</h3>
+      <p>Yes! You can start a 14-day free trial of CloFix WAF with no credit card required.</p>
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="blog-sidebar">
+      <div class="sidebar-card">
+        <h4>🛡️ WAF Products</h4>
+        <ul>
+          <li><a href="/waf">CloFix WAF</a></li>
+          <li><a href="/features">WAF Features</a></li>
+          <li><a href="/pricing">WAF Pricing</a></li>
+          <li><a href="/waf-setup">WAF Deployment Options</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= CTA SECTION ================= -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Secure Your Web Applications?</h2>
+    <p>Start your 14-day free trial. No credit card required.</p>
+    <a href="/contact" class="btn-primary">Get Started →</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="/" class="c-footer__brand" aria-label="CloFix Home">
+        <img src="img/logo.png" alt="CloFix Logo - Global AI-Powered WAF" class="c-footer__logo" />
+      </a>
+      <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+      <ul class="social">
+        <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener noreferrer"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+        <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener noreferrer"><img src="img/X_clofix.png" alt="X" /></a></li>
+        <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener noreferrer"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+        <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener noreferrer"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+        <li class="social-li">
+          <a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener noreferrer">
+            <img src="img/youtube_clofix.png" alt="YouTube" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/about">About CloFix</a></li>
+        <li><a href="/contact">Contact CloFix</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="/support">CloFix WAF Support Overview</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Explore</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/case-study">Case Study</a></li>
+        <li><a href="/partner">Become A Partner</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/terms">Terms and Conditions</a></li>
+        <li><a href="/sla">Service Level Agreement</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="footer__text">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  // Navigation toggle
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+  const dropdowns = document.querySelectorAll('.c-dropdown');
+
+  function closeAllDropdowns() {
+    dropdowns.forEach(dd => {
+      dd.classList.remove('open');
+      const btn = dd.querySelector('.c-dropdown__toggle');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  if (navToggle && navContent) {
+    navToggle.setAttribute('aria-expanded', 'false');
+
+    navToggle.addEventListener('click', () => {
+      const open = navContent.classList.toggle('active');
+      document.body.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) closeAllDropdowns();
+    });
+
+    navContent.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      });
+    });
+  }
+
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.c-dropdown__toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !dd.classList.contains('open');
+      closeAllDropdowns();
+      if (willOpen) {
+        dd.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
