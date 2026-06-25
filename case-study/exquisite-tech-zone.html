@@ -24,26 +24,10 @@
     <meta property="og:title" content="Case Study: Exquisite Tech Zone | CloFix WAF Protection & Support">
     <meta property="og:description" content="How Exquisite Tech Zone eliminated DDoS attacks and strengthened security with CloFix WAF and Standard Support Plan in Bangladesh.">
     <meta property="og:url" content="https://clofix.com/case-study/exquisite-tech-zone">
-    <meta property="og:image" content="https://clofix.com/img/facebook_clofix.png">
+    <meta property="og:image" content="https://clofix.com/img/share.jpg">
     <meta property="og:image:alt" content="CloFix WAF Case Study - Exquisite Tech Zone DDoS Protection">
     <meta property="og:site_name" content="CloFix InfoTech">
     <meta property="og:locale" content="en_US">
-
-    <!-- LinkedIn -->
-    <meta property="og:image" content="https://clofix.com/img/linkedin_clofix.png">
-    <meta property="og:image:alt" content="CloFix WAF - Customer Success Story Bangladesh">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Case Study: Exquisite Tech Zone | CloFix WAF Protection & Support">
-    <meta name="twitter:description" content="How Exquisite Tech Zone eliminated DDoS attacks and strengthened security with CloFix WAF and Standard Support Plan in Bangladesh.">
-    <meta name="twitter:image" content="https://clofix.com/img/X_clofix.png">
-    <meta name="twitter:image:alt" content="CloFix WAF Case Study - Customer Success">
-    <meta name="twitter:site" content="@clofix19">
-
-    <!-- WhatsApp / Generic Sharing -->
-    <meta property="og:image" content="https://clofix.com/img/whatsapp_clofix.png">
-    <meta property="og:image:alt" content="CloFix WAF Case Study - Share this Story">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0b1020" />
@@ -389,10 +373,100 @@
                 align-items: flex-start;
             }
         }
+
+        /* New: Breadcrumb navigation */
+        .breadcrumb {
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* New: Related case studies */
+        .related-cases {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        .related-cases h4 {
+            font-size: 0.9rem;
+            color: #0f3b5c;
+            margin-bottom: 0.8rem;
+        }
+        .related-cases a {
+            display: inline-block;
+            margin-right: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #1e6f9f;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid #dce5ed;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .related-cases a:hover {
+            background: #1e6f9f;
+            color: white;
+            border-color: #1e6f9f;
+        }
+
+        /* New: Feature in navigation */
+        .featured-in-nav {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+        }
+        .featured-in-nav strong {
+            color: #0f3b5c;
+        }
+        .featured-in-nav a {
+            color: #1e6f9f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .featured-in-nav a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="case-study-container">
+    <!-- NEW: Breadcrumb Navigation -->
+    <div style="padding: 1rem 2.5rem 0 2.5rem;">
+        <div class="breadcrumb">
+            <a href="/">Home</a> &gt; 
+            <a href="/case-study">Case Studies</a> &gt; 
+            <span>Exquisite Tech Zone</span>
+        </div>
+    </div>
+
+    <!-- NEW: Featured In Navigation (contextual internal links) -->
+    <div style="padding: 0 2.5rem;">
+        <div class="featured-in-nav">
+            <strong>📌 Featured In:</strong>
+            <a href="/case-study">All Case Studies</a>
+            <a href="/case-study/exquisite-tech-zone">Exquisite Tech Zone</a>
+            <a href="/partner">Become a Partner</a>
+        </div>
+    </div>
+
     <!-- Hero -->
     <div class="hero">
         <div class="hero-badge-container">
@@ -521,6 +595,8 @@
                 </ul>
                 <hr>
                 <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Partner benefit:</strong> 1 site free - CloFix WAF under protection. Exquisite Tech Zone's own domain is hosted and secured by CloFix, reinforcing their commitment to eating their own dogfood.</p>
+                <!-- NEW: Internal link to partner page -->
+                <a href="/client-partner" class="btn-outline" style="margin-top: 0.5rem;">🤝 Become a Partner →</a>
             </div>
 
             <div class="sidebar-card" style="background: #e6f7ec;">
@@ -530,7 +606,7 @@
                 <div class="pricing-tier"><strong>Pro</strong> - <span class="price">৳16,500/month</span> 🔥 Most Popular<br>5 domains, AI-powered, API security, WhatsApp support</div>
                 <div class="pricing-tier"><strong>Enterprise</strong> - <span class="price">৳50,000/month</span><br>10+ domains, unlimited requests, 99.99% SLA, dedicated manager</div>
                 <p style="margin-top: 1rem; font-size: 0.85rem;">🔹 <strong>All plans include:</strong> WAF dashboard, Android app, unlimited user accounts. Enterprise adds AWS monitoring tool.</p>
-                <a href="https://clofix.com/pricing" class="btn-outline" style="margin-top: 0.5rem;" target="_blank">📊 View all pricing details →</a>
+                <a href="/pricing" class="btn-outline" style="margin-top: 0.5rem;">📊 View all pricing details →</a>
             </div>
 
             <div class="sidebar-card" style="background: #f0f9ff; border-color: #cfe7ff;">
@@ -539,14 +615,20 @@
                 <div class="support-tier"><strong>⭐ Standard (Active)</strong> - ৳60,000/yr: Email + WhatsApp, response < 6 hrs, shared security team, best practices guidance.</div>
                 <div class="support-tier"><strong>🏢 Enterprise</strong> - ৳7,20,000/yr: Any channel, < 1 hr response (<15 min critical), dedicated account manager, custom features, quarterly reviews.</div>
                 <p style="margin-top: 1rem; font-size: 0.85rem;">🔹 <strong>What support covers:</strong> Rule tuning, incident response (including DDoS attacks), performance optimization, dashboard analytics, custom feature dev, version upgrades.</p>
-                <a href="https://clofix.com/support" class="btn-outline" style="margin-top: 0.5rem;" target="_blank">📞 View all support plans →</a>
+                <a href="/support" class="btn-outline" style="margin-top: 0.5rem;">📞 View all support plans →</a>
             </div>
         </div>
     </div>
 
     <footer>
         <p>© 2025 Exquisite Tech Zone & CloFix - Case Study based on real partner deployment. CloFix WAF protects businesses across Bangladesh & beyond with SLA-backed support.</p>
-        <p style="margin-top: 0.5rem;">🔐 Become a partner: <strong>Zero onboarding cost, dedicated support</strong> - <a href="https://clofix.com/client-partner" target="_blank" style="color:#1e6f9f;">Join CloFix partner network</a> | <a href="https://clofix.com/support" target="_blank" style="color:#1e6f9f;">Explore support plans</a> | <a href="https://clofix.com/pricing" target="_blank" style="color:#1e6f9f;">View pricing</a></p>
+        <p style="margin-top: 0.5rem;">🔐 Become a partner: <strong>Zero onboarding cost, dedicated support</strong> - <a href="/client-partner" target="_blank" style="color:#1e6f9f;">Join CloFix partner network</a> | <a href="/support" target="_blank" style="color:#1e6f9f;">Explore support plans</a> | <a href="/pricing" target="_blank" style="color:#1e6f9f;">View pricing</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.7rem;">
+            <a href="/case-studies" style="color:#1e6f9f;">All Case Studies</a> | 
+            <a href="/blogs" style="color:#1e6f9f;">Blog</a> | 
+            <a href="/about" style="color:#1e6f9f;">About Us</a> | 
+            <a href="/contact" style="color:#1e6f9f;">Contact</a>
+        </p>
     </footer>
 </div>
 </body>
