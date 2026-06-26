@@ -200,6 +200,57 @@
     hr {
       border-color: #334155;
     }
+    
+    /* Related Links Section */
+    .related-section {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 32px 40px;
+      margin: 40px 0;
+      border: 1px solid #334155;
+    }
+    
+    .related-section h2 {
+      color: #38bdf8;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    
+    .related-link {
+      display: block;
+      background: #0f172a;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #e2e8f0;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      text-align: center;
+      border: 1px solid #334155;
+    }
+    
+    .related-link:hover {
+      background: #2d3a4e;
+      border-color: #f97316;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      color: #f97316;
+      text-decoration: none;
+    }
+    
+    .related-link .link-icon {
+      margin-right: 6px;
+    }
+    
     @media (max-width: 768px) {
       .comparison-table th, .comparison-table td {
         padding: 10px 12px;
@@ -210,6 +261,18 @@
       }
       .special-card {
         padding: 1.2rem;
+      }
+      .related-section {
+        padding: 20px;
+      }
+      .related-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .related-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -305,7 +368,7 @@
       <h2>📌 The Simple Difference</h2>
       <ul>
         <li><strong>Traditional Firewall (Network Firewall):</strong> Works at Layer 3/4. Checks IP, port, protocol. <em>"Who are you and where are you going?"</em></li>
-        <li><strong>CloFix WAF (Web Application Firewall):</strong> Works at Layer 7. Understands HTTP/HTTPS traffic. <em>"What are you saying? Is this an attack?"</em></li>
+        <li><strong><a href="/waf">CloFix WAF</a> (Web Application Firewall):</strong> Works at Layer 7. Understands HTTP/HTTPS traffic. <em>"What are you saying? Is this an attack?"</em></li>
       </ul>
 
       <h2>⚔️ Head-to-Head Comparison</h2>
@@ -314,7 +377,7 @@
           <tr>
             <th>Feature</th>
             <th>Traditional Firewall</th>
-            <th>CloFix WAF</th>
+            <th><a href="/waf" style="color:#f97316;">CloFix WAF</a></th>
           </tr>
         </thead>
         <tbody>
@@ -383,17 +446,17 @@
         <li>Basic network segmentation</li>
         <li>Preventing unauthorized network access</li>
       </ul>
-      <p>But they <strong>cannot read HTTP requests</strong>. A traditional firewall sees <code>POST /login.php</code> as just random data - it doesn't know if that request contains <code>' OR '1'='1</code> (SQL injection) or a malicious script. That's where CloFix WAF takes over.</p>
+      <p>But they <strong>cannot read HTTP requests</strong>. A traditional firewall sees <code>POST /login.php</code> as just random data - it doesn't know if that request contains <code>' OR '1'='1</code> (SQL injection) or a malicious script. That's where <a href="/waf">CloFix WAF</a> takes over.</p>
 
       <div class="pro-tip">
-        <strong>💡 Pro Tip:</strong> Best practice = Traditional Firewall + CloFix WAF together. The firewall filters bad actors at the network level; the WAF stops application-level attacks.
+        <strong>💡 Pro Tip:</strong> Best practice = Traditional Firewall + <a href="/waf">CloFix WAF</a> together. The firewall filters bad actors at the network level; the WAF stops application-level attacks.
       </div>
 
-      <h2>🚀 What CloFix WAF Adds That Firewalls Can't</h2>
+      <h2>🚀 What <a href="/waf">CloFix WAF</a> Adds That Firewalls Can't</h2>
       <ul>
         <li><strong>CADRE Engine:</strong> 100+ attack type detection (SQLi, XSS, LFI, Log4Shell, SSRF, etc.)</li>
         <li><strong>No-IP Device Fingerprinting:</strong> Tracks attackers across VPN, proxy, or Tor - even if they change IPs constantly</li>
-        <li><strong>WASM / JS / Lua Scripting:</strong> Custom security logic without restarting</li>
+        <li><strong><a href="/clofix-wasm">WASM</a> / <a href="/clofix-js-script">JS</a> / <a href="/clofix-lua-script">Lua</a> Scripting:</strong> Custom security logic without restarting</li>
         <li><strong>Behavioral Analysis (JA3):</strong> Detects botnets and automated attacks</li>
         <li><strong>Real-time Dashboard & Android App:</strong> Monitor and block threats from anywhere</li>
       </ul>
@@ -411,39 +474,94 @@
       </div>
 
       <h2>💰 Cost Comparison in Bangladesh</h2>
-      <p>A decent traditional firewall (hardware) costs <strong>BDT 50,000 – 3,00,000+</strong> upfront, plus annual maintenance. CloFix WAF starts at <strong>only BDT 1,500/month</strong> - no hardware, no hidden fees, and you get Layer 7 protection that traditional firewalls simply don't offer.</p>
+      <p>A decent traditional firewall (hardware) costs <strong>BDT 50,000 – 3,00,000+</strong> upfront, plus annual maintenance. <a href="/waf">CloFix WAF</a> starts at <strong>only BDT 1,500/month</strong> - no hardware, no hidden fees, and you get Layer 7 protection that traditional firewalls simply don't offer.</p>
 
       <h2>✅ Final Verdict</h2>
-      <p><strong>Don't replace your firewall - add CloFix WAF.</strong> Traditional firewalls handle network security. CloFix WAF handles web application security. Together, you get complete protection.</p>
-      <p>For Bangladeshi businesses, banks, and e-commerce sites, <strong>CloFix WAF is the missing piece</strong> that stops SQL injection, XSS, bot attacks, and No-IP threats - all with local support, BDT pricing, and an Android app.</p>
+      <p><strong>Don't replace your firewall - add <a href="/waf">CloFix WAF</a>.</strong> Traditional firewalls handle network security. CloFix WAF handles web application security. Together, you get complete protection.</p>
+      <p>For Bangladeshi businesses, banks, and e-commerce sites, <strong><a href="/waf">CloFix WAF</a> is the missing piece</strong> that stops SQL injection, XSS, bot attacks, and No-IP threats - all with local support, BDT pricing, and an Android app.</p>
+
+      <!-- ============================================ -->
+      <!-- RELATED LINKS SECTION - INTERNAL LINKS      -->
+      <!-- ============================================ -->
+      
+      <div class="related-section">
+        <h2>🔗 Learn More About CloFix WAF</h2>
+        <div class="related-grid">
+          <a href="/waf" class="related-link">
+            <span class="link-icon">🛡️</span> CloFix WAF Overview
+          </a>
+          <a href="/features" class="related-link">
+            <span class="link-icon">⭐</span> All WAF Features
+          </a>
+          <a href="/pricing" class="related-link">
+            <span class="link-icon">💰</span> WAF Pricing Plans
+          </a>
+          <a href="/waf-vs-cloudflare" class="related-link">
+            <span class="link-icon">☁️</span> CloFix vs Cloudflare
+          </a>
+          <a href="/waf-vs-aws-waf" class="related-link">
+            <span class="link-icon">🔷</span> CloFix vs AWS WAF
+          </a>
+          <a href="/waf-vs-azure-waf" class="related-link">
+            <span class="link-icon">🔷</span> CloFix vs Azure WAF
+          </a>
+          <a href="/contact" class="related-link">
+            <span class="link-icon">📞</span> Contact Sales
+          </a>
+          <a href="/blogs" class="related-link">
+            <span class="link-icon">📝</span> All Blogs
+          </a>
+        </div>
+      </div>
 
       <div style="text-align: center; margin: 2rem 0;">
-        <a href="/contact" class="cta-button">🚀 Start Protecting Your Web Apps →</a>
+        <a href="/contact" class="cta-button" style="background:#f97316;">🚀 Start Protecting Your Web Apps →</a>
       </div>
     </article>
   </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
-    <div class="container c-footer">
-      <div class="c-footer__column c-footer__logo-column">
-        <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a>
-        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
-        <ul class="social">
-          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
-          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
-          <li class="social-li"><a href="https://www.linkedin.com/company/clofix/" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
-          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
-          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
-        </ul>
-      </div>
-      <div class="c-footer__column"><h4 class="c-footer__subtitle">Company</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/about">About CloFix</a></li><li><a href="/contact">Contact CloFix</a></li><li><a href="#">Documentation</a></li><li><a href="/support">CloFix WAF Support Overview</a></li></ul></div>
-      <div class="c-footer__column"><h4 class="c-footer__subtitle">Explore</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/case-study">Case Study</a></li><li><a href="/partner">Become A Partner</a></li><li><a href="/blogs">Blogs</a></li></ul></div>
-      <div class="c-footer__column"><h4 class="c-footer__subtitle">Legal</h4><ul class="c-footer__list c-footer__list--check"><li><a href="/terms">Terms and Conditions</a></li><li><a href="/sla">Service Level Agreement</a></li></ul></div>
-    </div>
-    <div class="container"><p class="footer__text">© 2026 © CloFix - All Rights Reserved</p></div>
-  </footer>
+        <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+        <div class="container c-footer">
+            <div class="c-footer__column c-footer__logo-column">
+                <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a>
+                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+                <ul class="social">
+                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
+                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
+                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Company</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="/about">About CloFix</a></li>
+                    <li><a href="/contact">Contact CloFix</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="/support">CloFix WAF Support</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Explore</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="/case-study">Case Study</a></li>
+                    <li><a href="/partner">Become A Partner</a></li>
+                    <li><a href="/blogs">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="c-footer__column">
+                <h4 class="c-footer__subtitle">Legal</h4>
+                <ul class="c-footer__list c-footer__list--check">
+                    <li><a href="/terms">Terms and Conditions</a></li>
+                    <li><a href="/sla">Service Level Agreement</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"><p class="footer__text">© 2026 © Clofix - Copyright All Rights Reserved</p></div>
+    </footer>
 
   <script>
     const navToggle = document.getElementById('navToggle');
