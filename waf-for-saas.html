@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://clofix.com/waf-for-saas" />
+  
+  <!-- SEO - Primary Keywords -->
+  <title>WAF for SaaS: Secure Your Cloud Applications | CloFix</title>
+  
+  <!-- Meta Description -->
+  <meta name="description" content="Protect your SaaS platform with CloFix WAF. Multi-tenant security, API protection, data privacy, DDoS mitigation, and AI-powered threat detection for cloud applications." />
+  
+  <meta name="keywords" content="WAF for SaaS, SaaS Security, Cloud Application Security, Multi-Tenant Security, API Protection, Data Privacy, DDoS Mitigation, SaaS WAF" />
+  
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="page-type" content="use-case-page" />
+  <meta name="author" content="CloFix InfoTech" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="WAF for SaaS: Secure Your Cloud Applications | CloFix" />
+  <meta property="og:description" content="Protect your SaaS platform with CloFix WAF. Multi-tenant security, API protection, data privacy, and AI-powered threat detection." />
+  <meta property="og:url" content="https://clofix.com/waf-for-saas" />
+  <meta property="og:image" content="https://clofix.com/img/share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="CloFix InfoTech" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WAF for SaaS: Secure Your Cloud Applications | CloFix" />
+  <meta name="twitter:description" content="Protect your SaaS platform with CloFix WAF. Multi-tenant security, API protection, and AI-powered threat detection." />
+  <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  
+  <!-- Analytics -->
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE', {
+      send_page_view: true,
+      anonymize_ip: true,
+      page_title: 'WAF for SaaS: Secure Your Cloud Applications | CloFix',
+      page_location: 'https://clofix.com/waf-for-saas'
+    });
+  </script>
+
+  <!-- ============================================ -->
+  <!-- SCHEMA MARKUP                               -->
+  <!-- ============================================ -->
+  
+  <!-- Schema: Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "WAF for SaaS: Protect Your Cloud Applications with CloFix",
+    "description": "Protect your SaaS platform with CloFix WAF. Multi-tenant security, API protection, data privacy, and AI-powered threat detection for cloud applications.",
+    "image": "https://clofix.com/img/share.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "url": "https://clofix.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/logo.png"
+      }
+    },
+    "datePublished": "2026-06-26",
+    "dateModified": "2026-06-26",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://clofix.com/waf-for-saas"
+    },
+    "keywords": "WAF for SaaS, SaaS Security, Cloud Application Security, Multi-Tenant Security"
+  }
+  </script>
+
+  <!-- Schema: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://clofix.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "WAF",
+        "item": "https://clofix.com/waf"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "WAF for SaaS",
+        "item": "https://clofix.com/waf-for-saas"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do SaaS platforms need a WAF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SaaS platforms handle sensitive customer data across multiple tenants. A WAF protects against API attacks, data breaches, DDoS attacks, and OWASP Top 10 vulnerabilities that can compromise customer trust and business continuity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does CloFix WAF protect multi-tenant SaaS applications?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CloFix WAF provides tenant isolation, API security, rate limiting per endpoint, and AI-powered threat detection to ensure each tenant's data remains secure and isolated from others."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can CloFix WAF protect GraphQL APIs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. CloFix WAF provides full GraphQL security including depth limiting, introspection protection, batch query abuse prevention, and schema validation for your SaaS APIs."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ============================================= */
+    /* USE CASE PAGE STYLES                         */
+    /* ============================================= */
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+    
+    .use-case-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: white;
+      padding: 100px 0 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .use-case-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(59,130,246,0.05)" d="M0 0h200v200H0z"/><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="2"/></svg>') repeat;
+      pointer-events: none;
+    }
+    
+    .use-case-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .use-case-badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.2);
+      border: 1px solid rgba(59,130,246,0.4);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #60a5fa;
+      margin-bottom: 16px;
+    }
+    
+    .use-case-hero h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    
+    .use-case-hero .highlight {
+      color: #60a5fa;
+    }
+    
+    .use-case-hero p {
+      font-size: 18px;
+      color: #94a3b8;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .use-case-container {
+      max-width: 1200px;
+      margin: -20px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 3;
+    }
+    
+    /* Stats Section */
+    .stats-grid-use {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      background: white;
+      border-radius: 16px;
+      padding: 32px 40px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+      margin-bottom: 40px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .stat-item-use {
+      text-align: center;
+    }
+    
+    .stat-number-use {
+      font-size: 36px;
+      font-weight: 700;
+      color: #3b82f6;
+    }
+    
+    .stat-label-use {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    
+    .section-title .highlight {
+      color: #3b82f6;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      font-size: 17px;
+      color: #64748b;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    /* Content Cards */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 992px) {
+      .content-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .content-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .content-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -8px rgba(0,0,0,0.1);
+    }
+    
+    .content-card .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    
+    .content-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    
+    .content-card p {
+      font-size: 15px;
+      color: #64748b;
+      line-height: 1.7;
+    }
+    
+    .content-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+    }
+    
+    .content-card ul li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: #475569;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .content-card ul li:last-child {
+      border-bottom: none;
+    }
+    
+    .content-card ul li::before {
+      content: '✅';
+      flex-shrink: 0;
+    }
+    
+    /* Threat Grid */
+    .threat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .threat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .threat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px -4px rgba(0,0,0,0.08);
+    }
+    
+    .threat-card .threat-icon { font-size: 24px; margin-bottom: 6px; }
+    .threat-card h4 { font-size: 16px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+    .threat-card p { font-size: 14px; color: #64748b; line-height: 1.6; }
+    
+    /* Document Style Sections */
+    .doc-section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 48px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+    }
+    
+    .doc-section h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+    
+    .doc-section h2 .highlight {
+      color: #3b82f6;
+    }
+    
+    .doc-section h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    
+    .doc-section p {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    
+    .doc-section ul, .doc-section ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    
+    .doc-section ul li, .doc-section ol li {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+    
+    .doc-section .highlight-box {
+      background: #f1f5f9;
+      padding: 20px 24px;
+      border-radius: 12px;
+      border-left: 4px solid #3b82f6;
+      margin: 20px 0;
+    }
+    
+    .doc-section .highlight-box strong {
+      color: #0f172a;
+    }
+    
+    /* Engine Grid */
+    .engine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    
+    .engine-card {
+      background: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .engine-card .engine-name {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    
+    .engine-card .engine-role {
+      font-size: 13px;
+      color: #64748b;
+    }
+    
+    .engine-card .engine-tech {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 2px 10px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: 16px;
+      padding: 40px 48px;
+      text-align: center;
+      border: 1px solid rgba(59,130,246,0.2);
+      margin-top: 40px;
+    }
+    
+    .cta-section h2 { color: white; font-size: 28px; margin-bottom: 12px; }
+    .cta-section p { color: #94a3b8; max-width: 600px; margin: 0 auto 20px; }
+    
+    .btn-cta {
+      display: inline-block;
+      background: #3b82f6;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin: 4px;
+    }
+    
+    .btn-cta:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4);
+    }
+    
+    .btn-cta.outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .btn-cta.outline:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .use-case-hero { padding: 80px 0 30px; }
+      .use-case-hero h1 { font-size: 30px; }
+      .use-case-hero p { font-size: 16px; }
+      
+      .section-title { font-size: 26px; }
+      .cta-section { padding: 28px 24px; }
+      .cta-section h2 { font-size: 22px; }
+      .stats-grid-use { padding: 24px 20px; }
+      .content-card { padding: 20px; }
+      .doc-section { padding: 24px 20px; }
+      .doc-section h2 { font-size: 22px; }
+      .doc-section h3 { font-size: 18px; }
+    }
+    
+    @media (max-width: 480px) {
+      .use-case-hero h1 { font-size: 24px; }
+      .stat-number-use { font-size: 28px; }
+      .content-card h3 { font-size: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="header__wrapper">
+      <div class="c-logo">
+        <a href="/" aria-label="CloFix Home - Global AI-Powered WAF & Cloud Security Platform">
+          <img src="img/logo.png" alt="CloFix Logo - Global AI-Powered WAF" class="c-logo__img" />
+        </a>
+        <span class="c-logo__text c-logo__text--white"></span>
+      </div>
+      <nav class="c-nav">
+        <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+        </button>
+
+        <div class="c-nav__content">
+          <ul class="c-list c-list--flex">
+            <li class="c-list__item">
+              <a href="/" class="c-link c-link--list">Home</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/pricing" class="c-link c-link--list">Pricing</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/about" class="c-link c-link--list">About</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/features" class="c-link c-link--list">Features</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/client-partner" class="c-link c-link--list">Partners</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/contact" class="c-link c-link--list">Contact</a>
+            </li>
+            <li class="c-list__item">
+              <a href="/waf" class="c-link c-link--list c-link--active">WAF</a>
+            </li>
+            <!-- Others mega dropdown -->
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                Others
+                <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+
+              <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Documentation</h4>
+                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">CloFix JS Script</a>
+                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">CloFix WASM</a>
+                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Tools</h4>
+                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">CloFix Pentest</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <a href="/faq" class="ticket-button">
+              <button class="c-button c-button--small c-button--secondary">FAQ</button>
+            </a>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="use-case-hero">
+  <div class="use-case-hero-content">
+    <span class="use-case-badge">☁️ SaaS Security</span>
+    <h1>WAF for SaaS: <span class="highlight">Secure Your Cloud Applications</span></h1>
+    <p>Protect your SaaS platform with AI-powered Web Application Firewall. Multi-tenant security, API protection, data privacy, and enterprise-grade threat detection for cloud applications.</p>
+    
+    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.06);">
+      <div style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 700; color: #60a5fa;">96.3%</div>
+        <div style="font-size: 13px; color: #94a3b8;">Threat Detection Accuracy</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 700; color: #60a5fa;">46+</div>
+        <div style="font-size: 13px; color: #94a3b8;">AI Security Engines</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 700; color: #60a5fa;">60+</div>
+        <div style="font-size: 13px; color: #94a3b8;">Core Security Engines</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 700; color: #60a5fa;">&#60;50ms</div>
+        <div style="font-size: 13px; color: #94a3b8;">Response Latency</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 700; color: #60a5fa;">99.99%</div>
+        <div style="font-size: 13px; color: #94a3b8;">Uptime SLA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="use-case-container">
+
+  <!-- Stats -->
+  <div class="stats-grid-use">
+    <div class="stat-item-use">
+      <div class="stat-number-use">43%</div>
+      <div class="stat-label-use">SaaS Attacks Increase YoY</div>
+    </div>
+    <div class="stat-item-use">
+      <div class="stat-number-use">$4.45M</div>
+      <div class="stat-label-use">Average Data Breach Cost</div>
+    </div>
+    <div class="stat-item-use">
+      <div class="stat-number-use">53</div>
+      <div class="stat-label-use">Attack Types Blocked</div>
+    </div>
+    <div class="stat-item-use">
+      <div class="stat-number-use">5min</div>
+      <div class="stat-label-use">Deployment Time</div>
+    </div>
+  </div>
+
+  <!-- Why SaaS Needs WAF -->
+  <div style="background: white; border-radius: 16px; padding: 32px 40px; margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.05);">
+    <h2 style="font-size: 26px; font-weight: 700; color: #0f172a; margin-bottom: 12px;">☁️ Why SaaS Platforms Need WAF Protection</h2>
+    <p style="font-size: 16px; color: #475569; line-height: 1.8; max-width: 900px;">
+      SaaS applications handle sensitive customer data across multiple tenants, making them prime targets for cybercriminals.
+      <strong>CloFix WAF</strong> provides enterprise-grade protection against:
+    </p>
+    <ul style="list-style: none; padding: 0; margin-top: 16px;">
+      <li style="padding: 8px 0; font-size: 15px; color: #334155; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid #f1f5f9;">
+        <span style="color: #22c55e;">✅</span> <strong>Multi-Tenant Security:</strong> Protect each customer's data with tenant isolation
+      </li>
+      <li style="padding: 8px 0; font-size: 15px; color: #334155; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid #f1f5f9;">
+        <span style="color: #22c55e;">✅</span> <strong>API Protection:</strong> Secure REST, GraphQL, and gRPC APIs from abuse
+      </li>
+      <li style="padding: 8px 0; font-size: 15px; color: #334155; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid #f1f5f9;">
+        <span style="color: #22c55e;">✅</span> <strong>Data Privacy:</strong> Prevent data breaches and ensure compliance
+      </li>
+      <li style="padding: 8px 0; font-size: 15px; color: #334155; display: flex; align-items: flex-start; gap: 10px;">
+        <span style="color: #22c55e;">✅</span> <strong>DDoS Mitigation:</strong> Ensure availability for all customers during attacks
+      </li>
+    </ul>
+  </div>
+
+  <!-- Content Grid - Microservices Protection REMOVED -->
+  <h2 class="section-title">Key <span class="highlight">SaaS WAF Features</span></h2>
+  <p class="section-subtitle">Comprehensive protection designed specifically for cloud-based SaaS platforms</p>
+
+  <div class="content-grid">
+    <div class="content-card">
+      <div class="icon">🏢</div>
+      <h3>Multi-Tenant Security</h3>
+      <p>Protect each tenant's data with isolation, tenant-specific rate limiting, and granular access controls.</p>
+      <ul>
+        <li>Tenant isolation and segmentation</li>
+        <li>Per-tenant rate limiting</li>
+        <li>Tenant-specific rule sets</li>
+        <li>Cross-tenant attack prevention</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <div class="icon">🔌</div>
+      <h3>API Security</h3>
+      <p>Secure REST, GraphQL, and gRPC APIs with schema validation, JWT inspection, and rate limiting.</p>
+      <ul>
+        <li>OpenAPI/JSON schema validation</li>
+        <li>GraphQL depth &amp; introspection protection</li>
+        <li>JWT token inspection</li>
+        <li>API rate limiting per endpoint</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <div class="icon">🔐</div>
+      <h3>Data Privacy &amp; Compliance</h3>
+      <p>Meet GDPR, HIPAA, SOC 2, and ISO 27001 compliance requirements with built-in security controls.</p>
+      <ul>
+        <li>GDPR compliance support</li>
+        <li>Data encryption in transit</li>
+        <li>Access logging and audit trails</li>
+        <li>Compliance reporting</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Common SaaS Threats -->
+  <h2 class="section-title">Common <span class="highlight">SaaS Cyber Threats</span></h2>
+  <p class="section-subtitle">CloFix WAF protects your SaaS platform from these common attacks</p>
+
+  <div class="threat-grid">
+    <div class="threat-card">
+      <div class="threat-icon">🔓</div>
+      <h4>API Abuse</h4>
+      <p>Attackers overwhelm APIs with requests, bypass rate limits, and exploit API vulnerabilities to access data.</p>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon">📝</div>
+      <h4>GraphQL Attacks</h4>
+      <p>Malicious GraphQL queries with depth bombs, circular fragments, and introspection attacks to exhaust server resources.</p>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon">🤖</div>
+      <h4>Credential Stuffing</h4>
+      <p>Automated attacks using leaked credentials to compromise customer accounts across your SaaS platform.</p>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon">🔒</div>
+      <h4>Data Exfiltration</h4>
+      <p>Attackers exploit vulnerabilities to steal sensitive customer data, intellectual property, and trade secrets.</p>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon">⚡</div>
+      <h4>DDoS Attacks</h4>
+      <p>Volumetric and application-layer attacks that disrupt service availability for all tenants.</p>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon">📊</div>
+      <h4>Account Takeover</h4>
+      <p>Attackers compromise admin accounts to access sensitive data across multiple tenants.</p>
+    </div>
+  </div>
+
+  <!-- Why CloFix -->
+  <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border-radius: 16px; padding: 40px 48px; margin-bottom: 40px; border: 1px solid rgba(59,130,246,0.2);">
+    <h2 style="color: white; font-size: 26px; font-weight: 700; margin-bottom: 16px;">🚀 Why CloFix WAF for Your SaaS Platform?</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+      <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <div style="font-size: 28px; margin-bottom: 8px;">🧠</div>
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 4px;">AI-Powered Detection</h4>
+        <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">96.3% accuracy with &lt;2% false positives</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <div style="font-size: 28px; margin-bottom: 8px;">🔌</div>
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 4px;">Complete API Security</h4>
+        <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">REST, GraphQL, gRPC with JWT inspection</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <div style="font-size: 28px; margin-bottom: 8px;">💬</div>
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 4px;">Local Support</h4>
+        <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">24/7 Bengali &amp; English phone/WhatsApp support</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <div style="font-size: 28px; margin-bottom: 8px;">💰</div>
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 4px;">Transparent Pricing</h4>
+        <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">Starting at $12.50/month with BDT pricing</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SaaS-Specific Benefits -->
+  <div class="doc-section">
+    <h2>SaaS-Specific <span class="highlight">Security Benefits</span></h2>
+    
+    <h3>Multi-Tenant Isolation</h3>
+    <p>CloFix WAF provides tenant-specific security policies, ensuring that attacks targeting one tenant cannot affect others. Each tenant can have custom rules, rate limits, and monitoring without impacting other tenants.</p>
+    
+    <h3>API-First Security</h3>
+    <p>Modern SaaS platforms are API-first. CloFix WAF provides comprehensive API security including:</p>
+    <ul>
+      <li><strong>GraphQL Security:</strong> Depth limiting, introspection protection, batch query abuse prevention</li>
+      <li><strong>REST API Protection:</strong> Schema validation, JWT inspection, rate limiting</li>
+      <li><strong>gRPC Security:</strong> Method filtering, message validation</li>
+    </ul>
+    
+    <h3>Zero-Trust Architecture Support</h3>
+    <p>CloFix WAF supports zero-trust security models with continuous verification, least-privilege access, and micro-segmentation for your SaaS infrastructure.</p>
+    
+    <h3>Compliance Ready</h3>
+    <p>Meet compliance requirements with built-in security controls:</p>
+    <ul>
+      <li><strong>GDPR:</strong> Data protection, access logging, breach notification</li>
+      <li><strong>HIPAA:</strong> PHI protection, audit trails, encryption</li>
+      <li><strong>SOC 2:</strong> Security controls, monitoring, incident response</li>
+      <li><strong>ISO 27001:</strong> Information security management</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>☁️ Ready to Secure Your SaaS Platform?</h2>
+    <p>Start your 14-day free trial and protect your cloud applications with CloFix WAF. AI-powered protection with local support and transparent BDT pricing.</p>
+    <div>
+      <a href="/contact" class="btn-cta">Start Free Trial →</a>
+      <a href="/waf" class="btn-cta outline">Learn More About CloFix WAF</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container c-footer">
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="#" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img
+                src="img/facebook_clofix.png" alt="Facebook" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png"
+                alt="X" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img
+                src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png"
+                alt="WhatsApp" /></a></li>
+          <li class="social-li">
+            <a href="https://youtube.com/@clofix-infotech" target="_blank">
+              <img src="img/youtube_clofix.png" alt="YouTube" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">CloFix WAF Support Overview</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="footer__text">© 2026 © CloFix - All Rights Reserved</p>
+    </div>
+  </footer>
+
+<!-- Navigation Script -->
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navContent = document.querySelector('.c-nav__content');
+  const dropdowns = document.querySelectorAll('.c-dropdown');
+
+  function closeAllDropdowns() {
+    dropdowns.forEach(dd => {
+      dd.classList.remove('open');
+      const btn = dd.querySelector('.c-dropdown__toggle');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  if (navToggle && navContent) {
+    navToggle.setAttribute('aria-expanded', 'false');
+
+    navToggle.addEventListener('click', () => {
+      const open = navContent.classList.toggle('active');
+      document.body.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) closeAllDropdowns();
+    });
+
+    navContent.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        closeAllDropdowns();
+      });
+    });
+  }
+
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.c-dropdown__toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !dd.classList.contains('open');
+      closeAllDropdowns();
+      if (willOpen) {
+        dd.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const panelOpen = navContent && navContent.classList.contains('active');
+    if (panelOpen) return;
+    if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+  });
+</script>
+
+</body>
+</html>
