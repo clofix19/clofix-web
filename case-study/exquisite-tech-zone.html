@@ -68,6 +68,69 @@
         });
       </script>
 
+    <!-- ============================================ -->
+    <!-- SCHEMA MARKUP                               -->
+    <!-- ============================================ -->
+    
+    <!-- Schema: Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Case Study: Exquisite Tech Zone Eliminates DDoS Attacks with CloFix WAF",
+      "description": "How Exquisite Tech Zone eliminated DDoS attacks and strengthened security with CloFix WAF and Standard Support Plan in Bangladesh.",
+      "image": "https://clofix.com/img/share.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "CloFix InfoTech",
+        "url": "https://clofix.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CloFix InfoTech",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://clofix.com/img/logo.png"
+        }
+      },
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-15",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://clofix.com/case-study/exquisite-tech-zone"
+      },
+      "keywords": "WAF Case Study, DDoS Protection, CloFix WAF, Bangladesh Cybersecurity"
+    }
+    </script>
+
+    <!-- Schema: Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://clofix.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Case Studies",
+          "item": "https://clofix.com/case-study"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Exquisite Tech Zone",
+          "item": "https://clofix.com/case-study/exquisite-tech-zone"
+        }
+      ]
+    }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -444,11 +507,58 @@
         .featured-in-nav a:hover {
             text-decoration: underline;
         }
+
+        /* ============================================ */
+        /* NEW: INTERNAL LINK SECTION                   */
+        /* ============================================ */
+        
+        .internal-links-section {
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 24px 32px;
+            margin: 24px 0 0 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .internal-links-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f3b5c;
+            margin-bottom: 12px;
+        }
+        
+        .internal-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px;
+        }
+        
+        .internal-link {
+            display: block;
+            background: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1e6f9f;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .internal-link:hover {
+            background: #1e6f9f;
+            color: white;
+            border-color: #1e6f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
     </style>
 </head>
 <body>
 <div class="case-study-container">
-    <!-- NEW: Breadcrumb Navigation -->
+    <!-- Breadcrumb Navigation -->
     <div style="padding: 1rem 2.5rem 0 2.5rem;">
         <div class="breadcrumb">
             <a href="/">Home</a> &gt; 
@@ -457,13 +567,15 @@
         </div>
     </div>
 
-    <!-- NEW: Featured In Navigation (contextual internal links) -->
+    <!-- Featured In Navigation (contextual internal links) -->
     <div style="padding: 0 2.5rem;">
         <div class="featured-in-nav">
             <strong>📌 Featured In:</strong>
             <a href="/case-study">All Case Studies</a>
             <a href="/case-study/exquisite-tech-zone">Exquisite Tech Zone</a>
             <a href="/partner">Become a Partner</a>
+            <a href="/waf">CloFix WAF</a>
+            <a href="/blogs">Blog</a>
         </div>
     </div>
 
@@ -491,7 +603,7 @@
             <div class="section">
                 <h2>📍 About Exquisite Tech Zone</h2>
                 <p><strong>Exquisite Tech Zone (etechz.com)</strong> is a fast-growing software and security solutions company based in Bangladesh. Specializing in innovative digital products, custom development, and secure IT systems, they empower businesses with scalable, modern technology - from enterprise software to cybersecurity infrastructure.</p>
-                <p>As a authorized <strong>Solution Partner of CloFix</strong>, Exquisite Tech Zone not only resells and deploys CloFix WAF for clients but also relies on the same advanced Web Application Firewall to secure its own digital assets, internal tools, and client-facing portals.</p>
+                <p>As a authorized <strong>Solution Partner of CloFix</strong>, Exquisite Tech Zone not only resells and deploys <a href="/waf">CloFix WAF</a> for clients but also relies on the same advanced Web Application Firewall to secure its own digital assets, internal tools, and client-facing portals.</p>
             </div>
 
             <div class="section">
@@ -513,8 +625,8 @@
             </div>
 
             <div class="section">
-                <h2>🛡️ Solution: CloFix WAF + Standard Support Plan</h2>
-                <p>Exquisite Tech Zone leveraged the CloFix partner program benefit: <strong>“1 website - CloFix WAF under protection”</strong>. Their primary website was hosted and secured at zero cost, while additional properties were onboarded via the <strong>Standard Support Plan (৳60,000/year)</strong> - ideal for their growing production workloads.</p>
+                <h2>🛡️ Solution: <a href="/waf">CloFix WAF</a> + Standard Support Plan</h2>
+                <p>Exquisite Tech Zone leveraged the CloFix partner program benefit: <strong>“1 website - CloFix WAF under protection”</strong>. Their primary website was hosted and secured at zero cost, while additional properties were onboarded via the <a href="/support">Standard Support Plan (৳60,000/year)</a> - ideal for their growing production workloads.</p>
                 <p><strong>Deployment highlights:</strong> DNS-based onboarding completed in <strong>under 4 hours</strong> with zero code changes. Enabled advanced WAF policies, bot blocking, geo-fencing, and virtual patching.</p>
                 
                 <h3 style="font-size: 1.2rem; margin: 1rem 0 0.5rem 0;">✅ How CloFix Support addressed their needs:</h3>
@@ -530,7 +642,7 @@
             </div>
             
             <div class="section">
-                <h2>🔒 Why CloFix WAF?</h2>
+                <h2>🔒 Why <a href="/waf">CloFix WAF</a>?</h2>
                 <p>CloFix WAF is trusted by businesses across Bangladesh and beyond. Here's why Exquisite Tech Zone chose CloFix over alternatives:</p>
                 <div class="why-grid">
                     <div class="why-item"><span class="why-icon">⚡</span> <strong>Real-time DDoS Mitigation</strong><br>L3/L7 protection with automatic edge filtering.</div>
@@ -547,7 +659,7 @@
 
             <div class="section">
                 <h2>📈 Results & measurable impact</h2>
-                <p>Within 30 days of activating CloFix WAF + Standard Support, Exquisite Tech Zone documented dramatic improvements:</p>
+                <p>Within 30 days of activating <a href="/waf">CloFix WAF</a> + Standard Support, Exquisite Tech Zone documented dramatic improvements:</p>
                 <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: #2c3e4e;">
                     <li><strong>DDoS attacks blocked 100%</strong> - Automatic mitigation at the edge; zero successful volumetric or layer 7 attacks reached origin.</li>
                     <li><strong>98% malicious requests filtered</strong> - SQLi, XSS, and exploit scanners neutralized.</li>
@@ -557,7 +669,25 @@
                     <li><strong>Support response consistently < 4 hours</strong> - Beating the 6-hour SLA.</li>
                 </ul>
                 <div class="insight-box">
-                    ✅ "We host our own website under CloFix WAF - it's under constant protection. DDoS attacks dropped to zero, and the dashboard gives us complete visibility. The support team responds incredibly fast, usually within hours." - <strong>Effety Hassan, Founder & CEO</strong>
+                    ✅ "We host our own website under <a href="/waf">CloFix WAF</a> - it's under constant protection. DDoS attacks dropped to zero, and the dashboard gives us complete visibility. The support team responds incredibly fast, usually within hours." - <strong>Effety Hassan, Founder & CEO</strong>
+                </div>
+            </div>
+            
+            <!-- ============================================ -->
+            <!-- INTERNAL LINKS SECTION                       -->
+            <!-- ============================================ -->
+            
+            <div class="internal-links-section">
+                <h3>🔗 Related Pages</h3>
+                <div class="internal-links-grid">
+                    <a href="/waf" class="internal-link">🛡️ CloFix WAF</a>
+                    <a href="/features" class="internal-link">⭐ WAF Features</a>
+                    <a href="/pricing" class="internal-link">💰 WAF Pricing</a>
+                    <a href="/partner" class="internal-link">🤝 Become a Partner</a>
+                    <a href="/support" class="internal-link">📞 Support Plans</a>
+                    <a href="/case-study" class="internal-link">📄 All Case Studies</a>
+                    <a href="/blogs" class="internal-link">📝 Blog</a>
+                    <a href="/contact" class="internal-link">📧 Contact</a>
                 </div>
             </div>
         </div>
@@ -581,7 +711,7 @@
                 <div class="testimonial-mini">
                     ★★★★★ "The dashboard gives us complete visibility. CloFix WAF made our website much safer. DDoS attacks dropped a lot, everything is clearly visible in the WAF dashboard."
                 </div>
-                <a href="https://clofix.com/client-partner" class="btn-outline" target="_blank">🔗 View official partner listing →</a>
+                <a href="/client-partner" class="btn-outline" target="_blank">🔗 View official partner listing →</a>
             </div>
 
             <div class="sidebar-card" style="background: #eef2ff; border-color: #cbdff2;">
@@ -594,13 +724,12 @@
                     <li>24/7 monitoring escalation path</li>
                 </ul>
                 <hr>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Partner benefit:</strong> 1 site free - CloFix WAF under protection. Exquisite Tech Zone's own domain is hosted and secured by CloFix, reinforcing their commitment to eating their own dogfood.</p>
-                <!-- NEW: Internal link to partner page -->
+                <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Partner benefit:</strong> 1 site free - <a href="/waf">CloFix WAF</a> under protection. Exquisite Tech Zone's own domain is hosted and secured by CloFix, reinforcing their commitment to eating their own dogfood.</p>
                 <a href="/partner" class="btn-outline" style="margin-top: 0.5rem;">🤝 Become a Partner →</a>
             </div>
 
             <div class="sidebar-card" style="background: #e6f7ec;">
-                <h3>💰 CloFix WAF Pricing Plans (SaaS)</h3>
+                <h3>💰 <a href="/pricing" style="color: #0f3b5c; text-decoration: none;">CloFix WAF Pricing Plans</a></h3>
                 <div class="pricing-tier"><strong>Starter</strong> - <span class="price">৳1,500/month</span><br>1 domain, 30K req, OWASP CRS, Email support</div>
                 <div class="pricing-tier"><strong>Growth</strong> - <span class="price">৳5,500/month</span><br>3 domains, DDoS L3/L4, JS/Lua scripting</div>
                 <div class="pricing-tier"><strong>Pro</strong> - <span class="price">৳16,500/month</span> 🔥 Most Popular<br>5 domains, AI-powered, API security, WhatsApp support</div>
@@ -610,7 +739,7 @@
             </div>
 
             <div class="sidebar-card" style="background: #f0f9ff; border-color: #cfe7ff;">
-                <h3>📌 CloFix Support Plans at a glance</h3>
+                <h3>📌 <a href="/support" style="color: #0f3b5c; text-decoration: none;">CloFix Support Plans</a></h3>
                 <div class="support-tier"><strong>🆓 Free</strong> - ৳0/yr: Email tickets (best effort), docs & community.</div>
                 <div class="support-tier"><strong>⭐ Standard (Active)</strong> - ৳60,000/yr: Email + WhatsApp, response < 6 hrs, shared security team, best practices guidance.</div>
                 <div class="support-tier"><strong>🏢 Enterprise</strong> - ৳7,20,000/yr: Any channel, < 1 hr response (<15 min critical), dedicated account manager, custom features, quarterly reviews.</div>
@@ -621,13 +750,14 @@
     </div>
 
     <footer>
-        <p>© 2025 Exquisite Tech Zone & CloFix - Case Study based on real partner deployment. CloFix WAF protects businesses across Bangladesh & beyond with SLA-backed support.</p>
+        <p>© 2025 Exquisite Tech Zone & CloFix - Case Study based on real partner deployment. <a href="/waf">CloFix WAF</a> protects businesses across Bangladesh & beyond with SLA-backed support.</p>
         <p style="margin-top: 0.5rem;">🔐 Become a partner: <strong>Zero onboarding cost, dedicated support</strong> - <a href="/client-partner" target="_blank" style="color:#1e6f9f;">Join CloFix partner network</a> | <a href="/support" target="_blank" style="color:#1e6f9f;">Explore support plans</a> | <a href="/pricing" target="_blank" style="color:#1e6f9f;">View pricing</a></p>
         <p style="margin-top: 0.5rem; font-size: 0.7rem;">
             <a href="/case-study" style="color:#1e6f9f;">All Case Studies</a> | 
             <a href="/blogs" style="color:#1e6f9f;">Blog</a> | 
             <a href="/about" style="color:#1e6f9f;">About Us</a> | 
-            <a href="/contact" style="color:#1e6f9f;">Contact</a>
+            <a href="/contact" style="color:#1e6f9f;">Contact</a> |
+            <a href="/waf" style="color:#1e6f9f;">CloFix WAF</a>
         </p>
     </footer>
 </div>
