@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://clofix.com/features" />
   
   <!-- SEO Description -->
-  <meta name="description" content="CloFix WAF: AI-powered web app firewall for cloud apps with enterprise protection, bot defense, threat scoring, IP/Geo filtering, rate limiting, and analytics." />
+  <meta name="description" content="CloFix WAF features: AI-powered Web Application Firewall with enterprise protection, bot defense, threat scoring, IP/Geo filtering, rate limiting, and real-time analytics for cloud apps." />
   
   <!-- SEO Keywords -->
   <meta name="keywords" content="Web Application Firewall, AI-powered WAF, Cloud WAF, Enterprise Security, Bot Mitigation, DDoS Protection, SQLi Prevention, XSS Protection, API Security, Zero-Day Protection, Rate Limiting, IP Filtering, Geo Filtering, Threat Scoring, Real-time Monitoring, Cybersecurity, Cloud Security, DevOps Security, CloFix WAF, Managed WAF" />
@@ -984,7 +984,7 @@
               <h3>🎯 CloFix Custom Rules & Scripting</h3>
               <p>Unified rule engine combining CloFixRule directives, JavaScript, and Lua with intelligent bypass system</p>
               <div class="scripting-guideline">
-                  <a href="https://clofix.com/clofix-crs.html#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">
+                  <a href="https://clofix.com/clofix-crs#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">
                       📘 Custom Rules & CloFixRule Guide →
                   </a>
               </div>
@@ -1026,7 +1026,7 @@
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> CloFix Custom Rules engine processes rules in execution priority order across three scripting languages. CloFixRule directives are compiled into optimized decision trees for O(log n) lookup times. JavaScript and Lua scripts execute in isolated VMs with 2-second (JS) or 50ms (Lua) timeouts. Files execute alphabetically - use numeric prefixes like `01_rate_limit.js`, `02_bot_detection.lua`, `03_clofixrule.conf` to control pipeline order. The intelligent bypass system supports rule ID, tag, phase, path, and IP bypasses - documented bypasses are essential for production. All rule executions are traced in the audit log with detailed match information for forensics and tuning. Shared dictionaries (`sharedDict` in JS, `clofix.shared` in Lua) maintain cross-request state with TTL support. Pattern extraction from JavaScript files automatically creates fast-matching signatures checked against every request.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs.html#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">CloFixRule & Custom Rules Guide</a> - Complete syntax reference with variables, operators, transformations, bypass configuration, and 50+ rule examples</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/clofix-crs#clo fixrule-syntax" target="_blank" rel="noopener noreferrer">CloFixRule & Custom Rules Guide</a> - Complete syntax reference with variables, operators, transformations, bypass configuration, and 50+ rule examples</p>
                   </div>
               </div>
           </template>
