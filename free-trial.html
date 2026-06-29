@@ -601,63 +601,81 @@
 
 <!-- Header -->
 <header class="header">
-  <div class="container">
-    <div class="header__wrapper">
-      <div class="c-logo">
-        <a href="/" aria-label="CloFix Home">
-          <img src="img/logo.png" alt="CloFix Logo" class="c-logo__img" />
-        </a>
-        <span class="c-logo__text c-logo__text--white"></span>
-      </div>
-      <nav class="c-nav">
-        <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
-          <span class="c-nav__bar"></span>
-          <span class="c-nav__bar"></span>
-          <span class="c-nav__bar"></span>
-        </button>
-        <div class="c-nav__content">
-          <ul class="c-list c-list--flex">
-            <li class="c-list__item"><a href="/" class="c-link c-link--list">Home</a></li>
-            <li class="c-list__item"><a href="/pricing" class="c-link c-link--list">Pricing</a></li>
-            <li class="c-list__item"><a href="/about" class="c-link c-link--list">About</a></li>
-            <li class="c-list__item"><a href="/features" class="c-link c-link--list">Features</a></li>
-            <li class="c-list__item"><a href="/client-partner" class="c-link c-link--list">Partners</a></li>
-            <li class="c-list__item"><a href="/contact" class="c-link c-link--list">Contact</a></li>
-            <li class="c-list__item"><a href="/waf" class="c-link c-link--list c-link--active">WAF</a></li>
-            <li class="c-list__item c-dropdown c-dropdown--mega">
-              <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
-                Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
-              </button>
-              <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
-                <div class="c-dropdown__mega-wrap">
-                  <div class="c-dropdown__mega-grid">
-                    <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Documentation</h4>
-                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">CloFix LUA Script</a>
-                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">CloFix JS Script</a>
-                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CloFix CRS Script</a>
-                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">CloFix WASM</a>
-                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
-                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
-                    </div>
-                    <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Tools</h4>
-                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
-                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">CloFix Pentest</a>
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="c-logo">
+          <a href="https://clofix.com/">
+            <img src="img/logo.png" alt="CloFix Logo - Global AI-Powered WAF Security Platform" class="c-logo__img">
+          </a>
+          <span class="c-logo__tagline">Global WAF</span>
+          <span class="c-logo__text c-logo__text--white"></span>
+        </div>
+        <nav class="c-nav">
+          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+            <span class="c-nav__bar"></span>
+          </button>
+          <div class="c-nav__content">
+            <ul class="c-list c-list--flex">
+              <li class="c-list__item">
+                <a href="/" class="c-link c-link--list">Home</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/pricing" class="c-link c-link--list">Pricing</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/waf-setup" class="c-link c-link--list">WAF Setup</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/about" class="c-link c-link--list">About</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/features" class="c-link c-link--list">Features</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/client-partner" class="c-link c-link--list">Partners</a>
+              </li>
+              <li class="c-list__item">
+                <a href="/contact" class="c-link c-link--list">Contact</a>
+              </li>
+              <li class="c-list__item c-dropdown c-dropdown--mega">
+                <button class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+                  Others <span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                </button>
+                <div class="c-dropdown__menu c-dropdown__menu--mega" role="menu">
+                  <div class="c-dropdown__mega-wrap">
+                    <div class="c-dropdown__mega-grid">
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Documentation</h4>
+                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">CloFix LUA Script</a>
+                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">CloFix JS Script</a>
+                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CloFix CRS Script</a>
+                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">CloFix WASM</a>
+                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CloFix CADRE Script</a>
+                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">CloFix WAF Workflow</a>
+                      </div>
+                      <div class="c-dropdown__mega-col">
+                        <h4 class="c-dropdown__mega-title">Tools</h4>
+                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">CloFix Pentest</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <a href="/faq" class="ticket-button">
-              <button class="c-button c-button--small c-button--secondary">FAQ</button>
-            </a>
-          </ul>
-        </div>
-      </nav>
+              </li>
+              <a href="/free-trial" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">Free Trial</button>
+              </a>
+              <a href="/clofix-agent" class="ticket-button">
+                <button class="c-button c-button--small c-button--secondary">Nano Agent</button>
+              </a>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 <!-- Hero Section -->
 <section class="trial-hero">
@@ -926,7 +944,8 @@
           <li><a href="/about">About CloFix</a></li>
           <li><a href="/contact">Contact CloFix</a></li>
           <li><a href="#">Documentation</a></li>
-          <li><a href="/support">CloFix WAF Support Overview</a></li>
+          <li><a href="/support">WAF Support</a></li>
+          <li><a href="/features">WAF Features</a></li>
         </ul>
       </div>
       <div class="c-footer__column">
@@ -936,6 +955,7 @@
           <li><a href="/partner">Become A Partner</a></li>
           <li><a href="/blogs">Blogs</a></li>
           <li><a href="/waf">WAF</a></li>
+          <li><a href="/free-trial">Free Trial</a></li>
         </ul>
       </div>
       <div class="c-footer__column">
