@@ -2993,6 +2993,460 @@
     height: 18px;
   }
 }
+/* ============================================
+   DEMO SECTION
+   ============================================ */
+
+.demo-section {
+    padding: 80px 0 100px 0;
+    background: linear-gradient(160deg, #060a15 0%, #0d1b2e 40%, #0a1628 100%);
+    border-top: 1px solid rgba(56, 189, 248, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.demo-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 50%;
+    height: 70%;
+    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.04) 0%, transparent 70%);
+    animation: demoGlowFloat 20s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.demo-section::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 40%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(139, 92, 246, 0.03) 0%, transparent 70%);
+    animation: demoGlowFloat 25s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+}
+
+@keyframes demoGlowFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.1); }
+    66% { transform: translate(-20px, 15px) scale(0.9); }
+    100% { transform: translate(10px, -10px) scale(1.05); }
+}
+
+.demo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header */
+.demo-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.demo-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    animation: badgePulse 2s infinite;
+}
+
+.demo-title {
+    font-size: 44px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.demo-title-highlight {
+    background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+}
+
+.demo-title-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+    border-radius: 2px;
+    opacity: 0.4;
+}
+
+.demo-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.demo-divider span:first-child,
+.demo-divider span:last-child {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+}
+
+.demo-divider span:first-child {
+    background: linear-gradient(90deg, transparent, #38bdf8);
+}
+
+.demo-divider span:last-child {
+    background: linear-gradient(90deg, #38bdf8, transparent);
+}
+
+.demo-divider span:nth-child(2) {
+    color: #38bdf8;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.demo-description {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #94a3b8;
+}
+
+/* Grid */
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* Cards */
+.demo-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.06);
+    border-radius: 20px;
+    padding: 28px 24px;
+    transition: all 0.4s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(8px);
+}
+
+.demo-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.demo-card--featured {
+    border-color: rgba(56, 189, 248, 0.2);
+    background: rgba(56, 189, 248, 0.05);
+    grid-column: 1 / -1;
+}
+
+.demo-card--featured::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+    border-radius: 0 0 2px 2px;
+}
+
+.demo-card-badge {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.demo-card-icon {
+    font-size: 40px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.demo-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+}
+
+.demo-card-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.demo-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.demo-features span {
+    font-size: 11px;
+    color: #5a7a95;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.demo-card:hover .demo-features span {
+    border-color: rgba(56, 189, 248, 0.1);
+    color: #8a9bb5;
+}
+
+.demo-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #00c2a8;
+    background: rgba(0, 194, 168, 0.08);
+    padding: 4px 14px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    width: fit-content;
+}
+
+.demo-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00c2a8;
+    animation: pulse-dot 2s infinite;
+}
+
+/* Buttons */
+.demo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-radius: 10px;
+    color: #38bdf8;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto;
+}
+
+.demo-btn:hover {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.12);
+    color: #60a5fa;
+}
+
+.demo-btn--primary {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(139, 92, 246, 0.15));
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.demo-btn--primary:hover {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(139, 92, 246, 0.25));
+    border-color: #38bdf8;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
+}
+
+.demo-btn-arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.demo-btn:hover .demo-btn-arrow {
+    transform: translateX(6px);
+}
+
+/* Trust Indicators */
+.demo-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 32px;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 60px;
+    border: 1px solid rgba(56, 189, 248, 0.06);
+    backdrop-filter: blur(12px);
+}
+
+.demo-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.demo-trust-icon {
+    font-size: 28px;
+}
+
+.demo-trust-item strong {
+    font-size: 14px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.demo-trust-item small {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.demo-trust-divider {
+    width: 1px;
+    height: 35px;
+    background: rgba(56, 189, 248, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .demo-card--featured {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .demo-section {
+        padding: 60px 0 80px 0;
+    }
+
+    .demo-title {
+        font-size: 32px;
+    }
+
+    .demo-description {
+        font-size: 15px;
+    }
+
+    .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .demo-card {
+        padding: 22px 18px;
+    }
+
+    .demo-card-title {
+        font-size: 18px;
+    }
+
+    .demo-trust {
+        flex-direction: column;
+        gap: 14px;
+        padding: 20px;
+        border-radius: 28px;
+    }
+
+    .demo-trust-divider {
+        width: 60px;
+        height: 1px;
+    }
+
+    .demo-btn {
+        font-size: 13px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .demo-section {
+        padding: 40px 0 60px 0;
+    }
+
+    .demo-container {
+        padding: 0 16px;
+    }
+
+    .demo-title {
+        font-size: 24px;
+    }
+
+    .demo-card {
+        padding: 18px 14px;
+        border-radius: 14px;
+    }
+
+    .demo-features span {
+        font-size: 10px;
+        padding: 3px 10px;
+    }
+
+    .demo-btn {
+        font-size: 12px;
+        padding: 8px 14px;
+        border-radius: 8px;
+    }
+
+    .demo-badge {
+        font-size: 10px;
+        padding: 6px 16px;
+    }
+
+    .demo-card-icon {
+        font-size: 32px;
+    }
+}
 </style>
 </head>
 
@@ -3872,10 +4326,174 @@
             </div>
         </div>
     </section>
+    <section class="demo-section" aria-label="CloFix WAF Demo Site">
+        <div class="demo-container">
+            <div class="demo-header">
+                <div class="demo-badge">
+                    <span class="demo-badge-dot"></span>
+                    <span>🖥️ LIVE DEMO</span>
+                </div>
+                <h2 class="demo-title">CloFix WAF <span class="demo-title-highlight">Demo Site</span></h2>
+                <div class="demo-divider">
+                    <span></span>
+                    <span>✦</span>
+                    <span></span>
+                </div>
+                <p class="demo-description">
+                    Experience CloFix WAF in action. Test our AI-powered security features, explore the dashboard,
+                    and see real-time threat protection in a live environment.
+                </p>
+            </div>
 
-    <!-- ============================================= -->
-    <!-- CLOFIX ECOSYSTEM SECTION                     -->
-    <!-- ============================================= -->
+            <div class="demo-grid">
+                <!-- Demo Card 1: Live WAF Demo -->
+                <div class="demo-card demo-card--featured">
+                    <div class="demo-card-badge">POPULAR</div>
+                    <div class="demo-card-icon">🛡️</div>
+                    <h3 class="demo-card-title">Live WAF Demo</h3>
+                    <p class="demo-card-desc">
+                        Test our AI-powered WAF with real-time threat detection, OWASP protection,
+                        and DDoS mitigation. See how CloFix blocks attacks instantly.
+                    </p>
+                    <div class="demo-features">
+                        <span>⚡ Real-time Threat Detection</span>
+                        <span>🛡️ OWASP Top 10 Protection</span>
+                        <span>🧠 AI Anomaly Detection</span>
+                        <span>📊 Live Dashboard Analytics</span>
+                        <span>🔐 SSL/TLS Monitoring</span>
+                        <span>🚦 Rate Limiting Demo</span>
+                    </div>
+                    <div class="demo-status">
+                        <span class="demo-status-dot"></span>
+                        <span>Demo Environment Active</span>
+                    </div>
+                    <a href="https://demo.clofix.com" class="demo-btn demo-btn--primary">
+                        Launch Demo
+                        <span class="demo-btn-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Demo Card 2: Attack Simulation -->
+                <div class="demo-card">
+                    <div class="demo-card-icon">🎯</div>
+                    <h3 class="demo-card-title">Attack Simulation</h3>
+                    <p class="demo-card-desc">
+                        Test your application's defenses with simulated SQLi, XSS, and DDoS attacks
+                        in a safe, controlled environment.
+                    </p>
+                    <div class="demo-features">
+                        <span>🗄️ SQL Injection Simulation</span>
+                        <span>📝 XSS Payload Testing</span>
+                        <span>💥 DDoS Attack Sim</span>
+                        <span>🔍 Vulnerability Scanner</span>
+                    </div>
+                </div>
+
+                <!-- Demo Card 3: Dashboard Preview -->
+                <div class="demo-card">
+                    <div class="demo-card-icon">📊</div>
+                    <h3 class="demo-card-title">Dashboard Preview</h3>
+                    <p class="demo-card-desc">
+                        Explore the CloFix WAF dashboard with real-time analytics, threat metrics,
+                        and security insights.
+                    </p>
+                    <div class="demo-features">
+                        <span>📈 Live Traffic Analytics</span>
+                        <span>🛡️ Threat Overview</span>
+                        <span>📋 Audit Logs</span>
+                        <span>🔔 Alert Management</span>
+                    </div>
+                </div>
+
+                <!-- Demo Card 4: API Security Demo -->
+                <div class="demo-card">
+                    <div class="demo-card-icon">🔌</div>
+                    <h3 class="demo-card-title">API Security Demo</h3>
+                    <p class="demo-card-desc">
+                        Test CloFix API protection with form validation, CSRF tokens, rate limiting,
+                        and bot detection.
+                    </p>
+                    <div class="demo-features">
+                        <span>🔒 API Endpoint Protection</span>
+                        <span>📝 Form Validation</span>
+                        <span>🚦 Rate Limiting</span>
+                        <span>🤖 Bot Detection</span>
+                    </div>
+                </div>
+
+                <!-- Demo Card 5: Custom Rules Demo -->
+                <div class="demo-card">
+                    <div class="demo-card-icon">⚙️</div>
+                    <h3 class="demo-card-title">Custom Rules Engine</h3>
+                    <p class="demo-card-desc">
+                        Create, test, and deploy custom security rules with our interactive
+                        rule builder and testing sandbox.
+                    </p>
+                    <div class="demo-features">
+                        <span>📜 Rule Builder</span>
+                        <span>🧪 Testing Sandbox</span>
+                        <span>⚡ Real-time Deployment</span>
+                        <span>📊 Rule Analytics</span>
+                    </div>
+                </div>
+
+                <!-- Demo Card 6: Request Workflow -->
+                <div class="demo-card">
+                    <div class="demo-card-icon">🔄</div>
+                    <h3 class="demo-card-title">WAF Request Workflow</h3>
+                    <p class="demo-card-desc">
+                        Visualize the complete WAF request flow from user request to backend
+                        response with real-time tracing.
+                    </p>
+                    <div class="demo-features">
+                        <span>📊 Request Tracing</span>
+                        <span>🔍 Security Analysis</span>
+                        <span>⚡ Performance Metrics</span>
+                        <span>📈 Workflow Visualization</span>
+                    </div>
+                    <a href="/clofix-waf-requst-workflow" class="demo-btn">
+                        View Workflow
+                        <span class="demo-btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Demo Trust Indicators -->
+            <div class="demo-trust">
+                <div class="demo-trust-item">
+                    <span class="demo-trust-icon">⚡</span>
+                    <div>
+                        <strong>Live Environment</strong>
+                        <small>Real-time testing with actual traffic</small>
+                    </div>
+                </div>
+                <div class="demo-trust-divider"></div>
+                <div class="demo-trust-item">
+                    <span class="demo-trust-icon">🔒</span>
+                    <div>
+                        <strong>Secure Sandbox</strong>
+                        <small>Isolated testing environment</small>
+                    </div>
+                </div>
+                <div class="demo-trust-divider"></div>
+                <div class="demo-trust-item">
+                    <span class="demo-trust-icon">🆓</span>
+                    <div>
+                        <strong>Free to Test</strong>
+                        <small>No credit card required</small>
+                    </div>
+                </div>
+                <div class="demo-trust-divider"></div>
+                <div class="demo-trust-item">
+                    <span class="demo-trust-icon">📱</span>
+                    <div>
+                        <strong>Mobile Ready</strong>
+                        <small>Test from any device</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="ecosystem-section" aria-label="CloFix Ecosystem">
         <div class="ecosystem-container">
             <div class="ecosystem-header">
