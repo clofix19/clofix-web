@@ -15,7 +15,7 @@
   <meta name="author" content="CloFix InfoTech" />
   
   <!-- SEO Keywords -->
-  <meta name="keywords" content="CloFix About, Cloud Security Company in bangladesh, WAF in Bagladesh, First WAF in Bagladesh, WAF Provider, DevOps Solutions, AI-driven Automation, Multi-Cloud Security, Hybrid Cloud, On-Demand Engineering, Enterprise WAF, Cloud Infrastructure, Cybersecurity Company, Best WAF Provider, Cloud Automation Services, Client Case Studies, CloFix Case Studies, Success Stories" />
+  <meta name="keywords" content="CloFix About, Cloud Security Company in bangladesh, WAF in Bagladesh, First WAF in Bagladesh, WAF Provider, DevOps Solutions, AI-driven Automation, Multi-Cloud Security, Hybrid Cloud, On-Demand Engineering, Enterprise WAF, Cloud Infrastructure, Cybersecurity Company, Best WAF Provider, Cloud Automation Services, Client Case Studies, CloFix Case Studies, Success Stories, Bayyinah QA, DevSecOps" />
 
   <!-- Standard SEO Meta - Fixed length (under 160 characters) -->
   <meta name="description" content="CloFix delivers enterprise-grade WAF, AI-driven automation, and DevOps solutions. Explore our client success stories and measurable business outcomes." />
@@ -36,7 +36,7 @@
   <!-- Styles -->
   <link href="./style.css" rel="stylesheet" />
   
-  <!-- SINGLE Title Tag (removed duplicate) -->
+  <!-- SINGLE Title Tag -->
   <title>CloFix Client Case Studies | Success Stories</title>
   
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
@@ -296,7 +296,7 @@
   </header>
 
   <main>
-    <!-- H1 Tag Added for SEO (missing h1 issue fixed) -->
+    <!-- H1 Tag Added for SEO -->
     <div class="container" style="padding-top: 2rem;">
       <h1 style="font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); background-clip: text; -webkit-background-clip: text; color: transparent; text-align: center; margin-bottom: 0.5rem;">
         CloFix Client Success Stories
@@ -377,6 +377,7 @@
   </footer>
 
   <script>
+    // ======================== CLIENT DATA ========================
     const clientsData = [
       {
         id: "exquisite-tech-zone",
@@ -385,6 +386,14 @@
         industry: "Software Company",
         shortDesc: "Enterprise WAF & Compliance Transformation",
         detailPageUrl: "case-study/exquisite-tech-zone"
+      },
+      {
+        id: "bayyinah-qa-limited",
+        name: "Bayyinah QA Limited",
+        logoPath: "img/p/bayyinahqa.png", 
+        industry: "Software Testing & QA",
+        shortDesc: "DevSecOps & Security Integration",
+        detailPageUrl: "case-study/bayyinah-qa-limited"
       }
     ];
 
@@ -402,35 +411,20 @@
       });
     }
 
-    // Helper to handle image error (fallback to placeholder with initials)
-    function handleImageError(imgElement, clientName) {
-      // If image fails to load, replace parent .client-avatar-case with fallback style and show initials
-      const avatarDiv = imgElement.closest('.client-avatar-case');
-      if (avatarDiv) {
-        // Get initials from client name (first letters of each word)
-        const initials = clientName.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
-        avatarDiv.classList.add('fallback');
-        avatarDiv.style.background = "linear-gradient(145deg, #eef7f0, #e0f0e6)";
-        avatarDiv.style.fontSize = "1.8rem";
-        avatarDiv.style.fontWeight = "700";
-        avatarDiv.style.color = "#1f6e43";
-        avatarDiv.innerHTML = initials;
-      }
-    }
-
     // Render client list cards with logo images
     function renderClientsList() {
       if (!clientsContainer) return;
       let html = '';
       clientsData.forEach(client => {
-        // Build avatar section: image tag with onerror fallback
+        // Build avatar section: image tag with onerror fallback inline
+        const initials = client.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
         const avatarHtml = `
           <div class="client-avatar-case">
             <img 
               src="${escapeHtml(client.logoPath)}" 
               alt="${escapeHtml(client.name)} logo" 
               class="client-logo-img"
-              onerror="this.onerror=null; this.parentElement.classList.add('fallback'); this.parentElement.style.background='linear-gradient(145deg, #eef7f0, #e0f0e6)'; this.parentElement.style.fontSize='1.8rem'; this.parentElement.style.fontWeight='700'; this.parentElement.style.color='#1f6e43'; this.parentElement.innerHTML='${escapeHtml(client.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase())}';"
+              onerror="this.onerror=null; this.parentElement.classList.add('fallback'); this.parentElement.style.background='linear-gradient(145deg, #eef7f0, #e0f0e6)'; this.parentElement.style.fontSize='1.8rem'; this.parentElement.style.fontWeight='700'; this.parentElement.style.color='#1f6e43'; this.parentElement.innerHTML='${escapeHtml(initials)}';"
             />
           </div>
         `;
