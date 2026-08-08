@@ -22,7 +22,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://clofix.com/pricing">
-  <meta property="og:title" content="CloFix WAF Pricing | BDT / USD">
+  <meta property="og:title" content="CloFix WAF Pricing | USD / EUR / BDT">
   <meta property="og:description" content="Explore CloFix WAF pricing. Protect your applications with AI-driven security and enterprise-grade features. Starter to Enterprise plans available.">
   <meta property="og:image" content="https://clofix.com/img/share.jpg">
   <meta property="og:image:alt" content="CloFix WAF Pricing Plans - Starter to Enterprise">
@@ -76,6 +76,82 @@
       page_location: window.location.href
     });
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "CloFix WAF - Web Application Firewall",
+    "description": "Enterprise-grade AI-powered Web Application Firewall with OWASP CRS, DDoS protection, and real-time threat detection. Available as SaaS or Dedicated Hosting.",
+    "brand": {
+      "@type": "Brand",
+      "name": "CloFix InfoTech"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "12.50",
+      "highPrice": "416.67",
+      "offerCount": "4",
+      "availability": "https://schema.org/InStock",
+      "url": "https://clofix.com/pricing"
+    },
+    "hasVariant": [
+      {
+        "@type": "Product",
+        "name": "Starter Plan",
+        "description": "Basic WAF with CRS, behavioral analysis, 1 domain, 30K req/month",
+        "offers": {
+          "@type": "Offer",
+          "price": "12.50",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Growth Plan",
+        "description": "Advanced WAF with JS/Lua scripting, DDoS protection, 3 domains",
+        "offers": {
+          "@type": "Offer",
+          "price": "45.83",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Pro Plan",
+        "description": "Full AI-powered WAF with WASM engine, API security, 5 domains",
+        "offers": {
+          "@type": "Offer",
+          "price": "137.50",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Enterprise Plan",
+        "description": "Complete enterprise WAF with unlimited domains, dedicated support, 99.9% SLA",
+        "offers": {
+          "@type": "Offer",
+          "price": "416.67",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127"
+    }
+  }
+  </script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -107,10 +183,10 @@
     .pricing-header__badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; }
     .ph-badge { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); color: #93c5fd; font-size: 0.72rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 30px; display: flex; align-items: center; gap: 0.4rem; }
     .ph-badge i { font-size: 0.65rem; }
-    .currency-switch { display: flex; justify-content: center; gap: 1rem; margin: 0.5rem 0 1rem; }
+    .currency-switch { display: flex; justify-content: center; gap: 1rem; margin: 0.5rem 0 1rem; flex-wrap: wrap; }
     .currency-btn { padding: 0.4rem 1.6rem; border-radius: 40px; font-weight: 600; background: #1e293b; border: 1px solid #334155; cursor: pointer; color: #cbd5e1; transition: 0.2s; font-size: 0.85rem; }
     .currency-btn.active-currency { background: var(--primary); color: white; border-color: var(--primary); }
-    .model-switch { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0 2rem; }
+    .model-switch { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0 2rem; flex-wrap: wrap; }
     .model-btn { padding: 0.6rem 2rem; border-radius: 40px; font-weight: 700; background: #1e293b; border: 1px solid #334155; cursor: pointer; color: #cbd5e1; transition: 0.2s; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
     .model-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 0 12px rgba(59,130,246,0.3); }
     .plans-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 1.8rem; margin: 2rem 0; }
@@ -421,8 +497,9 @@
     </div>
 
     <div class="currency-switch">
-      <button id="currencyBDT" class="currency-btn active-currency">🇧🇩 BDT (৳)</button>
-      <button id="currencyUSD" class="currency-btn">🇺🇸 USD ($)</button>
+      <button id="currencyBDT" class="currency-btn">🇧🇩 BDT (৳)</button>
+      <button id="currencyUSD" class="currency-btn active-currency">🇺🇸 USD ($)</button>
+      <button id="currencyEUR" class="currency-btn">🇪🇺 EUR (€)</button>
     </div>
 
     <div class="model-switch">
@@ -789,7 +866,8 @@
 
   <script>
     const USD_RATE = 120;
-    let currentCurrency = 'BDT';
+    const EUR_RATE = 130; // 1 EUR = 130 BDT (approx)
+    let currentCurrency = 'USD';
     let currentModel = 'saas';
     let brandingIs6Month = true;
 
@@ -827,6 +905,7 @@
     function formatPrice(amountBDT) {
       if (amountBDT === null) return 'Custom';
       if (currentCurrency === 'USD') return '$' + (amountBDT / USD_RATE).toFixed(2);
+      if (currentCurrency === 'EUR') return '€' + (amountBDT / EUR_RATE).toFixed(2);
       return '৳ ' + amountBDT.toLocaleString('en-IN');
     }
 
@@ -1092,14 +1171,6 @@
       const features = ["Infrastructure", "Total Annual (1yr)", "Total 2yr (15% off)", "Annual Hosting", "Annual License", "Monthly Maint", "Setup Fee", "Bandwidth", "Requests", "SLA"];
       const customRow = ["Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Custom", "Unlimited", "Unlimited", "Custom"];
 
-      // প্ল্যান অনুযায়ী ইউজার অ্যাকাউন্ট লিমিট
-      const userAccountsLimit = {
-        "Starter Dedicated": "5 Users",
-        "Business Dedicated": "20 Users",
-        "Enterprise Dedicated": "Unlimited",
-        "Custom Enterprise": "Unlimited"
-      };
-
       function getVal(plan, fi) {
         if (plan.name === "Custom Enterprise") return customRow[fi];
         const total1yr = plan.hostingBDT + plan.licenseBDT + (plan.maintenanceBDT * 12);
@@ -1130,19 +1201,10 @@
       html += `<tr><td style="font-weight:600;"><i class="fas fa-tachometer-alt" style="color:#3b82f6;"></i> WAF Dashboard</td>${headers.map(() => `<td><i class="fas fa-check-circle" style="color:#10b981;"></i> Real-time Analytics & Reports</td>`).join('')} `;
       html += `<tr><td style="font-weight:600;"><i class="fab fa-android" style="color:#3b82f6;"></i> Android App</td>${headers.map(() => `<td><i class="fas fa-check-circle" style="color:#10b981;"></i> Full Mobile Management</td>`).join('')} `;
       
-      // ইউজার অ্যাকাউন্ট সারি - Unlimited দেখানোর জন্য
+      // User Accounts row - Unlimited for all dedicated
       html += `<tr><td style="font-weight:600;"><i class="fas fa-users" style="color:#3b82f6;"></i> User Accounts</td>`;
-      headers.forEach(h => {
-        const isUnlimited = (h === "Enterprise Dedicated" || h === "Custom Enterprise");
-        if (isUnlimited) {
-          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
-        } else if (h === "Business Dedicated") {
-          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
-        } else if (h === "Starter Dedicated") {
-          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
-        } else {
-          html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
-        }
+      headers.forEach(() => {
+        html += `<td><i class="fas fa-infinity" style="color:#10b981;"></i> Unlimited</td>`;
       });
       html += `</tr>`;
       
@@ -1206,6 +1268,7 @@
       currentCurrency = 'BDT';
       document.getElementById('currencyBDT').classList.add('active-currency');
       document.getElementById('currencyUSD').classList.remove('active-currency');
+      document.getElementById('currencyEUR').classList.remove('active-currency');
       refreshAllByCurrency();
     });
     document.getElementById('currencyUSD').addEventListener('click', () => {
@@ -1213,6 +1276,15 @@
       currentCurrency = 'USD';
       document.getElementById('currencyUSD').classList.add('active-currency');
       document.getElementById('currencyBDT').classList.remove('active-currency');
+      document.getElementById('currencyEUR').classList.remove('active-currency');
+      refreshAllByCurrency();
+    });
+    document.getElementById('currencyEUR').addEventListener('click', () => {
+      if (currentCurrency === 'EUR') return;
+      currentCurrency = 'EUR';
+      document.getElementById('currencyEUR').classList.add('active-currency');
+      document.getElementById('currencyBDT').classList.remove('active-currency');
+      document.getElementById('currencyUSD').classList.remove('active-currency');
       refreshAllByCurrency();
     });
 
