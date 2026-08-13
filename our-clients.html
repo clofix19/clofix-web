@@ -103,7 +103,150 @@
     }
 
 
-    
+    /* ══ HEADER ══════════════════════════════════════════════ */
+    .c-logo a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .c-logo__img {
+      height: 34px;
+      width: auto;
+    }
+    .c-nav__content {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .c-list {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+    .c-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    .c-link:hover {
+      color: #e2e8f0;
+    }
+    .c-button {
+      padding: 8px 20px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      font-size: .8rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .c-button--secondary {
+      background: rgba(255, 255, 255, .08);
+      color: #94a3b8;
+    }
+    .c-button--secondary:hover {
+      background: rgba(255, 255, 255, .15);
+      color: #e2e8f0;
+    }
+    .c-nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .c-nav__bar {
+      width: 24px;
+      height: 2px;
+      background: #94a3b8;
+      border-radius: 2px;
+      transition: all .2s;
+    }
+    @media (max-width: 768px) {
+      .c-nav__toggle {
+        display: flex;
+      }
+      .c-nav__content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #0a1835;
+        padding: 20px 24px;
+        flex-direction: column;
+        border-bottom: 1px solid var(--cp-border);
+      }
+      .c-nav__content.active {
+        display: flex;
+      }
+      .c-list {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+      }
+    }
+
+    /* ══ HERO ══════════════════════════════════════════════ */
+    .page-hero {
+      padding: 72px 0 48px;
+      text-align: center;
+      position: relative;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 50% at 50% 0%, rgba(59, 130, 246, .12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero__inner {
+      position: relative;
+      z-index: 1;
+    }
+    .page-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(147, 197, 253, .08);
+      border: 1px solid rgba(147, 197, 253, .2);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 22px;
+    }
+    .page-hero h1 {
+      font-family: 'Hind', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.13;
+      margin-bottom: 16px;
+    }
+    .page-hero__grad {
+      background: linear-gradient(90deg, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero__sub {
+      font-size: 1rem;
+      color: #bfdbfe;
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
 
     /* ══ SECTION SHARED ═══════════════════════════════════ */
     .section-head {
@@ -457,7 +600,7 @@
       opacity: .9;
     }
 
-    
+   
   </style>
 </head>
 
