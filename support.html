@@ -1141,52 +1141,97 @@
 
     <!-- ══════════ FOOTER ══════════ -->
     <footer class="footer">
-        <div class="stars"></div>
-        <div class="stars2"></div>
-        <div class="stars3"></div>
-        <div class="container c-footer">
-            <div class="c-footer__column c-footer__logo-column">
-                <a href="#" class="c-footer__brand">
-                    <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
-                </a>
-                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
-                <ul class="social">
-                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
-                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
-                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
-                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
-                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
-                </ul>
-            </div>
-            <div class="c-footer__column">
-                <h4 class="c-footer__subtitle">Company</h4>
-                <ul class="c-footer__list c-footer__list--check">
-                    <li><a href="/about">About CloFix</a></li>
-                    <li><a href="/contact">Contact CloFix</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="/support">CloFix WAF Support Overview</a></li>
-                </ul>
-            </div>
-            <div class="c-footer__column">
-                <h4 class="c-footer__subtitle">Explore</h4>
-                <ul class="c-footer__list c-footer__list--check">
-                    <li><a href="/case-study">Case Study</a></li>
-                    <li><a href="/partner">Become A Partner</a></li>
-                    <li><a href="/blogs">Blogs</a></li>
-                </ul>
-            </div>
-            <div class="c-footer__column">
-                <h4 class="c-footer__subtitle">Legal</h4>
-                <ul class="c-footer__list c-footer__list--check">
-                    <li><a href="/terms">Terms and Conditions</a></li>
-                    <li><a href="/sla">Service Level Agreement</a></li>
-                </ul>
-            </div>
+    <div class="container c-footer">
+      <!-- Left column with logo, text, social icons -->
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="/" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo - Global AI-Powered WAF" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img src="img/facebook_clofix.png" alt="Follow CloFix on Facebook for security updates" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png" alt="Follow CloFix on X (Twitter) for cybersecurity news" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img src="img/linkedin_clofix.png" alt="Connect with CloFix on LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png" alt="Contact CloFix support on WhatsApp" /></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener"><img src="img/youtube_clofix.png" alt="Subscribe to CloFix YouTube channel for WAF tutorials and demos" /></a></li>
+        </ul>
+
+        <!-- Google Play Store Badge -->
+        <div class="google-play-wrapper" style="margin-top: 1rem;">
+          <a href="https://play.google.com/store/apps/details?id=com.clofix.waf" target="_blank" rel="noopener">
+            <img 
+              src="img/google-play-store-logo-png.png" 
+              alt="Get it on Google Play" 
+              style="height: 63px; width: auto; max-width: 100%;"
+            />
+          </a>
         </div>
-        <div class="container">
-            <p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p>
-        </div>
-    </footer>
+      </div>
+
+      <!-- Company Column -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">WAF Support</a></li>
+          <li><a href="/features">WAF Features</a></li>
+        </ul>
+      </div>
+
+      <!-- Explore Column -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/waf">WAF</a></li>
+          <li><a href="/free-trial">Free Trial</a></li>
+          <li><a href="/owasp-top-10-benchmark-report">Benchmark Report</a></li>
+        </ul>
+      </div>
+
+      <!-- LEGAL: Now split into TWO columns -->
+      <!-- Legal Column 1: Terms, SLA, Privacy -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Column 2: Profile links with logos/badges -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Listed ON</h4>
+        <ul style="list-style: none; padding-left: 0;">
+          <li">
+            <a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>G2 Reviews</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>CBInsights Reviews</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.producthunt.com/products/clofix-waf" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>Product hunt Reviews</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="container">
+      <p class="footer__text">© 2026 CloFix InfoTech. All Rights Reserved.</p>
+    </div>
+  </footer>
     <script>
         const navToggle = document.getElementById('navToggle');
         const navContent = document.querySelector('.c-nav__content');

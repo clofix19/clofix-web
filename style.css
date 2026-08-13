@@ -5785,3 +5785,16 @@ body.nav-open{ overflow:hidden; }
     .heading--4 { font-size: 0.85rem; }
     .stat-pill  { flex: 1 1 100%; }
   }
+/* Logo Styles */
+.c-logo__tagline { 
+  margin-left: 12px; 
+  font-size: 14px; 
+  font-weight: 500; 
+  color: #4a5568; 
+  letter-spacing: 0.5px; 
+}
+
+.c-logo__img { 
+  border-right: 1px solid #e2e8f0; 
+  padding-right: 12px; 
+}

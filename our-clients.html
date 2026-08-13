@@ -43,6 +43,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
 
   <title>Our Clients | CloFix WAF - Trusted by Businesses</title>
+  
+  <!-- Styles -->
+  <link href="./style.css" rel="stylesheet" />
 
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
 
@@ -94,176 +97,13 @@
     }
     body {
       background: var(--cp-page);
-      font-family: 'Open Sans', sans-serif;
-      color: var(--cp-text);
     }
     main {
       background: var(--cp-page);
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
 
-    /* ══ HEADER ══════════════════════════════════════════════ */
-    .header {
-      background: #0a1835;
-      border-bottom: 1px solid var(--cp-border);
-      padding: 14px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .header__wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .c-logo a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-    .c-logo__img {
-      height: 34px;
-      width: auto;
-    }
-    .c-nav__content {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .c-list {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-      align-items: center;
-    }
-    .c-link {
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: .85rem;
-      font-weight: 600;
-      transition: color .2s;
-    }
-    .c-link:hover {
-      color: #e2e8f0;
-    }
-    .c-button {
-      padding: 8px 20px;
-      border-radius: 40px;
-      border: none;
-      font-weight: 600;
-      font-size: .8rem;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .c-button--secondary {
-      background: rgba(255, 255, 255, .08);
-      color: #94a3b8;
-    }
-    .c-button--secondary:hover {
-      background: rgba(255, 255, 255, .15);
-      color: #e2e8f0;
-    }
-    .c-nav__toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 5px;
-      padding: 4px;
-    }
-    .c-nav__bar {
-      width: 24px;
-      height: 2px;
-      background: #94a3b8;
-      border-radius: 2px;
-      transition: all .2s;
-    }
-    @media (max-width: 768px) {
-      .c-nav__toggle {
-        display: flex;
-      }
-      .c-nav__content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #0a1835;
-        padding: 20px 24px;
-        flex-direction: column;
-        border-bottom: 1px solid var(--cp-border);
-      }
-      .c-nav__content.active {
-        display: flex;
-      }
-      .c-list {
-        flex-direction: column;
-        width: 100%;
-        gap: 12px;
-      }
-    }
-
-    /* ══ HERO ══════════════════════════════════════════════ */
-    .page-hero {
-      padding: 72px 0 48px;
-      text-align: center;
-      position: relative;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 65% 50% at 50% 0%, rgba(59, 130, 246, .12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .page-hero__inner {
-      position: relative;
-      z-index: 1;
-    }
-    .page-hero__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-      color: #93c5fd;
-      background: rgba(147, 197, 253, .08);
-      border: 1px solid rgba(147, 197, 253, .2);
-      border-radius: 100px;
-      padding: 6px 18px;
-      margin-bottom: 22px;
-    }
-    .page-hero h1 {
-      font-family: 'Hind', sans-serif;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.13;
-      margin-bottom: 16px;
-    }
-    .page-hero__grad {
-      background: linear-gradient(90deg, #60a5fa, #34d399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .page-hero__sub {
-      font-size: 1rem;
-      color: #bfdbfe;
-      max-width: 520px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
-    }
+    
 
     /* ══ SECTION SHARED ═══════════════════════════════════ */
     .section-head {
@@ -617,108 +457,7 @@
       opacity: .9;
     }
 
-    /* ══ FOOTER ══════════════════════════════════════════════ */
-    .footer {
-      background: #030d1f;
-      border-top: 1px solid var(--cp-border);
-      padding: 48px 0 24px;
-      margin-top: 20px;
-    }
-    .c-footer {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--cp-border);
-    }
-    .c-footer__brand {
-      display: inline-block;
-      margin-bottom: 12px;
-    }
-    .c-footer__logo {
-      height: 36px;
-      width: auto;
-    }
-    .c-footer__text {
-      color: #94a3b8;
-      font-size: .85rem;
-      margin-bottom: 16px;
-    }
-    .social {
-      display: flex;
-      gap: 12px;
-      list-style: none;
-    }
-    .social-li a {
-      display: inline-block;
-      opacity: .7;
-      transition: opacity .2s;
-    }
-    .social-li a:hover {
-      opacity: 1;
-    }
-    .social-li img {
-      height: 28px;
-      width: 28px;
-    }
-    .c-footer__subtitle {
-      font-family: 'Hind', sans-serif;
-      font-size: .9rem;
-      font-weight: 600;
-      color: #e2e8f0;
-      margin-bottom: 16px;
-    }
-    .c-footer__list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .c-footer__list a {
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: .85rem;
-      transition: color .2s;
-    }
-    .c-footer__list a:hover {
-      color: #e2e8f0;
-    }
-    .footer__text {
-      text-align: center;
-      color: #64748b;
-      font-size: .8rem;
-      padding-top: 24px;
-    }
-    @media (max-width: 768px) {
-      .c-footer {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-      }
-      .clients-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .clients-cta {
-        padding: 32px 24px;
-      }
-      .trust-band {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-    }
-    @media (max-width: 480px) {
-      .c-footer {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .clients-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .trust-band {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        padding: 24px 16px;
-      }
-    }
+    
   </style>
 </head>
 
@@ -1065,78 +804,229 @@
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
-    <div class="container">
-      <div class="c-footer">
-        <div class="c-footer__column">
-          <a href="/" class="c-footer__brand">
-            <img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" />
+    <div class="container c-footer">
+      <!-- Left column with logo, text, social icons -->
+      <div class="c-footer__column c-footer__logo-column">
+        <a href="/" class="c-footer__brand">
+          <img src="img/logo.png" alt="CloFix Logo - Global AI-Powered WAF" class="c-footer__logo" />
+        </a>
+        <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+        <ul class="social">
+          <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img src="img/facebook_clofix.png" alt="Follow CloFix on Facebook for security updates" /></a></li>
+          <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png" alt="Follow CloFix on X (Twitter) for cybersecurity news" /></a></li>
+          <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img src="img/linkedin_clofix.png" alt="Connect with CloFix on LinkedIn" /></a></li>
+          <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png" alt="Contact CloFix support on WhatsApp" /></a></li>
+          <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener"><img src="img/youtube_clofix.png" alt="Subscribe to CloFix YouTube channel for WAF tutorials and demos" /></a></li>
+        </ul>
+
+        <!-- Google Play Store Badge -->
+        <div class="google-play-wrapper" style="margin-top: 1rem;">
+          <a href="https://play.google.com/store/apps/details?id=com.clofix.waf" target="_blank" rel="noopener">
+            <img 
+              src="img/google-play-store-logo-png.png" 
+              alt="Get it on Google Play" 
+              style="height: 63px; width: auto; max-width: 100%;"
+            />
           </a>
-          <p class="c-footer__text"><strong>Secure. Automate. Scale.</strong></p>
-          <ul class="social">
-            <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
-            <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener"><img src="img/X_clofix.png" alt="X" /></a></li>
-            <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
-            <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
-            <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
-          </ul>
-        </div>
-        <div class="c-footer__column">
-          <h4 class="c-footer__subtitle">Company</h4>
-          <ul class="c-footer__list">
-            <li><a href="/about">About CloFix</a></li>
-            <li><a href="/contact">Contact CloFix</a></li>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="/support">Support Overview</a></li>
-          </ul>
-        </div>
-        <div class="c-footer__column">
-          <h4 class="c-footer__subtitle">Explore</h4>
-          <ul class="c-footer__list">
-            <li><a href="/case-study">Case Study</a></li>
-            <li><a href="/partner">Become A Partner</a></li>
-            <li><a href="/blogs">Blogs</a></li>
-          </ul>
-        </div>
-        <div class="c-footer__column">
-          <h4 class="c-footer__subtitle">Legal</h4>
-          <ul class="c-footer__list">
-            <li><a href="/terms">Terms and Conditions</a></li>
-            <li><a href="/sla">Service Level Agreement</a></li>
-          </ul>
         </div>
       </div>
-      <p class="footer__text">© 2026 CloFix – All Rights Reserved</p>
+
+      <!-- Company Column -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Company</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/about">About CloFix</a></li>
+          <li><a href="/contact">Contact CloFix</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/support">WAF Support</a></li>
+          <li><a href="/features">WAF Features</a></li>
+        </ul>
+      </div>
+
+      <!-- Explore Column -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Explore</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/partner">Become A Partner</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/waf">WAF</a></li>
+          <li><a href="/free-trial">Free Trial</a></li>
+          <li><a href="/owasp-top-10-benchmark-report">Benchmark Report</a></li>
+        </ul>
+      </div>
+
+      <!-- LEGAL: Now split into TWO columns -->
+      <!-- Legal Column 1: Terms, SLA, Privacy -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Legal</h4>
+        <ul class="c-footer__list c-footer__list--check">
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/sla">Service Level Agreement</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Column 2: Profile links with logos/badges -->
+      <div class="c-footer__column">
+        <h4 class="c-footer__subtitle">Listed ON</h4>
+        <ul style="list-style: none; padding-left: 0;">
+          <li">
+            <a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>G2 Reviews</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>CBInsights Reviews</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.producthunt.com/products/clofix-waf" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>Product hunt Reviews</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="container">
+      <p class="footer__text">© 2026 CloFix InfoTech. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script>
-    // ── Mobile Nav Toggle ──
     const navToggle = document.getElementById('navToggle');
-    const navContent = document.getElementById('navContent');
+    const navContent = document.querySelector('.c-nav__content');
 
+    // Helpers
+    const dropdowns = document.querySelectorAll('.c-dropdown');
+    function closeAllDropdowns() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.c-dropdown__toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Mobile nav toggle + body lock + aria-expanded
     if (navToggle && navContent) {
-      navToggle.addEventListener('click', function() {
-        navContent.classList.toggle('active');
-        this.setAttribute('aria-expanded', navContent.classList.contains('active'));
+      navToggle.setAttribute('aria-expanded', 'false');
+
+      navToggle.addEventListener('click', () => {
+        const open = navContent.classList.toggle('active');
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!open) closeAllDropdowns();
       });
 
-      // Close on link click
-      navContent.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
+      // Close menu when any nav link clicked
+      navContent.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
           navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
           navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
         });
       });
 
-      // Close on outside click
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.c-nav') && navContent.classList.contains('active')) {
+      // Close menu with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContent.classList.contains('active')) {
+          navContent.classList.remove('active');
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
+        }
+      });
+
+      // If resized to desktop, ensure body scroll is restored and panel closed
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          document.body.classList.remove('nav-open');
           navContent.classList.remove('active');
           navToggle.setAttribute('aria-expanded', 'false');
+          closeAllDropdowns();
         }
       });
     }
-  </script>
 
+    // Dropdown toggle (accordion on mobile, click on desktop)
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.c-dropdown__toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const willOpen = !dd.classList.contains('open');
+
+        // Close all
+        closeAllDropdowns();
+
+        // Open current if it was closed
+        if (willOpen) {
+          dd.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Desktop: close dropdowns when clicking outside (ignore when mobile panel is open)
+    document.addEventListener('click', (e) => {
+      const panelOpen = navContent && navContent.classList.contains('active');
+      if (panelOpen) return; // mobile panel manages its own closing
+      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
+    });
+
+    // Also close dropdowns explicitly when a dropdown link is clicked
+    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeAllDropdowns();
+        if (navContent) navContent.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE');
+
+    (function () {
+      const reveals = document.querySelectorAll(
+        '.trust-inner, .trust-card, .why-item, .compliance-card, .badge-pill'
+      );
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('trust-reveal');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      reveals.forEach((el, i) => {
+        el.style.transitionDelay = (0.10 + i * 0.06) + 's';
+        io.observe(el);
+      });
+    })();
+    (function () {
+      const headerEl = document.querySelector('.header');
+      function syncHeaderHeight() {
+        if (!headerEl) return;
+        document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+      }
+      window.addEventListener('load', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeaderHeight);
+      }
+    })();
+  </script>
 </body>
 </html>
