@@ -1124,85 +1124,42 @@
 [data-tooltip]:hover:before { opacity: 1; }
 
 /* ============================================
-   SERVICES SECTION
+   SERVICES SECTION - FULLY FIXED
    ============================================ */
 
 .services-section {
   position: relative;
-  padding: 100px 0;
-  background: #0a0c15;
+  padding: 80px 0;
+  background: #060a15;
   overflow: hidden;
-}
-
-.services-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.services-glow {
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(56,189,248,0.12) 0%, rgba(56,189,248,0) 70%);
-  border-radius: 50%;
-  filter: blur(60px);
-}
-
-.services-grid-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.services-radial {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, rgba(56,189,248,0) 70%);
-  border-radius: 50%;
-  filter: blur(80px);
 }
 
 .services-container {
-  position: relative;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
-  z-index: 2;
+  padding: 0 20px;
 }
 
+/* ===== HEADER ===== */
 .services-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .services-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(56,189,248,0.1);
-  border: 1px solid rgba(56,189,248,0.2);
-  padding: 6px 16px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 6px 18px;
   border-radius: 50px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.5px;
   color: #38bdf8;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .services-badge-dot {
@@ -1211,22 +1168,27 @@
   background: #38bdf8;
   border-radius: 50%;
   box-shadow: 0 0 8px #38bdf8;
-  animation: badgePulse 2s infinite;
+  animation: pulseDot 2s infinite;
 }
 
-@keyframes badgePulse {
+@keyframes pulseDot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(0.8); }
 }
 
 .services-title {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.services-title .gradient-text {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin-bottom: 20px;
 }
 
 .services-divider {
@@ -1234,14 +1196,13 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .services-divider span:first-child,
 .services-divider span:last-child {
-  width: 60px;
+  width: 50px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
 }
 
 .services-divider span:first-child {
@@ -1259,147 +1220,76 @@
 }
 
 .services-description {
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.8;
   color: #94a3b8;
 }
 
-/* ============================================
-   SERVICES GRID & CARDS
-   ============================================ */
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-bottom: 60px;
+.services-description strong {
+  color: #38bdf8;
 }
 
+/* ===== GRID ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* ===== CARDS ===== */
 .service-card {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 14, 23, 0.9) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.12);
-  border-radius: 28px;
-  padding: 32px 24px;
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(10, 14, 23, 0.95));
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  border-radius: 24px;
+  padding: 32px 24px 28px;
+  text-align: center;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 25px 40px -20px rgba(56, 189, 248, 0.25);
-  animation: cardGlow 0.5s ease-out;
-}
-
-@keyframes cardGlow {
-  0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.2); }
-  100% { box-shadow: 0 0 20px 2px rgba(56, 189, 248, 0.15); }
-}
-
-.card-number {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  font-size: 48px;
-  font-weight: 800;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(139, 92, 246, 0.2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  opacity: 0.6;
-  font-family: monospace;
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 20px 40px -20px rgba(56, 189, 248, 0.2);
 }
 
 .card-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
-  display: inline-block;
-  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover .card-icon {
-  transform: scale(1.05);
+  font-size: 44px;
+  margin-bottom: 14px;
+  display: block;
 }
 
 .card-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   line-height: 1.3;
 }
 
 .card-description {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #94a3b8;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   flex: 1;
-}
-
-.card-stats {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 28px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(56, 189, 248, 0.12);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
-}
-
-.stat-item {
-  flex: 1;
-  text-align: center;
-}
-
-.stat-value {
-  display: block;
-  font-size: 20px;
-  font-weight: 800;
-  color: #38bdf8;
-  margin-bottom: 6px;
-  letter-spacing: 0.5px;
-}
-
-.stat-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 500;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 35px;
-  background: rgba(56, 189, 248, 0.2);
 }
 
 .card-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 14px;
   font-weight: 600;
   color: #38bdf8;
   text-decoration: none;
   transition: all 0.3s ease;
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-.link-arrow {
-  transition: transform 0.3s ease;
-  font-size: 16px;
+  align-self: center;
 }
 
 .card-link:hover {
@@ -1407,62 +1297,292 @@
   color: #60a5fa;
 }
 
+.link-arrow {
+  transition: transform 0.3s ease;
+}
+
 .card-link:hover .link-arrow {
-  transform: translateX(6px);
+  transform: translateX(4px);
 }
 
-/* Free Consultancy Card */
-.free-consultancy {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.free-consultancy::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.card-badge {
-  position: absolute;
-  top: 20px;
-  left: 24px;
-  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 1px;
-  z-index: 2;
-}
-
-.consultancy-features {
+/* ===== TRUST BADGES ===== */
+.trust-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0 20px 0;
-  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 16px 24px;
+  padding: 16px 28px;
+  margin-top: 40px;
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.08);
+  border-radius: 50px;
 }
 
-.consultancy-features span {
-  font-size: 11px;
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.trust-label {
   color: #94a3b8;
-  background: rgba(56, 189, 248, 0.08);
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(56, 189, 248, 0.15);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(56, 189, 248, 0.15);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .services-section {
+    padding: 60px 0;
+  }
+  
+  .services-title {
+    font-size: 32px;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .service-card {
+    padding: 28px 20px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+  }
+  
+  .trust-badges {
+    gap: 12px 16px;
+    padding: 14px 20px;
+    border-radius: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 40px 0;
+  }
+  
+  .services-container {
+    padding: 0 16px;
+  }
+  
+  .services-header {
+    margin-bottom: 30px;
+  }
+  
+  .services-badge {
+    font-size: 10px;
+    padding: 4px 14px;
+  }
+  
+  .services-title {
+    font-size: 26px;
+  }
+  
+  .services-divider span:first-child,
+  .services-divider span:last-child {
+    width: 30px;
+  }
+  
+  .services-description {
+    font-size: 15px;
+    padding: 0 8px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 30px;
+  }
+  
+  .service-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  
+  .card-icon {
+    font-size: 38px;
+  }
+  
+  .card-title {
+    font-size: 17px;
+  }
+  
+  .card-description {
+    font-size: 13px;
+  }
+  
+  .trust-badges {
+    gap: 10px 14px;
+    padding: 12px 16px;
+    border-radius: 30px;
+    margin-top: 30px;
+  }
+  
+  .trust-label {
+    font-size: 11px;
+  }
+  
+  .trust-icon {
+    font-size: 15px;
+  }
+  
+  .trust-divider {
+    height: 18px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .services-section {
+    padding: 30px 0;
+  }
+  
+  .services-container {
+    padding: 0 12px;
+  }
+  
+  .services-title {
+    font-size: 20px;
+  }
+  
+  .services-badge {
+    font-size: 9px;
+    padding: 3px 10px;
+  }
+  
+  .services-badge-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .services-description {
+    font-size: 13px;
+  }
+  
+  .services-grid {
+    gap: 14px;
+  }
+  
+  .service-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+  
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .card-title {
+    font-size: 15px;
+  }
+  
+  .card-description {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  
+  .card-link {
+    font-size: 13px;
+  }
+  
+  .trust-badges {
+    gap: 8px 10px;
+    padding: 10px 14px;
+    border-radius: 24px;
+    margin-top: 24px;
+  }
+  
+  .trust-label {
+    font-size: 10px;
+  }
+  
+  .trust-icon {
+    font-size: 13px;
+  }
+  
+  .trust-divider {
+    height: 14px;
+  }
+}
+
+/* Extra Small */
+@media (max-width: 360px) {
+  .services-title {
+    font-size: 17px;
+  }
+  
+  .services-description {
+    font-size: 12px;
+  }
+  
+  .service-card {
+    padding: 14px 12px;
+  }
+  
+  .card-title {
+    font-size: 14px;
+  }
+  
+  .card-description {
+    font-size: 11px;
+  }
+  
+  .card-icon {
+    font-size: 28px;
+  }
+  
+  .trust-badges {
+    gap: 6px 8px;
+    padding: 8px 10px;
+  }
+  
+  .trust-label {
+    font-size: 9px;
+  }
+  
+  .trust-icon {
+    font-size: 11px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card:hover,
+  .card-link,
+  .link-arrow,
+  .services-badge-dot {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .service-card:hover {
+    transform: none !important;
+  }
 }
 
 /* =============================================
@@ -3847,79 +3967,94 @@
     <!-- ============================================ -->
     <!-- GLOBAL REACH SECTION - Balanced Approach    -->
     <!-- ============================================ -->
-    <section class="services-section" aria-label="CloFix Global WAF Solution" style="padding: 60px 0; background: #060a15;">
+    <section class="services-section" aria-label="CloFix Global WAF Solution">
         <div class="services-container">
+            <!-- HEADER -->
             <div class="services-header">
                 <div class="services-badge">
                     <span class="services-badge-dot"></span>
                     <span>🌍 GLOBAL WAF SOLUTION</span>
                 </div>
-                <h2 class="services-title">Enterprise-Grade Web Application Firewall<br><span style="background: linear-gradient(135deg, #38bdf8, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent;">Trusted Worldwide</span></h2>
+                <h2 class="services-title">
+                    Enterprise-Grade Web Application Firewall
+                    <br>
+                    <span class="gradient-text">Trusted Worldwide</span>
+                </h2>
                 <div class="services-divider">
                     <span></span>
                     <span>✦</span>
                     <span></span>
                 </div>
-                <p class="services-description" style="max-width: 800px;">
+                <p class="services-description">
                     CloFix WAF delivers enterprise-grade security with <strong>99.99% uptime</strong> and <strong>&lt;1ms latency</strong>. 
                     Protecting applications across the globe with AI-powered threat detection, DDoS mitigation, and zero-day protection.
                 </p>
             </div>
 
-            <div class="services-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="service-card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 48px;">🌐</div>
+            <!-- SERVICES GRID -->
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="card-icon">🌐</div>
                     <h3 class="card-title">Global WAF Protection</h3>
                     <p class="card-description">
                         Deploy anywhere in the world with our global network. Protect applications across AWS, Azure, GCP, and on-premise with consistent security policies.
                     </p>
-                    <a href="/features" class="card-link">Explore Features <span class="link-arrow">→</span></a>
+                    <a href="/features" class="card-link">
+                        Explore Features <span class="link-arrow">→</span>
+                    </a>
                 </div>
 
-                <div class="service-card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 48px;">⚡</div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="card-icon">⚡</div>
                     <h3 class="card-title">AI-Powered Security</h3>
                     <p class="card-description">
                         Real-time threat detection with 46+ AI engines. Block zero-day attacks, APTs, and sophisticated evasion techniques with sub-millisecond response.
                     </p>
-                    <a href="/waf" class="card-link">Learn More <span class="link-arrow">→</span></a>
+                    <a href="/waf" class="card-link">
+                        Learn More <span class="link-arrow">→</span>
+                    </a>
                 </div>
 
-                <div class="service-card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 48px;">🛡️</div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="card-icon">🛡️</div>
                     <h3 class="card-title">Complete OWASP Coverage</h3>
                     <p class="card-description">
                         Full protection against OWASP Top 10 vulnerabilities including SQL Injection, XSS, CSRF, RFI/LFI, and command injection with continuously updated rules.
                     </p>
-                    <a href="/features" class="card-link">View Protection <span class="link-arrow">→</span></a>
+                    <a href="/features" class="card-link">
+                        View Protection <span class="link-arrow">→</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Global Trust Badges -->
-            <div style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; background: rgba(56, 189, 248, 0.04); border-radius: 60px; border: 1px solid rgba(56, 189, 248, 0.1);">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">🌍</span>
-                    <span style="color: #94a3b8; font-size: 13px;">Global Deployment</span>
+            <!-- TRUST BADGES -->
+            <div class="trust-badges">
+                <div class="trust-item">
+                    <span class="trust-icon">🌍</span>
+                    <span class="trust-label">Global Deployment</span>
                 </div>
-                <div style="width: 1px; height: 25px; background: rgba(56, 189, 248, 0.15);"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">⚡</span>
-                    <span style="color: #94a3b8; font-size: 13px;">Sub-ms Latency</span>
+                <span class="trust-divider"></span>
+                <div class="trust-item">
+                    <span class="trust-icon">⚡</span>
+                    <span class="trust-label">Sub-ms Latency</span>
                 </div>
-                <div style="width: 1px; height: 25px; background: rgba(56, 189, 248, 0.15);"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">🛡️</span>
-                    <span style="color: #94a3b8; font-size: 13px;">99.99% Uptime</span>
+                <span class="trust-divider"></span>
+                <div class="trust-item">
+                    <span class="trust-icon">🛡️</span>
+                    <span class="trust-label">99.99% Uptime</span>
                 </div>
-                <div style="width: 1px; height: 25px; background: rgba(56, 189, 248, 0.15);"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">🧠</span>
-                    <span style="color: #94a3b8; font-size: 13px;">46+ AI Engines</span>
+                <span class="trust-divider"></span>
+                <div class="trust-item">
+                    <span class="trust-icon">🧠</span>
+                    <span class="trust-label">46+ AI Engines</span>
                 </div>
-                <div style="width: 1px; height: 25px; background: rgba(56, 189, 248, 0.15);"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 20px;">🔐</span>
-                    <span style="color: #94a3b8; font-size: 13px;">Zero-Day Protection</span>
+                <span class="trust-divider"></span>
+                <div class="trust-item">
+                    <span class="trust-icon">🔐</span>
+                    <span class="trust-label">Zero-Day Protection</span>
                 </div>
             </div>
         </div>
