@@ -514,42 +514,48 @@
       transform: translateY(0);
     }
 
-    /* ══════ MODAL ══════ */
+    /* ══════ MODAL - FIXED ══════ */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, .75);
-      backdrop-filter: blur(6px);
-      z-index: 999;
+      background: rgba(0, 0, 0, .85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
+
     .modal-overlay.active {
       display: flex;
     }
+
     .modal-box {
-      background: var(--p-card);
-      border: 1px solid var(--p-border);
+      background: #0f2044;
+      border: 1px solid rgba(59, 130, 246, .3);
       border-radius: var(--p-radius);
-      max-width: 560px;
+      max-width: 600px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
-      padding: 36px 32px;
+      padding: 32px 28px 28px;
       position: relative;
       color: #e2e8f0;
       font-family: 'Open Sans', sans-serif;
       animation: modalFade .3s ease;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, .6);
     }
+
     .modal-box::-webkit-scrollbar {
       width: 6px;
     }
+
     .modal-box::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, .05);
       border-radius: 10px;
     }
+
     .modal-box::-webkit-scrollbar-thumb {
       background: var(--p-accent);
       border-radius: 10px;
@@ -558,56 +564,88 @@
     @keyframes modalFade {
       from {
         opacity: 0;
-        transform: scale(.95) translateY(10px);
+        transform: scale(.95) translateY(12px);
       }
       to {
         opacity: 1;
         transform: scale(1) translateY(0);
       }
     }
+
     .modal-box .modal-icon {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       text-align: center;
       display: block;
       margin-bottom: 6px;
     }
+
     .modal-box h3 {
       font-family: 'Hind', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: #f1f5f9;
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      padding-bottom: 12px;
     }
+
+    .modal-box .modal-body {
+      padding: 4px 0 8px;
+    }
+
     .modal-box .modal-body p {
-      color: #94a3b8;
-      line-height: 1.8;
-      margin-bottom: 12px;
-    }
-    .modal-box .modal-body strong {
       color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 14px;
+      font-size: .95rem;
     }
+
+    .modal-box .modal-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-box .modal-body strong {
+      color: #60a5fa;
+      font-weight: 600;
+    }
+
+    .modal-box .modal-body .highlight {
+      color: #60a5fa;
+      font-weight: 600;
+      background: rgba(59, 130, 246, .1);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
     .modal-box .modal-body ul {
       list-style: none;
       padding: 0;
-      margin: 6px 0 12px;
+      margin: 10px 0 16px;
     }
+
     .modal-box .modal-body ul li {
-      padding: 4px 0 4px 20px;
+      padding: 6px 0 6px 24px;
       position: relative;
-      color: #94a3b8;
-      line-height: 1.6;
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: .93rem;
     }
+
     .modal-box .modal-body ul li::before {
-      content: '•';
+      content: '◆';
       position: absolute;
       left: 2px;
       color: var(--p-accent);
       font-weight: 600;
+      font-size: .7rem;
+      top: 9px;
     }
-    .modal-box .modal-body .highlight {
+
+    .modal-box .modal-body ul li strong {
       color: #60a5fa;
-      font-weight: 600;
     }
+
     .modal-box .modal-close {
       position: absolute;
       top: 12px;
@@ -615,14 +653,19 @@
       background: none;
       border: none;
       color: #94a3b8;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       cursor: pointer;
-      transition: color .15s;
+      transition: color .15s, transform .15s;
       line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
     }
+
     .modal-box .modal-close:hover {
-      color: #e2e8f0;
+      color: #f1f5f9;
+      transform: rotate(90deg);
     }
+
     .modal-box .apply-btn {
       display: block;
       background: var(--p-accent);
@@ -637,31 +680,97 @@
       transition: background .2s, transform .15s;
       text-align: center;
       width: 100%;
-      margin-top: 8px;
+      margin-top: 12px;
     }
+
     .modal-box .apply-btn:hover {
       background: #2563eb;
       transform: scale(1.02);
     }
 
-    /* ── Responsive ── */
+    /* ══════ MODAL RESPONSIVE ══════ */
     @media (max-width: 640px) {
-      .job-card {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .job-card__apply-btn {
-        text-align: center;
-      }
-      .careers-hero__stats {
-        gap: 16px;
-      }
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
       .modal-box {
-        padding: 24px 18px;
+        padding: 24px 18px 20px;
+        max-height: 90vh;
+        border-radius: 12px;
       }
+      
+      .modal-box h3 {
+        font-size: 1.2rem;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+      }
+      
+      .modal-box .modal-body p {
+        font-size: .88rem;
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      
+      .modal-box .modal-body ul li {
+        font-size: .85rem;
+        padding: 5px 0 5px 20px;
+      }
+      
+      .modal-box .modal-icon {
+        font-size: 2.2rem;
+      }
+      
+      .modal-box .modal-close {
+        font-size: 1.4rem;
+        top: 8px;
+        right: 12px;
+      }
+      
+      .modal-box .apply-btn {
+        font-size: .88rem;
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .modal-box {
+        padding: 18px 14px 16px;
+      }
+      
+      .modal-box h3 {
+        font-size: 1rem;
+      }
+      
+      .modal-box .modal-body p {
+        font-size: .82rem;
+      }
+      
+      .modal-box .modal-body ul li {
+        font-size: .8rem;
+      }
+      
+      .modal-box .modal-icon {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* ══════ MODAL EMAIL STYLE ══════ */
+    #modalEmail {
+      background: rgba(59, 130, 246, .12);
+      border: 1px solid rgba(59, 130, 246, .2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      text-align: center;
+      font-weight: 600;
+      color: #60a5fa;
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+      word-break: break-all;
+    }
+
+    #modalNote {
+      font-size: .85rem;
+      color: #94a3b8;
+      margin-top: 4px;
+      text-align: center;
+      line-height: 1.6;
     }
   </style>
 </head>
