@@ -124,10 +124,58 @@
     });
   }
 
+  function initReveals() {
+    // Sitewide: unhide scroll-reveal blocks if page JS is missing/broken
+    var revealEls = document.querySelectorAll(".reveal:not(.show)");
+    var trustEls = document.querySelectorAll(
+      ".trust-inner:not(.trust-reveal), .trust-card:not(.trust-reveal), .why-item:not(.trust-reveal), .compliance-card:not(.trust-reveal), .badge-pill:not(.trust-reveal)"
+    );
+
+    function showReveal(el) {
+      el.classList.add("show");
+      el.classList.add("trust-reveal");
+    }
+
+    var all = [];
+    revealEls.forEach(function (el) {
+      all.push(el);
+    });
+    trustEls.forEach(function (el) {
+      all.push(el);
+    });
+    if (!all.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      all.forEach(showReveal);
+      return;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          showReveal(e.target);
+          io.unobserve(e.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
+    );
+
+    all.forEach(function (el) {
+      io.observe(el);
+    });
+
+    // Hard fallback so copy never stays invisible
+    setTimeout(function () {
+      all.forEach(showReveal);
+    }, 2800);
+  }
+
   function boot() {
     initNav(document.querySelector("header.header"));
     markCurrent();
     syncHeaderHeight();
+    initReveals();
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(syncHeaderHeight);
     }

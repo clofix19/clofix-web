@@ -99,7 +99,7 @@ p {
 .section {
   padding: 2rem;
   animation: fadeInUp 1.2s ease forwards;
-  opacity: 0;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -6159,6 +6159,32 @@ svg #sun {
   opacity: 1;
   transform: none;
   transition: all .6s ease;
+}
+
+/* Never leave reveal/trust copy permanently invisible */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .trust-inner,
+  .trust-card,
+  .why-item,
+  .compliance-card,
+  .badge-pill {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (scripting: none) {
+  .reveal,
+  .trust-inner,
+  .trust-card,
+  .why-item,
+  .compliance-card,
+  .badge-pill {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 @media (max-width: 768px) {

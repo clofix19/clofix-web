@@ -1786,6 +1786,29 @@
     });
 </script>
 
+<script>
+  /* Careers reveal-on-scroll (also covered by js/chrome.js fallback) */
+  (function () {
+    var items = document.querySelectorAll(".reveal");
+    if (!items.length) return;
+    function show(el) { el.classList.add("show"); }
+    if (!("IntersectionObserver" in window)) {
+      items.forEach(show);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          show(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+    setTimeout(function () { items.forEach(show); }, 2800);
+  })();
+</script>
+
 <script src="js/chrome.js" defer></script>
 </body>
 

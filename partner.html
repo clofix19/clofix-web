@@ -1538,10 +1538,7 @@
   </script>
 
   <script>
-});
-    });
-
-    /* ── Reveal on scroll ── */
+/* ── Reveal on scroll ── */
     (function () {
       const items = document.querySelectorAll('.reveal');
       if (!items.length) return;
@@ -1555,6 +1552,9 @@
         });
       }, { threshold: 0.12 });
       items.forEach(el => io.observe(el));
+      setTimeout(function () {
+        items.forEach(function (el) { el.classList.add('show'); });
+      }, 2800);
     })();
 </script>
 
