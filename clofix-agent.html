@@ -75,7 +75,6 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .header__wrapper { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
         /* logo size from style.css */
-        .c-nav__content ul { display: flex; list-style: none; gap: 24px; align-items: center; }
         .c-link { color: var(--dark-text); text-decoration: none; font-size: 14px; transition: color 0.2s; }
         .c-link:hover { color: var(--dark-teal); }
         .c-button { background: var(--dark-teal); color: var(--dark-bg); border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; }
@@ -511,7 +510,7 @@
         .config-body pre { background: var(--dark-code); padding: 1.2rem; overflow-x: auto; font-family: 'Space Mono', monospace; font-size: 0.75rem; line-height: 1.6; margin: 0; color: #d4e6ff; }
         .config-note { background: rgba(0,194,168,0.05); border-left: 3px solid var(--dark-teal); padding: 0.8rem 1.2rem; border-radius: 12px; margin-top: 1rem; font-size: 0.8rem; color: var(--dark-text); }
         
-        @media (max-width: 860px) { .integration-split { flex-direction: column; } .integration-sidebar { position: relative; top: 0; } .cadre-toc { display: none; } .cadre-body { padding: 0 16px; } .c-nav__content ul { display: none; } }
+        @media (max-width: 860px) { .integration-split { flex-direction: column; } .integration-sidebar { position: relative; top: 0; } .cadre-toc { display: none; } .cadre-body { padding: 0 16px; } }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--dark-code); }
         ::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
@@ -716,6 +715,15 @@
 </header>
 <script>
 (function () {
+  var MQ = "(max-width: 1024px)";
+  function isCompact() {
+    return window.matchMedia(MQ).matches;
+  }
+  function syncHeaderHeight() {
+    var headerEl = document.querySelector("header.header");
+    if (!headerEl) return;
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  }
   function initNav(header) {
     if (!header || header.getAttribute("data-nav-ready") === "1") return;
     header.setAttribute("data-nav-ready", "1");
@@ -743,6 +751,7 @@
         var open = navContent.classList.toggle("active");
         document.body.classList.toggle("nav-open", open);
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncHeaderHeight();
         if (!open) closeAllDropdowns();
       });
     }
@@ -765,7 +774,7 @@
       if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle"))) return;
       if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
       closeAllDropdowns();
-      if (window.innerWidth <= 768 && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
+      if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
         closeMobile();
       }
     });
@@ -773,16 +782,19 @@
       if (e.key === "Escape") closeMobile();
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) closeMobile();
+      syncHeaderHeight();
+      if (!isCompact()) closeMobile();
     });
     if (navContent) {
       navContent.querySelectorAll("a").forEach(function (a) {
         a.addEventListener("click", function () {
-          if (window.innerWidth <= 768) closeMobile();
+          if (isCompact()) closeMobile();
           else closeAllDropdowns();
         });
       });
     }
+    syncHeaderHeight();
+    window.addEventListener("load", syncHeaderHeight);
   }
   var header = document.currentScript && document.currentScript.previousElementSibling;
   if (!header || !header.classList || !header.classList.contains("header")) {
@@ -1788,10 +1800,6 @@ docker run -d --name clofix-agent -p 8080:8080 clofix/agent:latest
     </ul>
   </div>
 </footer>
-
-
-
-
 
 
 

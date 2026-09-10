@@ -327,7 +327,7 @@
     .branding-toggle-btn.active-toggle { background: #10b981; }
     .branding-toggle-btn.inactive-toggle { background: #334155; }
 
-    @media (max-width: 768px) { .plans-row { flex-direction: column; align-items: stretch; } .c-nav__content { display: none; } .ph-divider { display: none; } .ph-tag { max-width: 100%; text-align: center; } }
+    @media (max-width: 768px) { .plans-row { flex-direction: column; align-items: stretch; } .ph-divider { display: none; } .ph-tag { max-width: 100%; text-align: center; } }
 
     .agr-modal { max-width: 960px; padding: 0; overflow: hidden; }
     .agr-header { background: linear-gradient(135deg, #020617, #0f172a); padding: 2rem 2rem 1.5rem; border-bottom: 1px solid #1e293b; }
@@ -546,6 +546,15 @@
 </header>
 <script>
 (function () {
+  var MQ = "(max-width: 1024px)";
+  function isCompact() {
+    return window.matchMedia(MQ).matches;
+  }
+  function syncHeaderHeight() {
+    var headerEl = document.querySelector("header.header");
+    if (!headerEl) return;
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  }
   function initNav(header) {
     if (!header || header.getAttribute("data-nav-ready") === "1") return;
     header.setAttribute("data-nav-ready", "1");
@@ -573,6 +582,7 @@
         var open = navContent.classList.toggle("active");
         document.body.classList.toggle("nav-open", open);
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncHeaderHeight();
         if (!open) closeAllDropdowns();
       });
     }
@@ -595,7 +605,7 @@
       if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle"))) return;
       if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
       closeAllDropdowns();
-      if (window.innerWidth <= 768 && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
+      if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
         closeMobile();
       }
     });
@@ -603,16 +613,19 @@
       if (e.key === "Escape") closeMobile();
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) closeMobile();
+      syncHeaderHeight();
+      if (!isCompact()) closeMobile();
     });
     if (navContent) {
       navContent.querySelectorAll("a").forEach(function (a) {
         a.addEventListener("click", function () {
-          if (window.innerWidth <= 768) closeMobile();
+          if (isCompact()) closeMobile();
           else closeAllDropdowns();
         });
       });
     }
+    syncHeaderHeight();
+    window.addEventListener("load", syncHeaderHeight);
   }
   var header = document.currentScript && document.currentScript.previousElementSibling;
   if (!header || !header.classList || !header.classList.contains("header")) {
@@ -1040,12 +1053,8 @@
 
 
 
-
-
-
-
   <script>
-    const USD_RATE = 120;
+const USD_RATE = 120;
     const EUR_RATE = 130; // 1 EUR = 130 BDT (approx)
     let currentCurrency = 'USD';
     let currentModel = 'saas';
@@ -1510,83 +1519,9 @@
     renderDedicatedComparison();
     setModel('saas');
 
-    // Nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const navContent = document.querySelector('.c-nav__content');
-    const dropdowns = document.querySelectorAll('.c-dropdown');
-
-    function closeAllDropdowns() {
-      dropdowns.forEach(dd => {
-        dd.classList.remove('open');
-        const btn = dd.querySelector('.c-dropdown__toggle');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    if (navToggle && navContent) {
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.addEventListener('click', () => {
-        const open = navContent.classList.toggle('active');
-        document.body.classList.toggle('nav-open', open);
-        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (!open) closeAllDropdowns();
-      });
-      navContent.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          navContent.classList.remove('active');
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          closeAllDropdowns();
-        });
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navContent.classList.contains('active')) {
-          navContent.classList.remove('active');
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          closeAllDropdowns();
-        }
-      });
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-          document.body.classList.remove('nav-open');
-          navContent.classList.remove('active');
-          navToggle.setAttribute('aria-expanded', 'false');
-          closeAllDropdowns();
-        }
-      });
-    }
-
-    dropdowns.forEach(dd => {
-      const toggle = dd.querySelector('.c-dropdown__toggle');
-      if (!toggle) return;
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const willOpen = !dd.classList.contains('open');
-        closeAllDropdowns();
-        if (willOpen) {
-          dd.classList.add('open');
-          toggle.setAttribute('aria-expanded', 'true');
-        }
-      });
+    
     });
-
-    document.addEventListener('click', (e) => {
-      const panelOpen = navContent && navContent.classList.contains('active');
-      if (panelOpen) return;
-      if (!e.target.closest('.c-dropdown')) closeAllDropdowns();
-    });
-
-    document.querySelectorAll('.c-dropdown__menu a').forEach(a => {
-      a.addEventListener('click', () => {
-        closeAllDropdowns();
-        if (navContent) navContent.classList.remove('active');
-        document.body.classList.remove('nav-open');
-        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  </script>
+</script>
 <script src="js/chrome.js" defer></script>
 </body>
 </html>

@@ -744,6 +744,15 @@
 </header>
 <script>
 (function () {
+  var MQ = "(max-width: 1024px)";
+  function isCompact() {
+    return window.matchMedia(MQ).matches;
+  }
+  function syncHeaderHeight() {
+    var headerEl = document.querySelector("header.header");
+    if (!headerEl) return;
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  }
   function initNav(header) {
     if (!header || header.getAttribute("data-nav-ready") === "1") return;
     header.setAttribute("data-nav-ready", "1");
@@ -771,6 +780,7 @@
         var open = navContent.classList.toggle("active");
         document.body.classList.toggle("nav-open", open);
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncHeaderHeight();
         if (!open) closeAllDropdowns();
       });
     }
@@ -793,7 +803,7 @@
       if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle"))) return;
       if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
       closeAllDropdowns();
-      if (window.innerWidth <= 768 && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
+      if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
         closeMobile();
       }
     });
@@ -801,16 +811,19 @@
       if (e.key === "Escape") closeMobile();
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) closeMobile();
+      syncHeaderHeight();
+      if (!isCompact()) closeMobile();
     });
     if (navContent) {
       navContent.querySelectorAll("a").forEach(function (a) {
         a.addEventListener("click", function () {
-          if (window.innerWidth <= 768) closeMobile();
+          if (isCompact()) closeMobile();
           else closeAllDropdowns();
         });
       });
     }
+    syncHeaderHeight();
+    window.addEventListener("load", syncHeaderHeight);
   }
   var header = document.currentScript && document.currentScript.previousElementSibling;
   if (!header || !header.classList || !header.classList.contains("header")) {
@@ -1202,12 +1215,6 @@
     </ul>
   </div>
 </footer>
-
-
-
-
-
-
 
 
 
