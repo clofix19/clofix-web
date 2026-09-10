@@ -7,8 +7,15 @@ ROOT = Path(__file__).resolve().parent.parent
 HEADER_SRC = (ROOT / "header.html").read_text(encoding="utf-8")
 FOOTER_SRC = (ROOT / "footer.html").read_text(encoding="utf-8")
 
-HEADER_BLOCK = re.compile(r"(?:<!-- CloFix shared header[\s\S]*?-->\s*)?<header\s+class=\"header\"[\s\S]*?</header>", re.I)
-FOOTER_BLOCK = re.compile(r"(?:<!-- CloFix shared footer[\s\S]*?-->\s*)?<footer\s+class=\"footer\"[\s\S]*?</footer>", re.I)
+# Header file may include an inline nav <script> immediately after </header>
+HEADER_BLOCK = re.compile(
+    r"(?:<!-- CloFix shared header[\s\S]*?-->\s*)?<header\s+class=\"header\"[\s\S]*?</header>(?:\s*<script>[\s\S]*?initNav[\s\S]*?</script>)?",
+    re.I,
+)
+FOOTER_BLOCK = re.compile(
+    r"(?:<!-- CloFix shared footer[\s\S]*?-->\s*)?<footer\s+class=\"footer\"[\s\S]*?</footer>",
+    re.I,
+)
 
 
 def depth_prefix(rel: Path) -> str:
@@ -27,7 +34,6 @@ def asset_prefix(rel: Path) -> str:
 
 def prepare(fragment: str, img_prefix: str) -> str:
     out = fragment.strip() + "\n"
-    # normalize any absolute or prefixed img paths to the page-relative prefix
     out = re.sub(r'src="(?:\.\./)*img/', f'src="{img_prefix}/', out)
     out = re.sub(r"src='(?:\.\./)*img/", f"src='{img_prefix}/", out)
     out = re.sub(r'src="/img/', f'src="{img_prefix}/', out)
@@ -35,24 +41,9 @@ def prepare(fragment: str, img_prefix: str) -> str:
 
 
 def fix_page_assets(text: str, prefix: str) -> str:
-    # stylesheet
-    text = re.sub(
-        r'href="(?:\./|/)style\.css"',
-        f'href="{prefix}style.css"',
-        text,
-    )
-    text = re.sub(
-        r"href='(?:\./|/)style\.css'",
-        f"href='{prefix}style.css'",
-        text,
-    )
-    # chrome js
-    text = re.sub(
-        r'src="(?:\./|/)js/chrome\.js"',
-        f'src="{prefix}js/chrome.js"',
-        text,
-    )
-    # leftover absolute img in page chrome already handled by fragment replace
+    text = re.sub(r'href="(?:\./|/)style\.css"', f'href="{prefix}style.css"', text)
+    text = re.sub(r"href='(?:\./|/)style\.css'", f"href='{prefix}style.css'", text)
+    text = re.sub(r'src="(?:\./|/)js/chrome\.js"', f'src="{prefix}js/chrome.js"', text)
     text = re.sub(r'src="/img/', f'src="{prefix}img/', text)
     return text
 

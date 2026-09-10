@@ -117,7 +117,8 @@ p {
   border-bottom: 1px solid var(--cf-border);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10000;
+  overflow: visible;
 }
 
 .header__wrapper {
@@ -126,6 +127,14 @@ p {
   align-items: center;
   gap: 1rem;
   flex-wrap: nowrap;
+  overflow: visible;
+}
+
+.header .container,
+.header .c-nav,
+.header .c-nav__content,
+.header .c-list--flex {
+  overflow: visible;
 }
 
 /* === NAVIGATION === */
@@ -3279,6 +3288,14 @@ img.c-logo__img {
 
 .c-dropdown.open .c-dropdown__menu--mega {
   display: block;
+}
+
+/* Desktop: open mega menus on hover as well as click (.open) */
+@media (min-width: 769px) {
+  .c-dropdown--mega:hover > .c-dropdown__menu--mega,
+  .c-dropdown--mega:focus-within > .c-dropdown__menu--mega {
+    display: block;
+  }
 }
 
 .c-dropdown__mega-wrap {
