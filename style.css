@@ -4332,12 +4332,26 @@ img.c-logo__img {
 .trust-inner {
   opacity: 0;
   transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
 }
 
 .trust-reveal {
   opacity: 1 !important;
   transform: translateY(0) !important;
   transition: all .6s ease;
+}
+
+/* If reveal JS never runs, still show about/trust copy */
+@media (scripting: none) {
+  .trust-inner,
+  .trust-card,
+  .why-item,
+  .compliance-card,
+  .badge-pill,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .trust-divider {
