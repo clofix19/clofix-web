@@ -28,6 +28,12 @@
     <meta property="og:image:alt" content="CloFix JavaScript Scripting Guide - WAF Custom Rules">
     <meta property="og:site_name" content="CloFix InfoTech">
     <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CloFix JS Scripting Guide | WAF Custom Rules | CloFix" />
+  <meta name="twitter:description" content="CloFix WAF JavaScript (clofix) Scripting Guide - write custom JavaScript functions for rate limiting, bot detection, geo-blocking, and OWASP Top 10 protection." />
+  <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
+  <meta name="twitter:site" content="@clofix19" />
+
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -45,7 +51,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    <link href="./style.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
 
     <!-- Title (optimized - under 60 characters) -->
     <title>CloFix JS Scripting Guide | WAF Custom Rules | CloFix</title>
@@ -207,165 +213,157 @@
 <body class="js-page">
 
     <!-- HEADER -->
-    <header class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
-    <div class="container">
-      <div class="header__wrapper">
-        <!-- Logo -->
-        <div class="c-logo" itemscope itemtype="https://schema.org/Organization">
-          <a href="https://clofix.com/" itemprop="url" aria-label="CloFix - Global AI-Powered WAF Security Platform Home">
-            <img src="img/logo.png" 
-                 alt="CloFix Logo - Global AI-Powered WAF Security Platform" 
-                 class="c-logo__img" 
-                 itemprop="logo"
-                 width="155" 
-                 height="45"
-                 loading="lazy">
-          </a>
-          <span class="c-logo__tagline" itemprop="description">Global WAF</span>
-          <span class="c-logo__text c-logo__text--white"></span>
+      <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
+<header class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
+  <div class="container">
+    <div class="header__wrapper">
+      <a href="/" class="c-logo" itemscope itemtype="https://schema.org/Organization" aria-label="CloFix Home">
+        <img src="img/logo.png"
+             alt="CloFix"
+             class="c-logo__img"
+             itemprop="logo"
+             width="150"
+             height="45"
+             decoding="async">
+        <span class="c-logo__tagline" itemprop="description">Global WAF</span>
+      </a>
+
+      <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+        <button class="c-nav__toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navContent">
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+        </button>
+
+        <div class="c-nav__content" id="navContent">
+          <ul class="c-list c-list--flex">
+            <li class="c-list__item">
+              <a href="/" class="c-link c-link--list" itemprop="url"><span itemprop="name">Home</span></a>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="productDropdown">
+                <span>Product</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="productDropdown" role="menu" aria-label="Product Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix WAF</h4>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">Overview</a>
+                      <a role="menuitem" href="/features" class="c-dropdown__mega-link">Features</a>
+                      <a role="menuitem" href="/pricing" class="c-dropdown__mega-link">Pricing</a>
+                      <a role="menuitem" href="/free-trial" class="c-dropdown__mega-link">Free Trial</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Platform</h4>
+                      <a role="menuitem" href="/clofix-agent" class="c-dropdown__mega-link">Nano Agent</a>
+                      <a role="menuitem" href="/clofix-api" class="c-dropdown__mega-link">Core API</a>
+                      <a role="menuitem" href="/clofix-load-balancer" class="c-dropdown__mega-link">Load Balancer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="servicesDropdown">
+                <span>Services</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="servicesDropdown" role="menu" aria-label="Services Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Security &amp; Ops</h4>
+                      <a role="menuitem" href="/services" class="c-dropdown__mega-link">All Services</a>
+                      <a role="menuitem" href="/devsecops" class="c-dropdown__mega-link">DevSecOps</a>
+                      <a role="menuitem" href="/automation" class="c-dropdown__mega-link">Automation</a>
+                      <a role="menuitem" href="/ondemand" class="c-dropdown__mega-link">On-Demand Engineering</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Cloud &amp; Infra</h4>
+                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link">Cloud Management</a>
+                      <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link">Infrastructure</a>
+                      <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS</a>
+                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link">DevOps Support</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="resourcesDropdown">
+                <span>Resources</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="resourcesDropdown" role="menu" aria-label="Resources Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Learn</h4>
+                      <a role="menuitem" href="/documentation" class="c-dropdown__mega-link">Documentation Hub</a>
+                      <a role="menuitem" href="/blogs" class="c-dropdown__mega-link">Blogs</a>
+                      <a role="menuitem" href="/faq" class="c-dropdown__mega-link">FAQ</a>
+                      <a role="menuitem" href="/support" class="c-dropdown__mega-link">Support</a>
+                      <a role="menuitem" href="/case-study" class="c-dropdown__mega-link">Case Study</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Documentation</h4>
+                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">WAF Workflow</a>
+                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">LUA Script</a>
+                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">JS Script</a>
+                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CRS Script</a>
+                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">WASM</a>
+                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CADRE Script</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Tools</h4>
+                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
+                      <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link">WAF Setup</a>
+                      <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS Checker</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="companyDropdown">
+                <span>Company</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="companyDropdown" role="menu" aria-label="Company Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix</h4>
+                      <a role="menuitem" href="/about" class="c-dropdown__mega-link">About Us</a>
+                      <a role="menuitem" href="/careers" class="c-dropdown__mega-link">Careers</a>
+                      <a role="menuitem" href="/contact" class="c-dropdown__mega-link">Contact</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Partners</h4>
+                      <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link">Our Clients</a>
+                      <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link">Our Partners</a>
+                      <a role="menuitem" href="/partner" class="c-dropdown__mega-link">Become A Partner</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-list__item--cta">
+              <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary">Free Trial</a>
+            </li>
+          </ul>
         </div>
-
-        <!-- Navigation -->
-        <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-          <button class="c-nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navContent">
-            <span class="c-nav__bar"></span>
-            <span class="c-nav__bar"></span>
-            <span class="c-nav__bar"></span>
-            <span class="screen-reader-text">Menu</span>
-          </button>
-
-          <div class="c-nav__content" id="navContent">
-            <ul class="c-list c-list--flex">
-              <!-- Home -->
-              <li class="c-list__item">
-                <a href="/" class="c-link c-link--list" itemprop="url">
-                  <span itemprop="name">Home</span>
-                </a>
-              </li>
-
-              <!-- Pricing -->
-              <li class="c-list__item">
-                <a href="/pricing" class="c-link c-link--list" itemprop="url">
-                  <span itemprop="name">Pricing</span>
-                </a>
-              </li>
-
-              <!-- Features -->
-              <li class="c-list__item">
-                <a href="/features" class="c-link c-link--list" itemprop="url">
-                  <span itemprop="name">Features</span>
-                </a>
-              </li>
-
-              <!-- Company Dropdown -->
-              <li class="c-list__item c-dropdown c-dropdown--mega" itemscope itemtype="https://schema.org/ItemList">
-                <button class="c-link c-link--list c-dropdown__toggle" 
-                        aria-expanded="false" 
-                        aria-haspopup="true"
-                        aria-controls="companyDropdown">
-                  <span itemprop="name">Company</span>
-                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
-                </button>
-                <div class="c-dropdown__menu c-dropdown__menu--mega" 
-                     id="companyDropdown" 
-                     role="menu"
-                     aria-label="Company Menu">
-                  <div class="c-dropdown__mega-wrap">
-                    <div class="c-dropdown__mega-grid">
-                      <div class="c-dropdown__mega-col" role="menuitem">
-                        <h4 class="c-dropdown__mega-title">Company</h4>
-                        <a role="menuitem" href="/about" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">About Us</span>
-                        </a>
-                        <a role="menuitem" href="/careers" class="c-dropdown__mega-link" itemprop="url" aria-current="page">
-                          <span itemprop="name">Careers</span>
-                        </a>
-                        <a role="menuitem" href="/contact" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">Contact</span>
-                        </a>
-                      </div>
-                      <div class="c-dropdown__mega-col" role="menuitem">
-                        <h4 class="c-dropdown__mega-title">Partners</h4>
-                        <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">Our Clients</span>
-                        </a>
-                        <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">Our Partners</span>
-                        </a>
-                        <a role="menuitem" href="/partner" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">Become A Partner</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Resources Dropdown -->
-              <li class="c-list__item c-dropdown c-dropdown--mega" itemscope itemtype="https://schema.org/ItemList">
-                <button class="c-link c-link--list c-dropdown__toggle" 
-                        aria-expanded="false" 
-                        aria-haspopup="true"
-                        aria-controls="resourcesDropdown">
-                  <span itemprop="name">Resources</span>
-                  <span class="c-dropdown__chev" aria-hidden="true">▾</span>
-                </button>
-                <div class="c-dropdown__menu c-dropdown__menu--mega" 
-                     id="resourcesDropdown" 
-                     role="menu"
-                     aria-label="Resources Menu">
-                  <div class="c-dropdown__mega-wrap">
-                    <div class="c-dropdown__mega-grid">
-                      <div class="c-dropdown__mega-col" role="menuitem">
-                        <h4 class="c-dropdown__mega-title">Documentation</h4>
-                        <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix LUA Script</span>
-                        </a>
-                        <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix JS Script</span>
-                        </a>
-                        <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix CRS Script</span>
-                        </a>
-                        <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix WASM</span>
-                        </a>
-                        <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix CADRE Script</span>
-                        </a>
-                        <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix WAF Workflow</span>
-                        </a>
-                      </div>
-                      <div class="c-dropdown__mega-col" role="menuitem">
-                        <h4 class="c-dropdown__mega-title">Tools</h4>
-                        <a role="menuitem" href="/cve" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CVE Checker</span>
-                        </a>
-                        <a role="menuitem" href="/pentest" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">CloFix Pentest</span>
-                        </a>
-                        <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link" itemprop="url">
-                          <span itemprop="name">WAF Setup</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Free Trial CTA -->
-              <a href="/free-trial" class="ticket-button">
-                <button class="c-button c-button--small c-button--secondary">Free Trial</button>
-              </a>
-            </ul>
-          </div>
-        </nav>
-      </div>
+      </nav>
     </div>
-  </header>
+  </div>
+</header>
 
-    <main>
+
+<main>
                 <!-- HERO -->
         <div class="js-hero">
             <div class="container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
@@ -1791,47 +1789,87 @@ curl -A <span class="js-string">"sqlmap/1.7"</span> https://your-domain.com/</pr
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
-        <div class="container c-footer">
-            <div class="c-footer__column c-footer__logo-column">
-                <a href="#" class="c-footer__brand"><img src="img/logo.png" alt="CloFix Logo" class="c-footer__logo" /></a>
-                <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
-                <ul class="social">
-                    <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank"><img src="img/facebook_clofix.png" alt="Facebook" /></a></li>
-                    <li class="social-li"><a href="https://x.com/clofix19" target="_blank"><img src="img/X_clofix.png" alt="X" /></a></li>
-                    <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank"><img src="img/linkedin_clofix.png" alt="LinkedIn" /></a></li>
-                    <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank"><img src="img/whatsapp_clofix.png" alt="WhatsApp" /></a></li>
-                    <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank"><img src="img/youtube_clofix.png" alt="YouTube" /></a></li>
-                </ul>
-            </div>
-            <div class="c-footer__column">
-                <h4 class="c-footer__subtitle">Company</h4>
-                <ul class="c-footer__list c-footer__list--check">
-                    <li><a href="/about">About CloFix</a></li>
-                    <li><a href="/contact">Contact CloFix</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="/support">CloFix WAF Support</a></li>
-                </ul>
-            </div>
-            <div class="c-footer__column">
-                <h4 class="c-footer__subtitle">Explore</h4>
-                <ul class="c-footer__list c-footer__list--check">
-                    <li><a href="/case-study">Case Study</a></li>
-                    <li><a href="/partner">Become A Partner</a></li>
-                    <li><a href="/blogs">Blogs</a></li>
-                </ul>
-            </div>
-            <div class="c-footer__column">
-                <h4 class="c-footer__subtitle">Legal</h4>
-                <ul class="c-footer__list c-footer__list--check">
-                    <li><a href="/terms">Terms and Conditions</a></li>
-                    <li><a href="/sla">Service Level Agreement</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container"><p class="footer__text">© 2026 © Clofix – Copyright All Rights Reserved</p></div>
-    </footer>
+        <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
+<footer class="footer" role="contentinfo">
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="/" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix" class="c-footer__logo" width="150" height="45" decoding="async" />
+      </a>
+      <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+      <p class="c-footer__contact">
+        <a href="https://wa.me/8801850603126">WhatsApp +880 1850-603126</a>
+      </p>
+      <ul class="social" aria-label="Social links">
+        <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener" aria-label="Facebook"><img src="img/facebook_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener" aria-label="X"><img src="img/X_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="img/linkedin_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/whatsapp_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener" aria-label="YouTube"><img src="img/youtube_clofix.png" alt="" width="28" height="28" /></a></li>
+      </ul>
+      <div class="google-play-wrapper">
+        <a href="https://play.google.com/store/apps/details?id=com.clofix.waf" target="_blank" rel="noopener">
+          <img src="img/google-play-store-logo-png.png" alt="Get it on Google Play" class="c-footer__play-badge" width="150" height="52" />
+        </a>
+      </div>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Product</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/waf">CloFix WAF</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/free-trial">Free Trial</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Resources</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/documentation">Documentation</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/support">Support</a></li>
+        <li><a href="/case-study">Case Study</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/partner">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/sla">SLA</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container c-footer__bottom">
+    <p class="footer__text">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
+    <ul class="c-footer__listed">
+      <li><a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener">G2</a></li>
+      <li><a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener">CB Insights</a></li>
+      <li><a href="https://www.producthunt.com/products/clofix-waf" target="_blank" rel="noopener">Product Hunt</a></li>
+    </ul>
+  </div>
+</footer>
+
+
+
+
+
 
     <script>
         /* Nav */
@@ -1882,5 +1920,6 @@ curl -A <span class="js-string">"sqlmap/1.7"</span> https://your-domain.com/</pr
         },{rootMargin:'-25% 0px -65% 0px'});
         sections.forEach(s=>obs.observe(s));
     </script>
+<script src="js/chrome.js" defer></script>
 </body>
 </html>

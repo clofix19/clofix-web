@@ -1,177 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <link rel="canonical" href="https://clofix.com/wasm" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO -->
-    <meta name="description"
-        content="CloFix WASM is an AI-powered WebAssembly security module delivering real-time threat scoring, bot protection, and plugin-based extensibility.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="CloFix WASM | WebAssembly-Powered Edge Security">
-    <meta property="og:description" content="Lightweight, intelligent, and WASM-native - CloFix WASM delivers sandboxed security plugins, behavioral analysis, and proactive protection.">
-    <meta property="og:url" content="https://clofix.com/wasm.html">
-    <meta property="og:image" content="https://clofix.com/img/share.jpg">
-
-    <link rel="icon" type="image/png" href="img/clofix.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
-
-    <!-- Your main stylesheet -->
-    <link href="style.css" rel="stylesheet" />
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-
-    <title>CloFix WASM | WebAssembly Security Module</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://clofix.com/documentation" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="CloFix InfoTech" />
+  <meta name="description" content="CloFix WAF documentation hub: request workflow, Lua/JS/CRS/WASM/CADRE scripts, setup guides, CVE checker, and pentest tools for engineers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CloFix Documentation | WAF Guides, Scripts &amp; Tools" />
+  <meta property="og:description" content="Official CloFix documentation: WAF workflow, scripting engines, WASM modules, setup guides, and security tools." />
+  <meta property="og:url" content="https://clofix.com/documentation" />
+  <meta property="og:image" content="https://clofix.com/img/share.jpg" />
+  <meta property="og:site_name" content="CloFix InfoTech" />
+  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CloFix WASM | WebAssembly Security Module" />
-  <meta name="twitter:description" content="CloFix WASM is an AI-powered WebAssembly security module delivering real-time threat scoring, bot protection, and plugin-based extensibility." />
+  <meta name="twitter:title" content="CloFix Documentation | WAF Guides, Scripts &amp; Tools" />
+  <meta name="twitter:description" content="Official CloFix documentation: WAF workflow, scripting engines, WASM modules, setup guides, and security tools." />
   <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
   <meta name="twitter:site" content="@clofix19" />
-
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
-  
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag(){
-          window.dataLayer.push(arguments);
-        }
-
-        // Initialize GA4
-        gtag('js', new Date());
-
-        // Config (production-ready)
-        gtag('config', 'G-WP02RFXGSE', {
-          send_page_view: true,
-          anonymize_ip: true
-        });
-
-        // Optional: track initial page load event
-        gtag('event', 'page_view', {
-          page_title: document.title,
-          page_location: window.location.href
-        });
-      </script>
-
-    <style>
-        /* Additional styles for WASM benefits section */
-        .wasm-benefits {
-            margin-top: 2rem;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        
-        .benefit-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
-        }
-        
-        .benefit-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-            display: inline-block;
-        }
-        
-        .benefit-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-        
-        .benefit-card p {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-        
-        .plugin-showcase {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        
-        .plugin-tag {
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: white;
-        }
-        
-        .sandbox-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-        }
-        
-        .feature-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .feature-list li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .feature-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #6366f1;
-            font-weight: bold;
-        }
-        
-        @media (max-width: 768px) {
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <title>CloFix Documentation | WAF Guides, Scripts &amp; Tools</title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "CloFix Documentation",
+    "url": "https://clofix.com/documentation",
+    "description": "Documentation hub for CloFix WAF workflows, scripts, and security tools.",
+    "isPartOf": { "@type": "WebSite", "name": "CloFix InfoTech", "url": "https://clofix.com/" },
+    "about": { "@type": "SoftwareApplication", "name": "CloFix WAF" }
+  }
+  </script>
 </head>
-
 <body>
-      <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
+  <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
 <header class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
   <div class="container">
     <div class="header__wrapper">
@@ -321,106 +185,58 @@
 </header>
 
 
-<main>
-        <section class="clofix-agent-section">
-            <div class="container clofix-agent-wrapper">
-                <!-- LEFT: Content -->
-                <div class="clofix-agent-content">
-                    <!-- Title -->
-                    <h1 class="agent-title">
-                        <span class="glow-gradient">WASM-Powered Edge Security</span>
-                    </h1>
-                    
-                    <p class="agent-description" style="font-size: 1.1rem; margin-bottom: 1rem;">
-                        ⚡ <strong class="glow-gradient">Ultra-Lightweight · Sandboxed · Extensible</strong>
-                    </p>
+<main class="cf-page container section">
+    <header class="cf-page__intro">
+      <p class="cf-page__eyebrow">Resources</p>
+      <h1 class="heading--1">CloFix Documentation</h1>
+      <p class="heading--4">
+        Engineer-ready guides for CloFix WAF request flow, rule engines, scripting, setup, and security tools - organized for fast discovery and SEO-friendly deep linking.
+      </p>
+    </header>
 
-                    <!-- Main description - NO Nginx/Apache references -->
-                    <p class="agent-description">
-                        <strong class="glow-gradient">CloFix WASM</strong> is a lightweight, intelligent security
-                        module powered by <strong class="glow-gradient">WebAssembly (WASM)</strong> technology,
-                        designed to integrate seamlessly with the <strong class="glow-gradient">CloFix AI engine</strong> and
-                        <strong class="glow-gradient">API</strong>. This advanced edge security solution monitors and
-                        analyzes every incoming request to your system in real-time using sophisticated techniques like
-                        <strong class="glow-gradient">behavioral analysis</strong>, <strong class="glow-gradient">device
-                            fingerprinting</strong>, <strong class="glow-gradient">IP reputation scoring</strong>, and
-                        <strong class="glow-gradient">machine learning–based threat detection</strong> - all running inside secure WebAssembly sandboxes.
-                    </p>
+    <section class="cf-hub" aria-labelledby="docs-workflow">
+      <h2 id="docs-workflow" class="heading--2">Core WAF docs</h2>
+      <div class="cf-hub__grid">
+        <a class="cf-hub__card" href="/clofix-waf-requst-workflow"><h3>WAF Request Workflow</h3><p>End-to-end request path, engines, and decision points.</p></a>
+        <a class="cf-hub__card" href="/waf-setup"><h3>WAF Setup</h3><p>Deploy and configure CloFix WAF for production.</p></a>
+        <a class="cf-hub__card" href="/features"><h3>Feature Reference</h3><p>Protection capabilities, APIs, and platform features.</p></a>
+        <a class="cf-hub__card" href="/what-is-waf"><h3>What is a WAF?</h3><p>Foundations of web application firewall security.</p></a>
+      </div>
+    </section>
 
-                    <!-- WASM Sandbox + Plugins + Benefits Section -->
-                    <div class="wasm-benefits">
-                        
-                        
-                        <h2 class="agent-subtitle" style="margin-top: 0; font-size: 1.3rem;">🔒 WebAssembly Sandbox Security</h2>
-                        <p class="agent-description" style="margin-bottom: 1rem;">
-                            Every security module runs inside an isolated WebAssembly sandbox with strict memory boundaries, 
-                            capability-based security, and no direct system access. This ensures that even if a plugin is compromised,
-                            the host system remains completely protected. The sandbox provides:
-                        </p>
-                        <ul class="feature-list" style="margin-bottom: 1.5rem;">
-                            <li><strong>Memory Isolation</strong> - Linear memory separation prevents buffer overflows and memory corruption</li>
-                            <li><strong>Capability-Based Security</strong> - Plugins only access explicitly granted permissions</li>
-                            <li><strong>Resource Limitations</strong> - CPU and memory quotas prevent resource exhaustion attacks</li>
-                            <li><strong>Secure by Default</strong> - No unsafe system calls, filesystem access, or network capabilities without explicit grants</li>
-                        </ul>
-                        
-                        <h2 class="agent-subtitle" style="font-size: 1.3rem;">🔌 Plugin Ecosystem</h2>
-                        <p class="agent-description">
-                            Extend and customize your security posture with our growing plugin marketplace. Write security rules in your preferred language 
-                            (Rust, C/C++, AssemblyScript, TinyGo) and deploy instantly:
-                        </p>
-                        
-                        
-                    </div>
+    <section class="cf-hub" aria-labelledby="docs-scripts">
+      <h2 id="docs-scripts" class="heading--2">Scripting &amp; engines</h2>
+      <div class="cf-hub__grid">
+        <a class="cf-hub__card" href="/clofix-lua-script"><h3>Lua Script</h3><p>Custom edge logic with CloFix Lua.</p></a>
+        <a class="cf-hub__card" href="/clofix-js-script"><h3>JS Script</h3><p>JavaScript sandbox rules and filters.</p></a>
+        <a class="cf-hub__card" href="/clofix-crs"><h3>CRS Script</h3><p>OWASP CRS integration and tuning.</p></a>
+        <a class="cf-hub__card" href="/clofix-wasm"><h3>WASM</h3><p>High-performance WebAssembly modules.</p></a>
+        <a class="cf-hub__card" href="/clofix-cadre-script"><h3>CADRE Script</h3><p>Custom CADRE rule development.</p></a>
+        <a class="cf-hub__card" href="/wasm"><h3>WASM Overview</h3><p>How CloFix uses WASM in the security stack.</p></a>
+      </div>
+    </section>
 
-                    <!-- Additional enterprise features - NO Nginx/Apache references -->
-                    <div id="extraContent" class="extra-collapsed" style="margin-top: 1.5rem;">
-                        <h2 class="agent-subtitle">Enterprise-Grade Protection Features</h2>
-                        <ul class="terms__list">
-                            <li><strong>Zero-Day Attack Prevention</strong>: Protects against unknown vulnerabilities and emerging threats</li>
-                            <li><strong>API Security & Rate Limiting</strong>: Advanced protection for REST APIs and microservices</li>
-                            <li><strong>DDoS Mitigation</strong>: Intelligent traffic filtering to prevent distributed denial-of-service attacks</li>
-                            <li><strong>SQL Injection Protection</strong>: Real-time detection and blocking of database attack attempts</li>
-                            <li><strong>Cross-Site Scripting (XSS) Prevention</strong>: Advanced filtering to prevent malicious script injection</li>
-                            <li><strong>Brute Force Protection</strong>: Intelligent login attempt monitoring and blocking</li>
-                            <li><strong>Geographic Blocking</strong>: Country and region-based access control</li>
-                        </ul>
-                        
-                        <h2 class="agent-subtitle">Real-Time Dashboard & Analytics</h2>
-                        <p class="agent-description">
-                            Monitor your security status with comprehensive analytics including threat trends, blocked attacks, traffic
-                            patterns, and performance metrics. Our intuitive dashboard provides actionable insights for security
-                            optimization and compliance reporting.
-                        </p>
-                    </div>
+    <section class="cf-hub" aria-labelledby="docs-tools">
+      <h2 id="docs-tools" class="heading--2">Tools</h2>
+      <div class="cf-hub__grid">
+        <a class="cf-hub__card" href="/cve"><h3>CVE Checker</h3><p>Check vulnerabilities relevant to your stack.</p></a>
+        <a class="cf-hub__card" href="/pentest"><h3>Pentest</h3><p>CloFix penetration testing resources.</p></a>
+        <a class="cf-hub__card" href="/dns"><h3>DNS Checker</h3><p>Global DNS propagation lookup.</p></a>
+        <a class="cf-hub__card" href="/aws-activity-monitor"><h3>AWS Activity Monitor</h3><p>Cloud notification and activity tooling.</p></a>
+      </div>
+    </section>
 
-                    <!-- Read more link -->
-                    <a href="https://clofix.com/clofix-wasm" id="toggleLink" class="read-more-link" target="_blank" rel="noopener noreferrer">Explore WASM Architecture →</a>
-                </div>
+    <section class="cf-hub cf-hub--cta" aria-label="Next steps">
+      <h2 class="heading--2">Need help implementing?</h2>
+      <p class="heading--4">Start a free trial or talk to the CloFix team about your architecture.</p>
+      <div class="unique-hero-cta">
+        <a class="c-button c-button--primary" href="/free-trial">Start Free Trial</a>
+        <a class="c-button c-button--secondary" href="/contact">Contact Sales</a>
+      </div>
+    </section>
+  </main>
 
-                <!-- RIGHT: Image with WASM labels -->
-                <div class="clofix-agent-image ai-visual">
-                    <img src="img/clofix-agent-new.png" alt="CloFix WASM" />
-                    <!-- Floating labels highlighting WASM ecosystem -->
-                    <div class="floating-label top-right">
-                        <div class="icon-block purple">⚡</div>
-                        <div><strong>CloFix WASM Core Runtime</strong><br /><small>Rust · AssemblyScript · TinyGo · C/C++</small></div>
-                    </div>
-                    <div class="floating-label middle-left">
-                        <div class="icon-block blue">🏖️</div>
-                        <div><strong>Sandboxed Plugins</strong><br /><small>Memory-isolated · Capability-secure</small></div>
-                    </div>
-                    <div class="floating-label bottom-right">
-                        <div class="icon-block green">🔌</div>
-                        <div><strong>Plugin Marketplace</strong><br /><small>Extend · Customize · Deploy</small></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-
-        <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
+  <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
 <footer class="footer" role="contentinfo">
   <div class="container c-footer">
     <div class="c-footer__column c-footer__logo-column">
@@ -499,10 +315,6 @@
 
 
 
-
-
-    
-<script src="js/chrome.js" defer></script>
+  <script src="js/chrome.js" defer></script>
 </body>
-
 </html>

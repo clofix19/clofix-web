@@ -21,27 +21,31 @@
 }
 
 .blog-card {
-  background: #fff;
+  background: var(--cf-surface, #1e293b);
+  border: 1px solid var(--cf-border-soft, rgba(255,255,255,0.08));
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
+  box-shadow: var(--cf-shadow-soft, 0 8px 24px rgba(2, 6, 23, 0.35));
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  color: var(--cf-text, #e2e8f0);
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .blog-card__title {
   font-size: 1.3rem;
   margin-top: 0;
   margin-bottom: 0.75rem;
+  color: var(--cf-white, #fff);
 }
 
 .blog-card__excerpt {
   font-size: 0.95rem;
   margin-bottom: 1rem;
-  color: #555;
+  color: var(--cf-text-muted, #94a3b8);
 }
 
 .special-card {
