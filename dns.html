@@ -496,6 +496,33 @@
         }
     </style>
   <link href="style.css" rel="stylesheet" />
+  <style>
+    /* Restore readable contrast for light DNS tool UI (style.css sets light body text for dark theme) */
+    .container,
+    .query-section,
+    .option-group {
+      color: #1e293b;
+    }
+    .form-input,
+    .form-select {
+      color: #0f172a;
+      background: #fff;
+    }
+    .form-input::placeholder {
+      color: #64748b;
+      opacity: 1;
+    }
+    .checkbox-item,
+    .checkbox-item label {
+      color: #334155;
+    }
+    .ip-display {
+      color: #0f172a;
+    }
+    .ip-display strong {
+      color: #0369a1;
+    }
+  </style>
 </head>
 
 <body>
