@@ -380,6 +380,10 @@
     transform: translateX(5px);
   }
 
+  #features {
+    scroll-margin-top: calc(var(--header-h, 80px) + 12px);
+  }
+
   /* Stats Section */
   .secure-hero-stats {
     display: flex;
@@ -838,7 +842,7 @@
         </div>
       </div>
 
-      <div class="features-flex">
+      <div id="features" class="features-flex">
           <!-- LB CATEGORY -->
           <h2 class="category-heading">Load Balancer</h2>
           <!-- CloFix Load Balancer (LB) -->
