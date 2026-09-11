@@ -384,6 +384,233 @@
     scroll-margin-top: calc(var(--header-h, 80px) + 12px);
   }
 
+  /* Feature modal detail (shared) */
+  .modal-content:has(#modalDescription .feature-detail) {
+    max-width: 920px;
+    width: min(94vw, 920px);
+  }
+
+  .feature-detail {
+    color: #e2e8f0;
+  }
+
+  .feature-detail .lb-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-detail .lb-stat {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 10px;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .feature-detail .lb-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 4px;
+  }
+
+  .feature-detail .lb-stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .feature-detail .feature-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    margin-bottom: 1rem;
+  }
+
+  .feature-detail .feature-tab {
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: -1px;
+    padding: 0.55rem 0.35rem;
+  }
+
+  .feature-detail .feature-tab:hover {
+    color: #e2e8f0;
+  }
+
+  .feature-detail .feature-tab.active {
+    color: #38bdf8;
+    border-bottom-color: #38bdf8;
+  }
+
+  .feature-detail .feature-tab-panel {
+    display: none;
+  }
+
+  .feature-detail .feature-tab-panel.active {
+    display: block;
+  }
+
+  .feature-detail .lb-benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 16px;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-detail .lb-benefit {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .feature-detail .lb-benefit-icon {
+    flex-shrink: 0;
+    color: #38bdf8;
+    font-size: 1rem;
+    line-height: 1.4;
+    width: 1.25rem;
+    text-align: center;
+  }
+
+  .feature-detail .lb-benefit-title {
+    margin: 0 0 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+
+  .feature-detail .lb-benefit-desc {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: #94a3b8;
+  }
+
+  .feature-detail .lb-how {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+  }
+
+  .feature-detail .lb-how-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .feature-detail .lb-howto-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .feature-detail .lb-howto-step {
+    flex: 1;
+    min-width: 88px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    opacity: 1;
+    transform: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    font-family: inherit;
+  }
+
+  .feature-detail .lb-howto-icon {
+    display: block;
+    color: #38bdf8;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
+  .feature-detail .lb-howto-arrow {
+    color: #64748b;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .feature-detail .lb-howto-label {
+    display: block;
+    color: #cbd5e1;
+  }
+
+  .feature-detail .lb-how-text {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #cbd5e1;
+  }
+
+  .feature-detail .lb-how-docs {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #94a3b8;
+  }
+
+  .feature-detail .lb-how-docs a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+
+  .feature-detail .lb-how-docs a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 720px) {
+    .feature-detail .lb-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-detail .lb-benefit-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-detail .lb-howto-arrow {
+      display: none;
+    }
+
+    .feature-detail .lb-howto-flow {
+      gap: 10px;
+    }
+
+    .feature-detail .lb-howto-step {
+      flex: 1 1 40%;
+    }
+  }
+
+  .feature-detail .feature-detail-lead {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #94a3b8;
+  }
+
+  .feature-detail .lb-how .lb-how-text:last-child {
+    margin-bottom: 0;
+  }
+
+
   /* Stats Section */
   .secure-hero-stats {
     display: flex;
@@ -856,46 +1083,311 @@
               </div>
           </div>
           <template id="load_balancer">
-              <div class="feature-benefits">
-                  <h4>Key Benefits</h4>
-                  <ul>
-                      <li><strong>Backend Information Hiding:</strong> Automatically removes 30+ sensitive headers (Server, X-Powered-By, X-Backend-Server, X-Upstream, Via, X-Real-IP) - prevents attackers from discovering internal infrastructure</li>
-                      <li><strong>Response Body URL Rewriting:</strong> Automatically rewrites backend URLs in HTML, JSON, and XML responses to show only frontend domain - http://clofix.com/page → https://demo.clofix.com/page</li>
-                      <li><strong>Real-time Backend Alerts:</strong> Automatic notifications when backends go down or recover - supports Slack, Email, Webhook, and Telegram with detailed failure information</li>
-                      <li><strong>99.99% Availability SLA:</strong> Enterprise-grade reliability with automatic failover and connection draining - zero-downtime deployments</li>
-                      <li><strong>&lt;1ms Latency Overhead:</strong> Ultra-low latency with zero-copy forwarding and connection pooling - no measurable performance impact</li>
-                      <li><strong>5+ Load Balancing Algorithms:</strong> Round Robin (sequential distribution), Least Connections (send to server with fewest active connections), IP Hash (client IP to same backend), Weighted (capacity-based), Random - choose per workload</li>
-                      <li><strong>Active Health Checks:</strong> Configurable HTTP/HTTPS health checks with custom path, interval (default 10s), timeout (default 3s), and expected status code (default 200) - automatic backend removal on failure</li>
-                      <li><strong>Passive Health Monitoring:</strong> Track real traffic failures (max_fails default 3, fail_timeout 30s) - mark backends unhealthy without extra probe traffic</li>
-                      <li><strong>Session Persistence (Sticky Sessions):</strong> Cookie-based stickiness with configurable cookie name (default clofix_backend) - ensures user sessions stay on the same backend server</li>
-                      <li><strong>Backend Weight Configuration:</strong> Assign weights to servers based on capacity - weight=10 for powerful instances, weight=1 for smaller ones</li>
-                      <li><strong>Backup Servers:</strong> Designate backup backends (backup=true) - used only when all primary servers fail, with separate max_fails/fail_timeout settings</li>
-                      <li><strong>Connection Draining:</strong> Gracefully remove backends from rotation - existing connections complete before server shutdown, zero dropped requests during deployments</li>
-                      <li><strong>Max Retries & Timeout:</strong> Configurable retry logic (max_retries default 3, retry_timeout 5s) - automatically retry failed requests on healthy backends</li>
-                      <li><strong>Concurrent Connection Limits:</strong> max_conns per backend prevents resource exhaustion during traffic spikes - unlimited by default</li>
-                      <li><strong>HTTP/2 & HTTP/3 Support:</strong> Full support for modern HTTP protocols with multiplexing and improved performance</li>
-                      <li><strong>SSL/TLS Termination:</strong> Offload SSL at load balancer with configurable TLSv1.2 and TLSv1.3 protocols - automatic certificate management available</li>
-                      <li><strong>Client IP Preservation:</strong> Original client IP preserved through X-Forwarded-For and PROXY protocol - backends always know real client address</li>
-                      <li><strong>Header Sanitization:</strong> Removes 25+ debugging and server identification headers from responses before reaching clients</li>
-                      <li><strong>Real-time Metrics:</strong> Prometheus-compatible metrics for each backend - request rate, error rate, active connections, health status</li>
-                      <li><strong>Admin API:</strong> REST API for dynamic backend management - add, remove, enable, disable, or rebalance backends without reload</li>
-                      <li><strong>Zero-Downtime Reloads:</strong> Update load balancer configuration without dropping connections - graceful reload with connection draining</li>
-                      <li><strong>Active-Active Clustering:</strong> Multiple load balancer instances with shared state - no single point of failure</li>
-                      <li><strong>WebSocket Support:</strong> Native WebSocket protocol upgrade with connection persistence across backend pools - perfect for real-time applications</li>
-                      <li><strong>gRPC Load Balancing:</strong> Full gRPC support with HTTP/2 multiplexing and health checking protocol integration</li>
-                      <li><strong>Layer 4 (TCP/UDP) Load Balancing:</strong> Transparent TCP/UDP proxy for databases, message queues, and legacy applications - no HTTP required</li>
-                      <li><strong>IPv4/IPv6 Dual Stack:</strong> Listen on both IPv4 and IPv6, connect to backends over IPv4 or IPv6 with configurable preference</li>
-                      <li><strong>Gzip Compression:</strong> Automatic response compression to reduce bandwidth and improve load times</li>
-                      <li><strong>Custom Error Pages:</strong> Serve branded error pages when backends are unavailable - maintain user experience during outages</li>
-                      <li><strong>Maintenance Mode:</strong> Temporarily block traffic to specific backends or routes with custom responses - zero-downtime maintenance windows</li>
-                      <li><strong>Blue/Green Deployments:</strong> Route traffic between backend versions - gradual rollout with instant rollback capability</li>
-                      <li><strong>Canary Deployments:</strong> Send percentage of traffic to new version, monitor error rates, automatically rollback on failure</li>
-                      <li><strong>Geolocation-Based Routing:</strong> Route users to nearest backend based on country or region - reduces latency and improves user experience</li>
-                      <li><strong>PROXY Protocol Support:</strong> Preserve original client IP when using proxy protocols with backend servers that support PROXY v1/v2</li>
-                  </ul>
-                  <div class="feature-note">
-                      <p>💡 <strong>How it works:</strong> CloFix Load Balancer sits between clients and backend servers, intelligently distributing traffic based on configurable algorithms. Health checks run continuously - unhealthy backends are automatically removed from rotation based on max_fails (default 3) and fail_timeout (default 30s). Backend information hiding automatically strips 30+ sensitive headers from responses, including Server, X-Powered-By, X-Backend-Server, and Via headers. Response body URL rewriting converts internal backend URLs to frontend domain in HTML, JSON, and XML content. Real-time notifications alert via webhook when backends go down or recover. Session persistence (sticky sessions) ensures users stay on the same backend via cookies. Configuration supports weight-based distribution for uneven backend capacities, backup servers for failover, and connection pooling for optimal performance. All this runs with less than 1ms latency overhead.</p>
-                      <p class="guideline-link">📖 <strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> - Backend configuration, load balancing algorithms, health checks, and security hardening</p>
+              <div class="feature-detail feature-detail--lb">
+                  <div class="lb-stats">
+                      <div class="lb-stat">
+                          <span class="lb-stat-label">Uptime SLA</span>
+                          <span class="lb-stat-value">99.99%</span>
+                      </div>
+                      <div class="lb-stat">
+                          <span class="lb-stat-label">Latency overhead</span>
+                          <span class="lb-stat-value">&lt;1ms</span>
+                      </div>
+                      <div class="lb-stat">
+                          <span class="lb-stat-label">Headers stripped</span>
+                          <span class="lb-stat-value">30+</span>
+                      </div>
+                      <div class="lb-stat">
+                          <span class="lb-stat-label">Algorithms</span>
+                          <span class="lb-stat-value">5+</span>
+                      </div>
+                  </div>
+
+                  <div class="feature-tabs" role="tablist" aria-label="Load Balancer topics">
+                      <button type="button" class="feature-tab active" role="tab" aria-selected="true" data-tab="reliability">Reliability</button>
+                      <button type="button" class="feature-tab" role="tab" aria-selected="false" data-tab="security">Security</button>
+                      <button type="button" class="feature-tab" role="tab" aria-selected="false" data-tab="performance">Performance</button>
+                      <button type="button" class="feature-tab" role="tab" aria-selected="false" data-tab="enterprise">Enterprise</button>
+                  </div>
+
+                  <div class="feature-tab-panels">
+                      <div class="feature-tab-panel active" data-panel="reliability" role="tabpanel">
+                          <div class="lb-benefit-grid">
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">✓</span>
+                                  <div>
+                                      <p class="lb-benefit-title">99.99% Availability SLA</p>
+                                      <p class="lb-benefit-desc">Enterprise-grade reliability with automatic failover and connection draining - zero-downtime deployments</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">♥</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Active Health Checks</p>
+                                      <p class="lb-benefit-desc">Configurable HTTP/HTTPS health checks with custom path, interval (default 10s), timeout (default 3s), and expected status code (default 200) - automatic backend removal on failure</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">◎</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Passive Health Monitoring</p>
+                                      <p class="lb-benefit-desc">Track real traffic failures (max_fails default 3, fail_timeout 30s) - mark backends unhealthy without extra probe traffic</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⧉</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Backup Servers</p>
+                                      <p class="lb-benefit-desc">Designate backup backends (backup=true) - used only when all primary servers fail, with separate max_fails/fail_timeout settings</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⇄</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Connection Draining</p>
+                                      <p class="lb-benefit-desc">Gracefully remove backends from rotation - existing connections complete before server shutdown, zero dropped requests during deployments</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">↻</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Max Retries &amp; Timeout</p>
+                                      <p class="lb-benefit-desc">Configurable retry logic (max_retries default 3, retry_timeout 5s) - automatically retry failed requests on healthy backends</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⟳</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Zero-Downtime Reloads</p>
+                                      <p class="lb-benefit-desc">Update load balancer configuration without dropping connections - graceful reload with connection draining</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⬡</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Active-Active Clustering</p>
+                                      <p class="lb-benefit-desc">Multiple load balancer instances with shared state - no single point of failure</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⏸</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Maintenance Mode</p>
+                                      <p class="lb-benefit-desc">Temporarily block traffic to specific backends or routes with custom responses - zero-downtime maintenance windows</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">📄</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Custom Error Pages</p>
+                                      <p class="lb-benefit-desc">Serve branded error pages when backends are unavailable - maintain user experience during outages</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">↔</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Blue/Green Deployments</p>
+                                      <p class="lb-benefit-desc">Route traffic between backend versions - gradual rollout with instant rollback capability</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">◔</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Canary Deployments</p>
+                                      <p class="lb-benefit-desc">Send percentage of traffic to new version, monitor error rates, automatically rollback on failure</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="feature-tab-panel" data-panel="security" role="tabpanel" hidden>
+                          <div class="lb-benefit-grid">
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🛡</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Backend Information Hiding</p>
+                                      <p class="lb-benefit-desc">Automatically removes 30+ sensitive headers (Server, X-Powered-By, X-Backend-Server, X-Upstream, Via, X-Real-IP) - prevents attackers from discovering internal infrastructure</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🔗</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Response Body URL Rewriting</p>
+                                      <p class="lb-benefit-desc">Automatically rewrites backend URLs in HTML, JSON, and XML responses to show only frontend domain - http://clofix.com/page → https://demo.clofix.com/page</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🧹</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Header Sanitization</p>
+                                      <p class="lb-benefit-desc">Removes 25+ debugging and server identification headers from responses before reaching clients</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🔒</span>
+                                  <div>
+                                      <p class="lb-benefit-title">SSL/TLS Termination</p>
+                                      <p class="lb-benefit-desc">Offload SSL at load balancer with configurable TLSv1.2 and TLSv1.3 protocols - automatic certificate management available</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">📍</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Client IP Preservation</p>
+                                      <p class="lb-benefit-desc">Original client IP preserved through X-Forwarded-For and PROXY protocol - backends always know real client address</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">↔</span>
+                                  <div>
+                                      <p class="lb-benefit-title">PROXY Protocol Support</p>
+                                      <p class="lb-benefit-desc">Preserve original client IP when using proxy protocols with backend servers that support PROXY v1/v2</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="feature-tab-panel" data-panel="performance" role="tabpanel" hidden>
+                          <div class="lb-benefit-grid">
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⚡</span>
+                                  <div>
+                                      <p class="lb-benefit-title">&lt;1ms Latency Overhead</p>
+                                      <p class="lb-benefit-desc">Ultra-low latency with zero-copy forwarding and connection pooling - no measurable performance impact</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⚖</span>
+                                  <div>
+                                      <p class="lb-benefit-title">5+ Load Balancing Algorithms</p>
+                                      <p class="lb-benefit-desc">Round Robin (sequential distribution), Least Connections (send to server with fewest active connections), IP Hash (client IP to same backend), Weighted (capacity-based), Random - choose per workload</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🍪</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Session Persistence (Sticky Sessions)</p>
+                                      <p class="lb-benefit-desc">Cookie-based stickiness with configurable cookie name (default clofix_backend) - ensures user sessions stay on the same backend server</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">📊</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Backend Weight Configuration</p>
+                                      <p class="lb-benefit-desc">Assign weights to servers based on capacity - weight=10 for powerful instances, weight=1 for smaller ones</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⛓</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Concurrent Connection Limits</p>
+                                      <p class="lb-benefit-desc">max_conns per backend prevents resource exhaustion during traffic spikes - unlimited by default</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🚀</span>
+                                  <div>
+                                      <p class="lb-benefit-title">HTTP/2 &amp; HTTP/3 Support</p>
+                                      <p class="lb-benefit-desc">Full support for modern HTTP protocols with multiplexing and improved performance</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">📦</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Gzip Compression</p>
+                                      <p class="lb-benefit-desc">Automatic response compression to reduce bandwidth and improve load times</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🔌</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Layer 4 (TCP/UDP) Load Balancing</p>
+                                      <p class="lb-benefit-desc">Transparent TCP/UDP proxy for databases, message queues, and legacy applications - no HTTP required</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🌐</span>
+                                  <div>
+                                      <p class="lb-benefit-title">IPv4/IPv6 Dual Stack</p>
+                                      <p class="lb-benefit-desc">Listen on both IPv4 and IPv6, connect to backends over IPv4 or IPv6 with configurable preference</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🗺</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Geolocation-Based Routing</p>
+                                      <p class="lb-benefit-desc">Route users to nearest backend based on country or region - reduces latency and improves user experience</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">💬</span>
+                                  <div>
+                                      <p class="lb-benefit-title">WebSocket Support</p>
+                                      <p class="lb-benefit-desc">Native WebSocket protocol upgrade with connection persistence across backend pools - perfect for real-time applications</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">📡</span>
+                                  <div>
+                                      <p class="lb-benefit-title">gRPC Load Balancing</p>
+                                      <p class="lb-benefit-desc">Full gRPC support with HTTP/2 multiplexing and health checking protocol integration</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="feature-tab-panel" data-panel="enterprise" role="tabpanel" hidden>
+                          <div class="lb-benefit-grid">
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">🔔</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Real-time Backend Alerts</p>
+                                      <p class="lb-benefit-desc">Automatic notifications when backends go down or recover - supports Slack, Email, Webhook, and Telegram with detailed failure information</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">📈</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Real-time Metrics</p>
+                                      <p class="lb-benefit-desc">Prometheus-compatible metrics for each backend - request rate, error rate, active connections, health status</p>
+                                  </div>
+                              </div>
+                              <div class="lb-benefit">
+                                  <span class="lb-benefit-icon" aria-hidden="true">⚙</span>
+                                  <div>
+                                      <p class="lb-benefit-title">Admin API</p>
+                                      <p class="lb-benefit-desc">REST API for dynamic backend management - add, remove, enable, disable, or rebalance backends without reload</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="lb-how">
+                      <p class="lb-how-label">How it works</p>
+                      <div class="lb-howto-flow">
+                          <div class="lb-howto-step">
+                              <span class="lb-howto-icon" aria-hidden="true">→</span>
+                              <span class="lb-howto-label">Traffic in</span>
+                          </div>
+                          <span class="lb-howto-arrow" aria-hidden="true">›</span>
+                          <div class="lb-howto-step">
+                              <span class="lb-howto-icon" aria-hidden="true">♥</span>
+                              <span class="lb-howto-label">Health check</span>
+                          </div>
+                          <span class="lb-howto-arrow" aria-hidden="true">›</span>
+                          <div class="lb-howto-step">
+                              <span class="lb-howto-icon" aria-hidden="true">⎇</span>
+                              <span class="lb-howto-label">Route by algorithm</span>
+                          </div>
+                          <span class="lb-howto-arrow" aria-hidden="true">›</span>
+                          <div class="lb-howto-step">
+                              <span class="lb-howto-icon" aria-hidden="true">🛡</span>
+                              <span class="lb-howto-label">Strip headers</span>
+                          </div>
+                      </div>
+                      <p class="lb-how-text">CloFix Load Balancer sits between clients and backend servers, intelligently distributing traffic based on configurable algorithms. Health checks run continuously - unhealthy backends are automatically removed from rotation based on max_fails (default 3) and fail_timeout (default 30s). Backend information hiding automatically strips 30+ sensitive headers from responses, including Server, X-Powered-By, X-Backend-Server, and Via headers. Response body URL rewriting converts internal backend URLs to frontend domain in HTML, JSON, and XML content. Real-time notifications alert via webhook when backends go down or recover. Session persistence (sticky sessions) ensures users stay on the same backend via cookies. Configuration supports weight-based distribution for uneven backend capacities, backup servers for failover, and connection pooling for optimal performance. All this runs with less than 1ms latency overhead.</p>
+                      <p class="lb-how-docs"><strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> — Backend configuration, load balancing algorithms, health checks, and security hardening</p>
                   </div>
               </div>
           </template>
@@ -4920,12 +5412,220 @@
   const modalTitle = document.getElementById('modalTitle');
   const modalDescription = document.getElementById('modalDescription');
   const closeButton = document.querySelector('#featureModal .close-button');
+  const CHUNK_TAB_LABELS = ['Overview', 'More', 'Advanced', 'Details', 'Extra', 'All'];
 
   if (!modal || !modalTitle || !modalDescription) return;
 
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function parseLi(li) {
+    const strong = li.querySelector('strong');
+    if (strong) {
+      let title = strong.textContent.replace(/:\s*$/, '').trim();
+      const clone = li.cloneNode(true);
+      const strongClone = clone.querySelector('strong');
+      if (strongClone) strongClone.remove();
+      let desc = clone.textContent.replace(/^[\s:–—-]+/, '').trim();
+      return { title: title || desc, desc: title ? desc : '' };
+    }
+    const text = li.textContent.trim();
+    return { title: text, desc: '' };
+  }
+
+  function benefitHtml(item) {
+    const title = escapeHtml(item.title);
+    const desc = item.desc ? '<p class="lb-benefit-desc">' + escapeHtml(item.desc) + '</p>' : '';
+    return (
+      '<div class="lb-benefit">' +
+        '<span class="lb-benefit-icon" aria-hidden="true">•</span>' +
+        '<div>' +
+          '<p class="lb-benefit-title">' + title + '</p>' +
+          desc +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function gridHtml(items) {
+    return '<div class="lb-benefit-grid">' + items.map(benefitHtml).join('') + '</div>';
+  }
+
+  function slugify(label, index) {
+    const base = String(label)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 40);
+    return (base || 'tab') + '-' + index;
+  }
+
+  function buildTabs(sections) {
+    if (!sections.length) return '';
+    if (sections.length === 1) {
+      return gridHtml(sections[0].items);
+    }
+
+    const tabs = sections.map(function (section, i) {
+      const id = slugify(section.label, i);
+      const active = i === 0 ? ' active' : '';
+      const selected = i === 0 ? 'true' : 'false';
+      return (
+        '<button type="button" class="feature-tab' + active + '" role="tab" aria-selected="' +
+        selected + '" data-tab="' + id + '">' + escapeHtml(section.label) + '</button>'
+      );
+    }).join('');
+
+    const panels = sections.map(function (section, i) {
+      const id = slugify(section.label, i);
+      const active = i === 0 ? ' active' : '';
+      const hidden = i === 0 ? '' : ' hidden';
+      return (
+        '<div class="feature-tab-panel' + active + '" data-panel="' + id + '" role="tabpanel"' +
+        hidden + '>' + gridHtml(section.items) + '</div>'
+      );
+    }).join('');
+
+    return (
+      '<div class="feature-tabs" role="tablist">' + tabs + '</div>' +
+      '<div class="feature-tab-panels">' + panels + '</div>'
+    );
+  }
+
+  function buildHowFooter(noteNodes) {
+    if (!noteNodes.length) return '';
+    const parts = noteNodes.map(function (node) {
+      if (node.tagName === 'A') {
+        return '<p class="lb-how-docs">' + node.outerHTML + '</p>';
+      }
+      const html = node.innerHTML && node.innerHTML.trim() ? node.innerHTML : escapeHtml(node.textContent.trim());
+      if (!html) return '';
+      if (/guideline-link|Documentation/i.test(node.className + ' ' + node.textContent)) {
+        return '<p class="lb-how-docs">' + html + '</p>';
+      }
+      return '<p class="lb-how-text">' + html + '</p>';
+    }).filter(Boolean);
+    if (!parts.length) return '';
+    return '<div class="lb-how"><p class="lb-how-label">More info</p>' + parts.join('') + '</div>';
+  }
+
+  function chunkItems(items, size) {
+    const chunks = [];
+    for (let i = 0; i < items.length; i += size) {
+      chunks.push(items.slice(i, i + size));
+    }
+    return chunks;
+  }
+
+  function enhanceFeatureModalHtml(html) {
+    if (!html || /class=["'][^"']*\bfeature-detail\b/.test(html)) {
+      return html;
+    }
+
+    const wrap = document.createElement('div');
+    wrap.innerHTML = html;
+
+    const noteNodes = [];
+    wrap.querySelectorAll('.feature-note').forEach(function (note) {
+      // Keep nested lists as benefits; leave prose/links for the footer
+      Array.prototype.slice.call(note.querySelectorAll('ul')).forEach(function (ul) {
+        note.parentNode.insertBefore(ul, note);
+      });
+      noteNodes.push(note);
+      note.remove();
+    });
+    wrap.querySelectorAll('.guideline-link').forEach(function (node) {
+      noteNodes.push(node);
+      node.remove();
+    });
+
+    const sections = [];
+    const h4s = Array.prototype.slice.call(wrap.querySelectorAll('h4'));
+
+    if (h4s.length > 1) {
+      h4s.forEach(function (h4) {
+        let next = h4.nextElementSibling;
+        while (next && next.tagName !== 'UL' && next.tagName !== 'H4') {
+          next = next.nextElementSibling;
+        }
+        if (!next || next.tagName !== 'UL') return;
+        const items = Array.prototype.slice.call(next.querySelectorAll(':scope > li')).map(parseLi);
+        if (!items.length) return;
+        sections.push({ label: h4.textContent.trim() || 'Section', items: items });
+        h4.remove();
+        next.remove();
+      });
+    } else if (h4s.length === 1) {
+      const h4 = h4s[0];
+      let next = h4.nextElementSibling;
+      while (next && next.tagName !== 'UL') next = next.nextElementSibling;
+      if (next && next.tagName === 'UL') {
+        const items = Array.prototype.slice.call(next.querySelectorAll(':scope > li')).map(parseLi);
+        if (items.length) {
+          sections.push({ label: h4.textContent.trim() || 'Overview', items: items });
+          h4.remove();
+          next.remove();
+        }
+      } else {
+        h4.remove();
+      }
+    }
+
+    // Collect any remaining lists (e.g. hoisted from .feature-note)
+    const leftoverItems = [];
+    Array.prototype.slice.call(wrap.querySelectorAll('ul')).forEach(function (ul) {
+      Array.prototype.slice.call(ul.querySelectorAll(':scope > li')).forEach(function (li) {
+        leftoverItems.push(parseLi(li));
+      });
+      ul.remove();
+    });
+    if (leftoverItems.length) {
+      if (!sections.length) {
+        sections.push({ label: 'Overview', items: leftoverItems });
+      } else {
+        sections[sections.length - 1].items = sections[sections.length - 1].items.concat(leftoverItems);
+      }
+    }
+
+    // Chunk oversized single/merged sections into tabs of 8
+    if (sections.length === 1 && sections[0].items.length > 8) {
+      const items = sections[0].items;
+      sections.length = 0;
+      chunkItems(items, 8).forEach(function (chunk, i) {
+        sections.push({ label: CHUNK_TAB_LABELS[i] || ('Part ' + (i + 1)), items: chunk });
+      });
+    } else if (sections.length > 1) {
+      // also chunk any individual oversized tab from multi-h4 if huge? keep as-is per plan (h4 = tab)
+    }
+
+    if (!sections.length && !noteNodes.length) {
+      return html;
+    }
+
+    const leadParts = [];
+    Array.prototype.slice.call(wrap.children).forEach(function (child) {
+      if (child.tagName === 'P' && child.textContent.trim()) {
+        leadParts.push('<p class="feature-detail-lead">' + escapeHtml(child.textContent.trim()) + '</p>');
+      }
+    });
+
+    return (
+      '<div class="feature-detail">' +
+        leadParts.join('') +
+        buildTabs(sections) +
+        buildHowFooter(noteNodes) +
+      '</div>'
+    );
+  }
+
   function openModal(title, html) {
     modalTitle.textContent = title;
-    modalDescription.innerHTML = html;
+    modalDescription.innerHTML = enhanceFeatureModalHtml(html);
     modal.style.display = 'block';
     modal.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
@@ -4939,6 +5639,27 @@
     document.body.style.overflow = '';
   }
 
+  modalDescription.addEventListener('click', (e) => {
+    const tab = e.target.closest('.feature-tabs [data-tab]');
+    if (!tab || !modalDescription.contains(tab)) return;
+
+    const detail = tab.closest('.feature-detail');
+    if (!detail) return;
+
+    const name = tab.getAttribute('data-tab');
+    detail.querySelectorAll('.feature-tab').forEach((btn) => {
+      const active = btn === tab;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    detail.querySelectorAll('.feature-tab-panel').forEach((panel) => {
+      const active = panel.getAttribute('data-panel') === name;
+      panel.classList.toggle('active', active);
+      if (active) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+    });
+  });
+
   featureCards.forEach((card) => {
     card.style.cursor = 'pointer';
     card.setAttribute('role', 'button');
@@ -4951,18 +5672,16 @@
       const title = titleEl ? titleEl.innerText.trim() : 'Feature details';
 
       if (template) {
-        // <template> content
         openModal(title, template.innerHTML);
         return;
       }
 
-      // Fallback: short card description if template is missing
       const desc = card.querySelector('p');
       openModal(title, desc ? '<p>' + desc.innerText + '</p>' : '<p>Details coming soon.</p>');
     }
 
     card.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return; // allow guide links without opening modal
+      if (e.target.closest('a')) return;
       showFeature();
     });
 
