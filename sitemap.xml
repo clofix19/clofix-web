@@ -61,6 +61,10 @@
     <lastmod>2026-08-13</lastmod>
   </sitemap>
   <sitemap>
+    <loc>https://clofix.com/xml/clofix-one-sitemap.xml</loc>
+    <lastmod>2026-09-25</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://clofix.com/xml/clofix-api-sitemap.xml</loc>
     <lastmod>2026-08-13</lastmod>
   </sitemap>

@@ -3596,6 +3596,7 @@
                     </div>
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title">Platform</h4>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
                       <a role="menuitem" href="/clofix-agent" class="c-dropdown__mega-link">Nano Agent</a>
                       <a role="menuitem" href="/clofix-api" class="c-dropdown__mega-link">Core API</a>
                       <a role="menuitem" href="/clofix-load-balancer" class="c-dropdown__mega-link">Load Balancer</a>
@@ -3616,7 +3617,7 @@
                       <h4 class="c-dropdown__mega-title">Core Services</h4>
                       <a role="menuitem" href="/services" class="c-dropdown__mega-link">All Services</a>
                       <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
-                      <a role="menuitem" href="/services#clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
                     </div>
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title">Managed Services</h4>
@@ -3788,6 +3789,8 @@
   initNav(header);
 })();
 </script>
+
+
 
 
 
@@ -4184,61 +4187,19 @@
                     <span></span>
                 </div>
                 <p class="services-description">
-                    CloFix delivers enterprise-grade security, automation, and infrastructure solutions
-                    purpose-built for cloud-native and mission-critical applications.
+                    CloFix WAF, CloFix One DevOps Manager, managed DevOps and cloud infrastructure -
+                    plus free consultancy to map the right mix for your team.
                 </p>
             </div>
 
             <!-- Service Cards Grid -->
             <div class="services-grid">
-                <!-- Card 1: DevSecOps -->
-                <div class="service-card">
-                    <div class="card-number">01</div>
-                    <div class="card-icon">🛡️</div>
-                    <h3 class="card-title">DevSecOps</h3>
-                    <p class="card-description">
-                        Shift-left security integrated into your CI/CD pipelines for faster, safer deployments.
-                    </p>
-                    <a href="/devsecops" class="card-link">
-                        Explore Service
-                        <span class="link-arrow">→</span>
-                    </a>
-                </div>
-
-                <!-- Card 2: Automation -->
-                <div class="service-card">
-                    <div class="card-number">02</div>
-                    <div class="card-icon">⚙️</div>
-                    <h3 class="card-title">Intelligent Automation</h3>
-                    <p class="card-description">
-                        Streamline operations with AI-driven workflows and infrastructure as code.
-                    </p>
-                    <a href="/automation" class="card-link">
-                        Explore Service
-                        <span class="link-arrow">→</span>
-                    </a>
-                </div>
-
-                <!-- Card 3: On-Demand Engineering -->
-                <div class="service-card">
-                    <div class="card-number">03</div>
-                    <div class="card-icon">👨‍💻</div>
-                    <h3 class="card-title">On-Demand Engineering</h3>
-                    <p class="card-description">
-                        Expert DevOps and security engineers available when you need them most.
-                    </p>
-                    <a href="/ondemand" class="card-link">
-                        Explore Service
-                        <span class="link-arrow">→</span>
-                    </a>
-                </div>
-
-                <!-- Card 4: WAF (Featured) -->
+                <!-- Card 1: CloFix WAF -->
                 <div class="service-card featured">
                     <div class="card-badge">POPULAR</div>
-                    <div class="card-number">04</div>
+                    <div class="card-number">01</div>
                     <div class="card-icon">🔥</div>
-                    <h3 class="card-title">CloFix WAF - Web Application Firewall</h3>
+                    <h3 class="card-title">CloFix WAF</h3>
                     <p class="card-description">
                       AI-powered Web Application Firewall with OWASP Top 10 protection, DDoS mitigation, and zero-day attack prevention.
                     </p>
@@ -4248,13 +4209,27 @@
                     </a>
                 </div>
 
-                <!-- Card 5: DevOps Support -->
+                <!-- Card 2: CloFix One -->
                 <div class="service-card">
-                    <div class="card-number">05</div>
+                    <div class="card-number">02</div>
+                    <div class="card-icon">🎛️</div>
+                    <h3 class="card-title">CloFix One</h3>
+                    <p class="card-description">
+                        Your server, managed by chat. MSP-grade DevOps &amp; Autonomous AI SRE with human approval on every write.
+                    </p>
+                    <a href="/clofix-one" class="card-link">
+                        Explore Service
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Card 3: DevOps Manage Service -->
+                <div class="service-card">
+                    <div class="card-number">03</div>
                     <div class="card-icon">🚀</div>
                     <h3 class="card-title">DevOps Manage Service</h3>
                     <p class="card-description">
-                        24/7 DevOps support with CI/CD pipeline management, automation, and monitoring solutions.
+                        Hands-on DevOps operations support for CI/CD, automation, monitoring, and day-to-day delivery.
                     </p>
                     <a href="/devops-support" class="card-link">
                         Explore Service
@@ -4262,27 +4237,13 @@
                     </a>
                 </div>
 
-                <!-- Card 6: Infrastructure Management -->
+                <!-- Card 4: Cloud Infra Manage Service -->
                 <div class="service-card">
-                    <div class="card-number">06</div>
-                    <div class="card-icon">🏗️</div>
-                    <h3 class="card-title">Infrastructure Management</h3>
-                    <p class="card-description">
-                        Complete infrastructure lifecycle management including servers, networks, and storage.
-                    </p>
-                    <a href="/infrastructure-management" class="card-link">
-                        Explore Service
-                        <span class="link-arrow">→</span>
-                    </a>
-                </div>
-
-                <!-- Card 7: Cloud Management -->
-                <div class="service-card">
-                    <div class="card-number">07</div>
+                    <div class="card-number">04</div>
                     <div class="card-icon">☁️</div>
-                    <h3 class="card-title">Cloud Management</h3>
+                    <h3 class="card-title">Cloud Infra Manage Service</h3>
                     <p class="card-description">
-                        Multi-cloud management across AWS, Azure, GCP with cost optimization and security.
+                        End-to-end cloud and infrastructure management across servers, networks, and multi-cloud environments.
                     </p>
                     <a href="/cloud-management" class="card-link">
                         Explore Service
@@ -4290,10 +4251,10 @@
                     </a>
                 </div>
 
-                <!-- Card 8: Free DevOps Consultancy -->
+                <!-- Card 5: Free DevOps Consultancy -->
                 <div class="service-card free-consultancy">
                     <div class="card-badge">FREE</div>
-                    <div class="card-number">08</div>
+                    <div class="card-number">05</div>
                     <div class="card-icon">🎯</div>
                     <h3 class="card-title">Free DevOps Consultancy</h3>
                     <p class="card-description">
@@ -4836,6 +4797,8 @@
     </ul>
   </div>
 </footer>
+
+
 
 
 
