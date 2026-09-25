@@ -3915,7 +3915,7 @@ img.c-logo__img {
 }
 
 @media (max-width: 960px) {
-  /* Diagram/demo containers only — do not reshape site header/footer chrome */
+  /* Diagram/demo containers only - do not reshape site header/footer chrome */
   .diagram-section .container,
   .c-hero-section .container.diagram-wrap {
     border-radius: 2rem;

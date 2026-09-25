@@ -1387,7 +1387,7 @@
                           </div>
                       </div>
                       <p class="lb-how-text">CloFix Load Balancer sits between clients and backend servers, intelligently distributing traffic based on configurable algorithms. Health checks run continuously - unhealthy backends are automatically removed from rotation based on max_fails (default 3) and fail_timeout (default 30s). Backend information hiding automatically strips 30+ sensitive headers from responses, including Server, X-Powered-By, X-Backend-Server, and Via headers. Response body URL rewriting converts internal backend URLs to frontend domain in HTML, JSON, and XML content. Real-time notifications alert via webhook when backends go down or recover. Session persistence (sticky sessions) ensures users stay on the same backend via cookies. Configuration supports weight-based distribution for uneven backend capacities, backup servers for failover, and connection pooling for optimal performance. All this runs with less than 1ms latency overhead.</p>
-                      <p class="lb-how-docs"><strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> — Backend configuration, load balancing algorithms, health checks, and security hardening</p>
+                      <p class="lb-how-docs"><strong>Documentation:</strong> <a href="https://clofix.com/clofix-load-balancer" target="_blank" rel="noopener noreferrer">CloFix Load Balancer Guide</a> - Backend configuration, load balancing algorithms, health checks, and security hardening</p>
                   </div>
               </div>
           </template>
@@ -5431,7 +5431,7 @@
       const clone = li.cloneNode(true);
       const strongClone = clone.querySelector('strong');
       if (strongClone) strongClone.remove();
-      let desc = clone.textContent.replace(/^[\s:–—-]+/, '').trim();
+      let desc = clone.textContent.replace(/^[\s:–--]+/, '').trim();
       return { title: title || desc, desc: title ? desc : '' };
     }
     const text = li.textContent.trim();
