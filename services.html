@@ -6,21 +6,295 @@
   <link rel="canonical" href="https://clofix.com/services" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="author" content="CloFix InfoTech" />
-  <meta name="description" content="CloFix services: AI WAF, DevSecOps, automation, on-demand engineering, cloud and infrastructure management, DNS, and DevOps support for modern teams." />
+  <meta name="description" content="CloFix services: CloFix WAF, CloFix One DevOps Manager, DevOps Manage Service, and Cloud Infra Manage Service for secure cloud operations." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="CloFix Services | WAF, DevSecOps, Cloud &amp; Automation" />
-  <meta property="og:description" content="Explore CloFix services spanning WAF protection, DevSecOps, automation, on-demand engineering, and cloud operations." />
+  <meta property="og:title" content="CloFix Services | WAF, CloFix One, DevOps &amp; Cloud Infra" />
+  <meta property="og:description" content="Four CloFix offerings: CloFix WAF, CloFix One DevOps Manager, DevOps Manage Service, and Cloud Infra Manage Service." />
   <meta property="og:url" content="https://clofix.com/services" />
   <meta property="og:image" content="https://clofix.com/img/share.jpg" />
   <meta property="og:site_name" content="CloFix InfoTech" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CloFix Services | WAF, DevSecOps, Cloud &amp; Automation" />
-  <meta name="twitter:description" content="Explore CloFix services spanning WAF protection, DevSecOps, automation, on-demand engineering, and cloud operations." />
+  <meta name="twitter:title" content="CloFix Services | WAF, CloFix One, DevOps &amp; Cloud Infra" />
+  <meta name="twitter:description" content="Four CloFix offerings: CloFix WAF, CloFix One DevOps Manager, DevOps Manage Service, and Cloud Infra Manage Service." />
   <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
   <meta name="twitter:site" content="@clofix19" />
-  <title>CloFix Services | WAF, DevSecOps, Cloud &amp; Automation</title>
+  <title>CloFix Services | WAF, CloFix One, DevOps &amp; Cloud Infra</title>
   <link href="style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --sv-page: #071530;
+      --sv-card: linear-gradient(165deg, #152a4d 0%, #0f1f3d 55%, #0c1a35 100%);
+      --sv-border: rgba(148, 163, 184, 0.22);
+      --sv-text: #e2e8f0;
+      --sv-muted: #cbd5e1;
+      --sv-sky: #38bdf8;
+      --sv-amber: #f59e0b;
+    }
+    body { background: var(--sv-page); }
+    main.sv-page { background: var(--sv-page); padding: 0 0 4rem; }
+
+    .sv-hero {
+      padding: 72px 0 40px;
+      text-align: center;
+      position: relative;
+    }
+    .sv-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(56, 189, 248, .12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sv-hero__inner { position: relative; z-index: 1; }
+    .sv-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, .1);
+      border: 1px solid rgba(56, 189, 248, .28);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 22px;
+    }
+    .sv-hero h1 {
+      font-family: 'Hind', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .sv-hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sv-hero__sub {
+      font-size: 1.05rem;
+      color: #bfdbfe;
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .sv-grid-wrap { padding: 10px 0 20px; }
+    .sv-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 900px) {
+      .sv-grid { grid-template-columns: 1fr; }
+    }
+
+    .sv-card {
+      background: var(--sv-card);
+      border: 1px solid var(--sv-border);
+      border-radius: 16px;
+      padding: 26px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 280px;
+      position: relative;
+      box-shadow: 0 12px 28px rgba(0,0,0,.28);
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .sv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(90deg, transparent, var(--sv-accent, #38bdf8), transparent);
+      opacity: .9;
+    }
+    .sv-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, .45);
+      box-shadow: 0 16px 36px rgba(0,0,0,.38);
+    }
+    .sv-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sv-card__badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, .14);
+      border: 1px solid rgba(56, 189, 248, .32);
+      border-radius: 40px;
+      padding: 5px 12px;
+      white-space: nowrap;
+    }
+    .sv-card__num {
+      font-family: 'Hind', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: .08em;
+    }
+    .sv-card h2 {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .sv-card__tagline {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #7dd3fc;
+      margin: -4px 0 0;
+    }
+    .sv-card__desc {
+      font-size: 0.95rem;
+      color: var(--sv-text);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .sv-card__list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    .sv-card__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+    .sv-card__list li::before {
+      content: '✔';
+      color: #34d399;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .sv-card__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+    .sv-card__actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 38px;
+      padding: 0 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: .2s;
+    }
+    .sv-btn-primary {
+      background: rgba(56, 189, 248, .16);
+      border: 1px solid rgba(56, 189, 248, .4);
+      color: #e0f2fe;
+    }
+    .sv-btn-primary:hover {
+      background: rgba(56, 189, 248, .28);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .sv-btn-ghost {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(148, 163, 184, .25);
+      color: #cbd5e1;
+    }
+    .sv-btn-ghost:hover {
+      border-color: rgba(148, 163, 184, .45);
+      color: #fff;
+    }
+
+    .sv-cta {
+      margin-top: 36px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 70%, #2563eb 100%);
+      border-radius: 16px;
+      padding: 40px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .sv-cta::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+    .sv-cta__text { position: relative; z-index: 1; }
+    .sv-cta__text h2 {
+      font-family: 'Hind', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    .sv-cta__text p {
+      font-size: .95rem;
+      color: #bfdbfe;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0;
+    }
+    .sv-cta__btns {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .sv-cta__btns a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 22px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: .2s;
+    }
+    .sv-cta__btns a.primary {
+      background: #fff;
+      color: #1d4ed8;
+    }
+    .sv-cta__btns a.secondary {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,.45);
+    }
+    .sv-cta__btns a:hover { transform: translateY(-2px); opacity: .95; }
+  </style>
+
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
   <script type="application/ld+json">
   {
@@ -28,7 +302,7 @@
     "@type": "CollectionPage",
     "name": "CloFix Services",
     "url": "https://clofix.com/services",
-    "description": "Service hub for CloFix WAF, DevSecOps, automation, and cloud engineering.",
+    "description": "CloFix WAF, CloFix One DevOps Manager, DevOps Manage Service, and Cloud Infra Manage Service.",
     "isPartOf": { "@type": "WebSite", "name": "CloFix InfoTech", "url": "https://clofix.com/" },
     "provider": { "@type": "Organization", "name": "CloFix InfoTech", "url": "https://clofix.com/" }
   }
@@ -96,18 +370,16 @@
                 <div class="c-dropdown__mega-wrap">
                   <div class="c-dropdown__mega-grid">
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Security &amp; Ops</h4>
+                      <h4 class="c-dropdown__mega-title">Core Services</h4>
                       <a role="menuitem" href="/services" class="c-dropdown__mega-link">All Services</a>
-                      <a role="menuitem" href="/devsecops" class="c-dropdown__mega-link">DevSecOps</a>
-                      <a role="menuitem" href="/automation" class="c-dropdown__mega-link">Automation</a>
-                      <a role="menuitem" href="/ondemand" class="c-dropdown__mega-link">On-Demand Engineering</a>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
+                      <a role="menuitem" href="/services#clofix-one" class="c-dropdown__mega-link">CloFix One</a>
                     </div>
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Cloud &amp; Infra</h4>
-                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link">Cloud Management</a>
+                      <h4 class="c-dropdown__mega-title">Managed Services</h4>
+                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link">DevOps Manage Service</a>
+                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link">Cloud Infra Manage Service</a>
                       <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link">Infrastructure</a>
-                      <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS</a>
-                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link">DevOps Support</a>
                     </div>
                   </div>
                 </div>
@@ -276,51 +548,122 @@
 
 
 
-<main class="cf-page container section">
-    <header class="cf-page__intro">
-      <p class="cf-page__eyebrow">Company offerings</p>
-      <h1 class="heading--1">CloFix Services</h1>
-      <p class="heading--4">
-        Security and cloud operations services built around CloFix WAF - from product protection to DevSecOps delivery and on-demand engineering.
-      </p>
-    </header>
 
-    <section class="cf-hub" aria-labelledby="svc-product">
-      <h2 id="svc-product" class="heading--2">Product &amp; protection</h2>
-      <div class="cf-hub__grid">
-        <a class="cf-hub__card" href="/waf"><h3>CloFix WAF</h3><p>Global AI-powered web application firewall.</p></a>
-        <a class="cf-hub__card" href="/features"><h3>Features</h3><p>OWASP, bot, DDoS, API, and zero-day defenses.</p></a>
-        <a class="cf-hub__card" href="/pricing"><h3>Pricing</h3><p>Transparent plans for teams of every size.</p></a>
-        <a class="cf-hub__card" href="/free-trial"><h3>Free Trial</h3><p>Evaluate CloFix WAF in your environment.</p></a>
+<main class="sv-page">
+    <section class="sv-hero">
+      <div class="container sv-hero__inner">
+        <div class="sv-eyebrow">Company offerings</div>
+        <h1>CloFix <span>Services</span></h1>
+        <p class="sv-hero__sub">
+          Four clear offerings to protect applications, manage DevOps, and run cloud infrastructure with CloFix.
+        </p>
       </div>
     </section>
 
-    <section class="cf-hub" aria-labelledby="svc-ops">
-      <h2 id="svc-ops" class="heading--2">Security &amp; operations</h2>
-      <div class="cf-hub__grid">
-        <a class="cf-hub__card" href="/devsecops"><h3>DevSecOps</h3><p>Secure pipelines and shift-left practices.</p></a>
-        <a class="cf-hub__card" href="/automation"><h3>Automation</h3><p>Infrastructure and security automation.</p></a>
-        <a class="cf-hub__card" href="/ondemand"><h3>On-Demand Engineering</h3><p>Expert help when you need it most.</p></a>
-        <a class="cf-hub__card" href="/devops-support"><h3>DevOps Support</h3><p>Managed support for cloud delivery teams.</p></a>
-      </div>
-    </section>
+    <section class="sv-grid-wrap" aria-label="CloFix service offerings">
+      <div class="container">
+        <div class="sv-grid">
 
-    <section class="cf-hub" aria-labelledby="svc-cloud">
-      <h2 id="svc-cloud" class="heading--2">Cloud &amp; infrastructure</h2>
-      <div class="cf-hub__grid">
-        <a class="cf-hub__card" href="/cloud-management"><h3>Cloud Management</h3><p>Multi-cloud operations and governance.</p></a>
-        <a class="cf-hub__card" href="/infrastructure-management"><h3>Infrastructure</h3><p>Reliable infra design and management.</p></a>
-        <a class="cf-hub__card" href="/dns"><h3>DNS</h3><p>DNS tooling and propagation checks.</p></a>
-        <a class="cf-hub__card" href="/devops-training"><h3>DevOps Training</h3><p>Career accelerator program from CloFix School.</p></a>
-      </div>
-    </section>
+          <!-- 1. CloFix WAF -->
+          <article class="sv-card" id="clofix-waf" style="--sv-accent:#38bdf8">
+            <div class="sv-card__top">
+              <span class="sv-card__num">01</span>
+              <span class="sv-card__badge">Product</span>
+            </div>
+            <h2>CloFix WAF</h2>
+            <p class="sv-card__tagline">AI-powered Web Application Firewall</p>
+            <p class="sv-card__desc">
+              Protect websites, APIs, and apps with OWASP Top 10 coverage, bot mitigation, DDoS defense, and a clear security dashboard.
+            </p>
+            <ul class="sv-card__list">
+              <li>OWASP, bot, and zero-day protection</li>
+              <li>DDoS mitigation and traffic visibility</li>
+              <li>Fast DNS-based setup and Android app</li>
+            </ul>
+            <div class="sv-card__actions">
+              <a class="sv-btn-primary" href="/waf">Explore CloFix WAF →</a>
+              <a class="sv-btn-ghost" href="/free-trial">Free Trial</a>
+            </div>
+          </article>
 
-    <section class="cf-hub cf-hub--cta" aria-label="Get started">
-      <h2 class="heading--2">Talk to CloFix</h2>
-      <p class="heading--4">Tell us about your stack - we will map the right WAF and service mix.</p>
-      <div class="unique-hero-cta">
-        <a class="c-button c-button--primary" href="/contact">Contact Us</a>
-        <a class="c-button c-button--secondary" href="/free-consultancy">Free Consultancy</a>
+          <!-- 2. CloFix One -->
+          <article class="sv-card" id="clofix-one" style="--sv-accent:#f59e0b">
+            <div class="sv-card__top">
+              <span class="sv-card__num">02</span>
+              <span class="sv-card__badge">DevOps Manager</span>
+            </div>
+            <h2>CloFix One</h2>
+            <p class="sv-card__tagline">DevOps Manager platform</p>
+            <p class="sv-card__desc">
+              CloFix One is the DevOps manager that brings delivery, monitoring, and operational control into one practical workspace for your teams.
+            </p>
+            <ul class="sv-card__list">
+              <li>Central DevOps management view</li>
+              <li>Pipeline, release, and ops visibility</li>
+              <li>Built to work with CloFix security stack</li>
+            </ul>
+            <div class="sv-card__actions">
+              <a class="sv-btn-primary" href="/contact?topic=clofix-one">Talk about CloFix One →</a>
+              <a class="sv-btn-ghost" href="/free-consultancy">Free Consultancy</a>
+            </div>
+          </article>
+
+          <!-- 3. DevOps Manage Service -->
+          <article class="sv-card" id="devops-manage-service" style="--sv-accent:#22c55e">
+            <div class="sv-card__top">
+              <span class="sv-card__num">03</span>
+              <span class="sv-card__badge">Managed Service</span>
+            </div>
+            <h2>DevOps Manage Service</h2>
+            <p class="sv-card__tagline">Hands-on DevOps operations support</p>
+            <p class="sv-card__desc">
+              Managed DevOps support for CI/CD, automation, monitoring, and day-to-day delivery - so your team ships faster with less operational load.
+            </p>
+            <ul class="sv-card__list">
+              <li>CI/CD pipeline management</li>
+              <li>Automation and monitoring support</li>
+              <li>Reliable response for delivery teams</li>
+            </ul>
+            <div class="sv-card__actions">
+              <a class="sv-btn-primary" href="/devops-support">Explore DevOps Manage →</a>
+              <a class="sv-btn-ghost" href="/contact">Contact</a>
+            </div>
+          </article>
+
+          <!-- 4. Cloud Infra Manage Service -->
+          <article class="sv-card" id="cloud-infra-manage-service" style="--sv-accent:#a78bfa">
+            <div class="sv-card__top">
+              <span class="sv-card__num">04</span>
+              <span class="sv-card__badge">Cloud &amp; Infra</span>
+            </div>
+            <h2>Cloud Infra Manage Service</h2>
+            <p class="sv-card__tagline">Cloud and infrastructure operations</p>
+            <p class="sv-card__desc">
+              End-to-end cloud and infrastructure management across servers, networks, and multi-cloud environments - designed for stability, cost control, and security.
+            </p>
+            <ul class="sv-card__list">
+              <li>Multi-cloud operations and governance</li>
+              <li>Server, network, and storage lifecycle</li>
+              <li>Hardening, monitoring, and optimization</li>
+            </ul>
+            <div class="sv-card__actions">
+              <a class="sv-btn-primary" href="/cloud-management">Explore Cloud Infra →</a>
+              <a class="sv-btn-ghost" href="/infrastructure-management">Infrastructure</a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="sv-cta" aria-label="Get started">
+          <div class="sv-cta__text">
+            <h2>Need the right service mix?</h2>
+            <p>Tell us about your stack - we will map CloFix WAF, CloFix One, DevOps Manage, or Cloud Infra to your goals.</p>
+          </div>
+          <div class="sv-cta__btns">
+            <a class="primary" href="/contact">Contact Us</a>
+            <a class="secondary" href="/free-consultancy">Free Consultancy</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -401,6 +744,7 @@
     </ul>
   </div>
 </footer>
+
 
 
 
