@@ -178,6 +178,76 @@
     }
     .btn-secondary:hover { background: rgba(255,255,255,0.06); }
 
+    .reg-deadline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(245, 158, 11, 0.55);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(245, 158, 11, 0.08));
+      box-shadow: 0 0 24px rgba(245, 158, 11, 0.18);
+      color: #fde68a;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .reg-deadline strong {
+      color: #fff;
+      font-weight: 800;
+      background: rgba(245, 158, 11, 0.35);
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .countdown-item {
+      min-width: 72px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      background: rgba(15, 23, 42, 0.65);
+      text-align: center;
+    }
+    .countdown-num {
+      display: block;
+      font-size: 1.55rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fbbf24;
+    }
+    .countdown.is-ended .countdown-num { color: #f87171; }
+
+    .meta-item.meta-item--deadline {
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(245, 158, 11, 0.1);
+    }
+    .meta-item--deadline .meta-icon {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+    }
+    .meta-item--deadline small { color: #fbbf24; }
+    .meta-item--deadline strong { color: #fff; }
+
     .event-card {
       position: relative; padding: 30px;
       border: 1px solid var(--border); border-radius: var(--radius-lg);
@@ -721,12 +791,45 @@
             <a href="https://forms.gle/LXp9hqA1ansMnoB5A" class="btn btn-primary" target="_blank" rel="noopener">Register for Free →</a>
             <a href="#about" class="btn btn-secondary">Why this webinar</a>
           </div>
+          <p class="reg-deadline" role="status">
+            Registration deadline: <strong>October 16, 2026</strong>
+          </p>
+          <div
+            class="countdown"
+            id="regCountdown"
+            data-deadline="2026-10-16T23:59:59+06:00"
+            aria-label="Countdown to registration deadline"
+          >
+            <div class="countdown-item">
+              <span class="countdown-num" data-unit="days">--</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-num" data-unit="hours">--</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-num" data-unit="mins">--</span>
+              <span class="countdown-label">Mins</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-num" data-unit="secs">--</span>
+              <span class="countdown-label">Secs</span>
+            </div>
+          </div>
         </div>
 
         <div class="event-card">
           <span class="free-label">100% Free</span>
           <h2>CloFix 5-Day Webinar: DevOps &amp; Cybersecurity Knowledge Sharing</h2>
           <div class="event-meta">
+            <div class="meta-item meta-item--deadline">
+              <div class="meta-icon">⏰</div>
+              <div class="meta-content">
+                <small>Registration Deadline</small>
+                <strong>October 16, 2026</strong>
+              </div>
+            </div>
             <div class="meta-item">
               <div class="meta-icon">📅</div>
               <div class="meta-content">
@@ -985,6 +1088,9 @@
             Join CloFix Infotech for a free 5-day DevOps &amp; Cybersecurity knowledge-sharing webinar.
             Learn. Ask. Explore. Build. - and compete for gifts and a performance-based certificate.
           </p>
+          <p class="reg-deadline" role="status" style="margin: 0 auto 22px;">
+            Registration deadline: <strong>October 16, 2026</strong>
+          </p>
           <a href="https://forms.gle/LXp9hqA1ansMnoB5A" class="btn btn-primary" target="_blank" rel="noopener">Register for Free →</a>
         </div>
       </div>
@@ -1070,5 +1176,50 @@
 </footer>
 
 <script src="js/chrome.js" defer></script>
+<script>
+(function () {
+  var root = document.getElementById("regCountdown");
+  if (!root) return;
+  var deadline = new Date(root.getAttribute("data-deadline")).getTime();
+  if (isNaN(deadline)) return;
+
+  var daysEl = root.querySelector('[data-unit="days"]');
+  var hoursEl = root.querySelector('[data-unit="hours"]');
+  var minsEl = root.querySelector('[data-unit="mins"]');
+  var secsEl = root.querySelector('[data-unit="secs"]');
+
+  function pad(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
+
+  function tick() {
+    var now = Date.now();
+    var diff = deadline - now;
+    if (diff <= 0) {
+      daysEl.textContent = "00";
+      hoursEl.textContent = "00";
+      minsEl.textContent = "00";
+      secsEl.textContent = "00";
+      root.classList.add("is-ended");
+      root.setAttribute("aria-label", "Registration deadline has passed");
+      return;
+    }
+    var secs = Math.floor(diff / 1000);
+    var days = Math.floor(secs / 86400);
+    secs -= days * 86400;
+    var hours = Math.floor(secs / 3600);
+    secs -= hours * 3600;
+    var mins = Math.floor(secs / 60);
+    secs -= mins * 60;
+    daysEl.textContent = pad(days);
+    hoursEl.textContent = pad(hours);
+    minsEl.textContent = pad(mins);
+    secsEl.textContent = pad(secs);
+    window.setTimeout(tick, 1000);
+  }
+
+  tick();
+})();
+</script>
 </body>
 </html>
