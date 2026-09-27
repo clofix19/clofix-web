@@ -285,6 +285,10 @@
     <lastmod>2026-09-10</lastmod>
   </sitemap>
   <sitemap>
+    <loc>https://clofix.com/xml/event-sitemap.xml</loc>
+    <lastmod>2026-09-27</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://clofix.com/xml/services-sitemap.xml</loc>
     <lastmod>2026-09-25</lastmod>
   </sitemap>

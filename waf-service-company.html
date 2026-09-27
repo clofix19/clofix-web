@@ -45,20 +45,6 @@
   <link href="style.css" rel="stylesheet" />
   
   <!-- Analytics -->
-  <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ window.dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-WP02RFXGSE', {
-      send_page_view: true,
-      anonymize_ip: true,
-      page_title: 'WAF Service Company - Enterprise Web Application Firewall Provider | CloFix',
-      page_location: 'https://clofix.com/waf-service-company'
-    });
-  </script>
 
   <!-- ============================================ -->
   <!-- SCHEMA MARKUP                               -->
@@ -738,6 +724,15 @@
       .comparison-table tbody td { padding: 6px 10px; }
     }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
+    gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
+  </script>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
 </head>
 
 <body>
@@ -830,6 +825,7 @@
                   <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title">Learn</h4>
+                      <a role="menuitem" href="/event" class="c-dropdown__mega-link">Free Event</a>
                       <a role="menuitem" href="/documentation" class="c-dropdown__mega-link">Documentation Hub</a>
                       <a role="menuitem" href="/blogs" class="c-dropdown__mega-link">Blogs</a>
                       <a role="menuitem" href="/faq" class="c-dropdown__mega-link">FAQ</a>
@@ -980,6 +976,10 @@
   initNav(header);
 })();
 </script>
+
+
+
+
 
 
 
@@ -1323,6 +1323,7 @@
     <div class="c-footer__column">
       <h4 class="c-footer__subtitle">Resources</h4>
       <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/event">Free Event</a></li>
         <li><a href="/documentation">Documentation</a></li>
         <li><a href="/services">Services</a></li>
         <li><a href="/blogs">Blogs</a></li>
@@ -1361,6 +1362,10 @@
     </ul>
   </div>
 </footer>
+
+
+
+
 
 
 
