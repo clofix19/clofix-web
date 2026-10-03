@@ -1,456 +1,842 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="canonical" href="https://clofix.com/clofix-one" />
-  <title>CloFix One | Autonomous AI SRE &amp; DevOps Manager | CloFix</title>
+  <link rel="alternate" hreflang="en" href="https://clofix.com/clofix-one" />
+  <link rel="alternate" hreflang="x-default" href="https://clofix.com/clofix-one" />
 
-  <meta name="description" content="CloFix One is an MSP-grade DevOps &amp; Autonomous AI SRE platform. Manage servers by chat: Diagnose → Approve → Fix → Verify with human control on every write." />
-  <meta name="keywords" content="CloFix One, Ask SRE, Autonomous AI SRE, DevOps Manager, MSP DevOps platform, chat ops, outbound agent, human approved remediations, GitOps, VAPT, ITSM, server fleet management" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="author" content="CloFix InfoTech" />
-  <meta name="page-type" content="product-page" />
-  <meta name="theme-color" content="#071530" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="keywords" content="CloFix One, AI SRE, Autonomous AI SRE, Ask SRE, DevOps Manager, Linux server management, chatOps, approve gated remediation, systemd unit CRUD, CloFix Storage, database backup, GitOps, Terraform, MSP DevOps platform, Incident Change Management, outbound Go agent, fleet operations, ITSM, DR backup, CloFix InfoTech" />
 
-  <!-- Open Graph -->
+  <title>CloFix One | AI SRE &amp; DevOps Manager for Linux Fleets</title>
+  <meta name="description" content="CloFix One is an AI SRE and DevOps Manager for Linux fleets. Chat to diagnose, approve, fix, and verify with human gates-plus storage, DB backups, GitOps, Terraform, and ITSM in one control plane." />
+
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="CloFix One | Your server, managed by chat" />
-  <meta property="og:description" content="MSP-grade DevOps &amp; Autonomous AI SRE. Chat-first operations with allowlisted remediations and human approval on every write." />
-  <meta property="og:url" content="https://clofix.com/clofix-one" />
-  <meta property="og:image" content="https://clofix.com/img/clofix-one-ask-sre.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="CloFix One Ask SRE chat interface" />
   <meta property="og:site_name" content="CloFix InfoTech" />
   <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://clofix.com/clofix-one" />
+  <meta property="og:title" content="CloFix One | AI SRE &amp; DevOps Manager for Linux Fleets" />
+  <meta property="og:description" content="Chat-first AI SRE with human approval on every write. Linux full ops, Storage, backups, Incident &amp; Change, GitOps, and Terraform in one DevOps Manager." />
+  <meta property="og:image" content="https://clofix.com/img/clofix-one-ask-sre.png" />
+  <meta property="og:image:secure_url" content="https://clofix.com/img/clofix-one-ask-sre.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="678" />
+  <meta property="og:image:alt" content="CloFix One Ask SRE chat interface diagnosing and fixing a Linux server with human approval" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@clofix19" />
-  <meta name="twitter:title" content="CloFix One | Your server, managed by chat" />
-  <meta name="twitter:description" content="Autonomous AI SRE with human approval. Diagnose → Approve → Fix → Verify." />
+  <meta name="twitter:creator" content="@clofix19" />
+  <meta name="twitter:title" content="CloFix One | AI SRE &amp; DevOps Manager for Linux Fleets" />
+  <meta name="twitter:description" content="Your server, managed by chat. Diagnose → Approve → Fix → Verify with human control on every write." />
   <meta name="twitter:image" content="https://clofix.com/img/clofix-one-ask-sre.png" />
+  <meta name="twitter:image:alt" content="CloFix One Ask SRE product preview" />
 
-  <!-- Icons -->
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@500;600;700&amp;family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
-
-  <!-- Schema: SoftwareApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "CloFix One",
-    "alternateName": ["Ask SRE", "CloFix DevOps Manager"],
-    "applicationCategory": "BusinessApplication",
-    "applicationSubCategory": "DevOps / SRE Platform",
-    "operatingSystem": "Linux",
-    "url": "https://clofix.com/clofix-one",
-    "image": "https://clofix.com/img/clofix-one-ask-sre.png",
-    "description": "MSP-grade DevOps and Autonomous AI SRE platform. Operators chat with servers: CloFix One gathers host evidence via an outbound agent, proposes allowlisted fixes, waits for human approval, executes, verifies, and drafts a postmortem.",
-    "featureList": [
-      "Ask SRE chat-first operations",
-      "Troubleshoot and Fix Engine with playbooks",
-      "Human Approve for every write",
-      "Outbound Go agent",
-      "Fleet monitoring and alerts",
-      "Security Hub and VAPT Lab",
-      "GitOps and deployments",
-      "ITSM incidents and RCA"
-    ],
-    "offers": [
-      { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Person", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      { "@type": "Offer", "name": "Standard", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      { "@type": "Offer", "name": "Team", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      { "@type": "Offer", "name": "Enterprise / MSSP", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
-    ],
-    "brand": { "@type": "Brand", "name": "CloFix", "logo": "https://clofix.com/img/logo.png" },
-    "provider": {
-      "@type": "Organization",
-      "name": "CloFix Infotech",
-      "url": "https://clofix.com/",
-      "logo": "https://clofix.com/img/logo.png",
-      "sameAs": [
-        "https://x.com/clofix19",
-        "https://www.linkedin.com/company/clofix-infotech",
-        "https://www.facebook.com/share/1CjDhd7WfX/",
-        "https://youtube.com/@clofix-infotech"
-      ]
-    },
-    "audience": {
-      "@type": "Audience",
-      "audienceType": "MSPs, MSSPs, DevOps, SRE, and IT operations teams"
-    }
-  }
-  </script>
-
-  <!-- Schema: WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://clofix.com/clofix-one#webpage",
-    "url": "https://clofix.com/clofix-one",
-    "name": "CloFix One | Autonomous AI SRE & DevOps Manager",
-    "description": "Your server, managed by chat. Diagnose → Approve → Fix → Verify with human control on every write.",
-    "isPartOf": { "@type": "WebSite", "name": "CloFix InfoTech", "url": "https://clofix.com/" },
-    "about": { "@id": "https://clofix.com/clofix-one#product" },
-    "primaryImageOfPage": { "@type": "ImageObject", "url": "https://clofix.com/img/clofix-one-ask-sre.png" },
-    "inLanguage": "en-US",
-    "datePublished": "2026-09-25",
-    "dateModified": "2026-09-25"
-  }
-  </script>
-
-  <!-- Schema: BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://clofix.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://clofix.com/services" },
-      { "@type": "ListItem", "position": 3, "name": "CloFix One", "item": "https://clofix.com/clofix-one" }
-    ]
-  }
-  </script>
-
-  <!-- Schema: HowTo lifecycle -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How CloFix One Ask SRE works",
-    "description": "Chat-first incident response with evidence, human approval, and verified remediations.",
-    "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Chat", "text": "Describe the symptom in natural language inside Ask SRE." },
-      { "@type": "HowToStep", "position": 2, "name": "Diagnose", "text": "Outbound agent runs live probes: metrics, logs, services, ports, failed units." },
-      { "@type": "HowToStep", "position": 3, "name": "Analyze", "text": "Rank hypotheses with confidence and cited evidence IDs." },
-      { "@type": "HowToStep", "position": 4, "name": "Propose", "text": "Build an allowlisted fix plan with risk stamped from read-only to critical." },
-      { "@type": "HowToStep", "position": 5, "name": "Approve", "text": "Human reviews the plan and Approves or Rejects before any write." },
-      { "@type": "HowToStep", "position": 6, "name": "Execute", "text": "Prechecks run, then only approved allowlisted actions execute on the host." },
-      { "@type": "HowToStep", "position": 7, "name": "Verify", "text": "Confirm active/desired state - not just exit code 0." },
-      { "@type": "HowToStep", "position": 8, "name": "Postmortem", "text": "Draft a postmortem and keep knowledge for the next incident." }
-    ]
-  }
-  </script>
-
   <style>
     :root {
-      --one-page: #071530;
-      --one-card: linear-gradient(165deg, #152a4d 0%, #0f1f3d 55%, #0c1a35 100%);
-      --one-border: rgba(148, 163, 184, 0.22);
-      --one-text: #e2e8f0;
-      --one-muted: #cbd5e1;
-      --one-sky: #38bdf8;
-      --one-amber: #f59e0b;
-      --one-green: #34d399;
+      --ink: #e2e8f0;
+      --ink-soft: #cbd5e1;
+      --muted: #94a3b8;
+      --paper: #0f172a;
+      --paper-2: #1e293b;
+      --line: rgba(255, 255, 255, 0.1);
+      --brand: #f59e0b;
+      --brand-deep: #b45309;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --ok: #34d399;
+      --white: #ffffff;
+      --max: 1120px;
+      --radius: 14px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Sora", "Segoe UI", sans-serif;
     }
-    body { background: var(--one-page); color: var(--one-text); }
-    main.one-page { background: var(--one-page); padding: 0 0 4rem; }
-    .one-page p { color: var(--one-text) !important; }
-    .one-page h1, .one-page h2, .one-page h3 { color: #fff !important; font-family: 'Hind', sans-serif; }
 
-    .one-hero {
-      padding: 80px 0 56px;
-      text-align: center;
-      position: relative;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
-    .one-hero::before {
-      content: '';
-      position: absolute; inset: 0;
+    main p { color: var(--muted); }
+    main a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, .btn { font: inherit; cursor: pointer; border: 0; }
+
+    /* Atmosphere */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
       background:
-        radial-gradient(ellipse 60% 45% at 50% 0%, rgba(245, 158, 11, .14) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(56, 189, 248, .1) 0%, transparent 60%);
+        radial-gradient(900px 500px at 12% -10%, rgba(56, 189, 248, 0.14), transparent 55%),
+        radial-gradient(700px 420px at 92% 8%, rgba(245, 158, 11, 0.12), transparent 50%),
+        radial-gradient(800px 600px at 50% 100%, rgba(14, 165, 233, 0.08), transparent 60%),
+        linear-gradient(180deg, #020617 0%, var(--paper) 40%, #0f172a 100%);
+    }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.35;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
       pointer-events: none;
     }
-    .one-hero__inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
-    .one-hero__stage {
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-    .one-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: #fcd34d; background: rgba(245, 158, 11, .12);
-      border: 1px solid rgba(245, 158, 11, .35); border-radius: 100px;
-      padding: 6px 16px; margin-bottom: 20px;
-    }
-    .one-hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 700;
-      line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.02em;
-    }
-    .one-hero__tag {
-      font-size: clamp(1.15rem, 2.4vw, 1.55rem); font-weight: 600;
-      color: #fde68a !important; margin: 0 0 14px; line-height: 1.35;
-    }
-    .one-hero__sub {
-      font-size: 1.05rem; color: #bfdbfe !important; line-height: 1.7;
-      max-width: 620px; margin: 0 auto 28px;
-    }
-    .one-hero__meta {
-      font-size: 0.85rem; color: #94a3b8 !important; margin-bottom: 28px;
-    }
-    .one-hero__meta a { color: #7dd3fc; font-weight: 600; }
-    .one-cta {
-      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
-    }
-    .one-cta a {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 46px; padding: 0 22px; border-radius: 40px;
-      font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: .2s;
-    }
-    .one-cta a.primary {
-      background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a;
-    }
-    .one-cta a.secondary {
-      background: transparent; color: #e2e8f0;
-      border: 1.5px solid rgba(148, 163, 184, .4);
-    }
-    .one-cta a:hover { transform: translateY(-2px); opacity: .95; }
 
-    .one-hero__visual {
-      margin: 36px auto 0;
-      max-width: 920px;
-      position: relative;
+    .wrap {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
     }
-    .one-hero__visual::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(56, 189, 248, .55), rgba(245, 158, 11, .35), rgba(56, 189, 248, .2));
-      z-index: 0;
-      opacity: .9;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.15rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     }
-    .one-hero__frame {
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--brand);
+      color: #0f172a;
+    }
+    .btn-primary:hover { background: #fbbf24; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink-soft);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-accent {
+      background: var(--accent);
+      color: #0f172a;
+    }
+    .btn-accent:hover { background: #7dd3fc; }
+
+    /* Hero - one composition */
+    .hero {
       position: relative;
-      z-index: 1;
-      border-radius: 18px;
+      min-height: min(100vh, 920px);
+      padding: 2.5rem 0 3.5rem;
       overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, .28);
-      background: #0b1224;
-      box-shadow:
-        0 24px 48px rgba(0, 0, 0, .45),
-        0 0 0 1px rgba(56, 189, 248, .12),
-        0 0 60px rgba(56, 189, 248, .12);
     }
-    .one-hero__frame img {
-      display: block;
-      width: 100%;
-      height: auto;
-      vertical-align: middle;
+    .hero-plane {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(115deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.88) 42%, rgba(2, 6, 23, 0.75) 100%),
+        radial-gradient(800px 420px at 20% 20%, rgba(245, 158, 11, 0.18), transparent 55%),
+        radial-gradient(700px 400px at 85% 30%, rgba(56, 189, 248, 0.16), transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.06'%3E%3Cpath d='M0 80h160M80 0v160'/%3E%3Ccircle cx='80' cy='80' r='40'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover, cover, cover, 120px 120px;
     }
-    .one-hero__caption {
-      margin-top: 12px;
-      font-size: 0.82rem;
-      color: #94a3b8 !important;
-      text-align: center;
+    .hero-plane::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 28%;
+      background: linear-gradient(180deg, transparent, var(--paper));
     }
-
-    .one-flow {
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 2.5rem;
+      align-items: end;
+      padding-top: 3rem;
+    }
+    @media (min-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1.05fr 0.95fr;
+        align-items: center;
+        min-height: 70vh;
+        padding-top: 4rem;
+      }
+    }
+    .hero-copy { color: #f8fafc; max-width: 34rem; }
+    .hero-brand {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 4.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 1rem;
+      animation: rise 0.9s ease both;
+    }
+    .hero-brand em {
+      font-style: normal;
+      color: var(--brand);
+    }
+    .hero-line {
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      color: #e2e8f0;
+      animation: rise 0.9s 0.12s ease both;
+    }
+    .hero-sub {
+      color: rgba(226, 232, 240, 0.82);
+      font-size: 1rem;
+      max-width: 32rem;
+      margin-bottom: 1.75rem;
+      animation: rise 0.9s 0.22s ease both;
+    }
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 6px;
-      justify-content: center;
-      align-items: stretch;
-      margin: 32px auto 0;
-      max-width: 1100px;
-      padding: 18px 14px;
-      background: rgba(15, 23, 42, .45);
-      border: 1px solid rgba(148, 163, 184, .22);
-      border-radius: 18px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
+      gap: 0.75rem;
+      animation: rise 0.9s 0.32s ease both;
     }
-    .one-flow__step {
+    .hero-actions .btn-primary {
+      background: var(--brand);
+      color: #0f172a;
+    }
+    .hero-actions .btn-primary:hover { background: #fbbf24; }
+    .hero-actions .btn-ghost {
+      border-color: rgba(255,255,255,0.28);
+      color: #fff;
+    }
+    .hero-actions .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: float-in 1.1s 0.2s ease both;
+    }
+    .ask-sre-panel {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 1rem 1.1rem 1.15rem;
+      color: #e2e8f0;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+    .ask-sre-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+    .dot-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .dot-live::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34d399;
+      animation: pulse 1.8s ease infinite;
+    }
+    .chat-row {
+      display: grid;
+      gap: 0.65rem;
+      font-size: 0.86rem;
+    }
+    .bubble {
+      padding: 0.7rem 0.85rem;
+      border-radius: 12px;
+      max-width: 95%;
+    }
+    .bubble.user {
+      justify-self: end;
+      background: rgba(255,255,255,0.1);
+    }
+    .bubble.agent {
+      justify-self: start;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+    }
+    .bubble strong { display: block; font-size: 0.72rem; opacity: 0.75; margin-bottom: 0.2rem; }
+    .approve-bar {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .chip {
+      font-size: 0.72rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 8px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fde68a;
+    }
+    .mini-btn {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
+      background: #34d399;
+      color: #064e3b;
+      font-weight: 600;
+    }
+    .mini-btn.secondary {
+      background: transparent;
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    /* Sections */
+    section { padding: 4.5rem 0; }
+    .section-head {
+      max-width: 40rem;
+      margin-bottom: 2.25rem;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 0.55rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.45rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.7rem;
+      color: var(--white);
+    }
+    h3 { color: var(--ink); }
+    .lead { color: var(--muted); font-size: 1.02rem; }
+
+    /* Lifecycle strip */
+    .lifecycle {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(110px, 1fr);
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .life-step {
+      text-align: center;
+      padding: 0.9rem 0.5rem;
+      border-radius: 12px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      min-width: 108px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .life-step:hover {
+      border-color: var(--brand);
+      transform: translateY(-2px);
+    }
+    .life-n {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--brand);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .life-l { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); }
+
+    /* Audience */
+    .audience-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .audience-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .audience-item {
+      padding: 1.25rem 1.2rem;
+      border-top: 3px solid var(--brand);
+      background: linear-gradient(180deg, #1e293b, #0f172a);
+      border-radius: 0 0 12px 12px;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .audience-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    .audience-item p { font-size: 0.9rem; color: var(--muted); }
+
+    /* Pillars - not cards in hero; here as content blocks */
+    .pillars {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 800px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1100px) {
+      .pillars { grid-template-columns: repeat(3, 1fr); }
+    }
+    .pillar {
+      padding: 1.4rem 1.3rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(30, 41, 59, 0.72);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .pillar:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+      background: #1e293b;
+    }
+    .pillar-n {
+      font-family: var(--font-display);
+      color: var(--brand);
+      font-size: 0.95rem;
+      margin-bottom: 0.45rem;
+    }
+    .pillar h3 {
+      font-size: 1.12rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.015em;
+      color: var(--white);
+    }
+    .pillar p { font-size: 0.9rem; color: var(--muted); }
+
+    /* Platform capabilities */
+    .band {
+      background: linear-gradient(165deg, #020617 0%, #0f172a 55%, #1e293b 100%);
+      color: #e2e8f0;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .band .wrap { position: relative; z-index: 1; }
+    .band .eyebrow { color: var(--accent); }
+    .band h2 { color: #fff; }
+    .band .lead { color: #94a3b8; }
+    .cap-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .cap-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .cap-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .cap {
+      padding: 1.15rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+    }
+    .cap h3 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--brand);
+    }
+    .cap p { font-size: 0.88rem; color: #94a3b8; }
+
+    /* Table-like feature list */
+    .feature-list {
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--paper-2);
+    }
+    .feature-row {
+      display: grid;
+      gap: 0.35rem;
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid var(--line);
+      grid-template-columns: 1fr;
+    }
+    .feature-row:last-child { border-bottom: 0; }
+    @media (min-width: 720px) {
+      .feature-row {
+        grid-template-columns: 220px 1fr;
+        gap: 1.25rem;
+        align-items: start;
+      }
+    }
+    .feature-row dt {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--brand);
+    }
+    .feature-row dd { font-size: 0.9rem; color: var(--muted); }
+    .feature-row dd code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82em;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+
+    /* Safety */
+    .safety-grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 800px) {
+      .safety-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .safety-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.85rem;
+      padding: 1rem 1.05rem;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .safety-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--ok);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .safety-item h3 { font-size: 0.95rem; margin-bottom: 0.2rem; color: var(--white); }
+    .safety-item p { font-size: 0.85rem; color: var(--muted); }
+
+    /* Architecture */
+    .arch {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      min-width: 108px;
-      padding: 12px 10px;
-      border-radius: 14px;
-      background: linear-gradient(165deg, #152a4d 0%, #0f1f3d 100%);
-      border: 1px solid rgba(56, 189, 248, .28);
+      gap: 0.55rem;
       text-align: center;
-      transition: border-color .2s, transform .2s;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px dashed var(--line);
+      background: rgba(30, 41, 59, 0.55);
     }
-    .one-flow__step:hover {
-      border-color: rgba(245, 158, 11, .5);
-      transform: translateY(-2px);
+    .arch-node {
+      padding: 0.85rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      min-width: min(100%, 320px);
     }
-    .one-flow__num {
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: .12em;
-      color: #f59e0b;
-    }
-    .one-flow__label {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #e0f2fe;
-      line-height: 1.2;
-    }
-    .one-flow__arrow {
-      display: flex;
-      align-items: center;
-      color: #38bdf8;
-      font-size: 1.1rem;
-      font-weight: 700;
-      padding: 0 2px;
-      align-self: center;
-    }
-    @media (max-width: 720px) {
-      .one-flow__arrow { display: none; }
-      .one-flow__step { min-width: calc(50% - 10px); flex: 1 1 calc(50% - 10px); }
+    .arch-node.top { background: #1e293b; border: 1px solid var(--line); color: var(--ink); }
+    .arch-node.mid { background: var(--brand); color: #0f172a; }
+    .arch-node.bot { background: #020617; color: var(--accent); border: 1px solid var(--line); }
+    .arch-arrow {
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
     }
 
-    .one-section { padding: 48px 0 8px; }
-    .one-section__head { max-width: 720px; margin: 0 auto 28px; text-align: center; }
-    .one-section__head h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin: 0 0 12px;
-    }
-    .one-section__head p {
-      font-size: 1rem; color: #cbd5e1 !important; line-height: 1.7; margin: 0;
-    }
-
-    .one-grid {
-      display: grid; gap: 18px;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    }
-    .one-grid--2 { grid-template-columns: repeat(2, 1fr); }
-    .one-grid--3 { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 900px) {
-      .one-grid--2, .one-grid--3 { grid-template-columns: 1fr; }
-    }
-
-    .one-card {
-      background: var(--one-card);
-      border: 1px solid var(--one-border);
-      border-radius: 16px; padding: 22px 20px;
-      box-shadow: 0 12px 28px rgba(0,0,0,.28);
-      position: relative;
-    }
-    .one-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      border-radius: 16px 16px 0 0;
-      background: linear-gradient(90deg, transparent, var(--ac, #f59e0b), transparent);
-      opacity: .85;
-    }
-    .one-card h3 {
-      font-size: 1.1rem; font-weight: 700; margin: 0 0 8px; color: #fff !important;
-    }
-    .one-card p, .one-card li {
-      font-size: 0.9rem; color: #e2e8f0 !important; line-height: 1.6; margin: 0;
-    }
-    .one-card ul { margin: 10px 0 0; padding-left: 1.1rem; }
-    .one-card li { margin-bottom: 6px; }
-    .one-card__label {
-      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: #fcd34d; margin-bottom: 10px;
-    }
-
-    .one-band {
-      background: rgba(15, 23, 42, .45);
-      border: 1px solid var(--one-border);
-      border-radius: 16px; padding: 22px 24px; margin-top: 18px;
-    }
-    .one-band p { margin: 0; line-height: 1.7; color: #e2e8f0 !important; }
-    .one-band strong { color: #fff; }
-
-    .one-table-wrap {
-      overflow-x: auto; border-radius: 14px;
-      border: 1px solid var(--one-border);
-      background: rgba(15, 23, 42, .4);
-    }
-    .one-table {
-      width: 100%; border-collapse: collapse; min-width: 560px;
-    }
-    .one-table th, .one-table td {
-      text-align: left; padding: 12px 16px; vertical-align: top;
-      border-bottom: 1px solid rgba(148, 163, 184, .15);
-      font-size: 0.9rem; line-height: 1.55;
-    }
-    .one-table th {
-      color: #7dd3fc !important; font-weight: 700; font-size: 0.78rem;
-      letter-spacing: .06em; text-transform: uppercase;
-      background: rgba(56, 189, 248, .08);
-    }
-    .one-table td { color: #e2e8f0 !important; }
-    .one-table td:first-child { color: #fff !important; font-weight: 600; width: 28%; }
-    .one-table tr:last-child td { border-bottom: 0; }
-
-    .one-steps {
+    /* Compare */
+    .compare {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: 1rem;
     }
-    @media (max-width: 900px) {
-      .one-steps { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 800px) {
+      .compare { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 520px) {
-      .one-steps { grid-template-columns: 1fr; }
+    .compare-item {
+      padding: 1.25rem;
+      border-left: 3px solid var(--brand);
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.12), transparent 70%);
+      border-radius: 0 12px 12px 0;
     }
-    .one-step {
-      background: var(--one-card); border: 1px solid var(--one-border);
-      border-radius: 14px; padding: 16px;
-      min-height: 132px;
-      transition: border-color .2s, transform .2s;
-    }
-    .one-step:hover {
-      border-color: rgba(56, 189, 248, .4);
-      transform: translateY(-2px);
-    }
-    .one-step__n {
-      font-size: 0.72rem; font-weight: 800; letter-spacing: .1em;
-      color: #f59e0b; margin-bottom: 8px;
-    }
-    .one-step h3 { font-size: 1rem; margin: 0 0 6px; }
-    .one-step p { font-size: 0.84rem; color: #cbd5e1 !important; margin: 0; }
+    .compare-item h3 { font-size: 1rem; margin-bottom: 0.35rem; color: var(--white); }
+    .compare-item p { font-size: 0.9rem; color: var(--muted); }
 
-    .one-arch {
-      display: grid; gap: 12px; max-width: 520px; margin: 0 auto; text-align: center;
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      border-radius: 20px;
+      background:
+        radial-gradient(600px 200px at 50% 0%, rgba(245, 158, 11, 0.14), transparent),
+        radial-gradient(500px 180px at 80% 100%, rgba(56, 189, 248, 0.1), transparent),
+        var(--paper-2);
+      border: 1px solid var(--line);
+      margin-bottom: 3rem;
     }
-    .one-arch__box {
-      background: var(--one-card); border: 1px solid var(--one-border);
-      border-radius: 14px; padding: 16px 18px; font-weight: 700; color: #fff;
+    .cta h2 { margin-bottom: 0.6rem; color: var(--white); }
+    .cta p {
+      color: var(--muted);
+      max-width: 36rem;
+      margin: 0 auto 1.5rem;
     }
-    .one-arch__arrow { color: #64748b; font-size: 1.2rem; }
-    .one-arch__note {
-      text-align: center; font-size: 0.9rem; color: #cbd5e1 !important;
-      max-width: 640px; margin: 18px auto 0; line-height: 1.65;
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
     }
 
-    .one-cta-band {
-      margin-top: 48px;
-      background: linear-gradient(135deg, #92400e 0%, #b45309 45%, #d97706 100%);
-      border-radius: 16px; padding: 40px 32px;
-      display: flex; flex-wrap: wrap; gap: 20px;
-      align-items: center; justify-content: space-between;
+    .breadcrumb {
+      width: min(100% - 2rem, var(--max));
+      margin: 1rem auto 0;
+      font-size: 0.8rem;
+      color: var(--muted);
     }
-    .one-cta-band h2 { margin: 0 0 8px; font-size: 1.45rem; color: #fff !important; }
-    .one-cta-band p { margin: 0; color: #ffedd5 !important; max-width: 480px; line-height: 1.6; }
-    .one-cta-band .one-cta a.primary { background: #fff; color: #92400e; }
-    .one-cta-band .one-cta a.secondary { border-color: rgba(255,255,255,.5); color: #fff; }
+    .breadcrumb ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      list-style: none;
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb [aria-current="page"] { color: var(--ink-soft); }
 
-    .one-trust {
-      font-size: 1.05rem; font-weight: 700; color: #fde68a !important;
-      text-align: center; margin: 8px 0 0; letter-spacing: -0.01em;
+    .faq-list { display: grid; gap: 0.75rem; }
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper-2);
+      padding: 1rem 1.15rem;
+    }
+    .faq-item h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--white);
+    }
+    .faq-item p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+
+    /* Keep shared chrome readable on this page */
+    .header, .header a { color: inherit; }
+    .footer.footer { margin-top: 0; }
+
+    /* Motion */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float-in {
+      from { opacity: 0; transform: translateY(28px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(0.85); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://clofix.com/#organization",
+        "name": "CloFix InfoTech",
+        "url": "https://clofix.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://clofix.com/img/logo.png"
+        },
+        "sameAs": [
+          "https://twitter.com/clofix19",
+          "https://x.com/clofix19",
+          "https://www.linkedin.com/company/clofix-infotech",
+          "https://github.com/clofix19",
+          "https://youtube.com/@clofix-infotech"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://clofix.com/#website",
+        "url": "https://clofix.com",
+        "name": "CloFix",
+        "publisher": { "@id": "https://clofix.com/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://clofix.com/clofix-one#webpage",
+        "url": "https://clofix.com/clofix-one",
+        "name": "CloFix One | AI SRE & DevOps Manager for Linux Fleets",
+        "description": "CloFix One is an AI SRE and DevOps Manager for Linux fleets with chat-first diagnose, approve, fix, and verify workflows.",
+        "isPartOf": { "@id": "https://clofix.com/#website" },
+        "about": { "@id": "https://clofix.com/clofix-one#product" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://clofix.com/img/clofix-one-ask-sre.png",
+          "width": 1024,
+          "height": 678
+        },
+        "inLanguage": "en",
+        "breadcrumb": { "@id": "https://clofix.com/clofix-one#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://clofix.com/clofix-one#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://clofix.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products",
+            "item": "https://clofix.com/services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "CloFix One",
+            "item": "https://clofix.com/clofix-one"
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://clofix.com/clofix-one#product",
+        "name": "CloFix One",
+        "alternateName": ["Ask SRE", "CloFix DevOps Manager", "CloFix Autonomous AI SRE"],
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "DevOps / SRE Platform",
+        "operatingSystem": "Linux",
+        "url": "https://clofix.com/clofix-one",
+        "image": "https://clofix.com/img/clofix-one-ask-sre.png",
+        "description": "MSP-grade DevOps Manager and Autonomous AI SRE. Chat-first Linux fleet operations with allowlisted remediations and human approval on every write.",
+        "featureList": [
+          "Ask SRE chat-first incident response",
+          "Human Approve on every write",
+          "Linux full server operations",
+          "Systemd unit CRUD",
+          "CloFix Storage explorer",
+          "Database backups and DR",
+          "GitOps and Terraform",
+          "Incident and Change management",
+          "Outbound Go agent"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://clofix.com/clofix-one",
+          "description": "Free plan available; metered actions for SRE, services, storage, and backups"
+        },
+        "provider": { "@id": "https://clofix.com/#organization" },
+        "publisher": { "@id": "https://clofix.com/#organization" },
+        "brand": {
+          "@type": "Brand",
+          "name": "CloFix"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://clofix.com/clofix-one#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is CloFix One?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CloFix One is a DevOps Manager with Autonomous AI SRE at the center. Operators chat with Linux servers; CloFix One gathers host evidence through an outbound agent, proposes a safe fix, waits for human approval, executes allowlisted actions, and verifies the result."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does CloFix One change servers without approval?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Reads are live, but every write-restarts, unit changes, packages, config edits, storage deletes, backups, and scripts-requires human Approve. Dual allowlists on the API and agent reject forbidden commands."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Ask SRE connect to Linux hosts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A lightweight outbound Go agent enrolls on each Linux server and keeps a persistent connection. The dashboard never SSHs into hosts for AI SRE operations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who is CloFix One built for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MSPs/MSSPs, DevOps and SRE teams, IT operations, and platform owners who need multi-tenant fleet control, chat-first incident response, storage, backups, GitOps, and ITSM in one pane of glass."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What can you manage with CloFix One?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Linux full server ops, systemd unit CRUD, CloFix Storage, database backups and DR, observability, GitOps, Terraform, SSH center, Security Hub and VAPT, Incident/Change ITSM, secrets vault, and Ask SRE chat with about 300 allowlisted capabilities."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -460,8 +846,12 @@
     gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
   </script>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
+
 </head>
 <body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
 <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
 <header class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
   <div class="container">
@@ -702,263 +1092,460 @@
 </script>
 
 
+<main id="top">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="/services"><span itemprop="name">Products</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name" aria-current="page">CloFix One</span>
+          <meta itemprop="item" content="https://clofix.com/clofix-one" />
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
 
+    <!-- HERO: brand + one headline + support + CTAs + product visual -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-plane" aria-hidden="true"></div>
+      <div class="wrap hero-content">
+        <div class="hero-copy">
+          <p class="hero-brand">CloFix <em>One</em></p>
+          <h1 id="hero-heading" class="hero-line">AI SRE &amp; DevOps Manager - your server, managed by chat.</h1>
+          <p class="hero-sub">
+            Diagnose → Approve → Fix → Verify - with human control on every write.
+            Full Linux server operations, Storage, backups, Incident &amp; Change,
+            and MSP-grade fleet control in one DevOps Manager.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/contact">Talk to sales</a>
+            <a class="btn btn-ghost" href="#ask-sre">See Ask SRE in action</a>
+          </div>
+        </div>
 
-
-
-
-<main class="one-page">
-<!-- Hero -->
-  <section class="one-hero" id="top">
-    <div class="container one-hero__inner">
-      <div class="one-eyebrow">CloFix Infotech · DevOps Manager</div>
-      <h1>CloFix One</h1>
-      <p class="one-hero__tag">Your server, managed by chat.</p>
-      <p class="one-hero__sub">
-        Diagnose → Approve → Fix → Verify - with human control on every write.
-        MSP-grade DevOps &amp; Autonomous AI SRE to monitor, secure, troubleshoot, and operate your fleet from one place.
-      </p>
-      <p class="one-hero__meta">For MSPs, MSSPs, DevOps &amp; SRE teams, and IT operations · <a href="https://clofix.com">clofix.com</a></p>
-      <div class="one-cta">
-        <a class="primary" href="/contact?topic=clofix-one">Talk to sales / Request demo</a>
-        <a class="secondary" href="#ask-sre">See Ask SRE in action</a>
+        <div class="hero-visual" aria-label="CloFix One Ask SRE product preview">
+          <div class="ask-sre-panel">
+            <div class="ask-sre-top">
+              <span>Ask SRE · host: prod-web-01</span>
+              <span class="dot-live">Agent online</span>
+            </div>
+            <div class="chat-row">
+              <div class="bubble user">
+                <strong>You</strong>
+                Nginx is returning 502 after the last deploy. Check services and fix safely.
+              </div>
+              <div class="bubble agent">
+                <strong>CloFix One</strong>
+                Evidence: unit nginx failed · port 80 held by apache2 · upstream healthy.<br />
+                Plan: stop apache2 → start nginx → verify HTTP 200. Risk: medium.<br />
+                <span style="opacity:0.85">Capability: service.stop · service.start · validate.endpoint</span>
+              </div>
+            </div>
+            <div class="approve-bar">
+              <span class="chip">Awaiting approval</span>
+              <button type="button" class="mini-btn" tabindex="-1">Approve</button>
+              <button type="button" class="mini-btn secondary" tabindex="-1">Reject</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-      <div class="one-hero__stage">
-      <div class="one-hero__visual">
-        <figure class="one-hero__frame">
-          <img
-            src="img/clofix-one-ask-sre.png"
-            alt="CloFix One Ask SRE - chat interface to manage servers with host status, services, Docker, SSL, and approve-gated writes"
-            width="1200"
-            height="675"
-            loading="eager"
-            decoding="async"
-          />
-        </figure>
-        <p class="one-hero__caption">Ask SRE - your server, managed by chat</p>
-      </div>
-      <div class="one-flow" aria-label="CloFix One lifecycle">
-        <div class="one-flow__step"><span class="one-flow__num">01</span><span class="one-flow__label">Chat</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">02</span><span class="one-flow__label">Diagnose</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">03</span><span class="one-flow__label">Analyze</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">04</span><span class="one-flow__label">Propose</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">05</span><span class="one-flow__label">Approve</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">06</span><span class="one-flow__label">Execute</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">07</span><span class="one-flow__label">Verify</span></div>
-        <span class="one-flow__arrow" aria-hidden="true">→</span>
-        <div class="one-flow__step"><span class="one-flow__num">08</span><span class="one-flow__label">Postmortem</span></div>
-      </div>
-      </div>
-  </section>
+    </section>
 
-  <section class="one-section" id="what">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>What is CloFix One?</h2>
-        <p>
-          A full DevOps control plane with an <strong style="color:#fff">Autonomous AI SRE</strong> at the center.
+    <section class="wrap reveal" id="lifecycle">
+      <div class="section-head">
+        <p class="eyebrow">Controlled run</p>
+        <h2>Eight steps. One human gate.</h2>
+        <p class="lead">Every write is allowlisted, risk-rated, and audited - from chat to postmortem.</p>
+      </div>
+      <div class="lifecycle" role="list">
+        <div class="life-step" role="listitem"><span class="life-n">01</span><span class="life-l">Chat</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">02</span><span class="life-l">Diagnose</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">03</span><span class="life-l">Analyze</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">04</span><span class="life-l">Propose</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">05</span><span class="life-l">Approve</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">06</span><span class="life-l">Execute</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">07</span><span class="life-l">Verify</span></div>
+        <div class="life-step" role="listitem"><span class="life-n">08</span><span class="life-l">Postmortem</span></div>
+      </div>
+    </section>
+
+    <section class="wrap reveal" id="what">
+      <div class="section-head">
+        <p class="eyebrow">What is CloFix One?</p>
+        <h2>DevOps Manager with Autonomous AI SRE at the center.</h2>
+        <p class="lead">
           Operators talk to servers in natural language. CloFix One gathers real host evidence through an outbound agent,
-          explains the root cause, proposes a safe fix plan, waits for human approval, executes only allowlisted actions,
+          explains root cause, proposes a safe fix plan, waits for human approval, executes only allowlisted actions,
           and verifies the result - then drafts a postmortem.
         </p>
       </div>
-      <div class="one-band">
-        <p><strong>No blind automation.</strong> No invented host state. No browser SSH for AI operations.
-          <em>AI proposes. Humans approve. Agents execute - only what’s allowed.</em></p>
-      </div>
-    </div>
-  </section>
+      <p style="max-width:40rem;color:var(--muted);font-size:0.98rem;margin-bottom:2rem;">
+        <strong style="color:var(--ink);">No blind automation.</strong>
+        No invented host state. No browser SSH for AI operations.
+        <em>AI proposes. Humans approve. Agents execute - only what’s allowed.</em>
+      </p>
 
-  <section class="one-section" id="audience">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>Who it’s for</h2>
-        <p>Organization → Client → Environment → Server → Service tenancy for multi-tenant and enterprise fleets.</p>
+      <div class="audience-grid">
+        <article class="audience-item">
+          <h3>MSPs / MSSPs</h3>
+          <p>Multi-tenant fleets under one license and org model - Client → Environment → Server.</p>
+        </article>
+        <article class="audience-item">
+          <h3>DevOps / SRE</h3>
+          <p>Chat-first incident response with evidence IDs, approval gates, and full audit trails.</p>
+        </article>
+        <article class="audience-item">
+          <h3>IT operations</h3>
+          <p>Servers, services, storage, backups, websites, SSL, SSH, security, tickets, and wallboards in one UI.</p>
+        </article>
+        <article class="audience-item">
+          <h3>Platform owners</h3>
+          <p>Agents, dashboards, AI, GitOps, vault, and licensing together - one control plane.</p>
+        </article>
       </div>
-      <div class="one-grid one-grid--2">
-        <article class="one-card" style="--ac:#38bdf8"><h3>MSPs / MSSPs</h3><p>Multi-tenant fleets under one license and org model.</p></article>
-        <article class="one-card" style="--ac:#f59e0b"><h3>DevOps / SRE teams</h3><p>Chat-first incident response with full audit trails.</p></article>
-        <article class="one-card" style="--ac:#22c55e"><h3>IT operations</h3><p>Servers, websites, SSL, SSH, security, and tickets in one UI.</p></article>
-        <article class="one-card" style="--ac:#a78bfa"><h3>Platform owners</h3><p>Agents, dashboards, AI, GitOps, and licensing together.</p></article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="one-section" id="pillars">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>Core pillars</h2>
-        <p>Autonomous AI SRE with human approval - plus a full DevOps platform in one pane of glass.</p>
+    <section class="wrap reveal" id="pillars">
+      <div class="section-head">
+        <p class="eyebrow">Core pillars</p>
+        <h2>What you can do with CloFix One</h2>
+        <p class="lead">Autonomous AI SRE with human approval - plus a full DevOps platform in one pane of glass.</p>
       </div>
-      <div class="one-grid">
-        <article class="one-card" id="ask-sre" style="--ac:#f59e0b">
-          <span class="one-card__label">01 · Ask SRE</span>
-          <h3>Chat-first operations</h3>
-          <p>Natural-language SRE. Select a server, describe the symptom, get evidence-backed answers and fix plans - with slash commands, @ mentions, and inline cards.</p>
+      <div class="pillars">
+        <article class="pillar">
+          <p class="pillar-n">01 · Ask SRE</p>
+          <h3>Chat-first full ops</h3>
+          <p>~300 capabilities: Linux host ops plus Incident, Change, Backup/DR, Monitoring, Cloud, IaC, Deploy, Compliance, DB, and Team - slash menus, activity timeline, Approve cards.</p>
         </article>
-        <article class="one-card" style="--ac:#38bdf8">
-          <span class="one-card__label">02 · Fix Engine</span>
-          <h3>Troubleshoot &amp; Fix</h3>
-          <p>Playbook-driven investigation: probes → hypotheses → remediation → risk stamp → Approve → precheck → execute → verify desired state.</p>
+        <article class="pillar">
+          <p class="pillar-n">02 · Fix Engine</p>
+          <h3>Troubleshoot &amp; fix</h3>
+          <p>Probes → hypotheses → remediation → risk stamp → Approve → precheck → execute → verify desired state → postmortem.</p>
         </article>
-        <article class="one-card" style="--ac:#22c55e">
-          <span class="one-card__label">03 · Working Memory</span>
-          <h3>SRE Story</h3>
-          <p>Per-conversation memory of environment, stack, and desired state. Long setup asks become structured Story → Plan workflows.</p>
+        <article class="pillar">
+          <p class="pillar-n">03 · Services &amp; Storage</p>
+          <h3>Systemd + Storage explorer</h3>
+          <p>Create/edit/delete unit files on the host via agent. Unified Storage (S3, MinIO, SFTP, FTP, WebDAV, agent path, Drive/OneDrive/Dropbox, Azure) with list/upload/download/move.</p>
         </article>
-        <article class="one-card" style="--ac:#a78bfa">
-          <span class="one-card__label">04 · Safe writes</span>
+        <article class="pillar">
+          <p class="pillar-n">04 · Safe writes</p>
           <h3>Safe state change</h3>
-          <p>Allowlisted start/stop/restart/reload with mutex awareness (e.g. stop Apache before Nginx on port 80) - still requires Approve.</p>
+          <p>Allowlisted start/stop/restart/reload, unit put/delete, packages, config backup→apply→rollback - still requires Approve. Token-metered license actions.</p>
         </article>
-        <article class="one-card" style="--ac:#fb7185">
-          <span class="one-card__label">05 · Knowledge</span>
+        <article class="pillar">
+          <p class="pillar-n">05 · Knowledge</p>
           <h3>Knowledge &amp; config library</h3>
-          <p>Org knowledge base and approved config patterns inform answers. Knowledge never executes on hosts.</p>
+          <p>Org knowledge, cheat sheets, and approved patterns inform answers. Knowledge never executes on hosts.</p>
         </article>
-        <article class="one-card" style="--ac:#2dd4bf">
-          <span class="one-card__label">06 · Agent</span>
+        <article class="pillar">
+          <p class="pillar-n">06 · Agent</p>
           <h3>Outbound Go agent</h3>
-          <p>Lightweight agent per host: metrics, heartbeat, allowlisted shell, files, Docker, K8s read, packages, config apply. Hosts connect out - no inbound SSH for AI SRE.</p>
+          <p>Metrics, allowlisted shell, files, systemd units, Docker, K8s, packages, config apply, scripts, GitOps, log follow. Hosts connect out - no inbound SSH for AI.</p>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="one-section" id="ai-sre">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>Autonomous AI SRE</h2>
-        <p>Fix incidents in conversation - with proof, not guesses.</p>
-      </div>
-      <div class="one-table-wrap">
-        <table class="one-table">
-          <thead><tr><th>Feature</th><th>Capability</th></tr></thead>
-          <tbody>
-            <tr><td>Incident diagnose</td><td>Real probes via online agent - metrics, logs, services, ports, failed units, HTTP local checks</td></tr>
-            <tr><td>Root-cause analysis</td><td>Structured hypothesis ranking with confidence and cited evidence IDs</td></tr>
-            <tr><td>Fix plans</td><td>Allowlisted steps only; risk from read-only to critical</td></tr>
-            <tr><td>Human Approve</td><td>Every write waits on Approve / Reject (or type <code>fix</code>)</td></tr>
-            <tr><td>Execute &amp; verify</td><td>Prechecks, live step output, verify active/desired state, postmortem draft</td></tr>
-            <tr><td>One run per server</td><td>No overlapping diagnose/execute chaos on the same host</td></tr>
-            <tr><td>Guardrails</td><td>Jailbreak / destructive-intent guard before planning</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="one-section" id="platform">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>Full DevOps platform</h2>
-        <p>Fleet + AI SRE + Security Hub + VAPT + GitOps in one product.</p>
-      </div>
-      <div class="one-grid one-grid--3">
-        <article class="one-card"><h3>Infrastructure</h3><p>Clients, environments, servers, services, file manager, web terminal + audit.</p></article>
-        <article class="one-card"><h3>Observability</h3><p>Thresholds, alerts, logs, website uptime, domains, SSL expiry (30/14/7/0).</p></article>
-        <article class="one-card"><h3>Automation</h3><p>Scripts, jobs, workflows, config templates, and builds.</p></article>
-        <article class="one-card"><h3>Deploy &amp; cloud</h3><p>Deployments, GitOps, Docker, Kubernetes, cloud accounts.</p></article>
-        <article class="one-card"><h3>SSH center</h3><p>Sessions, attacks, auth, users, keys, policies, alerts, audit.</p></article>
-        <article class="one-card"><h3>Security &amp; VAPT</h3><p>Security Hub presets plus VAPT Lab with PDF/JSON/CSV reports.</p></article>
-        <article class="one-card"><h3>ITSM</h3><p>Incidents, RCA, backups, Kanban tasks, reports, operations wallboard.</p></article>
-        <article class="one-card"><h3>Secrets</h3><p>Vault, credential vault, temporary password share.</p></article>
-        <article class="one-card"><h3>Admin &amp; tools</h3><p>Users, RBAC, audit logs, licensing, plus Tools Hub utilities.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="one-section" id="safety">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>Safety &amp; governance</h2>
-        <p class="one-trust">Reads are live. Writes wait for you.</p>
-      </div>
-      <div class="one-table-wrap">
-        <table class="one-table">
-          <thead><tr><th>Control</th><th>Behavior</th></tr></thead>
-          <tbody>
-            <tr><td>Human Approve for writes</td><td>Restarts, stops, config edits, package installs, workflows, generated scripts</td></tr>
-            <tr><td>Reads run live</td><td>Status, metrics, logs, and diagnostics do not need Approve</td></tr>
-            <tr><td>Dual allowlists</td><td>API and Go agent both reject forbidden commands and units</td></tr>
-            <tr><td>Risk stamping</td><td>Read-only → low → medium → high → critical; high/critical always Approve</td></tr>
-            <tr><td>Config six gates</td><td>Path allowlist · size/diff limits · syntax check · human diff · backup+atomic write · verify + rollback</td></tr>
-            <tr><td>Knowledge never executes</td><td>RAG / library / articles inform planning only</td></tr>
-            <tr><td>Hash-chained audit</td><td>AI runs, terminal, config apply/rollback, and platform actions</td></tr>
-            <tr><td>Online agent required</td><td>Offline hosts are not “faked healthy” or silently fixed</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="one-section" id="how">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>How it works</h2>
-        <p>Dashboard never SSH’s into hosts for AI SRE. Agents enroll and keep a persistent outbound connection.</p>
-      </div>
-      <div class="one-arch">
-        <div class="one-arch__box">Browser · CloFix One dashboard</div>
-        <div class="one-arch__arrow">▼</div>
-        <div class="one-arch__box">CloFix API · MySQL / Redis / Workers</div>
-        <div class="one-arch__arrow">▲ outbound WebSocket</div>
-        <div class="one-arch__box">CloFix Agent · on each server</div>
-      </div>
-      <p class="one-arch__note">License server signs plans: Free → Person → Standard → Team → Enterprise / MSSP.</p>
-    </div>
-  </section>
-
-  <section class="one-section" id="journey">
-    <div class="container">
-      <div class="one-section__head">
-        <h2>All lifecycle steps</h2>
-        <p>Chat → Diagnose → Analyze → Propose → Approve → Execute → Verify → Postmortem - one controlled run.</p>
-      </div>
-      <div class="one-steps">
-        <div class="one-step"><div class="one-step__n">STEP 01</div><h3>Chat</h3><p>Describe the symptom in natural language inside Ask SRE.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 02</div><h3>Diagnose</h3><p>Outbound agent runs live probes: metrics, logs, services, ports, failed units.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 03</div><h3>Analyze</h3><p>Rank hypotheses with confidence and cited evidence IDs.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 04</div><h3>Propose</h3><p>Build an allowlisted fix plan with risk stamped from read-only to critical.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 05</div><h3>Approve</h3><p>Human reviews the plan - Approve or Reject before any write.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 06</div><h3>Execute</h3><p>Prechecks run, then only approved allowlisted actions execute on the host.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 07</div><h3>Verify</h3><p>Confirm active/desired state - not just exit code 0.</p></div>
-        <div class="one-step"><div class="one-step__n">STEP 08</div><h3>Postmortem</h3><p>Draft a postmortem and keep knowledge for the next incident.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="one-section" id="why">
-    <div class="container">
-      <div class="one-section__head"><h2>Why CloFix One</h2></div>
-      <div class="one-grid one-grid--2">
-        <article class="one-card"><h3>vs chatbots</h3><p>Talks to real hosts via agent; cites probe evidence.</p></article>
-        <article class="one-card"><h3>vs raw SSH scripts</h3><p>Approval gates, mutex awareness, config rollback, audit chain.</p></article>
-        <article class="one-card"><h3>vs ticketing-only ITSM</h3><p>Diagnose and remediate in the same run.</p></article>
-        <article class="one-card"><h3>vs single-purpose APM</h3><p>Fleet + AI SRE + Security Hub + VAPT + GitOps in one product.</p></article>
-      </div>
-
-      <div class="one-cta-band">
-        <div>
-          <h2>Operate your fleet by chat</h2>
-          <p>Every write is allowlisted, risk-rated, and audited. Request a demo of CloFix One Ask SRE.</p>
+    <section class="band" id="capabilities">
+      <div class="wrap" style="padding:4.5rem 0;">
+        <div class="section-head reveal">
+          <p class="eyebrow">Full DevOps platform</p>
+          <h2>Fleet · AI SRE · Storage · Backups · GitOps · ITSM</h2>
+          <p class="lead">Everything your DevOps Manager needs - not another single-purpose tool.</p>
         </div>
-        <div class="one-cta">
-          <a class="primary" href="/contact?topic=clofix-one">Request demo</a>
-          <a class="secondary" href="/services">All services</a>
+        <div class="cap-grid reveal">
+          <article class="cap">
+            <h3>Infrastructure</h3>
+            <p>Clients, environments, servers, database servers, services (systemd collect + unit create/edit/delete), file manager, terminal + command audit.</p>
+          </article>
+          <article class="cap">
+            <h3>CloFix Storage</h3>
+            <p>S3 / MinIO / R2 / Wasabi, SFTP, FTP/FTPS, WebDAV, HTTP, agent path, Google Drive, OneDrive, Dropbox, Azure Blob - explore, upload, download, mkdir, move, copy.</p>
+          </article>
+          <article class="cap">
+            <h3>Backups &amp; DR</h3>
+            <p>File and DB jobs (Postgres/MySQL/MariaDB/Mongo/Redis): one DB or all, full / schema / data dumps. Destinations: local, SFTP, S3, or CloFix Storage. Pipeline stages + history.</p>
+          </article>
+          <article class="cap">
+            <h3>Observability</h3>
+            <p>Thresholds, alerts (ack / silence / escalate), logs, website uptime, domains, SSL expiry windows (30 / 14 / 7 / 0).</p>
+          </article>
+          <article class="cap">
+            <h3>Automation</h3>
+            <p>Scripts, scheduled jobs, workflows, config templates, Step Library, and builds.</p>
+          </article>
+          <article class="cap">
+            <h3>Deploy · Cloud · IaC</h3>
+            <p>Deployments, GitOps (GitHub/GitLab/Bitbucket PAT), Docker, Kubernetes, cloud accounts, Terraform plan/apply/drift.</p>
+          </article>
+          <article class="cap">
+            <h3>SSH center</h3>
+            <p>Sessions, attacks, auth events, users, keys, policies, service management, alerts, audit.</p>
+          </article>
+          <article class="cap">
+            <h3>Security &amp; VAPT</h3>
+            <p>Security Hub presets plus VAPT Lab with PDF / JSON / CSV reports. Hardening playbooks.</p>
+          </article>
+          <article class="cap">
+            <h3>ITSM &amp; Change</h3>
+            <p>Incidents, RCA/postmortems, change request/preview/rollback, Kanban tasks, reports, Operations Center wallboard.</p>
+          </article>
+          <article class="cap">
+            <h3>Secrets</h3>
+            <p>Vault, credential vault, rotation/expiry awareness, temporary password share - never logged in plaintext.</p>
+          </article>
+          <article class="cap">
+            <h3>Admin &amp; licensing</h3>
+            <p>Users, RBAC, audit logs, seat licensing + metered action costs (services, storage, backups, SRE) - Free → Enterprise / MSSP.</p>
+          </article>
+          <article class="cap">
+            <h3>Ask SRE Chat</h3>
+            <p>Full Linux ops + Incident/Change/DR/Monitoring/Infra/Cloud/IaC/Deploy/Compliance/Capacity/DB/Team - Approve on every write.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
 
+    <section class="wrap reveal" id="ask-sre">
+      <div class="section-head">
+        <p class="eyebrow">Autonomous AI SRE</p>
+        <h2>Fix incidents in conversation - with proof, not guesses.</h2>
+        <p class="lead">Real probes via the online agent. Structured plans. Human Approve on every write. Linux treated as full server operations.</p>
+      </div>
+      <dl class="feature-list">
+        <div class="feature-row">
+          <dt>Incident diagnose</dt>
+          <dd>Live probes: metrics, logs, services, ports, failed units, processes, local HTTP / DNS / TLS checks.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Root-cause &amp; evidence</dt>
+          <dd>Hypothesis ranking with confidence, cited evidence, timeline, and impact analysis.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Linux full server ops</dt>
+          <dd>Service, package, process, system, user, file/dir, disk, network, firewall, SSH, logs, cron, env, security, web, Docker, storage, scripts, config lifecycle, diagnostics.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Systemd unit CRUD</dt>
+          <dd>Create / edit unit files under <code>/etc/systemd/system</code>; delete stops → disables → removes file → UI cleanup.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Fix plans</dt>
+          <dd>Allowlisted steps only; risk stamped LOW → CRITICAL; capability registry (~300 ops).</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Human Approve</dt>
+          <dd>Every write waits on Approve / Reject before the agent acts - including emergency remediation.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Execute &amp; verify</dt>
+          <dd>Prechecks, live activity timeline, verify desired state, rollback paths, postmortem draft.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Platform workflows</dt>
+          <dd>Incident/Change/Backup-DR, Monitoring &amp; alerts, Infra/Cloud/IaC, Secrets, Deploy, Compliance, Capacity, DB, Team ops.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Guardrails</dt>
+          <dd>Jailbreak / destructive-intent guard. Dual allowlists on API and agent. Metered license actions.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="wrap reveal" id="ops">
+      <div class="section-head">
+        <p class="eyebrow">Operations matrix</p>
+        <h2>One SRE chat. Full fleet coverage.</h2>
+        <p class="lead">Ask SRE understands Linux host work and platform workflows - same Approve gate, same audit trail.</p>
+      </div>
+      <dl class="feature-list">
+        <div class="feature-row">
+          <dt>Incident &amp; Recovery</dt>
+          <dd>Create / update / close · severity · timeline · evidence · RCA · impact · recovery · emergency remediation · notes · summary · postmortem.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Change Management</dt>
+          <dd>Request · preview · impact · dependency · pre-validate · execute · history · config diff · auto backup · rollback · verify.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Backup &amp; Disaster Recovery</dt>
+          <dd>Create / restore / verify / integrity · restore testing · snapshots · RPO · DR workflow · readiness · DB full/schema/data dumps.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Monitoring &amp; Alerting</dt>
+          <dd>Server/service/resource health · alert create/ack/suppress/escalate/correlate · alert→incident · anomaly · baseline.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Infrastructure · Cloud · IaC</dt>
+          <dd>Inventory, grouping, environments, topology · cloud VM lifecycle, SG/network/storage, cost · Terraform plan/apply/drift/state.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Secrets · Validation · Deploy</dt>
+          <dd>Rotation/expiry/exposure · config/endpoint/DNS/TLS/DB smoke tests · blue/green, canary, rollback, release notes.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Compliance · Intel · Capacity</dt>
+          <dd>Baselines, audit evidence, drift reports · knowledge troubleshoot, runbooks · CPU/memory/storage trends, SLO/error budget.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>App / API · Database · Team</dt>
+          <dd>Endpoint/TLS/DNS/error investigation · DB health, replication, slow queries · tasks, approvals, maintenance windows, handover, ops reports.</dd>
+        </div>
+        <div class="feature-row">
+          <dt>Storage explorer</dt>
+          <dd>Browse CloFix Storage connections; use as backup destinations; vault-backed credentials.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="wrap reveal" id="safety">
+      <div class="section-head">
+        <p class="eyebrow">Safety &amp; governance</p>
+        <h2>Reads are live. Writes wait for you.</h2>
+        <p class="lead">Built for MSPs and regulated fleets that cannot risk silent automation.</p>
+      </div>
+      <div class="safety-grid">
+        <article class="safety-item">
+          <span class="safety-mark" aria-hidden="true">✓</span>
+          <div>
+            <h3>Human Approve for writes</h3>
+            <p>Restarts, stops, unit file put/delete, config edits, packages, storage deletes, backups, workflows, scripts.</p>
+          </div>
+        </article>
+        <article class="safety-item">
+          <span class="safety-mark" aria-hidden="true">✓</span>
+          <div>
+            <h3>Dual allowlists</h3>
+            <p>API and Go agent both reject forbidden commands and units.</p>
+          </div>
+        </article>
+        <article class="safety-item">
+          <span class="safety-mark" aria-hidden="true">✓</span>
+          <div>
+            <h3>Config six gates</h3>
+            <p>Path allowlist · size/diff · syntax · human diff · backup+atomic write · verify + rollback.</p>
+          </div>
+        </article>
+        <article class="safety-item">
+          <span class="safety-mark" aria-hidden="true">✓</span>
+          <div>
+            <h3>Hash-chained audit</h3>
+            <p>AI runs, terminal, config apply/rollback, and platform actions stay attributable.</p>
+          </div>
+        </article>
+        <article class="safety-item">
+          <span class="safety-mark" aria-hidden="true">✓</span>
+          <div>
+            <h3>Knowledge never executes</h3>
+            <p>RAG / library / articles inform planning only - never run on the host.</p>
+          </div>
+        </article>
+        <article class="safety-item">
+          <span class="safety-mark" aria-hidden="true">✓</span>
+          <div>
+            <h3>Online agent required</h3>
+            <p>Offline hosts are not “faked healthy” or silently fixed.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal" id="how">
+      <div class="section-head">
+        <p class="eyebrow">Architecture</p>
+        <h2>How CloFix One works</h2>
+        <p class="lead">The dashboard never SSHs into hosts for AI SRE. Agents enroll and keep a persistent outbound connection.</p>
+      </div>
+      <div class="arch">
+        <div class="arch-node top">Browser · CloFix One dashboard</div>
+        <div class="arch-arrow">▼ HTTPS / API</div>
+        <div class="arch-node mid">CloFix API</div>
+        <div class="arch-arrow">▲ outbound WebSocket</div>
+        <div class="arch-node bot">CloFix Agent · on each Linux server</div>
+      </div>
+      <p style="margin-top:1.25rem;text-align:center;color:var(--muted);font-size:0.9rem;">
+        License plans: Free → Person → Standard → Team → Enterprise / MSSP · metered action costs for SRE, services, storage, and backups
+      </p>
+    </section>
+
+    <section class="wrap reveal" id="why">
+      <div class="section-head">
+        <p class="eyebrow">Why CloFix One</p>
+        <h2>Compared to what you use today</h2>
+      </div>
+      <div class="compare">
+        <article class="compare-item">
+          <h3>vs chatbots</h3>
+          <p>Talks to real hosts via agent and cites probe evidence - not invented status.</p>
+        </article>
+        <article class="compare-item">
+          <h3>vs raw SSH scripts</h3>
+          <p>Approval gates, mutex awareness, config rollback, and a hash-chained audit trail.</p>
+        </article>
+        <article class="compare-item">
+          <h3>vs ticketing-only ITSM</h3>
+          <p>Diagnose and remediate in the same controlled run - then file the postmortem.</p>
+        </article>
+        <article class="compare-item">
+          <h3>vs single-purpose APM</h3>
+          <p>Fleet + AI SRE + Storage + Backups/DR + Security Hub + VAPT + GitOps + Terraform in one DevOps Manager.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal" id="faq" aria-labelledby="faq-heading">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">CloFix One frequently asked questions</h2>
+        <p class="lead">Straight answers for teams evaluating AI SRE and DevOps Manager platforms.</p>
+      </div>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>What is CloFix One?</h3>
+          <p>CloFix One is a DevOps Manager with Autonomous AI SRE at the center. Operators chat with Linux servers; CloFix One gathers host evidence through an outbound agent, proposes a safe fix, waits for human approval, executes allowlisted actions, and verifies the result.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does CloFix One change servers without approval?</h3>
+          <p>No. Reads are live, but every write-restarts, unit changes, packages, config edits, storage deletes, backups, and scripts-requires human Approve. Dual allowlists on the API and agent reject forbidden commands.</p>
+        </article>
+        <article class="faq-item">
+          <h3>How does Ask SRE connect to Linux hosts?</h3>
+          <p>A lightweight outbound Go agent enrolls on each Linux server and keeps a persistent connection. The dashboard never SSHs into hosts for AI SRE operations.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Who is CloFix One built for?</h3>
+          <p>MSPs/MSSPs, DevOps and SRE teams, IT operations, and platform owners who need multi-tenant fleet control, chat-first incident response, storage, backups, GitOps, and ITSM in one pane of glass.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What can you manage with CloFix One?</h3>
+          <p>Linux full server ops, systemd unit CRUD, CloFix Storage, database backups and DR, observability, GitOps, Terraform, SSH center, Security Hub and VAPT, Incident/Change ITSM, secrets vault, and Ask SRE chat with about 300 allowlisted capabilities.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="cta reveal">
+        <p class="eyebrow">Next step</p>
+        <h2>Operate your fleet by chat with CloFix One</h2>
+        <p>
+          CloFix One is the DevOps Manager from CloFix - Linux full ops, Storage, DB backups, Incident &amp; Change,
+          every write allowlisted, risk-rated, and audited. Request a demo of Ask SRE on your stack.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="/contact">Request demo</a>
+          <a class="btn btn-accent" href="https://wa.me/8801850603126" rel="noopener">WhatsApp +880 1850-603126</a>
+          <a class="btn btn-ghost" href="/free-consultancy">Free consultancy</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
 <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
 <footer class="footer" role="contentinfo">
@@ -1038,11 +1625,27 @@
   </div>
 </footer>
 
-
-
-
-
-
-  <script src="js/chrome.js" defer></script>
+<script src="js/chrome.js" defer></script>
+  <script>
+    (function () {
+      var nodes = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        nodes.forEach(function (n) { n.classList.add("in"); });
+        return;
+      }
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      nodes.forEach(function (n) { io.observe(n); });
+    })();
+  </script>
 </body>
 </html>
