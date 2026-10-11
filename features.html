@@ -725,6 +725,334 @@
       font-size: 1.3rem;
     }
   }
+
+  /* Catalog layout */
+  main.container.section > section.section {
+    padding: 0;
+  }
+
+  .secure-hero-container {
+    gap: 2.5rem;
+    margin: 0.25rem 0 2rem;
+    align-items: center;
+  }
+
+  .secure-hero-container::before,
+  .secure-hero-container::after,
+  .secure-hero-glow {
+    display: none;
+  }
+
+  .secure-hero {
+    flex: 0 1 480px;
+    max-width: 480px;
+  }
+
+  .secure-hero-image {
+    max-width: 480px;
+    width: 100%;
+    filter: none;
+    border-radius: 24px;
+    transition: none;
+    transform: none;
+  }
+
+  .secure-hero-image:hover {
+    transform: none;
+  }
+
+  .secure-hero-features-grid {
+    display: none;
+  }
+
+  .secure-hero-title {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .secure-hero-desc {
+    max-width: 40rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .secure-hero-desc + .secure-hero-desc {
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-toolbar {
+    position: sticky;
+    top: calc(var(--header-h, 72px) + 8px);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0 0 1.25rem;
+    padding: 0.8rem;
+    background: #0f172a;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+  }
+
+  .feature-toolbar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: calc(var(--header-h, 72px) + 16px);
+    background: #0f172a;
+  }
+
+  .feature-toolbar__top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .feature-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .feature-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    display: flex;
+    pointer-events: none;
+  }
+
+  #featureSearch {
+    width: 100%;
+    background: #0b1220;
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem 0.7rem 2.35rem;
+    font: inherit;
+    font-size: 0.95rem;
+  }
+
+  #featureSearch:focus {
+    outline: 2px solid rgba(56, 189, 248, 0.55);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+
+  .feature-result-count {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .feature-chips {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .feature-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .feature-chip {
+    appearance: none;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: transparent;
+    color: #cbd5e1;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .feature-chip:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #f8fafc;
+  }
+
+  .feature-chip.active {
+    background: rgba(56, 189, 248, 0.16);
+    border-color: rgba(56, 189, 248, 0.55);
+    color: #e0f2fe;
+  }
+
+  .feature-empty {
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem;
+    text-align: center;
+    color: #94a3b8;
+    border: 1px dashed rgba(148, 163, 184, 0.35);
+    border-radius: 12px;
+  }
+
+  #features.features-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    scroll-margin-top: calc(var(--header-h, 72px) + 156px);
+  }
+
+  .feature-group {
+    scroll-margin-top: calc(var(--header-h, 72px) + 156px);
+  }
+
+  .feature-group__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+  }
+
+  #features .category-heading {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1.2rem;
+    color: #f8fafc;
+    grid-column: auto;
+  }
+
+  .feature-group__count {
+    color: #94a3b8;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .feature-group__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.85rem;
+  }
+
+  #features .feature-card {
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    max-width: none;
+    width: auto;
+    min-height: 148px;
+    margin: 0;
+    padding: 1rem 1rem 0.85rem;
+    background: #172033;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  #features .feature-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
+  }
+
+  #features .feature-card:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+  }
+
+  #features .feature-card h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    color: #f8fafc;
+  }
+
+  #features .feature-card p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #features .scripting-guideline {
+    margin-top: 0.65rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  #features .scripting-guideline a {
+    color: #7dd3fc;
+    text-decoration: none;
+  }
+
+  #features .scripting-guideline a:hover {
+    text-decoration: underline;
+  }
+
+  #features .feature-card__more {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    color: #38bdf8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  #features .feature-card__more::after {
+    content: " →";
+  }
+
+  @media (max-width: 1024px) {
+    .secure-hero-container {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.25rem;
+    }
+
+    .secure-hero {
+      flex: none;
+      min-width: 0;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .secure-hero-content,
+    .secure-hero-stat {
+      text-align: center;
+    }
+
+    .secure-hero-stats,
+    .secure-hero-trusted,
+    .secure-hero-cta {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .secure-hero {
+      flex: none;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .feature-toolbar__top {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .feature-result-count {
+      padding-left: 0.15rem;
+    }
+  }
 </style>
 <body>
     <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
@@ -982,7 +1310,7 @@
         <div class="secure-hero">
           <div class="secure-hero-image-wrapper">
             <div class="secure-hero-glow"></div>
-            <img class="secure-hero-image" src="img/clofix-wf-ar.webp" alt="CloFix WAF" />
+            <img class="secure-hero-image" src="img/features-hero.jpg" alt="CloFix shield protecting a web application" />
             <!-- Floating badges -->
    
           </div>
@@ -997,8 +1325,12 @@
             CloFix <span>WAF Security</span>
           </h1>
           <p class="secure-hero-desc">
-            Enterprise-grade AI-enhanced Web Application Firewall designed specifically for cloud-based applications. 
+            Enterprise-grade AI-enhanced Web Application Firewall designed specifically for cloud-based applications.
             Real-time monitoring, advanced threat protection, and scalable security for startups, SMEs, and DevOps teams.
+          </p>
+          <p class="secure-hero-desc">
+            CloFix stops SQL injection, cross-site scripting, SSRF, path traversal, bots, credential stuffing, API abuse, and DDoS floods before they reach your origin.
+            Shape protection with OWASP CRS, WASM, JavaScript, and Lua, then distribute traffic with health checks, rate limits, and live analytics.
           </p>
           
           <div class="secure-hero-features-grid">
@@ -1064,6 +1396,23 @@
           </div>
         </div>
       </div>
+
+      <div class="feature-toolbar" id="featureToolbar">
+        <div class="feature-toolbar__top">
+          <label class="feature-search-wrap">
+            <span class="feature-search-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M20 20l-3.5-3.5"></path>
+              </svg>
+            </span>
+            <input id="featureSearch" type="search" placeholder="Search features" autocomplete="off" aria-label="Search features" />
+          </label>
+          <p class="feature-result-count" id="featureResultCount" aria-live="polite"></p>
+        </div>
+        <div class="feature-chips" id="featureChips" role="group" aria-label="Feature categories"></div>
+      </div>
+      <p id="featureEmpty" class="feature-empty" hidden>No features match that search. Try another word or category.</p>
 
       <div id="features" class="features-flex">
           <!-- LB CATEGORY -->
@@ -1812,7 +2161,7 @@
           </template>
 
           <!-- Defualt CATEGORY -->
-          <h2 class="category-heading">Defualt Protection</h2>
+          <h2 class="category-heading">Default Protection</h2>
           
           <div class="feature-card" data-id="behavior_analysis">
               <h3>🔍 Behavioral Analysis</h3>
@@ -5546,6 +5895,111 @@
 <script src="js/chrome.js" defer></script>
 <script>
 (function () {
+  (function initFeatureCatalog() {
+    const root = document.getElementById('features');
+    const chipsEl = document.getElementById('featureChips');
+    const search = document.getElementById('featureSearch');
+    const countEl = document.getElementById('featureResultCount');
+    const empty = document.getElementById('featureEmpty');
+    if (!root || !chipsEl || !search) return;
+
+    const nodes = Array.from(root.children);
+    let grid = null;
+    nodes.forEach(function (node) {
+      if (node.classList && node.classList.contains('category-heading')) {
+        const section = document.createElement('section');
+        section.className = 'feature-group';
+        section.dataset.category = node.textContent.replace(/\s+/g, ' ').trim();
+        const head = document.createElement('div');
+        head.className = 'feature-group__head';
+        const count = document.createElement('span');
+        count.className = 'feature-group__count';
+        head.appendChild(node);
+        head.appendChild(count);
+        grid = document.createElement('div');
+        grid.className = 'feature-group__grid';
+        section.appendChild(head);
+        section.appendChild(grid);
+        root.appendChild(section);
+      } else if (grid && node.classList && node.classList.contains('feature-card')) {
+        const title = node.querySelector('h3');
+        const desc = node.querySelector('p');
+        node.setAttribute('data-search', ((title && title.textContent) || '') + ' ' + ((desc && desc.textContent) || ''));
+        if (!node.querySelector('.feature-card__more')) {
+          const more = document.createElement('span');
+          more.className = 'feature-card__more';
+          more.textContent = 'View details';
+          node.appendChild(more);
+        }
+        grid.appendChild(node);
+      } else if (grid && node.tagName === 'TEMPLATE') {
+        grid.appendChild(node);
+      }
+    });
+
+    const groups = Array.from(root.querySelectorAll('.feature-group'));
+    const totalCards = root.querySelectorAll('.feature-card').length;
+    let active = 'all';
+
+    function setChipState(current) {
+      chipsEl.querySelectorAll('.feature-chip').forEach(function (chip) {
+        const on = chip === current;
+        chip.classList.toggle('active', on);
+        chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    function makeChip(label, value, pressed) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'feature-chip' + (pressed ? ' active' : '');
+      btn.dataset.category = value;
+      btn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      btn.textContent = label;
+      btn.addEventListener('click', function () {
+        active = value;
+        setChipState(btn);
+        apply();
+        if (value !== 'all') {
+          const group = groups.find(function (item) {
+            return item.dataset.category === value && !item.hidden;
+          });
+          if (group) group.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      chipsEl.appendChild(btn);
+    }
+
+    makeChip('All', 'all', true);
+    groups.forEach(function (group) {
+      makeChip(group.dataset.category, group.dataset.category, false);
+    });
+
+    function apply() {
+      const q = search.value.trim().toLowerCase();
+      let shown = 0;
+      groups.forEach(function (group) {
+        const catOk = active === 'all' || group.dataset.category === active;
+        let n = 0;
+        group.querySelectorAll('.feature-card').forEach(function (card) {
+          const hay = (card.getAttribute('data-search') || '').toLowerCase();
+          const ok = catOk && (!q || hay.indexOf(q) !== -1);
+          card.hidden = !ok;
+          if (ok) n += 1;
+        });
+        group.hidden = n === 0;
+        const badge = group.querySelector('.feature-group__count');
+        if (badge) badge.textContent = n + (n === 1 ? ' feature' : ' features');
+        shown += n;
+      });
+      if (countEl) countEl.textContent = shown + ' of ' + totalCards;
+      if (empty) empty.hidden = shown !== 0;
+    }
+
+    search.addEventListener('input', apply);
+    apply();
+  })();
+
   const featureCards = document.querySelectorAll('.feature-card[data-id]');
   const modal = document.getElementById('featureModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -5570,7 +6024,7 @@
       const clone = li.cloneNode(true);
       const strongClone = clone.querySelector('strong');
       if (strongClone) strongClone.remove();
-      let desc = clone.textContent.replace(/^[\s:–--]+/, '').trim();
+      let desc = clone.textContent.replace(/^[\s:\u2013\u2014-]+/, '').trim();
       return { title: title || desc, desc: title ? desc : '' };
     }
     const text = li.textContent.trim();
