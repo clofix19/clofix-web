@@ -367,6 +367,11 @@
     scroll-margin-top: calc(var(--header-h, 80px) + 12px);
   }
 
+  /* Sit above the sticky header (z-index 10000) and mobile nav (10050) */
+  #featureModal {
+    z-index: 10100;
+  }
+
   /* Feature modal detail (shared) */
   .modal-content:has(#modalDescription .feature-detail) {
     max-width: 920px;
@@ -5565,7 +5570,7 @@
       const clone = li.cloneNode(true);
       const strongClone = clone.querySelector('strong');
       if (strongClone) strongClone.remove();
-      let desc = clone.textContent.replace(/^[\s:–--]+/, '').trim();
+      let desc = clone.textContent.replace(/^[\s:–—-]+/, '').trim();
       return { title: title || desc, desc: title ? desc : '' };
     }
     const text = li.textContent.trim();
