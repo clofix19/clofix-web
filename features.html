@@ -1680,7 +1680,7 @@
           <!-- CloFix AI Protection Engine -->
           <div class="feature-card" data-id="ai_protection_engine">
               <h3>🧠 CloFix AI Protection Engine</h3>
-              <p>Inline obfuscated-payload classifier and behavioral anomaly scoring with Threat Learning — CRS-independent, mode-capped, sub-millisecond hot path</p>
+              <p>Inline obfuscated-payload classifier and behavioral anomaly scoring with Threat Learning - CRS-independent, mode-capped, sub-millisecond hot path</p>
               <div class="scripting-guideline">
                   <a href="https://clofix.com/features#ai_protection_engine" target="_blank" rel="noopener noreferrer">
                       📘 AI Protection Engine Guide →
@@ -1691,26 +1691,26 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>CRS-Independent:</strong> Runs before / without OWASP CRS — disable CRS and AI still learns and enforces based on `ai_engine` mode</li>
+                      <li><strong>CRS-Independent:</strong> Runs before / without OWASP CRS - disable CRS and AI still learns and enforces based on `ai_engine` mode</li>
                       <li><strong>Payload Classifier (Module A):</strong> Multi-layer normalize (URL / HTML entity / Base64 / hex / unicode, max 5 layers) with bomb guards (64KB norm, 16KB per field)</li>
                       <li><strong>40-Dim Feature Vector:</strong> Entropy, density, decode layers, plus attack shapes for SQLi, XSS, RCE, LFI/RFI, SSRF, XXE, SSTI, JNDI, GraphQL, JWT, prompt injection, and more</li>
                       <li><strong>Logistic Model:</strong> Pure-Go logistic regression (`seed-v2` / payload-v2.json) with explainable top feature reasons on every decision</li>
                       <li><strong>Behavioral Detector (Module B):</strong> Per-domain velocity windows (10s / 1m / 10m / 1h), path diversity, scanner UA signals, EWMA/MAD baselines</li>
                       <li><strong>Action Ladder:</strong> Allow → Monitor → Challenge → RateLimit → Block, then capped by mode ceiling (`monitor` / `challenge` / `block`)</li>
-                      <li><strong>Mode Ceiling (CapAction):</strong> `mode monitor` never returns Challenge/Block even if score is high — safe rollout path</li>
+                      <li><strong>Mode Ceiling (CapAction):</strong> `mode monitor` never returns Challenge/Block even if score is high - safe rollout path</li>
                       <li><strong>Threat Learning:</strong> IP-independent payload / client / behavior signatures with candidate → active lifecycle, campaigns, approve / FP / TP</li>
                       <li><strong>Learn Modes:</strong> `approve_first` (admin must promote) or `auto` (hits + distinct sources); domain or global scope</li>
                       <li><strong>Fuzzy Matching:</strong> SimHash near-match with configurable Hamming distance (default 3); up to 5000 signatures per domain with LRU eviction</li>
                       <li><strong>Hot-Path Budget:</strong> Default 2ms deadline (`budget_ms`); fail-open allows on timeout/panic; fail-closed degrades to monitor</li>
                       <li><strong>Fingerprint Ban:</strong> Configurable `block_time` (default 15m) after AI block</li>
                       <li><strong>Exclude Paths:</strong> Skip dashboard, login, challenge, health, metrics, and custom prefixes</li>
-                      <li><strong>SOC Dashboard:</strong> `/waf-dashboard/ai-engine` — KPIs, recent decisions, Threat Learning tab, FP/TP feedback</li>
-                      <li><strong>ClickHouse Telemetry:</strong> Async `ai_decisions` / `ai_feedback` / signatures — never blocks Inspect</li>
+                      <li><strong>SOC Dashboard:</strong> `/waf-dashboard/ai-engine` - KPIs, recent decisions, Threat Learning tab, FP/TP feedback</li>
+                      <li><strong>ClickHouse Telemetry:</strong> Async `ai_decisions` / `ai_feedback` / signatures - never blocks Inspect</li>
                       <li><strong>Config Block:</strong> `ai_engine { enabled on; mode monitor; payload on; behavioral on; learning on; … }` in domain conf</li>
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> On each request the AI Protection Engine builds a capped field map (path, query, body, headers), runs Module A payload scoring and Module B behavioral scoring under a hard millisecond budget, then applies CapAction so enforcement never exceeds the configured mode. When Threat Learning is on, high-confidence decisions create or hit IP-independent signatures (skeleton + SimHash for payloads, client fingerprints, behavior sequences). Matching active signatures can challenge or block without CRS. Decisions stream to ClickHouse asynchronously; the in-memory ring powers the Recent table on `/waf-dashboard/ai-engine`. Safe rollout: start at `mode monitor`, watch FP rate, raise to `challenge`, then `block`.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#ai_protection_engine" target="_blank" rel="noopener noreferrer">CloFix AI Protection Engine Guide</a> — payload shapes, Threat Learning, mode ceilings, and dashboard workflows</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#ai_protection_engine" target="_blank" rel="noopener noreferrer">CloFix AI Protection Engine Guide</a> - payload shapes, Threat Learning, mode ceilings, and dashboard workflows</p>
                   </div>
               </div>
           </template>
@@ -1729,7 +1729,7 @@
               <div class="feature-benefits">
                   <h4>Key Benefits</h4>
                   <ul>
-                      <li><strong>Path Scoping:</strong> Protect only configured prefixes (default `/api/,/graphql`) — HTML marketing traffic stays out of the API pipeline</li>
+                      <li><strong>Path Scoping:</strong> Protect only configured prefixes (default `/api/,/graphql`) - HTML marketing traffic stays out of the API pipeline</li>
                       <li><strong>Block or Log Mode:</strong> `block_mode on` stops abusive API requests; `log` records without interrupting clients</li>
                       <li><strong>GraphQL Protection:</strong> Blocks introspection probes, deep nested queries, and dangerous operations when `graphql on`</li>
                       <li><strong>API Abuse Protection:</strong> Rate abuse, odd HTTP methods, and admin API path checks when `abuse on`</li>
@@ -1737,12 +1737,12 @@
                       <li><strong>Per-Domain Toggle:</strong> Enable/disable via `api_engine { }` without redeploying application code</li>
                       <li><strong>Dashboard:</strong> `/waf-dashboard/api-engine` for status and tuning alongside Configuration Manager</li>
                       <li><strong>Works With Other Engines:</strong> Complements AI, Bot, CRS, and Advanced Protection on the same host</li>
-                      <li><strong>Low Overhead:</strong> Prefix match first — non-API paths skip the engine entirely</li>
+                      <li><strong>Low Overhead:</strong> Prefix match first - non-API paths skip the engine entirely</li>
                       <li><strong>Config Block:</strong> `api_engine { enabled on; block_mode on; graphql on; abuse on; schema on; paths /api/,/graphql; }`</li>
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> When a request path matches a configured API prefix, the API Security Engine evaluates GraphQL risk (introspection, depth, dangerous ops), abuse signals (methods, rate, admin paths), and schema rules (Content-Type / JSON on mutations). In block mode matching requests are denied; in log mode they continue after telemetry. Non-matching paths are ignored so public pages and static assets are unaffected. Configure under domain conf `api_engine` or Configuration Manager → API Security Engine; monitor at `/waf-dashboard/api-engine`.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#api_security_engine" target="_blank" rel="noopener noreferrer">CloFix API Security Engine Guide</a> — GraphQL, abuse, schema, and path scoping</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#api_security_engine" target="_blank" rel="noopener noreferrer">CloFix API Security Engine Guide</a> - GraphQL, abuse, schema, and path scoping</p>
                   </div>
               </div>
           </template>
@@ -1750,7 +1750,7 @@
           <!-- CloFix Bot Management Engine -->
           <div class="feature-card" data-id="bot_management_engine">
               <h3>🤖 CloFix Bot Management Engine</h3>
-              <p>Unified bot scoring with JA3, behavior, No-IP, and automation UA signals — allow, challenge, or block with good-bot bypass</p>
+              <p>Unified bot scoring with JA3, behavior, No-IP, and automation UA signals - allow, challenge, or block with good-bot bypass</p>
               <div class="scripting-guideline">
                   <a href="https://clofix.com/features#bot_management_engine" target="_blank" rel="noopener noreferrer">
                       📘 Bot Management Engine Guide →
@@ -1774,7 +1774,7 @@
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> Each request is scored by the Bot Management Engine using TLS fingerprint, automation UA shape, behavioral context, and related signals. Scores below the challenge threshold continue; scores between challenge and block thresholds receive a JS challenge; scores at or above the block threshold are denied. Verified good bots can bypass scoring when enabled. Tune thresholds per domain via `bot_engine` or Configuration Manager; observe outcomes on `/waf-dashboard/bot`. Pair with Advanced Protection Under Attack Mode during volumetric bot floods.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#bot_management_engine" target="_blank" rel="noopener noreferrer">CloFix Bot Management Engine Guide</a> — scoring signals, thresholds, and good-bot bypass</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#bot_management_engine" target="_blank" rel="noopener noreferrer">CloFix Bot Management Engine Guide</a> - scoring signals, thresholds, and good-bot bypass</p>
                   </div>
               </div>
           </template>
@@ -1795,8 +1795,8 @@
                   <ul>
                       <li><strong>Under Attack Mode:</strong> Force JS challenge on all HTML navigations (“I'm Under Attack”) when `under_attack on` or sensitivity `under_attack`</li>
                       <li><strong>Browser Integrity Check:</strong> Challenge or block requests missing typical browser headers (Accept-Language, Sec-Fetch-*, etc.) when enabled</li>
-                      <li><strong>Sensitivity Presets:</strong> `low` (log), `medium` (challenge), `high` (block), `under_attack` (challenge all HTML) — one toggle to raise enforcement</li>
-                      <li><strong>Challenge Passage:</strong> Skip re-challenge when a valid verification cookie is present — real users pass once and continue</li>
+                      <li><strong>Sensitivity Presets:</strong> `low` (log), `medium` (challenge), `high` (block), `under_attack` (challenge all HTML) - one toggle to raise enforcement</li>
+                      <li><strong>Challenge Passage:</strong> Skip re-challenge when a valid verification cookie is present - real users pass once and continue</li>
                       <li><strong>Exclude Paths:</strong> Keep APIs and health checks out of integrity challenges (default `/api/,/graphql,/.well-known/,/health,/waf-dashboard,/waf-login`)</li>
                       <li><strong>Cloudflare-Style Controls:</strong> Familiar Under Attack + integrity model for operators migrating from CDN WAFs</li>
                       <li><strong>Works With JS Challenges:</strong> Uses the existing challenge template flow (`javascript_challenges`) for passage cookies</li>
@@ -1806,7 +1806,7 @@
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> Advanced Protection evaluates browser integrity signals and the active sensitivity / Under Attack setting before the request proceeds. Missing browser headers or Under Attack Mode send HTML navigations through the JS challenge; successful clients receive a verification cookie and skip re-challenge when challenge passage is on. Excluded paths (APIs, health, dashboard) bypass these checks so machine clients on allowlisted prefixes keep working. Raise `sensitivity` or flip `under_attack on` during incidents; dial back when traffic normalizes. Manage from `/waf-dashboard/advanced` or domain `advanced_protection { }`.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#advanced_protection_engine" target="_blank" rel="noopener noreferrer">CloFix Advanced Protection Guide</a> — Under Attack Mode, Browser Integrity, sensitivity, and challenge passage</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#advanced_protection_engine" target="_blank" rel="noopener noreferrer">CloFix Advanced Protection Guide</a> - Under Attack Mode, Browser Integrity, sensitivity, and challenge passage</p>
                   </div>
               </div>
           </template>
@@ -5570,7 +5570,7 @@
       const clone = li.cloneNode(true);
       const strongClone = clone.querySelector('strong');
       if (strongClone) strongClone.remove();
-      let desc = clone.textContent.replace(/^[\s:–—-]+/, '').trim();
+      let desc = clone.textContent.replace(/^[\s:–--]+/, '').trim();
       return { title: title || desc, desc: title ? desc : '' };
     }
     const text = li.textContent.trim();
