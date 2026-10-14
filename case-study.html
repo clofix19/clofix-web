@@ -36,6 +36,38 @@
   <meta name="twitter:site" content="@clofix19" />
 
 
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "CloFix client success stories",
+  "url": "https://clofix.com/case-study",
+  "numberOfItems": 3,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Exquisite Tech Zone",
+      "description": "Enterprise WAF & Compliance Transformation",
+      "url": "https://clofix.com/case-study/exquisite-tech-zone"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Bayyinah QA Limited",
+      "description": "DevSecOps & Security Integration",
+      "url": "https://clofix.com/case-study/bayyinah-qa-limited"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rockibul Info",
+      "description": "Portfolio WAF Protection for rockibul.info",
+      "url": "https://clofix.com/case-study/rockibul-info"
+    }
+  ]
+}
+  </script>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   
@@ -85,6 +117,7 @@
       margin-top: 2rem;
     }
     
+    a.client-case-card { text-decoration: none; color: inherit; }
     .client-case-card {
       background: linear-gradient(165deg, #152a4d 0%, #0f1f3d 55%, #0c1a35 100%);
       border-radius: 16px;
@@ -149,7 +182,7 @@
       align-items: center;
       gap: 0.5rem;
       flex-wrap: wrap;
-      margin-bottom: 0.45rem;
+      margin: 0 0 0.45rem;
       letter-spacing: -0.01em;
     }
     
@@ -477,8 +510,37 @@
     <!-- Client Case Study Dashboard Section -->
     <div class="container case-studies-section" id="caseStudyApp">
       <!-- Case Study List View -->
-        <div class="clients-case-grid" id="clientsGridContainer">
-          <!-- dynamic client cards will appear here -->
+<div class="clients-case-grid" id="clientsGridContainer">
+          <a class="client-case-card" id="case-exquisite-tech-zone" href="case-study/exquisite-tech-zone">
+            <div class="client-avatar-case">
+              <img src="img/p/Exquisite_Tech_Zone.png" alt="Exquisite Tech Zone logo" class="client-logo-img" width="68" height="68" />
+            </div>
+            <div class="client-info-case">
+              <h2 class="client-name-case">Exquisite Tech Zone <span class="arrow-hover" aria-hidden="true">→</span></h2>
+              <div><span class="client-industry-case">Software Company</span></div>
+              <p class="client-short-desc">Enterprise WAF &amp; Compliance Transformation</p>
+            </div>
+          </a>
+          <a class="client-case-card" id="case-bayyinah-qa-limited" href="case-study/bayyinah-qa-limited">
+            <div class="client-avatar-case">
+              <img src="img/p/bayyinahqa.png" alt="Bayyinah QA Limited logo" class="client-logo-img" width="68" height="68" />
+            </div>
+            <div class="client-info-case">
+              <h2 class="client-name-case">Bayyinah QA Limited <span class="arrow-hover" aria-hidden="true">→</span></h2>
+              <div><span class="client-industry-case">Software Testing &amp; QA</span></div>
+              <p class="client-short-desc">DevSecOps &amp; Security Integration</p>
+            </div>
+          </a>
+          <a class="client-case-card" id="case-rockibul-info" href="case-study/rockibul-info">
+            <div class="client-avatar-case">
+              <img src="img/p/rockibul.png" alt="Rockibul Info logo" class="client-logo-img" width="68" height="68" />
+            </div>
+            <div class="client-info-case">
+              <h2 class="client-name-case">Rockibul Info <span class="arrow-hover" aria-hidden="true">→</span></h2>
+              <div><span class="client-industry-case">Individual Web</span></div>
+              <p class="client-short-desc">Portfolio WAF Protection for rockibul.info</p>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -634,17 +696,17 @@
         `;
         
         html += `
-          <div class="client-case-card" data-url="${escapeHtml(client.detailPageUrl)}" data-client-name="${escapeHtml(client.name)}">
+          <a class="client-case-card" id="case-${escapeHtml(client.id)}" href="${escapeHtml(client.detailPageUrl)}">
             ${avatarHtml}
             <div class="client-info-case">
-              <div class="client-name-case">
-                ${escapeHtml(client.name)} 
-                <span class="arrow-hover">→</span>
-              </div>
+              <h2 class="client-name-case">
+                ${escapeHtml(client.name)}
+                <span class="arrow-hover" aria-hidden="true">→</span>
+              </h2>
               <div><span class="client-industry-case">${escapeHtml(client.industry)}</span></div>
-              <div class="client-short-desc">${escapeHtml(client.shortDesc)}</div>
+              <p class="client-short-desc">${escapeHtml(client.shortDesc)}</p>
             </div>
-          </div>
+          </a>
         `;
       });
       clientsContainer.innerHTML = html;
@@ -673,16 +735,6 @@
         });
       });
 
-      // Attach click event listeners: navigate to the dedicated case study page
-      document.querySelectorAll('.client-case-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const targetUrl = card.getAttribute('data-url');
-          if (targetUrl) {
-            window.location.href = targetUrl;
-          }
-        });
-      });
     }
 
     // Initialize the case study listing page

@@ -137,7 +137,7 @@
           "item": {
             "@type": "Product",
             "name": "Enterprise Plan",
-            "description": "Complete enterprise WAF with unlimited domains, dedicated support, 99.9% SLA",
+            "description": "Full SaaS feature set with CRS, JS, Lua, and WASM scripting, 10 domains, unlimited requests, phone support, and a 99.9% SLA",
             "image": "https://clofix.com/img/share.jpg",
             "offers": {
               "@type": "Offer",
@@ -148,7 +148,91 @@
               "url": "https://clofix.com/pricing"
             }
           }
-        }
+        },
+{
+    "@type": "ListItem",
+    "position": 5,
+    "item": {
+      "@type": "Product",
+      "name": "Starter Dedicated",
+      "description": "Entry-level dedicated WAF. 4 vCPU, 8 GB RAM, 2 TB bandwidth, 50M requests, up to 10 domains, 99.9% SLA. Annual total $4,500.00.",
+      "image": "https://clofix.com/img/share.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "4500.00",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://clofix.com/pricing"
+      }
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 6,
+    "item": {
+      "@type": "Product",
+      "name": "Business Dedicated",
+      "description": "Mid-tier dedicated WAF. 8 vCPU, 16 GB RAM, 5 TB bandwidth, 200M requests, up to 20 domains, 99.99% SLA. Annual total $7,683.33.",
+      "image": "https://clofix.com/img/share.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "7683.33",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://clofix.com/pricing"
+      }
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 7,
+    "item": {
+      "@type": "Product",
+      "name": "Enterprise Dedicated",
+      "description": "Full-scale dedicated WAF. 16+ vCPU, 32+ GB RAM, unlimited bandwidth and requests, up to 30 domains, 99.999% SLA. Annual total $13,533.33.",
+      "image": "https://clofix.com/img/share.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "13533.33",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://clofix.com/pricing"
+      }
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 8,
+    "item": {
+      "@type": "Product",
+      "name": "Custom Enterprise",
+      "description": "Fully tailored WAF with unlimited domains and traffic, 99.999% SLA, dedicated security team, on-premise or cloud deployment, and a named solution architect.",
+      "image": "https://clofix.com/img/share.jpg",
+      "url": "https://clofix.com/pricing"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 9,
+    "item": {
+      "@type": "Product",
+      "name": "Branding",
+      "description": "Company-name branding, custom error pages, custom JS challenge page, custom block pages, priority support, and free updates.",
+      "image": "https://clofix.com/img/share.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "375.00",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://clofix.com/pricing",
+        "description": "6-month branding. 12 months is $600.00."
+      }
+    }
+  }
       ]
     }
   }
@@ -161,6 +245,7 @@
     .pricing-header { text-align: center; margin: 2.5rem 0 1.5rem; }
     .pricing-header h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .pricing-header p { color: #94a3b8; margin-top: 0.5rem; }
+    .pricing-catalog-note { max-width: 860px; margin: 1rem auto 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; }
     .pricing-header__sub { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0.5rem 1rem; margin-top: 1rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
     .ph-tag { max-width: 380px; text-align: left; }
     .ph-tag strong { color: #e2e8f0; }
@@ -636,6 +721,7 @@
         <span class="ph-divider">|</span>
         <span class="ph-tag ph-dedicated"><i class="fas fa-server"></i> <strong>Dedicated</strong> - Maximum control &amp; compliance. Isolated infrastructure, bring-your-own-cloud or our datacenter, full customization, named engineer, and enterprise SLA up to 99.999%.</span>
       </p>
+      <p class="pricing-catalog-note">Branding is $375.00 for 6 months or $600.00 for 12 months (45,000 BDT / 72,000 BDT) and includes your company name, custom error pages, a custom JS challenge page, custom block pages, priority support, and free updates. Dedicated hosting is priced per year: Starter Dedicated $4,500.00, Business Dedicated $7,683.33, Enterprise Dedicated $13,533.33. Custom Enterprise is quoted for unlimited domains and traffic.</p>
       <div class="pricing-header__badges">
         <span class="ph-badge"><i class="fas fa-shield-alt"></i> OWASP CRS</span>
         <span class="ph-badge"><i class="fas fa-brain"></i> AI-Powered Detection</span>
@@ -668,16 +754,101 @@
       </div>
     </div>
 
-    <div id="plansContainer" class="plans-row"></div>
+    <div id="plansContainer" class="plans-row">
+      <article class="plan-card" id="plan-starter">
+        
+        <h2 class="plan-name">Starter</h2>
+        <div class="price-section">
+          <div><span class="price-old">$14.17</span><span class="price-main">$12.50</span><span class="price-period"> /monthly</span></div>
+          <p class="price-yearly-note">1,500 BDT per month. Yearly billing is 10% off.</p>
+        </div>
+        <p class="support-price"><i class="fas fa-headset" aria-hidden="true"></i> Support: <strong>Email Only</strong></p>
+        <ul class="feature-list">
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Basic WAF (CRS + 5 rules)</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Behavioral analysis basic</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> No-IP Device Fingerprinting</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 1 domain</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30K req/month</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 2GB Bandwidth</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom rules: 5</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30-day logs</li>
+        </ul>
+        <a href="/contact" class="btn">Start Free Trial</a>
+      </article>
+      <article class="plan-card" id="plan-growth">
+        
+        <h2 class="plan-name">Growth</h2>
+        <div class="price-section">
+          <div><span class="price-old">$51.67</span><span class="price-main">$45.83</span><span class="price-period"> /monthly</span></div>
+          <p class="price-yearly-note">5,500 BDT per month. Yearly billing is 10% off.</p>
+        </div>
+        <p class="support-price"><i class="fas fa-headset" aria-hidden="true"></i> Support: <strong>Email Only</strong></p>
+        <ul class="feature-list">
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Full Starter+</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> JS/Lua scripting + 5 rules</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Behavioral analysis advance</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> DDoS L3/L4</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 domain</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 100K req/month</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 15GB Bandwidth</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom rules: 10</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Extended logging</li>
+        </ul>
+        <a href="/contact" class="btn">Start Free Trial</a>
+      </article>
+      <article class="plan-card" id="plan-pro">
+        <div class="popular-badge">🔥 Most Popular</div>
+        <h2 class="plan-name">Pro</h2>
+        <div class="price-section">
+          <div><span class="price-old">$154.17</span><span class="price-main">$137.50</span><span class="price-period"> /monthly</span></div>
+          <p class="price-yearly-note">16,500 BDT per month. Yearly billing is 10% off.</p>
+        </div>
+        <p class="support-price"><i class="fas fa-headset" aria-hidden="true"></i> Support: <strong>Email + WhatsApp</strong></p>
+        <ul class="feature-list">
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Full Starter+Growth+</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> All AI-powered modules</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> WASM engine + 5 rules</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> API security</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 5 domains</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 200K req/month</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 50GB Bandwidth</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom rules: 20</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Priority support</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Advanced analytics</li>
+        </ul>
+        <a href="/contact" class="btn">Start Free Trial</a>
+      </article>
+      <article class="plan-card enterprise" id="plan-enterprise">
+        
+        <h2 class="plan-name">Enterprise</h2>
+        <div class="price-section">
+          <div><span class="price-old">$458.33</span><span class="price-main">$416.67</span><span class="price-period"> /monthly</span></div>
+          <p class="price-yearly-note">50,000 BDT per month. Yearly billing is 10% off.</p>
+        </div>
+        <p class="support-price"><i class="fas fa-headset" aria-hidden="true"></i> Support: <strong>Email+WhatsApp+Phone</strong></p>
+        <ul class="feature-list">
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Full SaaS feature set</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> CRS/JS/Lua/WASM scripting + 10 rules</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> SLA 99.9%</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> 10 domains</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Unlimited req/month</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Unlimited Bandwidth</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom rules: 50</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Phone support</li>
+             <li><i class="fas fa-check-circle" aria-hidden="true"></i> Dedicated account manager</li>
+        </ul>
+        <a href="/contact" class="btn">Start Free Trial</a>
+      </article>
+    </div>
 
     <div id="saasComparison" class="comparison-section">
       <h3><i class="fas fa-chart-line"></i> SaaS Feature Comparison</h3>
-      <table class="comparison-table" id="saasComparisonTable"></table>
+      <table class="comparison-table" id="saasComparisonTable"><thead><tr><th scope="col">Feature</th><th scope="col">Starter</th><th scope="col">Growth</th><th scope="col">Pro</th><th scope="col">Enterprise</th></tr></thead><tbody><tr><th scope="row">WAF Engine</th><td>OWASP CRS</td><td>CRS+Scripting</td><td>Full AI+WASM</td><td>Full Enterprise</td></tr><tr><th scope="row">AI Protection</th><td>Basic</td><td>Behavioral</td><td>All AI</td><td>Trainable AI</td></tr><tr><th scope="row">DDoS Mitigation</th><td>L3/L4</td><td>L3/L7</td><td>Advanced</td><td>Max</td></tr><tr><th scope="row">Log Retention</th><td>30 days</td><td>30 days</td><td>90 days</td><td>90 days</td></tr><tr><th scope="row">Support</th><td>Email/Tickets</td><td>Email/Tickets</td><td>Email/Tickets/Chat</td><td>Email/Phone/WhatsApp/Tickets/Chat</td></tr><tr><th scope="row">SLA</th><td>99.5%</td><td>99.9%</td><td>99.9%</td><td>99.99%</td></tr><tr><th scope="row">Max Domains</th><td>1</td><td>3</td><td>5</td><td>10</td></tr><tr><th scope="row">Rate Limit</th><td>30K req/month</td><td>100K req/month</td><td>200K req/month</td><td>Unlimited</td></tr><tr><th scope="row">Bandwidth Limit</th><td>2GB</td><td>15GB</td><td>50GB</td><td>Unlimited</td></tr><tr><th scope="row">WAF Dashboard</th><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><th scope="row">Android App</th><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><th scope="row">User Accounts</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr><tr><th scope="row">Additionally - AWS Monitoring Tool</th><td>No</td><td>No</td><td>No</td><td>Yes</td></tr></tbody></table>
     </div>
 
     <div id="dedicatedComparison" class="comparison-section" style="display:none;">
       <h3><i class="fas fa-server"></i> Dedicated Hosting Feature Comparison</h3>
-      <table class="comparison-table" id="dedicatedComparisonTable"></table>
+      <table class="comparison-table" id="dedicatedComparisonTable"><thead><tr><th scope="col">Feature</th><th scope="col">Starter Dedicated</th><th scope="col">Business Dedicated</th><th scope="col">Enterprise Dedicated</th><th scope="col">Custom Enterprise</th></tr></thead><tbody><tr><th scope="row">Infrastructure</th><td>4 vCPU</td><td>8 vCPU</td><td>16+ vCPU</td><td>Custom</td></tr><tr><th scope="row">Total Annual (1yr)</th><td>$4500.00</td><td>$7683.33</td><td>$13533.33</td><td>Custom</td></tr><tr><th scope="row">Total 2yr (15% off)</th><td>$7650.00</td><td>$13061.67</td><td>$23006.67</td><td>Custom</td></tr><tr><th scope="row">Annual Hosting</th><td>$2250.00</td><td>$4050.00</td><td>$7200.00</td><td>Custom</td></tr><tr><th scope="row">Annual License</th><td>$1000.00</td><td>$1833.33</td><td>$3333.33</td><td>Custom</td></tr><tr><th scope="row">Monthly Maint</th><td>$104.17</td><td>$150.00</td><td>$250.00</td><td>Custom</td></tr><tr><th scope="row">Setup Fee</th><td>$125.00</td><td>$208.33</td><td>$291.67</td><td>Custom</td></tr><tr><th scope="row">Bandwidth</th><td>2 TB</td><td>5 TB</td><td>Unlimited*</td><td>Unlimited</td></tr><tr><th scope="row">Requests</th><td>50M</td><td>200M</td><td>Unlimited*</td><td>Unlimited</td></tr><tr><th scope="row">SLA</th><td>99.9%</td><td>99.99%</td><td>99.999%</td><td>Custom</td></tr><tr><th scope="row">Compliance</th><td>PCI-DSS / HIPAA / GDPR</td><td>PCI-DSS / HIPAA / GDPR</td><td>PCI-DSS / HIPAA / GDPR</td><td>PCI-DSS / HIPAA / GDPR</td></tr><tr><th scope="row">Deployment</th><td>Cloud / VM / Datacenter / On-Premise</td><td>Cloud / VM / Datacenter / On-Premise</td><td>Cloud / VM / Datacenter / On-Premise</td><td>Cloud / VM / Datacenter / On-Premise</td></tr><tr><th scope="row">WAF Dashboard</th><td>Real-time Analytics &amp; Reports</td><td>Real-time Analytics &amp; Reports</td><td>Real-time Analytics &amp; Reports</td><td>Real-time Analytics &amp; Reports</td></tr><tr><th scope="row">Android App</th><td>Full Mobile Management</td><td>Full Mobile Management</td><td>Full Mobile Management</td><td>Full Mobile Management</td></tr><tr><th scope="row">User Accounts</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr></tbody></table>
       <div style="margin-top:1.5rem; text-align:center;">
         <button id="viewAgreementBtn" class="btn" style="display:inline-block; width:auto; padding:0.6rem 1.8rem;">
           <i class="fas fa-file-contract"></i> View Dedicated Hosting Agreement
