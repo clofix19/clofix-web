@@ -3153,6 +3153,90 @@
     height: 18px;
   }
 }
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  text-align: left;
+}
+
+.hero-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 96px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.hero-action--trial {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: transparent;
+}
+
+.hero-action--features:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(15, 23, 42, 0.92);
+}
+
+.hero-action--trial:hover {
+  background: linear-gradient(135deg, #fbbf24, #b45309);
+}
+
+.hero-action__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hero-action__kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.hero-action--trial .hero-action__kicker,
+.hero-action--trial .hero-action__title,
+.hero-action--trial .hero-action__note,
+.hero-action--trial .hero-action__go {
+  color: #1c1406;
+}
+
+.hero-action__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.25;
+}
+
+.hero-action__note {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+
+.hero-action__go {
+  margin-left: auto;
+  font-size: 1.15rem;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .hero-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============================================
    DEMO SECTION
    ============================================ */
@@ -3877,9 +3961,23 @@
           <p class="heading--4">
             AI-powered WAF protection for APIs, websites, and cloud apps - intelligent threat detection, DDoS mitigation, and zero-day defense with sub-millisecond latency.
           </p>
-          <div class="unique-hero-cta">
-            <a href="/free-trial" class="c-button c-button--primary">Start Free Trial</a>
-            <a href="/features" class="c-button c-button--secondary">Explore Features</a>
+          <div class="hero-actions" aria-label="Get started">
+            <a class="hero-action hero-action--trial" href="/free-trial">
+              <span class="hero-action__body">
+                <span class="hero-action__kicker">14-day trial</span>
+                <span class="hero-action__title">Start Free Trial</span>
+                <span class="hero-action__note">No credit card. Turn protection on for a live app.</span>
+              </span>
+              <span class="hero-action__go" aria-hidden="true">→</span>
+            </a>
+            <a class="hero-action hero-action--features" href="/features">
+              <span class="hero-action__body">
+                <span class="hero-action__kicker">Full catalog</span>
+                <span class="hero-action__title">Explore Features</span>
+                <span class="hero-action__note">Search engines, rules, and Best-WAF controls.</span>
+              </span>
+              <span class="hero-action__go" aria-hidden="true">→</span>
+            </a>
           </div>
 
           <!-- Stats Badges -->
