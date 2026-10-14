@@ -5553,6 +5553,247 @@
           </template>
 
           <!-- OTHERS CATEGORY -->
+          <h2 class="category-heading">Global Best-WAF</h2>
+
+          <div class="feature-card" data-id="ja3_fingerprint_protection">
+              <h3>🔏 JA3 Fingerprint Protection</h3>
+              <p>Identifies scanners and bots from the TLS handshake, even when the User-Agent is spoofed</p>
+          </div>
+          <template id="ja3_fingerprint_protection">
+              <p>Blocks clients whose JA3 TLS fingerprint matches known attack tools, headless browsers, or spoofed stacks.</p>
+              <ul>
+                  <li><strong>Handshake identity:</strong> Hashes cipher suites, extensions, and curves from the ClientHello</li>
+                  <li><strong>Spoof resistance:</strong> A copied browser User-Agent still fails when the TLS stack does not match</li>
+                  <li><strong>Known-bad lists:</strong> Matches fingerprints of common scanners, exploit kits, and automation frameworks</li>
+                  <li><strong>Allow exceptions:</strong> Trusted monitors and good bots can be exempted without turning the check off</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="ddos_attack_detector_blocking">
+              <h3>🌊 DDoS Attack Detector</h3>
+              <p>Spots flood patterns early and blocks the sources before the origin is overwhelmed</p>
+          </div>
+          <template id="ddos_attack_detector_blocking">
+              <p>Detects volumetric and application-layer floods and blocks the offending clients.</p>
+              <ul>
+                  <li><strong>Request floods:</strong> Flags sudden bursts and sustained high rates per IP, path, and site</li>
+                  <li><strong>Slow attacks:</strong> Catches connections that stay open and drip data to exhaust workers</li>
+                  <li><strong>Automated block:</strong> Applies a time-boxed ban when the detector score crosses the threshold</li>
+                  <li><strong>Origin shield:</strong> Drops attack traffic at the edge so backends keep serving real users</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="credential_stuffing_protection">
+              <h3>🔑 Credential Stuffing Protection</h3>
+              <p>Stops stolen username and password lists from being replayed against login forms and APIs</p>
+          </div>
+          <template id="credential_stuffing_protection">
+              <p>Protects authentication endpoints from high-volume login attempts that reuse breached credentials.</p>
+              <ul>
+                  <li><strong>Login focus:</strong> Watches sign-in, token, and password paths rather than all traffic</li>
+                  <li><strong>Stuffing patterns:</strong> Detects many accounts tried from one client, or one account tried from many IPs</li>
+                  <li><strong>Failure velocity:</strong> Tightens limits after repeated authentication failures</li>
+                  <li><strong>Password spraying:</strong> Catches a single common password tried across many usernames</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="adaptive_rate_limit_protection">
+              <h3>📈 Adaptive Rate Limiting</h3>
+              <p>Raises or lowers request limits from live behavior instead of one fixed number for everyone</p>
+          </div>
+          <template id="adaptive_rate_limit_protection">
+              <p>Adjusts rate limits as traffic changes so real users stay through and abusive clients get slowed or blocked.</p>
+              <ul>
+                  <li><strong>Behavior signals:</strong> Uses error rate, path spread, and burst shape, not only raw request count</li>
+                  <li><strong>Fair limits:</strong> Keeps a higher ceiling for steady browsers and a lower one for scripted clients</li>
+                  <li><strong>Burst then sustain:</strong> Allows a short spike, then enforces a sustained rate</li>
+                  <li><strong>Scoped keys:</strong> Limits by IP, session, API key, or route so one tenant cannot starve another</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="jwt_abuse_protection">
+              <h3>🎟️ JWT Abuse Protection</h3>
+              <p>Rejects tampered, confused, or replayed JSON Web Tokens before the application trusts them</p>
+          </div>
+          <template id="jwt_abuse_protection">
+              <p>Inspects bearer tokens for common JWT attacks without replacing your identity provider.</p>
+              <ul>
+                  <li><strong>Algorithm confusion:</strong> Blocks <code>none</code> and unexpected algorithm switches such as HMAC impersonating RSA</li>
+                  <li><strong>Claim checks:</strong> Enforces issuer, audience, expiry, and not-before when those claims are present</li>
+                  <li><strong>Token bombs:</strong> Caps header and payload size so a huge token cannot exhaust parsers</li>
+                  <li><strong>Replay hints:</strong> Flags the same token sprayed across many IPs in a short window</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="web_cache_deception_protection">
+              <h3>🗃️ Web Cache Deception Protection</h3>
+              <p>Stops attackers from tricking a cache into storing private pages under a static-looking URL</p>
+          </div>
+          <template id="web_cache_deception_protection">
+              <p>Prevents cache deception, where a private response is stored because the path looks like a static file.</p>
+              <ul>
+                  <li><strong>Path mismatch:</strong> Flags <code>/account/settings/x.css</code> style URLs that the app still treats as dynamic</li>
+                  <li><strong>Cache-Control:</strong> Forces private or no-store on authenticated and personalized responses</li>
+                  <li><strong>Static allowlist:</strong> Only real asset extensions on static paths are allowed to be cached publicly</li>
+                  <li><strong>Delimiter tricks:</strong> Catches <code>;</code>, encoded slashes, and appended extensions used to confuse caches</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="json_bomb_protection">
+              <h3>💣 JSON Bomb Protection</h3>
+              <p>Rejects JSON bodies that expand into huge objects, deep trees, or enormous strings</p>
+          </div>
+          <template id="json_bomb_protection">
+              <p>Limits how large and how nested a JSON body can be before it is parsed by the application.</p>
+              <ul>
+                  <li><strong>Depth cap:</strong> Blocks deeply nested objects and arrays used to blow parser stacks</li>
+                  <li><strong>Width cap:</strong> Limits keys per object and items per array</li>
+                  <li><strong>String and number size:</strong> Rejects multi-megabyte strings and extreme numeric exponents</li>
+                  <li><strong>Duplicate keys:</strong> Flags repeated keys that parsers resolve differently</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="duplicate_content_length_protection">
+              <h3>📏 Duplicate Content-Length Protection</h3>
+              <p>Drops requests that send conflicting Content-Length headers to desync proxies and backends</p>
+          </div>
+          <template id="duplicate_content_length_protection">
+              <p>Blocks HTTP request smuggling setups that rely on two different Content-Length values.</p>
+              <ul>
+                  <li><strong>Duplicate headers:</strong> Rejects more than one Content-Length on the same request</li>
+                  <li><strong>Conflicting values:</strong> Blocks the request when the values do not match exactly</li>
+                  <li><strong>CL.TE ambiguity:</strong> Refuses bodies where Content-Length and Transfer-Encoding disagree</li>
+                  <li><strong>Obfuscated names:</strong> Catches folded, spaced, or mixed-case header tricks</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="http2_rapid_reset_protection">
+              <h3>⚡ HTTP/2 Rapid Reset Protection</h3>
+              <p>Limits streams that are opened and reset in a tight loop to exhaust server resources</p>
+          </div>
+          <template id="http2_rapid_reset_protection">
+              <p>Mitigates HTTP/2 Rapid Reset, where a client cancels streams faster than the server can free them.</p>
+              <ul>
+                  <li><strong>Reset velocity:</strong> Counts RST_STREAM frames per connection in a short window</li>
+                  <li><strong>Stream ceiling:</strong> Caps concurrent streams below the point where memory spikes</li>
+                  <li><strong>Connection penalty:</strong> Closes or slows connections that reset most of the streams they open</li>
+                  <li><strong>Legitimate traffic:</strong> Normal browsing and gRPC calls stay under the reset threshold</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="trusted_proxy_validation">
+              <h3>🛡️ Trusted Proxy Validation</h3>
+              <p>Trusts forwarded client IP headers only when the connection comes from a proxy you configured</p>
+          </div>
+          <template id="trusted_proxy_validation">
+              <p>Stops clients from spoofing X-Forwarded-For and related headers to hide their address or skip IP rules.</p>
+              <ul>
+                  <li><strong>Trusted hops:</strong> Reads the client IP only from proxies on the allowlist</li>
+                  <li><strong>Header spoofing:</strong> Ignores X-Forwarded-For, X-Real-IP, and Forwarded from the public internet</li>
+                  <li><strong>Rightmost hop:</strong> Selects the client address by counting known proxies, not the first header value</li>
+                  <li><strong>Rule accuracy:</strong> Rate limits, geo rules, and reputation checks use the real client IP</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="request_body_size_limit">
+              <h3>📦 Request Body Size Limit</h3>
+              <p>Rejects request bodies larger than the configured maximum before they are buffered</p>
+          </div>
+          <template id="request_body_size_limit">
+              <p>Enforces a maximum body size so oversized uploads cannot fill disk or memory.</p>
+              <ul>
+                  <li><strong>Early reject:</strong> Returns an error as soon as Content-Length exceeds the limit</li>
+                  <li><strong>Chunked bodies:</strong> Counts bytes as they arrive when no Content-Length is sent</li>
+                  <li><strong>Per-route caps:</strong> Allows a higher limit on upload paths and a lower one on APIs</li>
+                  <li><strong>No full buffer:</strong> Stops reading once the cap is hit instead of storing the whole body</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="decompression_bomb_protection">
+              <h3>🗜️ Decompression Bomb Protection</h3>
+              <p>Stops highly compressed bodies that expand to gigabytes when unzipped</p>
+          </div>
+          <template id="decompression_bomb_protection">
+              <p>Limits gzip, deflate, and brotli bodies so a tiny upload cannot expand into a huge payload.</p>
+              <ul>
+                  <li><strong>Expansion ratio:</strong> Blocks content whose uncompressed size dwarfs the compressed size</li>
+                  <li><strong>Output ceiling:</strong> Stops decompression after a maximum byte count</li>
+                  <li><strong>Zip and gzip tricks:</strong> Covers nested or repeated compression used as a bomb</li>
+                  <li><strong>Parser safety:</strong> The application never receives a body that failed the expansion check</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="otp_bruteforce_protection">
+              <h3>🔢 OTP Brute-Force Protection</h3>
+              <p>Slows and blocks repeated guesses against one-time passwords and verification codes</p>
+          </div>
+          <template id="otp_bruteforce_protection">
+              <p>Protects MFA and verification steps, where a short numeric code can otherwise be guessed quickly.</p>
+              <ul>
+                  <li><strong>Short codes:</strong> Applies a tight attempt budget to OTP, TOTP, SMS, and email codes</li>
+                  <li><strong>Per account and IP:</strong> Counts failures for the user and for the client separately</li>
+                  <li><strong>Lockout:</strong> Temporarily blocks the challenge after the attempt limit</li>
+                  <li><strong>Resend abuse:</strong> Limits how often a new code can be requested</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="graphql_complexity_limit">
+              <h3>📊 GraphQL Complexity Limit</h3>
+              <p>Rejects GraphQL queries that are too deep, too wide, or too expensive to execute</p>
+          </div>
+          <template id="graphql_complexity_limit">
+              <p>Caps GraphQL query cost so a single request cannot overload resolvers.</p>
+              <ul>
+                  <li><strong>Depth:</strong> Limits how many levels a selection set may nest</li>
+                  <li><strong>Breadth:</strong> Limits fields, aliases, and fragments in one operation</li>
+                  <li><strong>Cost score:</strong> Adds weight for lists and expensive fields, then blocks over-budget queries</li>
+                  <li><strong>Batch abuse:</strong> Caps the number of operations sent in one HTTP request</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="bola_idor_detection">
+              <h3>🔐 BOLA / IDOR Detection</h3>
+              <p>Flags object-ID tampering where a user tries to read or change someone else's record</p>
+          </div>
+          <template id="bola_idor_detection">
+              <p>Detects broken object-level authorization by watching how clients enumerate IDs they do not own.</p>
+              <ul>
+                  <li><strong>ID walking:</strong> Notices sequential or random IDs tried across accounts, orders, or files</li>
+                  <li><strong>Method mix:</strong> Pays extra attention to GET, PUT, PATCH, and DELETE on object URLs</li>
+                  <li><strong>Auth context:</strong> Compares the object identifier with the authenticated user when that signal is available</li>
+                  <li><strong>Burst control:</strong> Rate-limits clients that probe many object IDs in a short time</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="authenticated_cache_isolation">
+              <h3>🧊 Authenticated Cache Isolation</h3>
+              <p>Keeps logged-in responses out of shared caches so one user cannot be served another's page</p>
+          </div>
+          <template id="authenticated_cache_isolation">
+              <p>Separates cached content for anonymous and authenticated users.</p>
+              <ul>
+                  <li><strong>Private responses:</strong> Marks Cookie and Authorization responses as private</li>
+                  <li><strong>Vary:</strong> Requires cache keys to vary on the headers that change the response</li>
+                  <li><strong>No shared hit:</strong> A cached anonymous page is not reused for a request that carries a session</li>
+                  <li><strong>Sensitive routes:</strong> Disables shared caching on account, billing, and admin paths</li>
+              </ul>
+          </template>
+
+          <div class="feature-card" data-id="secret_leakage_detection">
+              <h3>🕵️ Secret Leakage Detection</h3>
+              <p>Scans responses for API keys, tokens, and cloud credentials before they leave the edge</p>
+          </div>
+          <template id="secret_leakage_detection">
+              <p>Detects secrets in response bodies and headers so a verbose error or debug page does not publish them.</p>
+              <ul>
+                  <li><strong>Key shapes:</strong> Matches common cloud, Git, and payment token formats</li>
+                  <li><strong>App secrets:</strong> Looks for private keys, connection strings, and session material in error output</li>
+                  <li><strong>Header leaks:</strong> Checks Set-Cookie and debug headers as well as HTML and JSON bodies</li>
+                  <li><strong>Block or mask:</strong> Stops the response or redacts the secret, depending on policy</li>
+              </ul>
+          </template>
+
+          <!-- OTHERS CATEGORY -->
           <h2 class="category-heading">Additional Security Features</h2>
 
           <div class="feature-card" data-id="slack_alerts">
