@@ -171,8 +171,90 @@
     }, 2800);
   }
 
+  function consoleHost(raw) {
+    var s = String(raw || "").trim().toLowerCase();
+    s = s.replace(/^[a-z][a-z0-9+.-]*:\/\//, "");
+    s = s.split(/[/?#]/)[0];
+    if (s.indexOf("@") !== -1) s = s.slice(s.lastIndexOf("@") + 1);
+    s = s.replace(/\.$/, "");
+    if (!s || s.length > 253) return "";
+    if (
+      !/^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)*[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?::\d{1,5})?$/.test(
+        s
+      )
+    ) {
+      return "";
+    }
+    return s;
+  }
+
+  function initWafConsole() {
+    if (document.getElementById("wafConsoleDialog")) return;
+    var dialog = document.createElement("dialog");
+    dialog.id = "wafConsoleDialog";
+    dialog.className = "waf-console";
+    dialog.innerHTML =
+      '<form class="waf-console__form">' +
+      "<h2>WAF Console</h2>" +
+      "<p>Enter the domain and go to your CloFix WAF console.</p>" +
+      '<label for="wafConsoleDomain">Domain name</label>' +
+      '<input id="wafConsoleDomain" name="domain" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="example.com" required>' +
+      '<p class="waf-console__error" hidden></p>' +
+      '<div class="waf-console__actions">' +
+      '<button type="button" class="waf-console__cancel">Cancel</button>' +
+      '<button type="submit" class="ticket-button c-button c-button--small c-button--secondary">Open</button>' +
+      "</div></form>";
+    document.body.appendChild(dialog);
+
+    var form = dialog.querySelector("form");
+    var input = dialog.querySelector("#wafConsoleDomain");
+    var error = dialog.querySelector(".waf-console__error");
+
+    function showError(msg) {
+      error.textContent = msg;
+      error.hidden = !msg;
+    }
+
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest && e.target.closest(".waf-console-open");
+      if (!btn) return;
+      e.preventDefault();
+      showError("");
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+      input.focus();
+      input.select();
+    });
+
+    dialog.querySelector(".waf-console__cancel").addEventListener("click", function () {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var host = consoleHost(input.value);
+      if (!host) {
+        showError("Enter a domain name, such as example.com.");
+        input.focus();
+        return;
+      }
+      var url = "https://" + host + "/waf-login";
+      var tab = document.createElement("a");
+      tab.href = url;
+      tab.target = "_blank";
+      tab.rel = "noopener noreferrer";
+      tab.style.display = "none";
+      document.body.appendChild(tab);
+      tab.click();
+      tab.remove();
+      if (typeof dialog.close === "function") dialog.close();
+    });
+  }
+
   function boot() {
     initNav(document.querySelector("header.header"));
+    initWafConsole();
     markCurrent();
     syncHeaderHeight();
     initReveals();
