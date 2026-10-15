@@ -2757,6 +2757,9 @@
                       <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CRS Script</a>
                       <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">WASM</a>
                       <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CADRE Script</a>
+                      <a role="menuitem" href="/clofix-ai-protection-engine" class="c-dropdown__mega-link">AI Protection Engine</a>
+                      <a role="menuitem" href="/clofix-api-security-engine" class="c-dropdown__mega-link">API Security Engine</a>
+                      <a role="menuitem" href="/clofix-bot-management-engine" class="c-dropdown__mega-link">Bot Management Engine</a>
                     </div>
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title">Tools</h4>
@@ -3624,7 +3627,7 @@
               <h3 itemprop="name">🧠 CloFix AI Protection Engine</h3>
               <p itemprop="description">Inline obfuscated-payload classifier and behavioral anomaly scoring with Threat Learning - CRS-independent, mode-capped, sub-millisecond hot path</p>
               <div class="scripting-guideline">
-                  <a href="https://clofix.com/features#ai_protection_engine" target="_blank" rel="noopener noreferrer">
+                  <a href="/clofix-ai-protection-engine">
                       📘 AI Protection Engine Guide →
                   </a>
               </div>
@@ -3651,7 +3654,7 @@
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> On each request the AI Protection Engine builds a capped field map (path, query, body, headers), runs Module A payload scoring and Module B behavioral scoring under a hard millisecond budget, then applies CapAction so enforcement never exceeds the configured mode. When Threat Learning is on, high-confidence decisions create or hit IP-independent signatures (skeleton + SimHash for payloads, client fingerprints, behavior sequences). Matching active signatures can challenge or block without CRS. Decisions stream to ClickHouse asynchronously; the in-memory ring powers the Recent table on `/waf-dashboard/ai-engine`. Safe rollout: start at `mode monitor`, watch FP rate, raise to `challenge`, then `block`.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#ai_protection_engine" target="_blank" rel="noopener noreferrer">CloFix AI Protection Engine Guide</a> - payload shapes, Threat Learning, mode ceilings, and dashboard workflows</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="/clofix-ai-protection-engine">CloFix AI Protection Engine Guide</a> - payload shapes, Threat Learning, mode ceilings, and dashboard workflows</p>
                   </div>
               </div>
           </div></article>
@@ -3661,7 +3664,7 @@
               <h3 itemprop="name">🔌 CloFix API Security Engine</h3>
               <p itemprop="description">GraphQL, API abuse, and schema validation for scoped API paths with block or log-only modes</p>
               <div class="scripting-guideline">
-                  <a href="https://clofix.com/features#api_security_engine" target="_blank" rel="noopener noreferrer">
+                  <a href="/clofix-api-security-engine">
                       📘 API Security Engine Guide →
                   </a>
               </div>
@@ -3682,7 +3685,7 @@
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> When a request path matches a configured API prefix, the API Security Engine evaluates GraphQL risk (introspection, depth, dangerous ops), abuse signals (methods, rate, admin paths), and schema rules (Content-Type / JSON on mutations). In block mode matching requests are denied; in log mode they continue after telemetry. Non-matching paths are ignored so public pages and static assets are unaffected. Configure under domain conf `api_engine` or Configuration Manager → API Security Engine; monitor at `/waf-dashboard/api-engine`.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#api_security_engine" target="_blank" rel="noopener noreferrer">CloFix API Security Engine Guide</a> - GraphQL, abuse, schema, and path scoping</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="/clofix-api-security-engine">CloFix API Security Engine Guide</a> - GraphQL, abuse, schema, and path scoping</p>
                   </div>
               </div>
           </div></article>
@@ -3692,7 +3695,7 @@
               <h3 itemprop="name">🤖 CloFix Bot Management Engine</h3>
               <p itemprop="description">Unified bot scoring with JA3, behavior, No-IP, and automation UA signals - allow, challenge, or block with good-bot bypass</p>
               <div class="scripting-guideline">
-                  <a href="https://clofix.com/features#bot_management_engine" target="_blank" rel="noopener noreferrer">
+                  <a href="/clofix-bot-management-engine">
                       📘 Bot Management Engine Guide →
                   </a>
               </div>
@@ -3713,7 +3716,7 @@
                   </ul>
                   <div class="feature-note">
                       <p>💡 <strong>How it works:</strong> Each request is scored by the Bot Management Engine using TLS fingerprint, automation UA shape, behavioral context, and related signals. Scores below the challenge threshold continue; scores between challenge and block thresholds receive a JS challenge; scores at or above the block threshold are denied. Verified good bots can bypass scoring when enabled. Tune thresholds per domain via `bot_engine` or Configuration Manager; observe outcomes on `/waf-dashboard/bot`. Pair with Advanced Protection Under Attack Mode during volumetric bot floods.</p>
-                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="https://clofix.com/features#bot_management_engine" target="_blank" rel="noopener noreferrer">CloFix Bot Management Engine Guide</a> - scoring signals, thresholds, and good-bot bypass</p>
+                      <p class="guideline-link">📖 <strong>Official Documentation:</strong> <a href="/clofix-bot-management-engine">CloFix Bot Management Engine Guide</a> - scoring signals, thresholds, and good-bot bypass</p>
                   </div>
               </div>
           </div></article>

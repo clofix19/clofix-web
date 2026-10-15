@@ -49,6 +49,10 @@
     <lastmod>2026-09-25</lastmod>
   </sitemap>
   <sitemap>
+    <loc>https://clofix.com/xml/our-insights-sitemap.xml</loc>
+    <lastmod>2026-10-15</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://clofix.com/xml/our-partners-sitemap.xml</loc>
     <lastmod>2026-09-25</lastmod>
   </sitemap>
@@ -67,6 +71,10 @@
   <sitemap>
     <loc>https://clofix.com/xml/clofix-api-sitemap.xml</loc>
     <lastmod>2026-08-13</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://clofix.com/xml/clofix-engine-guides-sitemap.xml</loc>
+    <lastmod>2026-10-15</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/clofix-cadre-script-sitemap.xml</loc>

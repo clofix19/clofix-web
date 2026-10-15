@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://clofix.com/clofix-api-security-engine" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="CloFix InfoTech" />
+  <meta name="description" content="CloFix API Security Engine guide: GraphQL checks, API abuse, schema validation, and path scoping with block or log-only mode." />
+  <title>CloFix API Security Engine Guide | CloFix</title>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="CloFix API Security Engine Guide | CloFix" />
+  <meta property="og:description" content="CloFix API Security Engine guide: GraphQL checks, API abuse, schema validation, and path scoping with block or log-only mode." />
+  <meta property="og:url" content="https://clofix.com/clofix-api-security-engine" />
+  <meta property="og:image" content="https://clofix.com/img/share.jpg" />
+  <meta property="og:site_name" content="CloFix InfoTech" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CloFix API Security Engine Guide | CloFix" />
+  <meta name="twitter:description" content="CloFix API Security Engine guide: GraphQL checks, API abuse, schema validation, and path scoping with block or log-only mode." />
+  <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "CloFix API Security Engine Guide | CloFix",
+    "description": "CloFix API Security Engine guide: GraphQL checks, API abuse, schema validation, and path scoping with block or log-only mode.",
+    "url": "https://clofix.com/clofix-api-security-engine",
+    "author": { "@type": "Organization", "name": "CloFix InfoTech", "url": "https://clofix.com/" },
+    "publisher": { "@type": "Organization", "name": "CloFix InfoTech" }
+  }
+  </script>
+  <style>
+.eng-page { background:#080f1a; color:#c8d8e8; line-height:1.75; }
+.eng-page * { box-sizing:border-box; }
+.eng-hero { background:radial-gradient(ellipse at 70% -10%, rgba(0,194,168,.18) 0%, transparent 55%), #0d1b2e; padding:72px 0 56px; border-bottom:1px solid #1a3a56; }
+.eng-hero .container, .eng-wrap { max-width:1100px; margin:0 auto; padding:0 24px; }
+.eng-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(0,194,168,.1); border:1px solid rgba(0,194,168,.35); color:#00c2a8; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 14px; border-radius:100px; margin-bottom:20px; }
+.eng-hero h1 { font-size:clamp(32px,5vw,48px); line-height:1.12; color:#fff; margin:0 0 14px; }
+.eng-hero h1 span { color:#00c2a8; }
+.eng-lead { font-size:17px; color:#8aa0b5; max-width:680px; margin:0 0 22px; }
+.eng-pills { display:flex; flex-wrap:wrap; gap:10px; }
+.eng-pills span { background:rgba(255,255,255,.04); border:1px solid #1a3a56; border-radius:6px; padding:6px 14px; font-size:13px; }
+.eng-body { display:flex; gap:40px; align-items:flex-start; padding-bottom:72px; }
+.eng-toc { position:sticky; top:calc(var(--header-h, 72px) + 12px); width:220px; flex-shrink:0; padding:28px 0; max-height:calc(100vh - 96px); overflow:auto; }
+.eng-toc p { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5a7088; margin:0 0 10px; }
+.eng-toc a { display:block; padding:6px 12px; font-size:13px; color:#5a7088; text-decoration:none; border-left:2px solid transparent; }
+.eng-toc a:hover { color:#00c2a8; border-left-color:#00c2a8; }
+.eng-content { flex:1; min-width:0; padding:40px 0 0; }
+.eng-section { margin-bottom:56px; }
+.eng-section h2 { font-size:26px; color:#fff; margin:0 0 12px; padding-bottom:10px; border-bottom:1px solid #1a3a56; }
+.eng-content p { margin:0 0 14px; color:#c8d8e8; }
+.eng-content a { color:#7dd8c0; }
+.eng-code { margin:14px 0 22px; border:1px solid #1a3a56; border-radius:8px; overflow:hidden; }
+.eng-code header { display:flex; justify-content:space-between; align-items:center; padding:8px 14px; background:#0d1f35; }
+.eng-code header span { font-family:'Space Mono', ui-monospace, monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#00c2a8; }
+.eng-copy { font-size:11px; color:#8aa0b5; background:none; border:1px solid #1a3a56; border-radius:4px; padding:3px 10px; cursor:pointer; }
+.eng-code pre { margin:0; padding:16px 18px; background:#081422; overflow-x:auto; font-family:'Space Mono', ui-monospace, monospace; font-size:13px; line-height:1.7; color:#9cb8d8; }
+.eng-table-wrap { overflow-x:auto; margin:12px 0 22px; border:1px solid #1a3a56; border-radius:8px; }
+.eng-table { width:100%; border-collapse:collapse; font-size:14px; }
+.eng-table th { text-align:left; padding:10px 14px; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#00c2a8; background:#0d1f35; }
+.eng-table td { padding:9px 14px; border-top:1px solid #1a3a56; vertical-align:top; }
+.eng-table td:first-child { font-family:'Space Mono', ui-monospace, monospace; font-size:12.5px; color:#7dd8c0; white-space:nowrap; }
+.eng-box { border-left:3px solid #00c2a8; background:rgba(0,194,168,.06); padding:14px 16px; margin:14px 0 22px; }
+.eng-box.warn { border-left-color:#e85d26; background:rgba(232,93,38,.06); }
+.eng-cards { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:12px 0 22px; }
+.eng-card { background:#0f2138; border:1px solid #1a3a56; border-radius:8px; padding:14px; }
+.eng-card strong { display:block; color:#00c2a8; margin-bottom:4px; }
+.eng-card span { font-size:13px; color:#8aa0b5; }
+.eng-related { display:flex; flex-wrap:wrap; gap:10px; }
+.eng-related a { text-decoration:none; border:1px solid #1a3a56; border-radius:8px; padding:8px 12px; }
+@media (max-width:860px) {
+  .eng-body { flex-direction:column; gap:0; }
+  .eng-toc { position:static; width:100%; max-height:none; }
+}
+</style>
+</head>
+<body class="eng-page">
+<header class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
+  <div class="container">
+    <div class="header__wrapper">
+      <a href="/" class="c-logo" itemscope itemtype="https://schema.org/Organization" aria-label="CloFix Home">
+        <img src="img/logo.png"
+             alt="CloFix"
+             class="c-logo__img"
+             itemprop="logo"
+             width="150"
+             height="45"
+             decoding="async">
+        <span class="c-logo__tagline" itemprop="description">Global WAF</span>
+      </a>
+
+      <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+        <button class="c-nav__toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navContent">
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+        </button>
+
+        <div class="c-nav__content" id="navContent">
+          <ul class="c-list c-list--flex">
+            <li class="c-list__item">
+              <a href="/" class="c-link c-link--list" itemprop="url"><span itemprop="name">Home</span></a>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="productDropdown">
+                <span>Product</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="productDropdown" role="menu" aria-label="Product Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix WAF</h4>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">Overview</a>
+                      <a role="menuitem" href="/features" class="c-dropdown__mega-link">Features</a>
+                      <a role="menuitem" href="/pricing" class="c-dropdown__mega-link">Pricing</a>
+                      <a role="menuitem" href="/free-trial" class="c-dropdown__mega-link">Free Trial</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Platform</h4>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                      <a role="menuitem" href="/clofix-agent" class="c-dropdown__mega-link">Nano Agent</a>
+                      <a role="menuitem" href="/clofix-api" class="c-dropdown__mega-link">Core API</a>
+                      <a role="menuitem" href="/clofix-load-balancer" class="c-dropdown__mega-link">Load Balancer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="servicesDropdown">
+                <span>Services</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="servicesDropdown" role="menu" aria-label="Services Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Core Services</h4>
+                      <a role="menuitem" href="/services" class="c-dropdown__mega-link">All Services</a>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Managed Services</h4>
+                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link">DevOps Manage Service</a>
+                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link">Cloud Infra Manage Service</a>
+                      <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link">Infrastructure</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="resourcesDropdown">
+                <span>Resources</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="resourcesDropdown" role="menu" aria-label="Resources Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Learn</h4>
+                      <a role="menuitem" href="/event" class="c-dropdown__mega-link">Free Event</a>
+                      <a role="menuitem" href="/documentation" class="c-dropdown__mega-link">Documentation Hub</a>
+                      <a role="menuitem" href="/blogs" class="c-dropdown__mega-link">Blogs</a>
+                      <a role="menuitem" href="/faq" class="c-dropdown__mega-link">FAQ</a>
+                      <a role="menuitem" href="/support" class="c-dropdown__mega-link">Support</a>
+                      <a role="menuitem" href="/case-study" class="c-dropdown__mega-link">Case Study</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Documentation</h4>
+                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">WAF Workflow</a>
+                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">LUA Script</a>
+                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">JS Script</a>
+                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CRS Script</a>
+                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">WASM</a>
+                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CADRE Script</a>
+                      <a role="menuitem" href="/clofix-ai-protection-engine" class="c-dropdown__mega-link">AI Protection Engine</a>
+                      <a role="menuitem" href="/clofix-api-security-engine" class="c-dropdown__mega-link">API Security Engine</a>
+                      <a role="menuitem" href="/clofix-bot-management-engine" class="c-dropdown__mega-link">Bot Management Engine</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Tools</h4>
+                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
+                      <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link">WAF Setup</a>
+                      <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS Checker</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="companyDropdown">
+                <span>Company</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="companyDropdown" role="menu" aria-label="Company Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix</h4>
+                      <a role="menuitem" href="/about" class="c-dropdown__mega-link">About Us</a>
+                      <a role="menuitem" href="/careers" class="c-dropdown__mega-link">Careers</a>
+                      <a role="menuitem" href="/contact" class="c-dropdown__mega-link">Contact</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">Partners</h4>
+                      <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link">Our Clients</a>
+                      <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link">Our Partners</a>
+                      <a role="menuitem" href="/partner" class="c-dropdown__mega-link">Become A Partner</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-list__item--cta">
+              <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary">Free Trial</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<script>
+(function () {
+  var MQ = "(max-width: 1024px)";
+  function isCompact() {
+    return window.matchMedia(MQ).matches;
+  }
+  function syncHeaderHeight() {
+    var headerEl = document.querySelector("header.header");
+    if (!headerEl) return;
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  }
+  function initNav(header) {
+    if (!header || header.getAttribute("data-nav-ready") === "1") return;
+    header.setAttribute("data-nav-ready", "1");
+    var navToggle = header.querySelector("#navToggle");
+    var navContent = header.querySelector(".c-nav__content");
+    var dropdowns = header.querySelectorAll(".c-dropdown");
+    function closeAllDropdowns() {
+      dropdowns.forEach(function (dd) {
+        dd.classList.remove("open");
+        var btn = dd.querySelector(".c-dropdown__toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+    function closeMobile() {
+      if (!navContent || !navToggle) return;
+      navContent.classList.remove("active");
+      document.body.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      closeAllDropdowns();
+    }
+    if (navToggle && navContent) {
+      navToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var open = navContent.classList.toggle("active");
+        document.body.classList.toggle("nav-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncHeaderHeight();
+        if (!open) closeAllDropdowns();
+      });
+    }
+    dropdowns.forEach(function (dd) {
+      var btn = dd.querySelector(".c-dropdown__toggle");
+      if (!btn) return;
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var willOpen = !dd.classList.contains("open");
+        closeAllDropdowns();
+        if (willOpen) {
+          dd.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+    document.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle"))) return;
+      if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
+      closeAllDropdowns();
+      if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
+        closeMobile();
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMobile();
+    });
+    window.addEventListener("resize", function () {
+      syncHeaderHeight();
+      if (!isCompact()) closeMobile();
+    });
+    if (navContent) {
+      navContent.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          if (isCompact()) closeMobile();
+          else closeAllDropdowns();
+        });
+      });
+    }
+    syncHeaderHeight();
+    window.addEventListener("load", syncHeaderHeight);
+  }
+  var header = document.currentScript && document.currentScript.previousElementSibling;
+  if (!header || !header.classList || !header.classList.contains("header")) {
+    header = document.querySelector("header.header");
+  }
+  initNav(header);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="eng-hero">
+  <div class="container">
+    <p class="eng-badge">Engine guide</p>
+    <h1>CloFix <span>API Security</span> Engine</h1>
+    <p class="eng-lead">GraphQL, API abuse, and schema validation for scoped API paths. Choose block or log-only. Public pages stay outside the pipeline.</p>
+    <div class="eng-pills"><span>Path scoped</span><span>GraphQL</span><span>Abuse checks</span><span>Block or log</span></div>
+  </div>
+</section>
+<div class="eng-wrap eng-body">
+  <nav class="eng-toc" aria-label="On this page">
+    <p>On this page</p>
+    <a href="#overview">Overview</a><a href="#scope">Path scoping</a><a href="#graphql">GraphQL</a><a href="#abuse">API abuse</a><a href="#schema">Schema validation</a><a href="#modes">Block or log</a><a href="#config">Configuration</a><a href="#dashboard">Dashboard</a>
+  </nav>
+  <article class="eng-content">
+    
+    <section class="eng-section" id="overview">
+      <h2>Overview</h2>
+      <p>The API Security Engine runs only when the request path matches a configured prefix. HTML pages and static assets skip it. Enable or disable it per domain with <code>api_engine</code> without redeploying application code.</p>
+    </section>
+    <section class="eng-section" id="scope">
+      <h2>Path scoping</h2>
+      <p>The default prefixes are <code>/api/</code> and <code>/graphql</code>. A prefix match comes first. Non-API paths leave the engine entirely, which keeps the overhead on marketing and static traffic at zero.</p>
+    </section>
+    <section class="eng-section" id="graphql">
+      <h2>GraphQL</h2>
+      <p>With <code>graphql on</code>, the engine blocks introspection probes, deeply nested queries, and dangerous operations.</p>
+    </section>
+    <section class="eng-section" id="abuse">
+      <h2>API abuse</h2>
+      <p>With <code>abuse on</code>, the engine checks rate abuse, unusual HTTP methods, and admin API paths.</p>
+    </section>
+    <section class="eng-section" id="schema">
+      <h2>Schema validation</h2>
+      <p>With <code>schema on</code>, mutating API requests must send a Content-Type and valid JSON.</p>
+    </section>
+    <section class="eng-section" id="modes">
+      <h2>Block or log</h2>
+      <div class="eng-cards">
+        <div class="eng-card"><strong>block_mode on</strong><span>Matching abusive API requests are denied.</span></div>
+        <div class="eng-card"><strong>log</strong><span>The request continues after telemetry is recorded.</span></div>
+      </div>
+    </section>
+    <section class="eng-section" id="config">
+      <h2>Configuration</h2>
+      <p>Set this in the domain configuration, or under Configuration Manager → API Security Engine.</p>
+      <div class="eng-code"><header><span>domain conf</span><button type="button" class="eng-copy">Copy</button></header>
+      <pre>api_engine {
+    enabled on;
+    block_mode on;
+    graphql on;
+    abuse on;
+    schema on;
+    paths /api/,/graphql;
+}</pre></div>
+    </section>
+    <section class="eng-section" id="dashboard">
+      <h2>Dashboard</h2>
+      <p>Status and tuning are on <code>/waf-dashboard/api-engine</code>. The engine complements AI, Bot, CRS, and Advanced Protection on the same host.</p>
+      <div class="eng-related">
+        <a href="/clofix-ai-protection-engine">AI Protection Engine</a>
+        <a href="/clofix-bot-management-engine">Bot Management Engine</a>
+        <a href="/features#feature-api_security_engine">Feature card</a>
+      </div>
+    </section>
+    
+  </article>
+</div>
+<footer class="footer" role="contentinfo">
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="/" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix" class="c-footer__logo" width="150" height="45" decoding="async" />
+      </a>
+      <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+      <p class="c-footer__contact">
+        <a href="https://wa.me/8801850603126">WhatsApp +880 1850-603126</a>
+      </p>
+      <ul class="social" aria-label="Social links">
+        <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener" aria-label="Facebook"><img src="img/facebook_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener" aria-label="X"><img src="img/X_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="img/linkedin_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/whatsapp_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener" aria-label="YouTube"><img src="img/youtube_clofix.png" alt="" width="28" height="28" /></a></li>
+      </ul>
+      <div class="google-play-wrapper">
+        <a href="https://play.google.com/store/apps/details?id=com.clofix.waf" target="_blank" rel="noopener">
+          <img src="img/google-play-store-logo-png.png" alt="Get it on Google Play" class="c-footer__play-badge" width="150" height="52" />
+        </a>
+      </div>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Product</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/waf">CloFix WAF</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/free-trial">Free Trial</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Resources</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/event">Free Event</a></li>
+        <li><a href="/documentation">Documentation</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/support">Support</a></li>
+        <li><a href="/case-study">Case Study</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/partner">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/sla">SLA</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container c-footer__bottom">
+    <p class="footer__text">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
+    <ul class="c-footer__listed">
+      <li><a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener">G2</a></li>
+      <li><a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener">CB Insights</a></li>
+      <li><a href="https://www.producthunt.com/products/clofix-waf" target="_blank" rel="noopener">Product Hunt</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="js/chrome.js" defer></script>
+
+<script>
+document.querySelectorAll('.eng-copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var pre = btn.closest('.eng-code').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function () { btn.textContent = 'Copied'; });
+  });
+});
+</script>
+
+</body>
+</html>
