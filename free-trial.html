@@ -849,6 +849,250 @@
 })();
 </script>
 
+<!-- Hero Section -->
+<section class="trial-hero">
+  <div class="trial-hero-content">
+    <span class="trial-badge">🚀 14-Day Free Trial</span>
+    <h1>Start Your <span class="highlight">Free Trial</span> Today</h1>
+    <p>Get enterprise-grade Web Application Firewall protection with AI-powered threat detection. No credit card required. Start securing your web applications now.</p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="trial-container">
+
+  <!-- Benefits -->
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <div class="icon">🛡️</div>
+      <div class="label">Enterprise WAF Protection</div>
+    </div>
+    <div class="benefit-item">
+      <div class="icon">🧠</div>
+      <div class="label">AI-Powered Threat Detection</div>
+    </div>
+    <div class="benefit-item">
+      <div class="icon">💳</div>
+      <div class="label">No Credit Card Required</div>
+    </div>
+    <div class="benefit-item">
+      <div class="icon">⚡</div>
+      <div class="label">5-Minute Setup</div>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-section" id="signup">
+    <h2>Start Your Free Trial</h2>
+    <p class="subtitle">Fill in the form below and get started with CloFix WAF today.</p>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="error-message">
+      <strong>⚠️ Please fix the following errors:</strong>
+      <ul id="errorList"></ul>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+      <div class="icon">🎉</div>
+      <h3>Thank You! Your Free Trial is Ready</h3>
+      <p>We've received your request. Our team will verify your information and send you confirmation shortly.</p>
+      <div class="email-info">
+        📧 A confirmation email has been sent to <strong id="userEmail">your email</strong>
+        <br>
+        <span style="font-size: 12px;">We've also notified our support team at <strong>support@clofix.com</strong></span>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- FORM - Works on both Web Server & Local     -->
+    <!-- ============================================ -->
+    
+    <form id="trialForm" method="POST">
+      
+      <!-- Name -->
+      <div class="form-group">
+        <label for="fullName">Full Name <span class="required">*</span></label>
+        <input type="text" id="fullName" name="fullName" placeholder="John Doe" required />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="john@company.com" required />
+        <p class="form-hint">We'll send verification and login details to this email</p>
+      </div>
+
+      <!-- Company -->
+      <div class="form-group">
+        <label for="company">Company Name <span class="required">*</span></label>
+        <input type="text" id="company" name="company" placeholder="Acme Corp" required />
+      </div>
+
+      <!-- Website URL -->
+      <div class="form-group">
+        <label for="website">Website URL <span class="required">*</span></label>
+        <input type="url" id="website" name="website" placeholder="https://yourwebsite.com" required />
+        <p class="form-hint">The domain you want to protect with CloFix WAF</p>
+      </div>
+
+      <!-- IP/CNAME -->
+      <div class="form-group">
+        <label for="ipcname">IP / CNAME of Your Web Site <span class="required">*</span></label>
+        <input type="text" id="ipcname" name="ipcname" placeholder="e.g., 192.168.1.100 or yourdomain.com" required />
+        <p class="form-hint">Enter the IP address or CNAME record of your web server</p>
+      </div>
+
+      <!-- Plan -->
+      <div class="form-group">
+        <label for="plan">Choose Your Plan <span class="required">*</span></label>
+        <select id="plan" name="plan" required>
+          <option value="">Select a plan</option>
+          <option value="Free - $0/14 Days">Free Trial $0/14 Days</option>
+          <option value="Starter - $12.50/month">Starter - $12.50/month</option>
+          <option value="Professional - $49.99/month">Professional - $49.99/month</option>
+          <option value="Business - $149.99/month">Business - $149.99/month</option>
+          <option value="Enterprise - $416.67/month">Enterprise - $416.67/month</option>
+        </select>
+      </div>
+
+      <!-- Phone & WhatsApp -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+880 1234 567890" required />
+          <p class="form-hint">We'll use this for verification and support</p>
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp Number <span class="required">*</span></label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+880 1234 567890" required />
+          <p class="form-hint">For quick support and updates via WhatsApp</p>
+        </div>
+      </div>
+
+      <!-- Requirements -->
+      <div class="form-group">
+        <label for="requirements">Security Requirements <span class="optional">(Optional)</span></label>
+        <textarea id="requirements" name="requirements" placeholder="Tell us about your security needs, applications, and expected traffic..."></textarea>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- TERMS & CONDITIONS                           -->
+      <!-- ============================================ -->
+      
+      <div class="terms-wrapper">
+        <div class="terms-title">
+          📋 Free Trial Terms & Conditions
+          <span class="badge">Please Read Carefully</span>
+        </div>
+        
+        <div class="condition-cards">
+          <div class="condition-card">
+            <span class="cond-icon">🏢</span>
+            <div class="cond-title">Logo Usage</div>
+            <div class="cond-desc">Your logo will appear on our partner page</div>
+          </div>
+          <div class="condition-card">
+            <span class="cond-icon">⏰</span>
+            <div class="cond-title">14-Day Trial</div>
+            <div class="cond-desc">License expires automatically after 14 days</div>
+          </div>
+          <div class="condition-card">
+            <span class="cond-icon">📧</span>
+            <div class="cond-title">Email Verification</div>
+            <div class="cond-desc">Confirm via email to activate your trial</div>
+          </div>
+        </div>
+        
+        <ul class="terms-list">
+          <li class="term-item">
+            <span class="term-icon">🏢</span>
+            <span class="term-text">
+              <span class="term-label important">Logo Usage</span>
+              By signing up, you agree that <span class="highlight-text">CloFix may display your company logo</span> on our partner page and marketing materials.
+            </span>
+          </li>
+          <li class="term-item">
+            <span class="term-icon">⏰</span>
+            <span class="term-text">
+              <span class="term-label warning">14-Day Trial</span>
+              Your license will be active for <span class="highlight-text">14 days from the activation date</span>. After 14 days, the license will <span class="warning-text">expire automatically</span>.
+            </span>
+          </li>
+          <li class="term-item">
+            <span class="term-icon">🌐</span>
+            <span class="term-text">
+              <span class="term-label important">Domain Protection</span>
+              You can protect <span class="highlight-text">one domain</span> during the trial period. If you need to change your domain, you must inform us before the trial ends.
+            </span>
+          </li>
+          <li class="term-item">
+            <span class="term-icon">📧</span>
+            <span class="term-text">
+              <span class="term-label required">Verification</span>
+              After submitting this form, we will <span class="highlight-text">verify your information</span> and send a confirmation email. <span class="warning-text">Your trial will only start after you confirm via email.</span>
+            </span>
+          </li>
+          <li class="term-item">
+            <span class="term-icon">🔁</span>
+            <span class="term-text">
+              <span class="term-label warning">Before Expiry</span>
+              If you wish to <span class="highlight-text">continue using CloFix WAF</span> after the trial, please email us at <strong>support@clofix.com</strong> to convert to a paid plan.
+            </span>
+          </li>
+          <li class="term-item">
+            <span class="term-icon">🔄</span>
+            <span class="term-text">
+              <span class="term-label important">Domain Transfer</span>
+              If you want to <span class="highlight-text">shift your domain</span> during the trial, contact us at <strong>support@clofix.com</strong> with your new domain details.
+            </span>
+          </li>
+          <li class="term-item">
+            <span class="term-icon">💳</span>
+            <span class="term-text">
+              <span class="term-label success">Renewal</span>
+              To continue after 14 days, you must <span class="highlight-text">subscribe to a paid plan</span>. You will receive a reminder <span class="warning-text">48 hours before your trial expires</span>.
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Checkboxes -->
+      <div class="checkbox-group">
+        <input type="checkbox" id="termsCheck" required />
+        <label for="termsCheck">
+          <strong>I agree to the Terms & Conditions above.</strong> I understand this is a <strong>14-day free trial</strong> and the license will expire automatically. 
+          I agree to <a href="/terms">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>. 
+          <span style="color: #ef4444;">*</span>
+        </label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="logoCheck" required />
+        <label for="logoCheck">
+          <strong>I consent to CloFix using my company logo</strong> on the partner page and marketing materials. 
+          <span style="color: #ef4444;">*</span>
+        </label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="newsletterCheck" />
+        <label for="newsletterCheck">Yes, I'd like to receive newsletters, product updates, security announcements, and trial reminders by email.</label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span class="spinner"></span>
+        Start Free Trial →
+      </button>
+      
+      <p class="form-footer">
+        🔒 Your information is secure. We respect your privacy and will never share your data.
+      </p>
+    </form>
+  </div>
+
+</div>
 
 <script src="js/chrome.js?v=20261015c" defer></script>
 <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
@@ -928,5 +1172,224 @@
     </ul>
   </div>
 </footer>
+
+<!-- ============================================ -->
+<!-- JAVASCRIPT                                   -->
+<!-- ============================================ -->
+
+<script>
+// =============================================
+  // FORM HANDLING - Works Both Locally & on Server
+  // =============================================
+    
+  const form = document.getElementById('trialForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorMessage = document.getElementById('errorMessage');
+  const errorList = document.getElementById('errorList');
+  const successMessage = document.getElementById('successMessage');
+  const userEmail = document.getElementById('userEmail');
+
+  // Check if form was submitted successfully (URL parameter)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('success') === 'true') {
+    form.style.display = 'none';
+    const email = localStorage.getItem('trialEmail') || 'your email';
+    userEmail.textContent = email;
+    successMessage.classList.add('show');
+    
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {
+        'send_to': 'G-WP02RFXGSE',
+        'event_category': 'Trial',
+        'event_label': 'Free Trial Signup',
+        'value': 1
+      });
+    }
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    errorMessage.classList.remove('show');
+    errorList.innerHTML = '';
+    
+    const errors = [];
+    
+    // Validation
+    const fullName = document.getElementById('fullName').value.trim();
+    if (fullName.length < 2) errors.push('Please enter your full name (minimum 2 characters)');
+    
+    const email = document.getElementById('email').value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) errors.push('Please enter a valid email address');
+    
+    const company = document.getElementById('company').value.trim();
+    if (company.length < 2) errors.push('Please enter your company name');
+    
+    const website = document.getElementById('website').value.trim();
+    const urlRegex = /^https?:\/\/[^\s]+$/;
+    if (!urlRegex.test(website)) errors.push('Please enter a valid website URL');
+    
+    const ipcname = document.getElementById('ipcname').value.trim();
+    if (ipcname.length < 2) errors.push('Please enter the IP address or CNAME of your web server');
+    
+    const plan = document.getElementById('plan').value;
+    if (!plan) errors.push('Please select a plan');
+    
+    const phone = document.getElementById('phone').value.trim();
+    if (phone.length < 5) errors.push('Please enter a valid phone number');
+    
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    if (whatsapp.length < 5) errors.push('Please enter a valid WhatsApp number');
+    
+    if (!document.getElementById('termsCheck').checked) errors.push('You must agree to the Terms and Conditions');
+    if (!document.getElementById('logoCheck').checked) errors.push('You must consent to logo usage on our partner page');
+    
+    if (errors.length > 0) {
+      errors.forEach(error => {
+        const li = document.createElement('li');
+        li.textContent = error;
+        errorList.appendChild(li);
+      });
+      errorMessage.classList.add('show');
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    
+    // Save email
+    localStorage.setItem('trialEmail', email);
+    
+    // Show loading
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    
+    // ============================================
+    // METHOD 1: FormSubmit.co (Works on Web Server)
+    // ============================================
+    
+    // Create a FormSubmit.co compatible form
+    const formSubmitForm = document.createElement('form');
+    formSubmitForm.method = 'POST';
+    formSubmitForm.action = 'https://formsubmit.co/support@clofix.com';
+    formSubmitForm.target = '_blank';
+    
+    // Add all fields with FormSubmit.co compatible names
+    const fields = {
+      '_subject': 'New Free Trial Request - CloFix WAF',
+      '_captcha': 'true',
+      '_template': 'table',
+      '_next': window.location.href + '?success=true',
+      '_cc': 'info@clofix.com',
+      'Full Name': fullName,
+      'Email': email,
+      'Company Name': company,
+      'Website URL': website,
+      'IP / CNAME': ipcname,
+      'Plan': plan,
+      'Phone Number': phone,
+      'WhatsApp Number': whatsapp,
+      'Security Requirements': document.getElementById('requirements').value.trim() || 'Not specified',
+      'Terms Agreed': 'Yes',
+      'Logo Consent': 'Yes',
+      'Newsletter': document.getElementById('newsletterCheck').checked ? 'Yes' : 'No'
+    };
+    
+    // Append hidden fields
+    Object.keys(fields).forEach(key => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = fields[key];
+      formSubmitForm.appendChild(input);
+    });
+    
+    // Append to body and submit
+    document.body.appendChild(formSubmitForm);
+    
+    // Try FormSubmit first
+    try {
+      formSubmitForm.submit();
+      
+      // Show success after a moment
+      setTimeout(function() {
+        form.style.display = 'none';
+        userEmail.textContent = email;
+        successMessage.classList.add('show');
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        document.body.removeChild(formSubmitForm);
+      }, 1000);
+      
+    } catch (error) {
+      // If FormSubmit fails, use mailto fallback
+      console.warn('FormSubmit failed, using mailto fallback:', error);
+      document.body.removeChild(formSubmitForm);
+      
+      // ============================================
+      // METHOD 2: Mailto Fallback (Works Everywhere)
+      // ============================================
+      
+      const subject = encodeURIComponent('New Free Trial Request - ' + fullName + ' - ' + company);
+      const body = encodeURIComponent(`
+  =========================================
+  NEW FREE TRIAL REQUEST
+  =========================================
+
+  Full Name: ${fullName}
+  Email: ${email}
+  Company: ${company}
+  Website: ${website}
+  IP / CNAME: ${ipcname}
+  Plan: ${plan}
+  Phone: ${phone}
+  WhatsApp: ${whatsapp}
+
+  Security Requirements:
+  ${document.getElementById('requirements').value.trim() || 'Not specified'}
+
+  Newsletter: ${document.getElementById('newsletterCheck').checked ? 'Yes' : 'No'}
+  Logo Consent: Yes
+  Terms Agreed: Yes
+
+  =========================================
+  Request Received: ${new Date().toLocaleString()}
+  =========================================
+  `);
+      
+      // Open email client with pre-filled data
+      window.open(`mailto:support@clofix.com?subject=${subject}&body=${body}`, '_blank');
+      
+      setTimeout(function() {
+        form.style.display = 'none';
+        userEmail.textContent = email;
+        successMessage.classList.add('show');
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      }, 500);
+    }
+    
+    // Clean up: remove form after 5 seconds if still in DOM
+    setTimeout(function() {
+      if (document.body.contains(formSubmitForm)) {
+        document.body.removeChild(formSubmitForm);
+      }
+    }, 5000);
+  });
+
+  // Header Height Sync
+  (function () {
+    const headerEl = document.querySelector('.header');
+    function syncHeaderHeight() {
+      if (!headerEl) return;
+      document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+    }
+    window.addEventListener('load', syncHeaderHeight);
+    window.addEventListener('resize', syncHeaderHeight);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncHeaderHeight);
+    }
+  })();
+</script>
+
 </body>
 </html>
