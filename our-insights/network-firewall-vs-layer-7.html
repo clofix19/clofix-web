@@ -346,7 +346,7 @@
     <h2>What the firewall is built to see</h2>
     <p>A packet filter sees who is talking to which host, and whether the port is open. It does not turn that stream back into the query string, the form field, or the JSON body your origin will execute. Traffic that is well formed at the network can still be an attack when the application reads it.</p>
     <h2>Where the application actually breaks</h2>
-    <p>SQL injection lives in a parameter. Cross-site scripting lives in a field that later gets rendered. A bot can repeat a login until a password matches. An API call can request an identifier that belongs to someone else. Those decisions happen at Layer 7. CloFix WAF inspects that layer — OWASP Top 10, bots, DDoS, and zero-day patterns — before the request reaches the origin.</p>
+    <p>SQL injection lives in a parameter. Cross-site scripting lives in a field that later gets rendered. A bot can repeat a login until a password matches. An API call can request an identifier that belongs to someone else. Those decisions happen at Layer 7. CloFix WAF inspects that layer - OWASP Top 10, bots, DDoS, and zero-day patterns - before the request reaches the origin.</p>
     <h2>What to check first</h2>
     <p>Match the control to the app you run. Injection, bots, API abuse, and request limits are in the <a href="/features">feature catalog</a>. The packet-filter comparison is in <a href="/clofix-waf-vs-traditional-firewall">CloFix WAF vs a traditional firewall</a>.</p>
     <p>A <a href="/free-trial">14-day trial</a> does not ask for a credit card. Point it at one live app and watch which requests a network rule would have passed.</p>
