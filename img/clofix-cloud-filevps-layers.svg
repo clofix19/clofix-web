@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="CloFix Cloud FileVPS layer stack">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="100%" stop-color="#0d1b2e"/>
+    </linearGradient>
+    <filter id="soft" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <text x="56" y="42" fill="#f8fafc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" font-weight="700">CloFix Cloud - FileVPS layer stack</text>
+  <text x="56" y="68" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">How guest VPS levels sit on a shared worker (not KVM/QEMU)</text>
+
+  <!-- level tags -->
+  <rect x="980" y="110" width="164" height="28" rx="8" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="1"/>
+  <text x="1062" y="129" text-anchor="middle" fill="#7dd3fc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">Guest level</text>
+  <rect x="980" y="430" width="164" height="28" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="1062" y="449" text-anchor="middle" fill="#fbbf24" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">Shared host level</text>
+
+  <!-- Console -->
+  <g filter="url(#soft)">
+    <rect x="56" y="92" width="900" height="72" rx="14" fill="#132337" stroke="#f59e0b" stroke-width="2"/>
+    <text x="80" y="124" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="700">1. CloFix Cloud Console</text>
+    <text x="80" y="148" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Control plane · DNS · WAF · IAM · Billing</text>
+  </g>
+
+  <!-- FileVPS guests -->
+  <g filter="url(#soft)">
+    <rect x="56" y="184" width="288" height="96" rx="12" fill="#163049" stroke="#38bdf8" stroke-width="1.6"/>
+    <text x="76" y="220" fill="#e2e8f0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">2. FileVPS A</text>
+    <text x="76" y="246" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Writable OverlayFS upper</text>
+    <text x="76" y="266" fill="#f59e0b" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">Protection Mode On</text>
+
+    <rect x="362" y="184" width="288" height="96" rx="12" fill="#163049" stroke="#38bdf8" stroke-width="1.6"/>
+    <text x="382" y="220" fill="#e2e8f0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">2. FileVPS B</text>
+    <text x="382" y="246" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Writable OverlayFS upper</text>
+    <text x="382" y="266" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">SSH · HTTP · HTTPS</text>
+
+    <rect x="668" y="184" width="288" height="96" rx="12" fill="#163049" stroke="#38bdf8" stroke-width="1.6"/>
+    <text x="688" y="220" fill="#e2e8f0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">2. FileVPS C</text>
+    <text x="688" y="246" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Writable OverlayFS upper</text>
+    <text x="688" y="266" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Per-guest cgroup limits</text>
+  </g>
+
+  <!-- Shared base -->
+  <g filter="url(#soft)">
+    <rect x="56" y="302" width="900" height="66" rx="12" fill="#1a2f46" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="80" y="332" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">3. Shared Ubuntu 24.04 base (OverlayFS lower)</text>
+    <text x="80" y="354" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">One read-only base for every FileVPS on this worker</text>
+  </g>
+
+  <!-- cgroup -->
+  <g filter="url(#soft)">
+    <rect x="56" y="388" width="900" height="58" rx="12" fill="#15293d" stroke="#64748b" stroke-width="1.2"/>
+    <text x="80" y="416" fill="#e2e8f0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">4. Namespaces + cgroup v2</text>
+    <text x="380" y="416" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">CPU · RAM · swap · PIDs isolation</text>
+  </g>
+
+  <!-- kernel -->
+  <g filter="url(#soft)">
+    <rect x="56" y="464" width="900" height="58" rx="12" fill="#122334" stroke="#64748b" stroke-width="1.2"/>
+    <text x="80" y="492" fill="#e2e8f0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">5. Shared host kernel</text>
+    <text x="330" y="492" fill="#f59e0b" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600">No second kernel boot · not KVM/QEMU</text>
+  </g>
+
+  <!-- worker -->
+  <g filter="url(#soft)">
+    <rect x="56" y="540" width="900" height="58" rx="12" fill="#0f1c2b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="80" y="568" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">6. Linux Worker Host</text>
+    <text x="320" y="568" fill="#94a3b8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">mTLS enrolled · live placement · no RAM overcommit</text>
+  </g>
+
+  <text x="56" y="640" fill="#64748b" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Guest level (2) sits on shared host layers (3-6). Many FileVPS share one base and one kernel.</text>
+</svg>
