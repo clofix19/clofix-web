@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#0b1020" />
   <meta name="keywords" content="CloFix Cloud, CloFix FileVPS, FileVPS cloud console, multi-tenant cloud software, CKS CloFix Kubernetes Service, Docker Engine console, Library Quick Apps, Jobs and Functions, managed MySQL PostgreSQL MongoDB Redis, Volumes EFS S3 backup, VPC DNS load balancer ALB NLB, Protection Mode, OWASP CRS WAF, Security Modes, Network Quarantine, IAM partner client billing, cloud license software, MSP cloud resale, CloFix InfoTech" />
 
-  <title>CloFix Cloud | FileVPS, CKS, WAF &amp; Multi-Tenant Cloud Console</title>
+  <title>CloFix Cloud | FileVPS Multi-Tenant Console</title>
   
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
@@ -26,14 +26,14 @@
     gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
   </script>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
-<meta name="description" content="CloFix Cloud is multi-tenant cloud console software: FileVPS, CKS, Docker, Library apps, volumes, EFS, S3, managed databases, VPC, DNS, load balancers, Protection Mode, OWASP WAF, IAM, partners, and minute billing - license and sell from one console." />
+<meta name="description" content="CloFix Cloud multi-tenant console: FileVPS, CKS, Docker, storage, networking, WAF, IAM, and billing—license and sell from one platform." />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CloFix InfoTech" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://clofix.com/clofix-cloud" />
-  <meta property="og:title" content="CloFix Cloud | FileVPS, CKS, WAF &amp; Multi-Tenant Cloud Console" />
-  <meta property="og:description" content="License CloFix Cloud: FileVPS, Kubernetes-style CKS, Docker, storage, networking, Protection Mode, OWASP WAF, IAM, and billing in one console." />
+  <meta property="og:title" content="CloFix Cloud | FileVPS Multi-Tenant Console" />
+  <meta property="og:description" content="CloFix Cloud multi-tenant console: FileVPS, CKS, Docker, storage, networking, WAF, IAM, and billing—license and sell from one platform." />
   <meta property="og:image" content="https://clofix.com/img/clofix-cloud-spotlight.png" />
   <meta property="og:image:secure_url" content="https://clofix.com/img/clofix-cloud-spotlight.png" />
   <meta property="og:image:type" content="image/png" />
@@ -44,8 +44,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@clofix19" />
   <meta name="twitter:creator" content="@clofix19" />
-  <meta name="twitter:title" content="CloFix Cloud | FileVPS, CKS, WAF &amp; Multi-Tenant Cloud Console" />
-  <meta name="twitter:description" content="Full cloud stack software: FileVPS, CKS, Docker, storage, networking, Protection Mode, WAF, IAM, and billing." />
+  <meta name="twitter:title" content="CloFix Cloud | FileVPS Multi-Tenant Console" />
+  <meta name="twitter:description" content="CloFix Cloud multi-tenant console: FileVPS, CKS, Docker, storage, networking, WAF, IAM, and billing—license and sell from one platform." />
   <meta name="twitter:image" content="https://clofix.com/img/clofix-cloud-spotlight.png" />
   <meta name="twitter:image:alt" content="CloFix Cloud product preview" />
 
@@ -208,6 +208,78 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Contact CloFix sales to license the console for your company, MSP, or partner channel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does CloFix Cloud billing work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Due bill meters by the minute. Stopped VPS or database instances bill storage only. Catalog pricing supports Standard and Low-cost monthly and hourly rates, plus invoices, wallets, subscriptions, and credits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do tenants get Docker socket access?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Containers run on the worker-host Docker Engine with admin opt-in. Tenants never receive docker.sock. Docker Quick App templates, image wizard, Compose, and Git build are available without giving tenants host Docker control."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are Jobs and Functions in CloFix Cloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jobs and Functions run Python, Go, Node, PHP, Java, Ruby, Bun, or Deno without creating a FileVPS. Each run gets a fresh overlay, unprivileged UID, limits, and a private network for scripts, automation, and scheduled work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What other security controls does CloFix Cloud include?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Besides Protection Mode and WAF: SSH Login Block, SSH Key-Only, Delete Protection, Security Modes (Standard, Hardened, Lockdown, Maintenance, Web Block), Network Quarantine, and Security Center with score, findings, audit trail, and fleet apply."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How dense are FileVPS guests on a worker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Guests share the host kernel. Create median is about 38 ms and ready about 1.7 s. Idle host RAM per VPS is about 1.6 MB. A networked pack can run 100 SSH-ready VPS on one worker. Placement uses live free CPU, RAM, and disk with no RAM overcommit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do workers connect to CloFix Cloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Partners and root clients operate on enrolled Linux workers over mTLS. The console places work from live free capacity on those workers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I access a FileVPS over SSH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FileVPS supports SSH key, PAM password, or both. PEM download is available once at create. Guests use a private bridge on 10.231.0.0/16 with published SSH, HTTP, and HTTPS ports."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use Volumes, EFS, or S3?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use a Volume for durable disk attached 1:1 to one VPS on the same worker. Use EFS for a shared web root across VPS or load balancers. Use S3 for object storage and s3fs mounts. VPS backups clone or recover the writable layer onto a new FileVPS on the same worker."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is CloFix Cloud for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Companies that run their own multi-tenant console on Linux workers, MSPs and partners who resell seats, root clients with full account control, and IAM users with scoped permissions."
         }
       }
     ]
@@ -739,6 +811,10 @@
       <div class="cf-cloud-metric" role="listitem"><span>Ready</span><strong>1.67 s</strong><small>Usable guest, no second kernel boot</small></div>
       <div class="cf-cloud-metric" role="listitem"><span>Idle host RAM / VPS</span><strong>~1.6 MB</strong><small>Dense idle guests vs typical VM overhead</small></div>
       <div class="cf-cloud-metric" role="listitem"><span>Networked pack</span><strong>100 VPS</strong><small>SSH-ready guests on one worker</small></div>
+      <div class="cf-cloud-metric" role="listitem"><span>Guest model</span><strong>OS-level</strong><small>Shared host kernel - not KVM/QEMU</small></div>
+      <div class="cf-cloud-metric" role="listitem"><span>Base layer</span><strong>Ubuntu 24.04</strong><small>Shared base + OverlayFS writable layer</small></div>
+      <div class="cf-cloud-metric" role="listitem"><span>Resource limits</span><strong>cgroup v2</strong><small>CPU, RAM, swap, and PIDs enforced</small></div>
+      <div class="cf-cloud-metric" role="listitem"><span>Placement</span><strong>No overcommit</strong><small>Live free CPU, RAM, and disk capacity</small></div>
     </div>
   </section>
 
@@ -1069,7 +1145,7 @@
   <!-- 7. FAQ (crawlable SEO) -->
   <section class="cf-cloud-section cf-cloud-faq" aria-labelledby="cloud-faq">
     <h2 id="cloud-faq" class="heading--2">CloFix Cloud FAQ</h2>
-    <p class="cf-cloud-lead">Answers about CloFix Cloud features, Protection Mode, WAF, CKS, storage, and licensing.</p>
+    <p class="cf-cloud-lead">Answers about CloFix Cloud features, Protection Mode, WAF, CKS, Docker, billing, storage, and licensing.</p>
 
     <details id="faq-what-is">
       <summary>What is CloFix Cloud?</summary>
@@ -1079,29 +1155,65 @@
       <summary>What is FileVPS?</summary>
       <p>FileVPS are OS-level Linux guests on enrolled workers. They share the host kernel with OverlayFS and cgroup v2 limits. Create is typically tens of milliseconds; guests are ready in about two seconds. FileVPS is not a KVM/QEMU hardware VM.</p>
     </details>
+    <details id="faq-density">
+      <summary>How dense are FileVPS guests on a worker?</summary>
+      <p>Guests share the host kernel, so idle cost stays low. Create median is about <strong>38 ms</strong> and ready about <strong>1.7 s</strong>. Idle host RAM per VPS is about <strong>1.6 MB</strong>. A networked pack can run <strong>100</strong> SSH-ready VPS on one worker. Placement uses live free CPU, RAM, and disk with no RAM overcommit.</p>
+    </details>
     <details id="faq-quick-apps">
       <summary>Can I deploy an app without a VPS?</summary>
       <p>Yes. Library Quick Apps deploy managed sandboxes with no FileVPS and no SSH box (HTML, PHP, Node, Next.js, WordPress, Adminer, Jenkins). Jobs &amp; Functions also run code without creating a VPS. For containers, use Docker Quick App templates on the worker Docker Engine. For a full guest, install VPS software into a running FileVPS.</p>
     </details>
+    <details id="faq-jobs">
+      <summary>What are Jobs &amp; Functions?</summary>
+      <p>Jobs &amp; Functions run Python, Go, Node, PHP, Java, Ruby, Bun, or Deno <strong>without creating a FileVPS</strong>. Each run gets a fresh overlay, unprivileged UID, limits, and a private network - useful for scripts, automation, and scheduled work. Workers advertise which runtimes they support.</p>
+    </details>
+    <details id="faq-docker">
+      <summary>Do tenants get Docker socket access?</summary>
+      <p>No. Containers run on the worker-host Docker Engine (admin opt-in). Tenants never receive <code>docker.sock</code>. Use Docker Quick App templates, image wizard, Compose, and Git build without giving tenants host Docker control.</p>
+    </details>
     <details id="faq-protection-mode">
       <summary>What does Protection Mode do?</summary>
-      <p>When On (default for new VPS), the guest root filesystem is read-only. Attackers cannot write system files under the protected root. Temporary paths such as /run, /tmp, and /var/log stay writable and clear on restart. Turn Off only to install packages, then turn On again. Toggling restarts a running VPS.</p>
+      <p>When On (default for new VPS), the guest root filesystem is read-only. Attackers cannot write system files under the protected root. Temporary paths such as /run, /tmp, and /var/log stay writable and clear on restart. Attached Volume / EFS / S3 paths stay writable for app data. Turn Off only to install packages, then turn On again. Toggling restarts a running VPS.</p>
     </details>
     <details id="faq-waf">
       <summary>How is WAF different from Protection Mode?</summary>
       <p>Protection Mode locks the guest filesystem. WAF is a worker-shared OWASP CRS edge engine for HTTP/HTTPS payloads such as SQLi and XSS. Bind FileVPS or Docker targets in /waf. WAF does not cover SSH or raw TCP.</p>
     </details>
+    <details id="faq-security-extra">
+      <summary>What other security controls are included?</summary>
+      <p>Besides Protection Mode and WAF: SSH Login Block, SSH Key-Only, Delete Protection, Security Modes (Standard / Hardened / Lockdown / Maintenance / Web Block), Network Quarantine for incidents, and Security Center with score, findings, audit trail, and fleet apply.</p>
+    </details>
     <details id="faq-cks">
       <summary>Does CloFix Cloud include Kubernetes?</summary>
-      <p>Yes. CKS (CloFix Kubernetes Service) provides EKS-style clusters, node pools, workloads, Helm, and kubeconfig on dedicated CKS workers. FileVPS guests cannot run kubelet.</p>
+      <p>Yes. CKS (CloFix Kubernetes Service) provides EKS-style clusters, node pools, workloads, Helm, and kubeconfig on dedicated CKS workers. FileVPS guests cannot run kubelet. The Kubernetes API stays on the worker - port 6443 is not published publicly.</p>
     </details>
     <details id="faq-storage">
       <summary>What storage and databases are included?</summary>
       <p>Volumes (1:1 durable disk), EFS (shared web root), S3 object storage and mounts, VPS writable-layer backups, plus managed MySQL, PostgreSQL, MongoDB, and Redis projects.</p>
     </details>
+    <details id="faq-storage-choose">
+      <summary>When should I use Volumes, EFS, or S3?</summary>
+      <p><strong>Volume</strong> - durable disk attached 1:1 to one VPS on the same worker. <strong>EFS</strong> - shared web root across VPS or load balancers. <strong>S3</strong> - object storage and s3fs mounts. <strong>VPS backup</strong> - clone or recover the writable layer onto a new FileVPS on the same worker.</p>
+    </details>
     <details id="faq-network">
       <summary>What networking features are included?</summary>
-      <p>VPC, controller DNS zone with auto records and BIND export, ALB and NLB load balancers, health checks, and firewall rules for FileVPS, apps, and database TLS ports.</p>
+      <p>VPC on <code>10.231.0.0/16</code>, controller DNS zone with auto records and BIND export, ALB and NLB load balancers, health checks (HTTP / TCP / ICMP), and firewall rules for FileVPS, apps, and database TLS ports.</p>
+    </details>
+    <details id="faq-ssh">
+      <summary>How do I access a FileVPS over SSH?</summary>
+      <p>FileVPS supports SSH key, PAM password, or both. PEM download is available once at create. Guests use a private bridge on <code>10.231.0.0/16</code> with published SSH, HTTP, and HTTPS ports.</p>
+    </details>
+    <details id="faq-workers">
+      <summary>How do workers connect to CloFix Cloud?</summary>
+      <p>Partners and root clients operate on enrolled Linux workers over mTLS. The console places work from live free CPU, RAM, and disk capacity on those workers - no RAM overcommit.</p>
+    </details>
+    <details id="faq-billing">
+      <summary>How does billing work?</summary>
+      <p>Due bill meters by the minute. Stopped VPS or database instances bill storage only. Resource Pricing supports Standard and Low-cost monthly and hourly rates. The platform also covers invoices, wallets, subscriptions, credits, and license quotas for VPS, CKS, Docker, load balancers, DNS, and backups.</p>
+    </details>
+    <details id="faq-audience">
+      <summary>Who is CloFix Cloud for?</summary>
+      <p>Companies that run their own multi-tenant console on Linux workers; MSPs and partners who resell seats; root clients with full account control; and IAM users with scoped permissions for instances, Kubernetes, databases, and more.</p>
     </details>
     <details id="faq-partners">
       <summary>Can partners resell CloFix Cloud?</summary>
