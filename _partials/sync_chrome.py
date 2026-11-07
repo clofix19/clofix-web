@@ -7,13 +7,14 @@ ROOT = Path(__file__).resolve().parent.parent
 HEADER_SRC = (ROOT / "header.html").read_text(encoding="utf-8")
 FOOTER_SRC = (ROOT / "footer.html").read_text(encoding="utf-8")
 
-# Header file may include an inline nav <script> immediately after </header>
+# Shared chrome: class may be "header" or "header notranslate" (and same for footer).
+# Header file may include an inline nav <script> immediately after </header>.
 HEADER_BLOCK = re.compile(
-    r"(?:<!-- CloFix shared header[\s\S]*?-->\s*)?<header\s+class=\"header\"[\s\S]*?</header>(?:\s*<script>[\s\S]*?initNav[\s\S]*?</script>)?",
+    r"(?:<!-- CloFix shared header[\s\S]*?-->\s*)?<header\b[^>]*\bclass=\"[^\"]*\bheader\b[^\"]*\"[^>]*>[\s\S]*?</header>(?:\s*<script>[\s\S]*?initNav[\s\S]*?</script>)?",
     re.I,
 )
 FOOTER_BLOCK = re.compile(
-    r"(?:<!-- CloFix shared footer[\s\S]*?-->\s*)?<footer\s+class=\"footer\"[\s\S]*?</footer>",
+    r"(?:<!-- CloFix shared footer[\s\S]*?-->\s*)?<footer\b[^>]*\bclass=\"[^\"]*\bfooter\b[^\"]*\"[^>]*>[\s\S]*?</footer>",
     re.I,
 )
 
@@ -63,15 +64,19 @@ def main():
         text = path.read_text(encoding="utf-8", errors="replace")
         orig = text
 
+        # Replace every shared header/footer block with exactly one copy
+        # (avoids duplicate menus when class attributes change, e.g. notranslate).
         if HEADER_BLOCK.search(text):
-            text = HEADER_BLOCK.sub(header, text, count=1)
+            text = HEADER_BLOCK.sub("", text)
+            text = re.sub(r"(<body[^>]*>)", r"\1\n" + header, text, count=1, flags=re.I)
         else:
             text = re.sub(r"(<body[^>]*>)", r"\1\n" + header, text, count=1, flags=re.I)
 
         if FOOTER_BLOCK.search(text):
-            text = FOOTER_BLOCK.sub(footer, text, count=1)
+            text = FOOTER_BLOCK.sub("", text)
+            text = re.sub(r"</body>", footer + "\n</body>", text, count=1, flags=re.I)
         else:
-            text = re.sub(r"</body>", footer + "</body>", text, count=1, flags=re.I)
+            text = re.sub(r"</body>", footer + "\n</body>", text, count=1, flags=re.I)
 
         if "js/chrome.js" not in text:
             text = re.sub(
