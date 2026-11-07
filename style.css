@@ -3328,17 +3328,17 @@ img.c-logo__img {
 .c-dropdown__menu--mega {
   position: absolute;
   top: calc(100% + 10px);
-  right: 0;
-  left: auto;
+  left: 0;
+  right: auto;
   transform: none;
   width: max-content;
-  max-width: calc(100vw - 32px);
+  max-width: min(720px, calc(100vw - 24px));
   padding: 0;
   display: none;
   background: transparent;
   border: 0;
   box-shadow: none;
-  z-index: 9999;
+  z-index: 10001;
 }
 
 .c-dropdown__mega-wrap {
@@ -3360,7 +3360,7 @@ img.c-logo__img {
 
 .c-dropdown__mega-wrap {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 18px;
   padding: 0.95rem 1rem;
   background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.96));
