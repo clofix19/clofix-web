@@ -82,6 +82,24 @@ def main():
                 flags=re.I,
             )
 
+        if "js/i18n.js" not in text:
+            if "js/chrome.js" in text:
+                text = re.sub(
+                    r'(<script[^>]+js/chrome\.js[^>]*></script>)',
+                    rf'\1\n<script src="/js/i18n.js?v=20261107f" defer></script>',
+                    text,
+                    count=1,
+                    flags=re.I,
+                )
+            else:
+                text = re.sub(
+                    r"</body>",
+                    f'<script src="/js/i18n.js?v=20261107f" defer></script>\n</body>',
+                    text,
+                    count=1,
+                    flags=re.I,
+                )
+
         text = fix_page_assets(text, prefix)
 
         if text != orig:

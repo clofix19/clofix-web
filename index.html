@@ -27,8 +27,8 @@
 
   <meta property="og:url" content="https://clofix.com/">
   <meta property="og:image" content="https://clofix.com/img/share.jpg">
-  <meta property="og:image:width" content="128">
-  <meta property="og:image:height" content="128">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1057">
   <meta property="og:image:alt" content="CloFix AI WAF Security Platform - Global Web Application Firewall">
   <meta property="og:site_name" content="CloFix InfoTech">
   <meta property="og:locale" content="en_US">
@@ -49,7 +49,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Local Fonts & Styles -->
-  <link href="style.css?v=20261015b" rel="stylesheet" />
+  <link href="style.css?v=20261107m" rel="stylesheet" />
 
   <!-- Title - Global First -->
   <title>CloFix WAF | Global AI-Powered Web Application Firewall</title>
@@ -3237,6 +3237,105 @@
   }
 }
 
+/* Flagship product hero (CloFix WAF) */
+.cf-hero-product .unique-header {
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cf-hero-product__eyebrow {
+  margin-bottom: 0.75rem;
+}
+.cf-hero-product .heading--1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  letter-spacing: -0.035em;
+  margin-bottom: 0.85rem;
+}
+.cf-hero-product__lead {
+  max-width: 40rem;
+  margin: 0 auto 0.85rem;
+  color: rgba(226, 232, 240, 0.88) !important;
+}
+.cf-hero-product__also {
+  margin: 0 auto 1.15rem;
+  color: #94a3b8;
+  font-size: 0.92rem;
+}
+.cf-hero-product__also a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}
+.cf-hero-product__also a:hover {
+  text-decoration: underline;
+}
+.cf-hero-product__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0 auto 1.35rem;
+}
+.cf-hero-product__pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(15, 23, 42, 0.65);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.cf-hero-product__pill:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+}
+.cf-hero-product__pill--main {
+  border-color: transparent;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #1c1406;
+}
+.cf-hero-product__pill--main:hover {
+  background: linear-gradient(135deg, #fbbf24, #b45309);
+  color: #1c1406;
+}
+.cf-hero-product .hero-actions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 960px;
+}
+.cf-hero-product__visual {
+  width: 100%;
+  max-width: 980px;
+  margin: 0.5rem auto 1.75rem;
+  position: relative;
+  z-index: 3;
+}
+.cf-hero-product__shot,
+.cf-spotlight__shot {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.4);
+  background: #0b1220;
+}
+.cf-spotlight__visual {
+  min-width: 0;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .cf-hero-product .hero-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============================================
    DEMO SECTION
    ============================================ */
@@ -3705,7 +3804,7 @@
 
 <body>
     <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
-<header class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
+<header class="header notranslate" role="banner" itemscope itemtype="https://schema.org/WPHeader" translate="no">
   <div class="container">
     <div class="header__wrapper">
       <a href="/" class="c-logo" itemscope itemtype="https://schema.org/Organization" aria-label="CloFix Home">
@@ -3716,7 +3815,7 @@
              width="150"
              height="45"
              decoding="async">
-        <span class="c-logo__tagline" itemprop="description">Global WAF</span>
+        <span class="c-logo__tagline" itemprop="description" data-i18n="nav.tagline">Global WAF</span>
       </a>
 
       <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
@@ -3729,25 +3828,26 @@
         <div class="c-nav__content" id="navContent">
           <ul class="c-list c-list--flex">
             <li class="c-list__item">
-              <a href="/" class="c-link c-link--list" itemprop="url"><span itemprop="name">Home</span></a>
+              <a href="/" class="c-link c-link--list" itemprop="url" data-i18n="nav.home"><span itemprop="name">Home</span></a>
             </li>
 
             <li class="c-list__item c-dropdown c-dropdown--mega">
               <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="productDropdown">
-                <span>Product</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                <span data-i18n="nav.product">Product</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
               </button>
               <div class="c-dropdown__menu c-dropdown__menu--mega" id="productDropdown" role="menu" aria-label="Product Menu">
                 <div class="c-dropdown__mega-wrap">
                   <div class="c-dropdown__mega-grid">
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title">CloFix WAF</h4>
-                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">Overview</a>
-                      <a role="menuitem" href="/features" class="c-dropdown__mega-link">Features</a>
-                      <a role="menuitem" href="/pricing" class="c-dropdown__mega-link">Pricing</a>
-                      <a role="menuitem" href="/free-trial" class="c-dropdown__mega-link">Free Trial</a>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link" data-i18n="nav.overview">Overview</a>
+                      <a role="menuitem" href="/features" class="c-dropdown__mega-link" data-i18n="nav.features">Features</a>
+                      <a role="menuitem" href="/pricing" class="c-dropdown__mega-link" data-i18n="nav.pricing">Pricing</a>
+                      <a role="menuitem" href="/free-trial" class="c-dropdown__mega-link" data-i18n="nav.free_trial">Free Trial</a>
                     </div>
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Platform</h4>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.platform">Platform</h4>
+                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
                       <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
                       <a role="menuitem" href="/clofix-agent" class="c-dropdown__mega-link">Nano Agent</a>
                       <a role="menuitem" href="/clofix-api" class="c-dropdown__mega-link">Core API</a>
@@ -3760,22 +3860,22 @@
 
             <li class="c-list__item c-dropdown c-dropdown--mega">
               <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="servicesDropdown">
-                <span>Services</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                <span data-i18n="nav.services">Services</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
               </button>
               <div class="c-dropdown__menu c-dropdown__menu--mega" id="servicesDropdown" role="menu" aria-label="Services Menu">
                 <div class="c-dropdown__mega-wrap">
                   <div class="c-dropdown__mega-grid">
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Core Services</h4>
-                      <a role="menuitem" href="/services" class="c-dropdown__mega-link">All Services</a>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.core_services">Core Services</h4>
+                      <a role="menuitem" href="/services" class="c-dropdown__mega-link" data-i18n="nav.all_services">All Services</a>
                       <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
                       <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
                     </div>
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Managed Services</h4>
-                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link">DevOps Manage Service</a>
-                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link">Cloud Infra Manage Service</a>
-                      <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link">Infrastructure</a>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.managed">Managed Services</h4>
+                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link" data-i18n="nav.devops_manage">DevOps Manage Service</a>
+                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link" data-i18n="nav.cloud_manage">Cloud Infra Manage Service</a>
+                      <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link" data-i18n="nav.infrastructure">Infrastructure</a>
                     </div>
                   </div>
                 </div>
@@ -3784,23 +3884,23 @@
 
             <li class="c-list__item c-dropdown c-dropdown--mega">
               <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="resourcesDropdown">
-                <span>Resources</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                <span data-i18n="nav.resources">Resources</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
               </button>
               <div class="c-dropdown__menu c-dropdown__menu--mega" id="resourcesDropdown" role="menu" aria-label="Resources Menu">
                 <div class="c-dropdown__mega-wrap">
                   <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Learn</h4>
-                      <a role="menuitem" href="/event" class="c-dropdown__mega-link">Free Event</a>
-                      <a role="menuitem" href="/documentation" class="c-dropdown__mega-link">Documentation Hub</a>
-                      <a role="menuitem" href="/blogs" class="c-dropdown__mega-link">Blogs</a>
-                      <a role="menuitem" href="/our-insights" class="c-dropdown__mega-link">Our Insights</a>
-                      <a role="menuitem" href="/faq" class="c-dropdown__mega-link">FAQ</a>
-                      <a role="menuitem" href="/support" class="c-dropdown__mega-link">Support</a>
-                      <a role="menuitem" href="/case-study" class="c-dropdown__mega-link">Case Study</a>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.learn">Learn</h4>
+                      <a role="menuitem" href="/event" class="c-dropdown__mega-link" data-i18n="nav.free_event">Free Event</a>
+                      <a role="menuitem" href="/documentation" class="c-dropdown__mega-link" data-i18n="nav.docs_hub">Documentation Hub</a>
+                      <a role="menuitem" href="/blogs" class="c-dropdown__mega-link" data-i18n="nav.blogs">Blogs</a>
+                      <a role="menuitem" href="/our-insights" class="c-dropdown__mega-link" data-i18n="nav.insights">Our Insights</a>
+                      <a role="menuitem" href="/faq" class="c-dropdown__mega-link" data-i18n="nav.faq">FAQ</a>
+                      <a role="menuitem" href="/support" class="c-dropdown__mega-link" data-i18n="nav.support">Support</a>
+                      <a role="menuitem" href="/case-study" class="c-dropdown__mega-link" data-i18n="nav.case_study">Case Study</a>
                     </div>
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Documentation</h4>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.documentation">Documentation</h4>
                       <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">WAF Workflow</a>
                       <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">LUA Script</a>
                       <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">JS Script</a>
@@ -3812,7 +3912,7 @@
                       <a role="menuitem" href="/clofix-bot-management-engine" class="c-dropdown__mega-link">Bot Management Engine</a>
                     </div>
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Tools</h4>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.tools">Tools</h4>
                       <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
                       <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
                       <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link">WAF Setup</a>
@@ -3825,35 +3925,71 @@
 
             <li class="c-list__item c-dropdown c-dropdown--mega">
               <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="companyDropdown">
-                <span>Company</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+                <span data-i18n="nav.company">Company</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
               </button>
               <div class="c-dropdown__menu c-dropdown__menu--mega" id="companyDropdown" role="menu" aria-label="Company Menu">
                 <div class="c-dropdown__mega-wrap">
                   <div class="c-dropdown__mega-grid">
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title">CloFix</h4>
-                      <a role="menuitem" href="/about" class="c-dropdown__mega-link">About Us</a>
-                      <a role="menuitem" href="/careers" class="c-dropdown__mega-link">Careers</a>
-                      <a role="menuitem" href="/contact" class="c-dropdown__mega-link">Contact</a>
+                      <a role="menuitem" href="/about" class="c-dropdown__mega-link" data-i18n="nav.about">About Us</a>
+                      <a role="menuitem" href="/careers" class="c-dropdown__mega-link" data-i18n="nav.careers">Careers</a>
+                      <a role="menuitem" href="/contact" class="c-dropdown__mega-link" data-i18n="nav.contact">Contact</a>
                     </div>
                     <div class="c-dropdown__mega-col">
-                      <h4 class="c-dropdown__mega-title">Partners</h4>
-                      <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link">Our Clients</a>
-                      <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link">Our Partners</a>
-                      <a role="menuitem" href="/partner" class="c-dropdown__mega-link">Become A Partner</a>
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.partners_title">Partners</h4>
+                      <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link" data-i18n="nav.our_clients">Our Clients</a>
+                      <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link" data-i18n="nav.our_partners">Our Partners</a>
+                      <a role="menuitem" href="/partner" class="c-dropdown__mega-link" data-i18n="nav.become_partner">Become A Partner</a>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
 
-            <li class="c-list__item c-list__item--cta">
-              <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary">Free Trial</a>
-            </li>
-            <li class="c-list__item c-list__item--cta">
-              <button type="button" class="ticket-button c-button c-button--small c-button--secondary waf-console-open">WAF Console</button>
-            </li>
           </ul>
+
+          <div class="cf-header-aside">
+            <div class="cf-header-contact" aria-label="Contact CloFix">
+              <a class="cf-header-contact__item" href="tel:+8801850603126" title="Phone">
+                <span class="cf-header-contact__icon" aria-hidden="true">📞</span>
+                <span class="cf-header-contact__value">01850603126</span>
+              </a>
+              <span class="cf-header-contact__sep" aria-hidden="true"></span>
+              <a class="cf-header-contact__item" href="mailto:support@clofix.com" title="Email">
+                <span class="cf-header-contact__icon" aria-hidden="true">✉️</span>
+                <span class="cf-header-contact__value">support@clofix.com</span>
+              </a>
+            </div>
+            <div class="cf-header-ctas">
+              <a href="/contact" class="ticket-button c-button c-button--small c-button--primary" data-i18n="nav.contact">Contact</a>
+              <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary" data-i18n="nav.free_trial">Free Trial</a>
+              <div class="cf-lang" data-i18n-ignore>
+                <button type="button" class="cf-lang__btn" id="langToggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Language">
+                  EN
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="cf-lang__menu" id="langMenu" role="listbox" aria-label="Language">
+                  <button type="button" class="cf-lang__option" role="option" data-lang="en" lang="en" aria-current="true">English</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="zh" lang="zh">中文 (Chinese)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="es" lang="es">Español (Spanish)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="hi" lang="hi">हिन्दी (Hindi)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ar" lang="ar">العربية (Arabic)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="bn" lang="bn">বাংলা (Bangla)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="pt" lang="pt">Português (Portuguese)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ru" lang="ru">Русский (Russian)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ja" lang="ja">日本語 (Japanese)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="fr" lang="fr">Français (French)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="de" lang="de">Deutsch (German)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ko" lang="ko">한국어 (Korean)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="id" lang="id">Indonesian</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="tr" lang="tr">Türkçe (Turkish)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="vi" lang="vi">Tiếng Việt</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="it" lang="it">Italiano (Italian)</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -3909,23 +4045,44 @@
         e.stopPropagation();
         var willOpen = !dd.classList.contains("open");
         closeAllDropdowns();
+        closeLang();
         if (willOpen) {
           dd.classList.add("open");
           btn.setAttribute("aria-expanded", "true");
         }
       });
     });
+    var langWrap = header.querySelector(".cf-lang");
+    var langToggle = header.querySelector("#langToggle");
+    function closeLang() {
+      if (!langWrap || !langToggle) return;
+      langWrap.classList.remove("open");
+      langToggle.setAttribute("aria-expanded", "false");
+    }
+    if (langToggle && langWrap) {
+      langToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeAllDropdowns();
+        var open = langWrap.classList.toggle("open");
+        langToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
     document.addEventListener("click", function (e) {
       var t = e.target;
-      if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle"))) return;
+      if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle") || t.closest(".cf-lang"))) return;
       if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
       closeAllDropdowns();
+      closeLang();
       if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
         closeMobile();
       }
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMobile();
+      if (e.key === "Escape") {
+        closeLang();
+        closeMobile();
+      }
     });
     window.addEventListener("resize", function () {
       syncHeaderHeight();
@@ -3950,269 +4107,101 @@
 })();
 </script>
 
+
+
+
+
+
+
+
+
+
+
 <main>
-    <section class="unique-section" aria-label="CloFix Unique Value Proposition">
+    <section class="unique-section cf-hero-product" aria-label="CloFix flagship product">
       <div class="unique-container">
         <div class="unique-header">
-          <h1 class="heading--1"><span class="unique-title-highlight">CloFix</span> Global Web Application Firewall</h1>
-          <p class="heading--4">
-            AI-powered WAF protection for APIs, websites, and cloud apps - intelligent threat detection, DDoS mitigation, and zero-day defense with sub-millisecond latency.
+          <p class="cf-page__eyebrow cf-hero-product__eyebrow" data-i18n="page.flagship">Flagship product</p>
+          <h1 class="heading--1"><span class="unique-title-highlight">CloFix WAF</span></h1>
+          <p class="heading--4 cf-hero-product__lead" data-i18n="page.hero_lead">
+            Global AI-powered Web Application Firewall for APIs, websites, and cloud apps - threat detection, DDoS mitigation, and zero-day defense with sub-millisecond latency.
           </p>
-          <div class="hero-actions" aria-label="Get started">
+          <p class="cf-hero-product__also">
+            <span data-i18n="page.also_from">Also from CloFix:</span>
+            <a href="#cloud-spotlight-title">Cloud</a>,
+            <a href="#one-spotlight-title">One</a>,
+            <a href="#cdn-spotlight-title">CDN</a>,
+            <a href="#aws-spotlight-title">AWS Activity Monitor</a>
+          </p>
+          <div class="cf-hero-product__pills" aria-label="CloFix products">
+            <a class="cf-hero-product__pill cf-hero-product__pill--main" href="/waf">CloFix WAF</a>
+            <a class="cf-hero-product__pill" href="/clofix-cloud">CloFix Cloud</a>
+            <a class="cf-hero-product__pill" href="/clofix-one">CloFix One</a>
+            <a class="cf-hero-product__pill" href="/features" data-i18n="page.all_features">All features</a>
+          </div>
+          <div class="hero-actions" aria-label="CloFix WAF actions">
             <a class="hero-action hero-action--trial" href="/free-trial">
               <span class="hero-action__body">
-                <span class="hero-action__kicker">14-day trial</span>
-                <span class="hero-action__title">Start Free Trial</span>
-                <span class="hero-action__note">No credit card. Turn protection on for a live app.</span>
+                <span class="hero-action__kicker" data-i18n="page.cta_kicker_main">Main product</span>
+                <span class="hero-action__title" data-i18n="page.cta_title_trial">Start CloFix WAF trial</span>
+                <span class="hero-action__note" data-i18n="page.cta_note_trial">14 days. No credit card. Protect a live app.</span>
               </span>
               <span class="hero-action__go" aria-hidden="true">→</span>
             </a>
-            <a class="hero-action hero-action--features" href="/features">
+            <a class="hero-action hero-action--features" href="/waf">
               <span class="hero-action__body">
-                <span class="hero-action__kicker">Full catalog</span>
-                <span class="hero-action__title">Explore Features</span>
-                <span class="hero-action__note">Search engines, rules, and Best-WAF controls.</span>
+                <span class="hero-action__kicker" data-i18n="page.cta_kicker_product">Product page</span>
+                <span class="hero-action__title" data-i18n="page.cta_title_explore">Explore CloFix WAF</span>
+                <span class="hero-action__note" data-i18n="page.cta_note_explore">AI engines, OWASP coverage, and global edge protection.</span>
+              </span>
+              <span class="hero-action__go" aria-hidden="true">→</span>
+            </a>
+            <a class="hero-action hero-action--features" href="/pricing">
+              <span class="hero-action__body">
+                <span class="hero-action__kicker" data-i18n="page.cta_kicker_plans">Plans</span>
+                <span class="hero-action__title" data-i18n="page.cta_title_pricing">View WAF pricing</span>
+                <span class="hero-action__note" data-i18n="page.cta_note_pricing">Starter to Enterprise - pick the right seat.</span>
               </span>
               <span class="hero-action__go" aria-hidden="true">→</span>
             </a>
           </div>
 
           <!-- Stats Badges -->
-          <div class="unique-stats-badges">
+          <div class="unique-stats-badges" aria-label="CloFix highlights">
             <div class="unique-stat-badge">
               <span class="unique-stat-badge-number">46+</span>
-              <span class="unique-stat-badge-label">AI Engines</span>
-              <span class="unique-stat-badge-icon">🧠</span>
+              <span class="unique-stat-badge-label" data-i18n="page.stat_ai">AI engines</span>
             </div>
             <div class="unique-stat-badge-divider"></div>
             <div class="unique-stat-badge">
               <span class="unique-stat-badge-number">70+</span>
-              <span class="unique-stat-badge-label">Core Engines</span>
-              <span class="unique-stat-badge-icon">⚙️</span>
+              <span class="unique-stat-badge-label" data-i18n="page.stat_core">Core engines</span>
             </div>
             <div class="unique-stat-badge-divider"></div>
             <div class="unique-stat-badge">
               <span class="unique-stat-badge-number">99.99%</span>
-              <span class="unique-stat-badge-label">Uptime SLA</span>
-              <span class="unique-stat-badge-icon">📈</span>
+              <span class="unique-stat-badge-label" data-i18n="page.stat_uptime">Uptime SLA</span>
             </div>
-
             <div class="unique-stat-badge-divider"></div>
             <div class="unique-stat-badge">
               <span class="unique-stat-badge-number">120M+</span>
-              <span class="unique-stat-badge-label">Threats 24H</span>
-              <span class="unique-stat-badge-icon">🛡️</span>
+              <span class="unique-stat-badge-label" data-i18n="page.stat_threats">Threats / 24h</span>
             </div>
           </div>
         </div>
 
-        <div class="unique-slider-wrapper">
-          <div class="unique-slider-track" id="uniqueSliderTrack">
-            <!-- Slide 1: AI-Powered -->
-            <div class="unique-slide active">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">🧠</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">AI-Powered WAF Threat Detection</h3>
-              <p class="unique-slide-desc">
-                CloFix WAF uses machine learning to analyze traffic patterns in real-time and block zero-day attacks, APTs, and sophisticated evasion techniques before they reach your applications.
-              </p>
-              <div class="unique-slide-tags">
-                <span>⚡ Zero-Day Protection</span>
-                <span>📊 Behavioral Analysis</span>
-                <span>🎯 Anomaly Detection</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 100%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 2: Multi-Engine -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">⚡</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">Multi-Engine Security Stack</h3>
-              <p class="unique-slide-desc">
-                Combine OWASP CRS, Lua scripting, JavaScript sandboxing, WASM modules, and custom CADRE rules - all working in harmony to provide defense-in-depth with sub-millisecond latency.
-              </p>
-              <div class="unique-slide-tags">
-                <span>🛡️ CRS Engine</span>
-                <span>📜 Lua Scripting</span>
-                <span>⚙️ WASM Support</span>
-                <span>🔒 JS Sandbox</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 94%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 3: TLS Fingerprinting -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">🔑</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">Advanced TLS Fingerprinting</h3>
-              <p class="unique-slide-desc">
-                Identify and block malicious clients using JA3/JA4 TLS fingerprinting, bot detection, and sophisticated client reputation scoring - stopping attackers before they even send a payload.
-              </p>
-              <div class="unique-slide-tags">
-                <span>🔐 JA3/JA4 Analysis</span>
-                <span>🤖 Bot Mitigation</span>
-                <span>⭐ Reputation Scoring</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 92%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 4: OWASP Top 10 -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">🛡️</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">Complete OWASP Top 10 Coverage</h3>
-              <p class="unique-slide-desc">
-                Comprehensive protection against SQL Injection, Cross-Site Scripting (XSS), CSRF, RFI/LFI, command injection, and all other OWASP Top 10 vulnerabilities with continuously updated rule sets.
-              </p>
-              <div class="unique-slide-tags">
-                <span>🗄️ SQLi Prevention</span>
-                <span>📝 XSS Protection</span>
-                <span>🔒 CSRF Defense</span>
-                <span>📁 RFI/LFI Blocking</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 98%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 5: CloFix Dashboard -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">📊</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">Centralized Security Dashboard</h3>
-              <p class="unique-slide-desc">
-                Real-time visualization of threats, traffic patterns, and security events. Monitor your entire infrastructure from a single pane of glass with customizable widgets, drill-down analytics, and instant alerting.
-              </p>
-              <div class="unique-slide-tags">
-                <span>📈 Live Analytics</span>
-                <span>🔔 Instant Alerts</span>
-                <span>📋 Audit Logs</span>
-                <span>📊 Custom Widgets</span>
-                <span>📉 Threat Trends</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 95%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 6: CloFix Android -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">📱</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">CloFix Mobile</h3>
-              <p class="unique-slide-desc">
-                Manage your security posture on-the-go with the CloFix Android app. Receive push notifications, view real-time threat metrics, approve/block requests, and control your WAF settings from anywhere in the world.
-              </p>
-              <div class="unique-slide-tags">
-                <span>📲 Push Notifications</span>
-                <span>📊 Mobile Dashboard</span>
-                <span>🔔 Real-Time Alerts</span>
-                <span>⚙️ Remote Control</span>
-                <span>🔐 Secure Access</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 88%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 7: CloFix Nano Agent -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">🤖</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">CloFix Nano Agent</h3>
-              <p class="unique-slide-desc">
-                Lightweight, high-performance security proxy that protects any workload regardless of platform. Deploy as Kubernetes DaemonSet, sidecar container, standalone Docker, systemd service, or integrate with Nginx, Apache, and Traefik.
-              </p>
-              <div class="unique-slide-tags">
-                <span>🚀 Kubernetes DaemonSet</span>
-                <span>🐳 Docker Container</span>
-                <span>🔄 Nginx & Apache</span>
-                <span>⚙️ Systemd Service</span>
-                <span>📊 Grafana Dashboard</span>
-                <span>💬 Slack Alerts</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 90%"></span>
-              </div>
-            </div>
-
-            <!-- Slide 8: CloFix API Protection -->
-            <div class="unique-slide">
-              <div class="unique-slide-icon-wrapper">
-                <div class="unique-slide-icon-ring">
-                  <span class="unique-slide-icon">🔌</span>
-                </div>
-              </div>
-              <h3 class="unique-slide-title">CloFix API For Form Protection</h3>
-              <p class="unique-slide-desc">
-                Protect your APIs and web forms from automated attacks, credential stuffing, and form abuse. Advanced form validation, anti-CSRF tokens, rate limiting, and bot detection for all your API endpoints and form submissions.
-              </p>
-              <div class="unique-slide-tags">
-                <span>🛡️ API Security</span>
-                <span>📝 Form Validation</span>
-                <span>🔒 Anti-CSRF Tokens</span>
-                <span>🚦 Rate Limiting</span>
-                <span>🤖 Bot Detection</span>
-                <span>📊 API Analytics</span>
-              </div>
-              <div class="unique-slide-progress">
-                <span class="unique-slide-progress-bar" style="width: 93%"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slider Controls -->
-          <button class="unique-slider-btn unique-slider-prev" id="uniquePrev" aria-label="Previous slide">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <button class="unique-slider-btn unique-slider-next" id="uniqueNext" aria-label="Next slide">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
+        <div class="cf-hero-product__visual">
+          <img
+            src="img/clofix-waf-spotlight.png?v=20261107b"
+            alt="CloFix WAF console with live request stats and global attack map"
+            class="cf-hero-product__shot"
+            width="1024"
+            height="533"
+            loading="eager"
+            decoding="async"
+          />
         </div>
 
-        <!-- Slide Indicators -->
-        <div class="unique-indicators" id="uniqueIndicators">
-          <span class="unique-dot active" data-index="0"></span>
-          <span class="unique-dot" data-index="1"></span>
-          <span class="unique-dot" data-index="2"></span>
-          <span class="unique-dot" data-index="3"></span>
-          <span class="unique-dot" data-index="4"></span>
-          <span class="unique-dot" data-index="5"></span>
-          <span class="unique-dot" data-index="6"></span>
-          <span class="unique-dot" data-index="7"></span>
-        </div>
       </div>
     </section>
 
@@ -4225,7 +4214,7 @@
             <div class="services-header">
                 <div class="services-badge">
                     <span class="services-badge-dot"></span>
-                    <span>🌍 GLOBAL WAF SOLUTION</span>
+                    <span>Global WAF solution</span>
                 </div>
                 <h2 class="services-title">
                     Enterprise-Grade Web Application Firewall
@@ -4285,18 +4274,15 @@
             <!-- TRUST BADGES -->
             <div class="trust-badges">
                 <div class="trust-item">
-                    <span class="trust-icon">🌍</span>
-                    <span class="trust-label">Global Deployment</span>
+                    <span class="trust-label">Global deployment</span>
                 </div>
                 <span class="trust-divider"></span>
                 <div class="trust-item">
-                    <span class="trust-icon">⚡</span>
-                    <span class="trust-label">Sub-ms Latency</span>
+                    <span class="trust-label">Sub-ms latency</span>
                 </div>
                 <span class="trust-divider"></span>
                 <div class="trust-item">
-                    <span class="trust-icon">🛡️</span>
-                    <span class="trust-label">99.99% Uptime</span>
+                    <span class="trust-label">99.99% uptime</span>
                 </div>
                 <span class="trust-divider"></span>
                 <div class="trust-item">
@@ -4348,7 +4334,7 @@
           </div>
         </div>
         <div class="cf-spotlight__visual">
-          <img src="img/clofix-waf-spotlight.png?v=20261015d" alt="CloFix WAF dashboard with live request stats and a global attack map" class="cf-spotlight__shot" loading="lazy" width="1024" height="533" />
+          <img src="img/clofix-waf-spotlight.png?v=20261107b" alt="CloFix WAF dashboard with live request stats and a global attack map" class="cf-spotlight__shot" loading="eager" width="1024" height="533" decoding="async" />
         </div>
       </div>
     </section>
@@ -4357,10 +4343,11 @@
       <div class="container cf-spotlight__inner cf-spotlight__inner--visual-left">
         <div class="cf-spotlight__visual">
           <img
-            src="img/clofix-cdn-spotlight.png?v=20261021"
+            src="img/clofix-cdn-spotlight.png?v=20261107b"
             alt="CloFix CDN cache dashboard with hit, miss, bypass, storage, and a 24-hour cache chart"
             class="cf-spotlight__shot"
             loading="lazy"
+            decoding="async"
             width="1024"
             height="463"
           />
@@ -4438,10 +4425,11 @@
         </div>
         <div class="cf-spotlight__visual">
           <img
-            src="img/clofix-one-devops.png?v=20261105e"
+            src="img/clofix-one-devops.png?v=20261107b"
             alt="CloFix One DevOps chat connected to cloud, servers, security, automation, monitoring, and troubleshooting"
             class="cf-spotlight__shot"
             loading="lazy"
+            decoding="async"
             width="1024"
             height="576"
           />
@@ -4453,12 +4441,13 @@
       <div class="container cf-spotlight__inner cf-spotlight__inner--visual-left">
         <div class="cf-spotlight__visual">
           <img
-            src="img/cloud_automation.png"
+            src="img/aws-activity-monitor-spotlight.png?v=20261107b"
             alt="AWS Activity Monitor cloud alert routing"
             class="cf-spotlight__shot"
             loading="lazy"
-            width="612"
-            height="408"
+            decoding="async"
+            width="1024"
+            height="576"
           />
         </div>
         <div class="cf-spotlight__copy">
@@ -4534,7 +4523,7 @@
         </div>
         <div class="cf-spotlight__visual">
           <img
-            src="img/clofix-cloud-spotlight.png?v=20261105b"
+            src="img/clofix-cloud-spotlight.png?v=20261107b"
             alt="CloFix Cloud console preview for FileVPS, storage, networking, and security"
             class="cf-spotlight__shot"
             loading="lazy"
@@ -5112,13 +5101,13 @@
   </main>
 
       <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
-<footer class="footer" role="contentinfo">
+<footer class="footer notranslate" role="contentinfo" translate="no">
   <div class="container c-footer">
     <div class="c-footer__column c-footer__logo-column">
       <a href="/" class="c-footer__brand">
         <img src="img/logo.png" alt="CloFix" class="c-footer__logo" width="150" height="45" decoding="async" />
       </a>
-      <p class="c-footer__text"><strong>Secure. Automate. Scale</strong></p>
+      <p class="c-footer__text" data-i18n="footer.tagline"><strong>Secure. Automate. Scale</strong></p>
       <p class="c-footer__contact">
         <a href="https://wa.me/8801850603126">WhatsApp +880 1850-603126</a>
       </p>
@@ -5137,51 +5126,51 @@
     </div>
 
     <div class="c-footer__column">
-      <h4 class="c-footer__subtitle">Product</h4>
+      <h4 class="c-footer__subtitle" data-i18n="footer.product">Product</h4>
       <ul class="c-footer__list c-footer__list--check">
         <li><a href="/waf">CloFix WAF</a></li>
-        <li><a href="/features">Features</a></li>
-        <li><a href="/pricing">Pricing</a></li>
-        <li><a href="/free-trial">Free Trial</a></li>
+        <li><a href="/features" data-i18n="footer.features">Features</a></li>
+        <li><a href="/pricing" data-i18n="footer.pricing">Pricing</a></li>
+        <li><a href="/free-trial" data-i18n="footer.free_trial">Free Trial</a></li>
       </ul>
     </div>
 
     <div class="c-footer__column">
-      <h4 class="c-footer__subtitle">Resources</h4>
+      <h4 class="c-footer__subtitle" data-i18n="footer.resources">Resources</h4>
       <ul class="c-footer__list c-footer__list--check">
-        <li><a href="/event">Free Event</a></li>
-        <li><a href="/documentation">Documentation</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/blogs">Blogs</a></li>
-        <li><a href="/our-insights">Our Insights</a></li>
-        <li><a href="/faq">FAQ</a></li>
-        <li><a href="/support">Support</a></li>
-        <li><a href="/case-study">Case Study</a></li>
+        <li><a href="/event" data-i18n="footer.event">Free Event</a></li>
+        <li><a href="/documentation" data-i18n="footer.docs">Documentation</a></li>
+        <li><a href="/services" data-i18n="footer.services">Services</a></li>
+        <li><a href="/blogs" data-i18n="footer.blogs">Blogs</a></li>
+        <li><a href="/our-insights" data-i18n="footer.insights">Our Insights</a></li>
+        <li><a href="/faq" data-i18n="footer.faq">FAQ</a></li>
+        <li><a href="/support" data-i18n="footer.support">Support</a></li>
+        <li><a href="/case-study" data-i18n="footer.case_study">Case Study</a></li>
       </ul>
     </div>
 
     <div class="c-footer__column">
-      <h4 class="c-footer__subtitle">Company</h4>
+      <h4 class="c-footer__subtitle" data-i18n="footer.company">Company</h4>
       <ul class="c-footer__list c-footer__list--check">
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/careers">Careers</a></li>
-        <li><a href="/partner">Partners</a></li>
+        <li><a href="/about" data-i18n="footer.about">About</a></li>
+        <li><a href="/contact" data-i18n="footer.contact">Contact</a></li>
+        <li><a href="/careers" data-i18n="footer.careers">Careers</a></li>
+        <li><a href="/partner" data-i18n="footer.partners">Partners</a></li>
       </ul>
     </div>
 
     <div class="c-footer__column">
-      <h4 class="c-footer__subtitle">Legal</h4>
+      <h4 class="c-footer__subtitle" data-i18n="footer.legal">Legal</h4>
       <ul class="c-footer__list c-footer__list--check">
-        <li><a href="/terms">Terms</a></li>
-        <li><a href="/sla">SLA</a></li>
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+        <li><a href="/sla" data-i18n="footer.sla">SLA</a></li>
+        <li><a href="/privacy-policy" data-i18n="footer.privacy">Privacy Policy</a></li>
       </ul>
     </div>
   </div>
 
   <div class="container c-footer__bottom">
-    <p class="footer__text">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
+    <p class="footer__text" data-i18n="footer.copyright">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
     <ul class="c-footer__listed">
       <li><a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener">G2</a></li>
       <li><a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener">CB Insights</a></li>
@@ -5189,6 +5178,16 @@
     </ul>
   </div>
 </footer>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5210,6 +5209,7 @@
     </div>
   </div>
 <script src="js/chrome.js?v=20261015c" defer></script>
+<script src="/js/i18n.js?v=20261107f" defer></script>
 </body>
 <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -5280,108 +5280,5 @@
 </script>
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="iX2kRqQGvBQ5z1sDASQoQ";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
-<script>
-// ============================================
-// UNIQUE VALUE SLIDER
-// ============================================
-(function() {
-  const slides = document.querySelectorAll('.unique-slide');
-  const dots = document.querySelectorAll('.unique-dot');
-  const prevBtn = document.getElementById('uniquePrev');
-  const nextBtn = document.getElementById('uniqueNext');
-  let currentSlide = 0;
-  const totalSlides = slides.length;
-  let autoPlayInterval;
-
-  function goToSlide(index) {
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-    currentSlide = index;
-  }
-
-  function nextSlide() {
-    const next = (currentSlide + 1) % totalSlides;
-    goToSlide(next);
-  }
-
-  function prevSlide() {
-    const prev = (currentSlide - 1 + totalSlides) % totalSlides;
-    goToSlide(prev);
-  }
-
-  if (nextBtn) nextBtn.addEventListener('click', () => {
-    nextSlide();
-    resetAutoPlay();
-  });
-
-  if (prevBtn) prevBtn.addEventListener('click', () => {
-    prevSlide();
-    resetAutoPlay();
-  });
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      goToSlide(index);
-      resetAutoPlay();
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-      nextSlide();
-      resetAutoPlay();
-    } else if (e.key === 'ArrowLeft') {
-      prevSlide();
-      resetAutoPlay();
-    }
-  });
-
-  function startAutoPlay() {
-    autoPlayInterval = setInterval(nextSlide, 5000);
-  }
-
-  function resetAutoPlay() {
-    clearInterval(autoPlayInterval);
-    startAutoPlay();
-  }
-
-  const sliderWrapper = document.querySelector('.unique-slider-wrapper');
-  if (sliderWrapper) {
-    sliderWrapper.addEventListener('mouseenter', () => {
-      clearInterval(autoPlayInterval);
-    });
-    sliderWrapper.addEventListener('mouseleave', () => {
-      startAutoPlay();
-    });
-  }
-
-  startAutoPlay();
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const sliderContainer = document.querySelector('.unique-slider');
-
-  if (sliderContainer) {
-    sliderContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].clientX;
-    }, { passive: true });
-
-    sliderContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
-        resetAutoPlay();
-      }
-    }, { passive: true });
-  }
-})();
 </script>
 </html>
