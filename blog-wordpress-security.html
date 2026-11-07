@@ -110,6 +110,311 @@
 </head>
 
 <body>
+<!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
+<header class="header notranslate" role="banner" itemscope itemtype="https://schema.org/WPHeader" translate="no">
+  <div class="container">
+    <div class="header__wrapper">
+      <a href="/" class="c-logo" itemscope itemtype="https://schema.org/Organization" aria-label="CloFix Home">
+        <img src="img/logo.png"
+             alt="CloFix"
+             class="c-logo__img"
+             itemprop="logo"
+             width="150"
+             height="45"
+             decoding="async">
+        <span class="c-logo__tagline" itemprop="description" data-i18n="nav.tagline">Global WAF</span>
+      </a>
+
+      <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+        <button class="c-nav__toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navContent">
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+        </button>
+
+        <div class="c-nav__content" id="navContent">
+          <ul class="c-list c-list--flex">
+            <li class="c-list__item">
+              <a href="/" class="c-link c-link--list" itemprop="url" data-i18n="nav.home"><span itemprop="name">Home</span></a>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="productDropdown">
+                <span data-i18n="nav.product">Product</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="productDropdown" role="menu" aria-label="Product Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix WAF</h4>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link" data-i18n="nav.overview">Overview</a>
+                      <a role="menuitem" href="/features" class="c-dropdown__mega-link" data-i18n="nav.features">Features</a>
+                      <a role="menuitem" href="/pricing" class="c-dropdown__mega-link" data-i18n="nav.pricing">Pricing</a>
+                      <a role="menuitem" href="/free-trial" class="c-dropdown__mega-link" data-i18n="nav.free_trial">Free Trial</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.platform">Platform</h4>
+                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                      <a role="menuitem" href="/clofix-agent" class="c-dropdown__mega-link">Nano Agent</a>
+                      <a role="menuitem" href="/clofix-api" class="c-dropdown__mega-link">Core API</a>
+                      <a role="menuitem" href="/clofix-load-balancer" class="c-dropdown__mega-link">Load Balancer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="servicesDropdown">
+                <span data-i18n="nav.services">Services</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="servicesDropdown" role="menu" aria-label="Services Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.core_services">Core Services</h4>
+                      <a role="menuitem" href="/services" class="c-dropdown__mega-link" data-i18n="nav.all_services">All Services</a>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
+                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.managed">Managed Services</h4>
+                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link" data-i18n="nav.devops_manage">DevOps Manage Service</a>
+                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link" data-i18n="nav.cloud_manage">Cloud Infra Manage Service</a>
+                      <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link" data-i18n="nav.infrastructure">Infrastructure</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="resourcesDropdown">
+                <span data-i18n="nav.resources">Resources</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="resourcesDropdown" role="menu" aria-label="Resources Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.learn">Learn</h4>
+                      <a role="menuitem" href="/event" class="c-dropdown__mega-link" data-i18n="nav.free_event">Free Event</a>
+                      <a role="menuitem" href="/documentation" class="c-dropdown__mega-link" data-i18n="nav.docs_hub">Documentation Hub</a>
+                      <a role="menuitem" href="/blogs" class="c-dropdown__mega-link" data-i18n="nav.blogs">Blogs</a>
+                      <a role="menuitem" href="/our-insights" class="c-dropdown__mega-link" data-i18n="nav.insights">Our Insights</a>
+                      <a role="menuitem" href="/faq" class="c-dropdown__mega-link" data-i18n="nav.faq">FAQ</a>
+                      <a role="menuitem" href="/support" class="c-dropdown__mega-link" data-i18n="nav.support">Support</a>
+                      <a role="menuitem" href="/case-study" class="c-dropdown__mega-link" data-i18n="nav.case_study">Case Study</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.documentation">Documentation</h4>
+                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">WAF Workflow</a>
+                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">LUA Script</a>
+                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">JS Script</a>
+                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CRS Script</a>
+                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">WASM</a>
+                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CADRE Script</a>
+                      <a role="menuitem" href="/clofix-ai-protection-engine" class="c-dropdown__mega-link">AI Protection Engine</a>
+                      <a role="menuitem" href="/clofix-api-security-engine" class="c-dropdown__mega-link">API Security Engine</a>
+                      <a role="menuitem" href="/clofix-bot-management-engine" class="c-dropdown__mega-link">Bot Management Engine</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.tools">Tools</h4>
+                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
+                      <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link">WAF Setup</a>
+                      <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS Checker</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="companyDropdown">
+                <span data-i18n="nav.company">Company</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="companyDropdown" role="menu" aria-label="Company Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix</h4>
+                      <a role="menuitem" href="/about" class="c-dropdown__mega-link" data-i18n="nav.about">About Us</a>
+                      <a role="menuitem" href="/careers" class="c-dropdown__mega-link" data-i18n="nav.careers">Careers</a>
+                      <a role="menuitem" href="/contact" class="c-dropdown__mega-link" data-i18n="nav.contact">Contact</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.partners_title">Partners</h4>
+                      <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link" data-i18n="nav.our_clients">Our Clients</a>
+                      <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link" data-i18n="nav.our_partners">Our Partners</a>
+                      <a role="menuitem" href="/partner" class="c-dropdown__mega-link" data-i18n="nav.become_partner">Become A Partner</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="cf-header-aside">
+            <div class="cf-header-contact" aria-label="Contact CloFix">
+              <a class="cf-header-contact__item" href="tel:+8801850603126" title="Phone">
+                <span class="cf-header-contact__icon" aria-hidden="true">📞</span>
+                <span class="cf-header-contact__value">01850603126</span>
+              </a>
+              <span class="cf-header-contact__sep" aria-hidden="true"></span>
+              <a class="cf-header-contact__item" href="mailto:support@clofix.com" title="Email">
+                <span class="cf-header-contact__icon" aria-hidden="true">✉️</span>
+                <span class="cf-header-contact__value">support@clofix.com</span>
+              </a>
+            </div>
+            <div class="cf-header-ctas">
+              <a href="/contact" class="ticket-button c-button c-button--small c-button--primary" data-i18n="nav.contact">Contact</a>
+              <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary" data-i18n="nav.free_trial">Free Trial</a>
+              <div class="cf-lang" data-i18n-ignore>
+                <button type="button" class="cf-lang__btn" id="langToggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Language">
+                  EN
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="cf-lang__menu" id="langMenu" role="listbox" aria-label="Language">
+                  <button type="button" class="cf-lang__option" role="option" data-lang="en" lang="en" aria-current="true">English</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="zh" lang="zh">中文 (Chinese)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="es" lang="es">Español (Spanish)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="hi" lang="hi">हिन्दी (Hindi)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ar" lang="ar">العربية (Arabic)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="bn" lang="bn">বাংলা (Bangla)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="pt" lang="pt">Português (Portuguese)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ru" lang="ru">Русский (Russian)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ja" lang="ja">日本語 (Japanese)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="fr" lang="fr">Français (French)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="de" lang="de">Deutsch (German)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ko" lang="ko">한국어 (Korean)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="id" lang="id">Indonesian</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="tr" lang="tr">Türkçe (Turkish)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="vi" lang="vi">Tiếng Việt</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="it" lang="it">Italiano (Italian)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<script>
+(function () {
+  var MQ = "(max-width: 1024px)";
+  function isCompact() {
+    return window.matchMedia(MQ).matches;
+  }
+  function syncHeaderHeight() {
+    var headerEl = document.querySelector("header.header");
+    if (!headerEl) return;
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  }
+  function initNav(header) {
+    if (!header || header.getAttribute("data-nav-ready") === "1") return;
+    header.setAttribute("data-nav-ready", "1");
+    var navToggle = header.querySelector("#navToggle");
+    var navContent = header.querySelector(".c-nav__content");
+    var dropdowns = header.querySelectorAll(".c-dropdown");
+    function closeAllDropdowns() {
+      dropdowns.forEach(function (dd) {
+        dd.classList.remove("open");
+        var btn = dd.querySelector(".c-dropdown__toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+    function closeMobile() {
+      if (!navContent || !navToggle) return;
+      navContent.classList.remove("active");
+      document.body.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      closeAllDropdowns();
+    }
+    if (navToggle && navContent) {
+      navToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var open = navContent.classList.toggle("active");
+        document.body.classList.toggle("nav-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncHeaderHeight();
+        if (!open) closeAllDropdowns();
+      });
+    }
+    dropdowns.forEach(function (dd) {
+      var btn = dd.querySelector(".c-dropdown__toggle");
+      if (!btn) return;
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var willOpen = !dd.classList.contains("open");
+        closeAllDropdowns();
+        closeLang();
+        if (willOpen) {
+          dd.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+    var langWrap = header.querySelector(".cf-lang");
+    var langToggle = header.querySelector("#langToggle");
+    function closeLang() {
+      if (!langWrap || !langToggle) return;
+      langWrap.classList.remove("open");
+      langToggle.setAttribute("aria-expanded", "false");
+    }
+    if (langToggle && langWrap) {
+      langToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeAllDropdowns();
+        var open = langWrap.classList.toggle("open");
+        langToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+    document.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle") || t.closest(".cf-lang"))) return;
+      if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
+      closeAllDropdowns();
+      closeLang();
+      if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
+        closeMobile();
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeLang();
+        closeMobile();
+      }
+    });
+    window.addEventListener("resize", function () {
+      syncHeaderHeight();
+      if (!isCompact()) closeMobile();
+    });
+    if (navContent) {
+      navContent.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          if (isCompact()) closeMobile();
+          else closeAllDropdowns();
+        });
+      });
+    }
+    syncHeaderHeight();
+    window.addEventListener("load", syncHeaderHeight);
+  }
+  var header = document.currentScript && document.currentScript.previousElementSibling;
+  if (!header || !header.classList || !header.classList.contains("header")) {
+    header = document.querySelector("header.header");
+  }
+  initNav(header);
+})();
+</script>
+
   <!-- Header -->
     <!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
 <header class="header notranslate" role="banner" itemscope itemtype="https://schema.org/WPHeader" translate="no">
@@ -731,6 +1036,84 @@
   
 <script src="js/chrome.js?v=20261015c" defer></script>
 <script src="/js/i18n.js?v=20261107f" defer></script>
+<!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
+<footer class="footer notranslate" role="contentinfo" translate="no">
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="/" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix" class="c-footer__logo" width="150" height="45" decoding="async" />
+      </a>
+      <p class="c-footer__text" data-i18n="footer.tagline"><strong>Secure. Automate. Scale</strong></p>
+      <p class="c-footer__contact">
+        <a href="https://wa.me/8801850603126">WhatsApp +880 1850-603126</a>
+      </p>
+      <ul class="social" aria-label="Social links">
+        <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener" aria-label="Facebook"><img src="img/facebook_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener" aria-label="X"><img src="img/X_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="img/linkedin_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/whatsapp_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener" aria-label="YouTube"><img src="img/youtube_clofix.png" alt="" width="28" height="28" /></a></li>
+      </ul>
+      <div class="google-play-wrapper">
+        <a href="https://play.google.com/store/apps/details?id=com.clofix.waf" target="_blank" rel="noopener">
+          <img src="img/google-play-store-logo-png.png" alt="Get it on Google Play" class="c-footer__play-badge" width="150" height="52" />
+        </a>
+      </div>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.product">Product</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/waf">CloFix WAF</a></li>
+        <li><a href="/features" data-i18n="footer.features">Features</a></li>
+        <li><a href="/pricing" data-i18n="footer.pricing">Pricing</a></li>
+        <li><a href="/free-trial" data-i18n="footer.free_trial">Free Trial</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.resources">Resources</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/event" data-i18n="footer.event">Free Event</a></li>
+        <li><a href="/documentation" data-i18n="footer.docs">Documentation</a></li>
+        <li><a href="/services" data-i18n="footer.services">Services</a></li>
+        <li><a href="/blogs" data-i18n="footer.blogs">Blogs</a></li>
+        <li><a href="/our-insights" data-i18n="footer.insights">Our Insights</a></li>
+        <li><a href="/faq" data-i18n="footer.faq">FAQ</a></li>
+        <li><a href="/support" data-i18n="footer.support">Support</a></li>
+        <li><a href="/case-study" data-i18n="footer.case_study">Case Study</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.company">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/about" data-i18n="footer.about">About</a></li>
+        <li><a href="/contact" data-i18n="footer.contact">Contact</a></li>
+        <li><a href="/careers" data-i18n="footer.careers">Careers</a></li>
+        <li><a href="/partner" data-i18n="footer.partners">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.legal">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+        <li><a href="/sla" data-i18n="footer.sla">SLA</a></li>
+        <li><a href="/privacy-policy" data-i18n="footer.privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container c-footer__bottom">
+    <p class="footer__text" data-i18n="footer.copyright">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
+    <ul class="c-footer__listed">
+      <li><a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener">G2</a></li>
+      <li><a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener">CB Insights</a></li>
+      <li><a href="https://www.producthunt.com/products/clofix-waf" target="_blank" rel="noopener">Product Hunt</a></li>
+    </ul>
+  </div>
+</footer>
 </body>
 
 </html>
