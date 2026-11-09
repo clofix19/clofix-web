@@ -7176,16 +7176,15 @@ body.nav-open {
     width: 100% !important;
     max-width: 100vw !important;
     height: auto !important;
-    max-height: calc(100vh - var(--header-h, 64px)) !important;
-    max-height: calc(100dvh - var(--header-h, 64px)) !important;
+    max-height: none !important;
     display: none !important;
     flex-direction: column !important;
     align-items: stretch !important;
+    justify-content: flex-start !important;
     background: #0f172a !important;
     padding: 0.75rem 1.25rem 2rem !important;
     overflow-x: hidden !important;
-    overflow-y: scroll !important;
-    overscroll-behavior-y: contain;
+    overflow-y: auto !important;
     border-top: 1px solid #1e293b !important;
     z-index: 10050 !important;
     visibility: visible !important;
@@ -7193,7 +7192,6 @@ body.nav-open {
     transform: none !important;
     filter: none !important;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
   }
 
   .header .c-nav__content.active,
@@ -7204,6 +7202,7 @@ body.nav-open {
   .header .c-nav__content .c-list--flex,
   .c-nav__content .c-list--flex {
     display: flex !important;
+    flex: 0 0 auto !important;
     flex-direction: column !important;
     flex-wrap: nowrap !important;
     align-items: stretch !important;
@@ -8131,11 +8130,31 @@ main {
     flex-direction: column;
     align-items: stretch;
   }
+  .header .c-nav > .cf-lang {
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0;
+  }
+  .header .c-nav > .cf-lang .cf-lang__btn {
+    width: auto;
+    min-height: 44px;
+    border-radius: 8px;
+  }
+  .header .c-nav > .cf-lang .cf-lang__menu {
+    left: auto;
+    right: 0;
+    max-width: calc(100vw - 2rem);
+    max-height: min(70vh, 22rem);
+    max-height: min(calc(100dvh - var(--header-h) - 1rem), 22rem);
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
   .header .c-nav__content > .c-list--flex {
     justify-content: flex-start;
   }
   .cf-header-aside {
     width: 100%;
+    flex-shrink: 0;
     align-items: stretch;
     margin: 0.85rem 0 0;
     gap: 0.65rem;

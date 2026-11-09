@@ -45,6 +45,11 @@ def fix_page_assets(text: str, prefix: str) -> str:
     text = re.sub(r'href="(?:\./|/)style\.css"', f'href="{prefix}style.css"', text)
     text = re.sub(r"href='(?:\./|/)style\.css'", f"href='{prefix}style.css'", text)
     text = re.sub(r'src="(?:\./|/)js/chrome\.js"', f'src="{prefix}js/chrome.js"', text)
+    text = re.sub(
+        r'src=(["\'])(?:/|\./|(?:\.\./)*)js/i18n\.js(\?[^"\']*)?\1',
+        lambda match: f'src={match[1]}{prefix}js/i18n.js{match[2] or ""}{match[1]}',
+        text,
+    )
     text = re.sub(r'src="/img/', f'src="{prefix}img/', text)
     return text
 
@@ -91,7 +96,7 @@ def main():
             if "js/chrome.js" in text:
                 text = re.sub(
                     r'(<script[^>]+js/chrome\.js[^>]*></script>)',
-                    rf'\1\n<script src="/js/i18n.js?v=20261107f" defer></script>',
+                    rf'\1\n<script src="{prefix}js/i18n.js?v=20261109lang2" defer></script>',
                     text,
                     count=1,
                     flags=re.I,
@@ -99,7 +104,7 @@ def main():
             else:
                 text = re.sub(
                     r"</body>",
-                    f'<script src="/js/i18n.js?v=20261107f" defer></script>\n</body>',
+                    f'<script src="{prefix}js/i18n.js?v=20261109lang2" defer></script>\n</body>',
                     text,
                     count=1,
                     flags=re.I,

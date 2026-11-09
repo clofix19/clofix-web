@@ -39,7 +39,7 @@
   <meta name="twitter:image:alt" content="CloFix Our Insights" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-  <link href="style.css?v=20261107n" rel="stylesheet" />
+  <link href="style.css?v=20261109lang1" rel="stylesheet" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -366,6 +366,7 @@
       navToggle.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
+        closeLang();
         var open = navContent.classList.toggle("active");
         document.body.classList.toggle("nav-open", open);
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
@@ -390,6 +391,15 @@
     });
     var langWrap = header.querySelector(".cf-lang");
     var langToggle = header.querySelector("#langToggle");
+    var desktopLangParent = langWrap && langWrap.parentNode;
+    function syncLanguagePosition() {
+      if (!langWrap || !navToggle || !desktopLangParent) return;
+      var parent = isCompact() ? navToggle.parentNode : desktopLangParent;
+      if (langWrap.parentNode === parent) return;
+      closeLang();
+      if (isCompact()) parent.insertBefore(langWrap, navToggle);
+      else parent.appendChild(langWrap);
+    }
     function closeLang() {
       if (!langWrap || !langToggle) return;
       langWrap.classList.remove("open");
@@ -399,6 +409,7 @@
       langToggle.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
+        if (isCompact()) closeMobile();
         closeAllDropdowns();
         var open = langWrap.classList.toggle("open");
         langToggle.setAttribute("aria-expanded", open ? "true" : "false");
@@ -421,6 +432,7 @@
       }
     });
     window.addEventListener("resize", function () {
+      syncLanguagePosition();
       syncHeaderHeight();
       if (!isCompact()) closeMobile();
     });
@@ -432,6 +444,7 @@
         });
       });
     }
+    syncLanguagePosition();
     syncHeaderHeight();
     window.addEventListener("load", syncHeaderHeight);
   }
@@ -477,7 +490,7 @@
 
 
 <script src="js/chrome.js?v=20261015c" defer></script>
-<script src="/js/i18n.js?v=20261107f" defer></script>
+<script src="js/i18n.js?v=20261109lang2" defer></script>
 <script>
 (function () {
   var form = document.querySelector('.insight-search');

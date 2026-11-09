@@ -4,6 +4,8 @@
  */
 (function () {
   var STORAGE_KEY = "clofix-lang";
+  var selectedLanguage = null;
+  var translationObserver = null;
   var LABELS = {
     en: "EN", zh: "中文", es: "ES", hi: "HI", ar: "AR", bn: "BN", pt: "PT",
     ru: "RU", ja: "JA", fr: "FR", de: "DE", ko: "KO", id: "ID", tr: "TR", vi: "VI", it: "IT"
@@ -394,16 +396,19 @@
   }
 
   function getLang() {
+    if (selectedLanguage) return selectedLanguage;
     try {
-      return localStorage.getItem(STORAGE_KEY) || "en";
+      var stored = localStorage.getItem(STORAGE_KEY);
+      return LABELS[stored] ? stored : "en";
     } catch (e) {
       return "en";
     }
   }
 
   function setLang(code) {
+    selectedLanguage = LABELS[code] ? code : "en";
     try {
-      localStorage.setItem(STORAGE_KEY, code);
+      localStorage.setItem(STORAGE_KEY, selectedLanguage);
     } catch (e) {}
   }
 
@@ -488,21 +493,39 @@
     return "/en/" + code;
   }
 
-  function syncPageBodyLang(lang, doReload) {
-    if (isSeoCrawler()) return false;
+  function syncPageBodyLang(lang) {
+    if (isSeoCrawler()) return;
     var want = desiredGoogValue(lang);
     var have = readGoogCookie();
     if (want === have || (want === "" && (!have || have === "/en/en"))) {
-      return false;
+      return;
     }
     writeGoogCookie(want);
-    if (doReload) {
-      try {
-        location.reload();
-      } catch (e) {}
-      return true;
+  }
+
+  function syncTranslateSelection() {
+    var select = document.querySelector("#google_translate_element .goog-te-combo");
+    var code = GOOG[getLang()] || "en";
+    if (!select || !Array.prototype.some.call(select.options, function (option) {
+      return option.value === code;
+    })) return false;
+    if (select.value !== code) {
+      select.value = code;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
     }
-    return false;
+    return true;
+  }
+
+  function waitForTranslateSelection() {
+    if (syncTranslateSelection()) {
+      if (translationObserver) translationObserver.disconnect();
+      translationObserver = null;
+      return;
+    }
+    var holder = document.getElementById("google_translate_element");
+    if (!holder || translationObserver) return;
+    translationObserver = new MutationObserver(waitForTranslateSelection);
+    translationObserver.observe(holder, { childList: true, subtree: true });
   }
 
   function isSeoCrawler() {
@@ -517,7 +540,10 @@
   function ensureGoogleTranslateLib() {
     // Crawlers must see English source HTML only (best SEO)
     if (isSeoCrawler()) return;
-    if (document.documentElement.getAttribute("data-cf-gt") === "1") return;
+    if (document.documentElement.getAttribute("data-cf-gt") === "1") {
+      waitForTranslateSelection();
+      return;
+    }
     document.documentElement.setAttribute("data-cf-gt", "1");
     if (!document.getElementById("google_translate_element")) {
       var holder = document.createElement("div");
@@ -533,6 +559,7 @@
           { pageLanguage: "en", autoDisplay: false, includedLanguages: "en,zh-CN,es,hi,ar,bn,pt,ru,ja,fr,de,ko,id,tr,vi,it" },
           "google_translate_element"
         );
+        waitForTranslateSelection();
       } catch (e) {}
     };
     if (!document.getElementById("cf-google-translate-script")) {
@@ -540,8 +567,13 @@
       s.id = "cf-google-translate-script";
       s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       s.async = true;
+      s.onerror = function () {
+        document.documentElement.removeAttribute("data-cf-gt");
+        s.remove();
+      };
       document.head.appendChild(s);
     }
+    waitForTranslateSelection();
     // Hide Google top banner if injected
     if (!document.getElementById("cf-gt-hide")) {
       var st = document.createElement("style");
@@ -576,8 +608,12 @@
   }
 
   function apply(lang) {
+    if (!LABELS[lang]) lang = "en";
+    setLang(lang);
+    syncPageBodyLang(lang);
     applyChrome(lang);
     if (lang !== "en") ensureGoogleTranslateLib();
+    else if (document.getElementById("cf-google-translate-script")) location.reload();
   }
 
   function closeLangMenu() {
@@ -589,38 +625,16 @@
 
   function pickLang(code) {
     if (!LABELS[code]) code = "en";
-    var prev = getLang();
-    setLang(code);
-    applyChrome(code);
     closeLangMenu();
-    // Full page body: sync Google cookie and reload when language changes
-    if (code !== prev) {
-      if (syncPageBodyLang(code, true)) return;
-    } else if (code !== "en") {
-      ensureGoogleTranslateLib();
-    }
+    apply(code);
   }
 
   function init() {
     var lang = getLang();
+    syncPageBodyLang(lang);
     applyChrome(lang);
     if (lang !== "en") {
       ensureGoogleTranslateLib();
-      // Align cookie without reload loop if already matching
-      var want = desiredGoogValue(lang);
-      var have = readGoogCookie();
-      if (want && want !== have) {
-        writeGoogCookie(want);
-        // Soft reload once so Google picks up cookie on first visit after lang pick from another tab
-        if (!sessionStorage.getItem("cf-gt-synced")) {
-          sessionStorage.setItem("cf-gt-synced", "1");
-          location.reload();
-          return;
-        }
-      }
-    } else {
-      // Clear stale translate cookie when English selected
-      if (readGoogCookie()) writeGoogCookie("");
     }
 
     // Event delegation so every page's lang menu works
