@@ -3880,7 +3880,7 @@
              width="150"
              height="45"
              decoding="async">
-        <span class="c-logo__tagline" itemprop="description" data-i18n="nav.tagline">Global WAF</span>
+        <span class="c-logo__tagline" itemprop="description" data-i18n="nav.tagline" data-rotate-products="true">Global WAF</span>
       </a>
 
       <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
@@ -5223,6 +5223,21 @@
 <script src="js/chrome.js?v=20261015c" defer></script>
 <script src="js/hero-products.js?v=20261109b" defer></script>
 <script src="js/i18n.js?v=20261109lang2" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var tagline = document.querySelector('.c-logo__tagline[data-rotate-products="true"]');
+    if (!tagline || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var labels = ["Global WAF", "CloFix Cloud", "CloFix One", "CloFix SRE AI"];
+    var index = 0;
+    window.setInterval(function () {
+      index = (index + 1) % labels.length;
+      tagline.animate([{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(-4px)" }], { duration: 180, fill: "forwards" }).onfinish = function () {
+        tagline.textContent = labels[index];
+        tagline.animate([{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 220, fill: "forwards" });
+      };
+    }, 2600);
+  });
+</script>
 
 
 
