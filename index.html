@@ -3237,7 +3237,7 @@
   }
 }
 
-/* Flagship product hero (CloFix WAF) */
+/* Flagship product rotation */
 .cf-hero-product .unique-header {
   max-width: 52rem;
   margin-left: auto;
@@ -3288,6 +3288,71 @@
   text-decoration: none;
   font-size: 0.82rem;
   font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.cf-hero-product__pill:focus-visible,
+.cf-hero-product__rotation:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 4px;
+}
+.cf-hero-product__rotation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-height: 34px;
+  padding: 0;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 50%;
+  color: #94a3b8;
+  background: transparent;
+  cursor: pointer;
+}
+.cf-hero-product__copy,
+.cf-hero-product__actions {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.cf-hero-product.is-switching .cf-hero-product__copy,
+.cf-hero-product.is-switching .cf-hero-product__actions {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.cf-hero-product__shot {
+  aspect-ratio: 1024 / 533;
+  object-fit: contain;
+}
+.cf-hero-product__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.cf-hero-product__leads,
+.cf-hero-product__actions {
+  display: grid;
+}
+.cf-hero-product__leads > .cf-hero-product__lead,
+.cf-hero-product__actions > .hero-actions {
+  grid-area: 1 / 1;
+  width: 100%;
+}
+.cf-hero-product__lead[data-active="false"],
+.cf-hero-product .hero-actions[data-active="false"] {
+  opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf-hero-product__copy,
+  .cf-hero-product__actions,
+  .cf-hero-product__pill {
+    transition: none;
+  }
 }
 .cf-hero-product__pill:hover {
   border-color: rgba(56, 189, 248, 0.5);
@@ -4129,14 +4194,16 @@
 
 
 <main>
-    <section class="unique-section cf-hero-product" aria-label="CloFix flagship product">
+    <section class="unique-section cf-hero-product" aria-label="CloFix flagship products" aria-roledescription="carousel" data-active-product="waf">
       <div class="unique-container">
         <div class="unique-header">
           <p class="cf-page__eyebrow cf-hero-product__eyebrow" data-i18n="page.flagship">Flagship product</p>
-          <h1 class="heading--1"><span class="unique-title-highlight">CloFix WAF</span></h1>
-          <p class="heading--4 cf-hero-product__lead" data-i18n="page.hero_lead">
-            Global AI-powered Web Application Firewall for APIs, websites, and cloud apps - threat detection, DDoS mitigation, and zero-day defense with sub-millisecond latency.
-          </p>
+          <div class="cf-hero-product__copy" id="heroProductCopy">
+            <h1 class="heading--1"><span class="unique-title-highlight notranslate" translate="no">CloFix WAF</span></h1>
+            <p class="heading--4 cf-hero-product__lead" data-i18n="page.hero_lead">
+              Global AI-powered Web Application Firewall for APIs, websites, and cloud apps - threat detection, DDoS mitigation, and zero-day defense with sub-millisecond latency.
+            </p>
+          </div>
           <p class="cf-hero-product__also">
             <span data-i18n="page.also_from">Also from CloFix:</span>
             <a href="#cloud-spotlight-title">Cloud</a>,
@@ -4145,11 +4212,13 @@
             <a href="#aws-spotlight-title">AWS Activity Monitor</a>
           </p>
           <div class="cf-hero-product__pills" aria-label="CloFix products">
-            <a class="cf-hero-product__pill cf-hero-product__pill--main" href="/waf">CloFix WAF</a>
-            <a class="cf-hero-product__pill" href="/clofix-cloud">CloFix Cloud</a>
-            <a class="cf-hero-product__pill" href="/clofix-one">CloFix One</a>
-            <a class="cf-hero-product__pill" href="/features" data-i18n="page.all_features">All features</a>
+            <button type="button" class="cf-hero-product__pill cf-hero-product__pill--main notranslate" translate="no" data-product="waf" aria-pressed="true" aria-controls="heroProductCopy">CloFix WAF</button>
+            <button type="button" class="cf-hero-product__pill notranslate" translate="no" data-product="cloud" aria-pressed="false" aria-controls="heroProductCopy">CloFix Cloud</button>
+            <button type="button" class="cf-hero-product__pill notranslate" translate="no" data-product="one" aria-pressed="false" aria-controls="heroProductCopy">CloFix One</button>
+            <button type="button" class="cf-hero-product__pill notranslate" translate="no" data-product="sre" aria-pressed="false" aria-controls="heroProductCopy">CloFix SRE AI</button>
+            <button type="button" class="cf-hero-product__rotation" aria-label="Pause product rotation" title="Pause product rotation"><span aria-hidden="true">Ⅱ</span></button>
           </div>
+          <span class="cf-hero-product__status" role="status" aria-live="polite"></span>
           <div class="hero-actions" aria-label="CloFix WAF actions">
             <a class="hero-action hero-action--trial" href="/free-trial">
               <span class="hero-action__body">
@@ -4215,6 +4284,34 @@
 
       </div>
     </section>
+
+    <template id="heroSreContent">
+      <p class="heading--4">AI-powered site reliability engineering for your Linux fleet - ask questions, diagnose incidents, approve fixes, and verify results with human approval before every change.</p>
+      <a class="spot-action" href="/clofix-one#ask-sre">
+        <span class="spot-action__body">
+          <span class="spot-action__kicker">AI SRE</span>
+          <span class="spot-action__title">Explore CloFix SRE AI</span>
+          <span class="spot-action__note">Chat, diagnose, approve, execute, and verify.</span>
+        </span>
+        <span class="spot-action__go" aria-hidden="true">→</span>
+      </a>
+      <a class="spot-action" href="/contact">
+        <span class="spot-action__body">
+          <span class="spot-action__kicker">Demo</span>
+          <span class="spot-action__title">See SRE AI in action</span>
+          <span class="spot-action__note">See an approved workflow on your infrastructure.</span>
+        </span>
+        <span class="spot-action__go" aria-hidden="true">→</span>
+      </a>
+      <a class="spot-action" href="/devops-support">
+        <span class="spot-action__body">
+          <span class="spot-action__kicker">Operations</span>
+          <span class="spot-action__title">Explore DevOps support</span>
+          <span class="spot-action__note">Get help managing and troubleshooting your fleet.</span>
+        </span>
+        <span class="spot-action__go" aria-hidden="true">→</span>
+      </a>
+    </template>
 
     <!-- ============================================ -->
     <!-- GLOBAL REACH SECTION - Balanced Approach    -->
@@ -5124,6 +5221,7 @@
     </div>
   </div>
 <script src="js/chrome.js?v=20261015c" defer></script>
+<script src="js/hero-products.js?v=20261109b" defer></script>
 <script src="js/i18n.js?v=20261109lang2" defer></script>
 
 
