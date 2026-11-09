@@ -7750,6 +7750,15 @@ body {
   cursor: pointer;
 }
 
+.cf-lang__current-flag {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.cf-lang__current-code {
+  line-height: 1;
+}
+
 .cf-lang__btn:hover,
 .cf-lang__btn[aria-expanded="true"] {
   border-color: rgba(56, 189, 248, 0.45);
@@ -7792,6 +7801,24 @@ body {
   font-size: 0.85rem;
   text-align: left;
   cursor: pointer;
+}
+
+.cf-lang__flag {
+  flex: 0 0 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.cf-lang__label {
+  flex: 1 1 auto;
+}
+
+.cf-lang__dial {
+  color: var(--cf-text-dim, #94a3b8);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .cf-lang__option[aria-current="true"] {

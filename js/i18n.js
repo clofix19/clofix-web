@@ -7,8 +7,22 @@
   var selectedLanguage = null;
   var translationObserver = null;
   var LABELS = {
-    en: "EN", zh: "中文", es: "ES", hi: "HI", ar: "AR", bn: "BN", pt: "PT",
+    en: "EN", zh: "ZH", es: "ES", hi: "HI", ar: "AR", bn: "BN", pt: "PT",
     ru: "RU", ja: "JA", fr: "FR", de: "DE", ko: "KO", id: "ID", tr: "TR", vi: "VI", it: "IT"
+  };
+  var LANGUAGE_FLAGS = {
+    en: ["🇺🇸", "United States"], zh: ["🇨🇳", "China"], es: ["🇪🇸", "Spain"],
+    hi: ["🇮🇳", "India"], ar: ["🇸🇦", "Saudi Arabia"], bn: ["🇧🇩", "Bangladesh"],
+    pt: ["🇧🇷", "Brazil"], ru: ["🇷🇺", "Russia"], ja: ["🇯🇵", "Japan"],
+    fr: ["🇫🇷", "France"], de: ["🇩🇪", "Germany"], ko: ["🇰🇷", "South Korea"],
+    id: ["🇮🇩", "Indonesia"], tr: ["🇹🇷", "Türkiye"], vi: ["🇻🇳", "Vietnam"],
+    it: ["🇮🇹", "Italy"]
+  };
+  var LANGUAGE_NAMES = {
+    en: "English", zh: "Chinese", es: "Spanish", hi: "Hindi", ar: "Arabic",
+    bn: "Bangla", pt: "Portuguese", ru: "Russian", ja: "Japanese", fr: "French",
+    de: "German", ko: "Korean", id: "Indonesian", tr: "Turkish", vi: "Vietnamese",
+    it: "Italian"
   };
 
   var EN = {
@@ -598,7 +612,11 @@
     var btn = document.getElementById("langToggle");
     if (btn) {
       var label = LABELS[lang] || lang.toUpperCase();
-      btn.innerHTML = label + ' <span aria-hidden="true">▾</span>';
+      var flagInfo = LANGUAGE_FLAGS[lang] || LANGUAGE_FLAGS.en;
+      btn.innerHTML = '<span class="cf-lang__current-flag" aria-hidden="true">' + flagInfo[0] + '</span>' +
+        '<span class="cf-lang__current-code">' + label + '</span>' +
+        '<span aria-hidden="true">▾</span>';
+      btn.setAttribute("aria-label", "Language: " + (LANGUAGE_NAMES[lang] || LANGUAGE_NAMES.en) + ", " + flagInfo[1]);
     }
 
     document.querySelectorAll(".cf-lang__option").forEach(function (opt) {

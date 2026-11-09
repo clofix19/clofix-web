@@ -916,27 +916,28 @@
               <a href="/contact" class="ticket-button c-button c-button--small c-button--primary" data-i18n="nav.contact">Contact</a>
               <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary" data-i18n="nav.free_trial">Free Trial</a>
               <div class="cf-lang" data-i18n-ignore>
-                <button type="button" class="cf-lang__btn" id="langToggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Language">
-                  EN
+                <button type="button" class="cf-lang__btn" id="langToggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Language: English, United States">
+                  <span class="cf-lang__current-flag" aria-hidden="true">🇺🇸</span>
+                  <span class="cf-lang__current-code">EN</span>
                   <span aria-hidden="true">▾</span>
                 </button>
                 <div class="cf-lang__menu" id="langMenu" role="listbox" aria-label="Language">
-                  <button type="button" class="cf-lang__option" role="option" data-lang="en" lang="en" aria-current="true">English</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="zh" lang="zh">中文 (Chinese)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="es" lang="es">Español (Spanish)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="hi" lang="hi">हिन्दी (Hindi)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="ar" lang="ar">العربية (Arabic)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="bn" lang="bn">বাংলা (Bangla)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="pt" lang="pt">Português (Portuguese)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="ru" lang="ru">Русский (Russian)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="ja" lang="ja">日本語 (Japanese)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="fr" lang="fr">Français (French)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="de" lang="de">Deutsch (German)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="ko" lang="ko">한국어 (Korean)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="id" lang="id">Indonesian</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="tr" lang="tr">Türkçe (Turkish)</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="vi" lang="vi">Tiếng Việt</button>
-                  <button type="button" class="cf-lang__option" role="option" data-lang="it" lang="it">Italiano (Italian)</button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="en" lang="en" aria-current="true" aria-label="English, United States, +1"><span class="cf-lang__flag" aria-hidden="true">🇺🇸</span><span class="cf-lang__label">English</span><span class="cf-lang__dial">+1</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="zh" lang="zh" aria-label="中文 (Chinese), China, +86"><span class="cf-lang__flag" aria-hidden="true">🇨🇳</span><span class="cf-lang__label">中文 (Chinese)</span><span class="cf-lang__dial">+86</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="es" lang="es" aria-label="Español (Spanish), Spain, +34"><span class="cf-lang__flag" aria-hidden="true">🇪🇸</span><span class="cf-lang__label">Español (Spanish)</span><span class="cf-lang__dial">+34</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="hi" lang="hi" aria-label="हिन्दी (Hindi), India, +91"><span class="cf-lang__flag" aria-hidden="true">🇮🇳</span><span class="cf-lang__label">हिन्दी (Hindi)</span><span class="cf-lang__dial">+91</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ar" lang="ar" aria-label="العربية (Arabic), Saudi Arabia, +966"><span class="cf-lang__flag" aria-hidden="true">🇸🇦</span><span class="cf-lang__label">العربية (Arabic)</span><span class="cf-lang__dial">+966</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="bn" lang="bn" aria-label="বাংলা (Bangla), Bangladesh, +880"><span class="cf-lang__flag" aria-hidden="true">🇧🇩</span><span class="cf-lang__label">বাংলা (Bangla)</span><span class="cf-lang__dial">+880</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="pt" lang="pt" aria-label="Português (Portuguese), Brazil, +55"><span class="cf-lang__flag" aria-hidden="true">🇧🇷</span><span class="cf-lang__label">Português (Portuguese)</span><span class="cf-lang__dial">+55</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ru" lang="ru" aria-label="Русский (Russian), Russia, +7"><span class="cf-lang__flag" aria-hidden="true">🇷🇺</span><span class="cf-lang__label">Русский (Russian)</span><span class="cf-lang__dial">+7</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ja" lang="ja" aria-label="日本語 (Japanese), Japan, +81"><span class="cf-lang__flag" aria-hidden="true">🇯🇵</span><span class="cf-lang__label">日本語 (Japanese)</span><span class="cf-lang__dial">+81</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="fr" lang="fr" aria-label="Français (French), France, +33"><span class="cf-lang__flag" aria-hidden="true">🇫🇷</span><span class="cf-lang__label">Français (French)</span><span class="cf-lang__dial">+33</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="de" lang="de" aria-label="Deutsch (German), Germany, +49"><span class="cf-lang__flag" aria-hidden="true">🇩🇪</span><span class="cf-lang__label">Deutsch (German)</span><span class="cf-lang__dial">+49</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ko" lang="ko" aria-label="한국어 (Korean), South Korea, +82"><span class="cf-lang__flag" aria-hidden="true">🇰🇷</span><span class="cf-lang__label">한국어 (Korean)</span><span class="cf-lang__dial">+82</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="id" lang="id" aria-label="Bahasa Indonesia, Indonesia, +62"><span class="cf-lang__flag" aria-hidden="true">🇮🇩</span><span class="cf-lang__label">Bahasa Indonesia</span><span class="cf-lang__dial">+62</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="tr" lang="tr" aria-label="Türkçe (Turkish), Türkiye, +90"><span class="cf-lang__flag" aria-hidden="true">🇹🇷</span><span class="cf-lang__label">Türkçe (Turkish)</span><span class="cf-lang__dial">+90</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="vi" lang="vi" aria-label="Tiếng Việt, Vietnam, +84"><span class="cf-lang__flag" aria-hidden="true">🇻🇳</span><span class="cf-lang__label">Tiếng Việt</span><span class="cf-lang__dial">+84</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="it" lang="it" aria-label="Italiano (Italian), Italy, +39"><span class="cf-lang__flag" aria-hidden="true">🇮🇹</span><span class="cf-lang__label">Italiano (Italian)</span><span class="cf-lang__dial">+39</span></button>
                 </div>
               </div>
             </div>
