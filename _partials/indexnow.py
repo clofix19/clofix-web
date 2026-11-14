@@ -4,6 +4,7 @@
 Usage:
   python3 _partials/indexnow.py                  # submit sitemap URLs
   python3 _partials/indexnow.py --git            # submit URLs for files changed vs HEAD~1
+  python3 _partials/indexnow.py --sitemap        # submit all sitemap URLs
   python3 _partials/indexnow.py /waf /pricing    # submit specific paths
 """
 from __future__ import annotations
@@ -13,6 +14,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -20,7 +22,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 HOST = "clofix.com"
-ENDPOINT = "https://api.indexnow.org/indexnow"
+ENDPOINTS = [
+    "https://api.indexnow.org/indexnow",
+    "https://www.bing.com/indexnow",
+    "https://yandex.com/indexnow",
+]
 NS = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 
 
@@ -59,8 +65,6 @@ def urls_from_sitemaps() -> list[str]:
     root = ET.parse(index).getroot()
     children = [el.text for el in root.findall("s:sitemap/s:loc", NS) if el.text]
     if not children:
-        # urlset directly
-        children = [index.as_uri()]
         for loc in root.findall("s:url/s:loc", NS):
             if loc.text:
                 urls.append(loc.text.strip())
@@ -69,12 +73,10 @@ def urls_from_sitemaps() -> list[str]:
     for loc in children:
         name = loc.rstrip("/").split("/")[-1]
         path = ROOT / "xml" / name if name.endswith(".xml") else None
-        # also allow root-level sitemap parts
         if path is None or not path.exists():
             candidate = ROOT / name
             path = candidate if candidate.exists() else None
         if path is None:
-            # map https://clofix.com/xml/foo.xml -> xml/foo.xml
             m = re.search(r"/xml/([^/]+\.xml)$", loc)
             if m:
                 path = ROOT / "xml" / m.group(1)
@@ -134,12 +136,49 @@ def urls_from_args(paths: list[str]) -> list[str]:
     return sorted(set(urls))
 
 
-def submit(urls: list[str], key: str, key_file: Path) -> None:
+def verify_key(key: str, key_file: Path) -> str:
+    key_location = f"https://{HOST}/{key_file.name}"
+    req = urllib.request.Request(
+        key_location,
+        headers={"User-Agent": "CloFix-IndexNow/1.0"},
+        method="GET",
+    )
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        body = resp.read().decode("utf-8", "ignore").strip()
+        ctype = resp.headers.get("Content-Type", "")
+    if body != key:
+        raise SystemExit(
+            f"Key file mismatch at {key_location}: got {body!r}, expected {key!r}"
+        )
+    if "text/html" in ctype.lower():
+        print(f"Warning: keyLocation returned Content-Type {ctype}", file=sys.stderr)
+    print(f"Key OK at {key_location}")
+    return key_location
+
+
+def post_endpoint(endpoint: str, payload: dict) -> tuple[int, str]:
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        endpoint,
+        data=data,
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return resp.status, resp.read().decode("utf-8", "ignore")
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "ignore")
+    except urllib.error.URLError as e:
+        return 0, str(e)
+
+
+def submit(urls: list[str], key: str, key_file: Path, retries: int = 3) -> None:
     if not urls:
         print("No URLs to submit.")
         return
-    # IndexNow accepts up to 10,000 URLs per request; chunk to 100 for safety
     key_location = f"https://{HOST}/{key_file.name}"
+    ok_any = False
     for i in range(0, len(urls), 100):
         chunk = urls[i : i + 100]
         payload = {
@@ -148,34 +187,44 @@ def submit(urls: list[str], key: str, key_file: Path) -> None:
             "keyLocation": key_location,
             "urlList": chunk,
         }
-        data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(
-            ENDPOINT,
-            data=data,
-            headers={"Content-Type": "application/json; charset=utf-8"},
-            method="POST",
-        )
-        try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                print(f"IndexNow OK {resp.status} ({len(chunk)} URLs)")
-        except urllib.error.HTTPError as e:
-            body = e.read().decode("utf-8", "ignore")
-            print(f"IndexNow HTTP {e.code}: {body}", file=sys.stderr)
-            raise SystemExit(1) from e
-        except urllib.error.URLError as e:
-            print(f"IndexNow network error: {e}", file=sys.stderr)
-            raise SystemExit(1) from e
+        for endpoint in ENDPOINTS:
+            status, body = post_endpoint(endpoint, payload)
+            if 200 <= status < 300:
+                print(f"IndexNow OK {status} {endpoint} ({len(chunk)} URLs)")
+                ok_any = True
+            else:
+                print(f"IndexNow {status} {endpoint}: {body}", file=sys.stderr)
+
+        # Bing may 403 until it crawls a new key; retry once after a short wait
+        if not ok_any and retries > 0:
+            print("Waiting 45s for Bing key verification crawl...", file=sys.stderr)
+            time.sleep(45)
+            return submit(urls, key, key_file, retries=retries - 1)
+
     print(f"Submitted {len(urls)} URL(s). keyLocation={key_location}")
+    if not ok_any:
+        raise SystemExit(1)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Submit CloFix URLs to IndexNow")
     ap.add_argument("--git", action="store_true", help="Submit URLs for recently changed HTML")
     ap.add_argument("--sitemap", action="store_true", help="Submit all sitemap URLs")
+    ap.add_argument("--skip-verify", action="store_true", help="Skip live keyLocation check")
     ap.add_argument("paths", nargs="*", help="Specific paths or full URLs")
     args = ap.parse_args()
 
     key, key_file = find_key()
+    if not args.skip_verify:
+        try:
+            verify_key(key, key_file)
+        except Exception as e:
+            print(
+                f"Key not live yet ({e}). Deploy {key_file.name} to the site root, then re-run.",
+                file=sys.stderr,
+            )
+            raise SystemExit(2) from e
+
     if args.paths:
         urls = urls_from_args(args.paths)
     elif args.sitemap:
