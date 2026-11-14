@@ -96,7 +96,7 @@ def main():
             if "js/chrome.js" in text:
                 text = re.sub(
                     r'(<script[^>]+js/chrome\.js[^>]*></script>)',
-                    rf'\1\n<script src="{prefix}js/i18n.js?v=20261109lang2" defer></script>',
+                    rf'\1\n<script src="{prefix}js/i18n.js?v=20261114da1" defer></script>',
                     text,
                     count=1,
                     flags=re.I,
@@ -104,7 +104,7 @@ def main():
             else:
                 text = re.sub(
                     r"</body>",
-                    f'<script src="{prefix}js/i18n.js?v=20261109lang2" defer></script>\n</body>',
+                    f'<script src="{prefix}js/i18n.js?v=20261114da1" defer></script>\n</body>',
                     text,
                     count=1,
                     flags=re.I,

@@ -8,7 +8,8 @@
   var translationObserver = null;
   var LABELS = {
     en: "EN", zh: "ZH", es: "ES", hi: "HI", ar: "AR", bn: "BN", pt: "PT",
-    ru: "RU", ja: "JA", fr: "FR", de: "DE", ko: "KO", id: "ID", tr: "TR", vi: "VI", it: "IT"
+    ru: "RU", ja: "JA", fr: "FR", de: "DE", ko: "KO", id: "ID", tr: "TR", vi: "VI", it: "IT",
+    da: "DA"
   };
   var LANGUAGE_FLAGS = {
     en: ["🇺🇸", "United States"], zh: ["🇨🇳", "China"], es: ["🇪🇸", "Spain"],
@@ -16,13 +17,13 @@
     pt: ["🇧🇷", "Brazil"], ru: ["🇷🇺", "Russia"], ja: ["🇯🇵", "Japan"],
     fr: ["🇫🇷", "France"], de: ["🇩🇪", "Germany"], ko: ["🇰🇷", "South Korea"],
     id: ["🇮🇩", "Indonesia"], tr: ["🇹🇷", "Türkiye"], vi: ["🇻🇳", "Vietnam"],
-    it: ["🇮🇹", "Italy"]
+    it: ["🇮🇹", "Italy"], da: ["🇩🇰", "Denmark"]
   };
   var LANGUAGE_NAMES = {
     en: "English", zh: "Chinese", es: "Spanish", hi: "Hindi", ar: "Arabic",
     bn: "Bangla", pt: "Portuguese", ru: "Russian", ja: "Japanese", fr: "French",
     de: "German", ko: "Korean", id: "Indonesian", tr: "Turkish", vi: "Vietnamese",
-    it: "Italian"
+    it: "Italian", da: "Danish"
   };
 
   var EN = {
@@ -395,6 +396,43 @@
       "footer.copyright": "© 2026 CloFix InfoTech - WAF globale con AI e sicurezza cloud. Tutti i diritti riservati.",
       "page.flagship": "Prodotto di punta", "page.waf_cta_trial": "Inizia prova gratuita →",
       "page.waf_slider_title": "Stack di sicurezza multi-engine"
+    },
+    da: {
+      "nav.tagline": "Global WAF", "nav.home": "Hjem", "nav.product": "Produkt", "nav.services": "Tjenester",
+      "nav.resources": "Ressourcer", "nav.company": "Virksomhed", "nav.contact": "Kontakt", "nav.free_trial": "Gratis prøve",
+      "nav.overview": "Overblik", "nav.features": "Funktioner", "nav.pricing": "Priser", "nav.platform": "Platform",
+      "nav.core_services": "Kernetjenester", "nav.all_services": "Alle tjenester", "nav.managed": "Managed services",
+      "nav.infrastructure": "Infrastruktur", "nav.learn": "Lær", "nav.docs_hub": "Dokumentationshub",
+      "nav.blogs": "Blogs", "nav.insights": "Indsigt", "nav.faq": "FAQ", "nav.support": "Support",
+      "nav.case_study": "Casestudie", "nav.documentation": "Dokumentation", "nav.tools": "Værktøjer",
+      "nav.about": "Om os", "nav.careers": "Karriere", "nav.partners_title": "Partnere",
+      "nav.our_clients": "Vores kunder", "nav.our_partners": "Vores partnere", "nav.become_partner": "Bliv partner",
+      "nav.devops_manage": "DevOps Manage Service", "nav.cloud_manage": "Cloud Infra Manage Service",
+      "nav.free_event": "Gratis event",
+      "footer.tagline": "Sikr. Automatiser. Skaler", "footer.product": "Produkt", "footer.resources": "Ressourcer",
+      "footer.company": "Virksomhed", "footer.legal": "Juridisk", "footer.features": "Funktioner", "footer.pricing": "Priser",
+      "footer.free_trial": "Gratis prøve", "footer.event": "Gratis event", "footer.docs": "Dokumentation",
+      "footer.services": "Tjenester", "footer.blogs": "Blogs", "footer.insights": "Indsigt", "footer.faq": "FAQ",
+      "footer.support": "Support", "footer.case_study": "Casestudie", "footer.about": "Om os",
+      "footer.contact": "Kontakt", "footer.careers": "Karriere", "footer.partners": "Partnere",
+      "footer.terms": "Vilkår", "footer.sla": "SLA", "footer.privacy": "Privatlivspolitik",
+      "footer.copyright": "© 2026 CloFix InfoTech - Global AI-drevet WAF & cloud-sikkerhed. Alle rettigheder forbeholdes.",
+      "page.flagship": "Flagskibsprodukt",
+      "page.hero_lead": "Global AI-drevet Web Application Firewall til API'er, websites og cloud-apps - trusselsdetektion, DDoS-mitigering og zero-day-forsvar med sub-millisekund latens.",
+      "page.also_from": "Også fra CloFix:", "page.all_features": "Alle funktioner",
+      "page.cta_kicker_main": "Hovedprodukt", "page.cta_title_trial": "Start CloFix WAF-prøve",
+      "page.cta_note_trial": "14 dage. Intet kreditkort. Beskyt en live app.",
+      "page.cta_kicker_product": "Produktside", "page.cta_title_explore": "Udforsk CloFix WAF",
+      "page.cta_note_explore": "AI-motorer, OWASP-dækning og global edge-beskyttelse.",
+      "page.cta_kicker_plans": "Planer", "page.cta_title_pricing": "Se WAF-priser",
+      "page.cta_note_pricing": "Starter til Enterprise - vælg den rigtige plan.",
+      "page.stat_ai": "AI-motorer", "page.stat_core": "Kernemotorer", "page.stat_uptime": "Uptime-SLA",
+      "page.stat_threats": "Trusler / 24t",
+      "page.waf_badge": "Global Web Application Firewall",
+      "page.waf_h2": "Enterprise WAF-beskyttelse til moderne applikationer",
+      "page.waf_lead": "Beskyt dine webapplikationer mod OWASP Top 10-trusler, DDoS-angreb, API-udnyttelser og zero-day-sårbarheder med vores AI-drevne, cloud-native Web Application Firewall.",
+      "page.waf_cta_trial": "Start gratis prøve →", "page.waf_cta_features": "Udforsk WAF-funktioner",
+      "page.waf_slider_eyebrow": "AI-drevet beskyttelse", "page.waf_slider_title": "Multi-engine sikkerhedsstack"
     }
   };
 
@@ -476,7 +514,8 @@
     id: "id",
     tr: "tr",
     vi: "vi",
-    it: "it"
+    it: "it",
+    da: "da"
   };
 
   function readGoogCookie() {
@@ -570,7 +609,7 @@
       try {
         if (!window.google || !google.translate) return;
         new google.translate.TranslateElement(
-          { pageLanguage: "en", autoDisplay: false, includedLanguages: "en,zh-CN,es,hi,ar,bn,pt,ru,ja,fr,de,ko,id,tr,vi,it" },
+          { pageLanguage: "en", autoDisplay: false, includedLanguages: "en,zh-CN,es,hi,ar,bn,pt,ru,ja,fr,de,ko,id,tr,vi,it,da" },
           "google_translate_element"
         );
         waitForTranslateSelection();
