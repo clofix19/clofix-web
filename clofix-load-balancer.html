@@ -313,7 +313,10 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": [
+    "Product",
+    "SoftwareApplication"
+  ],
   "name": "CloFix Load Balancer",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Any",
@@ -331,7 +334,12 @@
     "availability": "https://schema.org/InStock",
     "priceCurrency": "USD",
     "description": "Contact CloFix sales for licensing and pricing."
-  }
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "CloFix"
+  },
+  "sku": "CLOFIX-LB"
 }
 </script>
 </head>

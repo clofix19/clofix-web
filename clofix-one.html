@@ -683,160 +683,180 @@
   </style>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://clofix.com/#organization",
-        "name": "CloFix InfoTech",
-        "url": "https://clofix.com",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://clofix.com/img/logo.png"
-        },
-        "sameAs": [
-          "https://twitter.com/clofix19",
-          "https://x.com/clofix19",
-          "https://www.linkedin.com/company/clofix-infotech",
-          "https://github.com/clofix19",
-          "https://youtube.com/@clofix-infotech"
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://clofix.com/#organization",
+      "name": "CloFix InfoTech",
+      "url": "https://clofix.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/logo.png"
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://clofix.com/#website",
-        "url": "https://clofix.com",
-        "name": "CloFix",
-        "publisher": { "@id": "https://clofix.com/#organization" }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://clofix.com/clofix-one#webpage",
-        "url": "https://clofix.com/clofix-one",
-        "name": "CloFix One | AI SRE & DevOps Manager for Linux Fleets",
-        "description": "CloFix One is an AI SRE and DevOps Manager for Linux fleets with chat-first diagnose, approve, fix, and verify workflows.",
-        "isPartOf": { "@id": "https://clofix.com/#website" },
-        "about": { "@id": "https://clofix.com/clofix-one#product" },
-        "primaryImageOfPage": {
-          "@type": "ImageObject",
-          "url": "https://clofix.com/img/clofix-one-ask-sre.png",
-          "width": 1024,
-          "height": 678
-        },
-        "inLanguage": "en",
-        "breadcrumb": { "@id": "https://clofix.com/clofix-one#breadcrumb" }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://clofix.com/clofix-one#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://clofix.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Products",
-            "item": "https://clofix.com/services"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "CloFix One",
-            "item": "https://clofix.com/clofix-one"
-          }
-        ]
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://clofix.com/clofix-one#product",
-        "name": "CloFix One",
-        "alternateName": ["Ask SRE", "CloFix DevOps Manager", "CloFix Autonomous AI SRE"],
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "DevOps / SRE Platform",
-        "operatingSystem": "Linux",
-        "url": "https://clofix.com/clofix-one",
-        "image": "https://clofix.com/img/clofix-one-ask-sre.png",
-        "description": "MSP-grade DevOps Manager and Autonomous AI SRE. Chat-first Linux fleet operations with allowlisted remediations and human approval on every write.",
-        "featureList": [
-          "Ask SRE chat-first incident response",
-          "Human Approve on every write",
-          "Linux full server operations",
-          "Systemd unit CRUD",
-          "CloFix Storage explorer",
-          "Database backups and DR",
-          "GitOps and Terraform",
-          "Incident and Change management",
-          "Outbound Go agent"
-        ],
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://clofix.com/clofix-one",
-          "description": "Free plan available; metered actions for SRE, services, storage, and backups"
-        },
-        "provider": { "@id": "https://clofix.com/#organization" },
-        "publisher": { "@id": "https://clofix.com/#organization" },
-        "brand": {
-          "@type": "Brand",
-          "name": "CloFix"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://clofix.com/clofix-one#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is CloFix One?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "CloFix One is a DevOps Manager with Autonomous AI SRE at the center. Operators chat with Linux servers; CloFix One gathers host evidence through an outbound agent, proposes a safe fix, waits for human approval, executes allowlisted actions, and verifies the result."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does CloFix One change servers without approval?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. Reads are live, but every write-restarts, unit changes, packages, config edits, storage deletes, backups, and scripts-requires human Approve. Dual allowlists on the API and agent reject forbidden commands."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does Ask SRE connect to Linux hosts?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A lightweight outbound Go agent enrolls on each Linux server and keeps a persistent connection. The dashboard never SSHs into hosts for AI SRE operations."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Who is CloFix One built for?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "MSPs/MSSPs, DevOps and SRE teams, IT operations, and platform owners who need multi-tenant fleet control, chat-first incident response, storage, backups, GitOps, and ITSM in one pane of glass."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What can you manage with CloFix One?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Linux full server ops, systemd unit CRUD, CloFix Storage, database backups and DR, observability, GitOps, Terraform, SSH center, Security Hub and VAPT, Incident/Change ITSM, secrets vault, and Ask SRE chat with about 300 allowlisted capabilities."
-            }
-          }
-        ]
+      "sameAs": [
+        "https://twitter.com/clofix19",
+        "https://x.com/clofix19",
+        "https://www.linkedin.com/company/clofix-infotech",
+        "https://github.com/clofix19",
+        "https://youtube.com/@clofix-infotech"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://clofix.com/#website",
+      "url": "https://clofix.com",
+      "name": "CloFix",
+      "publisher": {
+        "@id": "https://clofix.com/#organization"
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://clofix.com/clofix-one#webpage",
+      "url": "https://clofix.com/clofix-one",
+      "name": "CloFix One | AI SRE & DevOps Manager for Linux Fleets",
+      "description": "CloFix One is an AI SRE and DevOps Manager for Linux fleets with chat-first diagnose, approve, fix, and verify workflows.",
+      "isPartOf": {
+        "@id": "https://clofix.com/#website"
+      },
+      "about": {
+        "@id": "https://clofix.com/clofix-one#product"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://clofix.com/img/clofix-one-ask-sre.png",
+        "width": 1024,
+        "height": 678
+      },
+      "inLanguage": "en",
+      "breadcrumb": {
+        "@id": "https://clofix.com/clofix-one#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://clofix.com/clofix-one#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://clofix.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Products",
+          "item": "https://clofix.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CloFix One",
+          "item": "https://clofix.com/clofix-one"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "Product",
+        "SoftwareApplication"
+      ],
+      "@id": "https://clofix.com/clofix-one#product",
+      "name": "CloFix One",
+      "alternateName": [
+        "Ask SRE",
+        "CloFix DevOps Manager",
+        "CloFix Autonomous AI SRE"
+      ],
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "DevOps / SRE Platform",
+      "operatingSystem": "Linux",
+      "url": "https://clofix.com/clofix-one",
+      "image": "https://clofix.com/img/clofix-one-ask-sre.png",
+      "description": "MSP-grade DevOps Manager and Autonomous AI SRE. Chat-first Linux fleet operations with allowlisted remediations and human approval on every write.",
+      "featureList": [
+        "Ask SRE chat-first incident response",
+        "Human Approve on every write",
+        "Linux full server operations",
+        "Systemd unit CRUD",
+        "CloFix Storage explorer",
+        "Database backups and DR",
+        "GitOps and Terraform",
+        "Incident and Change management",
+        "Outbound Go agent"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://clofix.com/clofix-one",
+        "description": "Free plan available; metered actions for SRE, services, storage, and backups"
+      },
+      "provider": {
+        "@id": "https://clofix.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://clofix.com/#organization"
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "CloFix"
+      },
+      "sku": "CLOFIX-ONE"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://clofix.com/clofix-one#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is CloFix One?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CloFix One is a DevOps Manager with Autonomous AI SRE at the center. Operators chat with Linux servers; CloFix One gathers host evidence through an outbound agent, proposes a safe fix, waits for human approval, executes allowlisted actions, and verifies the result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does CloFix One change servers without approval?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Reads are live, but every write-restarts, unit changes, packages, config edits, storage deletes, backups, and scripts-requires human Approve. Dual allowlists on the API and agent reject forbidden commands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Ask SRE connect to Linux hosts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A lightweight outbound Go agent enrolls on each Linux server and keeps a persistent connection. The dashboard never SSHs into hosts for AI SRE operations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is CloFix One built for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MSPs/MSSPs, DevOps and SRE teams, IT operations, and platform owners who need multi-tenant fleet control, chat-first incident response, storage, backups, GitOps, and ITSM in one pane of glass."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What can you manage with CloFix One?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Linux full server ops, systemd unit CRUD, CloFix Storage, database backups and DR, observability, GitOps, Terraform, SSH center, Security Hub and VAPT, Incident/Change ITSM, secrets vault, and Ask SRE chat with about 300 allowlisted capabilities."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
