@@ -402,19 +402,26 @@
               </button>
               <div class="c-dropdown__menu c-dropdown__menu--mega" id="servicesDropdown" role="menu" aria-label="Services Menu">
                 <div class="c-dropdown__mega-wrap">
-                  <div class="c-dropdown__mega-grid">
+                  <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title" data-i18n="nav.core_services">Core Services</h4>
-                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
                       <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
                       <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
                       <a role="menuitem" href="/services" class="c-dropdown__mega-link" data-i18n="nav.all_services">All Services</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.engineering">Engineering</h4>
+                      <a role="menuitem" href="/software-development" class="c-dropdown__mega-link" data-i18n="nav.software_dev">Software Development</a>
+                      <a role="menuitem" href="/devsecops" class="c-dropdown__mega-link">DevSecOps</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
                     </div>
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title" data-i18n="nav.managed">Managed Services</h4>
                       <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link" data-i18n="nav.devops_manage">DevOps Manage Service</a>
                       <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link" data-i18n="nav.cloud_manage">Cloud Infra Manage Service</a>
                       <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link" data-i18n="nav.infrastructure">Infrastructure</a>
+                      <a role="menuitem" href="/free-consultancy" class="c-dropdown__mega-link">Free Consultancy</a>
                     </div>
                   </div>
                 </div>
@@ -673,6 +680,10 @@
 
 
 
+
+
+
+
   
 
 
@@ -682,7 +693,7 @@
         <div class="sv-eyebrow">Company offerings</div>
         <h1>CloFix <span>Services</span></h1>
         <p class="sv-hero__sub">
-          Four clear offerings to protect applications, manage DevOps, and run cloud infrastructure with CloFix.
+          Five clear offerings to protect applications, build software, manage DevOps, and run cloud infrastructure with CloFix.
         </p>
       </div>
     </section>
@@ -759,10 +770,32 @@
             </div>
           </article>
 
-          <!-- 4. Cloud Infra Manage Service -->
-          <article class="sv-card" id="cloud-infra-manage-service" style="--sv-accent:#a78bfa">
+          <!-- 4. Software Development -->
+          <article class="sv-card" id="software-development" style="--sv-accent:#f472b6">
             <div class="sv-card__top">
               <span class="sv-card__num">04</span>
+              <span class="sv-card__badge">Engineering</span>
+            </div>
+            <h2>Software Development</h2>
+            <p class="sv-card__tagline">Secure SDLC for products that ship safely</p>
+            <p class="sv-card__desc">
+              Build web apps, APIs, and platforms with a best-practice Secure Software Development Lifecycle - threat modeling, secure design, verification, and protected release.
+            </p>
+            <ul class="sv-card__list">
+              <li>SSDLC diagram, approach, and delivery steps</li>
+              <li>Secure coding, review, and pipeline gates</li>
+              <li>Ship behind CloFix WAF when you go live</li>
+            </ul>
+            <div class="sv-card__actions">
+              <a class="sv-btn-primary" href="/software-development">Explore Software Development →</a>
+              <a class="sv-btn-ghost" href="/devsecops">DevSecOps</a>
+            </div>
+          </article>
+
+          <!-- 5. Cloud Infra Manage Service -->
+          <article class="sv-card" id="cloud-infra-manage-service" style="--sv-accent:#a78bfa">
+            <div class="sv-card__top">
+              <span class="sv-card__num">05</span>
               <span class="sv-card__badge">Cloud &amp; Infra</span>
             </div>
             <h2>Cloud Infra Manage Service</h2>
@@ -786,7 +819,7 @@
         <div class="sv-cta" aria-label="Get started">
           <div class="sv-cta__text">
             <h2>Need the right service mix?</h2>
-            <p>Tell us about your stack - we will map CloFix WAF, CloFix One, DevOps Manage, or Cloud Infra to your goals.</p>
+            <p>Tell us about your stack - we will map CloFix WAF, Software Development, CloFix One, DevOps Manage, or Cloud Infra to your goals.</p>
           </div>
           <div class="sv-cta__btns">
             <a class="primary" href="/contact">Contact Us</a>
@@ -802,6 +835,10 @@
 
   <script src="js/chrome.js?v=20261015c" defer></script>
 <script src="js/i18n.js?v=20261114da1" defer></script>
+
+
+
+
 
 
 
@@ -857,6 +894,7 @@
         <li><a href="/event" data-i18n="footer.event">Free Event</a></li>
         <li><a href="/documentation" data-i18n="footer.docs">Documentation</a></li>
         <li><a href="/services" data-i18n="footer.services">Services</a></li>
+        <li><a href="/software-development" data-i18n="footer.software_dev">Software Development</a></li>
         <li><a href="/blogs" data-i18n="footer.blogs">Blogs</a></li>
         <li><a href="/our-insights" data-i18n="footer.insights">Our Insights</a></li>
         <li><a href="/faq" data-i18n="footer.faq">FAQ</a></li>

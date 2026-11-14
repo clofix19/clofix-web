@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://clofix.com/software-development" />
+  <link rel="alternate" hreflang="en" href="https://clofix.com/software-development" />
+  <link rel="alternate" hreflang="x-default" href="https://clofix.com/software-development" />
+
+  <title>Software Development | Secure SDLC | CloFix</title>
+  <meta name="description" content="CloFix Software Development builds secure apps with a best-practice Secure Software Development Lifecycle (SSDLC): requirements, design, build, test, deploy, and operate." />
+  <meta name="keywords" content="Software Development, Secure SDLC, SSDLC, Secure Coding, Application Development, DevSecOps, CloFix Software Development, Web App Development, API Development" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="CloFix InfoTech" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Software Development | Secure SDLC | CloFix" />
+  <meta property="og:description" content="Build and ship software with CloFix using a security-first development lifecycle, clear approach, and step-by-step delivery." />
+  <meta property="og:url" content="https://clofix.com/software-development" />
+  <meta property="og:image" content="https://clofix.com/img/share.jpg" />
+  <meta property="og:site_name" content="CloFix InfoTech" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Software Development | Secure SDLC | CloFix" />
+  <meta name="twitter:description" content="Security-first software development with SSDLC diagram, approach, and delivery steps." />
+  <meta name="twitter:image" content="https://clofix.com/img/share.jpg" />
+  <meta name="twitter:site" content="@clofix19" />
+
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link href="style.css?v=20261114css1" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body { background: #070b14; color: #e2e8f0; font-family: "Open Sans", system-ui, sans-serif; }
+    .sd-wrap { overflow-x: hidden; }
+    .sd-hero {
+      padding: 110px 0 64px;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(56, 189, 248, 0.18), transparent 55%),
+        linear-gradient(180deg, #0b1220 0%, #070b14 100%);
+    }
+    .sd-hero__inner { max-width: 920px; margin: 0 auto; text-align: center; padding: 0 20px; }
+    .sd-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 16px; border-radius: 999px; margin-bottom: 18px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #7dd3fc; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.28);
+    }
+    .sd-hero h1 {
+      font-family: Hind, sans-serif; font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.15; margin: 0 0 16px; color: #f8fafc; font-weight: 700;
+    }
+    .sd-hero h1 span { color: #38bdf8; }
+    .sd-hero__lead { margin: 0 auto 28px; max-width: 640px; color: #94a3b8; font-size: 1.08rem; line-height: 1.65; }
+    .sd-hero__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .sd-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 24px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: .2s ease;
+    }
+    .sd-btn--primary { background: #0284c7; color: #fff; }
+    .sd-btn--primary:hover { background: #0369a1; transform: translateY(-1px); }
+    .sd-btn--ghost { color: #7dd3fc; border: 1px solid rgba(56,189,248,0.45); background: transparent; }
+    .sd-btn--ghost:hover { background: rgba(56,189,248,0.1); }
+
+    .sd-section { padding: 72px 0; }
+    .sd-section--alt { background: #0b1220; }
+    .sd-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .sd-head { text-align: center; margin-bottom: 40px; }
+    .sd-head h2 { font-family: Hind, sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 10px; color: #f8fafc; }
+    .sd-head p { margin: 0 auto; max-width: 620px; color: #94a3b8; line-height: 1.6; }
+
+    .sd-diagram {
+      background: linear-gradient(165deg, #122036, #0d1728);
+      border: 1px solid rgba(148,163,184,0.18);
+      border-radius: 18px; padding: 28px 20px 20px; overflow-x: auto;
+    }
+    .sd-diagram svg { display: block; width: 100%; min-width: 720px; height: auto; }
+    .sd-diagram__note { margin: 14px 0 0; text-align: center; color: #64748b; font-size: 0.85rem; }
+
+    .sd-approach {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    }
+    @media (max-width: 900px) { .sd-approach { grid-template-columns: 1fr; } }
+    .sd-approach__item {
+      padding: 22px 20px; border-radius: 14px;
+      background: rgba(15,23,42,0.7); border: 1px solid rgba(56,189,248,0.14);
+    }
+    .sd-approach__item h3 { margin: 0 0 8px; font-size: 1.05rem; color: #f1f5f9; }
+    .sd-approach__item p { margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.55; }
+    .sd-approach__num {
+      display: inline-block; margin-bottom: 10px; font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.08em; color: #38bdf8;
+    }
+
+    .sd-steps { display: grid; gap: 14px; }
+    .sd-step {
+      display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: start;
+      padding: 20px 18px; border-radius: 14px;
+      background: rgba(15,23,42,0.65); border: 1px solid rgba(148,163,184,0.14);
+    }
+    .sd-step__n {
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.05rem; color: #0f172a; background: #38bdf8;
+    }
+    .sd-step h3 { margin: 0 0 6px; color: #f8fafc; font-size: 1.05rem; }
+    .sd-step p { margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.55; }
+    .sd-step ul { margin: 10px 0 0; padding-left: 18px; color: #cbd5e1; font-size: 0.9rem; }
+    .sd-step li { margin-bottom: 4px; }
+
+    .sd-build {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+    @media (max-width: 700px) { .sd-build { grid-template-columns: 1fr; } }
+    .sd-build__card {
+      padding: 22px; border-radius: 14px;
+      border: 1px solid rgba(56,189,248,0.16); background: rgba(8,15,28,0.8);
+    }
+    .sd-build__card h3 { margin: 0 0 8px; color: #e0f2fe; font-size: 1.05rem; }
+    .sd-build__card p { margin: 0; color: #94a3b8; line-height: 1.55; font-size: 0.95rem; }
+
+    .sd-cta {
+      margin-top: 8px; padding: 36px 28px; border-radius: 18px; text-align: center;
+      background: linear-gradient(135deg, rgba(14,116,144,0.35), rgba(15,23,42,0.9));
+      border: 1px solid rgba(56,189,248,0.25);
+    }
+    .sd-cta h2 { margin: 0 0 10px; color: #f8fafc; font-family: Hind, sans-serif; }
+    .sd-cta p { margin: 0 0 22px; color: #94a3b8; }
+    .sd-cta__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP02RFXGSE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WP02RFXGSE', { send_page_view: true, anonymize_ip: true });
+    gtag('event', 'page_view', { page_title: document.title, page_location: window.location.href });
+  </script>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="cddKpvYTTvLyoVSQiDI8hA" async></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://clofix.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://clofix.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "Software Development", "item": "https://clofix.com/software-development" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "CloFix Software Development",
+    "serviceType": "Software Development",
+    "description": "Secure software development with a best-practice Secure Software Development Lifecycle (SSDLC), security reviews, and production-ready delivery.",
+    "url": "https://clofix.com/software-development",
+    "provider": {
+      "@type": "Organization",
+      "name": "CloFix InfoTech",
+      "url": "https://clofix.com/"
+    },
+    "areaServed": "Worldwide",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://clofix.com/contact?topic=software-development",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+<!-- CloFix shared header. Edit this file, then run: python3 _partials/sync_chrome.py -->
+<header class="header notranslate" role="banner" itemscope itemtype="https://schema.org/WPHeader" translate="no">
+  <div class="container">
+    <div class="header__wrapper">
+      <a href="/" class="c-logo" itemscope itemtype="https://schema.org/Organization" aria-label="CloFix Home">
+        <img src="img/logo.png"
+             alt="CloFix"
+             class="c-logo__img"
+             itemprop="logo"
+             width="150"
+             height="45"
+             decoding="async">
+        <span class="c-logo__tagline" itemprop="description" data-i18n="nav.tagline">Global WAF</span>
+      </a>
+
+      <nav class="c-nav" role="navigation" aria-label="Main Navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+        <button class="c-nav__toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navContent">
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+          <span class="c-nav__bar"></span>
+        </button>
+
+        <div class="c-nav__content" id="navContent">
+          <ul class="c-list c-list--flex">
+            <li class="c-list__item">
+              <a href="/" class="c-link c-link--list" itemprop="url" data-i18n="nav.home"><span itemprop="name">Home</span></a>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="productDropdown">
+                <span data-i18n="nav.product">Product</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="productDropdown" role="menu" aria-label="Product Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix WAF</h4>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link" data-i18n="nav.overview">Overview</a>
+                      <a role="menuitem" href="/features" class="c-dropdown__mega-link" data-i18n="nav.features">Features</a>
+                      <a role="menuitem" href="/pricing" class="c-dropdown__mega-link" data-i18n="nav.pricing">Pricing</a>
+                      <a role="menuitem" href="/free-trial" class="c-dropdown__mega-link" data-i18n="nav.free_trial">Free Trial</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.platform">Platform</h4>
+                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                      <a role="menuitem" href="/clofix-agent" class="c-dropdown__mega-link">Nano Agent</a>
+                      <a role="menuitem" href="/clofix-api" class="c-dropdown__mega-link">Core API</a>
+                      <a role="menuitem" href="/features/clofix-load-balancer/" class="c-dropdown__mega-link">Load Balancer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="servicesDropdown">
+                <span data-i18n="nav.services">Services</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="servicesDropdown" role="menu" aria-label="Services Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.core_services">Core Services</h4>
+                      <a role="menuitem" href="/waf" class="c-dropdown__mega-link">CloFix WAF</a>
+                      <a role="menuitem" href="/clofix-one" class="c-dropdown__mega-link">CloFix One</a>
+                      <a role="menuitem" href="/clofix-cloud" class="c-dropdown__mega-link">CloFix Cloud</a>
+                      <a role="menuitem" href="/services" class="c-dropdown__mega-link" data-i18n="nav.all_services">All Services</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.engineering">Engineering</h4>
+                      <a role="menuitem" href="/software-development" class="c-dropdown__mega-link" data-i18n="nav.software_dev">Software Development</a>
+                      <a role="menuitem" href="/devsecops" class="c-dropdown__mega-link">DevSecOps</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.managed">Managed Services</h4>
+                      <a role="menuitem" href="/devops-support" class="c-dropdown__mega-link" data-i18n="nav.devops_manage">DevOps Manage Service</a>
+                      <a role="menuitem" href="/cloud-management" class="c-dropdown__mega-link" data-i18n="nav.cloud_manage">Cloud Infra Manage Service</a>
+                      <a role="menuitem" href="/infrastructure-management" class="c-dropdown__mega-link" data-i18n="nav.infrastructure">Infrastructure</a>
+                      <a role="menuitem" href="/free-consultancy" class="c-dropdown__mega-link">Free Consultancy</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="resourcesDropdown">
+                <span data-i18n="nav.resources">Resources</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="resourcesDropdown" role="menu" aria-label="Resources Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid c-dropdown__mega-grid--3">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.learn">Learn</h4>
+                      <a role="menuitem" href="/event" class="c-dropdown__mega-link" data-i18n="nav.free_event">Free Event</a>
+                      <a role="menuitem" href="/documentation" class="c-dropdown__mega-link" data-i18n="nav.docs_hub">Documentation Hub</a>
+                      <a role="menuitem" href="/blogs" class="c-dropdown__mega-link" data-i18n="nav.blogs">Blogs</a>
+                      <a role="menuitem" href="/our-insights" class="c-dropdown__mega-link" data-i18n="nav.insights">Our Insights</a>
+                      <a role="menuitem" href="/faq" class="c-dropdown__mega-link" data-i18n="nav.faq">FAQ</a>
+                      <a role="menuitem" href="/support" class="c-dropdown__mega-link" data-i18n="nav.support">Support</a>
+                      <a role="menuitem" href="/case-study" class="c-dropdown__mega-link" data-i18n="nav.case_study">Case Study</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.documentation">Documentation</h4>
+                      <a role="menuitem" href="/clofix-waf-requst-workflow" class="c-dropdown__mega-link">WAF Workflow</a>
+                      <a role="menuitem" href="/clofix-lua-script" class="c-dropdown__mega-link">LUA Script</a>
+                      <a role="menuitem" href="/clofix-js-script" class="c-dropdown__mega-link">JS Script</a>
+                      <a role="menuitem" href="/clofix-crs" class="c-dropdown__mega-link">CRS Script</a>
+                      <a role="menuitem" href="/clofix-wasm" class="c-dropdown__mega-link">WASM</a>
+                      <a role="menuitem" href="/clofix-cadre-script" class="c-dropdown__mega-link">CADRE Script</a>
+                      <a role="menuitem" href="/clofix-ai-protection-engine" class="c-dropdown__mega-link">AI Protection Engine</a>
+                      <a role="menuitem" href="/clofix-api-security-engine" class="c-dropdown__mega-link">API Security Engine</a>
+                      <a role="menuitem" href="/clofix-bot-management-engine" class="c-dropdown__mega-link">Bot Management Engine</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.tools">Tools</h4>
+                      <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
+                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
+                      <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link">WAF Setup</a>
+                      <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS Checker</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="c-list__item c-dropdown c-dropdown--mega">
+              <button type="button" class="c-link c-link--list c-dropdown__toggle" aria-expanded="false" aria-haspopup="true" aria-controls="companyDropdown">
+                <span data-i18n="nav.company">Company</span><span class="c-dropdown__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="c-dropdown__menu c-dropdown__menu--mega" id="companyDropdown" role="menu" aria-label="Company Menu">
+                <div class="c-dropdown__mega-wrap">
+                  <div class="c-dropdown__mega-grid">
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title">CloFix</h4>
+                      <a role="menuitem" href="/about" class="c-dropdown__mega-link" data-i18n="nav.about">About Us</a>
+                      <a role="menuitem" href="/careers" class="c-dropdown__mega-link" data-i18n="nav.careers">Careers</a>
+                      <a role="menuitem" href="/contact" class="c-dropdown__mega-link" data-i18n="nav.contact">Contact</a>
+                    </div>
+                    <div class="c-dropdown__mega-col">
+                      <h4 class="c-dropdown__mega-title" data-i18n="nav.partners_title">Partners</h4>
+                      <a role="menuitem" href="/our-clients" class="c-dropdown__mega-link" data-i18n="nav.our_clients">Our Clients</a>
+                      <a role="menuitem" href="/our-partners" class="c-dropdown__mega-link" data-i18n="nav.our_partners">Our Partners</a>
+                      <a role="menuitem" href="/partner" class="c-dropdown__mega-link" data-i18n="nav.become_partner">Become A Partner</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="cf-header-aside">
+            <div class="cf-header-contact" aria-label="Contact CloFix">
+              <a class="cf-header-contact__item" href="tel:+8801850603126" title="Phone">
+                <span class="cf-header-contact__icon" aria-hidden="true">📞</span>
+                <span class="cf-header-contact__value">01850603126</span>
+              </a>
+              <span class="cf-header-contact__sep" aria-hidden="true"></span>
+              <a class="cf-header-contact__item" href="mailto:support@clofix.com" title="Email">
+                <span class="cf-header-contact__icon" aria-hidden="true">✉️</span>
+                <span class="cf-header-contact__value">support@clofix.com</span>
+              </a>
+            </div>
+            <div class="cf-header-ctas">
+              <a href="/contact" class="ticket-button c-button c-button--small c-button--primary" data-i18n="nav.contact">Contact</a>
+              <a href="/free-trial" class="ticket-button c-button c-button--small c-button--secondary" data-i18n="nav.free_trial">Free Trial</a>
+              <div class="cf-lang" data-i18n-ignore>
+                <button type="button" class="cf-lang__btn" id="langToggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Language: English, United States">
+                  <span class="cf-lang__current-flag" aria-hidden="true">🇺🇸</span>
+                  <span class="cf-lang__current-code">EN</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div class="cf-lang__menu" id="langMenu" role="listbox" aria-label="Language">
+                  <button type="button" class="cf-lang__option" role="option" data-lang="en" lang="en" aria-current="true" aria-label="English, United States, +1"><span class="cf-lang__flag" aria-hidden="true">🇺🇸</span><span class="cf-lang__label">English</span><span class="cf-lang__dial">+1</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="zh" lang="zh" aria-label="中文 (Chinese), China, +86"><span class="cf-lang__flag" aria-hidden="true">🇨🇳</span><span class="cf-lang__label">中文 (Chinese)</span><span class="cf-lang__dial">+86</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="es" lang="es" aria-label="Español (Spanish), Spain, +34"><span class="cf-lang__flag" aria-hidden="true">🇪🇸</span><span class="cf-lang__label">Español (Spanish)</span><span class="cf-lang__dial">+34</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="hi" lang="hi" aria-label="हिन्दी (Hindi), India, +91"><span class="cf-lang__flag" aria-hidden="true">🇮🇳</span><span class="cf-lang__label">हिन्दी (Hindi)</span><span class="cf-lang__dial">+91</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ar" lang="ar" aria-label="العربية (Arabic), Saudi Arabia, +966"><span class="cf-lang__flag" aria-hidden="true">🇸🇦</span><span class="cf-lang__label">العربية (Arabic)</span><span class="cf-lang__dial">+966</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="bn" lang="bn" aria-label="বাংলা (Bangla), Bangladesh, +880"><span class="cf-lang__flag" aria-hidden="true">🇧🇩</span><span class="cf-lang__label">বাংলা (Bangla)</span><span class="cf-lang__dial">+880</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="pt" lang="pt" aria-label="Português (Portuguese), Brazil, +55"><span class="cf-lang__flag" aria-hidden="true">🇧🇷</span><span class="cf-lang__label">Português (Portuguese)</span><span class="cf-lang__dial">+55</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ru" lang="ru" aria-label="Русский (Russian), Russia, +7"><span class="cf-lang__flag" aria-hidden="true">🇷🇺</span><span class="cf-lang__label">Русский (Russian)</span><span class="cf-lang__dial">+7</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ja" lang="ja" aria-label="日本語 (Japanese), Japan, +81"><span class="cf-lang__flag" aria-hidden="true">🇯🇵</span><span class="cf-lang__label">日本語 (Japanese)</span><span class="cf-lang__dial">+81</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="fr" lang="fr" aria-label="Français (French), France, +33"><span class="cf-lang__flag" aria-hidden="true">🇫🇷</span><span class="cf-lang__label">Français (French)</span><span class="cf-lang__dial">+33</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="de" lang="de" aria-label="Deutsch (German), Germany, +49"><span class="cf-lang__flag" aria-hidden="true">🇩🇪</span><span class="cf-lang__label">Deutsch (German)</span><span class="cf-lang__dial">+49</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="ko" lang="ko" aria-label="한국어 (Korean), South Korea, +82"><span class="cf-lang__flag" aria-hidden="true">🇰🇷</span><span class="cf-lang__label">한국어 (Korean)</span><span class="cf-lang__dial">+82</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="id" lang="id" aria-label="Bahasa Indonesia, Indonesia, +62"><span class="cf-lang__flag" aria-hidden="true">🇮🇩</span><span class="cf-lang__label">Bahasa Indonesia</span><span class="cf-lang__dial">+62</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="tr" lang="tr" aria-label="Türkçe (Turkish), Türkiye, +90"><span class="cf-lang__flag" aria-hidden="true">🇹🇷</span><span class="cf-lang__label">Türkçe (Turkish)</span><span class="cf-lang__dial">+90</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="vi" lang="vi" aria-label="Tiếng Việt, Vietnam, +84"><span class="cf-lang__flag" aria-hidden="true">🇻🇳</span><span class="cf-lang__label">Tiếng Việt</span><span class="cf-lang__dial">+84</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="it" lang="it" aria-label="Italiano (Italian), Italy, +39"><span class="cf-lang__flag" aria-hidden="true">🇮🇹</span><span class="cf-lang__label">Italiano (Italian)</span><span class="cf-lang__dial">+39</span></button>
+                  <button type="button" class="cf-lang__option" role="option" data-lang="da" lang="da" aria-label="Dansk (Danish), Denmark, +45"><span class="cf-lang__flag" aria-hidden="true">🇩🇰</span><span class="cf-lang__label">Dansk (Danish)</span><span class="cf-lang__dial">+45</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<script>
+(function () {
+  var MQ = "(max-width: 1024px)";
+  function isCompact() {
+    return window.matchMedia(MQ).matches;
+  }
+  function syncHeaderHeight() {
+    var headerEl = document.querySelector("header.header");
+    if (!headerEl) return;
+    document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+  }
+  function initNav(header) {
+    if (!header || header.getAttribute("data-nav-ready") === "1") return;
+    header.setAttribute("data-nav-ready", "1");
+    var navToggle = header.querySelector("#navToggle");
+    var navContent = header.querySelector(".c-nav__content");
+    var dropdowns = header.querySelectorAll(".c-dropdown");
+    function closeAllDropdowns() {
+      dropdowns.forEach(function (dd) {
+        dd.classList.remove("open");
+        var btn = dd.querySelector(".c-dropdown__toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+    function closeMobile() {
+      if (!navContent || !navToggle) return;
+      navContent.classList.remove("active");
+      document.body.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      closeAllDropdowns();
+    }
+    if (navToggle && navContent) {
+      navToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeLang();
+        var open = navContent.classList.toggle("active");
+        document.body.classList.toggle("nav-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        syncHeaderHeight();
+        if (!open) closeAllDropdowns();
+      });
+    }
+    dropdowns.forEach(function (dd) {
+      var btn = dd.querySelector(".c-dropdown__toggle");
+      if (!btn) return;
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var willOpen = !dd.classList.contains("open");
+        closeAllDropdowns();
+        closeLang();
+        if (willOpen) {
+          dd.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+    var langWrap = header.querySelector(".cf-lang");
+    var langToggle = header.querySelector("#langToggle");
+    var desktopLangParent = langWrap && langWrap.parentNode;
+    function syncLanguagePosition() {
+      if (!langWrap || !navToggle || !desktopLangParent) return;
+      var parent = isCompact() ? navToggle.parentNode : desktopLangParent;
+      if (langWrap.parentNode === parent) return;
+      closeLang();
+      if (isCompact()) parent.insertBefore(langWrap, navToggle);
+      else parent.appendChild(langWrap);
+    }
+    function closeLang() {
+      if (!langWrap || !langToggle) return;
+      langWrap.classList.remove("open");
+      langToggle.setAttribute("aria-expanded", "false");
+    }
+    if (langToggle && langWrap) {
+      langToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (isCompact()) closeMobile();
+        closeAllDropdowns();
+        var open = langWrap.classList.toggle("open");
+        langToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+    document.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.closest && (t.closest(".c-dropdown") || t.closest(".c-nav__toggle") || t.closest(".cf-lang"))) return;
+      if (navContent && navContent.classList.contains("active") && t.closest && t.closest(".c-nav__content")) return;
+      closeAllDropdowns();
+      closeLang();
+      if (isCompact() && navContent && navContent.classList.contains("active") && !(t.closest && t.closest(".c-nav"))) {
+        closeMobile();
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeLang();
+        closeMobile();
+      }
+    });
+    window.addEventListener("resize", function () {
+      syncLanguagePosition();
+      syncHeaderHeight();
+      if (!isCompact()) closeMobile();
+    });
+    if (navContent) {
+      navContent.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          if (isCompact()) closeMobile();
+          else closeAllDropdowns();
+        });
+      });
+    }
+    syncLanguagePosition();
+    syncHeaderHeight();
+    window.addEventListener("load", syncHeaderHeight);
+  }
+  var header = document.currentScript && document.currentScript.previousElementSibling;
+  if (!header || !header.classList || !header.classList.contains("header")) {
+    header = document.querySelector("header.header");
+  }
+  initNav(header);
+})();
+</script>
+
+
+
+
+
+<main class="sd-wrap">
+  <section class="sd-hero" aria-label="Software Development">
+    <div class="sd-hero__inner">
+      <div class="sd-badge">Secure by design</div>
+      <h1>Software Development<br /><span>with a Security Lifecycle</span></h1>
+      <p class="sd-hero__lead">
+        CloFix builds web apps, APIs, and platforms with a best-practice Secure Software Development Lifecycle (SSDLC) -
+        security in requirements, design, code, test, release, and operations.
+      </p>
+      <div class="sd-hero__actions">
+        <a class="sd-btn sd-btn--primary" href="/contact?topic=software-development">Start a project →</a>
+        <a class="sd-btn sd-btn--ghost" href="#ssdlc-diagram">View SSDLC diagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-section" id="ssdlc-diagram" aria-labelledby="ssdlc-title">
+    <div class="sd-container">
+      <div class="sd-head">
+        <h2 id="ssdlc-title">Secure Software Development Lifecycle</h2>
+        <p>Security is continuous - not a gate at the end. Each phase feeds the next, with feedback from operations back into requirements.</p>
+      </div>
+
+      <div class="sd-diagram" role="img" aria-label="SSDLC cycle: Requirements, Design, Implementation, Verification, Release, Operations, then feedback">
+        <svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <marker id="sdArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8" />
+            </marker>
+            <linearGradient id="sdNode" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0f2744" />
+              <stop offset="100%" stop-color="#0b1a30" />
+            </linearGradient>
+          </defs>
+
+          <!-- cycle path -->
+          <path d="M160 210 C160 90, 800 90, 800 210 C800 330, 160 330, 160 210" fill="none" stroke="rgba(56,189,248,0.28)" stroke-width="3" stroke-dasharray="6 8" />
+
+          <!-- nodes -->
+          <g font-family="Hind, Open Sans, sans-serif">
+            <rect x="70" y="168" width="150" height="84" rx="14" fill="url(#sdNode)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="145" y="202" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="700">01</text>
+            <text x="145" y="224" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">Requirements</text>
+            <text x="145" y="242" text-anchor="middle" fill="#94a3b8" font-size="11">Threat model · scope</text>
+
+            <rect x="250" y="70" width="150" height="84" rx="14" fill="url(#sdNode)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="325" y="104" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="700">02</text>
+            <text x="325" y="126" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">Secure Design</text>
+            <text x="325" y="144" text-anchor="middle" fill="#94a3b8" font-size="11">Architecture · controls</text>
+
+            <rect x="480" y="70" width="150" height="84" rx="14" fill="url(#sdNode)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="555" y="104" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="700">03</text>
+            <text x="555" y="126" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">Implementation</text>
+            <text x="555" y="144" text-anchor="middle" fill="#94a3b8" font-size="11">Secure coding · review</text>
+
+            <rect x="740" y="168" width="150" height="84" rx="14" fill="url(#sdNode)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="815" y="202" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="700">04</text>
+            <text x="815" y="224" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">Verification</text>
+            <text x="815" y="242" text-anchor="middle" fill="#94a3b8" font-size="11">SAST · DAST · tests</text>
+
+            <rect x="480" y="266" width="150" height="84" rx="14" fill="url(#sdNode)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="555" y="300" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="700">05</text>
+            <text x="555" y="322" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">Release</text>
+            <text x="555" y="340" text-anchor="middle" fill="#94a3b8" font-size="11">Hardening · WAF · CI</text>
+
+            <rect x="250" y="266" width="150" height="84" rx="14" fill="url(#sdNode)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="325" y="300" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="700">06</text>
+            <text x="325" y="322" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">Operate</text>
+            <text x="325" y="340" text-anchor="middle" fill="#94a3b8" font-size="11">Monitor · respond · improve</text>
+          </g>
+
+          <!-- center label -->
+          <circle cx="480" cy="210" r="54" fill="#0a1628" stroke="rgba(56,189,248,0.45)" stroke-width="2" />
+          <text x="480" y="204" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="800" font-family="Hind, sans-serif">SSDLC</text>
+          <text x="480" y="224" text-anchor="middle" fill="#94a3b8" font-size="11">CloFix</text>
+
+          <!-- directional hints -->
+          <path d="M220 180 L250 140" stroke="#38bdf8" stroke-width="2" marker-end="url(#sdArrow)" fill="none" opacity="0.7" />
+          <path d="M400 112 L480 112" stroke="#38bdf8" stroke-width="2" marker-end="url(#sdArrow)" fill="none" opacity="0.7" />
+          <path d="M630 140 L740 180" stroke="#38bdf8" stroke-width="2" marker-end="url(#sdArrow)" fill="none" opacity="0.7" />
+          <path d="M740 250 L630 290" stroke="#38bdf8" stroke-width="2" marker-end="url(#sdArrow)" fill="none" opacity="0.7" />
+          <path d="M480 308 L400 308" stroke="#38bdf8" stroke-width="2" marker-end="url(#sdArrow)" fill="none" opacity="0.7" />
+          <path d="M250 290 L190 250" stroke="#38bdf8" stroke-width="2" marker-end="url(#sdArrow)" fill="none" opacity="0.7" />
+        </svg>
+        <p class="sd-diagram__note">Secure Software Development Lifecycle (SSDLC) - security activities in every phase</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-section sd-section--alt" aria-labelledby="approach-title">
+    <div class="sd-container">
+      <div class="sd-head">
+        <h2 id="approach-title">Development approach</h2>
+        <p>Practical delivery with security built in - not bolted on after launch.</p>
+      </div>
+      <div class="sd-approach">
+        <article class="sd-approach__item">
+          <span class="sd-approach__num">APPROACH 01</span>
+          <h3>Security-first product thinking</h3>
+          <p>We map assets, trust boundaries, and abuse cases early. Requirements include auth, data handling, logging, and compliance needs before design starts.</p>
+        </article>
+        <article class="sd-approach__item">
+          <span class="sd-approach__num">APPROACH 02</span>
+          <h3>Iterative delivery with gates</h3>
+          <p>Short iterations with clear acceptance criteria. Each sprint includes code review, automated scans, and a security checklist before merge and release.</p>
+        </article>
+        <article class="sd-approach__item">
+          <span class="sd-approach__num">APPROACH 03</span>
+          <h3>Operate with CloFix protection</h3>
+          <p>Production apps ship behind CloFix WAF, monitoring, and hardening so new features stay protected as they go live.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-section" aria-labelledby="steps-title">
+    <div class="sd-container">
+      <div class="sd-head">
+        <h2 id="steps-title">Delivery steps</h2>
+        <p>How a CloFix software project moves from idea to secure production.</p>
+      </div>
+      <div class="sd-steps">
+        <article class="sd-step">
+          <div class="sd-step__n">1</div>
+          <div>
+            <h3>Discover &amp; scope</h3>
+            <p>Goals, users, stack, and risk profile. We define MVP scope, success metrics, and security requirements.</p>
+            <ul>
+              <li>Stakeholder workshops and backlog</li>
+              <li>Data classification and compliance notes</li>
+              <li>Threat modeling kickoff</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sd-step">
+          <div class="sd-step__n">2</div>
+          <div>
+            <h3>Architecture &amp; secure design</h3>
+            <p>System design with authN/Z, encryption, secrets, API boundaries, and fail-safe defaults.</p>
+            <ul>
+              <li>Component and data-flow diagrams</li>
+              <li>Control mapping (OWASP ASVS-aligned)</li>
+              <li>Environment and CI/CD plan</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sd-step">
+          <div class="sd-step__n">3</div>
+          <div>
+            <h3>Build with secure coding</h3>
+            <p>Implementation with reviews, dependency hygiene, and least-privilege patterns.</p>
+            <ul>
+              <li>Feature slices with PR review</li>
+              <li>Secret scanning and SAST in pipeline</li>
+              <li>Unit and integration tests</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sd-step">
+          <div class="sd-step__n">4</div>
+          <div>
+            <h3>Verify &amp; harden</h3>
+            <p>Functional QA plus security verification before production.</p>
+            <ul>
+              <li>DAST / penetration checklist</li>
+              <li>Config hardening and access review</li>
+              <li>Performance and resilience checks</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sd-step">
+          <div class="sd-step__n">5</div>
+          <div>
+            <h3>Release &amp; protect</h3>
+            <p>Controlled deploy with observability and edge protection.</p>
+            <ul>
+              <li>CI/CD release with rollback plan</li>
+              <li>CloFix WAF / CDN where needed</li>
+              <li>Runbooks and on-call handoff</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sd-step">
+          <div class="sd-step__n">6</div>
+          <div>
+            <h3>Operate &amp; improve</h3>
+            <p>Monitor, patch, and feed findings back into the next iteration.</p>
+            <ul>
+              <li>Logs, alerts, and incident response</li>
+              <li>Dependency and CVE follow-up</li>
+              <li>Continuous SSDLC improvements</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-section sd-section--alt" aria-labelledby="build-title">
+    <div class="sd-container">
+      <div class="sd-head">
+        <h2 id="build-title">What we build</h2>
+        <p>Product software with security and operations in mind - aligned with CloFix services.</p>
+      </div>
+      <div class="sd-build">
+        <article class="sd-build__card">
+          <h3>Web applications &amp; portals</h3>
+          <p>Customer portals, admin consoles, and content platforms with strong auth, role-based access, and CloFix WAF protection.</p>
+        </article>
+        <article class="sd-build__card">
+          <h3>APIs &amp; integrations</h3>
+          <p>REST/GraphQL APIs, webhooks, and third-party integrations with rate limits, validation, and audit trails.</p>
+        </article>
+        <article class="sd-build__card">
+          <h3>Internal tools &amp; automation</h3>
+          <p>Ops dashboards, workflow tools, and secure automation that fit your DevOps and cloud practices.</p>
+        </article>
+        <article class="sd-build__card">
+          <h3>Security-aware modernization</h3>
+          <p>Refactor legacy apps: reduce risk, improve deployability, and add monitoring without a full rewrite.</p>
+        </article>
+      </div>
+
+      <div class="sd-cta" aria-label="Get started with Software Development">
+        <h2>Ready to build securely?</h2>
+        <p>Tell us about your product - we will map SSDLC phases, timeline, and the right CloFix stack.</p>
+        <div class="sd-cta__actions">
+          <a class="sd-btn sd-btn--primary" href="/contact?topic=software-development">Contact Us</a>
+          <a class="sd-btn sd-btn--ghost" href="/services">All Services</a>
+          <a class="sd-btn sd-btn--ghost" href="/devsecops">DevSecOps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/chrome.js?v=20261015c" defer></script>
+<script src="js/i18n.js?v=20261114da1" defer></script>
+
+
+
+
+<!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
+<footer class="footer notranslate" role="contentinfo" translate="no">
+  <div class="container c-footer">
+    <div class="c-footer__column c-footer__logo-column">
+      <a href="/" class="c-footer__brand">
+        <img src="img/logo.png" alt="CloFix" class="c-footer__logo" width="150" height="45" decoding="async" />
+      </a>
+      <p class="c-footer__text" data-i18n="footer.tagline"><strong>Secure. Automate. Scale</strong></p>
+      <p class="c-footer__contact">
+        <a href="https://wa.me/8801850603126">WhatsApp +880 1850-603126</a>
+      </p>
+      <ul class="social" aria-label="Social links">
+        <li class="social-li"><a href="https://www.facebook.com/share/1CjDhd7WfX/" target="_blank" rel="noopener" aria-label="Facebook"><img src="img/facebook_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://x.com/clofix19" target="_blank" rel="noopener" aria-label="X"><img src="img/X_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://www.linkedin.com/company/clofix-infotech" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="img/linkedin_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://wa.me/8801850603126" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/whatsapp_clofix.png" alt="" width="28" height="28" /></a></li>
+        <li class="social-li"><a href="https://youtube.com/@clofix-infotech" target="_blank" rel="noopener" aria-label="YouTube"><img src="img/youtube_clofix.png" alt="" width="28" height="28" /></a></li>
+      </ul>
+      <div class="google-play-wrapper">
+        <a href="https://play.google.com/store/apps/details?id=com.clofix.waf" target="_blank" rel="noopener">
+          <img src="img/google-play-store-logo-png.png" alt="Get it on Google Play" class="c-footer__play-badge" width="150" height="52" />
+        </a>
+      </div>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.product">Product</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/waf">CloFix WAF</a></li>
+        <li><a href="/features" data-i18n="footer.features">Features</a></li>
+        <li><a href="/features/clofix-load-balancer/">Load Balancer</a></li>
+        <li><a href="/wasm">WASM</a></li>
+        <li><a href="/dns">DNS Checker</a></li>
+        <li><a href="/pricing" data-i18n="footer.pricing">Pricing</a></li>
+        <li><a href="/free-trial" data-i18n="footer.free_trial">Free Trial</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.resources">Resources</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/event" data-i18n="footer.event">Free Event</a></li>
+        <li><a href="/documentation" data-i18n="footer.docs">Documentation</a></li>
+        <li><a href="/services" data-i18n="footer.services">Services</a></li>
+        <li><a href="/software-development" data-i18n="footer.software_dev">Software Development</a></li>
+        <li><a href="/blogs" data-i18n="footer.blogs">Blogs</a></li>
+        <li><a href="/our-insights" data-i18n="footer.insights">Our Insights</a></li>
+        <li><a href="/faq" data-i18n="footer.faq">FAQ</a></li>
+        <li><a href="/support" data-i18n="footer.support">Support</a></li>
+        <li><a href="/case-study" data-i18n="footer.case_study">Case Study</a></li>
+        <li><a href="/sitemap">HTML Sitemap</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.company">Company</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/about" data-i18n="footer.about">About</a></li>
+        <li><a href="/contact" data-i18n="footer.contact">Contact</a></li>
+        <li><a href="/careers" data-i18n="footer.careers">Careers</a></li>
+        <li><a href="/partner" data-i18n="footer.partners">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="c-footer__column">
+      <h4 class="c-footer__subtitle" data-i18n="footer.legal">Legal</h4>
+      <ul class="c-footer__list c-footer__list--check">
+        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+        <li><a href="/sla" data-i18n="footer.sla">SLA</a></li>
+        <li><a href="/privacy-policy" data-i18n="footer.privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container c-footer__bottom">
+    <p class="footer__text" data-i18n="footer.copyright">© 2026 CloFix InfoTech - Global AI-Powered WAF &amp; Cloud Security. All Rights Reserved.</p>
+    <ul class="c-footer__listed">
+      <li><a href="https://www.g2.com/products/clofix-infotech/reviews" target="_blank" rel="noopener">G2</a></li>
+      <li><a href="https://www.cbinsights.com/company/clofix-infotech" target="_blank" rel="noopener">CB Insights</a></li>
+      <li><a href="https://www.producthunt.com/products/clofix-waf" target="_blank" rel="noopener">Product Hunt</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
