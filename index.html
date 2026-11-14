@@ -1110,6 +1110,134 @@
 [data-tooltip]:hover:before { opacity: 1; }
 
 /* ============================================
+   CLIENT LOGO MARQUEE (above Enterprise block)
+   ============================================ */
+
+.cf-clients-marquee {
+  position: relative;
+  padding: 32px 0 18px;
+  background: #060a15;
+  overflow: hidden;
+  width: 100%;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.cf-clients-marquee__label {
+  text-align: center;
+  margin: 0 0 18px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.cf-clients-marquee__viewport {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.cf-clients-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  animation: cfClientsSlide 40s linear infinite;
+  will-change: transform;
+}
+
+.cf-clients-marquee__viewport:hover .cf-clients-marquee__track {
+  animation-play-state: paused;
+}
+
+.cf-clients-marquee__group {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  padding-right: 18px;
+  flex-shrink: 0;
+}
+
+.cf-clients-marquee__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 188px;
+  text-decoration: none;
+  color: #e2e8f0;
+  transition: transform 0.2s ease;
+}
+
+.cf-clients-marquee__item:hover {
+  transform: translateY(-2px);
+}
+
+.cf-clients-marquee__plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.cf-clients-marquee__logo {
+  display: block;
+  width: 100%;
+  height: 64px;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
+
+.cf-clients-marquee__name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+  line-height: 1.25;
+  color: #cbd5e1;
+  max-width: 100%;
+}
+
+@keyframes cfClientsSlide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  .cf-clients-marquee__item { width: 156px; }
+  .cf-clients-marquee__plate { height: 76px; padding: 10px 12px; }
+  .cf-clients-marquee__logo { height: 54px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-clients-marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .cf-clients-marquee__group:last-child {
+    display: none;
+  }
+  .cf-clients-marquee__group {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+    gap: 16px;
+  }
+}
+
+/* ============================================
    SERVICES SECTION - FULLY FIXED
    ============================================ */
 
@@ -4322,6 +4450,81 @@
         <span class="spot-action__go" aria-hidden="true">→</span>
       </a>
     </template>
+
+    <!-- ============================================ -->
+    <!-- CLIENT LOGOS SLIDER (above Enterprise block) -->
+    <!-- ============================================ -->
+    <section class="cf-clients-marquee" aria-label="CloFix clients">
+      <p class="cf-clients-marquee__label">Trusted by our clients</p>
+      <div class="cf-clients-marquee__viewport">
+        <div class="cf-clients-marquee__track">
+          <div class="cf-clients-marquee__group">
+            <a class="cf-clients-marquee__item" href="https://photo4life.au/" target="_blank" rel="noopener">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/photo-4-life.png" alt="Photo4life AU" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Photo4life AU</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="/case-study/exquisite-tech-zone">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/Exquisite_Tech_Zone.png" alt="Exquisite Tech Zone" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Exquisite Tech Zone</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="/case-study/bayyinah-qa-limited">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/bayyinahqa.png" alt="Bayyinah QA Limited" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Bayyinah QA Limited</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="https://b-innovations.com/" target="_blank" rel="noopener">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/b-innovations.png" alt="Byte Innovations" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Byte Innovations</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="/case-study/rockibul-info">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/rockibul.png" alt="Rockibul Info" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Rockibul Info</span>
+            </a>
+          </div>
+          <div class="cf-clients-marquee__group" aria-hidden="true">
+            <a class="cf-clients-marquee__item" href="https://photo4life.au/" tabindex="-1">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/photo-4-life.png" alt="" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Photo4life AU</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="/case-study/exquisite-tech-zone" tabindex="-1">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/Exquisite_Tech_Zone.png" alt="" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Exquisite Tech Zone</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="/case-study/bayyinah-qa-limited" tabindex="-1">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/bayyinahqa.png" alt="" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Bayyinah QA Limited</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="https://b-innovations.com/" tabindex="-1">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/b-innovations.png" alt="" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Byte Innovations</span>
+            </a>
+            <a class="cf-clients-marquee__item" href="/case-study/rockibul-info" tabindex="-1">
+              <span class="cf-clients-marquee__plate">
+                <img class="cf-clients-marquee__logo" src="img/p/rockibul.png" alt="" width="160" height="64" loading="lazy" decoding="async" />
+              </span>
+              <span class="cf-clients-marquee__name">Rockibul Info</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ============================================ -->
     <!-- GLOBAL REACH SECTION - Balanced Approach    -->
