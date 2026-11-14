@@ -2,3 +2,9 @@ User-agent: *
 Allow: /
 
 Sitemap: https://clofix.com/sitemap.xml
+
+# Chrome partials (not landing pages)
+Disallow: /header
+Disallow: /footer
+Disallow: /header.html
+Disallow: /footer.html

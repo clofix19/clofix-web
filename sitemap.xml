@@ -93,10 +93,6 @@
     <lastmod>2026-08-13</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://clofix.com/xml/clofix-load-balancer-sitemap.xml</loc>
-    <lastmod>2026-08-13</lastmod>
-  </sitemap>
-  <sitemap>
     <loc>https://clofix.com/xml/clofix-lua-script-sitemap.xml</loc>
     <lastmod>2026-08-13</lastmod>
   </sitemap>
@@ -322,6 +318,6 @@
   </sitemap>
   <sitemap>
     <loc>https://clofix.com/xml/features-clofix-load-balancer-sitemap.xml</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-14</lastmod>
   </sitemap>
 </sitemapindex>
