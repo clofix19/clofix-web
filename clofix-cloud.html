@@ -133,11 +133,12 @@
       { "@type": "ListItem", "position": 5, "name": "CKS Kubernetes", "url": "https://clofix.com/clofix-cloud#feat-cks", "description": "EKS-style clusters on dedicated CKS workers." },
       { "@type": "ListItem", "position": 6, "name": "Storage", "url": "https://clofix.com/clofix-cloud#feat-storage", "description": "Volumes, EFS, S3, and VPS backups." },
       { "@type": "ListItem", "position": 7, "name": "Managed databases", "url": "https://clofix.com/clofix-cloud#feat-databases", "description": "MySQL, PostgreSQL, MongoDB, and Redis projects." },
-      { "@type": "ListItem", "position": 8, "name": "Networking", "url": "https://clofix.com/clofix-cloud#feat-network", "description": "VPC, DNS, load balancers, health checks, firewall." },
-      { "@type": "ListItem", "position": 9, "name": "Protection Mode", "url": "https://clofix.com/clofix-cloud#feat-protection-mode", "description": "Read-only guest root to block system writes." },
-      { "@type": "ListItem", "position": 10, "name": "WAF", "url": "https://clofix.com/clofix-cloud#feat-security", "description": "OWASP CRS edge engine for HTTP and HTTPS." },
-      { "@type": "ListItem", "position": 11, "name": "IAM and partners", "url": "https://clofix.com/clofix-cloud#feat-iam", "description": "Users, IAM scopes, partner and client resale." },
-      { "@type": "ListItem", "position": 12, "name": "Billing platform", "url": "https://clofix.com/clofix-cloud#feat-platform", "description": "Dashboard, workers, pricing, and due bill." }
+      { "@type": "ListItem", "position": 8, "name": "Redis Cluster", "url": "https://clofix.com/clofix-cloud#feat-redis-cluster", "description": "Deploy and manage Redis Cluster projects for scalable in-memory data workloads." },
+      { "@type": "ListItem", "position": 9, "name": "Networking", "url": "https://clofix.com/clofix-cloud#feat-network", "description": "VPC, DNS, load balancers, health checks, firewall." },
+      { "@type": "ListItem", "position": 10, "name": "Protection Mode", "url": "https://clofix.com/clofix-cloud#feat-protection-mode", "description": "Read-only guest root to block system writes." },
+      { "@type": "ListItem", "position": 11, "name": "WAF", "url": "https://clofix.com/clofix-cloud#feat-security", "description": "OWASP CRS edge engine for HTTP and HTTPS." },
+      { "@type": "ListItem", "position": 12, "name": "IAM and partners", "url": "https://clofix.com/clofix-cloud#feat-iam", "description": "Users, IAM scopes, partner and client resale." },
+      { "@type": "ListItem", "position": 13, "name": "Billing platform", "url": "https://clofix.com/clofix-cloud#feat-platform", "description": "Dashboard, workers, pricing, and due bill." }
     ]
   }
   </script>
@@ -570,7 +571,6 @@
                       <h4 class="c-dropdown__mega-title" data-i18n="nav.engineering">Engineering</h4>
                       <a role="menuitem" href="/software-development" class="c-dropdown__mega-link" data-i18n="nav.software_dev">Software Development</a>
                       <a role="menuitem" href="/devsecops" class="c-dropdown__mega-link">DevSecOps</a>
-                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
                     </div>
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title" data-i18n="nav.managed">Managed Services</h4>
@@ -616,7 +616,6 @@
                     <div class="c-dropdown__mega-col">
                       <h4 class="c-dropdown__mega-title" data-i18n="nav.tools">Tools</h4>
                       <a role="menuitem" href="/cve" class="c-dropdown__mega-link">CVE Checker</a>
-                      <a role="menuitem" href="/pentest" class="c-dropdown__mega-link">Pentest</a>
                       <a role="menuitem" href="/waf-setup" class="c-dropdown__mega-link">WAF Setup</a>
                       <a role="menuitem" href="/dns" class="c-dropdown__mega-link">DNS Checker</a>
                     </div>
@@ -840,6 +839,12 @@
 
 
 
+
+
+
+
+
+
   
 
 
@@ -960,6 +965,7 @@
       <a class="cf-hub__card" href="#feat-jobs"><h3>Jobs &amp; Functions</h3><p>Run app code without creating a VPS</p></a>
       <a class="cf-hub__card" href="#feat-cks"><h3>CKS Kubernetes</h3><p>EKS-style clusters on dedicated workers</p></a>
       <a class="cf-hub__card" href="#feat-databases"><h3>Managed databases</h3><p>MySQL, PostgreSQL, MongoDB, Redis projects</p></a>
+      <a class="cf-hub__card" href="#feat-redis-cluster"><h3>Redis Cluster</h3><p>Scalable Redis Cluster projects for in-memory workloads</p></a>
     </div>
   </section>
 
@@ -1077,6 +1083,16 @@
           <li>TLS CA, encrypted backups (where implemented), schedules, live jobs</li>
           <li>Private net with CPU / RAM / PID limits</li>
           <li>Stopped instances bill storage only</li>
+        </ul>
+      </article>
+
+      <article class="cf-cloud-feature" id="feat-redis-cluster">
+        <h3>Redis Cluster</h3>
+        <p>Deploy Redis Cluster projects for in-memory workloads that need data sharding across multiple Redis nodes.</p>
+        <ul>
+          <li>Manage cluster projects alongside other managed databases</li>
+          <li>Use a private network for application access</li>
+          <li>Scale Redis capacity by adding cluster nodes as workload needs grow</li>
         </ul>
       </article>
     </div>
@@ -1343,6 +1359,12 @@
 
 
 
+
+
+
+
+
+
 <!-- CloFix shared footer. Edit this file, then run: python3 _partials/sync_chrome.py -->
 <footer class="footer notranslate" role="contentinfo" translate="no">
   <div class="container c-footer">
@@ -1369,15 +1391,11 @@
     </div>
 
     <div class="c-footer__column">
-      <h4 class="c-footer__subtitle" data-i18n="footer.product">Product</h4>
+      <h4 class="c-footer__subtitle" data-i18n="footer.product">Core Services</h4>
       <ul class="c-footer__list c-footer__list--check">
         <li><a href="/waf">CloFix WAF</a></li>
-        <li><a href="/features" data-i18n="footer.features">Features</a></li>
-        <li><a href="/features/clofix-load-balancer/">Load Balancer</a></li>
-        <li><a href="/wasm">WASM</a></li>
-        <li><a href="/dns">DNS Checker</a></li>
-        <li><a href="/pricing" data-i18n="footer.pricing">Pricing</a></li>
-        <li><a href="/free-trial" data-i18n="footer.free_trial">Free Trial</a></li>
+        <li><a href="/clofix-cloud">CloFix Cloud</a></li>
+        <li><a href="/clofix-one">CloFix One</a></li>
       </ul>
     </div>
 

@@ -64,7 +64,7 @@
     "nav.engineering": "Engineering",
     "nav.free_event": "Free Event",
     "footer.tagline": "Secure. Automate. Scale",
-    "footer.product": "Product",
+    "footer.product": "Core Services",
     "footer.resources": "Resources",
     "footer.company": "Company",
     "footer.legal": "Legal",
